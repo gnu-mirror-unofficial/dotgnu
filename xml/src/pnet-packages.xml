@@ -86,27 +86,6 @@
 
 <content>
 <h1>DotGNU Portable.Net Packages For Various Systems</h1>
-<h2>Under Construction</h2>
-<p>
-When Portable.Net 0.6.4 has just been released.  Packages for various systems
-will be built over the course of the next few days.
-</p>
-<!--
-<h2> Contributing </h2>
-<p>
-	These packages are built by various part-time volunteers of the 
-	project. If you are interested in packaging DotGNU for any particular
-	platform or distribution, please contact the DotGNU
-	<a href="mailto:developers@dotgnu.org">developers</a> mailing list. 
-	The releases are usually on weekends, so volunteers have enough time to
-	provide packages. The packages will generally be slightly delayed, 
-	please bear with us.
-</p>
--->
-<!--
-<h2>BitTorrent Downloads</h2>
-The DotGNU 0.1 cdrom iso image as well as various packages are available
-as BitTorrent downloads <a href="http://downloads.freedom.biz/dotgnu/">here</a>.-->
 <h2>Source Code Downloads</h2>
 <p>
 	The Portable.net 0.6.4 source tarballs are available from
@@ -127,22 +106,53 @@ as BitTorrent downloads <a href="http://downloads.freedom.biz/dotgnu/">here</a>.
 		<li><a class="linksbody" href="ftp://ftp.gnu.org/gnu/dotgnu/pnet/pnetcurses-0.0.2.tar.gz">pnetcurses-0.0.2</a></li>
 	</ul>
 </p>
-<!--
-	<h3>Debs</h3>
-		
+<h2>Index of system-specific packages</h2>
+<p>
+Portable.Net 0.6.4 has just been released.  Packages for various systems
+will be built over the course of the next few days.
+</p>
+<p>
+Currently packages are available for the following systems:
+</p>
+<p>
+GNU/Linux distributions:
+<a href="#ebuilds">Gentoo (ebuilds)</a>
+<a href="#fedora">RedHat/Fedora (RPMs)</a>
+<a href="#pld">PLD (RPMs)</a>
+</p>
+<p>
+Other systems:
+<a href="#mswindows">Microsoft Windows</a>
+</p>
+<p>
+<b>Volunteers wanted</b>: If there are no packages for your system yet,
+please consider building the missing packages and letting us know via
+the DotGNU <a href="mailto:developers@dotgnu.org">developers</a> mailing
+list. 
+</p>
+	<h3><a name="ebuilds">Gentoo Ebuilds</a></h3>
 	<p>
-		The location of the binaries is 
-		<a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet/debian/">
-		ftp.gnu.org</a>. Use these for apt-get support.
-		<pre class="maincontent">deb ftp://ftp.gnu.org/gnu/dotgnu/pnet/debian ./ 
-deb-src ftp://ftp.gnu.org/gnu/dotgnu/pnet/debian ./
-		</pre>
+		Rainer Groesslinger (rainer.groesslinger AT gmx DOT net) has
+		contributed ebuild rules to the Gentoo portage directory.
+		Gentoo users can build and install DotGNU Portable.Net 0.6.4 by
+		means of the following commands:
 	</p>
--->	
-	<h3>Rpms</h3>
+		<blockquote>
+		<code>emerge sync</code><br/>
+		<code>emerge pnet</code><br/>
+		<code>emerge pnetlib</code>
+		</blockquote>
+	<p>
+		If you'd like to try the C compiler, you'll also want the
+		C library:		
+	</p>
+		<blockquote>
+		<code>emerge pnetc</code>
+		</blockquote>
+	<h3><a name="fedora">RedHat/Fedora RPMs</a></h3>
 
 	<p>
-		Portable.NET 0.6.4 RedHat/Fedora RPMS have been built by
+		Portable.NET 0.6.4 RedHat/Fedora RPMs have been built by
 		Dejan Lekic (dejan at nu6 dot org).  These packages should
 		work on any RedHat system with a reasonably new libc.
 	</p>
@@ -158,6 +168,71 @@ deb-src ftp://ftp.gnu.org/gnu/dotgnu/pnet/debian ./
 rpm http://apt.linuks.org fedora/2.0/i386 os linuks updates
 rpm-src http://apt.linuks.org fedora/2.0/i386 os linuks updates
 </pre>
+	<h3><a name="pld">Packages for PLD</a></h3>
+Thanks to Andrzej Dopierala (undefine AT aramin DOT net), PLD packages are
+available at <code>ftp://ftp.pld-linux.org/dists/ac/PLD/$arch/PLD/RPMS/</code>
+where $arch is one of the following:
+<a href="ftp://ftp.pld-linux.org/dists/ac/PLD/i386/PLD/RPMS/">i386</a>,
+<a href="ftp://ftp.pld-linux.org/dists/ac/PLD/i586/PLD/RPMS/">i586</a>,
+<a href="ftp://ftp.pld-linux.org/dists/ac/PLD/i686/PLD/RPMS/">i686</a>,
+<a href="ftp://ftp.pld-linux.org/dists/ac/PLD/athlon/PLD/RPMS/">athlon</a>,
+<a href="ftp://ftp.pld-linux.org/dists/ac/PLD/sparc/PLD/RPMS/">sparc</a>,
+<a href="ftp://ftp.pld-linux.org/dists/ac/PLD/ppc/PLD/RPMS/">ppc</a>,
+<a href="ftp://ftp.pld-linux.org/dists/ac/PLD/alpha/PLD/RPMS/">alpha</a>,
+<a href="ftp://ftp.pld-linux.org/dists/ac/PLD/amd64/PLD/RPMS/">amd64</a>.
+(For amd64, pnetC is currently not available).
+To install simply use poldek:
+<blockquote>
+<code>poldek --up; poldek --upa; poldek -vi pnet-compiler-csharp</code>
+</blockquote>
+<!--	
+	<h3>Binaries for the Microsoft Windows system</h3>
+		
+	<p>
+		Thong Nguyen (tum AT verdicus DOT com) has zipped up his build
+		version of the 0.5.10 release until the installers are built.
+		The single .zip file contains both pnet and pnetlib.
+	</p>
+	<p>
+		Robert Johnson (bobjohnson11 AT yahoo DOT com) has built the 
+		Portable.net system and the
+		treecc tool for the Microsoft Windows system. They are
+		available as installers. 
+	</p>
+
+	<p>
+		<ul>
+		<li><a href="http://tummy.veridicus.com/tummy/programming/pnet/downloads/pnet_mingw_0_5_10.zip">pnet_mingw_0_5_10.zip</a></li>
+		</ul>
+	</p>
+	<p>
+		<ul>
+		<li><a href="http://download.freedom.biz/contrib/bobj/TREECC-0-2-6-Installer.exe">treecc 0.2.6</a></li>
+		<li><a href="http://download.freedom.biz/contrib/bobj/PNET-0-5-10-Installer-Light.exe">Portable.NET 0.5.10 (binaries)</a></li>
+		</ul>
+	</p>
+
+	<p>
+		The source code and installer scripts have been bundled together
+		<a href="http://download.freedom.biz/contrib/bobj/PNET-0-5-10-Installer-Complete.exe">Portable.NET 0.5.10 (binaries and source) </a>.
+	</p>
+-->
+<!--
+<h2>BitTorrent Downloads</h2>
+The DotGNU 0.1 cdrom iso image as well as various packages are available
+as BitTorrent downloads <a href="http://downloads.freedom.biz/dotgnu/">here</a>.-->
+<!--
+	<h3>Debs</h3>
+		
+	<p>
+		The location of the binaries is 
+		<a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet/debian/">
+		ftp.gnu.org</a>. Use these for apt-get support.
+		<pre class="maincontent">deb ftp://ftp.gnu.org/gnu/dotgnu/pnet/debian ./ 
+deb-src ftp://ftp.gnu.org/gnu/dotgnu/pnet/debian ./
+		</pre>
+	</p>
+-->	
 <!--	<p>
 		<a href="http://csserver.evansville.edu/~sc87/pnet-rpm/">Mandrake Rpms
 		</a>
@@ -233,57 +308,6 @@ member.fsf.org), and will be posted soon.
 	pages.	
 	</p>
 	<p class="maincontent">
-	</p>
--->
-	<h3>Gentoo Ebuilds</h3>
-	<p>
-		Rainer Groesslinger (rainer.groesslinger AT gmx DOT net) has
-		contributed ebuild rules to the Gentoo portage directory.
-		Gentoo users can build and install DotGNU Portable.Net 0.6.4 by
-		means of the following commands:
-	</p>
-		<blockquote>
-		<code>emerge sync</code><br/>
-		<code>emerge pnet</code><br/>
-		<code>emerge pnetlib</code>
-		</blockquote>
-	<p>
-		If you'd like to try the C compiler, you'll also want the
-		C library:		
-	</p>
-		<blockquote>
-		<code>emerge pnetc</code>
-		</blockquote>
-<!--	
-	<h3>Binaries for th Microsoft Windows system</h3>
-		
-	<p>
-		Thong Nguyen (tum AT verdicus DOT com) has zipped up his build
-		version of the 0.5.10 release until the installers are built.
-		The single .zip file contains both pnet and pnetlib.
-	</p>
-	<p>
-		Robert Johnson (bobjohnson11 AT yahoo DOT com) has built the 
-		Portable.net system and the
-		treecc tool for the Microsoft Windows system. They are
-		available as installers. 
-	</p>
-
-	<p>
-		<ul>
-		<li><a href="http://tummy.veridicus.com/tummy/programming/pnet/downloads/pnet_mingw_0_5_10.zip">pnet_mingw_0_5_10.zip</a></li>
-		</ul>
-	</p>
-	<p>
-		<ul>
-		<li><a href="http://download.freedom.biz/contrib/bobj/TREECC-0-2-6-Installer.exe">treecc 0.2.6</a></li>
-		<li><a href="http://download.freedom.biz/contrib/bobj/PNET-0-5-10-Installer-Light.exe">Portable.NET 0.5.10 (binaries)</a></li>
-		</ul>
-	</p>
-
-	<p>
-		The source code and installer scripts have been bundled together
-		<a href="http://download.freedom.biz/contrib/bobj/PNET-0-5-10-Installer-Complete.exe">Portable.NET 0.5.10 (binaries and source) </a>.
 	</p>
 -->
 <!--
