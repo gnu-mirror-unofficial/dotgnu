@@ -10,29 +10,13 @@
    WIDTH="129" HEIGHT="122"></A>
 
 <H1>The DotGNU Platform</H1>
-The DotGNU Platform will consist of the following components:
+The DotGNU Platform will consist of two major components:
 <UL>
-  <LI><STRONG>DotGNU Core Platform</STRONG>
-    <P>
-    This project is responsible for creating the DotGNU bytecode
-    specification, DotGNU bytecode interpreter, DotGNU
-    bytecode->machine code compiler (may be based on gcc), and a
-    compiler from a subset of one popular programming language
-    (perhaps Java?) to DotGNU bytecode.
-    <P>
-    This is a high-priority project.  Support for generating DotGNU
-    bytecode will be added to the Free Software implementations of
-    compilers by many programming languages by other subprojects of
-    the DotGNU project.  This "DotGNU Core Platform" project will
-    create a well-documented specification for "DotGNU bytecode" so that
-    all everyone who develops or maintains a compiler can add support
-    for generating DotGNU bytecode.
   <LI><STRONG>DotGNU Secure Execution Environment</STRONG>
     <P>
-    This project is responsible for creating a Secure Execution
-    Environment which can download DotGNU bytecode (or other stuff for
-    which an emulation is available - that should include .NET stuff)
-    from the network and execute it in a secure manner.
+    The Secure Execution Environment is a component which can download
+    bytecode (see below for a discussion of what kinds of bytecode
+    will be supported) from the network and execute it in a secure manner.
   <LI><STRONG>DotGNU Distributed Execution Environment</STRONG>
     <P>
     DotGNU's Distributed Execution Environment will be like an
@@ -48,6 +32,27 @@ will eventually run as an application on the DotGNU Platform, but we
 are also working on a quick-and-dirty proof-of-concept implementation
 that can already be made available before the DotGNU Platform if
 available.
+<H2>What kinds of bytecode will the DotGNU Platform support?</H2>
+It is important that a fully IL-compatible bytecode system is supported as per 
+the ECMA specs in DotGNU.  It is also important to have alternatives and 
+options possible should this not prove legally possible or require some other 
+ethical compromises with freedom that we should not make.
+<P>
+For this reason DotGNU is taking this "two track approach":
+<UL>
+  <LI>One track is to support a fully IL-compatible bytecode system,
+    the C# language spec, and class libs that fully comply with the ECMA
+    specs.
+  <LI>The other track is based on java work with supporting class libs.
+</UL>
+This "two track approach" offers both freedom of choice 
+and leverages another, very mature bytecode system, as well as providing 
+options in case of legal dirty tricks.
+<P>
+This approach naturally leads to an architecture of the DotGNU
+platform that will support multiple bytecode formats, so that
+it will be possible for other virtual machines to be added at a
+later stage.
 <H2>How you can contribute</H2>
 If you would like to contribute to the development of the DotGNU
 Platform, please subscribe to
@@ -55,7 +60,7 @@ Platform, please subscribe to
 mailing list, join the discussions, and find a way in which you can
 help move the project forward.
 <HR>
-This page was last updated on June 13, 2001. It is maintained by
+This page was last updated on June 20, 2001. It is maintained by
 Norbert Bollow &lt;nb@freedevelopers.net&gt; with support from the
 <A href="http://dotgnu.org/mailman/listinfo/website">DotGNU Website
    mailing list</A>.
