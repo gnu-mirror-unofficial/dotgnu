@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE content
+[
+<!--======================================== modify but don't delete ========================================-->
+ <!ENTITY base "./">
+ <!ENTITY title	"DotGNU Execution Environment - Installation">
+ <!ENTITY this "dgee-install.html">
+ <!ENTITY maintainer "&lt;a href=&quot;http://norbert.ch/&quot;&gt;Norbert Bollow&lt;/a&gt; &lt;a href=&quot;mailto:nb@SoftwareEconomics.biz&quot;&gt;&_lt_;nb@SoftwareEconomics.biz&_gt_;&lt;/a&gt;">
+ <!ENTITY modtime "Wed Nov 5, 2003">
+<!--======================================== modify but don't delete ========================================-->
+
+<!--======================================== add custom entities here ========================================-->
+<!--======================================== add custom entities here ========================================-->
+
+<!--======================================== declared here, defined elsewhere ========================================-->
+ <!ENTITY nav.snapshots "">
+ <!ENTITY nav.faq "">
+ <!ENTITY nav.essays "">
+ <!ENTITY nav.proposals "">
+ <!ENTITY nav.patent "">
+ <!ENTITY nav.projects "">
+ <!ENTITY nav.proposals.active "">
+ <!ENTITY nav.arch "">
+ <!ENTITY nav.see "">
+ <!ENTITY nav.phpgw "">
+ <!ENTITY nav.pnet "">
+ <!ENTITY nav.pnet.changes "">
+ <!ENTITY nav.pnet.lib.status "">
+ <!ENTITY nav.pnet.lib.docs "">
+ <!ENTITY nav.web_services "">
+ <!ENTITY nav.auth "">
+ <!ENTITY nav.mail.lists "">
+ <!ENTITY nav.mail.pipermail "">
+ <!ENTITY nav.mail.announce "">
+ <!ENTITY nav.mail.developers "">
+ <!ENTITY nav.mail.auth "">
+ <!ENTITY nav.mail.arch "">
+ <!ENTITY nav.mail.biz "">
+ <!ENTITY nav.mail.website "">
+ <!ENTITY misc.freedev "">
+ <!ENTITY misc.gnu "">
+ <!ENTITY misc.dotgnu "">
+ <!ENTITY mail.gnu "">
+ <!ENTITY mail.dotgnu "">
+ <!ENTITY mail.rhysw "">
+ <!ENTITY mail.gopal "">
+ <!ENTITY mail.minten "">
+ <!ENTITY mail.dnicol "">
+ <!ENTITY _lt_ "">
+ <!ENTITY _gt_ "">
+ <!ENTITY _quot_ "">
+ <!ENTITY _apos_ "">
+ <!ENTITY _amp_ "">
+ <!ENTITY nbsp "">
+ <!ENTITY copy "">
+ <!ENTITY root "">
+<!--======================================== declared here, defined elsewhere ========================================-->
+
+<!--======================================== don't touch this stuff ========================================-->
+ <!ELEMENT ul (li)+>
+ <!ELEMENT ol (li)+>
+ <!ELEMENT dl (dt|dd)+>
+ <!ELEMENT dt (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT li (#PCDATA | include | br | em | strong | code | a | img | ul | ol | dl)*>
+ <!ELEMENT dd (#PCDATA | include | br | em | strong | code | a | img | ul | ol | dl)*>
+ <!ELEMENT blockquote (#PCDATA | include | br | em | strong | code | a | img | ul | ol | dl)*><!--no nesting blockquotes-->
+ <!ELEMENT pre (#PCDATA | include | br | em | strong | code | a)*><!--no images in pre-->
+ <!ELEMENT a (#PCDATA | include | br | em | strong | code | img)*><!--no nesting anchors-->
+ <!ELEMENT content (#PCDATA | include | p | h1 | h2 | h3 | h4 | pre | blockquote)*><!--block elements only in top level-->
+ <!ELEMENT p (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT em (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT strong (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT code (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT h1 (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT h2 (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT h3 (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT h4 (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT br EMPTY>
+ <!ELEMENT img EMPTY>
+ <!ELEMENT include EMPTY>
+ <!ATTLIST a title CDATA #IMPLIED name NMTOKEN #IMPLIED href CDATA #IMPLIED>
+ <!ATTLIST img src CDATA #REQUIRED alt CDATA #REQUIRED align (top|middle|bottom|left|right) #IMPLIED>
+ <!ATTLIST include file CDATA #REQUIRED entry NMTOKEN #IMPLIED overwrite (true|false) #IMPLIED>
+<!--======================================== don't touch this stuff ========================================-->
+]>
+
+<content>
+<h1>DGEE Samples</h1>
+<pre>
+The examples directory of the src distribution contains several webservice 
+examples.
+
+cd examples
+make
+
+This will create wstest.dll, state.dll and math.dll
+
+Generate a dgmx files for each of these webservices:
+
+csdgmx wstest.dll
+csdgmx state.dll
+csdgmx math.dll
+
+Now install the webservice into the dgee by running dgeeinstallws script:
+
+dginstallws wstest
+dginstallws state
+dginstallws math
+
+  (This may require you to be the 'dgee' user (usually the same as Apache) or
+  root.  Alternatively, you can set the permissions of /usr/local/var/dgee/data
+  and /usr/local/var/dgee/index to be global rwx, and set the 'sticky' bit on
+  these directories so that only the owners of the files placed there may delete
+  them again (just like /tmp).
+
+  chmod a+rwx ...directory...
+  chmod +t    ...directory...
+
+  Please see your man pages for further details
+
+(Or you can copy the dll files directly into /usr/local/var/dgee/data and the
+dgmx files into /usr/local/var/dgee/index - make sure the ownership on the
+directory and files is correct).
+
+You can now view the web service documentation for this webservice by pointing
+your browser at:
+
+http://my.local.apache.webserver/wstest.dgmx
+http://my.local.apache.webserver/state.dgmx
+http://my.local.apache.webserver/math.dgmx
+
+If you want to see the documentation in XML form, use the following:
+
+http://my.local.apache.webserver/wstest.dgmx?xml
+
+XML-RPC access to the webservice is enabled by POSTing your XML-RPC request
+to http://my.local.apache.webserver/wstest.dgmx
+
+To create C# Client Proxy classes for your webservices, you can run
+csws2client webservice.dll to generate a webserviceClient.cs file.
+
+Alternativly, the webservice documentation available from your DGEE contains
+a hypertext link which will download a suitable C# client proxy class.
+This class can be instantiated by your code code and the webservice methods 
+called directly via this proxy without the user having to get involved with the
+network side of things.
+
+Note: The client proxy may need the hard coded Url's set appropriately as they
+will be http://127.0.0.1 by default.
+
+
+The perl directory contains a simple XMLRPC test client.
+It requires XMLRPC::Lite which is part of SOAP::Lite.
+
+The Python direcory contains an out-of-the-box client example.
+</pre>
+
+</content>

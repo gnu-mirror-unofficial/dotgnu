@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE content
+[
+<!--======================================== modify but don't delete ========================================-->
+ <!ENTITY base "./">
+ <!ENTITY title	"DotGNU Execution Environment - Installation">
+ <!ENTITY this "dgee-install.html">
+ <!ENTITY maintainer "&lt;a href=&quot;http://norbert.ch/&quot;&gt;Norbert Bollow&lt;/a&gt; &lt;a href=&quot;mailto:nb@SoftwareEconomics.biz&quot;&gt;&_lt_;nb@SoftwareEconomics.biz&_gt_;&lt;/a&gt;">
+ <!ENTITY modtime "Wed Nov 5, 2003">
+<!--======================================== modify but don't delete ========================================-->
+
+<!--======================================== add custom entities here ========================================-->
+<!--======================================== add custom entities here ========================================-->
+
+<!--======================================== declared here, defined elsewhere ========================================-->
+ <!ENTITY nav.snapshots "">
+ <!ENTITY nav.faq "">
+ <!ENTITY nav.essays "">
+ <!ENTITY nav.proposals "">
+ <!ENTITY nav.patent "">
+ <!ENTITY nav.projects "">
+ <!ENTITY nav.proposals.active "">
+ <!ENTITY nav.arch "">
+ <!ENTITY nav.see "">
+ <!ENTITY nav.phpgw "">
+ <!ENTITY nav.pnet "">
+ <!ENTITY nav.pnet.changes "">
+ <!ENTITY nav.pnet.lib.status "">
+ <!ENTITY nav.pnet.lib.docs "">
+ <!ENTITY nav.web_services "">
+ <!ENTITY nav.auth "">
+ <!ENTITY nav.mail.lists "">
+ <!ENTITY nav.mail.pipermail "">
+ <!ENTITY nav.mail.announce "">
+ <!ENTITY nav.mail.developers "">
+ <!ENTITY nav.mail.auth "">
+ <!ENTITY nav.mail.arch "">
+ <!ENTITY nav.mail.biz "">
+ <!ENTITY nav.mail.website "">
+ <!ENTITY misc.freedev "">
+ <!ENTITY misc.gnu "">
+ <!ENTITY misc.dotgnu "">
+ <!ENTITY mail.gnu "">
+ <!ENTITY mail.dotgnu "">
+ <!ENTITY mail.rhysw "">
+ <!ENTITY mail.gopal "">
+ <!ENTITY mail.minten "">
+ <!ENTITY mail.dnicol "">
+ <!ENTITY _lt_ "">
+ <!ENTITY _gt_ "">
+ <!ENTITY _quot_ "">
+ <!ENTITY _apos_ "">
+ <!ENTITY _amp_ "">
+ <!ENTITY nbsp "">
+ <!ENTITY copy "">
+ <!ENTITY root "">
+<!--======================================== declared here, defined elsewhere ========================================-->
+
+<!--======================================== don't touch this stuff ========================================-->
+ <!ELEMENT ul (li)+>
+ <!ELEMENT ol (li)+>
+ <!ELEMENT dl (dt|dd)+>
+ <!ELEMENT dt (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT li (#PCDATA | include | br | em | strong | code | a | img | ul | ol | dl)*>
+ <!ELEMENT dd (#PCDATA | include | br | em | strong | code | a | img | ul | ol | dl)*>
+ <!ELEMENT blockquote (#PCDATA | include | br | em | strong | code | a | img | ul | ol | dl)*><!--no nesting blockquotes-->
+ <!ELEMENT pre (#PCDATA | include | br | em | strong | code | a)*><!--no images in pre-->
+ <!ELEMENT a (#PCDATA | include | br | em | strong | code | img)*><!--no nesting anchors-->
+ <!ELEMENT content (#PCDATA | include | p | h1 | h2 | h3 | h4 | pre | blockquote)*><!--block elements only in top level-->
+ <!ELEMENT p (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT em (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT strong (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT code (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT h1 (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT h2 (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT h3 (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT h4 (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT br EMPTY>
+ <!ELEMENT img EMPTY>
+ <!ELEMENT include EMPTY>
+ <!ATTLIST a title CDATA #IMPLIED name NMTOKEN #IMPLIED href CDATA #IMPLIED>
+ <!ATTLIST img src CDATA #REQUIRED alt CDATA #REQUIRED align (top|middle|bottom|left|right) #IMPLIED>
+ <!ATTLIST include file CDATA #REQUIRED entry NMTOKEN #IMPLIED overwrite (true|false) #IMPLIED>
+<!--======================================== don't touch this stuff ========================================-->
+]>
+
+<content>
+<h1>Running the DGEE</h1>
+<p>
+This document explains how to run <a href="dgee.html">DGEE</a>
+one it has been installed either
+by <a href="dgee-install.html">building it from the source distribution</a>
+or from a <a href="dgee-packages.html">binary package</a>.
+</p>
+<pre>
+                             RUNNING THE DGEE
+                             ----------------
+
+Booting
+-------
+
+Once the environment has been set up by sourcing dgeeenv.sh the application
+may be started.
+
+DGEE should generally be started before Apache, as mod_dgee needs the DGEE
+application to bind to.
+
+Step 1.  Start an instance of the Goldwater middleware for the DGEE and
+         boot the DGEE server processes
+
+shell> dgadmin start
+Goldwater (version 1.3.8) Startup
+(c) 2003 Free Software Foundation, Inc.
+
+Initialising local Goldwater administrative processes....
+Initialising process Guardian....
+Goldwater Started.
+
+Welcome to the Goldwater Administrator (version 1.1.20)
+(c) 2003 Free Software Foundation, Inc.
+
+Type 'help' or '?' for a list of commands.
+
+dotGNU DGEE> boot 
+
+Installing server processes...
+
+  ++ Booting DGSvcMgr        Class: 100    ID: 100    -> Pid: 27945 ... Booted
+  ++ Booting DGSvcMgr        Class: 100    ID: 101    -> Pid: 27946 ... Booted
+  ++ Booting DGSvcMgr        Class: 100    ID: 102    -> Pid: 27947 ... Booted
+  ++ Booting DGResMgr        Class: 200    ID: 200    -> Pid: 27948 ... Booted
+  ++ Booting DGResMgr        Class: 200    ID: 201    -> Pid: 27949 ... Booted
+  ++ Booting DGResMgr        Class: 200    ID: 202    -> Pid: 27950 ... Booted
+  ++ Booting DGpnetVM        Class: 400    ID: 400    -> Pid: 27951 ... Booted
+  ++ Booting DGpnetVM        Class: 400    ID: 401    -> Pid: 27952 ... Booted
+  ++ Booting DGpnetVM        Class: 400    ID: 402    -> Pid: 27953 ... Booted
+
+Started 9 servers, 0 failed
+
+Goodbye
+
+
+
+Step 2.  Start Apache
+  Enjoy the world of dotGNU.
+
+
+
+Step 3. To shutdown the DGEE, including the middleware:
+
+shell> dgeestop
+Welcome to the Goldwater Administrator (version 1.1.20)
+(c) 2003 Free Software Foundation, Inc.
+
+Type 'help' or '?' for a list of commands.
+
+Halting server processes...
+
+  ++ Halting DGSvcMgr        Class: 100    ID: 100    -> Pid: 27945 ... Halted
+  ++ Halting DGSvcMgr        Class: 100    ID: 101    -> Pid: 27946 ... Halted
+  ++ Halting DGSvcMgr        Class: 100    ID: 102    -> Pid: 27947 ... Halted
+  ++ Halting DGResMgr        Class: 200    ID: 200    -> Pid: 27948 ... Halted
+  ++ Halting DGResMgr        Class: 200    ID: 201    -> Pid: 27949 ... Halted
+  ++ Halting DGResMgr        Class: 200    ID: 202    -> Pid: 27950 ... Halted
+  ++ Halting DGpnetVM        Class: 400    ID: 400    -> Pid: 27951 ... Halted
+  ++ Halting DGpnetVM        Class: 400    ID: 401    -> Pid: 27952 ... Halted
+  ++ Halting DGpnetVM        Class: 400    ID: 402    -> Pid: 27953 ... Halted
+
+Halted 9 servers, 0 failed
+
+Halting Guardian process....
+
+  ++ Halting guardian        Class: -      ID: -      -> Pid: 27942 ... Halted
+
+shell> 
+
+
+-- end --
+</pre>
+</content>

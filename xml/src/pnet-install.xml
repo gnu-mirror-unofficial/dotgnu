@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE content
+[
+<!--======================================== modify but don't delete ========================================-->
+ <!ENTITY base "./">
+ <!ENTITY title	"DotGNU Portable.NET">
+ <!ENTITY this "pnet.html">
+ <!ENTITY maintainer "&lt;a href=&quot;http://norbert.ch/&quot;&gt;Norbert Bollow&lt;/a&gt; &lt;a href=&quot;mailto:nb@SoftwareEconomics.biz&quot;&gt;&_lt_;nb@SoftwareEconomics.biz&_gt_;&lt;/a&gt;">
+ <!ENTITY modtime "Sat August 23, 2003">
+<!--======================================== modify but don't delete ========================================-->
+
+<!--======================================== add custom entities here ========================================-->
+<!--======================================== add custom entities here ========================================-->
+
+<!--======================================== declared here, defined elsewhere ========================================-->
+ <!ENTITY nav.snapshots "">
+ <!ENTITY nav.faq "">
+ <!ENTITY nav.essays "">
+ <!ENTITY nav.proposals "">
+ <!ENTITY nav.patent "">
+ <!ENTITY nav.projects "">
+ <!ENTITY nav.proposals.active "">
+ <!ENTITY nav.arch "">
+ <!ENTITY nav.see "">
+ <!ENTITY nav.phpgw "">
+ <!ENTITY nav.pnet "">
+ <!ENTITY nav.pnet.changes "">
+ <!ENTITY nav.pnet.lib.status "">
+ <!ENTITY nav.pnet.lib.docs "">
+ <!ENTITY nav.web_services "">
+ <!ENTITY nav.auth "">
+ <!ENTITY nav.mail.lists "">
+ <!ENTITY nav.mail.pipermail "">
+ <!ENTITY nav.mail.announce "">
+ <!ENTITY nav.mail.developers "">
+ <!ENTITY nav.mail.auth "">
+ <!ENTITY nav.mail.arch "">
+ <!ENTITY nav.mail.biz "">
+ <!ENTITY nav.mail.website "">
+ <!ENTITY misc.freedev "">
+ <!ENTITY misc.gnu "">
+ <!ENTITY misc.dotgnu "">
+ <!ENTITY mail.gnu "">
+ <!ENTITY mail.dotgnu "">
+ <!ENTITY mail.rhysw "">
+ <!ENTITY mail.gopal "">
+ <!ENTITY mail.minten "">
+ <!ENTITY mail.dnicol "">
+ <!ENTITY _lt_ "">
+ <!ENTITY _gt_ "">
+ <!ENTITY _quot_ "">
+ <!ENTITY _apos_ "">
+ <!ENTITY _amp_ "">
+ <!ENTITY nbsp "">
+ <!ENTITY copy "">
+ <!ENTITY root "">
+<!--======================================== declared here, defined elsewhere ========================================-->
+
+<!--======================================== don't touch this stuff ========================================-->
+ <!ELEMENT ul (li)+>
+ <!ELEMENT ol (li)+>
+ <!ELEMENT dl (dt|dd)+>
+ <!ELEMENT dt (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT li (#PCDATA | include | br | em | strong | code | a | img | ul | ol | dl)*>
+ <!ELEMENT dd (#PCDATA | include | br | em | strong | code | a | img | ul | ol | dl)*>
+ <!ELEMENT blockquote (#PCDATA | include | br | em | strong | code | a | img | ul | ol | dl)*><!--no nesting blockquotes-->
+ <!ELEMENT pre (#PCDATA | include | br | em | strong | code | a)*><!--no images in pre-->
+ <!ELEMENT a (#PCDATA | include | br | em | strong | code | img)*><!--no nesting anchors-->
+ <!ELEMENT content (#PCDATA | include | p | h1 | h2 | h3 | h4 | pre | blockquote)*><!--block elements only in top level-->
+ <!ELEMENT p (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT em (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT strong (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT code (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT h1 (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT h2 (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT h3 (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT h4 (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT br EMPTY>
+ <!ELEMENT img EMPTY>
+ <!ELEMENT include EMPTY>
+ <!ATTLIST a title CDATA #IMPLIED name NMTOKEN #IMPLIED href CDATA #IMPLIED>
+ <!ATTLIST img src CDATA #REQUIRED alt CDATA #REQUIRED align (top|middle|bottom|left|right) #IMPLIED>
+ <!ATTLIST include file CDATA #REQUIRED entry NMTOKEN #IMPLIED overwrite (true|false) #IMPLIED>
+<!--======================================== don't touch this stuff ========================================-->
+]>
+
+<content>
+<h1>DotGNU Portable.NET Source Installation Guide</h1>
+<p>
+This document explains how to install <a href="pnet.html">DotGNU
+Portable.NET</a> by building it from the source distribution.  Visit the
+<a href="pnet-packages.html">Portable.NET Packages</a> page
+for instructions on installing the binary package distributions.
+</p>
+<h2>Source Code Downloads</h2>
+<p>
+Released versions are available 
+<a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet">from ftp.gnu.org</a>
+and its mirrors:
+</p>
+<p>
+<blockquote>
+<a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet/treecc-0.2.6.tar.gz">treecc-0.2.6.tar.gz</a><br/>
+<a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet/pnet-0.6.0.tar.gz">pnet-0.6.0.tar.gz</a><br/>
+<a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet/pnetlib-0.6.0.1.tar.gz">pnetlib-0.6.0.1.tar.gz</a><br/>
+<a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet/pnetC-0.6.0.tar.gz">pnetC-0.6.0.tar.gz</a><br/>
+<a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet/ml-pnet-0.6.0.tar.gz">ml-pnet-0.6.0.tar.gz</a>
+</blockquote></p>
+<p>
+It may however be best to grab the latest development version
+from <a href="http://savannah.gnu.org/cvs/?group_id=353">Savannah CVS</a>.
+This project's CVS repository can be checked out through anonymous (pserver)
+CVS with the following instruction set.  When prompted for a password for
+anoncvs, simply press the Enter key.
+<pre>
+  cvs -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/dotgnu-pnet login
+
+  cvs -z3 -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/dotgnu-pnet co .
+</pre>
+</p>
+<p>
+NOTE: Before you can build the cvs version, you need to run
+<code>auto_gen.sh</code> in order to create the Makefile.in and
+configure files.
+</p>
+<h2>Building</h2>
+<p>
+There are three main components that you must install in the following
+order to use DotGNU Portable.NET:
+</p>
+<p>
+
+<blockquote>
+<code>treecc</code><br/>
+<code>pnet</code><br/>
+<code>pnetlib</code>
+</blockquote></p>
+<p>
+
+And there are two optional components:</p>
+<p>
+
+<blockquote>
+<code>pnetC</code><br/>
+<code>ml-pnet</code><br/>
+</blockquote></p>
+<p>
+
+You will need "<code>pnetC</code>" if you wish to use the C compiler.
+You may need "<code>ml-pnet</code>" if you wish to use Mono libraries
+such as "<code>System.Data</code>".</p>
+<p>
+
+Another component, "<code>cscctest</code>", is only available via CVS
+because it changes very often - always use the most recent CVS version.
+See the CVS instructions below for information on obtaining it.</p>
+<p>
+You will need flex and bison to build DotGNU Portable.NET.  We use
+flex 2.5.4 and bison 1.28.  Some support is provided for the BSD
+version of yacc, but bison is recommended.  Other versions of lex
+or yacc may not work.
+</p>
+<p>
+You typically unpack and install each component as follows:</p>
+<p>
+<blockquote>
+<code>gunzip -d &lt;name-version.tar.gz | tar xvf -<br/>
+cd name-version<br/>
+./configure<br/>
+make<br/>
+make install
+</code>
+</blockquote></p>
+<p>
+
+If you are building the CVS version, you should run <code>./auto_gen.sh</code>
+before <code>./configure</code>.</p>
+<p>
+
+See the "<code>README</code>" and "<code>HACKING</code>" files
+(where present) in each distribution for further information on
+install configuration options.</p>
+<p>
+
+Most platforms will install and build using the above instructions.
+The following sections provide special instructions for some platforms.</p>
+
+
+<h2>Building under MS Windows</h2><p>
+
+You will need to install the Cygwin package to build DotGNU Portable.NET under
+MS Windows.  It can be obtained from <a href="http://sources.redhat.com/cygwin/" target="_top">http://sources.redhat.com/cygwin/</a>.</p>
+<p>
+
+Follow the instructions in the previous section to build the distribution.
+This will build the Cygwin version, which can be installed and run from
+within the Cygwin environment.</p>
+<p>
+
+If you wish to run DotGNU Portable.NET as a regular MS Windows application,
+outside the Cygwin environment, then you must build the "mingw32" version
+instead.  To do this, configure and build as follows:</p>
+<p>
+
+<blockquote>
+<code>gunzip -d &lt;name-version.tar.gz | tar xvf -<br/>
+cd name-version<br/>
+./configure --disable-cygwin<br/>
+make<br/>
+make install
+</code>
+</blockquote></p>
+
+<h2>Building under Mac OS X</h2><p>
+
+Install the development tools from the Developer Tools CD that should be 
+included with your pack of Mac CDs.  If you don't have the CD, get an account
+at <a href="http://connect.apple.com/" target="_top">connect.apple.com</a> and download
+from the net.  The download is well over 100 megabytes.</p>
+<p>
+
+Next, install Fink (<a href="http://fink.sourceforge.net/" target="_top">fink.sourceforge.net</a>). Using the GUI program Fink Commander,
+install the package called <code>libtool</code>.  Alternatively, this can
+be done from a terminal by typing "<code>sudo apt-get install libtool</code>"
+(without quotes) and entering an administrative password.</p>
+<p>
+
+For each directory in treecc, pnet, pnetlib, etc, perform the following
+command:</p>
+<p>
+
+<blockquote><code>./configure &amp;&amp; make LIBTOOL=glibtool &amp;&amp; sudo make install LIBTOOL=glibtool</code></blockquote></p>
+<p>
+
+Type in your usual admin password for the account on your computer when 
+it asks for it (towards the end of each install).</p>
+<p>
+
+It is important that you use the Fink version of the "<code>glibtool</code>"
+program when compiling "<code>pnetlib</code>".  Other versions of
+libtool will not work.</p>
+
+<h2>Getting a more recent version</h2><p>
+
+The most recent release version of the source code will always be
+available on the project's <a href="http://www.southern-storm.com.au/portable_net.html" target="_top">Web site</a>.</p>
+<p>
+
+However, it is recommended that developers use the CVS version when
+updating the source code.  The CVS version will always be more recent
+than the release versions.</p>
+<p>
+
+<blockquote><pre>cvs -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/dotgnu-pnet login
+cvs -z3 -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/dotgnu-pnet
+           checkout <i>component</i></pre></blockquote></p>
+<p>
+
+where <code><i>component</i></code> is the name of the component that you
+wish to check out.  When prompted for a password, just hit the Enter key.</p>
+
+<h2>Running the examples</h2>
+<p>
+Once you have built the system, you can test it on the examples within
+the "<code>samples</code>" directory:
+</p>
+	<blockquote>
+	<code>$ cd samples<br/>
+	$ ../engine/ilrun hello.exe<br/>
+	$ ../engine/ilrun fib.exe</code>
+	</blockquote>
+<p>
+The PNetMark program, listed above, is a more involved example.
+Instructions for running PNetMark can be found within its
+<code>README</code> file.
+</p>
+<h2>Documentation</h2>
+<p>
+Online documentation for the tools can be found
+<a href="http://www.southern-storm.com.au/docs/pnettools_toc.html">here</a>.
+</p>
+<p>
+Information on changes to individual versions can be found in the
+<code>NEWS</code> file within the distribution.
+</p>
+<p>
+The Converted Virtual Machine (CVM) instruction set has been documented
+using embedded XML tags in the source.  A HTML version of the documentation
+can be found <a href="http://www.southern-storm.com.au/doc/cvm/index.html">here</a>.
+</p>
+
+<h2>Common problems</h2><p>
+
+Some platforms may have problems building "<code>libffi</code>" and
+"<code>libgc</code>".  You can use the configure options
+"<code>--without-libffi</code>" and "<code>--without-libgc</code>" to
+disable them.  The system may not fully work if you do this, so you
+will probably have to update those packages for your platform.</p>
+<p>
+
+Sometimes "<code>./auto_gen.sh</code>" can fail, giving errors about
+missing LIBTOOL macros.  If this happens, then change the line that
+says "<code>aclocal</code>" to "<code>aclocal -I ./</code>" and retry.</p>
+
+</content>

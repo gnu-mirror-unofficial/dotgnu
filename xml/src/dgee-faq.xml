@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE content
+[
+<!--======================================== modify but don't delete ========================================-->
+ <!ENTITY base "./">
+ <!ENTITY title	"DotGNU Execution Environment - Installation">
+ <!ENTITY this "dgee-install.html">
+ <!ENTITY maintainer "&lt;a href=&quot;http://norbert.ch/&quot;&gt;Norbert Bollow&lt;/a&gt; &lt;a href=&quot;mailto:nb@SoftwareEconomics.biz&quot;&gt;&_lt_;nb@SoftwareEconomics.biz&_gt_;&lt;/a&gt;">
+ <!ENTITY modtime "Wed Nov 5, 2003">
+<!--======================================== modify but don't delete ========================================-->
+
+<!--======================================== add custom entities here ========================================-->
+<!--======================================== add custom entities here ========================================-->
+
+<!--======================================== declared here, defined elsewhere ========================================-->
+ <!ENTITY nav.snapshots "">
+ <!ENTITY nav.faq "">
+ <!ENTITY nav.essays "">
+ <!ENTITY nav.proposals "">
+ <!ENTITY nav.patent "">
+ <!ENTITY nav.projects "">
+ <!ENTITY nav.proposals.active "">
+ <!ENTITY nav.arch "">
+ <!ENTITY nav.see "">
+ <!ENTITY nav.phpgw "">
+ <!ENTITY nav.pnet "">
+ <!ENTITY nav.pnet.changes "">
+ <!ENTITY nav.pnet.lib.status "">
+ <!ENTITY nav.pnet.lib.docs "">
+ <!ENTITY nav.web_services "">
+ <!ENTITY nav.auth "">
+ <!ENTITY nav.mail.lists "">
+ <!ENTITY nav.mail.pipermail "">
+ <!ENTITY nav.mail.announce "">
+ <!ENTITY nav.mail.developers "">
+ <!ENTITY nav.mail.auth "">
+ <!ENTITY nav.mail.arch "">
+ <!ENTITY nav.mail.biz "">
+ <!ENTITY nav.mail.website "">
+ <!ENTITY misc.freedev "">
+ <!ENTITY misc.gnu "">
+ <!ENTITY misc.dotgnu "">
+ <!ENTITY mail.gnu "">
+ <!ENTITY mail.dotgnu "">
+ <!ENTITY mail.rhysw "">
+ <!ENTITY mail.gopal "">
+ <!ENTITY mail.minten "">
+ <!ENTITY mail.dnicol "">
+ <!ENTITY _lt_ "">
+ <!ENTITY _gt_ "">
+ <!ENTITY _quot_ "">
+ <!ENTITY _apos_ "">
+ <!ENTITY _amp_ "">
+ <!ENTITY nbsp "">
+ <!ENTITY copy "">
+ <!ENTITY root "">
+<!--======================================== declared here, defined elsewhere ========================================-->
+
+<!--======================================== don't touch this stuff ========================================-->
+ <!ELEMENT ul (li)+>
+ <!ELEMENT ol (li)+>
+ <!ELEMENT dl (dt|dd)+>
+ <!ELEMENT dt (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT li (#PCDATA | include | br | em | strong | code | a | img | ul | ol | dl)*>
+ <!ELEMENT dd (#PCDATA | include | br | em | strong | code | a | img | ul | ol | dl)*>
+ <!ELEMENT blockquote (#PCDATA | include | br | em | strong | code | a | img | ul | ol | dl)*><!--no nesting blockquotes-->
+ <!ELEMENT pre (#PCDATA | include | br | em | strong | code | a)*><!--no images in pre-->
+ <!ELEMENT a (#PCDATA | include | br | em | strong | code | img)*><!--no nesting anchors-->
+ <!ELEMENT content (#PCDATA | include | p | h1 | h2 | h3 | h4 | pre | blockquote)*><!--block elements only in top level-->
+ <!ELEMENT p (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT em (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT strong (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT code (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT h1 (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT h2 (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT h3 (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT h4 (#PCDATA | include | br | em | strong | code | a | img)*>
+ <!ELEMENT br EMPTY>
+ <!ELEMENT img EMPTY>
+ <!ELEMENT include EMPTY>
+ <!ATTLIST a title CDATA #IMPLIED name NMTOKEN #IMPLIED href CDATA #IMPLIED>
+ <!ATTLIST img src CDATA #REQUIRED alt CDATA #REQUIRED align (top|middle|bottom|left|right) #IMPLIED>
+ <!ATTLIST include file CDATA #REQUIRED entry NMTOKEN #IMPLIED overwrite (true|false) #IMPLIED>
+<!--======================================== don't touch this stuff ========================================-->
+]>
+
+<content>
+<h1>DotGNU Execution Environment Frequently Asked Questions</h1>
+<pre>
+Background
+----------
+
+1. What is the DGEE
+
+  The DotGNU Execution Environment is an application framework for managing the
+  execution of Webservices (and in the future other web-applications) for the
+  DotGNU system.
+
+
+2. What is Goldwater
+
+  Goldwater is distributed message based middleware. It is highly scalable and
+  allows applications written with it to be distributed across multiple 
+  machines.  It is used to tie the components of the DGEE together, performing 
+  request and reply queueing, load balancing, process sandboxing and resource 
+  management.
+
+
+Trouble at the top
+------------------
+These points assume that the dgee was installed under /usr/local/
+
+3. The DGEE fails to start, gives a message "Goldwater not started"
+
+  There are two phases to starting the DGEE.  First is to start and instance of
+  the Goldwater middleware, Second is to boot the DGEE application within that
+  Goldwater instance.
+  These two steps may be performed in one go by running the dgeestart script.
+  To start them seperately, use 'dgadmin start' and 'dgadmin boot'.
+
+
+4. Where do I find the logfiles?
+
+  The logfiles will be found as:
+  The DGEE log: /usr/local/var/log/dgee/dgee.log 
+  Any STDOUT  : /usr/local/var/log/dgee/stdout
+  Any STDERR  : /usr/local/var/log/dgee/stderr
+
+
+5. Starting the DGEE/Goldwater complains about log file permissions.
+
+  The user that the DGEE is configured to run as must have write permissions
+  to the /usr/local/var/log/dgee directory.  If permission is denied, then
+  the Goldwater middleware will fail to start and complain loudly.
+
+
+6. Where is the master DGEE configuration file, and how do I change it?
+
+  The master DGEE configuration file can be found at /usr/local/etc/dgeeconf.xml
+  It defines where the logfiles are, where DGEE server processes are etc.  If
+  you change any of these resources, then you need to recompile the config file.
+  Make sure GWCONFIG is set to point to the binary version of the config file:
+  export GWCONFIG=/usr/local/etc/dgeeconf.bin
+
+  and compile it with gwmkcfg
+  shell> gwmkcfg /usr/local/etc/dgeeconf.xml
+
+
+7. I get an "Invalid user/group name" when starting the DGEE, why?
+
+  The dgee is configured with the username and groupname of someone to run as.
+  When run as root, the DGEE immediately becomes that user.
+  Have a look at the dgeeconf.xml file (see above) and check the user and group
+  entries against your /etc/passwd and /etc/group files.
+  The DGEE should be configured to run as the same user as Apache (if you're
+  using apache) - if not, either reinstall the DGEE or edit the dgeeconf.xml
+  manually and change the user and group entries to something valid.  Don't
+  forget to recompile the dgeeconf.xml file as described above.
+
+
+8. User/group running administrator does not match that in configuration.
+   Error Initialising Administrator (Invalid user name)
+
+  The user running the administrator is either not root or the user that the
+  DGEE was configured to run as.  Please refer to the dgeeconf.xml file for
+  details as to who this is (see "I get an 'Invalid user/group name' when 
+  starting the DGEE, why?" ).
+
+
+9. How do I see what processes have started?
+
+  The DGEE server processes will report their startup to the screen as they
+  boot.  Such information is also written to the dgee logfile.
+  You can make a manual inspection at any time through the Goldwater 
+  administration tool.
+  Run dgadmin (this sets the environment properly and then invokes Goldwater).
+  and use the 'pl' command to list the Goldwater processes booted:
+
+shell> dgadmin 
+Welcome to the Goldwater Administrator (version 1.1.20)
+(c) 2003 Free Software Foundation, Inc.
+
+Type 'help' or '?' for a list of commands.
+
+dotGNU DGEE> pl
+Currently booted servers:
+
+Server         Class  ID     Domain/Node     Pid   Done    FRst Status         
+-------------- ------ ------ --------------- ----- ------- ---- ---------------
+guardian       1      1      DotGnuLocal     29008 12      0    Ready          
+DGSvcMgr       100    100    DotGnuLocal     29011 3       0    Ready          
+DGSvcMgr       100    101    DotGnuLocal     29012 0       0    Ready          
+DGSvcMgr       100    102    DotGnuLocal     29013 0       0    Ready          
+DGResMgr       200    200    DotGnuLocal     29014 1       0    Ready          
+DGResMgr       200    201    DotGnuLocal     29015 0       0    Ready          
+DGResMgr       200    202    DotGnuLocal     29016 0       0    Ready          
+DGpnetVM       400    400    DotGnuLocal     29017 0       0    Ready          
+DGpnetVM       400    401    DotGnuLocal     29018 1       0    Ready          
+DGpnetVM       400    402    DotGnuLocal     29019 1       0    Ready          
+
+10 servers listed from a total of 10 booted.
+
+dotGNU DGEE> 
+
+
+
+10. How do I see how many requests have been processed?
+
+  The 'Done' column of the Goldwater "booted servers" list (above) indicates
+  how may service requests each of the DGEE component processes have received.
+  For instance, the requests 'Done' by the DGpnetVM processes indicates how many
+  times portable.net webservices have been invoked.
+
+
+11. How do I stop DGEE components?
+
+  Individual DGEE components (server processes) may be halted by using the
+  administration tool dgadmin.
+  The 'halt' command may be used to stop all processes, or individual processes
+  by giving a Class or and ID value.
+  For instance halt -c 100 will shutdown all of the DGSvcMgr processes, and
+  halt -i100 will shutdown the process with ID 100 (the first DGSvcMgr process).
+
+
+12.  How do I start DGEE components?
+
+  Starting DGEE components is very similar to stopping components except you
+  use the boot command instead of halt.
+  boot -c100 will boot all servers in Class 100, boot -i100 will boot the
+  server who's ID is 100.
+  Using boot without options will attempt to boot all server processes.
+
+
+13. How do I cycle DGEE components?
+
+  If you want to 'bounce' the running dgee by shutting down all processes and
+  then starting them up again, then using a halt followed by a boot will have
+  the desired effect, except that there will be a window of 'downtime' whilst
+  everything comes back up.
+  To prevent this Goldwater provides a 'cycle' command which stops and starts
+  individual servers one at a time.  Again the -c class and -i ID options may
+  be given if you want to target particular classes or instances of server.
+
+
+14. How do I change the log level?
+
+  The log level may be changed on-the-fly with the set command.
+  dgadmin accepts the following syntax for set:
+  set &lt;resource> &lt;value>
+
+  The DGEE and Goldwater itself writes log entries that are flaged with a
+  log type.  These flags are bit fields allowing you to select a number of
+  different types to entry to be reported in the log.
+  
+  The following table gives the log types and corresponding OR'able values:
+
+  Application Errors 1
+  Data               2 
+  Control Flow       4
+  Debugging          8
+  Information        16
+  Audit Info         32
+
+  If you want to see Error, Data and Audit Information, then you would set the
+  log level to 1 + 2 + 32 = 35
+
+  Thus:
+  dotGNU DGEE> set loglevel 35
+
+
+15. How do I clean the IPC resources?
+
+  Sometimes IPC resources get into a mess and are not free'd properly.
+  Goldwater supplies a tool 'gwcipc' to clear the IPC resources of the user
+  that invokes it.  *Be Careful running this as root*
+
+  This command is usually used when you really must clear up the IPC resources.
+
+  If you run gwcipc as root you can supply the username of the user who's IPC
+  resources you want to clean:
+
+  shell> gwcipc nobody
+
+  will clear the ipc resources for the user nobody.
+
+  * Note that Apache often runs as nobody and you will put Apache into an
+    unstable state by doing this whilst it is running.  You will need to stop
+	and restart Apache if you run gwcipc as the Apache user.
+
+  Apache and the DGEE usually run as the same user, so by clearing the IPC
+  resources used by DGEE you often interfere with Apache as well.
+</pre>
+
+</content>

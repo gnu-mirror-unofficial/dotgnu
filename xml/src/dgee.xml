@@ -6,13 +6,16 @@
  <!ENTITY title	"DotGNU Execution Environment">
  <!ENTITY this "dgee.html">
  <!ENTITY maintainer "&lt;a href=&quot;http://norbert.ch/&quot;&gt;Norbert Bollow&lt;/a&gt; &lt;a href=&quot;mailto:nb@SoftwareEconomics.biz&quot;&gt;&_lt_;nb@SoftwareEconomics.biz&_gt_;&lt;/a&gt;">
- <!ENTITY modtime "Sun Oct 20 02:03:09 UTC 2002">
+ <!ENTITY modtime "Wed Nov 5, 2003">
 <!--======================================== modify but don't delete ========================================-->
 
 <!--======================================== add custom entities here ========================================-->
 <!--======================================== add custom entities here ========================================-->
 
 <!--======================================== declared here, defined elsewhere ========================================-->
+
+ <!ENTITY nav.dgee.install "">
+ <!ENTITY nav.dgee.packages "">
 
  <!-- First block: "Homepage" + Information that sells DotGNU to developers -->
  <!ENTITY nav.functionality "">
@@ -94,32 +97,135 @@
 ]>
 
 <content>
-<h1>
-DGEE - DotGNU Execution Environment
-</h1>
-<p class="maincontent">
-You need this if you want to use webservices with DotGNU and <a href="&nav.pnet;">Portable.Net</a>.
+<h1>DotGNU Execution Environment</h1>
+<p>
+The DotGNU Execution Environment provides the core webservice component of
+DotGNU and provides the functionality of accepting, validating and satisfying
+web service requests. 
 </p>
-<p class="maincontent">
-The DotGNU Execution Environment provides the core webservice component of DotGNU and provides the functionality of accepting, validating and satisfying web service requests.
+
+<p>
+The DGEE is implemented over a clean architecture that integrates the 
+components on the web service execution path, including network servers,
+protocols, virtual machines and security mechanisms into a unified, 
+distributable and scalable application. 
 </p>
-<p class="maincontent">
-The DGEE integrates the components on the web service execution path, including network servers, protocols, virtual machines and security mechanisms into a unified application.
+
+<p>
+In its basic form the DGEE allows the installation and removal of web services
+within a repository, accepts XML-RPC requests for these web services and
+generates browsable documentation for these web services in HTML and XML form. 
 </p>
-<p class="maincontent">
-In its basic form the DGEE allows the installation and removal of web services within the repository, accepts XML-RPC requests for these web services and generates browsable documentation for these web services in HTML and XML form.
+
+<p>
+The DGEE is implemented as a Goldwater application.  Goldwater is a highly
+scalable distributed middleware that promotes the building of applications as a
+collection of separate but logically connected processes.  Goldwater does all
+the work of routing messages between these processes as though they were mere
+function calls, even if they are distributed across several servers, and 
+performs queuing and timeouts as necessary.  
+The DGEE therefore inherites Goldwaters scalability and resilience along with
+its management and maintenance features.
 </p>
-<p class="maincontent">
-The DGEE is inherited and extended by projects such as the
-<a href="&nav.see;">SEE</a> and <a href="&nav.vrs;">VRS</a>. These
-too are execution environments and share the DGEE architecture at heart,
-however they introduce additional features such as the concept of distributed
-execution, distributed storage and distinct ownership of web services.
+
+<h2>Overview</h2>
+<table border="0" cellspacing="0" cellpadding="0" width="96%">
+<tr><td align="center"> <img src="&root;graphics/dgeeblock.png"/></td></tr>
+<tr><td align="center" class="figure">&nbsp;<br/>figure 1.1 - The DotGNU Execution Environment</td></tr>
+</table>
+
+<p>
+A request is processed as follows:
+<br/>
+<ol>
+<li>Service request is received by the Network Server (<span class="note">A</span>) and validated. An example of a network server would be Apache.</li>
+<li>The Network Server passes the request Data and the URI of the web service to the Service Manager (<span class="note">B</span>).</li>
+<li>The Service Manager validates the availability of the web service locally by querying the Resource Manager (<span class="note">C</span>).</li>
+<li>If the web service is available locally, the Service Manager sends the request data and webservice URI to the relevant Virtual Machine (<span class="note">D</span>) for execution.</li>
+<li>The Virtual Machine checks it's internal cache of stored web service code and if not present loads it from the Resource Manager.</li>
+<li>The Virtual Machine executes the web service and has it process the request data.</li>
+<li>The output from the web service is sent back to the Network Server.</li>
+<li>The Network Server returns the web service output to the requesting entity in the same form it received the request (ie over a HTTP connection in the case of processing a HTTP request).</li>
+</ol>
 </p>
-<p class="maincontent">
-The current version of DGEE can be downloaded via the
-<a href="&nav.downloads;">DotGNU downloads page</a>.
+<h3>DGEE Module Description</h3>
+<ol type="A">
+<li>
+The Network Server is responsible for handling the protocol specifics of the
+request and reply.  It is the entry point into the DGEE and by default is
+usually Apache (v1 or v2) which is bound to the DGEE as a client.  It may also
+be a piece of custom server software designed to handle any arbitrary protocol.
+<br/>&nbsp;
+</li>
+<li>
+The Service Manager is responsible for maintaining the collection of webservices.
+It handles the addition and removal of services and controls access to them.
+It is the first stage at which the existence of a web service may be discovered,
+ however this is not to say that the SM is some sort of DNS-esque server.  It
+ is merely the first functional unit on the data path that has knowledge of
+ what web services are available.<br/>&nbsp;
+</li>
+<li>
+The Resource Manager handles the physical storage and retrieval of web services
+within the DGEE.  It is identified as a logical module in it's own right as
+other modules in the DGEE require the functionality that it encapsulates.
+Internally the RM hides where and how webservices are stored, allowing them to
+be held locally, remotely or in a RAID like distribution without the other
+components of the DGEE being aware of these facts.  Currently the DGEE stores
+webservices locally, but extension of the RM to offer distribution for instance
+would be seamless to the rest of the system.<br/>&nbsp;
+</li>
+<li>
+The Virtual Machine is the entity within which a web service executes.
+VM's would be provided for each bytecode or native format web services are
+required to be supported.  Currently the DGEE supports Portable.Net and an
+experimental Python VM.<br/>&nbsp;
+</li>
+</ol>
+
+
+<h2>Dependencies</h2>
+<p>
+The DGEE is dependant on 
+<a href="pnet.html">Portable.NET</a>,
+<a href="http://savannah.gnu.org/projects/goldwater" target="_top">Goldwater</a> (a message based middleware), 
+<a href="http://savannah.gnu.org/projects/goldwater" target="_top">phlib</a> (a collection of support functions and classes used by Goldwater and the DGEE), 
+the <a href="http://expat.sourceforge.net" target="_top">expat</a> XML parser, 
+and the GNU command line processor <a href="ftp://ftp.gnu.org/gnu/readline" target="_top">readline</a>.  Copies of these dependencies are provided on the
+CD-ROM.</p>
+
+<h2>Installing</h2>
+<p>
+The DGEE can be
+<a href="&nav.dgee.install;">installed from source code</a> or
+<a href="&nav.dgee.packages;">from a binary package.</a>
 </p>
+
+<h2>Synopsis of Running the DGEE</h2>
+<p>
+There are a few steps involved in running a DGEE once you have the necessary
+components installed on your machine.
+<ol type="1">
+<li>Configure Apache to load and use mod_dgee.so</li>
+<li>Tune your IPC resources (see <a href="../dgee/INSTALL">Diagnose</a>)</li>
+<li>Start the DGEE by starting Goldwater and then booting the DGEE processes
+within it.  This is achieved through the DGEE specific command <strong>dgadmin</strong>.</li>
+<li>Install your webservice through the <strong>dginstallws</strong> command.</li>
+<li>Display some online documentation for your installed webservice, by pointing your browser at the DGMX resource for the webservive (for instance <code>http://127.0.0.1/wstest.dgmx</code>).</li>
+<li>Point your favourite XML-RPC client at your webservice (try out the Perl and Python examples in the Perl and Python directories of the source distribution).</li>
+</ol>
+</p>
+
+<h2>Further information</h2>
+<p>
+For further information on the DotGNU Execution Environment, visit the project's
+<a href="http://savannah.gnu.org/projects/dgee" target="_top">Web site</a> and
+the DotGNU <a href="http://wiki.dotgnu.org/DotGNUExecutionEnvironmente" target="_top">Wiki</a>
+
+</p>
+
+
+<!--
 <h2>Demo</h2>
 <p class="maincontent">
 You can try two C# based webservices by making XML-RPC calls to
@@ -133,6 +239,8 @@ interface and the documentation, as DGEE outputs documentation when the file
 is accessed by a browser.  This way, webservices are automatically
 self-documenting.
 </p>
+-->
+<p class="credits">Chris Smith - <a href="http://www.nfluid.com" target="_top">http://www.nfluid.com</a></p>
 <h2>Your comments please...</h2>
 <p class="maincontent">
 You are invited to add your comments concerning this

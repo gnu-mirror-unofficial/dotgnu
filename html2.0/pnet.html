@@ -18,519 +18,161 @@
   </p>
   
   
+
 <h1>DotGNU Portable.NET</h1>
 <p>
-The goal of this project is to build a suite of free software tools to build
-and execute .NET applications, including a C# compiler, assembler,
-disassembler, and runtime engine. While the initial target platform was
-GNU/Linux, it is also known to run under MS Windows, Solaris, NetBSD, FreeBSD,
-OpenBSD and MacOS X. The runtime engine has been tested on the x86, PowerPC,
-ARM, Sparc, PARISC, s309, Alpha, and IA-64 processors.
-</p>
+The goal of DotGNU Portable.NET is to build a suite of Free Software tools
+to compile and execute applications for the Common Language Infrastructure
+(CLI), which is often referred to as &quot;.NET&quot;.</p>
+<p>
+The initial target platform was GNU/Linux, but DotGNU Portable.NET has
+been known to work under Windows, NetBSD, FreeBSD, Solaris, and MacOS X,
+amongst others.  It also runs on a variety of CPUs including x86,
+PPC, ARM, Sparc, s390, Alpha, ia-64, and PARISC.</p>
+
 <h2>Focus on Compatibility</h2>
 <p>
 DotGNU Portable.NET is focused on compatibility with the ECMA specifications
-for CLI. There are other projects under the DotGNU meta-project to build other
-necessary pieces of infrastructure, and to explore non-CLI approaches to
-virtual machine implementation.
+for CLI, and with Microsoft's commercial CLI implementation.  Our main goal
+is to make it easy to write portable application programs which work well
+both on DotGNU Portable.NET and on Microsoft's .NET platform.
 </p>
-<h2>Frequently Asked Questions</h2>
 <p>
-Please refer to the
+In addition, we want to make sure that many application
+programs which were written for Microsoft's .NET platform
+(with no considration for portability) will work well with
+DotGNU on many operating systems.
+</p>
+
+<h2>Installing</h2><p>
+
+DotGNU Portable.NET can be installed either from a
+<a href=".././pnet-packages.html">binary package</a>
+or from <a href=".././pnet-install.html">source code</a> (recommended).
+</p>
+<p>
+Once you have installed DotGNU Portable.NET, you may want to install
+<a href="./dgee.html">DGEE</a>.  Also,
+check out the <a href="">demo and sample programs</a>.</p>
+
+<h2>Runtime engine</h2><p>
+
+The runtime engine in DotGNU Portable.NET, called &quot;ilrun&quot;, is used to
+interpret programs in the Common Intermediate Language (CIL) bytecode
+format, described in the <a href="../pnet/index.html#ecma">ECMA
+specifications</a>.</p>
+<p>
+Because interpreting CIL bytecode directly is quite inefficient,
+we take a different approach.  We first convert the CIL bytecode into
+a simpler instruction set for what we call the Converted Virtual
+Machine (CVM).  The simpler CVM instructions are then executed using
+a high-performance interpreter.  A description of the CVM instruction
+set can be found <a href="../pnet/cvm/index.html" target="_top">here</a>.
+</p>
+<p>
+The CVM approach gives us many of the benefits of a Just-In-Time compiler
+(JIT), in that the opcodes can be tailored to handle system differences
+(e.g. 32-bit vs 64-bit CPU's).  At the same time, the engine's source code
+is highly portable to new platforms.</p>
+<p>
+As another optimization on some CPU's (currently x86 and ARM), we
+further translate CVM opcodes into native machine code for direct
+execution.  This gives an additional performance improvement with
+only a small coding effort required.</p>
+<p>
+We will eventually write a full JIT for DotGNU Portable.NET, but we
+are currently focused on completeness and stability.</p>
+<p>
+See the file &quot;<code>pnet/engine/HACKING</code>&quot; in the source code
+for further information on the structure of the runtime engine.</p>
+
+<h2>Compiler</h2><p>
+
+The DotGNU Portable.NET compiler, cscc, is a modular compiler system with
+good support for the C# and C programming languages.  Work on support for
+some other languages (Java and VB.NET) has been started.  The C# front-end
+implements the <a href="../pnet/index.html#ecma">ECMA C# Language
+Specification ECMA-334</a>.  The C language front-end implements
+ANSI C.</p>
+<p>
+Implementing additional languages is aided significantly by the innovative
+&quot;Tree Compiler Compiler&quot; (treecc) program, which uses aspect-oriented
+programming techniques to manage the complexity of compiler construction.
+See the <a href="../pnet/treecc/treecc_toc.html" target="_top">treecc
+documentation</a> for more information on this tool.</p>
+<p>
+The compiler is designed to support bytecode generation for multiple bytecode
+systems.  The current bytecode back-end supports the Common Language
+Infrastructure (CLI) defined by <a href="../pnet/index.html#ecma">ECMA-335</a>.
+Other back-ends to support the Java Virtual Machine (JVM) and the
+Perl 6 Parrot engine are in progress.</p>
+
+<h2>System.Windows.Forms</h2><p>
+
+<a href=".././screenshots/formshello.png" target="_top"><img src=".././screenshots/formshello-small.png" align="right" alt="WinForms screenshot - click to enlarge" /></a>An advantage of our
+implementation of System.Windows.Forms is that we don't try to wrap up
+third party widget sets like Gtk, Qt, Wine, etc.  Instead, we provide a
+basic drawing layer and then render the controls ourselves.  The approach
+is similar to Java Swing, in that all controls are implemented in pure C#.</p>
+<p>
+
+This approach should allow us to emulate the Windows visual appearance
+and behaviour more closely and portably than other approaches because we
+don't need to work around the quirks in foreign toolkits.  Our implementation
+has been known to run on x86, PPC, and ARM based GNU/Linux systems, as well as
+Mac OS X.  See the <a href="http://www.dotgnu.org/" target="_top">DotGNU
+Web site</a> for current screenshots.</p>
+<p>
+
+The DotGNU Portable.NET Forms implementation is structured into three layers,
+which are found in the source directories <code>System.Drawing</code>,
+<code>System.Drawing/Toolkit</code>, and <code>System.Windows.Forms</code>.</p>
+<p>
+
+<code>System.Drawing</code> provides the basic drawing functionality,
+emulating the Windows GDI layer as faithfully as possible.  When drawing
+to a control, use the definitions in <code>System.Drawing.Graphics</code>.</p>
+<p>
+
+<code>System.Drawing/Toolkit</code> defines an interface to primitive
+drawing toolkits.  Toolkits provide simple line/text/etc drawing
+(<code>IToolkitGraphics</code>), plus a simple window mechanism
+(<code>IToolkitWindow</code>).</p>
+<p>
+
+There may be multiple toolkits in the system, each providing
+drawing functionality in a different manner.  The current
+toolkits include <code>System.Drawing.Xsharp</code>, which wraps
+around the DotGNU Portable.NET <code>Xsharp</code> library; and
+<code>System.Drawing.Win32</code>, which wraps up the native
+Win32 API under Windows.</p>
+<p>
+
+<code>System.Windows.Forms</code> builds upon the primitive drawing and
+window facilities from <code>System.Drawing</code> and
+<code>System.Drawing/Toolkit</code> to implement the various controls,
+forms, dialogs, etc, that are defined by the Forms API.</p>
+<p>
+
+The file &quot;<code>pnetlib/System.Windows.Forms/HACKING</code>&quot; in the
+source code contains more information on developing for our implementation
+of System.Windows.Forms.</p>
+<p>
+
+We are looking for volunteers to help us finish the
+<code>System.Windows.Forms</code> implementation, and are offering
+cash prizes.  See the <a href="competition.html">competition</a> page
+for more details.</p>
+
+<h2>Further information</h2><p>
+
+For further information on DotGNU Portable.NET, please refer to the
 <A href="http://www.southern-storm.com.au/pnet_faq.html">FAQ of the
-Portable.Net development project</A>.
+Portable.Net development project</A>. &quot;Latest Changes&quot; information
+with information on source code packages released by the project is
+available <a href="http://www.southern-storm.com.au/portable_net.html">here</a>.
 </p>
-<h2>Download</h2>
-<p>
-Released versions are available from the <a href="downloads.html">downloads
-page</a>.  It may however be best to grab the latest development version
-from <a href="http://savannah.gnu.org/cvs/?group_id=353">Savannah CVS</a>.
-This project's CVS repository can be checked out through anonymous (pserver)
-CVS with the following instruction set.  When prompted for a password for
-anoncvs, simply press the Enter key.
-<pre>
-  cvs -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/dotgnu-pnet login
 
-  cvs -z3 -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/dotgnu-pnet co .
-</pre>
-</p>
-<p>
-NOTE: Before you can build the cvs version, you need to run
-<code>auto_gen.sh</code> in order to create the Makefile.in and
-configure files.
-</p>
-<h2>Building</h2>
-<p>
-The three primary components of the system must be built in the
-following order: <code>treecc</code>, <code>pnet</code>, and then
-<code>pnetlib</code>.
-</p>
-<p>
-You will need flex and bison to build DotGNU Portable.NET.  We use
-flex 2.5.4 and bison 1.28.  Some support is provided for the BSD
-version of yacc, but bison is recommended.  Other versions of lex
-or yacc may not work.
-</p>
-<p>
-Each source package can be unpacked, built, and installed in the usual manner:
-
-	<blockquote>
-
-	<code>$ zcat &lt;package-version.tar.gz | tar xvf -<br />
-	$ cd package-version<br />
-	$ ./configure<br />
-	$ make<br />
-	$ make install</code>
-	</blockquote>
-</p>
-<h2>Running the examples</h2>
-<p>
-Once you have built the system, you can test it on the examples within
-the &quot;<code>samples</code>&quot; directory:
-</p>
-	<blockquote>
-	<code>$ cd samples<br />
-	$ ../engine/ilrun hello.exe<br />
-	$ ../engine/ilrun fib.exe</code>
-	</blockquote>
-<p>
-The PNetMark program, listed above, is a more involved example.
-Instructions for running PNetMark can be found within its
-<code>README</code> file.
-</p>
-<h2>Documentation</h2>
-<p>
-Online documentation for the tools can be found
-<a href="http://www.southern-storm.com.au/docs/pnettools_toc.html">here</a>.
-</p>
-<p>
-Information on changes to individual versions can be found in the
-<code>NEWS</code> file within the distribution.
-</p>
-<p>
-The Converted Virtual Machine (CVM) instruction set has been documented
-using embedded XML tags in the source.  A HTML version of the documentation
-can be found <a href="http://www.southern-storm.com.au/doc/cvm/index.html">here</a>.
-</p>
-<p>
-The DotGNU Portable.NET FAQ can be found <a href="http://www.southern-storm.com.au/pnet_faq.html">here</a>.
-</p>
-<h2>Latest Changes</h2>
-<p>
-15 October 2003:
-<blockquote>
-    Version 0.6.0 of pnet, pnetlib, pnetC, and ml-pnet have been released.
-</blockquote></p><p>
-6 September 2003:
-<blockquote>
-    Version 0.5.12 of pnet, pnetlib, pnetC, and ml-pnet have been released.
-</blockquote></p><p>
-26 July 2003:
-
-<blockquote>
-Version 0.5.10 of <code>pnet</code>, <code>pnetlib</code>,
-<code>pnetC</code>, and <code>ml-pnet</code> have been released.
-
-A lot has happened this release.  The <code>System.Windows.Forms</code>
-namespace is coming along well, thanks to the help of many people in
-the DotGNU community - particularly Simon Guindon, Neil Cawse, Richard
-Baumann, Ian Fung, Cecilio Pardo, and the relentless Gopal V.
-
-The C compiler is now working enough to allow people to write real C
-applications.  We need assistance on the <code>pnetC</code> library,
-to port <code>glibc</code> across to run in the Portable.NET environment.
-
-Thong Nguyen has been working very hard on threading this month, and
-has achieved a lot!  Threading is now working quite well - help with
-testing on various platforms would be appreciated.
-
-Richard Baumann has also been working on <code>System.Reflection.Emit</code>,
-and is making good progress.
-
-The CVM unroller was also rewritten into a generic framework that should
-be much easier to port to new architectures.
-
-For more information, see the <code>NEWS</code> files.
-</blockquote></p><p>
-
-17 July 2003:
-
-<blockquote>
-
-Version 0.2.6 of <code>treecc</code> has been released.  Minor feature
-additions that don't affect Portable.NET, but may affect other users.
-</blockquote></p><p>
-
-17 June 2003:
-
-<blockquote>
-Version 0.5.8 of <code>pnet</code>, <code>pnetlib</code>,
-<code>pnetC</code>, and <code>ml-pnet</code> have been released.
-
-A lot of things have happened this cycle.  The Java and Visual Basic
-language front-ends for <code>cscc</code> have been added to the system,
-and a huge number of new classes have been implemented in pnetlib,
-including support for IPv6 and IrDA networking.
-
-We have also begun implementation of the <code>System.Windows.Forms</code>
-library, built on top of the X11 library.  This means that it will be
-able to run on any X11-capable system.  Currently tested to work on
-x86-based GNU/Linux systems and ppc-based MacOS X systems.
-
-We are looking for volunteers to help us implement the
-&quot;<code>x11-winforms</code>&quot; library as quickly as possible,
-and to test it on as many platforms as possible.
-
-Finally, the <code>ml-pnet</code> project has been started to provide
-ports of certain <a href="http://www.go-mono.com/">Mono</a> C# libraries.
-<code>System.Data</code> (ADO.NET) currently works, and we hope to have
-<code>System.Web</code> (ASP.NET) working soon.
-</blockquote></p><p>
-
-3 May 2003:
-
-<blockquote>
-Version 0.5.6 of <code>pnet</code>, <code>pnetlib</code>, and
-<code>pnetC</code> have been released.
-
-The two big changes this release are the signature-compatibility of
-pnetlib (described below), and improved support for stripped-down
-profiles for embedded systems.
-</blockquote></p><p>
-
-26 April 2003:
-
-<blockquote>
-
-The CVS version of <code>pnetlib</code>'s <code>mscorlib.dll</code> is
-now 100% signature-compatible with the .NET Framework SDK.  Read the
-full announcement on the DotGNU developer's mailing list
-<a href="http://dotgnu.org/pipermail/developers/2003-April/010460.html">here</a>.
-</blockquote></p><p>
-
-1 April 2003:
-
-<blockquote>
-A small patch for version 0.5.4 <code>pnet</code> has been
-<a href="download/pnet-0.5.4-1.patch">released</a>.  It applies to
-all platforms except MacOSX, and fixes a problem when trying to compile
-
-<code>pnetC</code>.  If you don't need to use the C compiler,
-this patch should not affect you.
-</blockquote></p><p>
-
-29 March 2003:
-
-<blockquote>
-Version 0.5.4 of <code>pnet</code>, <code>pnetlib</code>, and
-<code>pnetC</code>, and version 0.2.4 of <code>treecc</code> have
-been released.
-</blockquote></p><p>
-
-12 February 2003:
-
-<blockquote>
-Version 0.0.6 of <code>pnetmark</code> has been released.  This version
-adds the SciMark and Linpack floating-point benchmarks, plus better
-support for building and running with other CLI implementations.
-</blockquote></p><p>
-
-8 February 2003:
-
-<blockquote>
-Version 0.5.2 of <code>pnet</code> and <code>pnetlib</code>, and
-version 0.2.2 of <code>treecc</code> have been released.
-
-This is mostly a cleanup and portability release.  Portable.NET is now known
-to run on i386, PowerPC, ia64, alpha, PA-RISC, sparc, arm, and s390 systems.
-</blockquote></p><p>
-
-16 January 2003:
-
-<blockquote>
-I wrote a simple Mahjongg tile game for Portable.NET and
-<a href="http://qtcsharp.sourceforge.net/">Qt# 0.6</a>.
-You can download the sources for the game
-<a href="download/mahjongg-0.0.1.tar.gz">here</a>.  It's very simple
-at the moment.  Feel free to send me patches to improve the gameplay,
-add loadable tilesets, scoring, or any other cool feature that
-you can think of.  Adam Treat was kind enough to provide a
-<a href="http://qtcsharp.sourceforge.net/screen/mahjongg-0.6.png">screenshot</a>.
-</blockquote></p><p>
-
-11 January 2003:
-
-<blockquote>
-
-Version 0.5.0 of <code>pnet</code>, <code>pnetlib</code>, and
-<code>pnetC</code> have been released.  This is the most stable version
-of the compiler, runtime, and libraries to date.
-
-Version 0.2.0 of <code>treecc</code>, version 0.0.4 of <code>pnetmark</code>,
-and version 0.0.2 of <code>pnetcurses</code> have also been updated.
-
-</blockquote></p><p>
-
-23 November 2002:
-
-<blockquote>
-Version 0.4.8 of <code>pnet</code>, version 0.4.8 of <code>pnetlib</code>,
-and version 0.1.8 of <code>treecc</code> have been released.
-
-The version numbers of <code>pnet</code> and <code>pnetlib</code> have
-been synchronized because they are always released together.
-
-The biggest news for this release is that <code>cscc</code> can now
-cleanly compile <code>pnetlib</code>, and the pre-built binaries in
-<code>pnet/samples</code> are produced with <code>cscc</code>.
-
-We are now independent of third party C# tools, and it should be a
-lot easier to help out on the C# library.  Please help us if you
-can by writing C# classes or test cases.
-</blockquote></p><p>
-
-22 November 2002:
-
-<blockquote>
-The <a href="pnet_faq.html">FAQ</a> has been updated with a lot more
-information on installing and using Portable.NET, the C compiler,
-and how to contribute.
-</blockquote></p><p>
-
-5 November 2002:
-
-<blockquote>
-Version 0.4.6 of <code>pnet</code>, version 0.3.0 of <code>pnetlib</code>,
-and version 0.1.6 of <code>treecc</code> have been released.
-
-It is now possible to compile <code>pnetlib</code> using <code>pnet</code>,
-but that is no guarantee that it will run just yet.  All help will be
-appreciated in helping track down the remaining compiler bugs.
-</blockquote></p><p>
-
-2 September 2002:
-
-<blockquote>
-Version 0.4.4 of <code>pnet</code>, version 0.2.8 of <code>pnetlib</code>,
-version 0.0.2 of <code>pnetC</code>, and version 0.1.4 of <code>treecc</code>
-
-have been released.
-
-The biggest change to this release is the introduction of a C compiler
-front-end for <code>cscc</code>.  When combined with the <code>pnetC</code>
-C library, this can be used to build C applications to run on CLR
-platforms such as <code>pnet</code> as pure IL bytecode.
-</blockquote></p><p>
-
-25 July 2002:
-
-<blockquote>
-Version 0.4.2 of <code>pnet</code> and version 0.2.6 of <code>pnetlib</code>,
-have been released.
-
-</blockquote></p><p>
-
-17 July 2002:
-
-<blockquote>
-There have been some DNS problems with the <code>dotgnu.org</code>
-domain recently.  The <code>dotgnu.info</code> domain can be used
-as a back up until we can resolve these issues.
-</blockquote></p><p>
-
-4 July 2002:
-
-<blockquote>
-Portable.NET can now be used with
-<a href="http://gtk-sharp.sourceforge.net/">Gtk#</a>!  A screenshot can be
-found <a href="http://www.southern-storm.com.au/download/pnetgtk.png">here</a>.
-You will need the CVS version of <code>pnet</code> to use Gtk#, not
-version 0.4.0.  See the file <code>pnet/doc/gtk-sharp.HOWTO</code> for
-more information.
-
-</blockquote></p><p>
-
-27 June 2002:
-
-<blockquote>
-Version 0.4.0 of <code>pnet</code>, version 0.2.4 of <code>pnetlib</code>,
-version 0.0.3 of <code>pnetmark</code>, and version 0.1.2 of
-<code>treecc</code> have been released.
-</blockquote></p><p>
-
-12 June 2002:
-
-
-<blockquote>
-We have uploaded a description of how Portable.NET can be used in
-embedded environments <a href="http://www.southern-storm.com.au/doc/embedded.html">here</a>.
-
-The process of making Portable.NET embedded-compatible is still ongoing.
-Check the CVS version for the latest information.
-</blockquote></p><p>
-
-10 June 2002:
-
-<blockquote>
-Version 0.3.8 of <code>pnet</code> and version 0.2.2 of <code>pnetlib</code>,
-have been released.  The bulk of the changes are to runtime engine
-performance, and portability to MacOSX.  See the NEWS file for other changes.
-
-</blockquote></p><p>
-
-11 May 2002:
-
-<blockquote>
-Version 0.3.6 of <code>pnet</code> and version 0.2.0 of <code>pnetlib</code>,
-have been released.  The bulk of the changes are to the runtime engine and
-the C# compiler.
-
-Version 0.0.2 of <code>pnetmark</code> has also been released.  See the
-<a href="http://www.southern-storm.com.au/doc/pm_faq.html">PNetMark FAQ</a>
-
-for more information.
-</blockquote></p><p>
-
-20 April 2002:
-
-<blockquote>
-Version 0.3.4 of <code>pnet</code>, version 0.1.8 of <code>pnetlib</code>,
-and version 0.1.0 of <code>treecc</code> have been released.  Many changes
-to the runtime engine and pnetlib.  The runtime engine has a new method
-caching policy and many bug fixes.  Pnetlib has extensive support
-for internationalization (I18N) routines in separate plug-in assemblies.
-
-Some of the annoying automake 1.5 problems under Cygwin should now be
-fixed in the <code>.tar.gz</code> release versions (the CVS version may
-still be problematic with automake 1.5).
-
-</blockquote></p><p>
-
-8 April 2002:
-
-<blockquote>
-The Converted Virtual Machine (CVM) instruction set has been documented
-using embedded XML tags in the source.  A HTML version of the documentation
-can be found <a href="doc/cvm/index.html">here</a>.  Many thanks for
-Gopal V. for building the Python script for converting the XML into HTML.
-</blockquote></p><p>
-
-27 March 2002:
-
-<blockquote>
-Version 0.3.2 of <code>pnet</code>, version 0.1.6 of <code>pnetlib</code>,
-and version 0.0.8 of <code>treecc</code> have been released.  The biggest
-change is to the C# compiler, which can now compile the metadata in
-
-<code>pnetlib</code> (metadata consists of the class, field, and method
-definitions, but not the method bodies).  The library, pnetlib, is also
-moving forward with many changes to the &quot;System&quot; assembly, including
-network code.
-</blockquote></p><p>
-
-20 March 2002:
-
-<blockquote>
-Daily CVS snapshots of the source code are now available from
-<a href="http://snapshots.dotgnu.info/dotgnu-pnet/">http://snapshots.dotgnu.info/dotgnu-pnet/</a>.
-
-</blockquote></p><p>
-
-8 March 2002:
-
-<blockquote>
-Treecc has been published!  There is an article in
-
-<a href="http://www.rons.net.cn/english/FSM/issue02">Issue 2</a>
-of Free Software Magazine.  The article describes the common problems
-with compiler implementation and how the aspect-oriented foundation of
-treecc helps solve these problems.  A HTML copy of the article
-can be found <a href="http://www.southern-storm.com.au/treecc_essay.html">here</a>.
-</blockquote></p><p>
-
-11 February 2002:
-
-<blockquote>
-Released <code>pnet</code> version 0.3.0 and <code>pnetlib</code>
-version 0.1.4.  The major changes are to the C# compiler.
-</blockquote></p><p>
-
-28 January 2002:
-
-<blockquote>
-We've been getting many requests lately as to how people can help
-make DotGNU Portable.NET successful.  The most urgent area is the
-C# class library.  See the pnetlib <a href="pnetlib_HACKING.txt">HACKING</a>
-file for details of where to start.
-</blockquote></p><p>
-
-11 January 2002:
-
-<blockquote>
-The <code>cscctest</code> module has been added to the CVS server
-on Savannah.  It contains a regression test suite for Portable.NET's
-<code>cscc</code> compiler.
-
-</blockquote></p><p>
-
-10 January 2002:
-
-<blockquote>
-To help organise things better, bug reports should be submitted via the
-Tech Support Manager on Savannah:
-	<blockquote>
-	<a href="http://savannah.gnu.org/support/?group_id=353">http://savannah.gnu.org/support/?group_id=353</a>
-	</blockquote>
-Patches should be submitted via the Patch Manager on Savannah:
-	<blockquote>
-	<a href="http://savannah.gnu.org/patch/?group_id=353">http://savannah.gnu.org/patch/?group_id=353</a>
-	</blockquote>
-
-The script <code>make_patch.sh</code> has been added to the
-<code>pnetlib</code> source code in CVS to assist in the process
-of building patch files to upload to Savannah.
-</blockquote></p><p>
-
-7 January 2002:
-
-<blockquote>
-Released <code>pnet</code> version 0.2.8 and <code>pnetlib</code>
-
-version 0.1.2.  The major changes are to the C# library and its
-dependencies in <code>pnet</code>.
-</blockquote></p><p>
-
-4 January 2002:
-
-<blockquote>
-Gopal V. has created a status page for <code>pnetlib</code> that lists
-all of the outstanding tasks.  It can be found on the DotGNU Web site:
-<a href="http://www.dotgnu.org/pnetlib-status/">http://www.dotgnu.org/pnetlib-status/</a>.  The page is automatically generated from the <code>pnetlib</code>
-source code, and so will always reflect the latest changes.
-</blockquote></p><p>
-
-28 December 2001:
-
-<blockquote>
-Released <code>treecc</code> version 0.0.6, which includes alignment
-fixes for 64-bit Solaris, some changes to the structure of generated
-&quot;switch&quot; statements to alleviate compilation problems with gcc 3.0,
-and a few other bug fixes.  See the <code>NEWS</code> file for more
-information.
-</blockquote></p><p>
-
-27 November 2001:
-
-<blockquote>
-Released <code>pnet</code> version 0.2.6 and <code>pnetlib</code>
-
-version 0.1.0.  The major changes are to the runtime engine in
-the areas of performance, exceptions, and PInvoke.  The library changes
-were to &quot;System.Diagnostics&quot; and &quot;System.Text&quot;.
-
-Released <code>pnetcurses</code> version 0.0.1, which contains a Curses
-binding for C# and the example program &quot;Curse of Frogger&quot;.
-</blockquote></p>
 <h1>
  Other Questions
 </h1>
@@ -553,9 +195,10 @@ new version.  The original version remains, of course, available
 under the X11 license.
 </p>
 <p class="maincontent">
-We're still interested in ways of increasing cooperation with the Mono
+We were still interested in ways of increasing cooperation with the Mono
 developers, in ways that would be mutually beneficial to Portable.NET
-and Mono.
+and Mono, and therefore another attempt at establishing cooperation was
+made in October 2003.  This also failed.
 </p>
 
   <p><hr></p>

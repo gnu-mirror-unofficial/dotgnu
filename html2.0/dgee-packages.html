@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+ <head lang="en">
+  <title>
+   DotGNU Execution Environment - Installation
+  </title>
+  <base target="_top">
+ </head>
+ <body bgcolor="#ffffff" text="#000000" lang="en" link="#0000aa">
+  <a href="./toc.html">Follow this link for a table of contents.</a><br>
+  <a href=".././index.html">Follow this link for a version of this page with improved navigation for graphical browsers.</a>
+  <p>
+   <a href="&nav.misc.gnu;"><img src=".././g/gnu-head-sm.jpg" width="129" height="122" alt="The head of a GNU is the logo of the GNU project" border="0"></a>
+   <img src=".././g/dot.png" alt="" width="20" height="1">
+   <img src=".././g/dotgnu-small.jpg" width="263" height="72" alt=" DotGNU " border="0">
+   <img src=".././g/dot.png" alt="" width="20" height="1">
+   <img src=".././g/dglogo.png" alt="DotGNU logo"  width="54" height="40"/>
+  </p>
+  
+  
+<h1>DotGNU Execution Environment - RMP Packages</h1>
+<p>
+Right now only RPM packages for GNU/Linux on i386-based CPUs are available.
+</p>
+<h2>Downloads</h2>
+<h3 class="maincontent">RPMS</h3>
+	<p class="maincontent">
+		With the dependencies ..
+	</p>
+<ul class="maincontent">
+	<li><a class="linkbody" href="http://www.nfluid.com/download/rpm/phlib-1.20-0.1.i386.rpm">phlib-1.20-0.1.i386.rpm</a></li>
+	<li><a class="linkbody" href="http://www.nfluid.com/download/rpm/phlib-1.20-0.1.src.rpm">phlib-1.20-0.1.src.rpm</a></li>
+	<li><a class="linkbody" href="http://www.nfluid.com/download/rpm/goldwater-1.4.0-0.0.1.i386.rpm">goldwater-1.4.0-0.0.1.i386.rpm</a></li>
+	<li><a class="linkbody" href="http://www.nfluid.com/download/rpm/goldwater-1.4.0-0.0.1.src.rpm">goldwater-1.4.0-0.0.1.src.rpm</a></li>
+	<li><a class="linkbody" href="http://www.nfluid.com/download/rpm/dgee-0.1.6-0.0.2.i386.rpm">dgee-0.1.6-0.0.2.i386.rpm</a></li>
+	<li><a class="linkbody" href="http://www.nfluid.com/download/rpm/dgee-0.1.6-0.0.2.src.rpm">dgee-0.1.6-0.0.2.src.rpm</a></li>
+</ul>
+
+<h2>Getting started after installing the binary packages</h2>
+<pre>
+
+Quickstart and Installing Webservices
+-------------------------------------
+
+1. Setup your environment
+
+The DGEE needs some environment variables set for it to find its resources,
+and to help this an env script is provided that should be sourced as required.
+
+If you use the DGEE supplied commands (dgadmin, dgeestart, csdgmx, dginstallws,
+dgremovews etc) to administer the system then the environment will not need
+setting manually.  However if you need to change the runtime configuration
+file at any time then the environment will need setting. See the FAQ for
+further details.
+
+If you want to sent the environment perminantly for a user then the env script
+should be sourced by the .profile of the dgee 'user'.
+
+By default the DGEE runs as the nobody user which does not have a home
+directory, starting the dgee as root will see it switching to the configured
+user (nobody unless otherwise configured).
+
+So before running as root, execute the command:
+
+shell&gt; . /usr/local/share/dgee/dgeeenv.sh
+
+If you're running the DGEE as another user, then edit that users 
+~/.bash_profile or ~/.profile depending on which you use and add the following
+line:
+
+. /usr/local/share/dgee/dgeeenv.sh
+
+(You'll have to log out and back in again as this user for the change to take
+ effect)
+
+
+2. Checking the System Configuration is correct
+
+Run the command dgeediagnose.
+
+This will check and report on may configuration issues that may affect the 
+running of the DGEE.
+
+
+3. Starting DGEE
+
+Run the command dgeestart
+
+(See the README for further information)
+
+
+4. Configure Apache
+
+Add the following to your apache httpd.conf at the appropriate locations (the
+apache src directory contains an example httpd.conf):
+
+LoadModule dgee_module     /usr/local/libexec/mod_dgee.so
+AddModule mod_dgee.c
+
+include /usr/local/etc/mod_dgee.conf
+
+# Optional 'directory' based DGEE association 
+# allows http://url/dgee/test in addition to the default 
+# http://url/test.dgmx
+#
+&lt;Location /dgee&gt;
+  include /usr/local/etc/mod_dgee.conf
+&lt;/Location&gt;
+
+
+Apache needs to run as either the user who started the DGEE or the DGEE needs
+to run as the Apache user.
+
+The following settings in httpd.conf file are suggested:
+User nobody
+Group nobody
+
+or, if these are not appropriate and you are building the DGEE yourself, then
+you may use the --with-username and --with-usergroup configure options (see
+./configure --help for details).
+
+If you did not build mod_dgee.so yourself then you will need to copy the
+precompiled version from src/apache/precompiled/mod_dgee.so to
+/usr/local/libexec/mod_dgee.so
+
+(See INSTALL for details on Apache2).
+
+
+5. Start Apache
+
+Start apache in the usual way
+
+
+6. You may now install a webservice
+
+cd examples
+make
+
+This will create wstest.dll, state.dll and math.dll
+
+Generate a dgmx files for each of these webservices:
+
+csdgmx wstest.dll
+csdgmx state.dll
+csdgmx math.dll
+
+Now install the webservice into the dgee by running dgeeinstallws script:
+
+dgeeinstallws wstest
+dgeeinstallws state
+dgeeinstallws math
+
+(Or you can copy the dll files directly into /usr/local/var/dgee/data and the
+dgmx files into /usr/local/var/dgee/index - make sure the ownership on the
+directory and files is correct).
+
+You can now view the web service documentation for this webservice by pointing
+your browser at:
+
+http://my.local.apache.webserver/wstest.dgmx
+http://my.local.apache.webserver/state.dgmx
+http://my.local.apache.webserver/math.dgmx
+
+If you want to see the documentation in XML form, use the following:
+
+http://my.local.apache.webserver/wstest.dgmx?xml
+
+
+XML-RPC access to the webservice is enabled by POSTing your XML-RPC request
+to http://my.local.apache.webserver/wstest.dgmx
+
+The perl directory contains a simple XMLRPC test client.  
+It requires XMLRPC::Lite which is part of SOAP::Lite.
+
+
+
+Notes:
+------
+
+Shutting down the DGEE before Apache will leave Apache hanging onto system
+IPC resources.  This can be cleaned up by stopping Apache and running
+dgeestop again.
+
+Please see the README and INSTALL files and examples/readme for further
+information.
+
+
+Use examples/wstest.cs as a guide to writing your own webservices.
+
+If you're really Interested...
+------------------------------
+Investigate the following administrative commands:
+
+dgadmin pl      # DGEE Process List
+dgadmin sl      # DGEE Service List
+
+You can enter these commands interactively by typeing dgadmin directly.
+Type help to get a full list of commands available.
+
+(dgadmin is an alias for goldwater, using 'goldwater' will produce the same
+ results).
+
+
+Chris Smith - 26/03/2003
+</pre>
+
+  <p><hr></p>
+  <p>
+   Verbatim copying and distribution of this entire article are
+   permitted in any medium or format, provided this notice is
+   preserved.
+  </p>
+  <p>
+   This page is
+   maintained by <a href="http://norbert.ch/">Norbert Bollow</a> <a href="mailto:nb@SoftwareEconomics.biz">&lt;nb@SoftwareEconomics.biz&gt;</a>
+   with support from the <a href="">DotGNU
+   Website mailing list</a>.
+  </p>
+ </body>
+</html>

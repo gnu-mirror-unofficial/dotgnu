@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+ <head lang="en">
+  <title>
+   DotGNU Execution Environment - Installation
+  </title>
+  <base target="_top">
+ </head>
+ <body bgcolor="#ffffff" text="#000000" lang="en" link="#0000aa">
+  <a href="./toc.html">Follow this link for a table of contents.</a><br>
+  <a href=".././index.html">Follow this link for a version of this page with improved navigation for graphical browsers.</a>
+  <p>
+   <a href="&nav.misc.gnu;"><img src=".././g/gnu-head-sm.jpg" width="129" height="122" alt="The head of a GNU is the logo of the GNU project" border="0"></a>
+   <img src=".././g/dot.png" alt="" width="20" height="1">
+   <img src=".././g/dotgnu-small.jpg" width="263" height="72" alt=" DotGNU " border="0">
+   <img src=".././g/dot.png" alt="" width="20" height="1">
+   <img src=".././g/dglogo.png" alt="DotGNU logo"  width="54" height="40"/>
+  </p>
+  
+  
+<h1>DGEE Samples</h1>
+<pre>
+The examples directory of the src distribution contains several webservice 
+examples.
+
+cd examples
+make
+
+This will create wstest.dll, state.dll and math.dll
+
+Generate a dgmx files for each of these webservices:
+
+csdgmx wstest.dll
+csdgmx state.dll
+csdgmx math.dll
+
+Now install the webservice into the dgee by running dgeeinstallws script:
+
+dginstallws wstest
+dginstallws state
+dginstallws math
+
+  (This may require you to be the 'dgee' user (usually the same as Apache) or
+  root.  Alternatively, you can set the permissions of /usr/local/var/dgee/data
+  and /usr/local/var/dgee/index to be global rwx, and set the 'sticky' bit on
+  these directories so that only the owners of the files placed there may delete
+  them again (just like /tmp).
+
+  chmod a+rwx ...directory...
+  chmod +t    ...directory...
+
+  Please see your man pages for further details
+
+(Or you can copy the dll files directly into /usr/local/var/dgee/data and the
+dgmx files into /usr/local/var/dgee/index - make sure the ownership on the
+directory and files is correct).
+
+You can now view the web service documentation for this webservice by pointing
+your browser at:
+
+http://my.local.apache.webserver/wstest.dgmx
+http://my.local.apache.webserver/state.dgmx
+http://my.local.apache.webserver/math.dgmx
+
+If you want to see the documentation in XML form, use the following:
+
+http://my.local.apache.webserver/wstest.dgmx?xml
+
+XML-RPC access to the webservice is enabled by POSTing your XML-RPC request
+to http://my.local.apache.webserver/wstest.dgmx
+
+To create C# Client Proxy classes for your webservices, you can run
+csws2client webservice.dll to generate a webserviceClient.cs file.
+
+Alternativly, the webservice documentation available from your DGEE contains
+a hypertext link which will download a suitable C# client proxy class.
+This class can be instantiated by your code code and the webservice methods 
+called directly via this proxy without the user having to get involved with the
+network side of things.
+
+Note: The client proxy may need the hard coded Url's set appropriately as they
+will be http://127.0.0.1 by default.
+
+
+The perl directory contains a simple XMLRPC test client.
+It requires XMLRPC::Lite which is part of SOAP::Lite.
+
+The Python direcory contains an out-of-the-box client example.
+</pre>
+
+
+  <p><hr></p>
+  <p>
+   Verbatim copying and distribution of this entire article are
+   permitted in any medium or format, provided this notice is
+   preserved.
+  </p>
+  <p>
+   This page is
+   maintained by <a href="http://norbert.ch/">Norbert Bollow</a> <a href="mailto:nb@SoftwareEconomics.biz">&lt;nb@SoftwareEconomics.biz&gt;</a>
+   with support from the <a href="">DotGNU
+   Website mailing list</a>.
+  </p>
+ </body>
+</html>

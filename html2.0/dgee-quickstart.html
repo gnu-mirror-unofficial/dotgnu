@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+ <head lang="en">
+  <title>
+   DotGNU Execution Environment - Installation
+  </title>
+  <base target="_top">
+ </head>
+ <body bgcolor="#ffffff" text="#000000" lang="en" link="#0000aa">
+  <a href="./toc.html">Follow this link for a table of contents.</a><br>
+  <a href=".././index.html">Follow this link for a version of this page with improved navigation for graphical browsers.</a>
+  <p>
+   <a href="&nav.misc.gnu;"><img src=".././g/gnu-head-sm.jpg" width="129" height="122" alt="The head of a GNU is the logo of the GNU project" border="0"></a>
+   <img src=".././g/dot.png" alt="" width="20" height="1">
+   <img src=".././g/dotgnu-small.jpg" width="263" height="72" alt=" DotGNU " border="0">
+   <img src=".././g/dot.png" alt="" width="20" height="1">
+   <img src=".././g/dglogo.png" alt="DotGNU logo"  width="54" height="40"/>
+  </p>
+  
+  
+<h1>DotGNU Execution Environment Source Installation Guide</h1>
+<p>
+This document explains how to install <a href="dgee.html">DGEE</a>
+by building it from the source distribution.  Visit the
+<a href="dgee-packages.html">DGEE Packages</a> page
+for instructions on installing the binary package distributions.
+</p>
+<h2>Source Code Downloads</h2>
+<p class="maincontent">
+	The DGEE is an appserver which currently uses the Portable.Net
+	runtime to execute the services. The DGEE is centered around its
+	own <a href="http://savannah.gnu.org/projects/dgee">Savannah project
+	</a>. DGEE uses Apache to manage HTTP traffic for its xmlrpc frontends.
+	GnuPG-signed md5sums are <a href="http://dotgnu.org/pipermail/developers/2003-March/010326.html">here</a>.
+</p>
+<h3 class="maincontent">Source</h3> 
+<ul class="maincontent">
+	<li><a class="linkbody" href="http://www.nfluid.com/download/src/phlib-1.20.tgz">phlib-1.20.tgz</a></li>
+	<li><a class="linkbody" href="http://www.nfluid.com/download/src/goldwater-1.4.0.tgz">goldwater-1.4.0.tgz</a></li>
+	<li><a class="linkbody" href="http://www.nfluid.com/download/src/dgee-0.1.6-2.tgz">dgee-0.1.6-2.tgz</a></li>
+</ul>
+<h3 class="maincontent">RPMS</h3>
+	<p class="maincontent">
+		With the dependencies ..
+	</p>
+<ul class="maincontent">
+	<li><a class="linkbody" href="http://www.nfluid.com/download/rpm/phlib-1.20-0.1.i386.rpm">phlib-1.20-0.1.i386.rpm</a></li>
+	<li><a class="linkbody" href="http://www.nfluid.com/download/rpm/phlib-1.20-0.1.src.rpm">phlib-1.20-0.1.src.rpm</a></li>
+	<li><a class="linkbody" href="http://www.nfluid.com/download/rpm/goldwater-1.4.0-0.0.1.i386.rpm">goldwater-1.4.0-0.0.1.i386.rpm</a></li>
+	<li><a class="linkbody" href="http://www.nfluid.com/download/rpm/goldwater-1.4.0-0.0.1.src.rpm">goldwater-1.4.0-0.0.1.src.rpm</a></li>
+	<li><a class="linkbody" href="http://www.nfluid.com/download/rpm/dgee-0.1.6-0.0.2.i386.rpm">dgee-0.1.6-0.0.2.i386.rpm</a></li>
+	<li><a class="linkbody" href="http://www.nfluid.com/download/rpm/dgee-0.1.6-0.0.2.src.rpm">dgee-0.1.6-0.0.2.src.rpm</a></li>
+</ul>
+<p>
+Released versions are available 
+<a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet">from ftp.gnu.org</a>
+and its mirrors:
+</p>
+<p>
+<blockquote>
+<a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet/treecc-0.2.6.tar.gz">treecc-0.2.6.tar.gz</a><br />
+<a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet/pnet-0.6.0.tar.gz">pnet-0.6.0.tar.gz</a><br />
+<a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet/pnetlib-0.6.0.1.tar.gz">pnetlib-0.6.0.1.tar.gz</a><br />
+<a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet/pnetC-0.6.0.tar.gz">pnetC-0.6.0.tar.gz</a><br />
+<a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet/ml-pnet-0.6.0.tar.gz">ml-pnet-0.6.0.tar.gz</a>
+</blockquote></p>
+<p>
+It may however be best to grab the latest development version
+from <a href="http://savannah.gnu.org/cvs/?group_id=353">Savannah CVS</a>.
+This project's CVS repository can be checked out through anonymous (pserver)
+CVS with the following instruction set.  When prompted for a password for
+anoncvs, simply press the Enter key.
+<pre>
+  cvs -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/dotgnu-pnet login
+
+  cvs -z3 -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/dotgnu-pnet co .
+</pre>
+</p>
+<p>
+NOTE: Before you can build the cvs version, you need to run
+<code>auto_gen.sh</code> in order to create the Makefile.in and
+configure files.
+</p>
+<h2>Building</h2>
+<p>
+There are three main components that you must install in the following
+order to use DotGNU Portable.NET:
+</p>
+<p>
+
+<blockquote>
+<code>treecc</code><br />
+<code>pnet</code><br />
+<code>pnetlib</code>
+</blockquote></p>
+<p>
+
+And there are two optional components:</p>
+<p>
+
+<blockquote>
+<code>pnetC</code><br />
+<code>ml-pnet</code><br />
+</blockquote></p>
+<p>
+
+You will need &quot;<code>pnetC</code>&quot; if you wish to use the C compiler.
+You may need &quot;<code>ml-pnet</code>&quot; if you wish to use Mono libraries
+such as &quot;<code>System.Data</code>&quot;.</p>
+<p>
+
+Another component, &quot;<code>cscctest</code>&quot;, is only available via CVS
+because it changes very often - always use the most recent CVS version.
+See the CVS instructions below for information on obtaining it.</p>
+<p>
+You will need flex and bison to build DotGNU Portable.NET.  We use
+flex 2.5.4 and bison 1.28.  Some support is provided for the BSD
+version of yacc, but bison is recommended.  Other versions of lex
+or yacc may not work.
+</p>
+<p>
+You typically unpack and install each component as follows:</p>
+<p>
+<blockquote>
+<code>gunzip -d &lt;name-version.tar.gz | tar xvf -<br />
+cd name-version<br />
+./configure<br />
+make<br />
+make install
+</code>
+</blockquote></p>
+<p>
+
+If you are building the CVS version, you should run <code>./auto_gen.sh</code>
+before <code>./configure</code>.</p>
+<p>
+
+See the &quot;<code>README</code>&quot; and &quot;<code>HACKING</code>&quot; files
+(where present) in each distribution for further information on
+install configuration options.</p>
+<p>
+
+Most platforms will install and build using the above instructions.
+The following sections provide special instructions for some platforms.</p>
+
+
+<h2>Building under MS Windows</h2><p>
+
+You will need to install the Cygwin package to build DotGNU Portable.NET under
+MS Windows.  It can be obtained from <a href="http://sources.redhat.com/cygwin/" target="_top">http://sources.redhat.com/cygwin/</a>.</p>
+<p>
+
+Follow the instructions in the previous section to build the distribution.
+This will build the Cygwin version, which can be installed and run from
+within the Cygwin environment.</p>
+<p>
+
+If you wish to run DotGNU Portable.NET as a regular MS Windows application,
+outside the Cygwin environment, then you must build the &quot;mingw32&quot; version
+instead.  To do this, configure and build as follows:</p>
+<p>
+
+<blockquote>
+<code>gunzip -d &lt;name-version.tar.gz | tar xvf -<br />
+cd name-version<br />
+./configure --disable-cygwin<br />
+make<br />
+make install
+</code>
+</blockquote></p>
+
+<h2>Building under Mac OS X</h2><p>
+
+Install the development tools from the Developer Tools CD that should be 
+included with your pack of Mac CDs.  If you don't have the CD, get an account
+at <a href="http://connect.apple.com/" target="_top">connect.apple.com</a> and download
+from the net.  The download is well over 100 megabytes.</p>
+<p>
+
+Next, install Fink (<a href="http://fink.sourceforge.net/" target="_top">fink.sourceforge.net</a>). Using the GUI program Fink Commander,
+install the package called <code>libtool</code>.  Alternatively, this can
+be done from a terminal by typing &quot;<code>sudo apt-get install libtool</code>&quot;
+(without quotes) and entering an administrative password.</p>
+<p>
+
+For each directory in treecc, pnet, pnetlib, etc, perform the following
+command:</p>
+<p>
+
+<blockquote><code>./configure &amp;&amp; make LIBTOOL=glibtool &amp;&amp; sudo make install LIBTOOL=glibtool</code></blockquote></p>
+<p>
+
+Type in your usual admin password for the account on your computer when 
+it asks for it (towards the end of each install).</p>
+<p>
+
+It is important that you use the Fink version of the &quot;<code>glibtool</code>&quot;
+program when compiling &quot;<code>pnetlib</code>&quot;.  Other versions of
+libtool will not work.</p>
+
+<h2>Getting a more recent version</h2><p>
+
+The most recent release version of the source code will always be
+available on the project's <a href="http://www.southern-storm.com.au/portable_net.html" target="_top">Web site</a>.</p>
+<p>
+
+However, it is recommended that developers use the CVS version when
+updating the source code.  The CVS version will always be more recent
+than the release versions.</p>
+<p>
+
+<blockquote><pre>cvs -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/dotgnu-pnet login
+cvs -z3 -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/dotgnu-pnet
+           checkout <i>component</i></pre></blockquote></p>
+<p>
+
+where <code><i>component</i></code> is the name of the component that you
+wish to check out.  When prompted for a password, just hit the Enter key.</p>
+
+<h2>Running the examples</h2>
+<p>
+Once you have built the system, you can test it on the examples within
+the &quot;<code>samples</code>&quot; directory:
+</p>
+	<blockquote>
+	<code>$ cd samples<br />
+	$ ../engine/ilrun hello.exe<br />
+	$ ../engine/ilrun fib.exe</code>
+	</blockquote>
+<p>
+The PNetMark program, listed above, is a more involved example.
+Instructions for running PNetMark can be found within its
+<code>README</code> file.
+</p>
+<h2>Documentation</h2>
+<p>
+Online documentation for the tools can be found
+<a href="http://www.southern-storm.com.au/docs/pnettools_toc.html">here</a>.
+</p>
+<p>
+Information on changes to individual versions can be found in the
+<code>NEWS</code> file within the distribution.
+</p>
+<p>
+The Converted Virtual Machine (CVM) instruction set has been documented
+using embedded XML tags in the source.  A HTML version of the documentation
+can be found <a href="http://www.southern-storm.com.au/doc/cvm/index.html">here</a>.
+</p>
+
+<h2>Common problems</h2><p>
+
+Some platforms may have problems building &quot;<code>libffi</code>&quot; and
+&quot;<code>libgc</code>&quot;.  You can use the configure options
+&quot;<code>--without-libffi</code>&quot; and &quot;<code>--without-libgc</code>&quot; to
+disable them.  The system may not fully work if you do this, so you
+will probably have to update those packages for your platform.</p>
+<p>
+
+Sometimes &quot;<code>./auto_gen.sh</code>&quot; can fail, giving errors about
+missing LIBTOOL macros.  If this happens, then change the line that
+says &quot;<code>aclocal</code>&quot; to &quot;<code>aclocal -I ./</code>&quot; and retry.</p>
+
+
+  <p><hr></p>
+  <p>
+   Verbatim copying and distribution of this entire article are
+   permitted in any medium or format, provided this notice is
+   preserved.
+  </p>
+  <p>
+   This page is
+   maintained by <a href="http://norbert.ch/">Norbert Bollow</a> <a href="mailto:nb@SoftwareEconomics.biz">&lt;nb@SoftwareEconomics.biz&gt;</a>
+   with support from the <a href="">DotGNU
+   Website mailing list</a>.
+  </p>
+ </body>
+</html>
