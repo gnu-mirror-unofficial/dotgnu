@@ -111,15 +111,15 @@ def split_signature(sig):
 ##########################SO ALL CREDIT TO THEM############################
 def print_curved_header(fp,header=""):
 	fp.write("""<table bgcolor="#cfcfbb"  width="90%" cellpadding="0" cellspacing="0" align="center" border="0" bordercolor="#dedebb">""")
-	fp.write("""<tr><td bgcolor="#cfcfbb" valign="top"><img src="corner-top-left.png"></td>""")
+	fp.write("""<tr><td bgcolor="#cfcfbb" valign="top"><img src="corner-top-left.jpg"></td>""")
 	fp.write("<td bgcolor=\"#cfcfbb\">"+header+"</td>")
-	fp.write("<td bgcolor=\"#cfcfbb\" align=\"right\" valign=\"top\"><img src=\"corner-top-right.png\"></td></tr>")
+	fp.write("<td bgcolor=\"#cfcfbb\" align=\"right\" valign=\"top\"><img src=\"corner-top-right.jpg\"></td></tr>")
 	fp.write("</td></tr>")
 	
 def print_curved_footer(fp):
-	fp.write("<tr><td valign=\"bottom\" align=\"left\"><img src=\"corner-bottom-left.png\"></td>")
+	fp.write("<tr><td valign=\"bottom\" align=\"left\"><img src=\"corner-bottom-left.jpg\"></td>")
 	fp.write("<td>&nbsp;</td>")
-	fp.write("<td valign=\"bottom\" align=\"right\"><img src=\"corner-bottom-right.png\"></td></tr>")
+	fp.write("<td valign=\"bottom\" align=\"right\"><img src=\"corner-bottom-right.jpg\"></td></tr>")
 	fp.write("</td></tr>")
 	fp.write("</table>")
 	
@@ -151,16 +151,16 @@ def write_pnetlib_footer(fp):
 							<table border="0" cellspacing="10" align="center">
 							<tr align="center">
 								<td><a href="http://www.fsf.org">
-								<img src="powered-by-fs.png" 
+								<img src="powered-by-fs.jpg" 
 								alt="[Powered by Free Software]"></a></td>
 								
 								<td><a href="http://www.gimp.org">
-								<img src="graphics-by-gimp.png" 
+								<img src="graphics-by-gimp.jpg" 
 								alt="[Graphics by Gimp]"></a>
 								</td>
 								
 								<td><a href="http://www.gnu.org">
-								<img src="powered-by-gnu.png" 
+								<img src="powered-by-gnu.jpg" 
 								alt="[Powered by GNU]"></a>
 								</td>
 							</tr>
@@ -176,7 +176,7 @@ def write_pnetlib_footer(fp):
 #end format functions
 
 
-def print_namespace_list(nslist,ctor,method,field,prop,event,attr,inslist,icall):
+def print_namespace_list(nslist,ctor,method,field,prop,event,attr):
 	#nslist=nsdict.keys()
 	#nslist.sort()
 	fp=open("index.html","w")
@@ -185,7 +185,7 @@ def print_namespace_list(nslist,ctor,method,field,prop,event,attr,inslist,icall)
 	
 	write_pnetlib_header(fp)
 	print_curved_title(fp,"""<h1>Namespaces</h1> """)
-	print_curved_title(fp,"<p align=\"right\"><a href=\""+nslist[0]+".html\"><img src=\"rarrow.jpg\"</a></p>")
+	print_curved_title(fp,"<p align=\"right\"><a href=\""+nslist[0]+".html\"><img src=\"rarrow.jpg\" border=\"0\"></a></p>")
 	fp.write("<tr><td>&nbsp;</td><td>")	
 	#nested tabling is *so* difficult
 	fp.write("""<table align="left" width="100%" bordercolor="#dedebb">""")
@@ -197,9 +197,9 @@ def print_namespace_list(nslist,ctor,method,field,prop,event,attr,inslist,icall)
 	for each in nslist:
 		fp.write("&nbsp&middot;&nbsp;<b><a href=\""+each+".html\">"+each+"</a></b><br>")
 	fp.write("""	</td></tr>""")
-	fp.write("""	Runtime Methods<br>""")
-	for each in inslist:
-		fp.write("&nbsp&middot;&nbsp;<b><a href=\"icall."+each+".html\">"+each+"</a></b><br>")
+	#fp.write("""	Runtime Methods<br>""")
+	#for each in inslist:
+	#	fp.write("&nbsp&middot;&nbsp;<b><a href=\"icall."+each+".html\">"+each+"</a></b><br>")
 	fp.write("""	<tr><td>""")
 	fp.write("""	</td></tr>""")
 	fp.write("""	</table>""")
@@ -214,8 +214,8 @@ def print_namespace_list(nslist,ctor,method,field,prop,event,attr,inslist,icall)
 	fp.write("<b>"+`field`+"</b> fields, ")
 	fp.write("<b>"+`prop`+"</b> properties, ")
 	fp.write("<b>"+`event`+"</b> events and ")
-	fp.write("<b>"+`attr`+"</b> attributes and")
-	fp.write("<b>"+`icall`+"</b> internal calls")
+	fp.write("<b>"+`attr`+"</b> attributes.")
+#	fp.write("<b>"+`icall`+"</b> internal calls")
 	fp.write("""	</td></tr>""")
 	fp.write("""	</table>""")
 #	fp.write("""</td><td align="right" valign="top" border="2">""")
@@ -258,11 +258,17 @@ def print_field_summary(fp,fields):
 		(status,msg)=get_status(each)
 		name=each.getAttribute("name")
 		type=each.getAttribute("type")
-		fp.write("<tr border=\"1\"><td><i>"+type+"</i> <b>"+name+"</b></td><td align=\"right\">"+msg+"</td></tr>")
+		fp.write("<tr border=\"1\"><td><i>"+type+"</i> <b>")
+		#write doc filename
+		fp.write("<a href=\"../pnetlib-doc/"+string.replace(name,".","/")+".html")
+		#due to rhys simpilifying documentation, I'm forced to 
+		#complicate my program, to make it simpler to access
+		fp.write(name+" Property\">")
+		fp.write(name+"</b></td><td align=\"right\">"+msg+"</td></tr>")
 	fp.write("</table>")
 	fp.write("</td></tr>")
 
-def print_ctor_summary(fp,ctors):
+def print_ctor_summary(fp,ctors,cnode):
 	fp.write("<tr><td>")
 	fp.write("""<table cellspacing="0" width="100%" bgcolor="#b2b297" border="1">""")
 	fp.write("""<tr><td><font size="+2">Constructor Summary</h3></td></tr>""")
@@ -272,7 +278,8 @@ def print_ctor_summary(fp,ctors):
 		(status,msg)=get_status(each)
 		sig=each.getAttribute("signature")
 		(prefix,name,params)=split_signature(sig)
-		fp.write("<tr border=\"1\"><td><b>"+name+"</b><i>("+params+"</i></td><td align=\"right\">"+msg+"</td></tr>")
+		fp.write("<tr border=\"1\"><td><b>")
+		fp.write(name+"</b></a><i>("+params+"</i></td><td align=\"right\">"+msg+"</td></tr>")
 	fp.write("</table>")
 	fp.write("</td></tr>")
 	
@@ -334,7 +341,7 @@ def print_each_class(fp,cnode):
 	fp.write("</td></tr>")
 	#summary
 	if(len(cnode.ctors)!=0):
-		print_ctor_summary(fp,cnode.ctors)
+		print_ctor_summary(fp,cnode.ctors,cnode)
 	if(len(cnode.methods)!=0):
 		print_method_summary(fp,cnode.methods)
 	if(len(cnode.fields)!=0):
@@ -418,105 +425,105 @@ def print_namespace_inner(fname,classlist,prev,next):
 	fp.close()
 	return (ctorcount,methodcount,fieldcount,propcount,eventcount,attrcount)
 #########################################################################################################
-def print_icall_method_summary(fp,methods):
-	fp.write("<tr><td>")
-	fp.write("""<table cellspacing="0" width="100%" bgcolor="#b2b297" border="1">""")
-	fp.write("""<tr><td><font size="+2">InternalCall Summary</h3></td></tr>""")
-	fp.write("</table>")
-	fp.write("""<table cellpadding="4" cellspacing="0" width="100%" bordercolor="#99997e" border="1">""")
-	for each in methods:
-		msg="<font color=\"#ff1212\">"+each.getAttribute("status")+"</font>"
-		sig=each.getAttribute("signature")
-		(prefix,name,params)=split_signature(sig)
-		fp.write("<tr border=\"1\"><td><tt>"+prefix+"</tt><b> "+name+"</b><i>("+params+"</i></td><td align=\"right\">"+msg+"</td></tr>")
-	fp.write("</table>")
-	fp.write("</td></tr>")
-	
-def print_icall_each_class(fp,cnode):
-	fp.write("<a name=\""+cnode.name+"\">")
-	fp.write("<table bordercolor=\"#dedebb\" border=\"1\" width=\"90%\">")
-	fp.write("<tr><td><h2>"+cnode.fqname+"</h2></td></tr>")
-	fp.write("</td></tr>")
-	#summary
-	print_icall_method_summary(fp,cnode.icalls)
-	fp.write("</table>")
-	fp.write("<br>")
-	fp.write("</a>")
-	
-def print_icall_ns_inner(fname,classlist,prev,next):
-	missing=0
-	fp=open("icall."+fname+".html","w")
-	print "writing.....icall."+fname+".html"
-	fp.write("""<html><body bgcolor="#505050" link="#0A0A0A" vlink="#303030">""")
-	write_pnetlib_header(fp)
-	print_curved_title(fp,"<h2 align=\"left\">"+fname+" Namespace</h2>")
-	links="<p align=\"right\">"
-	if(prev!="index.html"):
-		links=links+"<a href=\"icall."+prev+"\"><img src=\"larrow.jpg\" border=\"0\"></a>"
-	links=links+"<a href=\"index.html\"><img src=\"uarrow.jpg\" border=\"0\"></a>"
-	if(next!="index.html"):
-		links=links+"<a href=\"icall."+next+"\"><img src=\"rarrow.jpg\" border=\"0\"></a>"
-	links=links+"</p>"	
-	print_curved_title(fp,links)
-	fp.write("<tr><td>&nbsp;</td><td>")
-	fp.write("<!--DATA REGION-->")
-	fp.write("""<table bordercolor="#dedebb">""")
-	fp.write("""<tr><td border="1">""")
-	fp.write("<!--LEFT BLOCK-->")
-	fp.write("""	<table align="center" bgcolor="#cfcfbb">""")
-	fp.write("""	<tr><td>Classes </td></tr>""")
-	fp.write("""	<tr><td>""")
-	for each in classlist:
-		fp.write("&nbsp;&middot;&nbsp<b><a href=\"#"+each.name+"\">"+each.name+"</a></b><br>")
-		missing=missing+len(each.icalls)
-	fp.write("""	</td></tr>""")
-	fp.write("""	</table>""")
-	fp.write("""</td><td valign="top">""")
-	fp.write("<!--CENTER BLOCK-->")
-	fp.write("	<table><tr><td>")
-	fp.write("<p>There are <b>"+`len(classlist)`+"</b> classes with missing InternalCalls in this namespace</p>")
-	fp.write("<b>"+`missing`+"</b> internal calls missing")
-	fp.write("</td></tr></table>")
-	fp.write("""	</td></tr>""")
-	fp.write("""	</table>""")
-	fp.write("</td><td>&nbsp;</td></tr>")
-#classwise printing starts
-	for each in classlist:
-		fp.write("""<tr><td>&nbsp;</td><td>&nbsp;<hr color="#dedebb">&nbsp;</td><td>&nbsp;</td></tr>""")
-		fp.write("""<tr align="center"><td>&nbsp;</td><td>""")
-		print_icall_each_class(fp,each)
-		fp.write("</td><td>&nbsp;</td></tr>")
-	print_curved_footer(fp)
-	write_pnetlib_footer(fp)
-	fp.write("</body></html>")
-	fp.close()
-	return missing
-
-def process_icall():
-	missing=0
-	inodes=[]
-	insdict={}
-	iroot=xml.dom.minidom.parse('icall.xml')
-	icalls=iroot.getElementsByTagName('class');
-	for each in icalls:
-		c=iclassnode(each);
-		inodes.append(c);
-		if(insdict.has_key(c.ns)):
-			a=insdict.get(c.ns)
-		else:
-			a=[]
-		a.append(c)
-		insdict.update({c.ns:a})
-	inslist=insdict.keys()
-	inslist.sort()
-	for each in inslist:
-		(prev,next)=get_prev_next(inslist,each)
-		missing=missing+print_icall_ns_inner(each,insdict.get(each),prev,next)
-	return (inslist,missing)
+#def print_icall_method_summary(fp,methods):
+#	fp.write("<tr><td>")
+#	fp.write("""<table cellspacing="0" width="100%" bgcolor="#b2b297" border="1">""")
+#	fp.write("""<tr><td><font size="+2">InternalCall Summary</h3></td></tr>""")
+#	fp.write("</table>")
+#	fp.write("""<table cellpadding="4" cellspacing="0" width="100%" bordercolor="#99997e" border="1">""")
+#	for each in methods:
+#		msg="<font color=\"#ff1212\">"+each.getAttribute("status")+"</font>"
+#		sig=each.getAttribute("signature")
+#		(prefix,name,params)=split_signature(sig)
+#		fp.write("<tr border=\"1\"><td><tt>"+prefix+"</tt><b> "+name+"</b><i>("+params+"</i></td><td align=\"right\">"+msg+"</td></tr>")
+#	fp.write("</table>")
+#	fp.write("</td></tr>")
+#	
+#def print_icall_each_class(fp,cnode):
+#	fp.write("<a name=\""+cnode.name+"\">")
+#	fp.write("<table bordercolor=\"#dedebb\" border=\"1\" width=\"90%\">")
+#	fp.write("<tr><td><h2>"+cnode.fqname+"</h2></td></tr>")
+#	fp.write("</td></tr>")
+#	#summary
+#	print_icall_method_summary(fp,cnode.icalls)
+#	fp.write("</table>")
+#	fp.write("<br>")
+#	fp.write("</a>")
+#	
+#def print_icall_ns_inner(fname,classlist,prev,next):
+#	missing=0
+#	fp=open("icall."+fname+".html","w")
+#	print "writing.....icall."+fname+".html"
+#	fp.write("""<html><body bgcolor="#505050" link="#0A0A0A" vlink="#303030">""")
+#	write_pnetlib_header(fp)
+#	print_curved_title(fp,"<h2 align=\"left\">"+fname+" Namespace</h2>")
+#	links="<p align=\"right\">"
+#	if(prev!="index.html"):
+#		links=links+"<a href=\"icall."+prev+"\"><img src=\"larrow.jpg\" border=\"0\"></a>"
+#	links=links+"<a href=\"index.html\"><img src=\"uarrow.jpg\" border=\"0\"></a>"
+#	if(next!="index.html"):
+#		links=links+"<a href=\"icall."+next+"\"><img src=\"rarrow.jpg\" border=\"0\"></a>"
+#	links=links+"</p>"	
+#	print_curved_title(fp,links)
+#	fp.write("<tr><td>&nbsp;</td><td>")
+#	fp.write("<!--DATA REGION-->")
+#	fp.write("""<table bordercolor="#dedebb">""")
+#	fp.write("""<tr><td border="1">""")
+#	fp.write("<!--LEFT BLOCK-->")
+#	fp.write("""	<table align="center" bgcolor="#cfcfbb">""")
+#	fp.write("""	<tr><td>Classes </td></tr>""")
+#	fp.write("""	<tr><td>""")
+#	for each in classlist:
+#		fp.write("&nbsp;&middot;&nbsp<b><a href=\"#"+each.name+"\">"+each.name+"</a></b><br>")
+#		missing=missing+len(each.icalls)
+#	fp.write("""	</td></tr>""")
+#	fp.write("""	</table>""")
+#	fp.write("""</td><td valign="top">""")
+#	fp.write("<!--CENTER BLOCK-->")
+#	fp.write("	<table><tr><td>")
+#	fp.write("<p>There are <b>"+`len(classlist)`+"</b> classes with missing InternalCalls in this namespace</p>")
+#	fp.write("<b>"+`missing`+"</b> internal calls missing")
+#	fp.write("</td></tr></table>")
+#	fp.write("""	</td></tr>""")
+#	fp.write("""	</table>""")
+#	fp.write("</td><td>&nbsp;</td></tr>")
+##classwise printing starts
+#	for each in classlist:
+#		fp.write("""<tr><td>&nbsp;</td><td>&nbsp;<hr color="#dedebb">&nbsp;</td><td>&nbsp;</td></tr>""")
+#		fp.write("""<tr align="center"><td>&nbsp;</td><td>""")
+#		print_icall_each_class(fp,each)
+#		fp.write("</td><td>&nbsp;</td></tr>")
+#	print_curved_footer(fp)
+#	write_pnetlib_footer(fp)
+#	fp.write("</body></html>")
+#	fp.close()
+#	return missing
+#
+#def process_icall():
+#	missing=0
+#	inodes=[]
+#	insdict={}
+#	iroot=xml.dom.minidom.parse('icall.xml')
+#	icalls=iroot.getElementsByTagName('class');
+#	for each in icalls:
+#		c=iclassnode(each);
+#		inodes.append(c);
+#		if(insdict.has_key(c.ns)):
+#			a=insdict.get(c.ns)
+#		else:
+#			a=[]
+#		a.append(c)
+#		insdict.update({c.ns:a})
+#	inslist=insdict.keys()
+#	inslist.sort()
+#	for each in inslist:
+#		(prev,next)=get_prev_next(inslist,each)
+#		missing=missing+print_icall_ns_inner(each,insdict.get(each),prev,next)
+#	return (inslist,missing)
 
 if __name__=="__main__":
 	root=xml.dom.minidom.parse('status.xml')
-	(inslist,icall)=process_icall()
+#	(inslist,icall)=process_icall()
 	classes=root.getElementsByTagName("class")
 	classnodes=[]
 	nsdict={}
@@ -547,5 +554,5 @@ if __name__=="__main__":
 		eventcount=eventcount+event
 		methodcount=methodcount+method
 		attrcount=attrcount+attr
-	print_namespace_list(nslist,ctorcount,methodcount,fieldcount,propcount,eventcount,attrcount,inslist,icall)
+	print_namespace_list(nslist,ctorcount,methodcount,fieldcount,propcount,eventcount,attrcount)
 	
