@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>dotGnu Tokens Specification</title>
+</head>
+<body bgcolor="white">
+<center>
+DotGnu<br>
+Token System Specification Proposal<br>
+Version 0.5 (Last Update: 7/17/2001)<br>
+<br>
+By:<br>
+<br>
+Barry Fitzgerald &lt;fitzix@sdf.lonestar.org&gt;<br> 
+Enzo-Adrian Reyes<br>
+</center>
+<br>
+<br>
+<br>
+<br>
+<h1>NOTE:</h1>
+<p>This document is a preliminary specification proposal.  Any modifications to it should be addressed on the dotgnu developers mailing lists.  See http://www.dotgnu.org for more details.</p>
+<br>
+<br>
+<br>
+<br>
+<h1><u>Introduction:</u></h1>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thus far, the idea has been to attempt to authenticate the user 
+based on information contained in a client on the user's PC.  This solves
+the problem of privacy and security (as long as the user's client is
+considered secure).  However, this outlook does not solve other
+considerations such as remote user information access and security concerns revolving around the client PC.</p>
+
+<blockquote><p><strong>* Remote User Information Access</strong></p></blockquote>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clearly, this is one of the areas where the passport scheme has many flaws. 
+Giving sensitive information to entities that you may not be able to trust
+with it is generally not a good thing.  However, this is a service that .Net
+will supply, and so - to be successful - we must also attempt to supply that
+service.  This service must be supplied from the get-go.  If the
+authentication system is built around it, this will mean less work down the
+road.</p>
+
+<blockquote><p><strong>* Security concerns on the client</strong></p></blockquote>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ostensibly, any distributed/decentralized system where the client computer
+becomes something of an authentication server garners certain problems
+associated with it.  Open ports can often unexpectedly be exploited. 
+Through this, sensitive information can be stolen.  </p>
+<br>
+<br>
+<br>
+<br>
+<p><h1><u>Proposal:</u></h1></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I propose a hybrid system.  This system will work off of a token
+concept.  Each potential data area (Name, Address, Phone Number, CC#'s
+(ick), passwords, dog's name, etc...) has a different token variable
+identification.  The user's tokens are flexible in the fact that they are
+interpreted by the site using those tokens.  </p>
+
+<blockquote><p><strong>* An Example</strong></p></blockquote>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Let's say that the user is using a sourceforge account.  
+Sourceforge decides to identify the user using the 
+tokens 'sforge-user' and 'sforge-pw'.  The tokens are 
+stored in the user's DotGnu token database on the client system. 
+Every time the user logs into sourceforge, the site queries the 
+user's token database to attempt to authenticate the user on that
+system.</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;So, why does this call for a hybrid system?  Simple, different types of
+information are more sensitive than others.  People classify their sensitive
+information based on what they value.  Surely, everyone values their credit
+card number, but does everyone value their login name to xyz.com's online
+forums?  The key issue here is that Microsoft will ultimately be providing
+these types of services to the user.  Using the passport system, the promise
+goes, users will be able to keep these types of data on passport and access
+them anywhere on the Internet.  Some people will ultimately use this
+functionality, if only transparently.  </p>
+
+<blockquote><p><strong>* Implementation</strong></p></blockquote>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There are three points of implementation to this system: </p> 
+
+<ol>
+	<li><p>The first point is at the site that requests the tokens.  The 
+developer essentially requests the authentication tokens from the 
+server and then implements them however he/she chooses.  The 
+developer can query the DotGnu auth server using myrddian's RLS 
+concept (See the Resource Locator String documentation.)  This will
+most likely require some form of API on the site to be able to parse
+the RLS.</p></li>
+
+<li><p>Once the RLS is passed and the token is requested, the auth server
+does a couple of things.  This is the second point.  The first thing that
+the auth server does is check to make sure that the token exists. 
+Once this has succeeded, the auth server then checks to see whether
+it has access to the token value.  This is essential.  The server
+only has to be aware of the existence of the token to be able to act
+as a forwarding mechanism.  If the token value is on the server, the
+server then attempts to determine the security level assigned to the
+token.  The token security level parameters are flexible, but I
+envision three levels: open access (anyone can see this), user
+verification requested, and only pass the info to a listed trusted
+source.  If the test is done and the token is listed as open, then
+the token is simply sent on it's way.  If the test is done and the
+token requires user verification, the server attempts to contact the
+user client for verification.  If the token is set to an authorized
+list, then it checks for authorization from the site.  If the token
+value is not on the server, then the server passes the request to
+the client system.</p></li>
+
+	<li><p>On the client system, the third point exists.  This is where the
+user uses the client interface to manage their tokens.  The tokens
+can be set local or server-side.  This is entirely up to the user. 
+The user can then set security parameters on different tokens.  Once
+this is done, the client then creates a token template and encrypts
+it.  the encrypted token template is then sent to the server where
+it is stored.</p></li>
+</ol>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Encryption can ensue at any point and should be on during ALL
+transactions and between all points.</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Also imperative is that the client be able to act as the server,
+making it possible to cut the server out of the equation if the user
+so chooses.</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Going back to our sourceforge example, the sourceforge site might request
+the following RLS:</p>
+
+<center><p><code>fitzix@dotgnu.org:ReqToken:sforge-name,sforge-pw</code></p></center>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this case, sourceforge would be requesting the token variables
+sforge-name and sforge-pw from the auth server dotgnu.org for the user
+fitzix (myself), using the ReqToken object on the server.</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There is another case which has recently been discussed, which is:</p>
+
+<center><p><code>fitzix@dotgnu.org:ReqToken:sforge[name,pw]</code></p></center>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This new form is based on the idea of categorizing the tokens.  In this
+case, the category sforge is used and the sub-tokens 'name' and 'pw' are
+requested.  This implies the following structure for the token database:</p>
+
+
+<table cellpadding="5" cellspacing="1" border="1" align="center" bgcolor="#D4D4D4" width="100%">
+<tr>
+	<td><u><strong>Category</strong></u></td>
+	<td><u><strong>Token Identifier</strong></u></td>
+	<td><u><strong>Token Value</strong></u></td>
+	<td><u><strong>Security Level</strong></u></td>
+</tr>
+<tr>
+	<td>sforge</td>
+	<td>name</td>
+	<td>fitzix</td>
+	<td>authreq,sourceforge</td>
+</tr>
+<tr>
+	<td>sforge</td>
+	<td>pw</td>
+	<td>thisisnotmypw</td>
+	<td>authreq,sourceforge</td>
+</tr>
+<tr>
+	<td>dotgnu</td>
+	<td>name</td>
+	<td>fitzix</td>
+	<td>open</td>
+</tr>
+<tr>
+	<td>dotgnu</td>
+	<td>pw</td>
+	<td>*</td>
+	<td>authreq,dotgnu</td>
+</tr>
+<tr>
+	<td>dotgnu</td>
+	<td>OnlineCheck</td>
+	<td>*</td>
+	<td>open</td>
+</tr>
+</table>
+<br>
+<p>The stars in the last two 'Token Value' fields indicate that the value does not exist in the Token Database on the server.  The server then points the requesting service to the user's client to get the information from the client.  If the information is not in the client token database, then the user is asked for assistance.</p>
+
+<p>Ostensibly, security levels can be mixed.  The security level situation is
+still up for consideration.</p>
+
+<blockquote><p><strong>* Security</strong></p></blockquote>
+<p>Having the server can also make the client more secure.  If the server is
+the one sending and receiving tokens and requests, the client can implement
+a firewall to block out all port calls except those from the trust auth
+server.  This can act as a buffer between the unsuspecting client and the
+outside world.</p>
+<br>
+<br>
+<br>
+<br>
+<h1>Conclusions:</h1>
+<p>A hybrid server/client system would be the best way of tackling a DotGNU server infrastructure.  Providing a system based on Tokens and the RLS, one can produce a stable, secure, and privacy friendly information server which could be used to better the user's online experience as opposed to ruining it with unnecessary information demands and abuses.  This infrastructure seems to offer the best balance between service and privacy - disregarding neither in the process.</p>
+</body>
+</html>
