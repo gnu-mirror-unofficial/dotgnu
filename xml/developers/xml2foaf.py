@@ -126,12 +126,12 @@ def processTree(tree):
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:dotgnu="http://dotgnu.org/2003/06/dotgnu.rdfs"
+	xmlns:dotgnu="http://www.gnu.org/FOAF/2003/06/dotgnu.rdfs"
 	xmlns:rss="http://purl.org/rss/1.0/"
 	xmlns:foaf="http://xmlns.com/foaf/0.1/">
-]>
-<dotgnu:DevelopersList rdf:about="http://dotgnu.org/2003/06/developers.foaf">
 """)
+#<dotgnu:DevelopersList rdf:about="http://www.gnu.org/projects/dotgnu/xml/src/people.foaf">
+
 #       xmlns:cc="http://web.resource.org/cc/"
 #	xmlns:wn="http://xmlns.com/wordnet/1.6/"
 # 	xmlns:air="http://www.megginson.com/exp/ns/airports#"
@@ -145,8 +145,8 @@ def processTree(tree):
 #		w.writeline( """<rdf:Seq>""")
 		developers[each].toHtml(w)
 #		w.writeline( """</rdf:Seq>""")
+#</dotgnu:DevelopersList>
 	w.writeline( """
-</dotgnu:DevelopersList>
 </rdf:RDF>""")
 	w.flush()
 	w.close()
