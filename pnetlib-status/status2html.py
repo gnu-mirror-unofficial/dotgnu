@@ -1,4 +1,4 @@
-#!/usr/bin/env python1.5
+#!/usr/bin/python
 ##############################################
 # This is released under the GNU GPL license #
 # Copyright (c) FSF India                    #
