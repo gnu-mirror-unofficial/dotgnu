@@ -6,17 +6,55 @@
 	<META NAME="GENERATOR" CONTENT="StarOffice/5.2 (Linux)">
 	<META NAME="CREATED" CONTENT="20010724;13013600">
 	<META NAME="CHANGEDBY" CONTENT=" ">
-	<META NAME="CHANGED" CONTENT="20010727;10413800">
+	<META NAME="CHANGED" CONTENT="20010728;12455100">
 </HEAD>
 <BODY BGCOLOR="#ffffff">
+<HR WIDTH=275 ALIGN=CENTER>
 <P ALIGN=CENTER STYLE="margin-bottom: 0in">DotGNU<BR>Resource Locator
-String specification<BR><BR>By:<BR><BR>Enzo-Adrian Reyes
-(myrddian@bigpond.net.au)<BR>Barry
-Fitzgerald(fitzix@sdf.lonestar.org)</P>
-<P ALIGN=CENTER STYLE="margin-bottom: 0in">Version 0.75</P>
+String specification<BR>Version 0.85<BR><BR>By:<BR><BR>Enzo-Adrian
+Reyes(myrddian@bigpond.net.au)<BR><BR><BR>With contributions
+by:<BR><BR>Barry Fitzgerald(fitzix@sdf.lonestar.org)<BR>Daniel W.
+Connolly(connolly@w3.org)<BR>Matthias
+Rosenkranz(rose@m-rosenkranz.de)<BR>Sean B.
+Palmer(sean@mysterylights.com)</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<HR WIDTH=275 ALIGN=CENTER>
+<P><BR><BR>
+</P>
+<OL>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#Introduction">Introduction</A>
+		</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#Format">Format</A> 
+	</P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0in"><A HREF="#nonoptfields">Non-optional
+		Fields</A> 
+		</P>
+		<LI><P STYLE="margin-bottom: 0in"><A HREF="#optfields">Optional
+		Fields</A> 
+		</P>
+		<LI><P STYLE="margin-bottom: 0in"><A HREF="#tokenexamples">Token
+		Examples</A> 
+		</P>
+		<LI><P STYLE="margin-bottom: 0in"><A HREF="#nestedtokens">Nested
+		Tokens</A> 
+		</P>
+		<LI><P STYLE="margin-bottom: 0in"><A HREF="#passingtokens">Passing
+		Tokens</A> 
+		</P>
+		<LI><P STYLE="margin-bottom: 0in"><A HREF="#heirarchicalservices">Heirarchical
+		Services</A> 
+		</P>
+	</UL>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#Conclusion">Conclusion</A>
+		</P>
+	<LI><P><A HREF="#References">References</A> 
+	</P>
+</OL>
 <P><BR><BR><BR><BR>
 </P>
-<H1><U>Introduction:</U></H1>
+<H1><A NAME="Introduction"></A><U>Introduction:</U></H1>
 <P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The idea behind a
 RLS (Resource Locator String) is the easy identification, and passing
 of information from peer to peer. It can also be used by end users to
@@ -27,24 +65,24 @@ a different RLS input, it is up to the individual service to
 interpret it's RLS tokens and data.</P>
 <P><BR><BR><BR>
 </P>
-<H1><U>Format:</U></H1>
+<H1><A NAME="Format"></A><U>Format:</U></H1>
 <P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The format of an
 RLS contains two non-optional fields, these fields are separated
 using the '/' character. As an extension to these non-optional
 fields, RLS's have two extra fields which are optional. The format of
 an RLS is as follows:</P>
-<BLOCKQUOTE><CODE>rls://[User name@]&lt;DotGNU Server&gt;/&lt;DotGNU
-Service&gt;:[Tokens]</CODE></BLOCKQUOTE>
+<BLOCKQUOTE><CODE>rls://[User name@]&lt;DotGNU Server&gt;[:port]/&lt;DotGNU
+Service&gt;[?Tokens]</CODE></BLOCKQUOTE>
 <P>The optional fields are in square brackets, while the non-optional
 fields are in nested in <CODE>&quot;&lt;&gt;&quot; </CODE>brackets.</P>
 <P>Note: Please do note that the RLS specification is trying to
-conform to the W3 RFC-2396 regarding Universal Resource Identifiers.
-If you find conflicts against the RFC please inform one of the
-Authors, of the breach. 
+conform to IETF RFC 2396 regarding Universal Resource Identifiers. If
+you find conflicts against the RFC please inform one of the Authors
+of the breach. 
 </P>
-<P><STRONG>Non-optional Fields:</STRONG></P>
 <P><BR><BR>
 </P>
+<P><A NAME="nonoptfields"></A><STRONG>Non-optional Fields:</STRONG></P>
 <P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The first
 non-optional field is the <CODE>&quot;&lt;DotGNU server&gt;&quot;</CODE>
 field. This field tells a machine the IP/DNS of the server to locate
@@ -62,7 +100,7 @@ service. The third opens gnu.org and asks for the tbbs service.
 </P>
 <P><BR><BR>
 </P>
-<P><STRONG>Optional fields:</STRONG></P>
+<P><A NAME="optfields"></A><STRONG>Optional fields:</STRONG></P>
 <P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The optional
 fields contain information which is of no use to the DotGNU server,
 but rather to the service it provides.</P>
@@ -94,17 +132,18 @@ separated using the ',' character, so &lt;token 1&gt;,&lt;token2&gt;
 can be recognized separately. If a string may contain the comma
 separator it is recommended that it be nested within &quot; &quot; as
 this prevents premature separation.</P>
-<P><STRONG>Token examples:</STRONG></P>
+<P><A NAME="tokenexamples"></A><STRONG>Token examples:</STRONG></P>
 <BLOCKQUOTE>(1)
-rls://dotgnu.org/spell:&quot;I%20wnt%20to%20chke%20my,%20speeling&quot;<BR>(2)
-rls://dotgnu.org/cvs:checkout,checkin</BLOCKQUOTE>
+rls://dotgnu.org/spell?&quot;I%20wnt%20to%20chke%20my,%20speeling&quot;<BR>(2)
+rls://dotgnu.org/cvs/checkout</BLOCKQUOTE>
 <P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the first a
 string is passed and contains the comma character but it's nested
-inside quotes hence it's ignored. 
+inside quotes hence it's ignored. In the Second Example we use a
+heirarchical mapping of services. 
 </P>
 <P><BR><BR>
 </P>
-<P><STRONG>Nested tokens:</STRONG></P>
+<P><A NAME="nestedtokens"></A><STRONG>Nested tokens:</STRONG></P>
 <P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nested tokens have
 two ways to separate the data, one way is to have the entire nested
 data within square brackets, the other is to have an identifier
@@ -115,17 +154,45 @@ can be found for the user requesting the service. Tokens with an
 identifier may contain other data other than nested RLS's. Examples
 include:</P>
 <BLOCKQUOTE>(1)
-rls://dotgnu.org/cvs:[myrddian@someisp.com:authentication]<BR>(2)
-rls://dotgnu.org/im:msg[&quot;hey&quot;,&quot;what&quot;]<BR>(3)
-rls://dotgnu.org/cvs:[rls://myrddian@someisp.com/auth],cmd[checkout[.],
+rls://dotgnu.org/cvs?[rls://myrddian@someisp.com/authentication]<BR>(2)
+rls://dotgnu.org/im?msg[&quot;hey&quot;,&quot;what&quot;]<BR>(3)
+rls://dotgnu.org/cvs?[rls://myrddian@someisp.com/auth],cmd[checkout[.],
 checkin]</BLOCKQUOTE>
 <P>Number 1 uses another RLS to check authentication for the CVS
 service.<BR>Number 2 uses a named nested token and it has two extra
 fields inside.<BR>Number 3 has both separation and nesting
-examples.<BR><BR>Form and Get operations are used to retreive tokens.
-<BR><BR><BR>
+examples.<BR><BR><BR><BR>
 </P>
-<H1><U>Conclusion</U></H1>
+<P><A NAME="passingtokens"></A><STRONG>Passing Tokens:</STRONG></P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;One
+potential method of passing tokens is through the use of POST and GET
+operations.</P>
+<P><BR><BR>
+</P>
+<P><A NAME="heirarchicalservices"></A><STRONG>Heirarchical Services</STRONG></P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Conformance
+to RFC 2396 has solved another problem for us. Now, the RLS spec
+includes support for Heirarchical Services. In other words, services
+can have services within them. For example: 
+</P>
+<BLOCKQUOTE>(1) rls://fitzix@dotgnu.org/cvs/checkin?dotgnu</BLOCKQUOTE>
+<P>In this example, I'm using the service &quot;checkin&quot; under
+&quot;cvs&quot; to check the module &quot;dotgnu&quot; into the cvs
+tree at dotgnu.org. With the inclusion of Heirarchical Services, the
+ultimate flexible interface to the dotGNU API can be achieved.
+<BR><BR><B>Ports</B></P>
+<P STYLE="font-weight: medium">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Because
+a DotGNU server may not be in a standard port, a referring port must
+be passed along with the RLS. For Example:</P>
+<OL>
+	<OL>
+		<LI><P STYLE="font-weight: medium">rls://dotgnu.org:1234/test?hello</P>
+		<P STYLE="font-weight: medium">Now you can open port 1234 to access
+		a DotGNU server, which is not in the normal DotGNU access port.    
+		</P>
+	</OL>
+</OL>
+<H1><A NAME="Conclusion"></A><U>Conclusion</U></H1>
 <P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;With the optional
 nesting fields, RLS's can point to any data. Their simplification has
 lead to better versatility. Because the tokens can point to any data,
@@ -133,5 +200,19 @@ the data pointed to can be encrypted. While the RLS string it self
 may be transported over a secure encrypted protocol to provide better
 security. Tokens can also contain nested encryption keys, thus
 allowing even better security.</P>
+<P><BR><BR><BR>
+</P>
+<HR>
+<H2><A NAME="References"></A><U>References</U></H2>
+<P><BR><BR>
+</P>
+<OL>
+	<LI><P><A HREF="http://dotgnu.org/pipermail/arch/2001-July/000092.html">http://dotgnu.org/pipermail/arch/2001-July/000092.html</A></P>
+	<LI><P><A HREF="http://dotgnu.org/pipermail/arch/2001-July/000099.html">http://dotgnu.org/pipermail/arch/2001-July/000099.html</A></P>
+	<LI><P><A HREF="http://dotgnu.org/pipermail/arch/2001-July/000101.html">http://dotgnu.org/pipermail/arch/2001-July/000101.html</A></P>
+	<LI><P><A HREF="http://lists.w3.org/Archives/Public/uri/2001Jul/0005">http://lists.w3.org/Archives/Public/uri/2001Jul/0005</A></P>
+	<LI><P><A HREF="http://www.ietf.org/rfc/rfc2396.txt">http://www.ietf.org/rfc/rfc2396.txt</A>
+		</P>
+</OL>
 </BODY>
 </HTML>
