@@ -2,6 +2,8 @@
 import xml.dom.minidom
 from xml.dom import Node
 import sys
+import string
+
 def _tostr(node):
 	str=""
 	for each in node.childNodes:
@@ -124,7 +126,16 @@ class StringWriter:
 		self.fp.write(self.str)
 	def close(self):
 		self.fp.close()
-	
+
+def reverse(str):
+	rev=""
+	for each in str:
+		rev=each+rev
+	return rev
+
+def spam_protect(str):
+	return reverse(str)+" (backwards)"
+
 class Developer:
 	def __init__(self,node):
 		self.node=node
@@ -156,7 +167,7 @@ class Developer:
 		w.writeline("""<h3 class="subheading">%s</h3>""" % self.name)
 		w.writeline("""<p class="maincontent">""")
 		w.writeline("""Hi, My name is %s.""" % self.name) 
-		w.writeline("""You can contact me via email with %s """	% self.email)
+		w.writeline("""You can contact me via email with %s """	% spam_protect(self.email))
 		if(self.homepage):
 			w.writeline("""Or you could visit my website at
 							[<a class="linksbody" href="%s">%s</a>]. """ 
