@@ -7,7 +7,7 @@
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#EEEEFF"><PRE>public interface IFormattable</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public interface IFormattable</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -15,6 +15,12 @@
 
 <BLOCKQUOTE>
 mscorlib
+</BLOCKQUOTE>
+
+<H4>Library</H4>
+
+<BLOCKQUOTE>
+BCL
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
@@ -66,27 +72,14 @@ The following table describes the standard format specifiers and associated form
    Library.<P>
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Format SpecifierDescription</TH></TR>
-<TR><TD><CODE>Currency Format</CODE>
-: Used for strings containing a monetary value. The System.Globalization.NumberFormatInfo.CurrencySymbol, System.Globalization.NumberFormatInfo.CurrencyGroupSizes, System.Globalization.NumberFormatInfo.CurrencyGroupSeparator, and System.Globalization.NumberFormatInfo.CurrencyDecimalSeparator members of a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A>
-supply the currency symbol, size and separator for digit groupings, and
-decimal separator, respectively.<P>
-
-System.Globalization.NumberFormatInfo.CurrencyNegativePattern and System.Globalization.NumberFormatInfo.CurrencyPositivePattern determine the symbols used to represent negative
-and positive values. For example, a negative value may be prefixed with a
-minus sign, or enclosed in parentheses. <P>
-
-If the precision specifier is omitted, System.Globalization.NumberFormatInfo.CurrencyDecimalDigits determines the number of decimal places in the
-string. Results are rounded to the nearest representable value when
-necessary.<P>
-
-</TD><TD><CODE>C</CODE>
+<TR BGCOLOR="#C0C0C0"><TH>Format Specifier</TH><TH>Description</TH></TR>
+<TR><TD><CODE>C</CODE>
 <P>
 
 <CODE>c</CODE>
 <P>
 
-<CODE>Currency Format</CODE>
+</TD><TD><CODE>Currency Format</CODE>
 : Used for strings containing a monetary value. The System.Globalization.NumberFormatInfo.CurrencySymbol, System.Globalization.NumberFormatInfo.CurrencyGroupSizes, System.Globalization.NumberFormatInfo.CurrencyGroupSeparator, and System.Globalization.NumberFormatInfo.CurrencyDecimalSeparator members of a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A>
 supply the currency symbol, size and separator for digit groupings, and
 decimal separator, respectively.<P>
@@ -100,27 +93,13 @@ string. Results are rounded to the nearest representable value when
 necessary.<P>
 
 </TD></TR>
-<TR><TD><CODE>Decimal Format</CODE>
-: (This format is valid only
-when specified with integral data types.) Used for strings containing
-integer values. Negative numbers are prefixed with the negative number
-symbol specified by the System.Globalization.NumberFormatInfo.NegativeSign
-property.<P>
-
-The precision specifier determines the
-   minimum number of digits that appear in the string. If the specified
-   precision requires more digits than the value contains, the string is
-   left-padded with zeros. If the precision specifier specifies fewer digits
-   than are in the value, the precision specifier is
-   ignored.<P>
-
-</TD><TD><CODE>D</CODE>
+<TR><TD><CODE>D</CODE>
 <P>
 
 <CODE>d</CODE>
 <P>
 
-<CODE>Decimal Format</CODE>
+</TD><TD><CODE>Decimal Format</CODE>
 : (This format is valid only
 when specified with integral data types.) Used for strings containing
 integer values. Negative numbers are prefixed with the negative number
@@ -135,50 +114,13 @@ The precision specifier determines the
    ignored.<P>
 
 </TD></TR>
-<TR><TD><CODE>Scientific (Engineering) Format</CODE>
-: Used for strings in
-one of the following forms: <P>
-
-[-]<I>m.ddddddE+xxx</I><P>
-
-[-]<I>m.ddddddE-xxx</I><P>
-
-[-]<I>m.dddddd</I>e<I>+xxx</I><P>
-
-[-]<I>m.dddddd</I>e<I>-xxx</I><P>
-
-The negative number symbol (&apos;-&apos;) appears only if
-   the value is negative, and is supplied by the System.Globalization.NumberFormatInfo.NegativeSign property.
-   <P>
-
-Exactly one non-zero decimal digit <I>(m)</I> precedes the decimal separator (&apos;.&apos;), which
-is supplied by the System.Globalization.NumberFormatInfo.NumberDecimalSeparator
-property.<P>
-
- The precision specifier determines the number of decimal places
-   (<I>dddddd</I>
-   ) in the string. If the precision specifier
-   is omitted, six decimal places are included in the
-   string.<P>
-
- The exponent
-<I>(+/-xxx</I>) 
-   consists of either a positive or negative number symbol followed by a
-   minimum of three digits (<I>xxx</I>). The exponent is
-   left-padded with zeros, if necessary. The case of the format specifier
-   (&apos;E&apos; or &apos;e&apos;) determines the case used for the exponent prefix (E or e) in
-   the string. Results are rounded to the nearest representable value when
-   necessary. The positive number symbol is supplied by the System.Globalization.NumberFormatInfo.PositiveSign
-   
-   property.<P>
-
-</TD><TD><CODE>E</CODE>
+<TR><TD><CODE>E</CODE>
 <P>
 
 <CODE>e</CODE>
 <P>
 
-<CODE>Scientific (Engineering) Format</CODE>
+</TD><TD><CODE>Scientific (Engineering) Format</CODE>
 : Used for strings in
 one of the following forms: <P>
 
@@ -216,34 +158,13 @@ property.<P>
    property.<P>
 
 </TD></TR>
-<TR><TD><CODE>Fixed-Point Format</CODE>
-: Used for strings in the following
-form: <P>
-
-&quot;[-]<I>m.dd...d</I>&quot; <P>
-
-At least one non-zero decimal digit (<I>m</I>) precedes the decimal separator (&apos;.&apos;), which is
-supplied by the System.Globalization.NumberFormatInfo.NumberDecimalSeparator
-property.<P>
-
- A
-   negative number symbol sign (&apos;-&apos;) precedes <I>m</I> only if the value is negative. This symbol is
-   supplied by the System.Globalization.NumberFormatInfo.NegativeSign
-   property. <P>
-
- The precision specifier determines the number of decimal places
-   (<I>dd...d</I>) in the string. If the precision specifier is omitted,
-System.Globalization.NumberFormatInfo.NumberDecimalDigits determines the number of decimal 
-   places in the string. Results are rounded to the nearest representable
-   value when necessary.<P>
-
-</TD><TD><CODE>F</CODE>
+<TR><TD><CODE>F</CODE>
 <P>
 
 <CODE>f</CODE>
 <P>
 
-<CODE>Fixed-Point Format</CODE>
+</TD><TD><CODE>Fixed-Point Format</CODE>
 : Used for strings in the following
 form: <P>
 
@@ -265,77 +186,13 @@ System.Globalization.NumberFormatInfo.NumberDecimalDigits determines the number 
    value when necessary.<P>
 
 </TD></TR>
-<TR><TD><CODE>General Format</CODE>
-: The string is formatted in either fixed-point format (&apos;F&apos; or &apos;f&apos;) or scientific format (&apos;E&apos; or &apos;e&apos;). <P>
-
- For integral types: <P>
-
- Values are formatted using fixed-point format if
-<I>exponent</I> &lt; precision specifier, where <I>exponent </I> is the exponent of the value in scientific format. For all other values, scientific format is used.<P>
-
- If the precision specifier is omitted, a default
-   precision equal to the field width required
-   to display the
-   maximum value for the data
-   type is used, which results in the value being formatted in
-   fixed-point format. The default precisions for integral types are as
-   follows: <P>
-
-<A HREF="Int16.html" TARGET="contents">Int16</A>, <A HREF="UInt16.html" TARGET="contents">UInt16</A> - 5<P>
-
-<A HREF="Int32.html" TARGET="contents">Int32</A>,
-<A HREF="UInt32.html" TARGET="contents">UInt32</A>- 10<P>
-
-<A HREF="Int64.html" TARGET="contents">Int64</A>,
-<A HREF="UInt64.html" TARGET="contents">UInt64</A> - 
-19<P>
-
-For Single, Decimal and Double
-   types:<P>
-
-Values are formatted using fixed-point format
-   if <I>exponent</I>
-   &gt;= -4 and <I>exponent</I> &lt; precision specifier, where <I>exponent</I> is
-   the exponent of the value in scientific format. For all other values,
-   scientific format is used. Results
-   are rounded to the nearest representable value when necessary.<P>
-
-If
-   the precision specifier is omitted, the following default precisions are
-   used:<P>
-
-<A HREF="Single.html" TARGET="contents">Single</A>
-: 7<P>
-
-<A HREF="Double.html" TARGET="contents">Double</A>
-: 15<P>
-
-<A HREF="Decimal.html" TARGET="contents">Decimal</A>
-: 29<P>
-
-For
-   all types:<P>
-
-- The
-   number of digits that appear in the result (not including the exponent)
-   will not exceed the value of the precision specifier; values are rounded
-   as necessary.<P>
-
-- The
-   decimal point and any trailing zeros after the decimal point are removed
-   whenever possible.<P>
-
-- The
-   case of the format specifier (&apos;G&apos; or &apos;g&apos;) determines whether &apos;E&apos; or &apos;e&apos;
-   prefixes the scientific format exponent.<P>
-
-</TD><TD><CODE>G</CODE>
+<TR><TD><CODE>G</CODE>
 <P>
 
 <CODE>g</CODE>
 <P>
 
-<CODE>General Format</CODE>
+</TD><TD><CODE>General Format</CODE>
 : The string is formatted in either fixed-point format (&apos;F&apos; or &apos;f&apos;) or scientific format (&apos;E&apos; or &apos;e&apos;). <P>
 
  For integral types: <P>
@@ -400,36 +257,13 @@ For
    prefixes the scientific format exponent.<P>
 
 </TD></TR>
-<TR><TD><CODE>Number Format</CODE>
-: Used for strings in the following form: <P>
-
-[-]<I>d,ddd,ddd.dd...d</I><P>
-
- The representation of negative values is
-   determined by the System.Globalization.NumberFormatInfo.NumberNegativePatternproperty. If the pattern includes a negative number
-   symbol (&apos;-&apos;), this symbol is supplied by the System.Globalization.NumberFormatInfo.NegativeSign
-   property.<P>
-
-At least one non-zero decimal digit (<I>d</I>) precedes
-the decimal separator (&apos;.&apos;), which is supplied by the System.Globalization.NumberFormatInfo.NumberDecimalSeparator property. Digits between the decimal
-point and the most significant digit in the value are grouped using the
-group size specified by the System.Globalization.NumberFormatInfo.NumberGroupSizes property. The group separator (&apos;,&apos;)
-is inserted between each digit group, and is supplied by the System.Globalization.NumberFormatInfo.NumberGroupSeparator
-property.<P>
-
-The precision specifier determines the number of
-   decimal places (<I>dd...d</I>). If the precision specifier is omitted,
-System.Globalization.NumberFormatInfo.NumberDecimalDigits determines the number of decimal places in the
-   string. Results are rounded to the nearest representable value when
-   necessary.<P>
-
-</TD><TD><CODE>N</CODE>
+<TR><TD><CODE>N</CODE>
 <P>
 
 <CODE>n</CODE>
 <P>
 
-<CODE>Number Format</CODE>
+</TD><TD><CODE>Number Format</CODE>
 : Used for strings in the following form: <P>
 
 [-]<I>d,ddd,ddd.dd...d</I><P>
@@ -453,29 +287,13 @@ System.Globalization.NumberFormatInfo.NumberDecimalDigits determines the number 
    necessary.<P>
 
 </TD></TR>
-<TR><TD><CODE>Percent Format:</CODE>
- Used for strings containing a
-percentage. The System.Globalization.NumberFormatInfo.PercentSymbol, System.Globalization.NumberFormatInfo.PercentGroupSizes, System.Globalization.NumberFormatInfo.PercentGroupSeparator, and System.Globalization.NumberFormatInfo.PercentDecimalSeparator members of a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A>
-supply the percent symbol, size and separator for digit groupings, and
-decimal separator, respectively.<P>
-
-System.Globalization.NumberFormatInfo.PercentNegativePattern and System.Globalization.NumberFormatInfo.PercentPositivePattern determine the symbols used to represent negative
-and positive values. For example, a negative value may be prefixed with a
-minus sign, or enclosed in parentheses. <P>
-
-If no precision is specified, the number of decimal places in the
-   result is determined by System.Globalization.NumberFormatInfo.PercentDecimalDigits. Results are rounded to the nearest representable
-   value when necessary.<P>
-
-The result is scaled by 100 (.99 becomes 99%).<P>
-
-</TD><TD><CODE>P</CODE>
+<TR><TD><CODE>P</CODE>
 <P>
 
 <CODE>p</CODE>
 <P>
 
-<CODE>Percent Format:</CODE>
+</TD><TD><CODE>Percent Format:</CODE>
  Used for strings containing a
 percentage. The System.Globalization.NumberFormatInfo.PercentSymbol, System.Globalization.NumberFormatInfo.PercentGroupSizes, System.Globalization.NumberFormatInfo.PercentGroupSeparator, and System.Globalization.NumberFormatInfo.PercentDecimalSeparator members of a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A>
 supply the percent symbol, size and separator for digit groupings, and
@@ -492,23 +310,13 @@ If no precision is specified, the number of decimal places in the
 The result is scaled by 100 (.99 becomes 99%).<P>
 
 </TD></TR>
-<TR><TD><CODE>Round trip Format</CODE>
-: (This format is valid only when
-specified with <A HREF="Double.html" TARGET="contents">Double</A> or <A HREF="Single.html" TARGET="contents">Single</A>.) Used to ensure that the precision of the string
-representation of a floating-point value is such that parsing the string
-does not result in a loss of precision when compared to the original
-value. If the maximum precision of the data type (7 for <A HREF="Single.html" TARGET="contents">Single</A>, and 15 for
-<A HREF="Double.html" TARGET="contents">Double</A>) would result in a loss of precision, the precision 
-is increased by
-two decimal places. If a precision specifier is supplied with this format specifier,
-it is ignored. This format is otherwise identical to the fixed-point
-format.</TD><TD><CODE>R</CODE>
+<TR><TD><CODE>R</CODE>
 <P>
 
 <CODE>r</CODE>
 <P>
 
-<CODE>Round trip Format</CODE>
+</TD><TD><CODE>Round trip Format</CODE>
 : (This format is valid only when
 specified with <A HREF="Double.html" TARGET="contents">Double</A> or <A HREF="Single.html" TARGET="contents">Single</A>.) Used to ensure that the precision of the string
 representation of a floating-point value is such that parsing the string
@@ -519,20 +327,13 @@ is increased by
 two decimal places. If a precision specifier is supplied with this format specifier,
 it is ignored. This format is otherwise identical to the fixed-point
 format.</TD></TR>
-<TR><TD><CODE>Hexadecimal Format</CODE>
-: (This format is valid only when
-specified with integral data types.) Used for string representations of numbers in Base
-16. The precision determines the minimum number of digits in
-the string. If the precision specifies more digits than the number contains,
-the number is left-padded with zeros. The case of the format specifier
-(&apos;X&apos; or &apos;x&apos;) determines whether upper case or lower case
-letters are used in the hexadecimal representation.</TD><TD><CODE>X</CODE>
+<TR><TD><CODE>X</CODE>
 <P>
 
 <CODE>x</CODE>
 <P>
 
-<CODE>Hexadecimal Format</CODE>
+</TD><TD><CODE>Hexadecimal Format</CODE>
 : (This format is valid only when
 specified with integral data types.) Used for string representations of numbers in Base
 16. The precision determines the minimum number of digits in
@@ -555,23 +356,8 @@ A custom format is any string specified as a format that
    formats.<P>
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Format SpecifierDescription</TH></TR>
-<TR><TD><CODE>Zero placeholder:</CODE>
-
-   If
-   the value being formatted has a digit in the position where a &apos;0&apos; appears in the custom format, then that digit is copied to the output string;
-   otherwise a zero is stored in that position in the output string. The
-   position of the leftmost &apos;0&apos; before the decimal separator and the
-   rightmost &apos;0&apos; after the decimal separator determine the range of digits
-   that are always present in the output string.<P>
-
-
-   
-   The number of Zero and/or Digit placeholders after
-   the decimal separator determines the number of digits that appear after
-   the decimal separator. Values are rounded as necessary.<P>
-
-</TD><TD> 0 (zero)<CODE>Zero placeholder:</CODE>
+<TR BGCOLOR="#C0C0C0"><TH>Format Specifier</TH><TH>Description</TH></TR>
+<TR><TD> 0 (zero)</TD><TD><CODE>Zero placeholder:</CODE>
 
    If
    the value being formatted has a digit in the position where a &apos;0&apos; appears in the custom format, then that digit is copied to the output string;
@@ -587,24 +373,7 @@ A custom format is any string specified as a format that
    the decimal separator. Values are rounded as necessary.<P>
 
 </TD></TR>
-<TR><TD><CODE>Digit placeholder:</CODE>
-
-If the value being formatted has a digit in
-the position where a &apos;#&apos; appears in the custom format, then that digit
-is copied to the output string; otherwise, nothing is stored in that
-position in the output string. Note that this specifier never stores the
-&apos;0&apos; character if it is not a significant digit, even if &apos;0&apos; is the only
-digit in the string. (It does display the &apos;0&apos; character in the output string
-if it is a significant digit.)<P>
-
-
-   
-   
-   The number of Zero and/or Digit
-   placeholders after the decimal separator determines the number of digits that appear after the decimal
-   separator. Values are rounded as necessary.<P>
-
-</TD><TD> # <CODE>Digit placeholder:</CODE>
+<TR><TD> # </TD><TD><CODE>Digit placeholder:</CODE>
 
 If the value being formatted has a digit in
 the position where a &apos;#&apos; appears in the custom format, then that digit
@@ -622,14 +391,7 @@ if it is a significant digit.)<P>
    separator. Values are rounded as necessary.<P>
 
 </TD></TR>
-<TR><TD><CODE>Decimal separator:</CODE>
-
-The left most &apos;.&apos;
-character in the format string determines the location of the
-decimal separator in the formatted value; any additional &apos;.&apos; characters are
-ignored. The System.Globalization.NumberFormatInfo.NumberDecimalSeparator property determines
-the symbol used as the decimal
-separator.</TD><TD> . (period)<CODE>Decimal separator:</CODE>
+<TR><TD> . (period)</TD><TD><CODE>Decimal separator:</CODE>
 
 The left most &apos;.&apos;
 character in the format string determines the location of the
@@ -637,30 +399,7 @@ decimal separator in the formatted value; any additional &apos;.&apos; character
 ignored. The System.Globalization.NumberFormatInfo.NumberDecimalSeparator property determines
 the symbol used as the decimal
 separator.</TD></TR>
-<TR><TD><CODE>Group separator and number scaling:</CODE>
-
-The &apos;,&apos; character serves two purposes. First,
-if the custom format contains this character between two Zero or Digit placeholders (0 or #)
-and to the left of the decimal separator if one is present,
-then the output will have group separators inserted between each group of digits
-to the left of the decimal separator. The System.Globalization.NumberFormatInfo.NumberGroupSeparator
-and System.Globalization.NumberFormatInfo.NumberGroupSizes
-properties determine the symbol used as the group separator and
-the number of digits in each group, respectively.<P>
-
-If
-   the format
-   string contains one or more &apos;,&apos; characters immediately to the left of
-   the decimal separator, then the number will be scaled. The scale factor is
-   determined by the number of group separator characters immediately to the
-   left of the decimal separator. If there are x characters, then the value is
-   divided by 1000<SUP>X</SUP> before it is formatted. For example, the format string &apos;0,,&apos;
-will divide a value by one million. Note that the presence of the &apos;,&apos;
-character to indicate scaling does not insert group separators in the
-output string. Thus, to scale a number by 1 million and insert group
-separators, use a custom format similar to &quot;#,##0,,&quot;.<P>
-
-</TD><TD> , (comma)<CODE>Group separator and number scaling:</CODE>
+<TR><TD> , (comma)</TD><TD><CODE>Group separator and number scaling:</CODE>
 
 The &apos;,&apos; character serves two purposes. First,
 if the custom format contains this character between two Zero or Digit placeholders (0 or #)
@@ -684,15 +423,8 @@ output string. Thus, to scale a number by 1 million and insert group
 separators, use a custom format similar to &quot;#,##0,,&quot;.<P>
 
 </TD></TR>
-<TR><TD><CODE>Percentage placeholder:</CODE>
-
-The presence of a &apos;%&apos; character
-in a custom format causes a number to be multiplied by 100
-before it is formatted. The percent symbol is inserted in the output string
-at the location where the &apos;%&apos; appears in the format string. The System.Globalization.NumberFormatInfo.PercentSymbol property determines
-the percent
-symbol.</TD><TD> %
-      (percent) <CODE>Percentage placeholder:</CODE>
+<TR><TD> %
+      (percent) </TD><TD><CODE>Percentage placeholder:</CODE>
 
 The presence of a &apos;%&apos; character
 in a custom format causes a number to be multiplied by 100
@@ -700,19 +432,7 @@ before it is formatted. The percent symbol is inserted in the output string
 at the location where the &apos;%&apos; appears in the format string. The System.Globalization.NumberFormatInfo.PercentSymbol property determines
 the percent
 symbol.</TD></TR>
-<TR><TD><CODE>Engineering format:</CODE>
- If any of the strings &apos;E&apos;, &apos;E+&apos;, &apos;E-&apos;, &apos;e&apos;, &apos;e+&apos;, or &apos;e-&apos; are present
-   in a custom format and is followed immediately by at least one &apos;0&apos;
-   character, then the value is formatted using scientific notation. The number
-   of &apos;0&apos; characters following the exponent prefix (E or e) determines the
-   minimum number of digits in the exponent. The &apos;E+&apos; and &apos;e+&apos; formats indicate
-   that a positive or negative number symbol always precedes the
-   exponent. The &apos;E&apos;, &apos;E-&apos;, &apos;e&apos;, or &apos;e-&apos; formats indicate that a negative number symbol
-   precedes negative exponents; no symbol is precedes positive exponents. The
-   positive number symbol is supplied by the System.Globalization.NumberFormatInfo.PositiveSign property. The negative number symbol
-   is supplied by the System.Globalization.NumberFormatInfo.NegativeSign
-   
-   property.</TD><TD>E0<P>
+<TR><TD>E0<P>
 
 E+0<P>
 
@@ -724,7 +444,7 @@ e+0<P>
 
 e-0<P>
 
-<CODE>Engineering format:</CODE>
+</TD><TD><CODE>Engineering format:</CODE>
  If any of the strings &apos;E&apos;, &apos;E+&apos;, &apos;E-&apos;, &apos;e&apos;, &apos;e+&apos;, or &apos;e-&apos; are present
    in a custom format and is followed immediately by at least one &apos;0&apos;
    character, then the value is formatted using scientific notation. The number
@@ -737,16 +457,8 @@ e-0<P>
    is supplied by the System.Globalization.NumberFormatInfo.NegativeSign
    
    property.</TD></TR>
-<TR><TD><CODE>Escape character:</CODE>
- In some languages, such as C#, the
-   backslash character causes the next character in the custom format to be interpreted
-   as an escape sequence. It is used with C language
-   formatting sequences, such as &quot;\n&quot; (newline). In some languages, the escape character
-   itself is required to be preceded by an escape character
-   when used as a literal. Otherwise, the compiler interprets the character as
-   an escape sequence. This escape character is not required to be
-   supported in all programming languages.</TD><TD> \
-      (backslash) <CODE>Escape character:</CODE>
+<TR><TD> \
+      (backslash) </TD><TD><CODE>Escape character:</CODE>
  In some languages, such as C#, the
    backslash character causes the next character in the custom format to be interpreted
    as an escape sequence. It is used with C language
@@ -755,26 +467,18 @@ e-0<P>
    when used as a literal. Otherwise, the compiler interprets the character as
    an escape sequence. This escape character is not required to be
    supported in all programming languages.</TD></TR>
-<TR><TD><CODE>Literal string:</CODE>
- Characters enclosed in single or double quotes are
-   copied to the output string literally, and do not affect formatting.</TD><TD>&apos;ABC&apos;<P>
+<TR><TD>&apos;ABC&apos;<P>
 
 &quot;ABC&quot;<P>
 
-<CODE>Literal string:</CODE>
+</TD><TD><CODE>Literal string:</CODE>
  Characters enclosed in single or double quotes are
    copied to the output string literally, and do not affect formatting.</TD></TR>
-<TR><TD><CODE>Section separator:</CODE>
- The &apos;;&apos; character is used to separate sections for
-   positive, negative, and zero numbers in the format string. (This feature
-   is described in detail below.)</TD><TD> ; (semicolon)<CODE>Section separator:</CODE>
+<TR><TD> ; (semicolon)</TD><TD><CODE>Section separator:</CODE>
  The &apos;;&apos; character is used to separate sections for
    positive, negative, and zero numbers in the format string. (This feature
    is described in detail below.)</TD></TR>
-<TR><TD><CODE>All other characters:</CODE>
- All other characters are stored in the output
-   string as literals in the position in which they
-   appear.</TD><TD> Other<CODE>All other characters:</CODE>
+<TR><TD> Other</TD><TD><CODE>All other characters:</CODE>
  All other characters are stored in the output
    string as literals in the position in which they
    appear.</TD></TR>
@@ -836,16 +540,16 @@ of the format specifiers supported by each type.
 
 IFormattable Methods<P>
 
-<A HREF="#IFormattable.ToString Method" TARGET="contents">IFormattable.ToString Method</A><BR>
+<A HREF="#IFormattable.ToString%20Method" TARGET="contents">IFormattable.ToString Method</A><BR>
 </BLOCKQUOTE>
 
 <HR>
 
-<A NAME="IFormattable.ToString Method"><H3>IFormattable.ToString Method</H3>
+<A NAME="IFormattable.ToString%20Method"><H3>IFormattable.ToString Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#EEEEFF"><PRE>string ToString(string format, IFormatProvider formatProvider);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>string ToString(string format, IFormatProvider formatProvider);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -882,7 +586,7 @@ A <A HREF="String.html" TARGET="contents">String</A> containing the value of the
 
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD>The specified <I>format</I> is invalid or cannot be used with the type of the current instance.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -970,5 +674,5 @@ The output is<P>
 <A HREF="IFormattable.html" TARGET="contents">System.IFormattable Interface</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
 </BLOCKQUOTE>
 
-</A></BODY>
+</BODY>
 </HTML>
