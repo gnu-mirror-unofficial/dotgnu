@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+     "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD lang="en">
+<TITLE>The DotGNU Platform</TITLE>
+<BASE target="_top">
+</HEAD>
+<BODY bgcolor="#EEEEFF" lang="en" link="#0000AA">
+<CENTER>
+<A href="html2.0/arch.html">Follow this link for a HTML2.0 version of this page which is good for <STRONG>printing</STRONG> and for text-based browsers.</A><BR><IMG SRC="g/dot_clear.jpg" ALT="" WIDTH="1" HEIGHT="1" VSPACE="2"><BR>
+<TABLE cellspacing="0" cellpadding="0" border="0">
+<COLGROUP><COL width="10"><COL width="185"><COL width="10"><COL width="10"><COL><COL width="20"></COLGROUP>
+<TR><TD WIDTH="10" bgcolor="#EEEEFF"><IMG SRC="g/dot_clear.jpg" ALT="" WIDTH="10" HEIGHT="1"></TD>
+<TD WIDTH="185" VALIGN="TOP" bgcolor="#EEEEFF">
+<DIV align="left">
+<TABLE cellspacing="0" cellpadding="0" border="0">
+<COLGROUP><COL width="5"><COL width="180"></COLGROUP>
+<TR>
+<TD colspan="2" width="185" valign="TOP">
+<IMG SRC="g/dotgnu-logo.jpg" WIDTH="185" HEIGHT="113" ALT="" border="0" vspace="0">
+</TD></TR>
+<TR>
+<TD WIDTH="5" bgcolor="#EEEEFF">
+<IMG SRC="g/dot_clear.jpg" ALT="" width="5" height="1" vspace="290">
+</TD>
+<TD WIDTH="180" bgcolor="#EEEEFF" valign="top">
+<IMG SRC="g/dot_clear.jpg" ALT="" WIDTH="1" HEIGHT="1" VSPACE="4">
+<BR>
+<P><FONT face="Arial,sans-serif" size="+1"><STRONG><FONT face="Arial,sans-serif"><A href="">Homepage</A></FONT><BR></STRONG></FONT><P><FONT face="Arial,sans-serif" size="+1"><STRONG><FONT face="Arial,sans-serif"><A href="projects.html">Projects</A></FONT><BR></STRONG></FONT><P>&nbsp;&nbsp;&nbsp;&nbsp<B>DotGNU Platform</B><P>&nbsp;&nbsp;&nbsp;&nbsp<FONT face="Arial,sans-serif"><A href="web-services.html">"Web Services"</A></FONT><BR><P>&nbsp;&nbsp;&nbsp;&nbsp<FONT face="Arial,sans-serif"><A href="auth.html">Virtual Identities</A></FONT><BR><P><FONT face="Arial,sans-serif" size="+1"><STRONG><FONT face="Arial,sans-serif"><A href="http://dotgnu.org/mailman/listinfo">Mailing lists</A></FONT><BR></STRONG></FONT><P>&nbsp;&nbsp;&nbsp;&nbsp<FONT face="Arial,sans-serif"><A href="http://dotgnu.org/mailman/listinfo/announce">announce mailing list</A></FONT><BR><P>&nbsp;&nbsp;&nbsp;&nbsp<FONT face="Arial,sans-serif"><A href="http://dotgnu.org/mailman/listinfo/developers">developers mailing list</A></FONT><BR><P>&nbsp;&nbsp;&nbsp;&nbsp<FONT face="Arial,sans-serif"><A href="http://dotgnu.org/mailman/listinfo/auth">auth mailing list</A></FONT><BR><P>&nbsp;&nbsp;&nbsp;&nbsp<FONT face="Arial,sans-serif"><A href="http://dotgnu.org/mailman/listinfo/arch">arch mailing list</A></FONT><BR><P>&nbsp;&nbsp;&nbsp;&nbsp<FONT face="Arial,sans-serif"><A href="http://dotgnu.org/mailman/listinfo/pr">pr mailing list</A></FONT><BR><P>&nbsp;&nbsp;&nbsp;&nbsp<FONT face="Arial,sans-serif"><A href="http://dotgnu.org/mailman/listinfo/website">website mailing list</A></FONT><BR></TD></TR></TABLE></DIV></TD><TD WIDTH="10" bgcolor="#EEEEFF"><IMG SRC="g/dot_clear.jpg" ALT="" WIDTH="10" HEIGHT="1"></TD>
+<TD WIDTH="10" bgcolor="#FFFFFF"><IMG SRC="g/dot_clear.jpg" ALT="" WIDTH="10" HEIGHT="1"></TD>
+<TD valign="top" bgcolor="#FFFFFF">
+<TABLE cellspacing="0" cellpadding="0" border="0">
+<COLGROUP><COL></COLGROUP>
+<TR><TD><IMG SRC="g/dot_clear.jpg" ALT="" WIDTH="1" HEIGHT="10"></TD></TR>
+<TR><TD><DIV align="left">
+<H1><FONT face="Arial,sans-serif">The DotGNU Platform</FONT></H1><FONT face="Arial,sans-serif">
+The DotGNU Platform will consist of two major components:
+</FONT><UL>
+  <LI><STRONG>DotGNU Secure Execution Environment</STRONG>
+    </FONT><P><FONT face="Arial,sans-serif">
+    The Secure Execution Environment is a component which can download
+    bytecode (see below for a discussion of what kinds of bytecode
+    will be supported) from the network and execute it in a secure manner.
+  <LI><STRONG>DotGNU Distributed Execution Environment</STRONG>
+    </FONT><P><FONT face="Arial,sans-serif">
+    DotGNU's Distributed Execution Environment will be like an
+    operating system for a "distributed computer" consisting of
+    several instances of the "DotGNU Secure Execution Environment"
+    that are running on several computers.  This system must be able
+    to take care of replicating databases across all the parts of this
+    "distributed computer" and propagating updates.
+</UL><FONT face="Arial,sans-serif">
+In addition to the DotGNU Platform, we are also working on a
+<A href="auth.htm">DotGNU Virtual Identities</A> system.  This system
+will eventually run as an application on the DotGNU Platform, but we
+are also working on a quick-and-dirty proof-of-concept implementation
+that can already be made available before the DotGNU Platform if
+available.
+</FONT><H2><FONT face="Arial,sans-serif">What kinds of bytecode will the DotGNU Platform support?</FONT></H2><FONT face="Arial,sans-serif">
+It is important that a fully IL-compatible bytecode system is supported as per 
+the ECMA specs in DotGNU.  It is also important to have alternatives and 
+options possible should this not prove legally possible or require some other 
+ethical compromises with freedom that we should not make.
+</FONT><P><FONT face="Arial,sans-serif">
+For this reason DotGNU is taking this "two track approach":
+</FONT><UL>
+  <LI>One track is to support a fully IL-compatible bytecode system,
+    the C# language spec, and class libs that fully comply with the ECMA
+    specs.
+  <LI>The other track is based on Java work with supporting class libs.
+    This will immediately make it possible to create applications for
+    the DotGNU platform in a lot of programming languages.  See
+    <A href="http://grunge.cs.tu-berlin.de/~tolk/vmlanguages.html">http://grunge.cs.tu-berlin.de/~tolk/vmlanguages.html</A> for details.
+</UL><FONT face="Arial,sans-serif">
+This "two track approach" offers both freedom of choice 
+and leverages another, very mature bytecode system, as well as providing 
+options in case of legal dirty tricks.
+</FONT><P><FONT face="Arial,sans-serif">
+This approach naturally leads to an architecture of the DotGNU
+platform that will support multiple bytecode formats, so that
+it will be possible for other virtual machines to be added at a
+later stage.
+</FONT><H2><FONT face="Arial,sans-serif">How you can contribute</FONT></H2><FONT face="Arial,sans-serif">
+If you would like to contribute to the development of the DotGNU
+Platform, please subscribe to
+<A href="http://dotgnu.org/mailman/listinfo/arch">DotGNU arch</A>
+mailing list, join the discussions, and find a way in which you can
+help move the project forward.
+</FONT><HR><FONT face="Arial,sans-serif">
+This page was last updated on July 26, 2001. It is maintained by
+Norbert Bollow &lt;nb@freedevelopers.net&gt; with support from the
+<A href="http://dotgnu.org/mailman/listinfo/website">DotGNU Website
+   mailing list</A>.
+</BODY>
+</FONT><BR><IMG src="g/dot_clear.jpg" ALT="" WIDTH="1" HEIGHT="20">
+</DIV></TD></TR></TABLE></TD>
+<TD WIDTH="129" bgcolor="#FFFFFF" valign="top">
+<TABLE cellspacing="0" cellpadding="0" border="0">
+<COLGROUP><COL></COLGROUP>
+<TR><TD><CENTER><A href="http://FreeDevelopers.net"><IMG src="g/FD-logo-small.jpg" width="103" height="201" alt="This Freedom Statue is the logo of FreeDevelopers" border="0"><BR>FreeDevelopers</A>
+</CENTER></TD></TR>
+<TR><TD><IMG src="g/dot_clear.jpg" ALT="" WIDTH="1" HEIGHT="40"></TD></TR>
+<TR><TD><CENTER><A href="http://www.gnu.org"><IMG src="g/gnu-head-sm.jpg" width="129" height="122" alt="The head of a GNU is the logo of the GNU project" border="0"><BR>GNU project</A></CENTER></TD></TR>
+</TABLE>
+</TD></TR>
+<TR><TD bgcolor="#EEEEFF" colspan="6"><IMG SRC="g/dot_clear.jpg" ALT="" WIDTH="1" HEIGHT="5">
+</TD></TR></TABLE>
+This page was last updated on Thu Aug  2 02:24:13 2001. It is maintained by
+Norbert Bollow &lt;nb@freedevelopers.net&gt; with support from the
+<A href="http://dotgnu.org/mailman/listinfo/website">DotGNU Website
+   mailing list</A>.
+
+</CENTER>
+</BODY></HTML>
