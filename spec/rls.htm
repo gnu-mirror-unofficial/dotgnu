@@ -6,19 +6,20 @@
 	<META NAME="GENERATOR" CONTENT="StarOffice/5.2 (Linux)">
 	<META NAME="CREATED" CONTENT="20010724;13013600">
 	<META NAME="CHANGEDBY" CONTENT=" ">
-	<META NAME="CHANGED" CONTENT="20010728;12541500">
+	<META NAME="CHANGED" CONTENT="20010729;11323700">
 </HEAD>
 <BODY BGCOLOR="#ffffff">
-<HR WIDTH=275 ALIGN=CENTER>
+<HR>
 <P ALIGN=CENTER STYLE="margin-bottom: 0in">DotGNU<BR>Resource Locator
-String specification<BR>Version 0.86<BR><BR>By:<BR><BR>Enzo-Adrian
+String specification<BR>Version 0.9<BR><BR>By:<BR><BR>Enzo-Adrian
 Reyes(myrddian@bigpond.net.au)<BR><BR><BR>With contributions
 by:<BR><BR>Barry Fitzgerald(fitzix@sdf.lonestar.org)<BR>Daniel W.
-Connolly<BR>Matthias Rosenkranz(rose@m-rosenkranz.de)<BR>Sean B.
+Connolly(http://www.w3.org/People/Connolly/)<BR>Matthias
+Rosenkranz(rose@m-rosenkranz.de)<BR>Sean B.
 Palmer(sean@mysterylights.com)</P>
 <P STYLE="margin-bottom: 0in"><BR>
 </P>
-<HR WIDTH=275 ALIGN=CENTER>
+<HR>
 <P><BR><BR>
 </P>
 <OL>
@@ -71,7 +72,7 @@ using the '/' character. As an extension to these non-optional
 fields, RLS's have two extra fields which are optional. The format of
 an RLS is as follows:</P>
 <BLOCKQUOTE><CODE>rls://[User name@]&lt;DotGNU Server&gt;[:port]/&lt;DotGNU
-Service&gt;[?Tokens]</CODE></BLOCKQUOTE>
+Service&gt;[?Meta-Token]</CODE></BLOCKQUOTE>
 <P>The optional fields are in square brackets, while the non-optional
 fields are in nested in <CODE>&quot;&lt;&gt;&quot; </CODE>brackets.</P>
 <P>Note: Please do note that the RLS specification is trying to
@@ -117,31 +118,34 @@ less obvious example is that of self authentication. In number four,
 user myrddian wants to use the CVS service but CVS may ask for
 authentication, however the authentication data is on the local
 server, so it will self verify.</P>
-<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The second
-optional field is the tokens field, now tokens can contain any data,
-be it a pointer back to another object or a string. The format of
-tokens on how their data is represented is not enforced, the DotGNU
-server will not enforce token data. The only exception to this rule
-is separation of Token data, and or nesting of token data. These are
-the only two rules enforced by the primary DotGNU server, everything
-else and the data the tokens contains has to be enforced by the
-individual service.</P>
+<P><BR><BR>
+</P>
+<P><A NAME="tokenexamples"></A><STRONG>Meta-Token examples:</STRONG></P>
+<BLOCKQUOTE>(1)
+rls://dotgnu.org/spell?I%20wnt%20to%20chke%20my,%20speeling</BLOCKQUOTE>
+<P STYLE="margin-left: 0.01in; margin-right: 0.39in">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An
+RLS contains a Meta-Token this token contains a series of embeded
+tokens. The Meta-token is a RFC-2396 compliant string, this means it
+must contain escape characters in  the format %hh, for seperators or
+any reserved characters. Tokens are embedded in this string. When a
+server receives a Meta-Token string it must convert it to the
+Standard Token format descrived below. This also works the other way
+around, Tokens must be converted and nested inside this Meta-Token. 
+</P>
+<P STYLE="margin-left: 0.01in; margin-right: 0.39in"><B>Tokens</B></P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The tokens string,
+  can  contain  data, be it a pointer back to another object or a
+string. The format of tokens on how their data is represented is not
+enforced, the DotGNU server will not enforce token data. The only
+exception to this rule is separation of Token data, and or nesting of
+token data. These are the only two rules enforced by the primary
+DotGNU server, everything else and the data the tokens contains has
+to be enforced by the individual service.</P>
 <P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tokens are
 separated using the ',' character, so &lt;token 1&gt;,&lt;token2&gt;
 can be recognized separately. If a string may contain the comma
 separator it is recommended that it be nested within &quot; &quot; as
 this prevents premature separation.</P>
-<P><A NAME="tokenexamples"></A><STRONG>Token examples:</STRONG></P>
-<BLOCKQUOTE>(1)
-rls://dotgnu.org/spell?&quot;I%20wnt%20to%20chke%20my,%20speeling&quot;<BR>(2)
-rls://dotgnu.org/cvs/checkout</BLOCKQUOTE>
-<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the first a
-string is passed and contains the comma character but it's nested
-inside quotes hence it's ignored. In the Second Example we use a
-heirarchical mapping of services. 
-</P>
-<P><BR><BR>
-</P>
 <P><A NAME="nestedtokens"></A><STRONG>Nested tokens:</STRONG></P>
 <P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nested tokens have
 two ways to separate the data, one way is to have the entire nested
@@ -152,21 +156,11 @@ would contain the where the service the second where authentication
 can be found for the user requesting the service. Tokens with an
 identifier may contain other data other than nested RLS's. Examples
 include:</P>
-<BLOCKQUOTE>(1)
-rls://dotgnu.org/cvs?[rls://myrddian@someisp.com/authentication]<BR>(2)
-rls://dotgnu.org/im?msg[&quot;hey&quot;,&quot;what&quot;]<BR>(3)
-rls://dotgnu.org/cvs?[rls://myrddian@someisp.com/auth],cmd[checkout[.],
+<BLOCKQUOTE>(1)[rls://myrddian@someisp.com/authentication]<BR>(2)msg[hey,what]<BR>(3)[rls://myrddian@someisp.com/auth],cmd[checkout[.],
 checkin]</BLOCKQUOTE>
 <P>Number 1 uses another RLS to check authentication for the CVS
 service.<BR>Number 2 uses a named nested token and it has two extra
-fields inside.<BR>Number 3 has both separation and nesting
-examples.<BR><BR><BR><BR>
-</P>
-<P><A NAME="passingtokens"></A><STRONG>Passing Tokens:</STRONG></P>
-<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;One
-potential method of passing tokens is through the use of POST and GET
-operations.</P>
-<P><BR><BR>
+fields inside.<BR>Number 3 has both separation and nesting examples.<BR><BR><BR>
 </P>
 <P><A NAME="heirarchicalservices"></A><STRONG>Heirarchical Services</STRONG></P>
 <P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Conformance
@@ -180,15 +174,16 @@ can have services within them. For example:
 tree at dotgnu.org. With the inclusion of Heirarchical Services, the
 ultimate flexible interface to the dotGNU API can be achieved.
 <BR><BR><B>Ports</B></P>
-<P STYLE="font-weight: medium">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Because
+<P><SPAN STYLE="font-weight: medium">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Because
 a DotGNU server may not be in a standard port, a referring port must
-be passed along with the RLS. For Example:</P>
+be passed along with the RLS. For Example:</SPAN></P>
+<OL>
+	<LI><P><SPAN STYLE="font-weight: medium">) rls://dotgnu.org:1234</SPAN></P>
+	<P STYLE="font-weight: medium"></P>
+</OL>
 <OL>
 	<OL>
-		<LI><P STYLE="font-weight: medium">rls://dotgnu.org:1234/test?hello</P>
-		<P STYLE="font-weight: medium">Now you can open port 1234 to access
-		a DotGNU server, which is not in the normal DotGNU access port.    
-		</P>
+		<P STYLE="font-weight: medium"></P>
 	</OL>
 </OL>
 <H1><A NAME="Conclusion"></A><U>Conclusion</U></H1>
