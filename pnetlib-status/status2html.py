@@ -226,7 +226,7 @@ def print_namespace_list(nslist,ctor,method,field,prop,event,attr):
 	fp.write("</td></tr>")
 	fp.write("</table>")
 	fp.write("</td><td>&nbsp;</td></tr>")
-	fp.write("""<tr><td></td><td align="right"><font size="-3">[<a href="status.xml.gz">XML</a> | <a href="status2html.py">PYTHON</a>]</font></td><td></td></tr>""");
+	fp.write("""<tr><td>&nbsp;</td><td align="right"><font size="-3">[<a href="status.xml.gz">XML</a> | <a href="status2html.py">PYTHON</a>]</font></td><td>&nbsp;</td></tr>""");
 	print_curved_footer(fp)
 	write_pnetlib_footer(fp)
 	fp.write("</body></html>")
