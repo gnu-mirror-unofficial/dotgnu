@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+<HEAD>
+<TITLE>Help wanted: GCC adaptation</TITLE>
+<LINK REV="made" HREF="mailto:nb@freedevelopers.net">
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#1F00FF" ALINK="#FF0000" VLINK="#9900DD">
+<A HREF="/graphics/agnuhead.html"><IMG SRC="/graphics/gnu-head-sm.jpg"
+   ALT=" [image of the Head of a GNU] "
+   WIDTH="129" HEIGHT="122"></A>
+<H1>Wanted: A volunteer for making GCC generate code for stack-based VMs</H1>
+Rhys Weatherley &lt;rweather@zip.com.au&gt; wrote:
+<P>
+<PRE>
+I myself experimented with C-based VM's last year.
+It is a very hard problem, and is made even harder by
+the fact that gcc is not really designed to compile to
+stack-based VM's.  This forces the programmer to use
+a register-based VM, which usually results in security
+going out the window 10 microseconds later.  ICVM
+is register-based.
+
+I actually did manage to build a secure sandbox-based
+C environment at one point, that had pretty good
+performance.  Unfortunately, a complete rewrite of
+the gcc RTL system would have been required to
+compile code for it: the VM is very particular about
+how pointers are handled, and gcc is too sloppy.
+I tried writing my own C compiler, but that is a
+really easy way to go insane, as I discovered. :-)
+
+I've since been waiting for someone to take on the
+hard task of making gcc generate code for stack-based
+VM's like CLR.  If that happens, 99% of the rewrite
+I need will be done.  So far, no volunteers. :-)
+
+If people are interested, I could post a description
+of the instruction set I used and how I tacked some
+of the harder problems.
+
+Cheers,
+
+Rhys.
+</PRE>
+</BODY>
+</HTML>
