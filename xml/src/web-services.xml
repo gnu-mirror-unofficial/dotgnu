@@ -3,10 +3,10 @@
 [
 <!--======================================== modify but don't delete ========================================-->
  <!ENTITY base "./">
- <!ENTITY title	"DotGNU Project - What about &_quot_;Web Services&_quot_;?">
+ <!ENTITY title	"DotGNU Webservices FAQ">
  <!ENTITY this "web-services.html">
  <!ENTITY maintainer "&lt;a href=&quot;http://norbert.ch/&quot;&gt;Norbert Bollow&lt;/a&gt; &lt;a href=&quot;mailto:nb@cisto.com&quot;&gt;&_lt_;nb@cisto.com&_gt_;&lt;/a&gt;">
- <!ENTITY modtime "Sun Oct 20 02:03:09 UTC 2002">
+ <!ENTITY modtime "Thu March 13, 2003">
 <!--======================================== modify but don't delete ========================================-->
 
 <!--======================================== add custom entities here ========================================-->
@@ -88,128 +88,970 @@
 
 <content>
 <h1>
- What about "Web Services"?
+ The DotGNU Webservices FAQ
 </h1>
-<p>
- Microsoft's concept of "Web Services" is fundamentally flawed because
- it requires end-users to transfer their data to the computer systems
- of Application Service Providers (ASPs).
-</p>
-<p>
- There is nothing wrong with using an Application Service Provider if
- you want to, but it is ethically wrong to force computer users to use
- ASPs by not giving them the option of running the applications they
- want on their own PCs.
-</p>
-<p>
- The DotGNU platform solves this problem by allowing the same program
- to be run as an application on the end-user's PC or as a "web service"
- on computer systems that are provided and maintained by an Application
- Service Provider.
-</p>
-<h2>
- Why DotGNU is better
-</h2>
-<p>
- There are both ethical and practical reasons why web-based
- applications should be implemented on the
- <a href="&nav.arch;">DotGNU platform</a> and not as
- pure "web services" like Microsoft wants.
-</p>
-<h3>
- Ethical Reasons
-</h3>
+Note that this FAQ document covers only the DotGNU meta-project.
+The individual development projects will create there own FAQ
+documents with project-specific information, such as for example
+the
+<A href="http://www.southern-storm.com.au/pnet_faq.html">FAQ of the
+Portable.Net development project</A>.
+<P>
+<i>Version 0.06</i>
+<h2> About DotGNU </h2>
 <ul>
- <li>
-  End-users must be given the freedom to keep their data
-  on their own PCs unless they really want to trust an ASP with
-  their data.
- </li>
- <li>
-  End-users must be given the freedom to choose any software they
-  want for processing their data.  With the .NET initiative,
-  Microsoft tries to gain monopoly power that would allow them to
-  effectively prevent ASPs from making software available that is
-  "not compatible" with Microsoft's licensing terms.  Microsoft's
-  efforts in this area seem to be directed in particular against
-  Free Software that is licensed under the GNU General Public
-  License.
- </li>
+<li><P><a class="linksbody" href="#faq_100">1.00</a> What is DotGNU?</P></li>
+<li><P><a class="linksbody" href="#faq_101">1.01</a> Why do you do this?</P></li>
+<li><P><a class="linksbody" href="#faq_102">1.02</a> What do you mean with &quot;Free Software&quot;?</P></li>
+<li><P><a class="linksbody" href="#faq_103">1.03</a> Can I make money using DotGNU?</P></li>
+<li><P><a class="linksbody" href="#faq_104">1.04</a> What are webservices good for?</P></li>
+<li><P><a class="linksbody" href="#faq_105">1.05</a> How do you define &quot;webservice&quot;?</P></li>
+<li><P><a class="linksbody" href="#faq_106">1.06</a> What about other definitions of &quot;webservice&quot;?</P></li>
+<li><P><a class="linksbody" href="#faq_107">1.07</a> What are the benefits of using a remote webservice, as apposed to executing the same program on your own computer?</P></li>
+<li><P><a class="linksbody" href="#faq_108">1.08</a> Can webservices have a better user interface than what is possible in a web-browser?</P></li>
+<li><P><a class="linksbody" href="#faq_109">1.09</a> Is our data stored on the webservice server?</P></li>
+<li><P><a class="linksbody" href="#faq_110">1.10</a> Can we move to a different webservice provider?</P></li>
+<li><P><a class="linksbody" href="#faq_111">1.11</a> Can we get source code for the webservice programs?</P></li>
+<li><P><a class="linksbody" href="#faq_112">1.12</a> Am I obligated to give away my webservice source code?</P></li>
+<li><P><a class="linksbody" href="#faq_113">1.13</a> What do you mean with &quot;webservice platform&quot;?</P></li>
+<li><P><a class="linksbody" href="#faq_114">1.14</a> Do I have to pay to use DotGNU?</P></li>
+<li><P><a class="linksbody" href="#faq_115">1.15</a> What do I need to get to use DotGNU?</P></li>
+<li><P><a class="linksbody" href="#faq_116">1.16</a> What programming languages are supported in DotGNU?</P></li>
+<li><P><a class="linksbody" href="#faq_117">1.17</a> Will C and C++ be supported in DotGNU?</P></li>
+<li><P><a class="linksbody" href="#faq_118">1.18</a> Can I sell webservice programs for DotGNU?</P></li>
+<li><P><a class="linksbody" href="#faq_119">1.19</a> Can i sell plugins for SEE?</P></li>
+<li><P><a class="linksbody" href="#faq_120">1.20</a> How can i see DotGNU in action?</P></li>
 </ul>
-<h3>
- Practical Reasons
-</h3>
+
+<h2> Contributing to DotGNU </h2>
 <ul>
- <li>
-  In many situations it is only necessary to access some data from
-  a single PC.  In these situations it is obviously better when
-  the data and the software which processes it are also located on
-  this PC.
- </li>
- <li>
-  The DotGNU platform makes it easy for ASPs to set up their
-  services in such a way that there is no single point of
-  failure.  This is in sharp contrast to Microsoft's concept of
-  "web services" where all "web services" rely on Microsoft's
-  passport system.  If Microsoft's passport system is temporarily
-  not available, then all "web services" which rely on it are also
-  not available.
- </li>
+<li><P><a class="linksbody" href="#faq_200">2.00</a> Where can I contribute?</P></li>
+<li><P><a class="linksbody" href="#faq_201">2.01</a> How do I filter mail from the developers list into a separate folder? </P></li>
+<li><P><a class="linksbody" href="#faq_202">2.02</a> What software development projects are there in DotGNU?</P></li>
+<li><P><a class="linksbody" href="#faq_203">2.03</a> What packages need to get ready in time for DotGNU 1.0?</P></li>
+<li><P><a class="linksbody" href="#faq_204">2.04</a> Can I start a development project which is not on this list?</P></li>
+<li><P><a class="linksbody" href="#faq_205">2.05</a> I'm starting a development project.  What name should I use?</P></li>
+<li><P><a class="linksbody" href="#faq_206">2.06</a> What are the requirements for starting a DotGNU development project?</P></li>
+<li><P><a class="linksbody" href="#faq_207">2.07</a> How were the projects on the &quot;DotGNU projects list&quot; chosen?</P></li>
+<li><P><a class="linksbody" href="#faq_208">2.08</a> Do we have some degree of democracy in DotGNU?</P></li>
 </ul>
-<h2>
- Examples of Application Programs
-</h2>
-<h3>
-Test Webservices
-</h3>
-<p>
-You can try two C# based webservices by making XML-RPC calls to
-http://minddog.shacknet.nu:8080/wstest.dgmx
-(<a href="http://minddog.shacknet.nu:8080/wstest.dgmx">webservice test</a>)
-and
-http://minddog.shacknet.nu:8080/hexpuzzle.dgmx
-(<a href="http://minddog.shacknet.nu:8080hexpuzzle.dgmx/">simple
-puzzle program</a>). Yes, it's the same URL both for the webservice
-interface and the documentation, as this webservice server called
-DGEE ("DotGNU Execution Environment") outputs documentation when the file
-is accessed by a browser.  This way, webservices are automatically
-self-documenting.
+
+<h2> Licensing issues</h2>
+<ul>
+<li><P><a class="linksbody" href="#faq_300">3.00</a> What software licenses does DotGNU use?</P></li>
+<li><P><a class="linksbody" href="#faq_301">3.01</a> Does the linking exception carry over to derivative works?</P></li>
+<li><P><a class="linksbody" href="#faq_302">3.02</a> What about programs which access each other through network protocols.  Is that a form of linking?
+</P></li>
+<li><P><a class="linksbody" href="#faq_303">3.03</a> Is it possible to establish strong copyleft for webservices, that allows them to be used only by Free Software?
+</P></li>
+<li><P><a class="linksbody" href="#faq_304">3.04</a> Why don't you use the LGPL for libraries?</P></li>
+</ul>
+
+<hr/>
+
+<h2> About DotGNU </h2>
+
+<a name="faq_100">
+<H3 class="mainsubheading">1.00 What is DotGNU?</H3>
+<p class="maincontent">
+  DotGNU is a Free Software project to create a platform for
+  webservices that can be written in a variety of different
+  programming languages including Java, C#, Ruby, Python and
+  PHP.
 </p>
-<h3>
-Business Processes
-</h3>
-<p>
-The main application of webservices will perhaps be that various
-business processes can be implemented as webservices.  The goal
-of the DotGNU project is to provide the tools for creating such
-webservices plus some examples.
+
+</a>
+<a name="faq_101">
+<H3 class="mainsubheading">1.01 Why do you do this?</H3>
+<p class="maincontent">
+  Microsoft Corp. is trying to catch all e-commerce in their
+  .NET and lock everyone in. (for details see the article
+  <a href="http://www.linuxuser.co.uk/articles/issue15/lu15-Cover_feature-Tempted_by_net.pdf">&quot;Tempted by .NET?&quot; 
+  by Richard Hillesley: Linux User No 15 (Oct 2001), p. 15-21.</a>).  
+  
+ </p>
+ 
+ <p class="maincontent"> They have
+  enough resources to try again and again, so we cannot
+  relax just because
+  <A href="http://news.com.com/2100-1001-254337.html?legacy=cnet">
+  the original "Hailstorm" plan for destroying all
+  Microsoft-independent e-commerce</A> has failed.
 </p>
-<h3>
-Groupware Webservices
-</h3>
-<p>
-<a href="http://phpgroupware.org/">phpGroupWare</a> is a full-featured
-groupware system where each component can also be accessed as a webservice
-component via the xml-rpc protocol.
+
+<p class="maincontent">
+  In the beginning, this threat was the main motivation for starting
+  the DotGNU project.   We wanted to protect the freedom that we
+  enjoy on the internet, which is characterized by open protocols
+  which are not encumbered by patents or other restrictions, so that
+  there are no obstacles to implementing them in Free software.  At
+  the same time, all of the major players in the webservices arena
+  seemed to be interested in addressing the problem of vendor lock-in.
+  Since it is the goal of the DotGNU project is to fight for software
+  freedom in the webservices world, we strive to provide a webservices
+  platform which provides a solution not only to the technical
+  problems, but also to the vendor lock-in business problem.
 </p>
-<h3>
-A Dungeon Exploration Game
-</h3>
-<p>
-Here is an idea for a fun webservice application which could be called
-Hack#.  I'm thinking of a dungeon exploration game in the tradition of
-Rogue, Hack, <a href="http://nethack.org">Nethack</a> ..., implemented
-in C# as a webservice.  Dungeon levels are created on the webservice
-server opon request (e.g. via XML-RPC or SOAP) from the client.
-Interaction between different players (i.e. chatting, trading items,
-etc) is possible in combat-free zones which can be implemented as
-special levels.
+
+<p class="maincontent">
+  Nowadays, the emphasis in our thinking is more on the offensive.
+  DotGNU should be seen in the context of the overall desire of
+  the free software movement to provide businesses with viable
+  alternatives to proprietary software for all business processes.
+  One major challenge in this area is to provide a migration path
+  which provides significant benefits already during the first
+  stages of the transition to free software.  DotGNU helps here,
+  because the webservices approach allows to make the transition
+  in multiple small steps.
 </p>
-<h3>Asynchronous Webservices</h3>
-<p>
-Probably in the near future we'll use SOAP over Jabber for
-Asynchronous webservices ... That'll be a conversational and stateful 
-communication which will be slightly revolutionary (which is why we're
-first going in for backward compatibility).
+
+</a>
+<a name="faq_102">
+<H3 class="mainsubheading">1.02 What do you mean with &quot;Free Software&quot;?</H3>
+
+<p class="maincontent">
+  In &quot;Free Software&quot;, the word &quot;free&quot; refers to freedom, not price.
+  For the definition of &quot;Free Software&quot; please refer to
+    http://www.fsf.org/philosophy/free-sw.html
+  For an explanation of why this is very important please refer to
+    http://thinkcoach.com/free-software.html
 </p>
+
+</a>
+<a name="faq_103">
+<H3 class="mainsubheading">1.03 Can I make money using DotGNU?</H3>
+<p class="maincontent">
+  Yes, of course.  In fact the main thrust of the DotGNU project
+  is to provide a suitable platform for serious business
+  applications of the webservices concept.  DotGNU webservices
+  are useful for every e-commerce website.
+</p>
+
+<p class="maincontent">
+  For example, you can use webservices to make your website
+  react to the specific needs of every potential customer with a
+  business proposal that meets these needs exactly.
+</p>
+
+<p class="maincontent">
+  Also, if you provide a valuable webservice, it may be
+  possible to charge for providing this service.  For example,
+  one of the members of the DotGNU Steering Committee runs a
+  mailing list hosting business which is implemented as a
+  webservice.  The owners of the mailing lists pay the hosting
+  company for this service.
+</p>
+
+<p class="maincontent">
+  The DotGNU webservices platform allows you to provide
+  webservices in a way that gives your potential customers the
+  assurance that you're not going to &quot;lock them in&quot; by making
+  it difficult or impossible to move away from your service.  
+  This feature of the DotGNU webservices platform will allow
+  you to close more sales that you otherwise could.
+</p>
+
+</a>
+<a name="faq_104">
+<H3 class="mainsubheading">1.04 What are webservices good for?</H3>
+
+<p class="maincontent">
+  When a program is implemented as a &quot;webservice&quot;, its functionality
+  can be used by other programs which can be implemented in any
+  programming language, and which can run on any computer which is
+  connected to the internet.  This makes it possible for example that
+  multiple users in different parts of the world can interact with a
+  single set of data.
+</p>
+
+</a>
+<a name="faq_105">
+<H3 class="mainsubheading">1.05 How do you define &quot;webservice&quot;?</H3>
+<p class="maincontent">
+  &quot;Webservices&quot; are any services that are offered on the web
+  (regardless of what technology is used to provide them).
+</p>
+<p class="maincontent">
+   In order to turn this statement into an actual definition,
+   these explanations need to be added:
+<pre>
+
+   a) With &quot;service&quot; we mean not only that some functionality is
+      provided, but that there should also be some description of
+      this functionality, namely how the service should be used and
+      what it provides.
+
+    b) With saying that the service is &quot;offered on the web&quot; we mean
+      that it's offered over a computer network (e.g. the internet
+      or an intranet) via standard protocols, i.e. protocols that
+      are open, widely published, and freely available for anyone
+      to implement.
+
+</pre>
+</p>
+
+<p class="maincontent">
+   It is sometimes useful to distinguish between &quot;webservice
+   components&quot; which are meant to be used by other webservices, and
+   &quot;webservice applications&quot; which are meant to be used by humans
+   more directly.  Both &quot;webservice components&quot; and &quot;webservice
+   applications&quot; are &quot;webservices&quot; as defined above.
+</p>
+
+</a>
+<a name="faq_106">
+<H3 class="mainsubheading">1.06 What about other definitions of &quot;webservice&quot;?</H3>
+
+<p class="maincontent">
+  A definition attempt by the Stencil Group has been discussed in some
+  detail on the DotGNU developers mailing list, in these messages:
+
+  * http://www.dotgnu.info/pipermail/developers/2001-November/001252.html
+  * http://www.dotgnu.info/pipermail/developers/2001-November/001253.html
+  * http://www.dotgnu.info/pipermail/developers/2001-November/001254.html
+  * http://www.dotgnu.info/pipermail/developers/2001-November/001255.html
+</p>
+
+</a>
+<a name="faq_107">
+<H3 class="mainsubheading">1.07 What are the benefits of using a remote webservice ?</H3>
+
+<p class="maincontent">
+
+  Apart from special circumstances (like when you need to process huge
+  amounts of data that your local computer cannot handle) there is a
+  benefit to using a webservice only when the same set of data needs
+  to be accessed by multiple people, or when a user needs to be able
+  to access the same set of data from multiple computers.
+</p>
+
+<p class="maincontent">
+
+  For example, the straightforward way to implement mailing list
+  hosting is to do it as a webservice, and that is exactly what the
+  implementors of Mailman, the GNU mailing list program, have done.
+</p>
+
+<p class="maincontent">
+  On the other hand there is little benefit from implementing e.g. a
+  text editor as a webservice unless there are features to allow
+  multiple users to edit the same file at the same time.
+
+</p>
+
+</a>
+<a name="faq_108">
+<H3 class="mainsubheading">1.08 Can webservices have a better user interface than what is possible in a web-browser</H3>
+
+<p class="maincontent">
+  Yes.  The DotGNU Secure Execution Environment (SEE) allows the
+  webservice to execute code on the user's desktop computer without
+  creating a security risk for that computer.  In particular, SEE
+  is meant to facilitate the creation of good, very portable user
+  interfaces.
+</p>
+
+</a>
+<a name="faq_109">
+<H3 class="mainsubheading">1.09 Is our data stored on the webservice server?</H3>
+<p class="maincontent">
+  Data can be stored either locally or on the webservice server.  If
+  multiple users need to interact with the same set of data, then it
+  should probably be stored on the webservice server.
+
+</p>
+
+<p class="maincontent">
+  This raises the legitimate concern of whether a webservice provide
+  can &quot;lock in&quot; customers by making it inconvenient or impossible for
+  them to get at their data; this issue is addressed in the following
+  questions.
+</p>
+
+</a>
+<a name="faq_110">
+<H3 class="mainsubheading">1.10 Can we move to a different webservice provider?</H3>
+
+<p class="maincontent">
+  The DotGNU webservice server requires that for each webservice and
+  each set of data that it acts on, there is an &quot;owner of the data&quot;
+  who has the right to download the entire set of data together with
+  the program which implements the webservice.  Program which have
+  been downloaded in this way can be executed in any DotGNU Secure
+  Execution Environment on a desktop computer or on a DotGNU
+  webservices server.
+</p>
+
+<p class="maincontent">
+  (This means that when there is a need for an application to use data
+  from multiple sources, where no-one has ownership rights to all the
+  data, then the application must be divided into multiple webservice
+  components.)
+</p>
+
+</a>
+<a name="faq_111">
+<H3 class="mainsubheading">1.11 Can we get source code for the webservice programs?</H3>
+
+<p class="maincontent">
+  If all of the following conditions are met, then the webservice
+  provider is required to distribute the source code for the webservice
+  program to you, upon your request:
+</p>
+
+<p class="maincontent">
+<ul>
+  <li><p> The webservice program has been licensed to the webservice
+      provider under the terms of the GNU General Public License, or it
+    is a derivative work of such a program.</p></li>
+ <li><p> The webservice program runs on a DotGNU webservice server.</p></li>
+
+ <li><p> You are recognized as an &quot;owner of the data&quot; for this webservice.</p></li>
+</ul>
+</p>
+
+<p class="maincontent">
+  Then the webservice server will upon your request distribute the
+  program to you in binary form.  According the terms of the GNU
+  General Public License, this implies that the webservice provider
+  must upon request distribute the source code for the webservice
+  program to you.
+</p>
+
+</a>
+<a name="faq_112">
+<H3 class="mainsubheading">1.12 Am I obligated to give away my webservice source code?</H3>
+
+<p class="maincontent">
+You are not automatically obligated to distribute your source
+code, and you are certainly not obligated to just give it away.
+However, if you sell webservice services, then your customers
+will expect that you make them the &quot;owner of the data&quot; which the
+webservice uses, and depending on the exact circumstances that
+may indirectly give these customers a right to get the source
+code upon request.  Here are the details:
+</p>
+
+<p class="maincontent">
+If you provide a webservice using a GPL'd webservice program
+(which you may have modified), then the &quot;owner of the data&quot;
+will be able to obtain the webservices programs under the terms
+of the GNU GPL, and this implies in particular that they will
+have a right to get the source code of the exact version of the
+program which you're using.  The terms of the GNU GPL also
+require you to make a written promise to this &quot;owner of the
+data&quot; that you will be willing to provide the source code upon
+request.  This ensures that the &quot;owner of the data&quot; will know
+about this right to the source code.
+</p>
+
+<p class="maincontent">
+The &quot;owner of the data&quot; is typically a paying customer, and the
+fact that the customer has a right to get the source code
+increases the value of the service you provide.  Therefore you
+will be able to charge a higher price and/or close more sales.
+</p>
+
+<p class="maincontent">
+You can use the DotGNU development tools to program your own
+webservices (instead of just modifying the webservice programs
+which are distributed with DotGNU, or which others have made
+available under the GNU GPL) and then your are not required to
+make source code for these webservices available to the customer
+who is the &quot;owner of the data&quot;.  However, even in these
+situations where you are not required to make the source code
+available to your customers, we strongly encourage you to
+provide the source code to your customers under the terms of the
+GNU GPL anyway.  We believe that this is ethically the right
+thing to do, and that it will be good for your business.  
+</p>
+
+</a>
+<a name="faq_113">
+<H3 class="mainsubheading">1.13 What do you mean with &quot;webservice platform&quot;?</H3>
+<p class="maincontent">
+  With &quot;webservice platform&quot; we mean a collection of software that
+  allows you to create and deliver useful webservices:
+</p>
+<p class="maincontent">
+<ul>
+
+  <li><p> A (distributed) server platform that can host webservice
+     components in a reliable manner (without any single point of
+     failure).</p></li>
+
+   <li><p> A Secure Execution Environment (SEE) that allows end-users to
+     securely execute client-side components of webservices.</p></li>
+
+   <li><p> A collection of standard webservice components.</p></li>
+
+   <li><p> Protocols and implementations of these protocols for connecting
+     webservice components with each other.</p></li>
+
+   <li><p> System administration tools that allow to maintain distributed
+     systems of webservices in an orderly manner.</p></li>
+
+</ul>
+</p>
+</a>
+<a name="faq_114">
+<H3 class="mainsubheading">1.14 Do I have to pay to use DotGNU?</H3>
+
+<p class="maincontent">
+  No.  Source code for all the software is available free of
+  charge.  If you're capable of compiling the packages yourself
+  and combining them into a system that meets your needs, then
+  you don't have to pay anything for getting and using DotGNU.
+</p>
+
+<p class="maincontent">
+
+  Even if that is not the case, DotGNU will not cost you much:
+  Since everyone has the right to create and distribute CD-ROMs with
+  DotGNU software, there is no artificial scarcity imposed by
+  restrictive licensing, and hence DotGNU CD-ROMs will be available
+  inexpensively.
+</p>
+
+<p class="maincontent">
+  In addition, it may be expected that vendors of commercial
+  DotGNU-based webservices will distribute DotGNU CD-ROMs (which
+  also contain their advertising) gratis as part of their marketing
+  plan.  Hence, at least the client-side parts of the DotGNU platform
+  (essentially SEE and the plugins for SEE) may be expected to spread
+  to a good majority of desktop computers quickly.
+</p>
+
+</a>
+<a name="faq_115">
+<H3 class="mainsubheading">1.15 What do I need to get to use DotGNU?</H3>
+
+<p class="maincontent">
+  If you just want to be able to use DotGNU webservices that are
+  already offered somewhere on the internet, all you need will be
+  a DotGNU CD-ROM which will be available from webservice providers
+  inexpensively or even gratis.  The client-side parts of the DotGNU
+  platform will be made available for all operating systems which
+  are commonly used on desktop computers.
+</p>
+
+<p class="maincontent">
+  Since DotGNU is part of the GNU project, the software for creating
+  or hosting webservices will be included with every GNU/Linux or
+  GNU/Hurd distribution.
+</p>
+
+</a>
+<a name="faq_116">
+<H3 class="mainsubheading">1.16 What programming languages are supported in DotGNU?</H3>
+
+<p class="maincontent">
+  We want to support Java in the same way as C#/CLR (as per Microsoft's
+  ECMA specs) will also be supported.  As soon as Parrot (the bytecode
+  system of Perl6) is available, it will probably be added to the list
+  of bytecode systems that we want to support.
+
+</p>
+
+<p class="maincontent">
+  Note that with the support for Java bytecode, all other programming
+  languages that can be compiled to Java bytecode will also be
+  available, for example Ada95.  Also, all programs that are written
+  for .NET (for example in Visual Basic) should work with DotGNU.
+</p>
+
+<p class="maincontent">
+  In addition, there is work in progress on porting the &quot;Mercury&quot;
+  programming language of the University of Melbourne so that it
+  can be compiled using the development tools of DotGNU Portable.NET .
+  Work is in progress also on Ruby, Python and PHP.
+</p>
+
+</a>
+<a name="faq_117">
+<H3 class="mainsubheading">1.17 Can I write webservices in C and C++ ?</H3>
+
+<p class="maincontent">
+  Code which is written in C or C++ can be used with DotGNU, *if* it
+  is distributed with DotGNU or otherwise installed like you normally
+  install software.  However you cannot use C or C++ to implement
+  webservice programs that are meant to run in the Secure Execution
+  Environment (SEE), like it will be possible with e.g. Java, Ada, C#
+  and Perl - at least not until someone solves the difficult issues of
+  compiling C to some kind of portable intermediate representation in
+  such a way that the Secure Execution Environment can efficiently
+  verify that the program is not trying to do something malicious.
+</p>
+
+</a>
+<a name="faq_118">
+<H3 class="mainsubheading">1.18 Can I sell webservice programs for DotGNU?</H3>
+
+<p class="maincontent">
+  Yes.  If you have a good webservice program that you're willing to put
+  under GNU GPL, then you may be able to sell it to DotGNU.  You can also
+  market your webservice programs directly.  It is not necessary for
+  webservice programs which will be executed in the Secure Execution
+  Environment SEE (either on a webservice server or on the client's
+  PC) to use a GPL-compatible license.  The DotGNU libraries that you
+  will want to use from such programs all come with a &quot;linking
+  exception&quot; (see below) that allows you to use them for any
+  webservice program, regardless of how your program is licensed.
+</p>
+
+</a>
+<a name="faq_119">
+<H3 class="mainsubheading">1.19 Can i sell plugins for SEE?</H3>
+
+<p class="maincontent">
+  Yes.  In fact, if your plugins are good, and you are willing to
+  make them GPL'd Free Software, you will have the options of
+  selling them to DotGNU, or marketing them through DotGNU
+  Marketing.
+</p>
+<p class="maincontent">
+  Alternatively, you are free to market your plugins directly to
+  people who want to use them.  You need to be aware however that
+  the see-plugin library (which implements the standard interface
+  between the plugin and SEE) is licensed under the terms of GNU
+  GPL.  Therefore, if you want to use this library (which is
+  highly recommended) your plugins need to be Free Software with a
+  GPL-compatible license.  This may make it difficult to sell a
+  large number of copies of your plugin.  It may be your best
+  option to sell just one copy of each version of your plugin to
+  DotGNU (licensed under GNU GPL), thereby enhancing the value of
+  the whole DotGNU system.
+</p>
+
+</a>
+<a name="faq_120">
+<H3 class="mainsubheading">1.20 How can i see DotGNU in action?</H3>
+
+<p class="maincontent">
+  Think of a good webservice.  Then implement those parts of
+  DotGNU which are still missing and which are needed by this
+  webservice.  Then implement the webservice, announce it, and see
+  how people are using it.
+</p>
+<p class="maincontent">
+	For example a simple Webservice framework has been maturing for 
+	Apache based XML-RPC webservices . The DGEE has been demonstrated
+	and tested with the Portable.Net VM as the engine . It has proved
+	to be stable and robust as well as supports Message Queuing. 
+</p>
+
+<h2> Contributing to DotGNU </h2>
+
+</a>
+<a name="faq_200">
+<H3 class="mainsubheading">2.00 Where can I contribute?</H3>
+<p class="maincontent">
+  The best way to get started is probably to subscribe to the
+  main mailing list and send a message saying what kind of thing you'd
+  like to help with, and what your skills are.
+</p>
+
+<p class="maincontent">
+  The main developers mailing list is:
+<ul>
+  <li><p>
+  	<a href="http://dotgnu.org/mailman/listinfo/developers/">
+      http://www.dotgnu.info/mailman/listinfo/developers/
+    </a>
+  </p></li>
+</ul>
+</p>
+
+</a>
+<a name="faq_201">
+<H3 class="mainsubheading">2.01 How do I filter mail from the developers list into a separate folder?
+</H3>
+<p class="maincontent">
+  Make a procmail recipe that filters on the List-ID: header.  This
+  header is guaranteed to always be the same, regardless of which of
+  the three available email addresses (developers@dotgnu.info,
+  developer@dotgnu.info, dotgnu-developers@gnu.org) people use for
+  posting to the list.
+</p>
+
+</a>
+<a name="faq_202">
+<H3 class="mainsubheading">2.02 What software development projects are there in DotGNU?</H3>
+<p class="maincontent">
+  Please refer to the website:<br/>
+  http://www.dotgnu.info/projects.html<br/>
+  http://www.dotgnu.info/proposals/active.html<br/>
+</p>
+
+
+</a>
+<a name="faq_203">
+<H3 class="mainsubheading">2.03 What packages need to get ready in time for DotGNU 1.0?</H3>
+
+<p class="maincontent">
+  Here is the current draft list of development projects
+  that are needed for &quot;DotGNU 1.0&quot;... this list
+  is not meant to limit the scope of DotGNU (all other good
+  stuff will be included in &quot;DotGNU 1.0&quot; if it is
+  ready on time) but these are the things that are considered
+  "must have" requirements for &quot;DotGNU 1.0&quot;.  We
+  cannot release &quot;DotGNU 1.0&quot; until all of these
+  components are implemented and well-tested.
+</p>
+
+<p class="maincontent">
+  DotGNU projects list, Version 0.2
+
+<pre>
+  infrastructure
+  ==============
+  1. SEE (Secure Execution Environment)
+     - possibly implemented as a daemon, written in C++
+     - supports plugins
+     - must run on all major desktop systems
+     - must have support for assistive devices (for disabled users)
+
+  2. CLR plugin for SEE
+     - must run on all major desktop systems
+
+  3. Java VM plugin for SEE
+     - must run on all major desktop systems
+
+  4. PHP plugin for SEE
+     - must run on all major desktop systems
+
+  5. Some DotGNU webservices server software
+     - only needs to work on GNU systems
+     - executes webservice code in a SEE on the webservice server,
+       but also allows users to download the webservice code
+       (Anyone who is able to execute something on the server is
+       also able to download the program and execute the program
+       locally.)
+     - allows the owner of data to download the data
+     - facilitates distributed hosting of webservices
+
+  6. Virtual Identities system
+     - a useable and secure solution to the authentication and 
+       authorization problems
+
+
+  development tools
+  =================
+  7. C# -&gt; CLR compiler
+     - written in C
+
+  8. C# class library
+
+  9. CLR -&gt; CLR optimizer
+
+  10. CLR debugger
+
+
+  webservices
+  ===========
+  (all of the below should be usable both as webservice components and as
+  webservice application)
+
+  11. searchable webservice directory
+     - Should be able to query listed webservices for the information,
+       i.e. webservice maintainers can maintain all the information
+       for directories on their own server, they don't need to separately
+       maintain listings in multiple directories
+     - Must be usable for specialized directories, like e.g. a directory
+       of software development projects.
+
+  12. phpGroupWare webservice components and webservice application
+
+  13. DotGNU webservice server checker
+     - a tool to potentially falsify the claim that a given webservice
+       server meets the requirements of a DotGNU webservice server.
+
+  14. Instant Messaging system
+     - DotGNU will use the Jabber protocol and use code from jabberd, a
+       popular Jabber server which is Free software with now
+       GPL-compatible licensing.
+
+</pre>
+</p>
+
+</a>
+<a name="faq_204">
+<H3 class="mainsubheading">2.04 Can I start a development project which is not on this list?</H3>
+
+<p class="maincontent">
+  Sure.  The above list should be understood as a recommendation for
+  areas to focus on.  It is not meant to stop you from other things
+  that you consider to be important.
+</p>
+
+</a>
+<a name="faq_205">
+<H3 class="mainsubheading">2.05 I'm starting a development project.  What name should I use?</H3>
+
+<p class="maincontent">
+  Just use any name of your choice.  When your project has been
+  accepted into DotGNU, you can call it &quot;&lt;Projectname&gt;, a Project of
+  DotGNU&quot;.  Therefore it is not necessary for your Savannah project
+  name to contain the string &quot;dotgnu&quot;.
+</p>
+
+</a>
+<a name="faq_206">
+<H3 class="mainsubheading">2.06 What are the requirements for starting a DotGNU development project?</H3>
+
+<p class="maincontent">
+  You need to make a commitment to putting your code under the GNU
+  General Public License, possibly with linking exceptions as
+  appropriate (for details about this, see section 3 of this FAQ).  
+  Also you need to make sure that there are no legal hooks on the
+  software that would prevent it from being truly Free Software.
+  For example, if you have a trademark or servicemark on the name
+  of the program, then you need to give us a license which allows to
+  use this mark in connection with this program and derivative works
+  thereof, which which also gives us the right to give these rights to
+  others.  Similarly, if you have patents that are related to your
+  development project, then you need to make them available through a
+  free patent license.  If you have applied for patents which have not
+  been granted yet, then you need to make a contractual commitment to
+  making these patents available though such a free patent license if
+  they are granted.
+</p>
+
+</a>
+<a name="faq_207">
+<H3 class="mainsubheading">2.07 How do I write a &quot;Disability Impact Statement&quot;?</H3>
+
+<p class="maincontent">
+  Here is an example... (in the case of SEE)
+
+<pre>
+  Disability Impact Statement
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  The DotGNU Secure Execution Environment (SEE) is the part
+  of the webservices system where client-side components of
+  webservices are executed; this includes in particular the
+  parts of the program which implement the user interface.
+  Support for assistive devices for disabled users is provided by
+  specialized SEE plugins.  Each of these plugins provides an API
+  for one assistive device; the plugin can also be used without
+  the assistive device in a simulation mode that allows
+  (non-disabled) software developers to easily get a first
+  impression of the user experience of any given program for
+  disabled users.
+</pre>
+</p>
+
+</a>
+<a name="faq_208">
+<H3 class="mainsubheading">2.08 How were the projects on the &quot;DotGNU projects list&quot; chosen?</H3>
+
+<p class="maincontent">
+  There aren't any precise, well-established criteria right now.  The
+  main principles are:
+
+<ul>
+<li><p> Uphold the standards and ethical principles of the GNU project.</p></li>
+
+<li><p> DotGNU must be a solution to the vendor lock-in problem for
+     webservices.  (See question <a href="#faq_108">1.08</a></p></li>
+
+<li><p> Within the constraints 1. and 2., cooperate as much as
+     possible with other projects.</p></li>
+
+<li><p> Within the constraints 1., 2. and 3., do whatever it takes to
+     make DotGNU a winner.</p></li>
+
+</ul>
+</p>
+</a>
+<a name="faq_209">
+<H3 class="mainsubheading">2.09 Do we have some degree of democracy in DotGNU?</H3>
+
+<p class="maincontent">
+  So far the only &quot;institution&quot; in DotGNU is the DotGNU Steering
+  Committee, which has been appointed by RMS.  So right now DotGNU
+  cannot be a democracy in the usual sense, simply because the
+  necessary democratic institutions and procedures have not been
+  established.
+</p>
+<p class="maincontent">
+  It would not be easy to turn a Free Software project like DotGNU
+  into a true democracy.  It would have to be a _constitutional_
+  democracy because there are standards and ethical principles
+  which cannot be allowed to be simply changed by a majority vote.
+  Also the core of the DotGNU vision (which makes it a solution to the
+  vendor lock-in problem for webservices) may be refined, but not
+  discarded.  There would need to be structures in place which prevent
+  people who do not agree with these key things from
+  &quot;hijacking&quot; DotGNU.  We would need to have a constitution
+  which defines some democratic institutions and their responsibilities, as
+  well as procedures for selecting the members and the leaders of
+  these institutions.  Setting this all up in a way that actually
+  works will require a lot of effort, as well as trial-and-error.
+  Doing this here in DotGNU would be a huge distraction, which we
+  cannot afford.
+</p>
+<p class="maincontent">
+  So what DotGNU needs is a simpler structure that will still give
+  us most or all of the benefits of a constitutional democracy.  We
+  have established such a structure, as follows:
+</p>
+<pre>
+  1. DotGNU is a volunteer-driven project where everyone is given the
+     freedom to work on whatever they consider to be important, and
+     what has to do with creating a successful webservices platform
+     which is founded on the GNU philosophy.
+
+  2. The DotGNU Steering Committee (which has been appointed by
+     Richard Stallman, the founder and leader of the GNU project)
+     will, when necessary, serve as "high court" to resolve any
+     conflicts between contributors, and it will work to make 
+     sure that the project remains faithful to its mission.
+
+  3. Most actual decisions are made in the development projects.
+     Each project has a leader who establishes a decision-making
+     process.  This does not need to be a democratic process,
+     because projects which make bad decisions can be forked.
+     (This possibility of forking makes mismanagement much
+     less likely to happen, and hence there will probably not
+     be a need for many forks.)
+
+  4. Mailing lists have been established for facilitating a free
+     flow of discussions on various matters related to DotGNU.
+     Use of the lists in ways which harm the DotGNU project will
+     not be tolerated.  Here are some examples of behavior which
+     will not be tolerated:
+     - making FUD-like claims without substantiating them upon request
+     - &quot;name calling&quot;
+     - advertising or recommending proprietary software in any way
+     - making postings which seem to be illegal according to the
+       laws of the country where the mailing list server is located
+       (currently the USA).
+     People who do such or similar things may be moderated,
+     kicked off the list, or banned.  The offending postings may
+     be removed from the list's archives.
+</pre>
+
+<h2>Licensing issues</h2>
+
+</a>
+<a name="faq_300">
+<H3 class="mainsubheading">3.00 What software licenses does DotGNU use?</H3>
+<p class="maincontent">
+  All official software development projects of the DotGNU
+  meta-project use the GNU General Public License (GNU GPL).
+  For Libraries which are intended to be linked with third-party
+  programs that may not have a GPL-compatible license, as a special
+  exception such linking is allowed.
+</p>
+
+</a>
+<a name="faq_301">
+<H3 class="mainsubheading">3.01 Does the linking exception carry over to derivative works?</H3>
+<p class="maincontent">
+  If you create a derivative work of pnetlib or any library which is
+  licensed as &quot;GPL plus linking exception&quot;, then it is up to you
+  whether want the linking exception to carry over to your derivative
+  work.  If you leave the exception in the text, then it applies to
+  your version.
+</p>
+
+</a>
+<a name="faq_302">
+<H3 class="mainsubheading">3.02 What about programs which access each other through network
+ protocols.  Is that a form of linking?
+</H3><BR/>
+
+<p class="maincontent">
+  No.  A GPL'd program can use any kind of webservice regardless
+  of how the webservice software is licensed, and GPL'd webservice
+  software can be used by any program regardless of that program's
+  license.
+</p>
+
+</a>
+<a name="faq_303">
+<H3 class="mainsubheading">3.03 Is it possible to establish strong copyleft for webservices,
+  that allows them to be used only by Free Software?
+</H3><BR/>
+
+<p class="maincontent">
+  It is probably not possible to construct a Free Software license
+  (which operates through copyright law) which would have this effect.
+</p>
+
+</a>
+<a name="faq_304">
+<H3 class="mainsubheading">3.04 Why don't you use the LGPL for libraries?</H3>
+
+<p class="maincontent">
+  Using GPL plus linking exception has several advantages.  One is
+  that this makes it more convenient to reuse parts of the code
+  (possibly with modification) in GPL-licensed files.
+</p>
+
+<p class="maincontent">
+  Also, you can exclude native methods from the linking exception.
+  This is done in the license on the C# library, &quot;pnetlib&quot;, which
+  is distributed under these terms:
+</p>
+<p class="maincontent">
+<PRE>
+     The source code for the library is distributed under the
+     terms of the GNU General Public License, with the following
+     exception: if you link this library against your own
+     program, then you do not need to release the source code
+     for that program. However, any changes that you make to the
+     library itself, or to any native methods upon which the
+     library relies, must be re-distributed in accordance with
+     the terms of the GPL. 
+</PRE>
+</p>
+<p class="maincontent">
+  We call this the &quot;GPL plus linking exception&quot;, which is also
+  used by the GNU Classpath project.
+</p>
+<p class="maincontent">
+  We aren't trying to restrict the use of the library by any kind of
+  commercial entities.  However, a proprietary software company could
+  produce their own proprietary runtime engine that has
+  &quot;enhanced&quot; native method support of some kind. Under the terms
+  of the LGPL, they would be obligated to release the
+  declaration of the native method in the C# system library. For
+  example:
+</p>
+<p class="maincontent">
+<PRE>
+     extern int enhanced_method(string arg1, int arg2); 
+</PRE>
+</p>
+
+<p class="maincontent">
+  But would they be obligated to release the source code to the
+  native method's implementation under the terms of the LGPL?
+  Because it is in a separate program (their runtime engine), it
+  isn't strictly part of the library. The result would be a C#
+  library that is useless without their proprietary native method
+  implementation. This state of affairs is undesirable.
+</p>
+
+<p class="maincontent">
+  Under the terms of the GPL, we can require that the source code
+  to native methods must also be available, or the library
+  modification is disallowed.
+</p>
+<p class="maincontent">
+  This is why we have decided to use the GPL with the linking
+  exception described above.
+</p>
+
+<p class="maincontent">
+  [Aside: by &quot;native method&quot; we mean any method that is
+  implemented in something other than IL bytecode. This includes
+  PInvoke functions and &quot;internalcall&quot; methods, among others.]
+</p>
+</a>
+
+</P>
 </content>
+
