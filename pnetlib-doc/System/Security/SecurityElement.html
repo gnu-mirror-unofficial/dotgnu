@@ -1,0 +1,153 @@
+<HTML>
+<HEAD>
+<TITLE>System.Security.SecurityElement Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Security.SecurityElement Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class SecurityElement</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;SecurityElement<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents the XML object model for encoding security objects.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The simple XML object model for an element consists of the following
+ parts:<P>
+
+<UL>
+<LI>
+ 
+ The tag is the element name.</LI>
+<LI>
+ 
+ The attributes are zero or more name/value attribute
+ pairs on the element.</LI>
+<LI>
+ 
+ The children are zero or more elements nested within
+ <CODE>&amp;lt;tag&gt;</CODE> and <CODE>&amp;lt;/tag&gt;</CODE>.</LI>
+</UL>
+ An attribute name must be at least one character,
+ and cannot be <CODE>null</CODE>
+ . If element-based value representation is
+ used, elements with a text string that is <CODE>null</CODE>
+
+ are represented in the <CODE>&amp;lt;tag/&gt;</CODE> form; otherwise, text is
+ delimited by the <CODE>&amp;lt;tag&gt;</CODE> and <CODE>&amp;lt;/tag&gt;</CODE> tokens. Both forms
+can be combined with attributes, which are shown if present.<P>
+
+ The tags, attributes, and
+ text are case-sensitive. The XML form contains quotation marks and
+ escape sequences where necessary. String values that include characters invalid for use
+ in XML result in a <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A>.
+ These rules apply to all properties and methods.<P>
+
+[<I>Note</I>: This class is intended to be a lightweight implementation of a simple XML
+ object model for use within the security system, and not for use as a general
+ XML object model.<P>
+
+It is strongly suggested that properties of a security element are expressed
+ as attributes, and property values are expressed as attribute values.
+ Specifically, avoid nesting text within tags. For any <CODE>&amp;lt;tag&gt;text&lt;/tag&gt;</CODE> representation a
+ representation of type <CODE>&amp;lt;tag
+ value=&quot;text&quot;/&gt;</CODE> is usually available. Using attribute-based XML
+representations aids in readability.<P>
+
+For performance reasons, character validity is checked only when the element
+ is encoded into XML form, and not on every set of a property or method call.
+ Static methods allow explicit checking where needed. <P>
+
+This class is used only by the system; applications cannot create instances
+ of the <A HREF="SecurityElement.html" TARGET="contents">SecurityElement</A>
+ type. <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+SecurityElement Methods<P>
+
+<A HREF="#SecurityElement.ToString Method" TARGET="contents">SecurityElement.ToString Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="SecurityElement.ToString Method"><H3>SecurityElement.ToString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="../../System/String.html" TARGET="contents">String</A> representation of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> representation of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  The XML in the <A HREF="../../System/String.html" TARGET="contents">String</A> returned by this method represents the state of
+ a permission object. To obtain the XML schema used to encode that object, see the class page for
+ the particular permission object .<P>
+
+This method
+ overrides System.Object.ToString.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityElement.html" TARGET="contents">System.Security.SecurityElement Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

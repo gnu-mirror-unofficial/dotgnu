@@ -1,0 +1,902 @@
+<HTML>
+<HEAD>
+<TITLE>System.Security.CodeAccessPermission Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Security.CodeAccessPermission Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class CodeAccessPermission : IPermission</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;CodeAccessPermission<P>
+
+This type implements <A HREF="IPermission.html" TARGET="contents">IPermission</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Serves as
+      the base class for all code access permissions.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Classes derived from <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> are required to override the following methods of the
+   <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> class:<P>
+
+<UL>
+<LI>System.Security.CodeAccessPermission.Copy - Creates a <A HREF="IPermission.html" TARGET="contents">IPermission</A> object of the 
+         same type and containing the same values as the current instance.</LI>
+<LI>System.Security.CodeAccessPermission.FromXml(System.Security.SecurityElement) - Reconstructs the
+         state of a <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> object
+         using an XML encoding.</LI>
+<LI>System.Security.CodeAccessPermission.Intersect(System.Security.IPermission) - Returns a <A HREF="IPermission.html" TARGET="contents">IPermission</A> object that is 
+         the intersection of the current instance and the specified object.</LI>
+<LI>System.Security.CodeAccessPermission.IsSubsetOf(System.Security.IPermission) - Determines if the 
+         current instance is a subset of the specified object.</LI>
+<LI>System.Security.CodeAccessPermission.ToXml - Creates an XML 
+         encoding of the current instance.</LI>
+<LI>System.Security.CodeAccessPermission.Union(System.Security.IPermission) - Returns a <A HREF="IPermission.html" TARGET="contents">IPermission</A> object that is the
+         union of the current instance and the specified
+         object.</LI>
+</UL>
+In addition, classes derived from <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> are required to implement a constructor that takes a <A HREF="../../System/Security/Permissions/PermissionState.html" TARGET="contents">PermissionState</A> as
+its only parameter.<P>
+
+]<P>
+
+The XML encoding of a <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> instance is defined below in
+   EBNF format. The following conventions are used: <P>
+
+<UL>
+<LI> All non-literals in the grammar below are shown in normal type.<P>
+
+</LI>
+<LI> All literals are in bold font. <P>
+
+</LI>
+</UL>
+ The following meta-language symbols are used: <P>
+
+<UL>
+<LI>
+         
+         &apos;*&apos; represents a meta-language symbol suffixing an
+         expression that can appear zero or more times.</LI>
+<LI>
+         
+         &apos;?&apos; represents a meta-language symbol suffixing an
+         expression that can appear zero or one time.</LI>
+<LI>
+         
+         &apos;+&apos; represents a meta-language symbol suffixing an
+         expression that can appear one or more times.</LI>
+<LI>
+         
+         &apos;(&apos;,&apos;)&apos; is used to group literals, non-literals, or a
+         mixture of literals and non-literals.</LI>
+<LI>
+         
+         &apos;|&apos; denotes an exclusive disjunction between two
+         expressions.</LI>
+<LI>
+         
+         &apos;::= &apos; denotes a production rule where a left hand
+         non-literal is replaced by a right hand expression containing literals,
+         non-literals, or both.</LI>
+</UL>
+ ClassName is the name of the class implementing the permission, such as
+<A HREF="../../System/Security/Permissions/EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A>.<P>
+
+ AssemblyName is the name of the assembly that contains the class implementing
+   the permission, such as mscorlib.<P>
+
+ Version is the three part version number indicating the version of the
+   assembly implementing the permission, such as 1.0.1.<P>
+
+ StrongNamePublicKeyToken is the strong name public key token constituting the
+   strong name of the assembly that implements the permission.<P>
+
+ PermissionAttributes is any attribute and attribute value on the <A HREF="IPermission.html" TARGET="contents">IPermission</A>
+element used by the permission to represent a particular permission state, for
+example, unrestricted=&quot;true&quot;.<P>
+
+ PermissionXML is any valid XML used by the permission to represent permission
+   state.<P>
+
+The XML encoding of a <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> instance is as
+follows:<P>
+
+<CODE>CodeAccessPermissionXML::=<P>
+
+<CODE>&lt;IPermission class=&quot;</CODE>
+<P>
+
+ClassName<CODE>,</CODE>
+<P>
+
+AssemblyName<CODE>,</CODE>
+<P>
+
+<CODE>Version=</CODE>
+Version<CODE>,</CODE>
+<P>
+
+<CODE>Culture=neutral,</CODE>
+<P>
+
+<CODE>PublicKeyToken=</CODE>
+StrongNamePublicKeyToken<CODE>&quot;</CODE>
+<P>
+
+<CODE>version=&quot;1&quot;</CODE>
+<P>
+
+(PermissionAttributes)*<P>
+
+&amp;gt;<P>
+
+(PermissionXML)?<P>
+
+<CODE>&lt;/IPermission&gt;</CODE>
+<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+CodeAccessPermission Constructors<P>
+
+<A HREF="#CodeAccessPermission Constructor" TARGET="contents">CodeAccessPermission Constructor</A><BR>
+<P>
+
+CodeAccessPermission Methods<P>
+
+<A HREF="#CodeAccessPermission.Assert Method" TARGET="contents">CodeAccessPermission.Assert Method</A><BR>
+<A HREF="#CodeAccessPermission.Copy Method" TARGET="contents">CodeAccessPermission.Copy Method</A><BR>
+<A HREF="#CodeAccessPermission.Demand Method" TARGET="contents">CodeAccessPermission.Demand Method</A><BR>
+<A HREF="#CodeAccessPermission.Deny Method" TARGET="contents">CodeAccessPermission.Deny Method</A><BR>
+<A HREF="#CodeAccessPermission.FromXml Method" TARGET="contents">CodeAccessPermission.FromXml Method</A><BR>
+<A HREF="#CodeAccessPermission.Intersect Method" TARGET="contents">CodeAccessPermission.Intersect Method</A><BR>
+<A HREF="#CodeAccessPermission.IsSubsetOf Method" TARGET="contents">CodeAccessPermission.IsSubsetOf Method</A><BR>
+<A HREF="#CodeAccessPermission.ToString Method" TARGET="contents">CodeAccessPermission.ToString Method</A><BR>
+<A HREF="#CodeAccessPermission.ToXml Method" TARGET="contents">CodeAccessPermission.ToXml Method</A><BR>
+<A HREF="#CodeAccessPermission.Union Method" TARGET="contents">CodeAccessPermission.Union Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="CodeAccessPermission Constructor"><H3>CodeAccessPermission Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected CodeAccessPermission();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new instance of the <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> class.
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CodeAccessPermission.html" TARGET="contents">System.Security.CodeAccessPermission Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="CodeAccessPermission.Assert Method"><H3>CodeAccessPermission.Assert Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void Assert();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Asserts that calling code can access the resource identified by the current instance through the code that
+      calls this method, even if callers have not been granted permission to
+      access the resource. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The calling code does not have System.Security.Permissions.SecurityPermissionFlag.Assertion. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ Calling System.Security.CodeAccessPermission.Assert stops the
+   permission
+   check on callers that are after the code performing the assert. An assertion is effective only if the code that
+   calls System.Security.CodeAccessPermission.Assert passes the security check
+   for the permission that it is asserting.<P>
+
+[<I>Note</I>:  Even if the callers that are after the code performing
+      the assert do not have the requisite permissions, they can still access
+      resources through the code that calls this method. Because the assertion only
+      applies to the callers of the code performing the assert, a security check for
+      the asserted permission may still fail if the code calling System.Security.CodeAccessPermission.Assert
+      
+      has not itself been granted that permission.<P>
+
+A call to System.Security.CodeAccessPermission.Assert is effective until the code containing
+   the call returns to its caller.<P>
+
+Caution:
+   Because calling System.Security.CodeAccessPermission.Assert
+   removes the
+   requirement that all code be granted permission to access the specified resource, it can
+   open up security vulnerabilities if used incorrectly or inappropriately.
+   <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CodeAccessPermission.html" TARGET="contents">System.Security.CodeAccessPermission Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="CodeAccessPermission.Copy Method"><H3>CodeAccessPermission.Copy Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract IPermission Copy();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> containing the same
+ values as the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A new <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> instance that is value
+ equal to the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support 
+ the <A HREF="IPermission.html" TARGET="contents">IPermission</A> interface.]<P>
+
+<P>
+
+[<I>Behaviors</I>: The object returned by this
+ method is required be the same type as the current instance and to represent the same access
+ to resources as the current instance.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this 
+ method to create a copy an instance in a type derived from <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A>.
+ ]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to obtain a copy of the
+ current instance that has values identical to those of the current
+ instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CodeAccessPermission.html" TARGET="contents">System.Security.CodeAccessPermission Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="CodeAccessPermission.Demand Method"><H3>CodeAccessPermission.Demand Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void Demand();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Forces a <A HREF="SecurityException.html" TARGET="contents">SecurityException</A> if all callers do not have the permission
+ specified by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="SecurityException.html" TARGET="contents">SecurityException</A></TD><TD> A caller does not have the permission specified by the current instance.<P>
+
+ A caller has called System.Security.CodeAccessPermission.Deny for the resource protected by the current instance. <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The permissions of the code that calls this method are 
+ not examined; the check begins from the immediate caller of that code and
+ continues until all callers have been checked, one of the callers
+ invokes System.Security.CodeAccessPermission.Assert
+ , or a caller has been found that is not granted the
+ demanded permission, in which case a <A HREF="SecurityException.html" TARGET="contents">SecurityException</A> is thrown. <P>
+
+[<I>Note</I>: System.Security.CodeAccessPermission.Demand is typically used by shared
+ libraries to ensure that callers have permission to access a resource.
+ For example, a method in a shared library calls System.Security.CodeAccessPermission.Demand for the necessary <A HREF="../../System/Security/Permissions/FileIOPermission.html" TARGET="contents">FileIOPermission</A> before
+ performing a file operation requested by the caller.<P>
+
+This method is implemented to support
+ the <A HREF="IPermission.html" TARGET="contents">IPermission</A> interface.
+ <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CodeAccessPermission.html" TARGET="contents">System.Security.CodeAccessPermission Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="CodeAccessPermission.Deny Method"><H3>CodeAccessPermission.Deny Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void Deny();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Denies access
+ to the resources specified by the current instance through the code that calls
+ this method.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method prevents callers from accessing the protected resource through
+ the code that calls this method, even if those callers have been granted
+ permission to access it.<P>
+
+The call to System.Security.CodeAccessPermission.Deny
+is effective until the calling
+code returns.<P>
+
+[<I>Note</I>: System.Security.CodeAccessPermission.Deny is ignored for a
+ permission not granted because a demand for that permission will not
+ succeed.<P>
+
+System.Security.CodeAccessPermission.Deny can
+limit the liability of the programmer or prevent accidental security vulnerabilities because it
+prevents the method that calls System.Security.CodeAccessPermission.Deny from being used to access
+the resource protected by the denied permission.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CodeAccessPermission.html" TARGET="contents">System.Security.CodeAccessPermission Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="CodeAccessPermission.FromXml Method"><H3>CodeAccessPermission.FromXml Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract void FromXml(SecurityElement elem);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Reconstructs the state of a <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> object using the specified XML encoding.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>elem</DT>
+<DD>A <A HREF="SecurityElement.html" TARGET="contents">SecurityElement</A> instance containing the XML encoding to use to reconstruct the state of a <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> object.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>elem</I> does not contain the XML encoding for a instance of the same type as the current instance.<P>
+
+The version number of <I>elem</I> is not valid.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: The values of the
+      current instance are set to the values of the permission object encoded in
+   <I>elem</I>
+   .]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this
+   method to reconstruct subclasses of <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> .]<P>
+
+<P>
+
+[<I>Usage</I>: This method is called
+   by the system.]<P>
+
+<P>
+
+[<I>Note</I>: For the XML encoding for this class, see the <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A>
+class page.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CodeAccessPermission.html" TARGET="contents">System.Security.CodeAccessPermission Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="CodeAccessPermission.Intersect Method"><H3>CodeAccessPermission.Intersect Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract IPermission Intersect(IPermission target);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> object that is the
+ intersection of the current instance and the specified
+ object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>target</DT>
+<DD>A <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> instance to intersect with the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A new <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> instance
+ that represents the intersection of the current instance and
+<I>target</I> . If the intersection is empty or 
+<I>target</I> is <CODE>null</CODE>
+, returns <CODE>null</CODE>
+. If the 
+ current instance is unrestricted, returns a copy of <I>target</I>. If
+<I>target</I> is unrestricted, returns a copy of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>target</I> is not <CODE>null</CODE>
+ and is not a <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> object.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support
+ the <A HREF="IPermission.html" TARGET="contents">IPermission</A> interface.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this 
+ method to provide a mechanism for creating an intersection of two <A HREF="IPermission.html" TARGET="contents">IPermission</A> objects that are of the same type and are
+ derived from <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A>
+ .]<P>
+
+<P>
+
+[<I>Usage</I>: The intersection 
+ of two permissions is a permission that secures the resources and operations
+ secured by both permissions. Specifically, it represents the minimum permission
+ such that any demand that passes both permissions will also pass their
+ intersection.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CodeAccessPermission.html" TARGET="contents">System.Security.CodeAccessPermission Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="CodeAccessPermission.IsSubsetOf Method"><H3>CodeAccessPermission.IsSubsetOf Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool IsSubsetOf(IPermission target);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance is a subset of the specified
+      object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>target</DT>
+<DD>A <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> instance that is to be tested for the subset relationship.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the current instance is a
+   subset of <I>target</I>; otherwise, <CODE>false</CODE>
+. If the current
+   instance is unrestricted, and <I>target</I> is not, returns
+<CODE>false</CODE>
+. If <I>target</I> is unrestricted, returns 
+<CODE>true</CODE>
+ .<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>target</I> is not <CODE>null</CODE>
+ and is not of type <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support
+      the <A HREF="IPermission.html" TARGET="contents">IPermission</A> interface.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this
+   method to implement the test for the subset relationship in types derived from
+<A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> 
+.]<P>
+
+<P>
+
+[<I>Usage</I>:  The current
+      instance is a subset of <I>target</I> if the current instance specifies a set
+      of accesses to resources that is wholly contained by <I>target</I>. For example, a permission that
+      represents read access to a file is a subset of a permission that represents
+      read and write access to the file.<P>
+
+ If this method returns <CODE>true</CODE>
+ , the current
+   instance does not describe a level of access to a set of resources that is
+   not already described by <I>target</I>.
+   <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CodeAccessPermission.html" TARGET="contents">System.Security.CodeAccessPermission Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="CodeAccessPermission.ToString Method"><H3>CodeAccessPermission.ToString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the XML representation
+ of the state of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the XML 
+ representation of the state of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  The XML representation of the current instance is
+ obtained by first calling System.Security.CodeAccessPermission.ToXml, then calling System.Object.ToString on the
+ object returned by that
+ method.<P>
+
+This method
+ overrides System.Object.ToString.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CodeAccessPermission.html" TARGET="contents">System.Security.CodeAccessPermission Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="CodeAccessPermission.ToXml Method"><H3>CodeAccessPermission.ToXml Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract SecurityElement ToXml();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns
+ the XML encoding of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="SecurityElement.html" TARGET="contents">SecurityElement</A> containing an XML encoding of the state of the
+ current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: The object
+ returned by this method is required to use the XML encoding for the <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> class as defined on the class page. The state of
+ the current instance is required to be reproducible by invoking System.Security.CodeAccessPermission.FromXml(System.Security.SecurityElement) on an instance
+ of <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> using the object returned by this
+ method.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this 
+ method to return an object containing the XML encoding for types derived from
+ <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> .]<P>
+
+<P>
+
+[<I>Usage</I>: This method is called by the system.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CodeAccessPermission.html" TARGET="contents">System.Security.CodeAccessPermission Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="CodeAccessPermission.Union Method"><H3>CodeAccessPermission.Union Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual IPermission Union(IPermission other);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> object that is the union
+ of the current instance and the specified object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>other</DT>
+<DD>A <A HREF="IPermission.html" TARGET="contents">IPermission</A> object of the same type as the current instance to be combined with the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+If <I>other</I> is <CODE>null</CODE>
+, returns a copy of the current 
+ instance using the System.Security.IPermission.Copy method.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>other</I> is not of type <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> .</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD><I>other</I> is not <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support
+ the <A HREF="IPermission.html" TARGET="contents">IPermission</A> interface.]<P>
+
+<P>
+
+[<I>Behaviors</I>: This method 
+ returns a new <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> instance that represents the union of the
+ current instance and <I>other</I>. If the current instance or <I>other</I> is
+ unrestricted, returns a <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> instance that is
+ unrestricted. If <I>other</I> is <CODE>null</CODE>
+, returns a copy
+ of the current instance using the System.Security.IPermission.Copy method.]<P>
+
+<P>
+
+[<I>Default</I>: If <I>other</I> is not <CODE>null</CODE>
+, this method
+throws a <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A> exception; otherwise,
+returns a copy of the current
+instance.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this method to provide a mechanism for
+ creating the union of two <A HREF="IPermission.html" TARGET="contents">IPermission</A> objects that are of the same type and are
+ derived from <A HREF="CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A> .]<P>
+
+<P>
+
+[<I>Usage</I>: The result of a call to System.Security.CodeAccessPermission.Union(System.Security.IPermission) is a permission that represents all
+of the access to resources represented by both the current instance and
+<I>other</I> . Any demand that passes either permission passes their 
+union.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CodeAccessPermission.html" TARGET="contents">System.Security.CodeAccessPermission Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

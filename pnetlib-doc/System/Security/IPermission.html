@@ -1,0 +1,499 @@
+<HTML>
+<HEAD>
+<TITLE>System.Security.IPermission Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Security.IPermission Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public interface IPermission</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Defines methods implemented by permission types. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Permission types describe a level of access to secured
+ operations or resources, such as files or environment variables. Permission instances do not confer the right to
+ access a resource or perform an operation; the security system determines whether or not requested permissions
+ are granted. Permissions are used by both application code and the security system in the
+ following ways:<P>
+
+<UL>
+<LI>
+ 
+ Code requests the permissions it needs in order to
+ run.</LI>
+<LI>
+ 
+ Permissions are granted by the security system.</LI>
+<LI>
+ 
+ Code demands that calling code has a permission.</LI>
+<LI>
+ 
+ Code
+ 
+ alters the default behavior
+ 
+ of the security system by asserting or denying
+ permissions.</LI>
+</UL>
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IPermission Methods<P>
+
+<A HREF="#IPermission.Copy Method" TARGET="contents">IPermission.Copy Method</A><BR>
+<A HREF="#IPermission.Demand Method" TARGET="contents">IPermission.Demand Method</A><BR>
+<A HREF="#IPermission.Intersect Method" TARGET="contents">IPermission.Intersect Method</A><BR>
+<A HREF="#IPermission.IsSubsetOf Method" TARGET="contents">IPermission.IsSubsetOf Method</A><BR>
+<A HREF="#IPermission.Union Method" TARGET="contents">IPermission.Union Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IPermission.Copy Method"><H3>IPermission.Copy Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>IPermission Copy();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="IPermission.html" TARGET="contents">IPermission</A> object of the same type and containing the same
+ values as the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="IPermission.html" TARGET="contents">IPermission</A> object of the same type and containing the same
+ values as the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: The object returned by
+ this method is required to be a deep copy of the current instance; any objects
+ referenced by the current instance are duplicated in the copy.]<P>
+
+<P>
+
+[<I>Overrides</I>: Implement this
+ method to provide the system with a means of duplicating permission objects.]<P>
+
+<P>
+
+[<I>Usage</I>: Use
+ this method to obtain a copy of the current instance that is identical to the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPermission.html" TARGET="contents">System.Security.IPermission Interface</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPermission.Demand Method"><H3>IPermission.Demand Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>void Demand();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Forces a <A HREF="SecurityException.html" TARGET="contents">SecurityException</A> if all callers do not have the permission 
+ specified by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="SecurityException.html" TARGET="contents">SecurityException</A></TD><TD> A caller does not have the permission specified by the current instance.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The permission check for System.Security.IPermission.Demand begins with the immediate caller 
+ of the code that calls this method and continues until all callers have been
+ checked or a caller has been found that is not granted the demanded permission,
+ in which case a <A HREF="SecurityException.html" TARGET="contents">SecurityException</A> exception is thrown. <P>
+
+[<I>Behaviors</I>: Notifies the
+ system that a security check is required for all callers of the method that
+ invokes System.Security.IPermission.Demand. All callers are required to have the permissions
+ described by the current instance. If one of the callers asserts the
+ permissions and that caller has the permissions, the system is required to allow
+ all callers that have not been checked to bypass the security check. If the
+ security check fails, a <A HREF="SecurityException.html" TARGET="contents">SecurityException</A> is thrown by the system.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to
+ ensure that callers that call the method containing a System.Security.IPermission.Demand
+ call have the
+ permissions described by the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPermission.html" TARGET="contents">System.Security.IPermission Interface</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPermission.Intersect Method"><H3>IPermission.Intersect Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>IPermission Intersect(IPermission target);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an
+      object that is the intersection of the current instance and the
+      specified <A HREF="IPermission.html" TARGET="contents">IPermission</A>
+      object. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>target</DT>
+<DD>An object of the same type as the current instance to intersect with the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A new <A HREF="IPermission.html" TARGET="contents">IPermission</A> object that is the same type as
+   the current instance and represents the intersection of the
+   current instance and <I>target</I>. If the intersection is empty, or <I>target</I>
+   is <CODE>null</CODE>
+, returns <CODE>null</CODE>
+. If the current instance
+   is unrestricted, returns a copy of <I>target</I>. If <I>target</I> is
+   unrestricted, returns a copy of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>target</I> is not <CODE>null</CODE>
+ and is not of the same type as the current instance.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The object returns by System.Security.IPermission.Intersect(System.Security.IPermission) is a permission that secures the resources and
+   operations secured by two <A HREF="IPermission.html" TARGET="contents">IPermission</A>
+   objects: a demand passes the
+   intersection of two objects only if it passes both of the objects.<P>
+
+[<I>Behaviors</I>: If <I>target</I> is not <CODE>null</CODE>
+ and is not of the same type as
+   the current instance, a <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A> exception is required to be thrown.<P>
+
+ The following statements are required to be true for all
+   implementations of the System.Security.IPermission.Intersect(System.Security.IPermission) method. <I>X</I> and
+<I>Y</I>
+represent non-null <A HREF="IPermission.html" TARGET="contents">IPermission</A> object
+references.<P>
+
+<UL>
+<LI><I>X</I>.Intersect(<I>X</I>) returns a value
+      equal to <I>X</I>.</LI>
+<LI><I>X</I>.Intersect(<I>Y</I>) returns the same
+      value as <I>Y</I>.Intersect(<I>X</I>).</LI>
+<LI><I>X</I>.Intersect(<CODE>null</CODE>
+) returns
+   <CODE>null</CODE>
+
+   .</LI>
+</UL>
+]<P>
+
+[<I>Usage</I>: Use this method to obtain the set of permissions that are
+   described both by the current instance and the specified
+   object.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPermission.html" TARGET="contents">System.Security.IPermission Interface</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPermission.IsSubsetOf Method"><H3>IPermission.IsSubsetOf Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool IsSubsetOf(IPermission target);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance is a subset of
+      the specified object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>target</DT>
+<DD>A <A HREF="IPermission.html" TARGET="contents">IPermission</A> object of the same type as the current instance that is to be tested for the subset relationship.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the current instance is a subset of <I>target</I> ;
+   otherwise,<CODE> false</CODE>
+. If the current instance is unrestricted, and
+<I>target</I> is not, returns <CODE>false</CODE>
+. If <I>target</I> is 
+   unrestricted, returns <CODE>true</CODE>
+. If target is
+<CODE>null</CODE>
+ and the current instance does not secure any resources or 
+   operations, returns <CODE>true</CODE>
+. If target is <CODE>null</CODE>
+
+   and the current instance secures one or more resources or operations, returns
+<CODE>false</CODE>
+ 
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>target</I> is not <CODE>null</CODE>
+ and is not of the same type as the current instance. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The current instance is a subset of <I>target</I> if the current instance
+   specifies a set of accesses to resources or operations that is wholly contained
+   by <I>target</I>. For example, a permission that represents read access to a
+   file is a subset of a permission that represents read and write access to the
+   file. <P>
+
+[<I>Behaviors</I>:  If <I>target</I> is not
+<CODE>null</CODE>
+ and is not of the same type
+   as the current instance, a <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A> exception is
+   required to be thrown.<P>
+
+ The following statements are required to be true for all
+   implementations of the System.Security.IPermission.IsSubsetOf(System.Security.IPermission) method. <I>X</I>, <I>Y</I>, and
+<I>Z</I> 
+represent non-null <A HREF="IPermission.html" TARGET="contents">IPermission</A> objects.<P>
+
+<UL>
+<LI><I>X</I>.IsSubsetOf(<I>X</I>
+   ) returns <CODE>true</CODE>
+.</LI>
+<LI><I>X</I>.IsSubsetOf(<I>Y</I>) returns the same
+      value as <I>Y</I>.IsSubsetOf(<I>X</I>) if and only if <I>X</I> and
+   <I>Y</I> 
+   represent the same set of permissions.</LI>
+<LI>
+      
+      if <I>X</I>.IsSubsetOf(<I>Y</I>) and
+   <I>Y</I>.IsSubsetOf(<I>Z</I>
+   ) both return
+<CODE>true</CODE>
+, <I>X</I>.IsSubsetOf(<I>Z</I> ) returns
+<CODE>true</CODE>
+.</LI>
+</UL>
+]<P>
+
+[<I>Usage</I>: Use this method to determine if the
+   permissions described by the current instance are also described by the
+   specified object.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPermission.html" TARGET="contents">System.Security.IPermission Interface</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPermission.Union Method"><H3>IPermission.Union Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>IPermission Union(IPermission target);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an object that is the union of the
+ current instance and the specified
+ object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>target</DT>
+<DD>A <A HREF="IPermission.html" TARGET="contents">IPermission</A> object of the same type as the current instance to combine with the current instance. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A new <A HREF="IPermission.html" TARGET="contents">IPermission</A> object of the same type as the current
+ instance that represents the
+ union of the current instance and <I>target</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>target</I> is not <CODE>null</CODE>
+ and is not of the same type as the current instance. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The object returned by System.Security.IPermission.Union(System.Security.IPermission) is a permission that represents the 
+ permissions described by the current instance and those described by
+<I>target</I> . Any demand that passes either the current instance or 
+<I>target</I> is required to pass the union of the two.<P>
+
+[<I>Behaviors</I>: If <I>target</I> is not <CODE>null</CODE>
+ and is not of the same type as 
+ the current instance, a <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A> exception is required to be thrown.<P>
+
+ The following statements are required to be true for all
+ implementations of the System.Security.IPermission.Union(System.Security.IPermission) method. <I>X</I> and <I>Y</I>
+ represent non-null <A HREF="IPermission.html" TARGET="contents">IPermission</A> objects.<P>
+
+<UL>
+<LI><I>X</I>.Union(<I>X</I>) returns an object that
+ is value-equal to <I>X</I>.</LI>
+<LI><I>X</I>.Union(<I>Y</I>) returns an object that
+ is value-equal to the object returned by <I>Y</I>.Union(<I>X</I>).</LI>
+<LI><I>X</I>.Union(<CODE>null</CODE>
+) returns an
+ object that is value-equal to <I>X</I>
+ 
+ .</LI>
+</UL>
+]<P>
+
+[<I>Usage</I>: Use this
+ method to obtain a <A HREF="IPermission.html" TARGET="contents">IPermission</A> object of the same type as the current instance
+ and <I>target</I> that describes the permissions described by the current
+ instance and those described by <I>target</I>.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPermission.html" TARGET="contents">System.Security.IPermission Interface</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

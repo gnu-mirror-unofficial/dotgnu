@@ -1,0 +1,1261 @@
+<HTML>
+<HEAD>
+<TITLE>System.Security.PermissionSet Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Security.PermissionSet Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class PermissionSet : ICollection, IEnumerable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;PermissionSet<P>
+
+This type implements <A HREF="../../System/Collections/ICollection.html" TARGET="contents">ICollection</A> and <A HREF="../../System/Collections/IEnumerable.html" TARGET="contents">IEnumerable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents a collection that can contain different kinds of permissions and perform security
+      operations.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Use <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A>
+to perform operations on different permission types as
+a group.]<P>
+
+<P>
+
+The XML encoding of a <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> instance is defined below in EBNF format. The
+   following conventions are used: <P>
+
+<UL>
+<LI> All non-literals in the grammar below are shown in normal
+         type.<P>
+
+</LI>
+<LI> All literals are in bold font. <P>
+
+</LI>
+</UL>
+ The following meta-language symbols are used: <P>
+
+<UL>
+<LI>
+         
+         &apos;*&apos; represents a meta-language symbol suffixing an
+         expression that can appear zero or more times.</LI>
+<LI>
+         
+         &apos;?&apos; represents a meta-language symbol suffixing an
+         expression that can appear zero or one time.</LI>
+<LI>
+         
+         &apos;+&apos; represents a meta-language symbol suffixing an
+         expression that can appear one or more times.</LI>
+<LI>
+         
+         &apos;(&apos;,&apos;)&apos; is used to group literals, non-literals or a
+         mixture of literals and non-literals.</LI>
+<LI>
+         
+         &apos;|&apos; denotes an exclusive disjunction between two
+         expressions.</LI>
+<LI>
+         
+         &apos;::= &apos; denotes a production rule where a left hand
+         non-literal is replaced by a right hand expression containing literals,
+         non-literals or both.</LI>
+</UL>
+ The XML encoding of a <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A>
+instance is as follows:<P>
+
+<CODE>PermissionSet::=<P>
+
+(<P>
+
+<CODE>&lt;PermissionSet</CODE>
+<P>
+
+<CODE>class=&quot;System.Security.PermissionSet&quot; </CODE>
+<P>
+
+<CODE>version=&quot;1&quot; Unrestricted=&quot;true&quot;/&gt;</CODE>
+<P>
+
+)<P>
+
+|<P>
+
+(<P>
+
+<CODE>&lt;PermissionSet</CODE>
+<P>
+
+<CODE>class=&quot;System.Security.PermissionSet&quot; </CODE>
+<P>
+
+<CODE>version=&quot;1&quot;&gt;</CODE>
+<P>
+
+DnsPermissionXML ? <P>
+
+SocketPermissionXML ? <P>
+
+WebPermissionXML ? <P>
+
+EnvironmentPermissionXML ? <P>
+
+FileIOPermissionXML ? <P>
+
+ReflectionPermissionXML ?<P>
+
+SecurityPermissionXML ? <P>
+
+CustomPermissionXML *<P>
+
+<CODE>&lt;/PermissionSet&gt;</CODE>
+<P>
+
+)<P>
+
+</CODE> CustomPermissionXML represents any custom permission. The XML encoding for custom permissions makes use of the following symbols:<P>
+
+ ClassName is the name of the class implementing the
+   permission.<P>
+
+ AssemblyName is the name of the assembly that contains
+   the class implementing the permission.<P>
+
+ Version is the version number indicating the
+   version of the assembly implementing the permission.<P>
+
+ StrongNamePublicKeyToken is the strong name public key token constituting the
+   strong name of the assembly that implements the permission.<P>
+
+ version is version information for the custom permission. Format and content
+   are defined by the author of the custom permission.<P>
+
+ PermissionAttributes is any attribute and attribute value on the <A HREF="IPermission.html" TARGET="contents">IPermission</A> element used by the 
+permission to represent a particular permission state, for example,
+unrestricted=
+&quot;true&quot;.
+Format and content are defined by the author of the
+custom permission.<P>
+
+ PermissionXML is any valid XML used by the permission to
+   represent permission state. Format and content are defined by the author of the custom
+   permission.<P>
+
+The XML encoding of a custom permission instance is as
+   follows:<P>
+
+<CODE>CustomPermissionXML ::=<P>
+
+<CODE>&lt;IPermission class=&quot;</CODE>
+<P>
+
+ClassName<CODE>,</CODE>
+<P>
+
+AssemblyName<CODE>,</CODE>
+<P>
+
+<CODE>Version=</CODE>
+Version<CODE>,</CODE>
+<P>
+
+<CODE>Culture=neutral,</CODE>
+<P>
+
+<CODE>PublicKeyToken=</CODE>
+StrongNamePublicKeyToken<CODE>&quot;</CODE>
+<P>
+
+<CODE>version=&quot;</CODE>
+version<CODE>&quot;</CODE>
+<P>
+
+(PermissionAttributes)*<P>
+
+&amp;gt;<P>
+
+(PermissionXML)?<P>
+
+<CODE>&lt;/IPermission&gt;</CODE>
+<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+PermissionSet Constructors<P>
+
+<A HREF="#PermissionSet(System.Security.Permissions.PermissionState) Constructor" TARGET="contents">PermissionSet(System.Security.Permissions.PermissionState) Constructor</A><BR>
+<A HREF="#PermissionSet(System.Security.PermissionSet) Constructor" TARGET="contents">PermissionSet(System.Security.PermissionSet) Constructor</A><BR>
+<P>
+
+PermissionSet Methods<P>
+
+<A HREF="#PermissionSet.AddPermission Method" TARGET="contents">PermissionSet.AddPermission Method</A><BR>
+<A HREF="#PermissionSet.Assert Method" TARGET="contents">PermissionSet.Assert Method</A><BR>
+<A HREF="#PermissionSet.Copy Method" TARGET="contents">PermissionSet.Copy Method</A><BR>
+<A HREF="#PermissionSet.CopyTo Method" TARGET="contents">PermissionSet.CopyTo Method</A><BR>
+<A HREF="#PermissionSet.Demand Method" TARGET="contents">PermissionSet.Demand Method</A><BR>
+<A HREF="#PermissionSet.Deny Method" TARGET="contents">PermissionSet.Deny Method</A><BR>
+<A HREF="#PermissionSet.FromXml Method" TARGET="contents">PermissionSet.FromXml Method</A><BR>
+<A HREF="#PermissionSet.GetEnumerator Method" TARGET="contents">PermissionSet.GetEnumerator Method</A><BR>
+<A HREF="#PermissionSet.IsSubsetOf Method" TARGET="contents">PermissionSet.IsSubsetOf Method</A><BR>
+<A HREF="#PermissionSet.PermitOnly Method" TARGET="contents">PermissionSet.PermitOnly Method</A><BR>
+<A HREF="#PermissionSet.ToString Method" TARGET="contents">PermissionSet.ToString Method</A><BR>
+<A HREF="#PermissionSet.ToXml Method" TARGET="contents">PermissionSet.ToXml Method</A><BR>
+<A HREF="#PermissionSet.Union Method" TARGET="contents">PermissionSet.Union Method</A><BR>
+<P>
+
+PermissionSet Properties<P>
+
+<A HREF="#PermissionSet.Count Property" TARGET="contents">PermissionSet.Count Property</A><BR>
+<A HREF="#PermissionSet.IsSynchronized Property" TARGET="contents">PermissionSet.IsSynchronized Property</A><BR>
+<A HREF="#PermissionSet.SyncRoot Property" TARGET="contents">PermissionSet.SyncRoot Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="PermissionSet(System.Security.Permissions.PermissionState) Constructor"><H3>PermissionSet(System.Security.Permissions.PermissionState) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public PermissionSet(PermissionState state);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs a new instance of the <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> class with the
+   specified
+   value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>state</DT>
+<DD>A <A HREF="../../System/Security/Permissions/PermissionState.html" TARGET="contents">PermissionState</A> value. This value is either System.Security.Permissions.PermissionState.None or System.Security.Permissions.PermissionState.Unrestricted , to specify fully restricted or fully unrestricted access. <P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>state</I> is not a valid <A HREF="../../System/Security/Permissions/PermissionState.html" TARGET="contents">PermissionState</A> value.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The
+      new instance contains no permissions. To add a permission to the
+      new instance, use System.Security.PermissionSet.AddPermission(System.Security.IPermission).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet(System.Security.PermissionSet) Constructor"><H3>PermissionSet(System.Security.PermissionSet) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public PermissionSet(PermissionSet permSet);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs a new instance of the <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> class with the
+ values of the specified <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> instance. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>permSet</DT>
+<DD>The <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> instance with which to initialize the values of the new instance, or <CODE>null</CODE>
+ to initialize an empty permission set.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>permSet</I> is not <CODE>null</CODE>
+ and is not an instance of <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If <I>permSet</I> is not <CODE>null</CODE>
+ , the new instance is
+ initialized with copies of the objects in <I>permSet</I>, not references
+ to those objects. If <I>permSet</I> is <CODE>null</CODE>
+, the new instance contains no
+ permissions.<P>
+
+[<I>Note</I>:  To add a permission to an
+ empty <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> ,
+ use System.Security.PermissionSet.AddPermission(System.Security.IPermission).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet.AddPermission Method"><H3>PermissionSet.AddPermission Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual IPermission AddPermission(IPermission perm);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Adds the specified <A HREF="IPermission.html" TARGET="contents">IPermission</A> object to
+   the current instance if that permission does not already exist in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>perm</DT>
+<DD>The <A HREF="IPermission.html" TARGET="contents">IPermission</A> object to add.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="IPermission.html" TARGET="contents">IPermission</A> is added if <I>perm</I> is not
+<CODE>null</CODE>
+ and a permission of the same type as <I>perm</I> does 
+   not already exist in the current instance. If <I>perm</I> is <CODE>null</CODE>
+,
+   returns <CODE>null</CODE>
+ . If a permission of the same type as
+<I>perm</I> already exists in the current instance, the union of the existing 
+   permission and <I>perm</I> is added to the current instance and is returned.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>perm</I> is not a <A HREF="IPermission.html" TARGET="contents">IPermission</A> object.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to
+   add permission objects to the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet.Assert Method"><H3>PermissionSet.Assert Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Assert();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Asserts that calling code can access the resources identified by the permissions contained in the current
+      instance through the code that calls this method, even if callers have not been
+      granted permission to access the resource. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The asserting code does not have sufficient permission to call this method.<P>
+
+-or-<P>
+
+This method was called with permissions already asserted for the current stack frame.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is the only way to assert multiple permissions at the same time
+      within a frame because only a single assert can be active on a frame at one
+      time; subsequent asserts will result in an exception.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to insure that all callers can access
+      a set of secured resources.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet.Copy Method"><H3>PermissionSet.Copy Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual PermissionSet Copy();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a new <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> containing copies of the objects in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> that is value equal to the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This method creates
+      copies of the permission objects in the current instance, and adds them to the new instance.]<P>
+
+<P>
+
+[<I>Default</I>: This method calls
+   the <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A>
+   constructor that takes a <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> argument,
+   and passes the current instance as that parameter.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to
+   create a new <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> instance containing permissions that are identical to the permissions contained in
+   the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet.CopyTo Method"><H3>PermissionSet.CopyTo Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void CopyTo(Array array, int index);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Copies the permission objects in the current instance to the specified
+      location in the specified <A HREF="../../System/Array.html" TARGET="contents">Array</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>array</DT>
+<DD>The destination <A HREF="../../System/Array.html" TARGET="contents">Array</A> .</DD>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the zero-based starting position in the array at which to begin copying.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>array</I> has more than one dimension.</TD></TR>
+<TR><TD><A HREF="../../System/IndexOutOfRangeException.html" TARGET="contents">IndexOutOfRangeException</A></TD><TD><I>index</I> is outside the range of allowable values for <I>array</I>.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>array</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is
+      implemented to support the <A HREF="../../System/Collections/ICollection.html" TARGET="contents">ICollection</A> interface.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Default</I>: The default
+      implementation uses the System.Array.SetValue(System.Object,System.Int32)(<A HREF="../../System/Object.html" TARGET="contents">Object</A>, <A HREF="../../System/Int32.html" TARGET="contents">Int32</A>) method to add the value to the array.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this 
+      method to customize the manner in which elements are added to <I> array</I>
+      . ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet.Demand Method"><H3>PermissionSet.Demand Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Demand();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Forces a <A HREF="SecurityException.html" TARGET="contents">SecurityException</A> if all callers do 
+   not have the permissions specified by the objects
+   contained in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>A caller does not have the permission specified by the current instance.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: The permission check for System.Security.PermissionSet.Demand begins with the
+      immediate caller of the code that calls this method and continues until all
+      callers have been checked or a caller has been found that is not granted the
+      demanded permission, in which case a <A HREF="SecurityException.html" TARGET="contents">SecurityException</A> exception is thrown. <P>
+
+If the current instance is empty, a call to System.Security.PermissionSet.Demand succeeds.<P>
+
+]<P>
+
+[<I>Usage</I>: Use this
+   method to ensure in a single operation that all callers have all permissions contained in a permission set.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet.Deny Method"><H3>PermissionSet.Deny Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Deny();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Denies access to the resources secured by the objects contained in the current instance through the
+      code that calls this method.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>A previous call to <CODE>Deny</CODE>
+ has already restricted the permissions for the current stack frame.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This is the only way to deny multiple permissions at the
+      same time within a frame because only a single deny can be active on a frame at
+      one time; subsequent denies will result in an exception.<P>
+
+[<I>Behaviors</I>: This method is required to prevent
+         callers from accessing all resources protected by the objects in the
+         current instance even if the callers had been granted permission to access them.<P>
+
+ A call to System.Security.PermissionSet.Deny
+   is effective until the calling code returns.<P>
+
+]<P>
+
+[<I>Usage</I>: Use this method to force
+   all security checks for the objects contained in the current instance to
+   fail.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet.FromXml Method"><H3>PermissionSet.FromXml Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void FromXml(SecurityElement et);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reconstructs the state of a <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> object using the specified XML
+   encoding.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>et</DT>
+<DD>A <A HREF="SecurityElement.html" TARGET="contents">SecurityElement</A> instance containing the XML encoding to use to reconstruct the state of a <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> object.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>et</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>et</I> does not contain an XML encoding for a <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> instance.<P>
+
+An error occurred while reconstructing <I>et</I> .<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: For the XML
+      encoding for this class, see
+      the <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> class page.]<P>
+
+<P>
+
+[<I>Behaviors</I>: When this call completes, the
+      objects in the current instance are required to be identical to the objects in the <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A>
+      encoded in
+   <I> et</I> .]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this method
+      to reconstruct subclasses of <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> .]<P>
+
+<P>
+
+[<I>Usage</I>: Applications do
+      not typically call this method; it is called by the system.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet.GetEnumerator Method"><H3>PermissionSet.GetEnumerator Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual IEnumerator GetEnumerator();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an enumerator used to iterate
+      over the permissions in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Collections/IEnumerator.html" TARGET="contents">IEnumerator</A> object
+   for the permissions of the
+   set.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support
+      the <A HREF="../../System/Collections/ICollection.html" TARGET="contents">ICollection</A> interface, which supports the <A HREF="../../System/Collections/IEnumerable.html" TARGET="contents">IEnumerable</A>
+      interface.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this method to customize
+      the enumerator returned by this method.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet.IsSubsetOf Method"><H3>PermissionSet.IsSubsetOf Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool IsSubsetOf(PermissionSet target);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether the current instance is a subset of
+      the specified object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>target</DT>
+<DD>A <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> instance that is to be tested for the subset relationship. <P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the current instance is a subset of <I>target</I>;
+   otherwise, <CODE>false</CODE>
+. If the current instance is unrestricted, and
+<I>target</I> is not, returns <CODE>false</CODE>
+. If <I>target</I> is 
+   unrestricted, returns <CODE>true</CODE>
+ .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The current instance is a subset <I>target</I> if all demands that succeed
+      for the current instance also succeed for <I>target</I>. That is, the current
+      instance is a subset of <I>target</I> if <I>target</I> contains at least the
+      permissions contained in the current instance.<P>
+
+If this method returns <CODE>true</CODE>
+ , the current instance does not
+   describe a level of access to a set of resources that is not already described
+   by <I>target</I>. <P>
+
+]<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to determine if the all
+   permissions contained in the current instance are also contained in
+<I>target</I>.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet.PermitOnly Method"><H3>PermissionSet.PermitOnly Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void PermitOnly();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Specifies that only the resources described by the current
+      instance can be accessed by calling code, even if the code has
+      been granted permission to access other resources.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>A previous call to <CODE>PermitOnly</CODE>
+ has already set the permissions for the current stack frame.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: System.Security.PermissionSet.PermitOnly is similar to
+   System.Security.PermissionSet.Deny in that both methods cause access
+      to fail where it might otherwise succeed. The difference is that System.Security.PermissionSet.Deny specifies permissions for which
+      to refuse access, while System.Security.PermissionSet.PermitOnly<CODE> </CODE>
+specifies the only permissions that will succeed.<P>
+
+This is the only way to permit multiple permissions at the same time within a stack
+      frame because only a single permit at a time can be active on a frame;
+      subsequent permits will result in an exception.<P>
+
+]<P>
+
+[<I>Behaviors</I>:  Callers are required to
+      be prevented from accessing resources not secured by the contents of the current
+      instance, even if a caller has been granted permission to access such resources.<P>
+
+A System.Security.PermissionSet.PermitOnly is in effect until the calling
+   code returns to its caller.<P>
+
+]<P>
+
+[<I>Usage</I>: Use this method to limit access to a
+   specified set of resources.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet.ToString Method"><H3>PermissionSet.ToString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="../../System/String.html" TARGET="contents">String</A> representation of the state
+   of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the XML representation of the state of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method overrides System.Object.ToString.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example displays the XML that encodes the 
+      state of a <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A>
+      .<P>
+
+<PRE>
+using System;
+using System.Security;
+using System.Security.Permissions;
+
+public class PermissionSetToStringExample {
+  public static void Main() {
+
+    PermissionSet ps = new PermissionSet(PermissionState.Unrestricted);
+    Console.WriteLine(ps.ToString());
+  }
+}
+
+			</PRE>
+The output is<P>
+
+&amp;lt;PermissionSet class=&quot;System.Security.PermissionSet&quot; version=&quot;1&quot;
+         Unrestricted=&quot;true&quot;/&gt;<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet.ToXml Method"><H3>PermissionSet.ToXml Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual SecurityElement ToXml();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the XML encoding of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="SecurityElement.html" TARGET="contents">SecurityElement</A> containing an XML encoding of the state of the
+   current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this method to return an
+      object containing the XML encoding for types derived from <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A>.]<P>
+
+<P>
+
+[<I>Usage</I>: This method is called by the
+      system.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet.Union Method"><H3>PermissionSet.Union Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual PermissionSet Union(PermissionSet other);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> object that is the union of the current instance and
+   the specified object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>other</DT>
+<DD>A <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> instance to be combined with the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A new <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> instance that represents the
+   union of the current instance and <I>other</I>. If the current
+   instance or <I>other</I> is unrestricted, returns a <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A>
+   instance that is unrestricted.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The result of a call to System.Security.PermissionSet.Union(System.Security.PermissionSet)<CODE> </CODE>
+is a new <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A>
+instance that represents all the operations represented by the current instance
+as well as all the operations represented by <I>other</I> . If either set is
+unrestricted, the union is unrestricted, as well.<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to
+   create a <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> instance that contains all of the permissions
+   of the current instance and <I> other</I> .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet.Count Property"><H3>PermissionSet.Count Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>int ICollection.Count { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="../../System/Collections/ICollection.html" TARGET="contents">ICollection</A> interface. [Note: For more information, see System.Collections.ICollection.Count.]
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet.IsSynchronized Property"><H3>PermissionSet.IsSynchronized Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool ICollection.IsSynchronized { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="../../System/Collections/ICollection.html" TARGET="contents">ICollection</A> interface. [Note: For more information, see System.Collections.ICollection.IsSynchronized.]
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PermissionSet.SyncRoot Property"><H3>PermissionSet.SyncRoot Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>object ICollection.SyncRoot { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="../../System/Collections/ICollection.html" TARGET="contents">ICollection</A> interface. [Note: For more information, see System.Collections.ICollection.SyncRoot.]
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>
