@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>RLS specification</title>
+</head>
+<body bgcolor="white">
+<center>
+DotGNU<br>
+Resource Locator String specification<br>
+<br>
+By:<br>
+<br>
+Enzo-Adrian Reyes<br>
+Barry Fitzgerald<br>
+</center>
+<br>
+<br>
+<br>
+<br>
+<h1><u>Introduction:</u></h1>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The idea behind a RLS (Resource Locator String) is the easy identification, and passing of information from peer to peer. It can also be used by end users to locate remote services provided by DotGNU. A RLS can be used to point to any DotGNU, this forces the RLS to be generic in format and also extendable for the individual service. Hence each service may expect a different RLS input, it is up to the individual service to interpret it's RLS tokens and data.</p
+<br>
+<br>
+<br>
+<br>
+<h1><u>Format:</u></h1>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The format of an RLS contains two non-optional fields, these fields are separated using the ':' character. As an extension to these non-optional fields, RLS's have two extra fields which are optional. The format of an RLS is as follows:</p>
+<p><blockquote><code>[User name@]&lt;DotGNU Server&gt;:&lt;DotGNU Service&gt;:[Tokens]</code></blockquote></p>
+<p>The optional fields are in square brackets, while the non-optional fields are in nested in <code>"&lt;&gt;" </code>brackets.</p>
+<br>
+<br>
+<p><strong>Non-optional Fields:</strong><p>
+<br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The first non-optional field is the <code>"&lt;DotGNU server&gt;"</code> field. This field tells a machine the IP/DNS of the server to locate the service. The second field is the <code>"&lt;DotGNU Service&gt;"</code> field and contains a string which is passed to the server, contained in the server field, to open the named service.  Some examples: </p>
+<blockquote>
+(1) dotgnu.org:cvs<br>
+(2) dotgnu.org:maillists<br>
+(3) gnu.org:tbbs
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The first example opens the dotgnu.org server and asks for it's cvs service. The second example also opens the same server and ask's to use the mail-list service. The third opens gnu.org and asks for the tbbs service.  In essence it's a DNS address instead of opening a port (format &lt;ip&gt;:&lt;port&gt;) it asks for that servers service specified in the second field.</p>
+<br>
+<br>
+<p><strong>Optional fields:</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The optional fields contain information which is of no use to the DotGNU server, but rather to the service it provides.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The first optional field is the user-name field. Now this field is used for the authentication mechanism in DotGNU.  Examples include:</p> 
+<blockquote>
+(1) myrddian@dotgnu.org:authentication<br>
+(2) fitzix@dotgnu.org:authentication<br>
+(3) nb@dotgnu.org:auth<br>
+(4) myrddian@dotgnu.org:cvs<br>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;So, here in these examples, all use the authentication service (different names can be used but convention should be followed). So it tells us, that user myrddian is seeking authentication from server dotgnu.org. Another less obvious example is that of self authentication. In number four, user myrddian wants to use the CVS service but CVS may ask for authentication, however the authentication data is on the local server, so it will self verify.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The second optional field is the tokens field, now tokens can contain any data, be it a pointer back to another object or a string. The format of  tokens on how their data is represented is not enforced, the DotGNU server will not enforce token data.  The only exception to this rule is separation of Token data, and or nesting of token data. These are the only two rules enforced by the primary DotGNU server, everything else and the data the tokens contains has to be enforced by the individual service.<p>
+</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tokens are separated using the ',' character, so &lt;token 1&gt;,&lt;token2&gt; can be recognized separately. If a string may contain  the comma separator it is recommended that it be nested within " " as this prevents premature separation.</p>
+<p><strong>Token examples:</strong></p>
+<blockquote>
+             (1) dotgnu.org:spell:"I wnt to chke my, speeling"<br>
+             (2) dotgnu.org:cvs: checkout, checkin<br>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the first a string is passed and contains the comma character but it's nested inside quotes hence it's ignored.  This also applies to strings containing the ':' character, they must be contained within quotes.  In the second example two cvs commands are passed via the tokens and are separated using the comma character.</p>
+<br>
+<p><strong>Nested tokens:</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nested tokens have two ways to separate the data, one way is to have the entire nested data within square brackets, the other is to have an identifier before the square brackets.  Now, the first format might be useful to encase other RLS on to the same string, an example of this the first would contain the where the service the second where authentication can be found for the user requesting the service.  Tokens with an identifier may contain other data other than nested RLS's.  Examples include:</p>
+<blockquote>
+(1) dotgnu.org:cvs:[myrddian@someisp.com:authentication]<br>
+(2) dotgnu.org:im:msg["hey","what"]<br>
+(3) dotgnu.org:cvs:[myrddian@someisp.com:auth],cmd[checkout[.], checkin]<br>
+</blockquote>
+Number 1 uses another RLS to check authentication for the CVS service.<br>
+Number 2 uses a named nested token and it has two extra fields inside.<br>
+Number 3 has both separation and nesting examples.<br>
+<br>
+<br>
+<br>
+<br>
+<h1><u>Conclusion</u></h1>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;With the optional nesting fields, RLS's can point to any data. Their simplification has lead to better versatility.  Because the tokens can point to any data, the data pointed to can be encrypted. While the RLS string it self may be transported over a secure encrypted protocol to provide better security. Tokens can also contain nested encryption keys, thus allowing even better security.</p>
+</body></HTML>
