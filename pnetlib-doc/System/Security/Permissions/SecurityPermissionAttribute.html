@@ -1,0 +1,228 @@
+<HTML>
+<HEAD>
+<TITLE>System.Security.Permissions.SecurityPermissionAttribute Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Security.Permissions.SecurityPermissionAttribute Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class SecurityPermissionAttribute : CodeAccessSecurityAttribute</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../../System/Attribute.html" TARGET="contents">Attribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="SecurityAttribute.html" TARGET="contents">SecurityAttribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="CodeAccessSecurityAttribute.html" TARGET="contents">CodeAccessSecurityAttribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SecurityPermissionAttribute<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Used to apply a security action and a set of
+      security permissions to program code.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The security permissions are defined in the <A HREF="SecurityPermissionFlag.html" TARGET="contents">SecurityPermissionFlag</A> enumeration and are specified using
+      the System.Security.Permissions.SecurityPermissionAttribute.Flags property. <P>
+
+ The security information declared by a
+      security attribute is stored in the metadata of the attribute target, and is accessed by
+      the system at run-time. Security attributes are used for
+      declarative security only. For imperative security, use the corresponding
+      permission class, <A HREF="SecurityPermission.html" TARGET="contents">SecurityPermission</A>.<P>
+
+The allowable <A HREF="SecurityPermissionAttribute.html" TARGET="contents">SecurityPermissionAttribute</A> targets are
+   determined by the <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> passed to the constructor.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ In the following example, the attribute target is
+      an assembly. The attribute declares that the
+      ability to assert permissions
+      on behalf of callers is the minimum permission required for the assembly to execute.<P>
+
+<CODE>[assembly:SecurityPermissionAttribute(SecurityAction.RequestMinimum, Assertion=true)]
+   </CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>AttributeUsageAttribute(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Constructor | AttributeTargets.Method, AllowMultiple=true, Inherited=false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+SecurityPermissionAttribute Constructors<P>
+
+<A HREF="#SecurityPermissionAttribute Constructor" TARGET="contents">SecurityPermissionAttribute Constructor</A><BR>
+<P>
+
+SecurityPermissionAttribute Methods<P>
+
+<A HREF="#SecurityPermissionAttribute.CreatePermission Method" TARGET="contents">SecurityPermissionAttribute.CreatePermission Method</A><BR>
+<P>
+
+SecurityPermissionAttribute Properties<P>
+
+<A HREF="#SecurityPermissionAttribute.Flags Property" TARGET="contents">SecurityPermissionAttribute.Flags Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="SecurityPermissionAttribute Constructor"><H3>SecurityPermissionAttribute Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public SecurityPermissionAttribute(SecurityAction action);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="SecurityPermissionAttribute.html" TARGET="contents">SecurityPermissionAttribute</A> class
+ with the specified <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>action</DT>
+<DD> A <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> value.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>action</I> is not a valid <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> value. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityPermissionAttribute.html" TARGET="contents">System.Security.Permissions.SecurityPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SecurityPermissionAttribute.CreatePermission Method"><H3>SecurityPermissionAttribute.CreatePermission Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IPermission CreatePermission();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a new <A HREF="SecurityPermission.html" TARGET="contents">SecurityPermission</A> object
+   that contains the security information of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="SecurityPermission.html" TARGET="contents">SecurityPermission</A> object
+   with the security information of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Applications typically do not call this method; it is intended for use by the
+         system.<P>
+
+The security information declared by a security attribute is stored in the
+         metadata of the attribute target, and is accessed by the system at run-time. The
+         system uses the object returned by this method to convert the security
+         information of the current instance into the form stored in metadata.<P>
+
+This method overrides System.Security.Permissions.SecurityAttribute.CreatePermission.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityPermissionAttribute.html" TARGET="contents">System.Security.Permissions.SecurityPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SecurityPermissionAttribute.Flags Property"><H3>SecurityPermissionAttribute.Flags Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public SecurityPermissionFlag Flags { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets values that define the
+ permissions declared by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ One or more <A HREF="SecurityPermissionFlag.html" TARGET="contents">SecurityPermissionFlag</A> values.
+ To specify multiple values in a set operation,
+ use the bitwise OR operator.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityPermissionAttribute.html" TARGET="contents">System.Security.Permissions.SecurityPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

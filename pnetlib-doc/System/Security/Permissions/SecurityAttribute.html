@@ -1,0 +1,228 @@
+<HTML>
+<HEAD>
+<TITLE>System.Security.Permissions.SecurityAttribute Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Security.Permissions.SecurityAttribute Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class SecurityAttribute : Attribute</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../../System/Attribute.html" TARGET="contents">Attribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;SecurityAttribute<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ This is the base class for attributes used by the
+ security system.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>AttributeUsageAttribute(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Constructor | AttributeTargets.Method, AllowMultiple=true, Inherited=false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+SecurityAttribute Constructors<P>
+
+<A HREF="#SecurityAttribute() Constructor" TARGET="contents">SecurityAttribute() Constructor</A><BR>
+<A HREF="#SecurityAttribute(System.Security.Permissions.SecurityAction) Constructor" TARGET="contents">SecurityAttribute(System.Security.Permissions.SecurityAction) Constructor</A><BR>
+<P>
+
+SecurityAttribute Methods<P>
+
+<A HREF="#SecurityAttribute.CreatePermission Method" TARGET="contents">SecurityAttribute.CreatePermission Method</A><BR>
+<P>
+
+SecurityAttribute Properties<P>
+
+<A HREF="#SecurityAttribute.Unrestricted Property" TARGET="contents">SecurityAttribute.Unrestricted Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="SecurityAttribute() Constructor"><H3>SecurityAttribute() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected SecurityAttribute();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new instance of the <A HREF="SecurityAttribute.html" TARGET="contents">SecurityAttribute</A> class.
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityAttribute.html" TARGET="contents">System.Security.Permissions.SecurityAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SecurityAttribute(System.Security.Permissions.SecurityAction) Constructor"><H3>SecurityAttribute(System.Security.Permissions.SecurityAction) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public SecurityAttribute(SecurityAction action);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of <A HREF="SecurityAttribute.html" TARGET="contents">SecurityAttribute</A>
+with the specified <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>action</DT>
+<DD>A <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> value.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>action</I> is not a valid <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> value. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityAttribute.html" TARGET="contents">System.Security.Permissions.SecurityAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SecurityAttribute.CreatePermission Method"><H3>SecurityAttribute.CreatePermission Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract IPermission CreatePermission();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="../../../System/Security/IPermission.html" TARGET="contents">IPermission</A> object that contains the security information of the
+   current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../../System/Security/IPermission.html" TARGET="contents">IPermission</A> object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: Returns an instance of
+      the permission type that corresponds to the current attribute. The
+      returned object contains the security information of the current attribute.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this
+      method to create an instance of the permission type that corresponds to the
+      current attribute. For example, the <CODE>CreatePermission</CODE>
+
+      implementation of <A HREF="SecurityPermissionAttribute.html" TARGET="contents">SecurityPermissionAttribute</A> creates an instance of the
+   <A HREF="SecurityPermission.html" TARGET="contents">SecurityPermission</A>
+   class.]<P>
+
+<P>
+
+[<I>Usage</I>:  Security information specified
+      using attributes is stored in metadata. The security information in the metadata is created using the permission object returned by
+      this method.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityAttribute.html" TARGET="contents">System.Security.Permissions.SecurityAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SecurityAttribute.Unrestricted Property"><H3>SecurityAttribute.Unrestricted Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool Unrestricted { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets
+      full (unrestricted) permission to the resource protected by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if full access
+   to the protected resource
+   is declared or is being set; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityAttribute.html" TARGET="contents">System.Security.Permissions.SecurityAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,486 @@
+<HTML>
+<HEAD>
+<TITLE>System.Security.Permissions.FileIOPermissionAttribute Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Security.Permissions.FileIOPermissionAttribute Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class FileIOPermissionAttribute : CodeAccessSecurityAttribute</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../../System/Attribute.html" TARGET="contents">Attribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="SecurityAttribute.html" TARGET="contents">SecurityAttribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="CodeAccessSecurityAttribute.html" TARGET="contents">CodeAccessSecurityAttribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FileIOPermissionAttribute<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Used to declaratively specify security actions to control
+      access to files and directories.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  The level of access to a file or directory is specified using the members of the
+         current instance. For example, to specify read permissions for a file, set the
+      System.Security.Permissions.FileIOPermissionAttribute.Read property
+         equal to the name of the file.<P>
+
+ The security information declared by a
+         security attribute is stored in the metadata of the attribute target, and is accessed by
+         the system at run-time. Security attributes are used for
+         declarative security only. For imperative security, use the corresponding
+         permission class, <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A>.<P>
+
+The allowable <A HREF="FileIOPermissionAttribute.html" TARGET="contents">FileIOPermissionAttribute</A> targets are
+      determined by the <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> passed to the constructor.<P>
+
+]<P>
+
+Case-sensitivity of file and directory names is
+   platform dependent. The set of characters that are valid for use in file and
+   directory names is determined by the current file system.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example shows a declarative request for full access to the
+      specified file. The System.Security.Permissions.SecurityAction.RequestMinimum security action
+      indicates that this is the minimum permission required for the target assembly
+      to be able to execute.<P>
+
+<CODE>[assembly:FileIOPermissionAttribute(SecurityAction.RequestMinimum, All=&quot;\\example\\sample.txt&quot;)]
+   </CODE><P>
+
+The following example shows how to demand that the
+      calling code has unrestricted access to files and directories. Demands are
+      typically made to protect methods or classes from malicious code. <P>
+
+<CODE>[FileIOPermissionAttribute(SecurityAction.Demand, Unrestricted=true)]</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>AttributeUsageAttribute(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Constructor | AttributeTargets.Method, AllowMultiple=true, Inherited=false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+FileIOPermissionAttribute Constructors<P>
+
+<A HREF="#FileIOPermissionAttribute Constructor" TARGET="contents">FileIOPermissionAttribute Constructor</A><BR>
+<P>
+
+FileIOPermissionAttribute Methods<P>
+
+<A HREF="#FileIOPermissionAttribute.CreatePermission Method" TARGET="contents">FileIOPermissionAttribute.CreatePermission Method</A><BR>
+<P>
+
+FileIOPermissionAttribute Properties<P>
+
+<A HREF="#FileIOPermissionAttribute.All Property" TARGET="contents">FileIOPermissionAttribute.All Property</A><BR>
+<A HREF="#FileIOPermissionAttribute.Append Property" TARGET="contents">FileIOPermissionAttribute.Append Property</A><BR>
+<A HREF="#FileIOPermissionAttribute.PathDiscovery Property" TARGET="contents">FileIOPermissionAttribute.PathDiscovery Property</A><BR>
+<A HREF="#FileIOPermissionAttribute.Read Property" TARGET="contents">FileIOPermissionAttribute.Read Property</A><BR>
+<A HREF="#FileIOPermissionAttribute.Write Property" TARGET="contents">FileIOPermissionAttribute.Write Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="FileIOPermissionAttribute Constructor"><H3>FileIOPermissionAttribute Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public FileIOPermissionAttribute(SecurityAction action);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="FileIOPermissionAttribute.html" TARGET="contents">FileIOPermissionAttribute</A> class
+ with the specified <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>action</DT>
+<DD>A <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> value.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>action</I> is not a valid <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> value. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileIOPermissionAttribute.html" TARGET="contents">System.Security.Permissions.FileIOPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileIOPermissionAttribute.CreatePermission Method"><H3>FileIOPermissionAttribute.CreatePermission Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IPermission CreatePermission();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a new <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> that contains the security
+   information of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> object with the security
+   information of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Applications typically do not call this method; it is intended for use by the
+         system.<P>
+
+The security information declared by a security attribute is stored in the
+         metadata of the attribute target, and is accessed by the system at run-time. The
+         system uses the object returned by this method to convert the security
+         information of the current instance into the form stored in metadata.<P>
+
+This method overrides System.Security.Permissions.SecurityAttribute.CreatePermission.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileIOPermissionAttribute.html" TARGET="contents">System.Security.Permissions.FileIOPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileIOPermissionAttribute.All Property"><H3>FileIOPermissionAttribute.All Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string All { set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Sets the name of a file or directory for which full access is
+      secured.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../../System/String.html" TARGET="contents">String</A> containing
+   the absolute path of the file or directory for which full access is secured.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The path information specified for a set operation contains invalid characters or wild card specifiers.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is write-only.<P>
+
+[<I>Note</I>: This property sets
+      full access for a single file or directory; use additional
+   <A HREF="FileIOPermissionAttribute.html" TARGET="contents">FileIOPermissionAttribute</A>
+   attributes to specify additional files
+   and directories.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileIOPermissionAttribute.html" TARGET="contents">System.Security.Permissions.FileIOPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileIOPermissionAttribute.Append Property"><H3>FileIOPermissionAttribute.Append Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Append { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the name of a file or directory for which append access is secured.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../../System/String.html" TARGET="contents">String</A> containing
+   the absolute path of the file or directory for which append access is secured.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The path information specified for a set operation contains invalid characters or wild card specifiers.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This property sets
+      append access for a single file or directory; use additional
+   <A HREF="FileIOPermissionAttribute.html" TARGET="contents">FileIOPermissionAttribute</A>
+   attributes to specify additional files
+   and directories.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileIOPermissionAttribute.html" TARGET="contents">System.Security.Permissions.FileIOPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileIOPermissionAttribute.PathDiscovery Property"><H3>FileIOPermissionAttribute.PathDiscovery Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string PathDiscovery { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the name of a file or directory for which path discovery
+      access is secured.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../../System/String.html" TARGET="contents">String</A> containing
+   the absolute path of the file or directory for which access to the
+   contents of the path is secured.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The path information specified for a set operation contains invalid characters or wild card specifiers.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  This property sets path discovery access for a single
+         file or directory; use additional <A HREF="FileIOPermissionAttribute.html" TARGET="contents">FileIOPermissionAttribute</A>
+         attributes to specify additional files and
+         directories.<P>
+
+Path discovery controls access to the information in the path itself. This
+         protects sensitive information in the path, such as user names, as well as
+         information about the directory structure revealed in the path. This value does
+         not secure access to files or folders represented by the path.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileIOPermissionAttribute.html" TARGET="contents">System.Security.Permissions.FileIOPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileIOPermissionAttribute.Read Property"><H3>FileIOPermissionAttribute.Read Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Read { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the name of a file or directory for which read access is
+      secured.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../../System/String.html" TARGET="contents">String</A> containing
+   the absolute path of the file or directory for which read access is secured.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The path information specified for a set operation contains invalid characters or wild card specifiers.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This property sets
+      read access for a single file or directory; use additional
+   <A HREF="FileIOPermissionAttribute.html" TARGET="contents">FileIOPermissionAttribute</A>
+   attributes to specify
+   additional files and directories.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileIOPermissionAttribute.html" TARGET="contents">System.Security.Permissions.FileIOPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileIOPermissionAttribute.Write Property"><H3>FileIOPermissionAttribute.Write Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Write { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the name of a
+      file or directory for which write access is secured.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../../System/String.html" TARGET="contents">String</A> containing
+   the absolute path of the file or directory for which write access is secured.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The path information specified for a set operation contains invalid characters or wild card specifiers.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This property sets
+      write access for a single file or directory; use additional <A HREF="FileIOPermissionAttribute.html" TARGET="contents">FileIOPermissionAttribute</A>
+      attributes to
+      specify additional files and directories.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileIOPermissionAttribute.html" TARGET="contents">System.Security.Permissions.FileIOPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

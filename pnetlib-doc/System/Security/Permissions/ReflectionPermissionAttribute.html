@@ -1,0 +1,247 @@
+<HTML>
+<HEAD>
+<TITLE>System.Security.Permissions.ReflectionPermissionAttribute Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Security.Permissions.ReflectionPermissionAttribute Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class ReflectionPermissionAttribute : CodeAccessSecurityAttribute</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../../System/Attribute.html" TARGET="contents">Attribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="SecurityAttribute.html" TARGET="contents">SecurityAttribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="CodeAccessSecurityAttribute.html" TARGET="contents">CodeAccessSecurityAttribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ReflectionPermissionAttribute<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Used to declaratively specify security actions to
+      control access to
+      non-public types using reflection.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The level of access to non-public types and members is specified using
+         the System.Security.Permissions.ReflectionPermissionAttribute.Flags property and the <A HREF="ReflectionPermissionFlag.html" TARGET="contents">ReflectionPermissionFlag</A> enumeration.<P>
+
+The security information declared by a security attribute is stored in the
+         metadata of the attribute target, and is accessed by the system at run-time.
+         Security attributes are used for declarative security only. For imperative
+         security, use the corresponding permission class, <A HREF="ReflectionPermission.html" TARGET="contents">ReflectionPermission</A>.<P>
+
+The allowable <A HREF="ReflectionPermissionAttribute.html" TARGET="contents">ReflectionPermissionAttribute</A> targets are
+      determined by the <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> passed to the
+      constructor.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example shows a declarative request for access to non-public
+      members of loaded assemblies. The System.Security.Permissions.SecurityAction.RequestMinimum
+      security action indicates that this is the minimum permission required for the
+      target assembly to be able to execute.<P>
+
+<CODE>[assembly:ReflectionPermissionAttribute(SecurityAction.RequestMinimum,
+      MemberAccess=true)]
+   </CODE><P>
+
+The following example shows how to demand that the calling code has
+      unrestricted access to non-public types. Demands are typically made to protect
+      methods or classes from malicious code. <P>
+
+<CODE>[ReflectionPermissionAttribute(SecurityAction.Demand, Unrestricted=true)]
+   </CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>AttributeUsageAttribute(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Constructor | AttributeTargets.Method, AllowMultiple=true, Inherited=false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ReflectionPermissionAttribute Constructors<P>
+
+<A HREF="#ReflectionPermissionAttribute Constructor" TARGET="contents">ReflectionPermissionAttribute Constructor</A><BR>
+<P>
+
+ReflectionPermissionAttribute Methods<P>
+
+<A HREF="#ReflectionPermissionAttribute.CreatePermission Method" TARGET="contents">ReflectionPermissionAttribute.CreatePermission Method</A><BR>
+<P>
+
+ReflectionPermissionAttribute Properties<P>
+
+<A HREF="#ReflectionPermissionAttribute.Flags Property" TARGET="contents">ReflectionPermissionAttribute.Flags Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ReflectionPermissionAttribute Constructor"><H3>ReflectionPermissionAttribute Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ReflectionPermissionAttribute(SecurityAction action);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ReflectionPermissionAttribute.html" TARGET="contents">ReflectionPermissionAttribute</A> class
+   with the specified <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>action</DT>
+<DD>A <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> value.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>action</I> is not a valid <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> value. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ReflectionPermissionAttribute.html" TARGET="contents">System.Security.Permissions.ReflectionPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ReflectionPermissionAttribute.CreatePermission Method"><H3>ReflectionPermissionAttribute.CreatePermission Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IPermission CreatePermission();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a new <A HREF="ReflectionPermission.html" TARGET="contents">ReflectionPermission</A> that contains the
+   security information of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="ReflectionPermission.html" TARGET="contents">ReflectionPermission</A> object with the 
+   security information of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Applications typically do not call this method; it is 
+         intended for use by the system.<P>
+
+The security information described by a security 
+         attribute is stored in the metadata of the attribute target, and is accessed by
+         the system at run-time. The system uses the object returned by this method to
+         convert the security information of the current instance into the form stored in
+         metadata.<P>
+
+This method overrides System.Security.Permissions.SecurityAttribute.CreatePermission.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ReflectionPermissionAttribute.html" TARGET="contents">System.Security.Permissions.ReflectionPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ReflectionPermissionAttribute.Flags Property"><H3>ReflectionPermissionAttribute.Flags Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ReflectionPermissionFlag Flags { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets levels of access to non-public types using reflection.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ One or more of the <A HREF="ReflectionPermissionFlag.html" TARGET="contents">ReflectionPermissionFlag</A> values. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: To specify multiple
+   <A HREF="ReflectionPermissionFlag.html" TARGET="contents">ReflectionPermissionFlag</A> values for a set operation,
+      use the bitwise OR operator.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ReflectionPermissionAttribute.html" TARGET="contents">System.Security.Permissions.ReflectionPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

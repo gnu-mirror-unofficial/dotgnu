@@ -1,0 +1,721 @@
+<HTML>
+<HEAD>
+<TITLE>System.Security.Permissions.FileIOPermission Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Security.Permissions.FileIOPermission Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class FileIOPermission : CodeAccessPermission</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../../System/Security/CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;FileIOPermission<P>
+
+This type implements <A HREF="../../../System/Security/IPermission.html" TARGET="contents">IPermission</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Secures access to files and directories.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> objects describe protected
+   operations on files and directories. Files and directories are specified using
+   absolute paths. Case-sensitivity of files and directories is platform
+   and file system dependent.<P>
+
+[<I>Note</I>:  This permission distinguishes between the following types of file I/O
+      access provided by <A HREF="FileIOPermissionAccess.html" TARGET="contents">FileIOPermissionAccess</A>:<P>
+
+<UL>
+<LI><CODE>Read</CODE>
+: Read 
+         access to the contents of the file or access to information about the file,
+         such as its length or last modification time.</LI>
+<LI><CODE>Write</CODE>
+: Write 
+         access to the contents of the file or access to change information about the
+         file, such as its name. Also allows for deletion and overwriting.</LI>
+<LI><CODE>Append</CODE>
+ : 
+         Ability to write to the end of a file only.</LI>
+<LI><CODE>PathDiscovery</CODE>
+: 
+         Ability to obtain path information about a file.</LI>
+<LI><CODE>NoAccess</CODE>
+: No 
+         access to the file or directory.</LI>
+<LI><CODE>AllAccess</CODE>
+: Full
+         access to the file or directory.</LI>
+</UL>
+ These access levels are independent, meaning that rights to one do not
+   imply rights to another. For example, <CODE>Write </CODE>
+permission does not
+   imply permission to <CODE>Read</CODE>
+ or <CODE>Append</CODE>
+. <A HREF="FileIOPermissionAccess.html" TARGET="contents">FileIOPermissionAccess</A>
+   
+   values can be combined using a bitwise OR operator.<P>
+
+For information on security considerations when accessing files, see <A HREF="../../../System/IO/FileStream.html" TARGET="contents">FileStream</A> .<P>
+
+]<P>
+
+The XML encoding of a <CODE>FileIOPermission </CODE>
+ instance is defined below
+   in EBNF format. The following conventions are used: <P>
+
+<UL>
+<LI> All non-literals in the grammar below are shown in normal type.<P>
+
+</LI>
+<LI> All literals are in bold font. <P>
+
+</LI>
+</UL>
+ The following meta-language symbols are used: <P>
+
+<UL>
+<LI>
+         &apos;*&apos; represents a meta-language symbol suffixing an
+         expression that can appear zero or more times.</LI>
+<LI>
+         &apos;?&apos; represents a meta-language symbol suffixing an
+         expression that can appear zero or one time.</LI>
+<LI>
+         &apos;+&apos; represents a meta-language symbol suffixing an
+         expression that can appear one or more times.</LI>
+<LI>
+         &apos;(&apos;,&apos;)&apos; is used to group literals, non-literals or a
+         mixture of literals and non-literals.</LI>
+<LI>
+         &apos;|&apos; denotes an exclusive disjunction between two
+         expressions.</LI>
+<LI>
+         &apos;::= &apos; denotes a production rule where a left hand
+         non-literal is replaced by a right hand expression containing literals,
+         non-literals or both.</LI>
+</UL>
+BuildVersion refers to the build version of the shipping CLI. This is
+   specified as a dotted build number such as &apos;2412.0&apos; . <P>
+
+ECMAPubKeyToken ::= <CODE>b77a5c561934e089</CODE>
+<P>
+
+ FileName refers to the full path and file name of a file, or to a path
+   name, such as &quot;<CODE>C:\Temp\test.exe</CODE>&quot; or &quot;<CODE>C:\</CODE>
+&quot;. <P>
+
+The XML encoding of a <CODE>FileIOPermission</CODE>
+ instance is as
+follows:<P>
+
+FileIOPermissionXML ::=
+   <P>
+
+<CODE><CODE>&lt;IPermission</CODE>
+<CODE>class=&quot;</CODE>
+</CODE><P>
+
+<CODE><CODE>System.Security.Permissions.FileIOPermission,</CODE>
+</CODE><P>
+
+<CODE><CODE>mscorlib, </CODE>
+</CODE><P>
+
+<CODE><CODE>Version=1.0.</CODE>
+BuildVersion<CODE>,</CODE>
+</CODE><P>
+
+<CODE><CODE>Culture=neutral,</CODE>
+</CODE><P>
+
+<CODE><CODE>PublicKeyToken=</CODE>
+ECMAPubKeyToken<CODE>&quot;</CODE>
+</CODE><P>
+
+<CODE><CODE>version=&quot;1&quot; </CODE>
+</CODE><P>
+
+<CODE>( </CODE><P>
+
+<CODE><CODE>Unrestricted=&quot;true&quot;</CODE>
+</CODE><P>
+
+<CODE>) </CODE><P>
+
+<CODE>| </CODE><P>
+
+<CODE>( </CODE><P>
+
+<CODE>(<CODE>Read=&quot;</CODE>
+FileName (<CODE>;</CODE>
+ FileName )*<CODE>&quot;</CODE>
+ ) ? </CODE><P>
+
+<CODE>(<CODE>Write=&quot;</CODE>
+FileName (<CODE>;</CODE>
+ FileName )*<CODE>&quot;</CODE>
+ ) ? </CODE><P>
+
+<CODE>(<CODE>Append=&quot;</CODE>
+FileName (<CODE>;</CODE>
+ FileName )*<CODE>&quot;</CODE>
+ ) ? </CODE><P>
+
+<CODE>(<CODE>PathDiscovery=&quot;</CODE>
+FileName (<CODE>;</CODE>
+ FileName )*<CODE>&quot;</CODE>
+ ) ? </CODE><P>
+
+<CODE>) </CODE><P>
+
+<CODE><CODE>/&gt;</CODE>
+</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+FileIOPermission Constructors<P>
+
+<A HREF="#FileIOPermission(System.Security.Permissions.PermissionState) Constructor" TARGET="contents">FileIOPermission(System.Security.Permissions.PermissionState) Constructor</A><BR>
+<A HREF="#FileIOPermission(System.Security.Permissions.FileIOPermissionAccess, System.String) Constructor" TARGET="contents">FileIOPermission(System.Security.Permissions.FileIOPermissionAccess, System.String) Constructor</A><BR>
+<P>
+
+FileIOPermission Methods<P>
+
+<A HREF="#FileIOPermission.Copy Method" TARGET="contents">FileIOPermission.Copy Method</A><BR>
+<A HREF="#FileIOPermission.FromXml Method" TARGET="contents">FileIOPermission.FromXml Method</A><BR>
+<A HREF="#FileIOPermission.Intersect Method" TARGET="contents">FileIOPermission.Intersect Method</A><BR>
+<A HREF="#FileIOPermission.IsSubsetOf Method" TARGET="contents">FileIOPermission.IsSubsetOf Method</A><BR>
+<A HREF="#FileIOPermission.ToXml Method" TARGET="contents">FileIOPermission.ToXml Method</A><BR>
+<A HREF="#FileIOPermission.Union Method" TARGET="contents">FileIOPermission.Union Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="FileIOPermission(System.Security.Permissions.PermissionState) Constructor"><H3>FileIOPermission(System.Security.Permissions.PermissionState) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public FileIOPermission(PermissionState state);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> class
+   with the specified <A HREF="PermissionState.html" TARGET="contents">PermissionState</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>state</DT>
+<DD>A <A HREF="PermissionState.html" TARGET="contents">PermissionState</A> value.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>state</I> is not a valid <A HREF="PermissionState.html" TARGET="contents">PermissionState</A> value.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This constructor creates either fully restricted
+         (System.Security.Permissions.PermissionState.None) or
+         System.Security.Permissions.PermissionState.Unrestricted access to files and directories.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileIOPermission.html" TARGET="contents">System.Security.Permissions.FileIOPermission Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileIOPermission(System.Security.Permissions.FileIOPermissionAccess, System.String) Constructor"><H3>FileIOPermission(System.Security.Permissions.FileIOPermissionAccess, System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public FileIOPermission(FileIOPermissionAccess access, string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> class with the specified access
+ to the specified file or directory.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>access</DT>
+<DD>One or more values defined in <A HREF="FileIOPermissionAccess.html" TARGET="contents">FileIOPermissionAccess</A>. Specify multiple values using the bitwise OR operator.</DD>
+<DT>path</DT>
+<DD>The absolute path of the file or directory.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>access</I> specifies values not defined in <A HREF="FileIOPermissionAccess.html" TARGET="contents">FileIOPermissionAccess</A>. <P>
+
+<I>path</I> contains one or more characters that are invalid for use in files or directory names. <P>
+
+<I>path</I> did not specify the absolute path to the file or directory. <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The set of characters that are invalid for use 
+ in file or directory names is platform specific.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileIOPermission.html" TARGET="contents">System.Security.Permissions.FileIOPermission Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileIOPermission.Copy Method"><H3>FileIOPermission.Copy Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IPermission Copy();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a new <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> object
+   containing the same values as the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> containing the
+   same values as the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The object returned by this method represents the same level of access
+         to files and directories as the current instance.<P>
+
+This method overrides System.Security.CodeAccessPermission.Copy and is implemented to
+      support the <A HREF="../../../System/Security/IPermission.html" TARGET="contents">IPermission</A> interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileIOPermission.html" TARGET="contents">System.Security.Permissions.FileIOPermission Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileIOPermission.FromXml Method"><H3>FileIOPermission.FromXml Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void FromXml(SecurityElement esd);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reconstructs the state of a <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> object using the specified XML
+ encoding.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>esd</DT>
+<DD>A <A HREF="../../../System/Security/SecurityElement.html" TARGET="contents">SecurityElement</A> instance containing the XML encoding to use to reconstruct the state of a <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> object.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>esd</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>esd</I> does not contain the encoding for a <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> instance.<P>
+
+The version number of <I>esd</I> is not valid.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The state of the current instance is changed to the
+ state encoded in <I>esd</I>.<P>
+
+[<I>Note</I>:  For the XML encoding for this class, see the <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> class
+ page.<P>
+
+This method overrides System.Security.CodeAccessPermission.FromXml(System.Security.SecurityElement).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileIOPermission.html" TARGET="contents">System.Security.Permissions.FileIOPermission Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileIOPermission.Intersect Method"><H3>FileIOPermission.Intersect Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IPermission Intersect(IPermission target);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a new <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> object that is the intersection of
+ the current instance and the specified object. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>target</DT>
+<DD>A <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> instance to intersect with the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> instance that
+ represents the intersection of the current instance and <I>target</I>. If the intersection is empty or <I>target</I>
+ is <CODE>null</CODE>
+, returns <CODE>null</CODE>
+. If the current instance is unrestricted, returns a copy of <I>target</I>. If
+<I>target</I> is unrestricted, returns a copy of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>target</I> is not <CODE>null</CODE>
+ and is not of type <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  The intersection of two permissions is a permission that secures the
+ resources and operations secured by both permissions. Specifically, it represents the minimum
+ permission such that any demand that passes both permissions will also pass
+ their intersection.<P>
+
+This method overrides System.Security.CodeAccessPermission.Intersect(System.Security.IPermission) and is implemented to
+ support the <A HREF="../../../System/Security/IPermission.html" TARGET="contents">IPermission</A>
+ interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileIOPermission.html" TARGET="contents">System.Security.Permissions.FileIOPermission Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileIOPermission.IsSubsetOf Method"><H3>FileIOPermission.IsSubsetOf Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool IsSubsetOf(IPermission target);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance is a subset of the specified
+ object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>target</DT>
+<DD>A <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> instance that is to be tested for the subset relationship.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the
+ current instance is a subset of <I>target</I>
+ ; otherwise,<CODE> false</CODE>
+. If the current instance is unrestricted, and <I>target</I> is
+ not, returns <CODE>false</CODE>
+. If <I>target</I> is
+ unrestricted, returns <CODE>true</CODE>
+. If
+<I>target</I> is <CODE>null</CODE>
+ and no files or directories are secured 
+ by the current instance, returns <CODE>true</CODE>
+. If target is
+<CODE>null</CODE>
+, and the current instance secures one or more files or 
+ directories, returns <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>target</I> is not <CODE>null</CODE>
+ and is not of type <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The current instance is a subset of <I>target</I> if the current instance
+ specifies a set of accesses to resources that is wholly contained by
+ <I>target</I>. For example, a permission that represents read access to a file
+ is a subset of a permission that represents read and write access to the file. <P>
+
+If this method returns <CODE>true</CODE>
+ , the current instance
+ describes a level of access to files and directories that is also described by
+<I>target</I>.<P>
+
+This method overrides System.Security.CodeAccessPermission.IsSubsetOf(System.Security.IPermission) and is implemented to
+support the <A HREF="../../../System/Security/IPermission.html" TARGET="contents">IPermission</A> interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileIOPermission.html" TARGET="contents">System.Security.Permissions.FileIOPermission Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileIOPermission.ToXml Method"><H3>FileIOPermission.ToXml Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override SecurityElement ToXml();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the XML encoding of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../../System/Security/SecurityElement.html" TARGET="contents">SecurityElement</A> containing the XML encoding of the state of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: For the XML encoding for this class, see the <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> class
+ page.<P>
+
+This method overrides System.Security.CodeAccessPermission.ToXml .<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileIOPermission.html" TARGET="contents">System.Security.Permissions.FileIOPermission Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileIOPermission.Union Method"><H3>FileIOPermission.Union Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IPermission Union(IPermission other);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a new <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> that is the union of the
+ current instance and the specified object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>other</DT>
+<DD>A <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> instance to combine with the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> instance that represents the union
+ of the current instance and <I>other</I> . If the current
+ instance or <I>other </I> is unrestricted, returns a
+<A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> 
+instance that is unrestricted. If <I>other</I> is <CODE>null</CODE>
+,
+returns a copy of the current instance via the System.Security.IPermission.Copy method.
+If the current instance and <I>other</I> do not specify any file or
+directory names, returns <CODE>null</CODE>
+
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>other </I> is not <CODE>null</CODE>
+ and is not of type <A HREF="FileIOPermission.html" TARGET="contents">FileIOPermission</A> .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The result of a call to System.Security.Permissions.FileIOPermission.Union(System.Security.IPermission) is a permission
+ that represents all of
+ the access to files and directories represented
+ by the current instance as well as the access to files and
+ directories represented by <I>other</I>. Any demand that passes either the current
+ instance or <I>other</I> passes their union.<P>
+
+ This method overrides System.Security.CodeAccessPermission.Union(System.Security.IPermission) and is implemented to
+ support the <A HREF="../../../System/Security/IPermission.html" TARGET="contents">IPermission</A>
+ interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileIOPermission.html" TARGET="contents">System.Security.Permissions.FileIOPermission Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

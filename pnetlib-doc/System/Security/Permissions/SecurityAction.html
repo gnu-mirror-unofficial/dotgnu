@@ -1,0 +1,368 @@
+<HTML>
+<HEAD>
+<TITLE>System.Security.Permissions.SecurityAction Enum</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Security.Permissions.SecurityAction Enum</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public enum SecurityAction</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../../System/ValueType.html" TARGET="contents">ValueType</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../../System/Enum.html" TARGET="contents">Enum</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SecurityAction<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Specifies security actions that can be performed using declarative security.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: For information about using declarative security
+      and security actions, see Partition II of the CLI Specification.]<P>
+
+<P>
+
+[<I>Note</I>: Declarative security is specified using types derived
+         from <A HREF="SecurityAttribute.html" TARGET="contents">SecurityAttribute</A>. The following table describes the attribute targets supported by each of the
+         security actions.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Attribute Targets</TH><TH>Security actionAttribute Targets</TH></TR>
+<TR><TD>Class, Method</TD><TD> AssertClass, Method</TD></TR>
+<TR><TD>Class, Method</TD><TD> DemandClass, Method</TD></TR>
+<TR><TD>Class, Method</TD><TD> DenyClass, Method</TD></TR>
+<TR><TD>Class, Method</TD><TD> InheritanceDemandClass, Method</TD></TR>
+<TR><TD>Class, Method</TD><TD> LinkDemandClass, Method</TD></TR>
+<TR><TD>Class, Method</TD><TD> PermitOnlyClass, Method</TD></TR>
+<TR><TD>Assembly</TD><TD> RequestMinimumAssembly</TD></TR>
+<TR><TD>Assembly</TD><TD> RequestOptionalAssembly</TD></TR>
+<TR><TD>Assembly</TD><TD> RequestRefuseAssembly</TD></TR>
+</TABLE>
+ For additional information on attribute targets, see <A HREF="../../../System/Attribute.html" TARGET="contents">Attribute</A>.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+SecurityAction Fields<P>
+
+<A HREF="#SecurityAction.Assert Field" TARGET="contents">SecurityAction.Assert Field</A><BR>
+<A HREF="#SecurityAction.Demand Field" TARGET="contents">SecurityAction.Demand Field</A><BR>
+<A HREF="#SecurityAction.Deny Field" TARGET="contents">SecurityAction.Deny Field</A><BR>
+<A HREF="#SecurityAction.InheritanceDemand Field" TARGET="contents">SecurityAction.InheritanceDemand Field</A><BR>
+<A HREF="#SecurityAction.LinkDemand Field" TARGET="contents">SecurityAction.LinkDemand Field</A><BR>
+<A HREF="#SecurityAction.PermitOnly Field" TARGET="contents">SecurityAction.PermitOnly Field</A><BR>
+<A HREF="#SecurityAction.RequestMinimum Field" TARGET="contents">SecurityAction.RequestMinimum Field</A><BR>
+<A HREF="#SecurityAction.RequestOptional Field" TARGET="contents">SecurityAction.RequestOptional Field</A><BR>
+<A HREF="#SecurityAction.RequestRefuse Field" TARGET="contents">SecurityAction.RequestRefuse Field</A><BR>
+<A HREF="#SecurityAction.value__ Field" TARGET="contents">SecurityAction.value__ Field</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="SecurityAction.Assert Field"><H3>SecurityAction.Assert Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Assert = 3;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Specifies that callers of the code performing the assert
+ need not have the permissions specified by the current security attribute, and
+ that a check for any such permission can stop after the code that asserted it.
+ [<I>Note</I>: An assert can change the default behavior of a security check (such as
+ that caused by a Demand, LinkDemand, etc.).]<P>
+
+<P>
+
+This action can be applied to classes and methods.<P>
+
+[<I>Note</I>: This action should only be used by code that can
+ assure that its callers cannot manipulate it to abuse the asserted
+ permission.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityAction.html" TARGET="contents">System.Security.Permissions.SecurityAction Enum</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SecurityAction.Demand Field"><H3>SecurityAction.Demand Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Demand = 2;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Specified that all callers are required
+      to have the permissions specified by the current security attribute.<P>
+
+This action can be applied to classes and methods.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityAction.html" TARGET="contents">System.Security.Permissions.SecurityAction Enum</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SecurityAction.Deny Field"><H3>SecurityAction.Deny Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Deny = 4;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Specifies that access to the resource or
+ operation described by the current security attribute be denied to callers, even if they
+ have been granted permission to access it. [<I>Note</I>: System.Security.Permissions.SecurityAction.Deny
+ causes a security check
+ for the permissions specified by the current security attribute to fail even when
+ it would otherwise succeed.]<P>
+
+<P>
+
+This action can be applied to classes and methods.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityAction.html" TARGET="contents">System.Security.Permissions.SecurityAction Enum</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SecurityAction.InheritanceDemand Field"><H3>SecurityAction.InheritanceDemand Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>InheritanceDemand = 7;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ 
+      Specifies the permissions that a derived class is required to have. When the
+      target is a class, classes inheriting from the target are required to have the
+      permissions specified by the current security attribute. When the target is
+      a method, classes overriding the target are required to have the
+      permissions specified by the current security attribute.<P>
+
+This action can be applied to classes and methods. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityAction.html" TARGET="contents">System.Security.Permissions.SecurityAction Enum</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SecurityAction.LinkDemand Field"><H3>SecurityAction.LinkDemand Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>LinkDemand = 6;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Specifies that the immediate caller be required
+ to have the specified permissions.<P>
+
+This action can be applied to classes and methods.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityAction.html" TARGET="contents">System.Security.Permissions.SecurityAction Enum</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SecurityAction.PermitOnly Field"><H3>SecurityAction.PermitOnly Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>PermitOnly = 5;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Specifies that access is limited to only those resources 
+      or operations specified by the current security attribute, even if the code has been
+      granted permission to access others. A security check for a permission not
+      described by the current security attribute fails regardless of whether or not
+      callers have been granted this permission. <P>
+
+This action can be applied to classes and methods.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityAction.html" TARGET="contents">System.Security.Permissions.SecurityAction Enum</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SecurityAction.RequestMinimum Field"><H3>SecurityAction.RequestMinimum Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>RequestMinimum = 8;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Specifies that the current security attribute describes the minimum permissions required for an assembly
+      to run.<P>
+
+This action can be applied to assemblies.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityAction.html" TARGET="contents">System.Security.Permissions.SecurityAction Enum</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SecurityAction.RequestOptional Field"><H3>SecurityAction.RequestOptional Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>RequestOptional = 9;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Specifies that the current security attribute
+      describes
+      optional permissions that an assembly can be granted.<P>
+
+This action can be applied to assemblies.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityAction.html" TARGET="contents">System.Security.Permissions.SecurityAction Enum</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SecurityAction.RequestRefuse Field"><H3>SecurityAction.RequestRefuse Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>RequestRefuse = 10;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Specifies that the current security attribute
+      describes resources or operations that an assembly cannot access.<P>
+
+This action can be applied to assemblies.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityAction.html" TARGET="contents">System.Security.Permissions.SecurityAction Enum</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SecurityAction.value__ Field"><H3>SecurityAction.value__ Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>value__;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SecurityAction.html" TARGET="contents">System.Security.Permissions.SecurityAction Enum</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

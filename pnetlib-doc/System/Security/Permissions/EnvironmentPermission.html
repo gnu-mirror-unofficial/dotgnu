@@ -1,0 +1,715 @@
+<HTML>
+<HEAD>
+<TITLE>System.Security.Permissions.EnvironmentPermission Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Security.Permissions.EnvironmentPermission Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class EnvironmentPermission : CodeAccessPermission</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../../System/Security/CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;EnvironmentPermission<P>
+
+This type implements <A HREF="../../../System/Security/IPermission.html" TARGET="contents">IPermission</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Controls access to environment variables.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> objects
+      describe protected operations on environment variables. This permission
+      distinguishes between the following types of access provided by <A HREF="EnvironmentPermissionAccess.html" TARGET="contents">EnvironmentPermissionAccess</A>:<P>
+
+<UL>
+<LI><CODE>Read</CODE>
+: Read 
+         values from environment variables.</LI>
+<LI><CODE>Write</CODE>
+: Write 
+         values to environment variables. Also allows for creating and deleting values.</LI>
+<LI><CODE>NoAccess</CODE>
+: No 
+         access to environment variables.</LI>
+<LI><CODE>AllAccess</CODE>
+: Full
+         access to environment variables. Identical to specifying
+      <CODE>Read</CODE>
+ and <CODE>Write</CODE>
+
+      access.</LI>
+</UL>
+These access levels are independent, meaning that rights
+   to one do not imply rights to another. For example, <CODE>Write </CODE>
+permission does not imply permission to
+<CODE>Read</CODE>
+. <A HREF="EnvironmentPermissionAccess.html" TARGET="contents">EnvironmentPermissionAccess</A> values 
+   can be combined using a bitwise OR operator.<P>
+
+The <A HREF="../../../System/Environment.html" TARGET="contents">Environment</A> class is
+used to access environment variables, subject to the permissions defined by
+<A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A>. 
+Environment variables are case-insensitive. <P>
+
+]<P>
+
+The XML encoding of a <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> instance is defined below in
+   EBNF format. The following conventions are used: <P>
+
+<UL>
+<LI>All non-literals in the grammar below are shown in
+         normal type.<P>
+
+</LI>
+<LI>All literals are in bold font. <P>
+
+</LI>
+</UL>
+The following meta-language symbols are used: <P>
+
+<UL>
+<LI>
+         
+         &apos;*&apos; represents a meta-language symbol suffixing an
+         expression that can appear zero or more times.</LI>
+<LI>
+         
+         &apos;?&apos; represents a meta-language symbol suffixing an
+         expression that can appear zero or one time.</LI>
+<LI>
+         
+         &apos;+&apos; represents a meta-language symbol suffixing an
+         expression that can appear one or more times.</LI>
+<LI>
+         
+         &apos;(&apos;,&apos;)&apos; is used to group literals, non-literals or a
+         mixture of literals and non-literals.</LI>
+<LI>
+         
+         &apos;|&apos; denotes an exclusive disjunction between two
+         expressions.</LI>
+<LI>
+         
+         &apos;::=&apos; denotes a production rule where a left hand
+         non-literal is replaced by a right hand expression containing literals,
+         non-literals or both.</LI>
+</UL>
+BuildVersion refers to the build version of the shipping
+   CLI. This is specified as a dotted build number such as &apos;2412.0&apos; . <P>
+
+ECMAPubKeyToken ::= <CODE>b77a5c561934e089</CODE>
+<P>
+
+ EnvironmentVariable refers to the name of a single environment variable,
+   such as &apos;PROMPT&apos;. <P>
+
+ The XML encoding of an
+<CODE>EnvironmentPermission</CODE>
+ instance
+   is as follows: <P>
+
+<CODE>EnvironmentPermissionXML ::=<P>
+
+<CODE>&lt;IPermission </CODE>
+<P>
+
+<CODE>class=&quot; </CODE>
+<P>
+
+<CODE>System.Security.Permissions.EnvironmentPermission, </CODE>
+<P>
+
+<CODE>mscorlib, </CODE>
+<P>
+
+<CODE>Version=1.0.</CODE>
+BuildVersion<CODE>,</CODE>
+<P>
+
+<CODE>Culture=neutral,</CODE>
+<P>
+
+<CODE>PublicKeyToken=</CODE>
+ECMAPubKeyToken<CODE>&quot;</CODE>
+<P>
+
+<CODE>version=&quot;1&quot;</CODE>
+<P>
+
+(<P>
+
+<CODE>Unrestricted=&quot;true&quot; </CODE>
+<P>
+
+) <P>
+
+| <P>
+
+( <P>
+
+(<CODE>Read=&quot;</CODE>
+
+EnvironmentVariable (<CODE>;</CODE>
+
+EnvironmentVariable)*<CODE>&quot;</CODE>
+ )? <P>
+
+(<CODE>Write=&quot;</CODE>
+EnvironmentVariable (<CODE>;</CODE>
+
+EnvironmentVariable)* <CODE>&quot;</CODE>
+ )? <P>
+
+) <P>
+
+<CODE>/&gt;</CODE>
+<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+EnvironmentPermission Constructors<P>
+
+<A HREF="#EnvironmentPermission(System.Security.Permissions.PermissionState) Constructor" TARGET="contents">EnvironmentPermission(System.Security.Permissions.PermissionState) Constructor</A><BR>
+<A HREF="#EnvironmentPermission(System.Security.Permissions.EnvironmentPermissionAccess, System.String) Constructor" TARGET="contents">EnvironmentPermission(System.Security.Permissions.EnvironmentPermissionAccess, System.String) Constructor</A><BR>
+<P>
+
+EnvironmentPermission Methods<P>
+
+<A HREF="#EnvironmentPermission.Copy Method" TARGET="contents">EnvironmentPermission.Copy Method</A><BR>
+<A HREF="#EnvironmentPermission.FromXml Method" TARGET="contents">EnvironmentPermission.FromXml Method</A><BR>
+<A HREF="#EnvironmentPermission.Intersect Method" TARGET="contents">EnvironmentPermission.Intersect Method</A><BR>
+<A HREF="#EnvironmentPermission.IsSubsetOf Method" TARGET="contents">EnvironmentPermission.IsSubsetOf Method</A><BR>
+<A HREF="#EnvironmentPermission.ToXml Method" TARGET="contents">EnvironmentPermission.ToXml Method</A><BR>
+<A HREF="#EnvironmentPermission.Union Method" TARGET="contents">EnvironmentPermission.Union Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="EnvironmentPermission(System.Security.Permissions.PermissionState) Constructor"><H3>EnvironmentPermission(System.Security.Permissions.PermissionState) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public EnvironmentPermission(PermissionState state);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> class
+   with the specified <A HREF="PermissionState.html" TARGET="contents">PermissionState</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>state</DT>
+<DD>A <A HREF="PermissionState.html" TARGET="contents">PermissionState</A> value.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>state</I> is not a valid <A HREF="PermissionState.html" TARGET="contents">PermissionState</A> value.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  The instance returned by this constructor has either
+         fully restricted (System.Security.Permissions.PermissionState.None) or unrestricted
+         (System.Security.Permissions.PermissionState.Unrestricted) access to all environment
+         variables.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EnvironmentPermission.html" TARGET="contents">System.Security.Permissions.EnvironmentPermission Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EnvironmentPermission(System.Security.Permissions.EnvironmentPermissionAccess, System.String) Constructor"><H3>EnvironmentPermission(System.Security.Permissions.EnvironmentPermissionAccess, System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public EnvironmentPermission(EnvironmentPermissionAccess flag, string pathList);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new instance of the <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A>
+class with the specified access to
+the specified environment variables.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>flag</DT>
+<DD>One of values defined by <A HREF="EnvironmentPermissionAccess.html" TARGET="contents">EnvironmentPermissionAccess</A>. </DD>
+<DT>pathList</DT>
+<DD>A <A HREF="../../../System/String.html" TARGET="contents">String</A> containing one or more case-insensitive environment variable names separated by System.IO.Path.PathSeparator. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>pathList</I> is <CODE>null</CODE>
+. <P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>flag</I> specifies a value not defined in <A HREF="EnvironmentPermissionAccess.html" TARGET="contents">EnvironmentPermissionAccess</A>. <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The specified access is applied to all environment
+   variables in <I>pathList</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EnvironmentPermission.html" TARGET="contents">System.Security.Permissions.EnvironmentPermission Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EnvironmentPermission.Copy Method"><H3>EnvironmentPermission.Copy Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IPermission Copy();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a new <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> object
+ containing the same values as the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A>
+containing the
+same values as the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The object returned by this method represents the
+ same level of access to the same environment variables as the current instance.]<P>
+
+<P>
+
+This method overrides System.Security.CodeAccessPermission.Copy and is implemented to
+ support the <A HREF="../../../System/Security/IPermission.html" TARGET="contents">IPermission</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EnvironmentPermission.html" TARGET="contents">System.Security.Permissions.EnvironmentPermission Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EnvironmentPermission.FromXml Method"><H3>EnvironmentPermission.FromXml Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void FromXml(SecurityElement esd);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Reconstructs the state of a <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> object
+ using the specified XML encoding.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>esd</DT>
+<DD>A <A HREF="../../../System/Security/SecurityElement.html" TARGET="contents">SecurityElement</A> instance containing the XML encoding to use to reconstruct the state of a <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> object.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>esd</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>esd</I> does not contain the encoding for a <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> instance.<P>
+
+The version number of <I>esd</I> is not valid.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The state of the current instance is changed to the
+ state encoded in <I>esd</I>.<P>
+
+[<I>Note</I>: For the XML encoding for this class, see the <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> class
+ page.<P>
+
+This method overrides System.Security.CodeAccessPermission.FromXml(System.Security.SecurityElement).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EnvironmentPermission.html" TARGET="contents">System.Security.Permissions.EnvironmentPermission Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EnvironmentPermission.Intersect Method"><H3>EnvironmentPermission.Intersect Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IPermission Intersect(IPermission target);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a new <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> object that is the intersection of
+ the current instance and the specified object. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>target</DT>
+<DD>A <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> instance to intersect with the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> instance that
+ represents the intersection of the current instance and <I>target</I>. If the intersection is empty or <I>target</I>
+ is <CODE>null</CODE>
+, returns <CODE>null</CODE>
+. If the current instance is unrestricted, returns a copy of <I>target</I>. If
+<I>target</I> is unrestricted, returns a copy of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>target</I> is not <CODE>null</CODE>
+ and is not of type <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A>. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The intersection of two permissions is a permission that secures the
+ resources and operations secured by both permissions. Specifically, it
+ represents the minimum permission such that any demand that passes both
+ permissions will also pass their intersection.<P>
+
+This method overrides System.Security.CodeAccessPermission.Intersect(System.Security.IPermission) and is implemented to
+ support the <A HREF="../../../System/Security/IPermission.html" TARGET="contents">IPermission</A> interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EnvironmentPermission.html" TARGET="contents">System.Security.Permissions.EnvironmentPermission Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EnvironmentPermission.IsSubsetOf Method"><H3>EnvironmentPermission.IsSubsetOf Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool IsSubsetOf(IPermission target);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance is a subset of the specified
+      object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>target</DT>
+<DD>A <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> instance that is to be tested for the subset relationship.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the
+   current instance is a subset of <I>target</I>
+   ; otherwise,<CODE> false</CODE>
+. If the current instance is unrestricted, and <I>target</I> is
+   not, returns <CODE>false</CODE>
+. If <I>target</I> is
+   unrestricted, returns <CODE>true</CODE>
+. If
+<I>target</I> is <CODE>null</CODE>
+ and no environment variables are 
+   secured by the current instance, returns <CODE>true</CODE>
+. If target is
+<CODE>null</CODE>
+, and the current instance secures one or more environment 
+   variables, returns <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>target</I> is not <CODE>null</CODE>
+ and is not of type <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The current instance is a subset of <I>target</I> if the current instance
+      specifies a set of accesses to resources that is wholly contained by
+   <I>target</I>. For example, a permission that represents read access to a file
+      is a subset of a permission that represents read and write access to the file. <P>
+
+If this method returns <CODE>true</CODE>
+ , the current instance describes a
+   level of access to a set of environment variables that is also described by
+<I>target</I>.<P>
+
+This method overrides System.Security.CodeAccessPermission.IsSubsetOf(System.Security.IPermission) and is implemented to
+support the <A HREF="../../../System/Security/IPermission.html" TARGET="contents">IPermission</A> interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EnvironmentPermission.html" TARGET="contents">System.Security.Permissions.EnvironmentPermission Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EnvironmentPermission.ToXml Method"><H3>EnvironmentPermission.ToXml Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override SecurityElement ToXml();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the XML encoding of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../../System/Security/SecurityElement.html" TARGET="contents">SecurityElement</A> containing the XML encoding of the state of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: For the XML encoding for this class, see the <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> class
+ page.<P>
+
+This method overrides System.Security.CodeAccessPermission.ToXml .<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EnvironmentPermission.html" TARGET="contents">System.Security.Permissions.EnvironmentPermission Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EnvironmentPermission.Union Method"><H3>EnvironmentPermission.Union Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IPermission Union(IPermission other);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a new <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> that is the union of the
+ current instance and the specified object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>other</DT>
+<DD>A <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> instance to combine with the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> instance that represents the union
+ of the current instance and <I>other</I> . If the current
+ instance or <I>other </I> is unrestricted, returns a
+<A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> 
+instance that is unrestricted. If <I>other</I> is <CODE>null</CODE>
+,
+returns a copy of the current instance via the System.Security.IPermission.Copy method.
+If the current instance and <I>other</I> do not specify any environment
+variables, returns <CODE>null</CODE>
+
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>other </I> is not <CODE>null</CODE>
+ and is not of type <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The result of a call to System.Security.Permissions.EnvironmentPermission.Union(System.Security.IPermission) is
+ a permission that represents the access to
+ environment variables represented by the current instance as well as the access to
+ environment variables represented by <I>other</I>. Any demand that passes either the current
+ instance or <I>other</I> passes their union.<P>
+
+This method overrides System.Security.CodeAccessPermission.Union(System.Security.IPermission) and is implemented to
+ support the <A HREF="../../../System/Security/IPermission.html" TARGET="contents">IPermission</A> interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EnvironmentPermission.html" TARGET="contents">System.Security.Permissions.EnvironmentPermission Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

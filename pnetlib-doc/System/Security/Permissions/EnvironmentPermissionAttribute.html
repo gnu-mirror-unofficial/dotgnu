@@ -1,0 +1,369 @@
+<HTML>
+<HEAD>
+<TITLE>System.Security.Permissions.EnvironmentPermissionAttribute Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Security.Permissions.EnvironmentPermissionAttribute Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class EnvironmentPermissionAttribute : CodeAccessSecurityAttribute</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../../System/Attribute.html" TARGET="contents">Attribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="SecurityAttribute.html" TARGET="contents">SecurityAttribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="CodeAccessSecurityAttribute.html" TARGET="contents">CodeAccessSecurityAttribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EnvironmentPermissionAttribute<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Used to declaratively specify security actions to control
+      access to environment variables.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Environment variable names are case-insensitive. Multiple environment variable names are specified by separating the names
+      using the System.IO.Path.PathSeparator
+      string.<P>
+
+[<I>Note</I>:  The level of access to one or more environment variables is
+         specified using the members of the current instance. For example, to specify
+         read permissions for an environment variable, set the System.Security.Permissions.EnvironmentPermissionAttribute.Read property equal
+         to the name of the environment variable.<P>
+
+ The security information declared by a security attribute is stored in the
+         metadata of the attribute target, and is accessed by the system at run-time.
+         Security attributes are used for declarative security only. For imperative
+         security, use the corresponding permission class, <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A>
+         .<P>
+
+The allowable <A HREF="EnvironmentPermissionAttribute.html" TARGET="contents">EnvironmentPermissionAttribute</A> targets are determined by the
+   <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> passed to the constructor.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example shows a declarative request for
+      the ability to read the specified environment variables. The System.Security.Permissions.SecurityAction.RequestMinimum
+      security action indicates
+      that this is the minimum permission required for the target assembly to be able
+      to execute.<P>
+
+<CODE>[assembly:EnvironmentPermissionAttribute(SecurityAction.RequestMinimum, Read=&quot;COMPUTERNAME;USERNAME;USERDOMAIN&quot;)]
+   </CODE><P>
+
+The following example shows how to demand that the
+      calling code has unrestricted access to all environment variables. Demands are
+      typically made in managed libraries to protect methods or classes from
+      malicious code.<P>
+
+<CODE>[EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted=true)]
+   </CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>AttributeUsageAttribute(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Constructor | AttributeTargets.Method, AllowMultiple=true, Inherited=false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+EnvironmentPermissionAttribute Constructors<P>
+
+<A HREF="#EnvironmentPermissionAttribute Constructor" TARGET="contents">EnvironmentPermissionAttribute Constructor</A><BR>
+<P>
+
+EnvironmentPermissionAttribute Methods<P>
+
+<A HREF="#EnvironmentPermissionAttribute.CreatePermission Method" TARGET="contents">EnvironmentPermissionAttribute.CreatePermission Method</A><BR>
+<P>
+
+EnvironmentPermissionAttribute Properties<P>
+
+<A HREF="#EnvironmentPermissionAttribute.All Property" TARGET="contents">EnvironmentPermissionAttribute.All Property</A><BR>
+<A HREF="#EnvironmentPermissionAttribute.Read Property" TARGET="contents">EnvironmentPermissionAttribute.Read Property</A><BR>
+<A HREF="#EnvironmentPermissionAttribute.Write Property" TARGET="contents">EnvironmentPermissionAttribute.Write Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="EnvironmentPermissionAttribute Constructor"><H3>EnvironmentPermissionAttribute Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public EnvironmentPermissionAttribute(SecurityAction action);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="EnvironmentPermissionAttribute.html" TARGET="contents">EnvironmentPermissionAttribute</A> class
+ with the specified <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>action</DT>
+<DD>A <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> value.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>action</I> is not a valid <A HREF="SecurityAction.html" TARGET="contents">SecurityAction</A> value. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EnvironmentPermissionAttribute.html" TARGET="contents">System.Security.Permissions.EnvironmentPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EnvironmentPermissionAttribute.CreatePermission Method"><H3>EnvironmentPermissionAttribute.CreatePermission Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IPermission CreatePermission();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a new 
+   <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A> that
+      contains the security information of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="EnvironmentPermission.html" TARGET="contents">EnvironmentPermission</A>
+object with the security information of the current
+instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Applications typically do not call this method; it is intended for use by the
+         system.<P>
+
+The security information described by a security attribute is stored in the
+         metadata of the attribute target, and is accessed by the system at run-time. The
+         system uses the object returned by this method to convert the security
+         information of the current instance into the form stored in metadata.<P>
+
+This method overrides System.Security.Permissions.SecurityAttribute.CreatePermission.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EnvironmentPermissionAttribute.html" TARGET="contents">System.Security.Permissions.EnvironmentPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EnvironmentPermissionAttribute.All Property"><H3>EnvironmentPermissionAttribute.All Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string All { set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sets the environment variables for which full access is
+ secured.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../../System/String.html" TARGET="contents">String</A>
+containing one or more environment variables for which full access is
+secured.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is write-only.<P>
+
+Multiple environment variable names are specified by separating the names
+ using the System.IO.Path.PathSeparator string. Environment variable names are
+ case-insensitive.<P>
+
+[<I>Note</I>: The
+ security action passed to the constructor of the current instance determines how the specified
+ environment variables are secured. For example, if the action is System.Security.Permissions.SecurityAction.RequestMinimum , then
+ the target of the current instance requires full access to the specified variables
+ in order to execute. If the action is System.Security.Permissions.SecurityAction.RequestRefuse,
+ then the system does not allow the target any access to the specified
+ variables.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EnvironmentPermissionAttribute.html" TARGET="contents">System.Security.Permissions.EnvironmentPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EnvironmentPermissionAttribute.Read Property"><H3>EnvironmentPermissionAttribute.Read Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Read { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the environment variables for which read access is
+ secured.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../../System/String.html" TARGET="contents">String</A>
+containing one or more environment variables for which read access is secured.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Multiple environment variable names are specified by separating the names
+ using the System.IO.Path.PathSeparator string. Environment variable names are
+ case-insensitive.<P>
+
+[<I>Note</I>: The security action passed to the constructor of the current instance determines how
+ the specified environment variables are secured. For example, if the action is
+ System.Security.Permissions.SecurityAction.RequestMinimum , then the target
+ of the current instance requires read access to the specified variables in order to
+ execute. If the action is System.Security.Permissions.SecurityAction.RequestRefuse, then the
+ system does not allow the target to read the specified
+ variables.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EnvironmentPermissionAttribute.html" TARGET="contents">System.Security.Permissions.EnvironmentPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EnvironmentPermissionAttribute.Write Property"><H3>EnvironmentPermissionAttribute.Write Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Write { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets
+ the environment variables for which write access is secured.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../../System/String.html" TARGET="contents">String</A> containing one or more environment variables for which write access is secured.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Multiple environment variable names are specified by separating the names
+ using the System.IO.Path.PathSeparator string. Environment variable names are
+ case-insensitive.<P>
+
+[<I>Note</I>: The security action passed to the
+ constructor of the current instance determines how the specified environment
+ variables are secured. For example, if the action is System.Security.Permissions.SecurityAction.RequestMinimum , then the target of
+ the current instance requires write access to the specified variables in order
+ to execute. If the action is System.Security.Permissions.SecurityAction.RequestRefuse,
+ then the system does not allow the target to write the specified
+ variables.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EnvironmentPermissionAttribute.html" TARGET="contents">System.Security.Permissions.EnvironmentPermissionAttribute Class</A>, <A HREF="Permissions.html" TARGET="members">System.Security.Permissions Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>
