@@ -327,14 +327,18 @@ public class RectangleTest
 }
 </pre>
 <h2>Compilation instructions for this BeOS test program</h2>
+<p>
 The file Tao.Sdl.dll is required; you can build it from
+</p>
 <a href="http://www.getdotgnu.com/contrib/pnet-src/Tao.Sdl.Src.tar.gz">this
 source code</a> by means of the command
 <pre>
 cscc -D LINUX -funsafe -target:library -O2 Sdl.cs SdlImage.cs SdlMixer.cs SdlTtf.cs -o Tao.Sdl.dll
 </pre>
+<p>
 (Yes, "-D LINUX" does the right thing for BeOS.)  Then the test
 program for the screenshot can be compiled and run with
+</p>
 <pre>
 gcc -shared -nostart be_BAlert.cpp -o be_BAlert.so
 cscc -funsafe BAlert.cs
