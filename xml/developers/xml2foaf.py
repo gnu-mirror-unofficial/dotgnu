@@ -77,9 +77,10 @@ class Developer:
 	def toHtml(self,w):
 		w.writeline("""<foaf:Person>""" )	
 		w.writeline("""<foaf:name>%s</foaf:name>""" %self.name )
-		w.writeline("""<foaf:interest rdf:resource=\"http://www.dotgnu.org/\"/>""")
-		w.writeline("""<dc:contributor rdf:resource=\"http://www.dotgnu.org/\"/>""")
-		
+#		w.writeline("""<foaf:interest rdf:resource=\"http://www.dotgnu.org/\"/>""")
+		w.writeline("""<foaf:currentProject rdf:resource=\"http://www.dotgnu.org/\"/>""")
+#		w.writeline("""<dc:contributor rdf:resource=\"http://www.dotgnu.org/\"/>""")
+
 
 		if(self.homepage):
 			w.writeline("""<foaf:homepage rdf:resource="%s"/> """ % self.homepage)
@@ -95,12 +96,17 @@ class Developer:
 		if(len(self.chat.keys())!=1):
 			first = 1
 			for mode in self.chat.keys():
-				if mode!="irc":
-					if(not first):
-						w.writeline("""<dotgnu:%s>%s</dotgnu:irc>"""  % (mode,self.chat[mode],mode))
-					else:
-						first=0
-				w.writeline("""<dotgnu:%s>%s</dotgnu:%s>"""  % (mode,self.chat[mode],mode))
+				foaf = "dotgnu:" + mode
+				if (mode == "jabber"):
+					foaf = "foaf:jabberID"
+				elif (mode == "irc"):
+					foaf = "dotgnu:ircID"
+				elif (mode == "yahoo"):
+					foaf = "dotgnu:yahooChatID"
+				elif (mode == "aim"):
+					foaf = "foaf:aimChatID"
+
+				w.writeline("""<%s>%s</%s>"""  % (foaf,self.chat[mode],foaf))
 
 		w.writeline("""</foaf:Person>""")
 
@@ -136,9 +142,9 @@ def processTree(tree):
 	
 	for each in sorted:
 		print "processing %s .........." % each
-		w.writeline( """<rdf:Seq>""")
+#		w.writeline( """<rdf:Seq>""")
 		developers[each].toHtml(w)
-		w.writeline( """</rdf:Seq>""")
+#		w.writeline( """</rdf:Seq>""")
 	w.writeline( """
 </dotgnu:DevelopersList>
 </rdf:RDF>""")
