@@ -35,6 +35,25 @@ class classnode:
 	def __repr__(self):
 		return "<class name=\""+self.fqname+"\">"
 
+class filewrapper:
+	def __init__(self,fname,mode):
+		self.fp=open(fname,mode)
+	def write(self,data):
+		self.fp.write(data)
+	def writeline(self,data):
+		self.fp.write(data+"\n")
+	def writespecial(self,url): # escaped
+		hex=['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F']
+		for each in url:
+			val=ord(each)
+			if ((val >= ord('a') and val <= ord('z')) or (val >= ord('A') and val <= ord('Z'))):
+				self.fp.write(each)
+			elif each=='.':
+				self.fp.write(each)
+			else:
+				self.fp.write("%%%c%c" % (hex[val /16],hex[val % 16]))
+	def close(self):
+		self.fp.close()
 #########################helper functions#########################
 # I had to write these because the minidom is not flexible enough#
 # well that's why it's called `mini' dom                         #
@@ -110,23 +129,23 @@ def split_signature(sig):
 ####MOST OF THIS STUFF HAS BEEN REVERSE ENGINEERED FROM PHPHNUKE's HTML####
 ##########################SO ALL CREDIT TO THEM############################
 def print_curved_header(fp,header=""):
-	fp.write("""<table bgcolor="#cfcfbb"  width="90%" cellpadding="0" cellspacing="0" align="center" border="0" bordercolor="#dedebb">""")
-	fp.write("""<tr><td bgcolor="#cfcfbb" valign="top"><img src="corner-top-left.jpg"></td>""")
-	fp.write("<td bgcolor=\"#cfcfbb\">"+header+"</td>")
-	fp.write("<td bgcolor=\"#cfcfbb\" align=\"right\" valign=\"top\"><img src=\"corner-top-right.jpg\"></td></tr>")
-	fp.write("</td></tr>")
+	fp.writeline("""<table bgcolor="#cfcfbb"  width="90%" cellpadding="0" cellspacing="0" align="center" border="0" bordercolor="#dedebb">""")
+	fp.writeline("""<tr><td bgcolor="#cfcfbb" valign="top"><img src="corner-top-left.jpg"></td>""")
+	fp.writeline("<td bgcolor=\"#cfcfbb\">"+header+"</td>")
+	fp.writeline("<td bgcolor=\"#cfcfbb\" align=\"right\" valign=\"top\"><img src=\"corner-top-right.jpg\"></td></tr>")
+	fp.writeline("</td></tr>")
 	
 def print_curved_footer(fp):
-	fp.write("<tr><td valign=\"bottom\" align=\"left\"><img src=\"corner-bottom-left.jpg\"></td>")
-	fp.write("<td>&nbsp;</td>")
-	fp.write("<td valign=\"bottom\" align=\"right\"><img src=\"corner-bottom-right.jpg\"></td></tr>")
-	fp.write("</td></tr>")
-	fp.write("</table>")
+	fp.writeline("<tr><td valign=\"bottom\" align=\"left\"><img src=\"corner-bottom-left.jpg\"></td>")
+	fp.writeline("<td>&nbsp;</td>")
+	fp.writeline("<td valign=\"bottom\" align=\"right\"><img src=\"corner-bottom-right.jpg\"></td></tr>")
+	fp.writeline("</td></tr>")
+	fp.writeline("</table>")
 	
 def print_curved_title(fp,title=""):
-	fp.write("<tr><td>&nbsp;</td>")
-	fp.write("<td bgcolor=\"#cfcfbb\">"+title+"</td>")
-	fp.write("<td>&nbsp;</td></tr>")
+	fp.writeline("<tr><td>&nbsp;</td>")
+	fp.writeline("<td bgcolor=\"#cfcfbb\">"+title+"</td>")
+	fp.writeline("<td>&nbsp;</td></tr>")
 
 def write_pnetlib_header(fp):
 	#print_curved_header(fp,"""<h1 align="center"><underline>Pnetlib Class Status<underline></h1>""")
@@ -134,7 +153,7 @@ def write_pnetlib_header(fp):
 	print_curved_header(fp,"""<p align="center"><img src="logo.jpg"></p>""")
 	print_curved_title(fp,"""Portable.NET""")
 def write_pnetlib_footer(fp):
-	fp.write("<br><br>")
+	fp.writeline("<br><br>")
 	import time
 	lastd=time.gmtime(time.time());
 	print_curved_header(fp,"&nbsp;")
@@ -179,164 +198,235 @@ def write_pnetlib_footer(fp):
 def print_namespace_list(nslist,ctor,method,field,prop,event):
 	#nslist=nsdict.keys()
 	#nslist.sort()
-	fp=open("index.html","w")
-	fp.write("""<html><body bgcolor="#505050" text="#000000" link="#121212"
+	fp=filewrapper("index.html","w")
+	fp.writeline("""<html><body bgcolor="#505050" text="#000000" link="#121212"
 			 vlink="#0c0c0a" >""")
-	
-	fp.write("""<head><title>Portable.Net Status Page</title></head>""")
+		
+	fp.writeline("""<head><title>Portable.Net Status Page</title></head>""")
 	write_pnetlib_header(fp)
 	print_curved_title(fp,"""<h1>Namespaces</h1> """)
 	print_curved_title(fp,"<p align=\"right\"><a href=\""+nslist[0]+".html\"><img alt=\"Next&gt;\" src=\"rarrow.jpg\" border=\"0\"></a></p>")
-	fp.write("<tr><td>&nbsp;</td><td>")	
+	fp.writeline("<tr><td>&nbsp;</td><td>")	
 	#nested tabling is *so* difficult
-	fp.write("""<table align="left" width="100%" bordercolor="#dedebb">""")
-	fp.write("<tr><td border=\"3\">")
-	fp.write("<!--LEFT BLOCKS-->")
-	fp.write("""	<table align="left" bordercolor="#050505">""")
-	fp.write("""	<tr><td>Namespaces</td></tr>""")
-	fp.write("""	<tr><td>""")
+	fp.writeline("""<table align="left" width="100%" bordercolor="#dedebb">""")
+	fp.writeline("<tr><td border=\"3\">")
+	fp.writeline("<!--LEFT BLOCKS-->")
+	fp.writeline("""	<table align="left" bordercolor="#050505">""")
+	fp.writeline("""	<tr><td>Namespaces</td></tr>""")
+	fp.writeline("""	<tr><td>""")
 	for each in nslist:
-		fp.write("&nbsp&middot;&nbsp;<b><a href=\""+each+".html\">"+each+"</a></b><br>")
-	fp.write("""	</td></tr>""")
-	fp.write("""	<tr><td>""")
-	fp.write("""	</td></tr>""")
-	fp.write("""	</table>""")
-	fp.write("<!--CENTER BLOCKS-->")
-	fp.write("""</td><td valign="top" border="2">""")
-	fp.write("""	<table align="center">""")
-	fp.write("""	<tr><td>""")
-	fp.write("<p>In the <b>"+`len(nslist)`+"</b> namespaces</p>")
-	fp.write("<p>we are missing:</p>")
-	fp.write("<b>"+`ctor`+"</b> constructors, ")
-	fp.write("<b>"+`method`+"</b> methods, ")
-	fp.write("<b>"+`field`+"</b> fields, ")
-	fp.write("<b>"+`prop`+"</b> properties, and ")
-	fp.write("<b>"+`event`+"</b> events. ")
-	fp.write("""	</td></tr>""")
-	fp.write("""	</table>""")
-	fp.write("</td></tr>")
-	fp.write("</table>")
-	fp.write("</td><td>&nbsp;</td></tr>")
-	fp.write("""<tr><td>&nbsp;</td><td align="right"><font size="-3">[<a href="status.xml.gz">XML</a> | <a href="status2html.py">PYTHON</a>]</font></td><td>&nbsp;</td></tr>""");
+		fp.writeline("&nbsp;&middot;&nbsp;<b><a href=\""+each+".html\">"+each+"</a></b><br>")
+	fp.writeline("""	</td></tr>""")
+	fp.writeline("""	<tr><td>""")
+	fp.writeline("""	</td></tr>""")
+	fp.writeline("""	</table>""")
+	fp.writeline("<!--CENTER BLOCKS-->")
+	fp.writeline("""</td><td valign="top" border="2">""")
+	fp.writeline("""	<table align="center">""")
+	fp.writeline("""	<tr><td>""")
+	fp.writeline("<p>In the <b>"+`len(nslist)`+"</b> namespaces</p>")
+	fp.writeline("<p>we are missing:</p>")
+	fp.writeline("<b>"+`ctor`+"</b> constructors, ")
+	fp.writeline("<b>"+`method`+"</b> methods, ")
+	fp.writeline("<b>"+`field`+"</b> fields, ")
+	fp.writeline("<b>"+`prop`+"</b> properties, and ")
+	fp.writeline("<b>"+`event`+"</b> events. ")
+	fp.writeline("""	</td></tr>""")
+	fp.writeline("""	</table>""")
+	fp.writeline("</td></tr>")
+	fp.writeline("</table>")
+	fp.writeline("</td><td>&nbsp;</td></tr>")
+	fp.writeline("""<tr><td>&nbsp;</td><td align="right"><font size="-3">[<a href="status.xml.gz">XML</a> | <a href="status2html.py">PYTHON</a>]</font></td><td>&nbsp;</td></tr>""");
 	print_curved_footer(fp)
 	write_pnetlib_footer(fp)
-	fp.write("</body></html>")
+	fp.writeline("</body></html>")
 	fp.close()
 #Namespace functions....
 ##########################SUMMARY FUNCTIONS#################################
-def print_method_summary(fp,methods):
-	fp.write("<tr><td>")
-	fp.write("""<table cellspacing="0" width="100%" bgcolor="#b2b297" border="1">""")
-	fp.write("""<tr><td><font size="+2">Method Summary</h3></td></tr>""")
-	fp.write("</table>")
-	fp.write("""<table cellpadding="4" cellspacing="0" width="100%" bordercolor="#99997e" border="1">""")
+def print_method_summary(fp,parent,methods):
+	fp.writeline("<tr><td>")
+	fp.writeline("""<table cellspacing="0" width="100%" bgcolor="#b2b297" border="1">""")
+	fp.writeline("""<tr><td><font size="+2">Method Summary</h3></td></tr>""")
+	fp.writeline("</table>")
+	fp.writeline("""<table cellpadding="4" cellspacing="0" width="100%" bordercolor="#99997e" border="1">""")
+	method_count_dict={}
+	for each in methods:
+		sig=each.getAttribute("signature")
+		(prefix,name,params)=split_signature(sig)
+		if(method_count_dict.has_key(name)):
+			method_count_dict[name]=method_count_dict[name]+1
+		else:
+			method_count_dict[name]=1
+
 	for each in methods:
 		(status,msg)=get_status(each)
 		sig=each.getAttribute("signature")
 		(prefix,name,params)=split_signature(sig)
-		fp.write("<tr border=\"1\"><td><tt>"+prefix+"</tt><b> "+name+"</b><i>("+params+"</i></td><td align=\"right\">"+msg+"</td></tr>")
-	fp.write("</table>")
-	fp.write("</td></tr>")
+		fp.writeline("<tr border=\"1\"><td><tt>"+prefix+"</tt><b> ")
+		#write doc filename
+		#due to rhys simpilifying documentation, I'm forced to 
+		#complicate my program, to make it simpler to access
+		fp.write("<a class=\"nounderline\" href=\"../pnetlib-doc/"+string.replace(parent.fqname,".","/")+".html#"+parent.name+"."+name)
+		newparams=params[:-1] # skip the last ')'
+		if method_count_dict[name]!=1: # fully qualify stuff
+			first=1
+			fp.writespecial('(')
+			for eachparam in string.split(newparams,", "):
+				if(not first):
+					fp.writespecial(", ")
+				first=0
+				type=string.split(eachparam," ")[0]
+				fp.writespecial(type)
+			fp.writespecial(")")
+		fp.write("%20Method\">"+name+"</a>")
+		fp.writeline("</b><i>("+params+"</i></td><td align=\"right\" width=\"\">"+msg+"</td></tr>")
+	fp.writeline("</table>")
+	fp.writeline("</td></tr>")
 ##clone  the above code for all the summaries	
 
-def print_field_summary(fp,fields):
-	fp.write("<tr><td>")
-	fp.write("""<table cellspacing="0" width="100%" bgcolor="#b2b297" border="1">""")
-	fp.write("""<tr><td><font size="+2">Field Summary</h3></td></tr>""")
-	fp.write("</table>")
-	fp.write("""<table cellpadding="4" cellspacing="0" width="100%" bordercolor="#99997e" border="1">""")
+def print_field_summary(fp,parent,fields):
+	fp.writeline("<tr><td>")
+	fp.writeline("""<table cellspacing="0" width="100%" bgcolor="#b2b297" border="1">""")
+	fp.writeline("""<tr><td><font size="+2">Field Summary</h3></td></tr>""")
+	fp.writeline("</table>")
+	fp.writeline("""<table cellpadding="4" cellspacing="0" width="100%" bordercolor="#99997e" border="1">""")
 	for each in fields:
 		(status,msg)=get_status(each)
 		name=each.getAttribute("name")
 		type=each.getAttribute("type")
-		fp.write("<tr border=\"1\"><td><i>"+type+"</i> <b>")
+		fp.writeline("<tr border=\"1\"><td><i>"+type+"</i> <b>")
 		#write doc filename
-		fp.write("<a href=\"../pnetlib-doc/"+string.replace(name,".","/")+".html")
 		#due to rhys simpilifying documentation, I'm forced to 
 		#complicate my program, to make it simpler to access
-		fp.write("#"+name+" Property\">")
-		fp.write(name+"</b></td><td align=\"right\">"+msg+"</td></tr>")
-	fp.write("</table>")
-	fp.write("</td></tr>")
+		fp.writeline("<a class=\"nounderline\" href=\"../pnetlib-doc/"+string.replace(parent.fqname,".","/")+".html#"+parent.name+"."+name+"%20Field\">")
+		fp.writeline(name);
+		fp.writeline("</a></b>");
+		fp.writeline("</td><td align=\"right\" width=\"\">"+msg+"</td></tr>")
+	fp.writeline("</table>")
+	fp.writeline("</td></tr>")
 
-def print_ctor_summary(fp,ctors,cnode):
-	fp.write("<tr><td>")
-	fp.write("""<table cellspacing="0" width="100%" bgcolor="#b2b297" border="1">""")
-	fp.write("""<tr><td><font size="+2">Constructor Summary</h3></td></tr>""")
-	fp.write("</table>")
-	fp.write("""<table cellpadding="4" cellspacing="0" width="100%" bordercolor="#99997e" border="1">""")
+def print_ctor_summary(fp,parent,ctors):
+	fp.writeline("<tr><td>")
+	fp.writeline("""<table cellspacing="0" width="100%" bgcolor="#b2b297" border="1">""")
+	fp.writeline("""<tr><td><font size="+2">Constructor Summary</h3></td></tr>""")
+	fp.writeline("</table>")
+	fp.writeline("""<table cellpadding="4" cellspacing="0" width="100%" bordercolor="#99997e" border="1">""")
+	ctor_count_dict={}
+	for each in ctors:
+		sig=each.getAttribute("signature")
+		(prefix,name,params)=split_signature(sig)
+		if(ctor_count_dict.has_key(name)):
+			ctor_count_dict[name]=ctor_count_dict[name]+1
+		else:
+			ctor_count_dict[name]=1
 	for each in ctors:
 		(status,msg)=get_status(each)
 		sig=each.getAttribute("signature")
 		(prefix,name,params)=split_signature(sig)
-		fp.write("<tr border=\"1\"><td><b>")
-		fp.write(name+"</b></a><i>("+params+"</i></td><td align=\"right\">"+msg+"</td></tr>")
-	fp.write("</table>")
-	fp.write("</td></tr>")
+		fp.writeline("<tr border=\"1\"><td><b>")
+		#write doc filename
+		#due to rhys simpilifying documentation, I'm forced to 
+		#complicate my program, to make it simpler to access
+		fp.write("<a class=\"nounderline\" href=\"../pnetlib-doc/"+string.replace(parent.fqname,".","/")+".html#"+string.split(name,'.')[-1])
+		newparams=params[:-1] # skip the last ')'
+		if ctor_count_dict[name]!=1: # fully qualify stuff
+			first=1
+			fp.writespecial('(')
+			for eachparam in string.split(newparams,", "):
+				if(not first):
+					fp.writespecial(", ")
+				first=0
+				type=string.split(eachparam," ")[0]
+				fp.writespecial(type)
+			fp.writespecial(")")
+		fp.write("%20Constructor\">"+name+"</a>")
+		fp.writeline("</b><i>("+params+"</i></td><td align=\"right\" width\"\">"+msg+"</td></tr>")
+	fp.writeline("</table>")
+	fp.writeline("</td></tr>")
 	
-def print_prop_summary(fp,props):
-	fp.write("<tr><td>")
-	fp.write("""<table cellspacing="0" width="100%" bgcolor="#b2b297" border="1">""")
-	fp.write("""<tr><td><font size="+2">Property Summary</h3></td></tr>""")
-	fp.write("</table>")
-	fp.write("""<table cellpadding="4" cellspacing="0" width="100%" bordercolor="#99997e" border="1">""")
+def print_prop_summary(fp,parent,props):
+	fp.writeline("<tr><td>")
+	fp.writeline("""<table cellspacing="0" width="100%" bgcolor="#b2b297" border="1">""")
+	fp.writeline("""<tr><td><font size="+2">Property Summary</h3></td></tr>""")
+	fp.writeline("</table>")
+	fp.writeline("""<table cellpadding="4" cellspacing="0" width="100%" bordercolor="#99997e" border="1">""")
 	for each in props:
 		(status,msg)=get_status(each)
 		name=each.getAttribute("name")
 		type=each.getAttribute("type")
-		fp.write("<tr border=\"1\"><td><i>"+type+"</i> <b>"+name+"</b></td><td align=\"right\">"+msg+"</td></tr>")
-	fp.write("</table>")
-	fp.write("</td></tr>")
+		fp.writeline("<tr border=\"1\"><td><i>"+type+"</i> <b>");
+		#write doc filename
+		#due to rhys simpilifying documentation, I'm forced to 
+		#complicate my program, to make it simpler to access
+		fp.writeline("<a class=\"nounderline\" href=\"../pnetlib-doc/"+string.replace(parent.fqname,".","/")+".html#"+parent.name+"."+name+"%20Property\">")
+		fp.writeline(name);
+		fp.writeline("</a></b>");
+		fp.writeline("</td><td align=\"right\" width\"\">"+msg+"</td></tr>")
+	fp.writeline("</table>")
+	fp.writeline("</td></tr>")
 
 
 
 def print_event_summary(fp,events):
-	fp.write("<tr><td>")
-	fp.write("""<table cellspacing="0" width="100%" bgcolor="#b2b297" border="1">""")
-	fp.write("""<tr><td><font size="+2">Event Summary</h3></td></tr>""")
-	fp.write("</table>")
-	fp.write("""<table cellpadding="4" cellspacing="0" width="100%" bordercolor="#99997e" border="1">""")
+	fp.writeline("<tr><td>")
+	fp.writeline("""<table cellspacing="0" width="100%" bgcolor="#b2b297" border="1">""")
+	fp.writeline("""<tr><td><font size="+2">Event Summary</h3></td></tr>""")
+	fp.writeline("</table>")
+	fp.writeline("""<table cellpadding="4" cellspacing="0" width="100%" bordercolor="#99997e" border="1">""")
 	for each in events:
 		(status,msg)=get_status(each)
 		name=each.getAttribute("name")
-		fp.write("<tr border=\"1\"><td><b>"+name+"</b></td><td align=\"right\">"+msg+"</td></tr>")
-	fp.write("</table>")
-	fp.write("</td></tr>")
+		fp.writeline("<tr border=\"1\"><td><b>"+name+"</b></td><td width=\"\" align=\"right\">"+msg+"</td></tr>")
+	fp.writeline("</table>")
+	fp.writeline("</td></tr>")
 	
 
 
 ###################################END SUMMARY##############################	
 def print_each_class(fp,cnode):
-#	fp.write("<br>")
-	fp.write("<a name=\""+cnode.name+"\">")
-	fp.write("<table bordercolor=\"#dedebb\" border=\"1\" width=\"90%\">")
-	fp.write("<tr><td><h2>"+cnode.fqname+"</h2></td></tr>")
+#	fp.writeline("<br>")
+	fp.writeline("<a name=\""+cnode.name+"\">")
+	fp.writeline("<table bordercolor=\"#dedebb\" border=\"1\" width=\"90%\">")
+	fp.writeline("<tr><td><h2>"+"<a class=\"nobold\" href=\"../pnetlib-doc/"+string.replace(cnode.fqname,'.','/')+".html\">"+cnode.fqname+"</a></h2>")
+	fp.writeline("</td></tr>")
 	(status,msg)=get_status(cnode.node)
-	fp.write("""<tr><td>Status : """)
-	fp.write(msg)
+	fp.writeline("""<tr><td>Status : """)
+	fp.writeline(msg)
 	last_active=get_last_active(cnode.fqname)	
-	fp.write(last_active)
-	fp.write("</td></tr>")
+	fp.writeline(last_active)
+	fp.writeline("</td></tr>")
 	#summary
 	if(len(cnode.ctors)!=0):
-		print_ctor_summary(fp,cnode.ctors,cnode)
+		print_ctor_summary(fp,cnode,cnode.ctors)
 	if(len(cnode.methods)!=0):
-		print_method_summary(fp,cnode.methods)
+		print_method_summary(fp,cnode,cnode.methods)
 	if(len(cnode.fields)!=0):
-		print_field_summary(fp,cnode.fields)
+		print_field_summary(fp,cnode,cnode.fields)
 	if(len(cnode.props)!=0):
-		print_prop_summary(fp,cnode.props)
+		print_prop_summary(fp,cnode,cnode.props)
 	if(len(cnode.events)!=0):
 		print_event_summary(fp,cnode.events)
-	fp.write("</table>")
-	fp.write("<br>")
-	fp.write("</a>")
+	fp.writeline("</table>")
+	fp.writeline("<br>")
+	fp.writeline("</a>")
 
 def print_namespace_inner(fname,classlist,prev,next):
-	fp=open(fname+".html","w")
+	fp=filewrapper(fname+".html","w")
 	print "writing....."+fname+".html"
-	fp.write("""<html><body bgcolor="#505050" link="#0A0A0A" vlink="#303030">""")
-	fp.write("""<head><title>%s</title></head>"""%(fname))
+	fp.writeline("""<html><body bgcolor="#505050" link="#0A0A0A" vlink="#303030">""")
+	fp.writeline("""<head><title>%s</title>
+		<style>
+   		.nounderline
+		  {
+		  	text-decoration:none;
+		  }
+   		.nobold
+		  {
+		  	text-decoration:none;
+			font-weight: normal;
+		  }
+		</style>
+	</head>"""%(fname))
 	write_pnetlib_header(fp)
 	print_curved_title(fp,"<h2 align=\"left\">"+fname+" Namespace</h2>")
 	links="<p align=\"right\">"
@@ -347,14 +437,14 @@ def print_namespace_inner(fname,classlist,prev,next):
 		links=links+"<a href=\""+next+"\"><img alt=\"Next >>\"src=\"rarrow.jpg\" border=\"0\"></a>"
 	links=links+"</p>"	
 	print_curved_title(fp,links)
-	fp.write("<tr><td>&nbsp;</td><td>")
-	fp.write("<!--DATA REGION-->")
-	fp.write("""<table bordercolor="#dedebb">""")
-	fp.write("""<tr><td border="1">""")
-	fp.write("<!--LEFT BLOCK-->")
-	fp.write("""	<table align="center" bgcolor="#cfcfbb">""")
-	fp.write("""	<tr><td>Classes </td></tr>""")
-	fp.write("""	<tr><td>""")
+	fp.writeline("<tr><td>&nbsp;</td><td>")
+	fp.writeline("<!--DATA REGION-->")
+	fp.writeline("""<table bordercolor="#dedebb">""")
+	fp.writeline("""<tr><td border="1">""")
+	fp.writeline("<!--LEFT BLOCK-->")
+	fp.writeline("""	<table align="center" bgcolor="#cfcfbb">""")
+	fp.writeline("""	<tr><td>Classes </td></tr>""")
+	fp.writeline("""	<tr><td>""")
 	
 	methodcount=0
 	ctorcount=0
@@ -362,37 +452,37 @@ def print_namespace_inner(fname,classlist,prev,next):
 	fieldcount=0
 	propcount=0
 	for each in classlist:
-		fp.write("&nbsp;&middot;&nbsp<b><a href=\"#"+each.name+"\">"+each.name+"</a></b><br>")
+		fp.writeline("&nbsp;&middot;&nbsp;<b><a href=\"#"+each.name+"\">"+each.name+"</a></b><br>")
 		ctorcount=ctorcount+len(each.ctors)
 		methodcount=methodcount+len(each.methods)
 		fieldcount=fieldcount+len(each.fields)
 		eventcount=eventcount+len(each.events)
 		propcount=propcount+len(each.props)
-	fp.write("""	</td></tr>""")
-	fp.write("""	</table>""")
-	fp.write("""</td><td valign="top">""")
-	fp.write("<!--CENTER BLOCK-->")
-	fp.write("	<table><tr><td>")
-	fp.write("<p>There are <b>"+`len(classlist)`+"</b> incomplete classes in this namespace</p>")
-	fp.write("<p>In total we are missing :</p>")
-	fp.write("&nbsp;&nbsp;<b>"+`ctorcount`+" </b>constructors, ")
-	fp.write("<b>"+`methodcount`+"</b> methods, ")
-	fp.write("<b>"+`fieldcount`+"</b> fields, ")
-	fp.write("<b>"+`propcount`+"</b> properties, and ")
-	fp.write("<b>"+`eventcount`+"</b> events.")
-	fp.write("</td></tr></table>")
-	fp.write("""	</td></tr>""")
-	fp.write("""	</table>""")
-	fp.write("</td><td>&nbsp;</td></tr>")
+	fp.writeline("""	</td></tr>""")
+	fp.writeline("""	</table>""")
+	fp.writeline("""</td><td valign="top">""")
+	fp.writeline("<!--CENTER BLOCK-->")
+	fp.writeline("	<table><tr><td>")
+	fp.writeline("<p>There are <b>"+`len(classlist)`+"</b> incomplete classes in this namespace</p>")
+	fp.writeline("<p>In total we are missing :</p>")
+	fp.writeline("&nbsp;&nbsp;<b>"+`ctorcount`+" </b>constructors, ")
+	fp.writeline("<b>"+`methodcount`+"</b> methods, ")
+	fp.writeline("<b>"+`fieldcount`+"</b> fields, ")
+	fp.writeline("<b>"+`propcount`+"</b> properties, and ")
+	fp.writeline("<b>"+`eventcount`+"</b> events.")
+	fp.writeline("</td></tr></table>")
+	fp.writeline("""	</td></tr>""")
+	fp.writeline("""	</table>""")
+	fp.writeline("</td><td>&nbsp;</td></tr>")
 #classwise printing starts
 	for each in classlist:
-		fp.write("""<tr><td>&nbsp;</td><td>&nbsp;<hr color="#dedebb">&nbsp;</td><td>&nbsp;</td></tr>""")
-		fp.write("""<tr><td>&nbsp;</td><td>""")
+		fp.writeline("""<tr><td>&nbsp;</td><td>&nbsp;<hr color="#dedebb">&nbsp;</td><td>&nbsp;</td></tr>""")
+		fp.writeline("""<tr><td>&nbsp;</td><td>""")
 		print_each_class(fp,each)
-		fp.write("</td><td>&nbsp;</td></tr>")
+		fp.writeline("</td><td>&nbsp;</td></tr>")
 	print_curved_footer(fp)
 	write_pnetlib_footer(fp)
-	fp.write("</body></html>")
+	fp.writeline("</body></html>")
 	fp.close()
 	return (ctorcount,methodcount,fieldcount,propcount,eventcount)
 
