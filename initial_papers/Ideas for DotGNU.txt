@@ -1,0 +1,170 @@
+
+
+
+
+DotGNU
+Written by: Enzo-Adrian Reyes (myrddian)
+
+
+Introduction:
+
+Its an enviroment because it will consists of a series of common API's (or Remote Objects) and services, which will allow transparent acces to data, programs on remote systems, and or Web Services.
+
+However it is a platform becasue application written for DotGNU will not have to worry about, the host they operate in (ie: OS, CPU, and other soft/hardware issues). In this it would very similar to Java.
+
+DotGNU, wil be a complete replacement for Microsofts .NET strategy, it will be a Free Software project. DotGNU will not be a free implementation of .NET, the basis, while .NET is sound idea, several issues with .NET arise (such as Passport, and centralized
+authorization). DotGNU will be a decentralized framework, and most importantly it should be secure.
+
+
+
+DotGNU Project.
+
+   DotGNU, should consist of two seperate major projects, one beign the design and implementation of the Run-time enviroment, while the other the design and implementation of the Network enviroment, each of these can then be seperated into further sub-projects.
+
+Example:
+ 
+                DotGNU(Platform): Bytecode
+                                                 Secure runtime enviroment
+                                                 GUI
+                                                 Registry
+                                                 Configuration
+                                                 System Enviroment and API's
+
+               DotGNU(Framework):Authorization/Authentication
+                                                   Component Objects
+                                                   Remote API
+                                                   Policy Handling
+
+
+
+
+These are some of the things which can be organized in this manner, either way the framework should handle all networking issues with this project. Also the Framework will be accesible to any language (and possibly platform).
+
+Ideas for the Framework:
+
+
+Peer Routing:
+
+The idea behind DotGNU is that of decentralised services, or a network of services (a network whithin a network). One problem with this is localization, and resource seeks.
+
+Now peer routing provides several solutions, to very simple problems. The idea behind it  is that you can route a connection or service to another machine.
+
+The way this works is akin to the idea of 6 degrees of seperation, Each server could have 6 server entries (well could be more), these known entries is what this server will contact in case of an emergency or for services. This means that no server is a central server because each machine only knows six or more machines (or less). However the idea is that a server may initiate a query to it's known peers,  in which case the known peers will also ask their known peers the same query (it repeats) this way the servers are bound to know one or the other via inderection, The query is stopped if it finds a succesful reply. 
+
+This idea can also be used for Proxy configurations.
+
+
+Journaling:
+
+The idea of journaling on DotGNU is very similar to that of a Journaling Filesystem. To make transactions actomic, that is to make all operations taking over a network indivisible, repeatable and most importantly robust. 
+
+The way it self may sound simple. A transaction is sent from the client to a server, or server to server via it's peers. When the server receives a request it is written to a log or journal, when (according to some parameters) this log is flushed and the requests sent across the network, the machine marks these transactions on the journal as active. Now each of these transactions are unique (they have an identifying ID) so when a reply is sent back to the server sending the transaction it then marks the transaction on the log as complete. After a while it is flushed from the active queue. 
+
+Now if no reply is sent back this Transaction is kept marked active until a reply is sent back. 
+
+
+
+
+
+
+Example:
+
+      Server A sends messages to B, but network connections are unrealiable
+      Client on Server A sends a request to server B.
+      Server A Logs the request.
+      Server A then flushes the Log
+      Wait for a reply 
+       If a reply is sent clear the active transactions with replies.
+       If no reply is sent retry the active transactions.
+     
+       Server B is restored
+       Server B recieves Server A requests
+       Server B Logs Server A requests and initiates a reply
+       Server B waits for Server A reply
+
+       Server A receives and Acknowledges Server B message
+       Server B receives Server A reply and transaction is closed.
+
+
+ In short every message b/w Server A and B except the last two acknowledgement of Closing transactions are repeatable. Because each transaction has a unique identifier, Server B may receive several messages of the same transaction, however because they are repeatable with the same effect, it has no impact other than the first is done and the others are discarded. This only applies to transactions which have the Same ID.
+
+
+Resource Location String:
+
+A resource string is similar to an URL, in that it points to resources and services existing on another server. It is generic string, in that it can be used to point to any object or services. One example for this would be the authentication service, in which the string can be used to authenticate people on another server. 
+
+It can also be used for other things, because it's a pointer and defines an object as the message beign passed across, it could transport anything.
+
+An example of this string would be:
+
+             <SERVER> : <DotGNU Service Name/Alias> :<MESSAGE/OBJECT>
+
+Server: The Server the string points to (via IP or DNS)
+Service name/Alias: The service being requested from the server 
+Message/Object: The actual message being passed as a string or a reference to the object
+                            Beign held on a server asking the service.
+
+
+
+
+Example: 
+
+              speller.com:spell:helllo     <=This asks the servervice spell from speller.com
+                                                             and passes helllo as the message string
+ 
+           myisp.com:authentication:OBJ(REMOTE_IP,ObjName)
+In this example the string is asking authentication from an ISP, now since authentication information is considered secure an Object reference is used, which points to an IP or Name, of the remote services asking authentication, and the object name which contains the data.
+
+Although not complete, this can be a starting point for ideas revolving around locator strings, which can be used for anything.
+
+
+Proxy and Tandems:
+
+With the idea of Peer-routes one could also consider using proxies, a front end server is used to connect to the internet, while the machines which contain the actual services can be behind a proxy style firewall, with no route to the internet.
+
+Using proxies one would have to configure a machine as a standard DotGNU server except it routes all messages across transparently, the machines on the other end would determine the connection policy (proxied, or direct). In a proxy configuration all servers connected in this manner have their own Logs, so for each connection there is a new Log.
+
+Example: 
+
+     Server A connects to B which in turns Connects to C.
+
+    Now Server A connects to B in a direct connection.
+    Server A and B now have a log of their connection.
+    However B is routing Messages to C, in a proxy configurations , B and C now have  active logs on their Connections.
+
+    This means that are 4 Logs of this connection. In a proxy configuration the target machine may not know who initiated the message, only the machie acting as proxy does, as far as C is concerned its having a transaction with B.
+
+In a proxy configuration more than one server can act as a proxy, so there can be a chain of proxy servers. A proxies to B proxies to C proxies to D proxies E.
+
+
+
+
+
+Now Tandems, is a way of recursive proxy machines, A proxies to A. A beign of two different machines, however they contain the same configuration and same Identity.
+
+This means should either A fail there is another A there, but for transactions purposes this is completetly transparent. It can be said one could be a Master Server, while the Other a Slave, and both should be kept in sync. 
+
+Policies
+
+Each server has a policy, this determines communication with other servers, and how it behaves on the Internet.  Policies could be determined by specifing states based on variables.
+
+Some variables could be: 
+     Trust (how much it trusts connections)
+     Proxy (proxy policies)
+     Message TTL (Silimar to Packet TTL, except with Transactions)
+     Peer (Peers policies, handling connections)
+     Direct Connection (Direct Connection Policy)
+     Connections (How many machines it serves)
+     Decay  (time before data or object expiration)
+
+
+ Trust: This is a catch all, this basically means how much a machine should trust an individual user, or connection. According to this variable it may determine wether it should reject or accept the connection or messages.
+
+Proxy: Where should it Proxy to in case of a failure in service, or which servers are connected in a proxy type chain only.
+
+Peer: Determines the trust/ weight of the servers known peer list.Weight or priority determines which peers it should connect to first for simple requests, it could take in to account factors such as uptime, connection drops, and ping/lag/delay time.
+
+Direct Connection: Based on trust, if a machine is attempting a Direct Connection which it may have problems verifying it may reject the direct connection, unless a Peer can find this machine or verify it as trust worthy.
+
+Decay: Decay values, time before data expiration that sort of stuff.
+

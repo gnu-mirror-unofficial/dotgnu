@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=iso-8859-1">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice/5.2 (Linux)">
+	<META NAME="AUTHOR" CONTENT=" ">
+	<META NAME="CREATED" CONTENT="20010805;10421300">
+	<META NAME="CHANGEDBY" CONTENT=" ">
+	<META NAME="CHANGED" CONTENT="20010805;12540100">
+	<STYLE>
+	<!--
+		@page { margin-left: 1.25in; margin-right: 1.25in; margin-top: 1in; margin-bottom: 1in }
+	-->
+	</STYLE>
+</HEAD>
+<BODY>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><U><B>Application
+Programing Interface</B></U></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><U><B>Layout </B></U>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><U><B>For the DotGNU
+Project.</B></U></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><U><B>Version 0.1A</B></U></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><U><B>By</B></U></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><B><U>Enzo-Adrian Reyes
+(<A HREF="mailto:myrddian@bigpond.net.au">myrddian@bigpond.net.au</A>)</U></B></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; text-decoration: none"><B>Introduction</B></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+This document is a general idea on what the basic API for the DotGNU
+platform would be. It would be what I would consider the most minimal
+set's of API that should be accessible by DotGNU platform programs. I
+would also consider other things which might be of importance in the
+appendix, some of these might not be directly related to the API,
+however I would consider important to mention.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+Please note that I will not discuss the individual functions or
+Objects for the mentioned API. This is beyond the scope of the
+documentation.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; text-decoration: none"><B>Considered
+API's and Rationale</B></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+DotGNU is both a framework and an platform. Programs can either use
+one or both parts (hence allowing flexibility). A program using the
+framework may not be a native DotGNU application, so these programs
+can use the native O.s.'s API. However a program using the DotGNU
+platform does not have the luxury of having accessible OS' API
+routines, or objects.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+Posix, I think should be our primary low level API for the DotGNU
+platform, this includes threads and what ever Posix specifies. Why
+Posix? Well its a mature API, and most importantly it's widely
+adopted. Although at the moment I am only aware of POSIX 1, and POSIX
+Threads.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+Note: If anybody here knows about POSIX please Contribute to this
+document. 
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+Another API we should be able to support is GTK, now why not Gnome,
+well Gnome is a desktop, and not appropriate for windowing. However I
+think that DotGNU should also support another Widget layer on top of
+GTK on the Platform side, which should be easier to program on
+compared to GTK.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+Resource Locating String API's to transport, generate, also interface
+to the RLS system.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+Registry. The Registry Subsystem API</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+DotGNU Framework API calls. This is crucial as this allows access to
+remote objects and services (this includes both the Registry and RLS
+API). Over all this API has yet not been fully implemented or
+designed.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+Full UNIX Sockets, I don't know if this is specified in POSIX,
+however this should be available for the Platform, as not everybody
+may want to use the DotGNU framework</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+Component Interfaces. Well this could mean several things, however it
+should be noted that the above is not a complete list, but it should
+be our most basic API for programs to use. In order to make our
+system rich in flexibility, we need a way to extend its capabilities.
+Component Interfaces allow this to happen, this way we can extend the
+DotGNU system and not break it's basic API functions and existing
+supported software. Most components would be built around an Object
+Oriented Paradigm, however ways to allow access via standard
+Procedural languages, should be available.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+Some optional API which we might include would be Multimedia support,
+such as OpenGL and Sound (OpenAL, or some other sound API). Other
+things such as Image handling routines. Another API we should be able
+to support would be the ability to handle Dynamic Data Exchange
+between programs and services.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; text-decoration: none"><B>Conclusion</B></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+With the mentioned API support this should allow any programmer to
+write any type of software he wishes on DotGNU. From Word processors
+to fully fledged web services using both the DotGNU platform and
+framework.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; text-decoration: none"><B>Appendix.</B></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+Well these are idea which might not be in the above category, but I
+thought I'd mention any how.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+CORBA, including support for CORBA in DotGNU I think should be
+important, it allows people to move services across to our platform
+in shorter time. CORBA is already well established, support for it is
+every where. Including it as an optional API, I think is wise.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+Java RMI. If support for Java is to be included in DotGNU a way to
+handle RMI requests should also be considered. Although I don't think
+a fully functional RMI implementation is required, a way to handle
+RMI should be available either by using CORBA. This should allow Java
+Beans to use RMI to communicate to a DotGNU service, although it's
+well known that Java also has CORBA support.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium; text-decoration: none">
+Web forms, dynamic content on the web is a good idea. DotGNU should
+be able to do this, if not support a method on how to do this by
+either providing a way to allow this to happen. This can be done
+already with out the need for DotGNU, however we should allow a way
+for these ways to access the DotGNU framework and the Platform allow
+access to these ways also.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+</BODY>
+</HTML>
