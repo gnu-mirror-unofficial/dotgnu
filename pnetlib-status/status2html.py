@@ -185,7 +185,7 @@ def print_namespace_list(nslist,ctor,method,field,prop,event,attr):
 	
 	write_pnetlib_header(fp)
 	print_curved_title(fp,"""<h1>Namespaces</h1> """)
-	print_curved_title(fp,"<p align=\"right\"><a href=\""+nslist[0]+".html\"><img src=\"rarrow.jpg\" border=\"0\"></a></p>")
+	print_curved_title(fp,"<p align=\"right\"><a href=\""+nslist[0]+".html\"><img alt=\"Next&gt;\" src=\"rarrow.jpg\" border=\"0\"></a></p>")
 	fp.write("<tr><td>&nbsp;</td><td>")	
 	#nested tabling is *so* difficult
 	fp.write("""<table align="left" width="100%" bordercolor="#dedebb">""")
@@ -364,10 +364,10 @@ def print_namespace_inner(fname,classlist,prev,next):
 	print_curved_title(fp,"<h2 align=\"left\">"+fname+" Namespace</h2>")
 	links="<p align=\"right\">"
 	if(prev!="index.html"):
-		links=links+"<a href=\""+prev+"\"><img src=\"larrow.jpg\" border=\"0\"></a>"
-	links=links+"<a href=\"index.html\"><img src=\"uarrow.jpg\" border=\"0\"></a>"
+		links=links+"<a href=\""+prev+"\"><img alt=\"<< Prev\" src=\"larrow.jpg\" border=\"0\"></a>"
+	links=links+"<a href=\"index.html\"><img alt=\"Up\" src=\"uarrow.jpg\" border=\"0\"></a>"
 	if(next!="index.html"):
-		links=links+"<a href=\""+next+"\"><img src=\"rarrow.jpg\" border=\"0\"></a>"
+		links=links+"<a href=\""+next+"\"><img alt=\"Next >>\"src=\"rarrow.jpg\" border=\"0\"></a>"
 	links=links+"</p>"	
 	print_curved_title(fp,links)
 	fp.write("<tr><td>&nbsp;</td><td>")
