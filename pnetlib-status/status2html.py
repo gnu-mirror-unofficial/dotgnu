@@ -254,7 +254,7 @@ def print_field_summary(fp,fields):
 		fp.write("<a href=\"../pnetlib-doc/"+string.replace(name,".","/")+".html")
 		#due to rhys simpilifying documentation, I'm forced to 
 		#complicate my program, to make it simpler to access
-		fp.write(name+" Property\">")
+		fp.write("#"+name+" Property\">")
 		fp.write(name+"</b></td><td align=\"right\">"+msg+"</td></tr>")
 	fp.write("</table>")
 	fp.write("</td></tr>")
