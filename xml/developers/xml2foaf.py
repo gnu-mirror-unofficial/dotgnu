@@ -82,26 +82,24 @@ class Developer:
 
 		if(self.homepage):
 			w.writeline("""<foaf:homepage rdf:resource="%s"/> """ % self.homepage)
+
 		for each in self.tasks:
 			w.writeline("""<dotgnu:task>%s</dotgnu:task>""" % each)
-			if(self.occupation):
-				w.writeline("""<dotgnu:occupation>%s</dotgnu:occupation>""" % self.occupation)
-				#(_a_an(self.occupation),
-			if(self.location):
-				w.writeline("""<dotgnu:location>%s</dotgnu:location>"""   % self.location)
-					
-#			if(self.chat):
-#				w.writeline("""<dotgnu:irc>%s</dotgnu:irc>""" % self.chat["irc"])
 
-			if(len(self.chat.keys())!=1):
-				first = 1
-				for mode in self.chat.keys():
-					if mode!="irc":
-						if(not first):
-							w.writeline("""<dotgnu:%s/>%s</dotgnu:irc>"""  % (mode,self.chat[mode],mode))
-						else:
-							first=0
-					w.writeline("""<dotgnu:%s/>%s</dotgnu:%s>"""  % (mode,self.chat[mode],mode))
+		if(self.occupation):
+			w.writeline("""<dotgnu:occupation>%s</dotgnu:occupation>""" % self.occupation)
+		if(self.location):
+			w.writeline("""<dotgnu:location>%s</dotgnu:location>"""   % self.location)
+			
+		if(len(self.chat.keys())!=1):
+			first = 1
+			for mode in self.chat.keys():
+				if mode!="irc":
+					if(not first):
+						w.writeline("""<dotgnu:%s/>%s</dotgnu:irc>"""  % (mode,self.chat[mode],mode))
+					else:
+						first=0
+				w.writeline("""<dotgnu:%s/>%s</dotgnu:%s>"""  % (mode,self.chat[mode],mode))
 
 		w.writeline("""</foaf:Person>""")
 
