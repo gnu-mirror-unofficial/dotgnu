@@ -1,6 +1,19 @@
 #!/usr/bin/env python1.5
 import xml.dom.minidom
 import string
+import sys
+from cvstree import *
+cvs_entries=cvsmoddate("/home/gopal/dotgnu/pnetlib/runtime")
+#################TODO#####################
+#                                        #
+# * implement error messages             #
+# * implement classes for html           #
+# * implement xml validation             #
+# * implement command line options       #
+# * implement theme/template support     #
+# * implement maintainer ids             #
+# * implement this whole thing in C      #
+##########################################
 class classnode:
 	def __init__(self,node):
 		self.node=node
@@ -40,6 +53,14 @@ def get_prev_next(list,element):
 	else:
 		next=list[i+1]+".html"
 	return (prev,next)
+	
+def get_last_active(name):
+	fname=string.replace(name,".","/")
+	try:
+		retval="<i> on "+cvs_entries.getDateStr(fname+".cs")+"</i>"
+		return retval;
+	except KeyError:
+		return ""
 #########################end helper functions####################
 #status functions
 def get_status(node):
@@ -58,7 +79,7 @@ def get_status(node):
 	if(hasChildNode(node,"extra")):
 		return (4,"<i>Extra</i>")
 	if(child_error!=0):
-		return (0,"you missed a todo here ?")
+		return (0,"<b>TODO ?</b>")
 	return (0,"csdocvalil goofed up")
 
 def split_signature(sig):
@@ -79,7 +100,6 @@ def print_curved_header(fp,header=""):
 	fp.write("</td></tr>")
 	
 def print_curved_footer(fp):
-	#fp.write("<tr><td>")
 	fp.write("<tr><td valign=\"bottom\" align=\"left\"><img src=\"corner-bottom-left.png\"></td>")
 	fp.write("<td>&nbsp;</td>")
 	fp.write("<td valign=\"bottom\" align=\"right\"><img src=\"corner-bottom-right.png\"></td></tr>")
@@ -95,27 +115,37 @@ def write_pnetlib_header(fp):
 	#print_curved_header(fp,"""<h1 align="center"><underline>Pnetlib Class Status<underline></h1>""")
 	##ADDED A COOL LOGO, 
 	print_curved_header(fp,"""<p align="center"><img src="logo.jpg"></p>""")
-
+	print_curved_title(fp,"""Portable.NET""")
 def write_pnetlib_footer(fp):
 	fp.write("<br><br>")
 	print_curved_header(fp,"&nbsp;")
 	print_curved_title(fp,"""<p align="center">
 								Portable.NET is a Free CLR environment
 								for GNU systems. <br>
-								It is part of the dotGNU meta project.
+								It is part of the DotGNU meta project.
 							</p>
 							<p align="center">
 								Visit <a href="http://www.dotgnu.org">
 								http://www.dotgnu.org</a> for more details
 							</p>
 							<p align="center">
-								<table align="center">
-								<tr>
-								<td><img src="powered-by-gnu3.png"></td>
-								<td><img src="graphics-by-gimp.png"></td>
-								<td><img src="powered-by-fsf.png"></td>
-								</tr>
-								</table>	
+							<table border="0" cellspacing="10" align="center">
+							<tr align="center">
+								<td><a href="http://www.fsf.org.in">
+								<img src="powered-by-fs.png" 
+								alt="[Powered by Free Software]"></a></td>
+								
+								<td><a href="http://www.gimp.org">
+								<img src="graphics-by-gimp.png" 
+								alt="[Graphics by Gimp]"></a>
+								</td>
+								
+								<td><a href="http://www.gnu.org">
+								<img src="powered-by-gnu.png" 
+								alt="[Powered by GNU]"></a>
+								</td>
+							</tr>
+							</table>
 							</p>
 							""")
 	print_curved_footer(fp)
@@ -130,7 +160,7 @@ def print_namespace_list(nslist,ctor,method,field,prop,event,attr):
 			 vlink="#0c0c0a" >""")
 	
 	write_pnetlib_header(fp)
-	print_curved_title(fp,"<h1>Namespaces</h1>")
+	print_curved_title(fp,"""<h1>Namespaces</h1> """)
 	print_curved_title(fp,"<p align=\"right\"><a href=\""+nslist[0]+".html\">Next</a></p>")
 	fp.write("<tr><td>&nbsp;</td><td>")	
 	#nested tabling is *so* difficult
@@ -165,6 +195,7 @@ def print_namespace_list(nslist,ctor,method,field,prop,event,attr):
 	fp.write("</td></tr>")
 	fp.write("</table>")
 	fp.write("</td><td>&nbsp;</td></tr>")
+	fp.write("""<tr><td></td><td align="right"><font size="-3">[<a href="status.xml">XML</a> | <a href="status2html.py">PYTHON</a>]</font></td><td></td></tr>""");
 	print_curved_footer(fp)
 	write_pnetlib_footer(fp)
 	fp.write("</body></html>")
@@ -267,6 +298,8 @@ def print_each_class(fp,cnode):
 	(status,msg)=get_status(cnode.node)
 	fp.write("""<tr><td>Status : """)
 	fp.write(msg)
+	last_active=get_last_active(cnode.fqname)	
+	fp.write(last_active)
 	fp.write("</td></tr>")
 	#summary
 	if(len(cnode.ctors)!=0):
