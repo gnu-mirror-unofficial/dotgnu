@@ -25,7 +25,7 @@ See below for full source code of this demo.
 </p>
 <img width="1024" height="768" src=".././screenshots/15.jpg" />
 <p>
-Source code follows.
+Source code follows.  Compilation instructions are at the bottom.
 </p>
 <h2>
 Here is the file <code>BAlert.cs</code>; this file is in the public domain:
@@ -255,7 +255,20 @@ public class RectangleTest
 	}
 }
 </pre>
-
+<h2>Compilation instructions for this BeOS test program</h2>
+The file Tao.Sdl.dll is required; you can build it from
+<a href="http://www.getdotgnu.com/contrib/pnet-src/Tao.Sdl.Src.tar.gz">this
+source code</a> by means of the command
+<pre>
+cscc -D LINUX -funsafe -target:library -O2 Sdl.cs SdlImage.cs SdlMixer.cs SdlTtf.cs -o Tao.Sdl.dll
+</pre>
+(Yes, "-D LINUX" does the right thing for BeOS.)  Then the test
+program for the screenshot can be compiled and run with
+<pre>
+gcc -shared -nostart be_BAlert.cpp -o be_BAlert.so
+cscc -funsafe BAlert.cs
+ilrun a.out
+</pre>
 <h2>
  Your comments please...
 </h2>
