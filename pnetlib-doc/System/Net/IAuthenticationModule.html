@@ -1,0 +1,382 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.IAuthenticationModule Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.IAuthenticationModule Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public interface IAuthenticationModule</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented by types that perform client authentication.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="IAuthenticationModule.html" TARGET="contents">IAuthenticationModule</A> interface 
+   defines the properties and methods that types are required to implement to handle
+   client authentication. Types that implement this interface are called
+   authentication modules. In addition to implementing this interface, an
+   authentication module implements an authentication protocol, such as the
+   Kerberos protocol. The System.Net.IAuthenticationModule.AuthenticationType
+   property
+   value is a case-insensitive string that typically indicates the protocol implemented by
+   the module. Each authentication module registered with the authentication
+   manager is required to have a unique System.Net.IAuthenticationModule.AuthenticationType .
+   The following string values are reserved for use by modules
+   implementing the indicated protocols:
+   <P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Protocol</TH><TH>AuthenticationTypeProtocol</TH></TR>
+<TR><TD>Basic as defined by IETF RFC 2617</TD><TD>&quot;basic&quot;<P>
+
+Basic as defined by IETF RFC 2617</TD></TR>
+<TR><TD>Digest access as defined by IETF RFC 
+            2617</TD><TD> &quot;digest&quot;Digest access as defined by IETF RFC 
+            2617</TD></TR>
+<TR><TD>Kerberos as defined by IETF RFC 
+            1510</TD><TD> &quot;kerberos&quot;Kerberos as defined by IETF RFC 
+            1510</TD></TR>
+</TABLE>
+[<I>Note</I>:  Authentication modules are registered with the
+         authentication manager (<A HREF="AuthenticationManager.html" TARGET="contents">AuthenticationManager</A> ) by calling the System.Net.AuthenticationManager.Register(System.Net.IAuthenticationModule)
+         method. When the authentication manager receives an
+         authentication request, registered authentication modules are given the
+         opportunity to handle the authentication in their System.Net.IAuthenticationModule.Authenticate(System.String,System.Net.WebRequest,System.Net.ICredentials) method. Similarly, when a
+         client wishes to avoid waiting for the server to request authentication, it can
+         request preauthentication information to send with a request. If
+         the System.Net.IAuthenticationModule.CanPreAuthenticate property of a registered
+         module returns <CODE>true</CODE>
+, it is
+         among the modules that are given the opportunity to provide the
+         preauthentication information via the System.Net.IAuthenticationModule.PreAuthenticate(System.Net.WebRequest,System.Net.ICredentials)
+         
+         method. <P>
+
+ Not all modules receive all authentication and
+         preauthentication requests. The authentication manager searches for an
+         authentication module by invoking the System.Net.IAuthenticationModule.Authenticate(System.String,System.Net.WebRequest,System.Net.ICredentials) or System.Net.IAuthenticationModule.PreAuthenticate(System.Net.WebRequest,System.Net.ICredentials) method of each registered
+         module in the order in which it was registered. Once a module returns
+         a <A HREF="Authorization.html" TARGET="contents">Authorization</A>
+         
+         instance, indicating that it handles the
+         authentication, the authentication manager terminates the search. <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IAuthenticationModule Methods<P>
+
+<A HREF="#IAuthenticationModule.Authenticate Method" TARGET="contents">IAuthenticationModule.Authenticate Method</A><BR>
+<A HREF="#IAuthenticationModule.PreAuthenticate Method" TARGET="contents">IAuthenticationModule.PreAuthenticate Method</A><BR>
+<P>
+
+IAuthenticationModule Properties<P>
+
+<A HREF="#IAuthenticationModule.AuthenticationType Property" TARGET="contents">IAuthenticationModule.AuthenticationType Property</A><BR>
+<A HREF="#IAuthenticationModule.CanPreAuthenticate Property" TARGET="contents">IAuthenticationModule.CanPreAuthenticate Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IAuthenticationModule.Authenticate Method"><H3>IAuthenticationModule.Authenticate Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Authorization Authenticate(string challenge, WebRequest request, ICredentials credentials);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns an instance of the <A HREF="Authorization.html" TARGET="contents">Authorization</A> class that provides a
+   response to an authentication challenge.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>challenge</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the authentication challenge sent by the server. The content of this string is determined by the authentication protocol(s) used by the server that issued the challenge.</DD>
+<DT> request</DT>
+<DD>The <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> instance that received <I>challenge</I> .</DD>
+<DT> credentials</DT>
+<DD>The credentials of the <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> instance that received <I>challenge</I> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Authorization.html" TARGET="contents">Authorization</A> instance containing the
+   challenge response, or <CODE>null </CODE>
+if the challenge cannot be handled.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: If the
+      authentication module can handle <I>challenge</I> , this method
+      proceeds with the authentication in accordance with the authentication protocol implemented by the current
+      instance and returns a <A HREF="Authorization.html" TARGET="contents">Authorization</A> instance containing the challenge response. If the authentication module cannot handle
+      the challenge, this method returns <CODE>null</CODE>
+. If the authentication module encounters an
+      error while conducting the authentication process, this method can, but
+      is not required to throw an exception.]<P>
+
+<P>
+
+[<I>Overrides</I>: Implement this
+      method to receive and optionally handle requests for client authentication from
+      the authentication manager.]<P>
+
+<P>
+
+[<I>Usage</I>: The <A HREF="AuthenticationManager.html" TARGET="contents">AuthenticationManager</A> class invokes the System.Net.IAuthenticationModule.Authenticate(System.String,System.Net.WebRequest,System.Net.ICredentials)
+method on registered authentication modules to allow modules to handle a
+server challenge.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IAuthenticationModule.html" TARGET="contents">System.Net.IAuthenticationModule Interface</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IAuthenticationModule.PreAuthenticate Method"><H3>IAuthenticationModule.PreAuthenticate Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Authorization PreAuthenticate(WebRequest request, ICredentials credentials);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns an instance of the <A HREF="Authorization.html" TARGET="contents">Authorization</A> class containing client authentication information.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>request</DT>
+<DD>The <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> instance associated with the authentication request.</DD>
+<DT>credentials</DT>
+<DD>The credentials associated with the authentication request.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Authorization.html" TARGET="contents">Authorization</A> instance containing client authentication
+   information to be sent with <I>request</I>, or <CODE>null </CODE>
+if the current instance does not support preauthentication.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This method returns an instance of the <A HREF="Authorization.html" TARGET="contents">Authorization</A> class containing authentication information to be
+   sent with the request. This method is required to return <CODE>null</CODE>
+
+   if it cannot handle preauthentication requests
+   from the authentication manager.]<P>
+
+<P>
+
+[<I>Overrides</I>: Implement this method if the
+   protocol implemented by the current instance supports
+   preauthentication.]<P>
+
+<P>
+
+[<I>Usage</I>: This method is used by
+   the authentication manager to handle requests by clients
+   for authentication information that will be used to preempt a server&apos;s
+   request for authentication. This method is not called unless the System.Net.IAuthenticationModule.CanPreAuthenticate property returns
+<CODE>true</CODE>
+.]<P>
+
+<P>
+
+<CODE></CODE>
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IAuthenticationModule.html" TARGET="contents">System.Net.IAuthenticationModule Interface</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IAuthenticationModule.AuthenticationType Property"><H3>IAuthenticationModule.AuthenticationType Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>string AuthenticationType { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the authentication type of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> indicating the
+   authentication type of the current authentication module.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Behaviors</I>: The following string values are reserved for use by modules implementing the 
+         indicated protocols: <P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Protocol </TH><TH>AuthenticationTypeProtocol </TH></TR>
+<TR><TD> Basic as defined by IETF RFC 2617 </TD><TD> &quot;basic&quot; Basic as defined by IETF RFC 2617 </TD></TR>
+<TR><TD>Digest access as defined by IETF RFC 2617 </TD><TD>&quot;digest&quot;Digest access as defined by IETF RFC 2617 </TD></TR>
+<TR><TD>Kerberos as defined by IETF RFC 1510 </TD><TD>&quot;kerberos&quot;Kerberos as defined by IETF RFC 1510 </TD></TR>
+</TABLE>
+<P>
+
+]<P>
+
+[<I>Overrides</I>: Implement this
+property to return a string that identifies all instances of the current type.
+The string returned by this property typically indicates the protocol
+implemented by the current type. For example, an authentication module that
+implements the Digest protocol would typically return &quot;digest&quot; as its <CODE>AuthenticationType</CODE>
+. ]<P>
+
+[<I>Usage</I>: The System.Net.IAuthenticationModule.AuthenticationType 
+property must be unique for all registered authentication modules. The value of
+this property is used by the System.Net.AuthenticationManager.Register(System.Net.IAuthenticationModule) method to determine if there
+is already an authentication module registered for the type.
+Modules may also be unregistered by passing the value of this property to the
+System.Net.AuthenticationManager.Unregister(System.Net.IAuthenticationModule) 
+method.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IAuthenticationModule.html" TARGET="contents">System.Net.IAuthenticationModule Interface</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IAuthenticationModule.CanPreAuthenticate Property"><H3>IAuthenticationModule.CanPreAuthenticate Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool CanPreAuthenticate { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the authentication module supports
+   preauthentication.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the authentication module supports
+   preauthentication; otherwise <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Behaviors</I>: The System.Net.IAuthenticationModule.CanPreAuthenticate property is set to <CODE>true </CODE>
+ to indicate that the authentication module can respond with a
+<A HREF="Authorization.html" TARGET="contents">Authorization</A> instance when the System.Net.IAuthenticationModule.PreAuthenticate(System.Net.WebRequest,System.Net.ICredentials) method is called. This 
+   property returns <CODE>false</CODE>
+ if the protocol implemented by
+   the current authentication module does not support preauthentication.]<P>
+
+<P>
+
+[<I>Usage</I>: This method is used by the authentication
+   manager to determine which modules receive requests by clients for authentication
+   information that will be supplied in anticipation of a server&apos;s request for
+   authentication. This method controls whether the System.Net.IAuthenticationModule.PreAuthenticate(System.Net.WebRequest,System.Net.ICredentials) method can be
+   called.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IAuthenticationModule.html" TARGET="contents">System.Net.IAuthenticationModule Interface</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

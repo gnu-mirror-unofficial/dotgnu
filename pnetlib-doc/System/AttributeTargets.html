@@ -1,0 +1,489 @@
+<HTML>
+<HEAD>
+<TITLE>System.AttributeTargets Enum</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.AttributeTargets Enum</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public enum AttributeTargets</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="ValueType.html" TARGET="contents">ValueType</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="Enum.html" TARGET="contents">Enum</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AttributeTargets<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Enumerates the application elements to which it is valid to attach
+      an attribute.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">AttributeTargets</A> is used as a parameter for <A HREF="AttributeUsageAttribute.html" TARGET="contents">AttributeUsageAttribute</A> to enable an attribute to be
+   associated with one or more kinds of application elements.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example demonstrates how <A HREF="AttributeTargets.html" TARGET="contents">AttributeTargets</A> can be
+   used with <A HREF="AttributeUsageAttribute.html" TARGET="contents">AttributeUsageAttribute</A> so that a user-defined attribute class, <I>Author</I>,
+   may be applied to structures and classes. The <I>Author</I> attribute is then
+   applied to a class.
+   There is no output.<P>
+
+<PRE>using System;
+
+[AttributeUsageAttribute(AttributeTargets.Class|
+                         AttributeTargets.Struct)]
+public class Author : Attribute {
+
+   public Author(string Name) {
+ 
+     this.name = Name; }
+     string name;
+   }
+
+[Author(&quot;John Q Public&quot;)]
+class JohnsClass {
+
+   public static void Main() {
+   }
+}
+</PRE>
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>FlagsAttribute</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+AttributeTargets Fields<P>
+
+<A HREF="#AttributeTargets.All Field" TARGET="contents">AttributeTargets.All Field</A><BR>
+<A HREF="#AttributeTargets.Assembly Field" TARGET="contents">AttributeTargets.Assembly Field</A><BR>
+<A HREF="#AttributeTargets.Class Field" TARGET="contents">AttributeTargets.Class Field</A><BR>
+<A HREF="#AttributeTargets.Constructor Field" TARGET="contents">AttributeTargets.Constructor Field</A><BR>
+<A HREF="#AttributeTargets.Delegate Field" TARGET="contents">AttributeTargets.Delegate Field</A><BR>
+<A HREF="#AttributeTargets.Enum Field" TARGET="contents">AttributeTargets.Enum Field</A><BR>
+<A HREF="#AttributeTargets.Event Field" TARGET="contents">AttributeTargets.Event Field</A><BR>
+<A HREF="#AttributeTargets.Field Field" TARGET="contents">AttributeTargets.Field Field</A><BR>
+<A HREF="#AttributeTargets.Interface Field" TARGET="contents">AttributeTargets.Interface Field</A><BR>
+<A HREF="#AttributeTargets.Method Field" TARGET="contents">AttributeTargets.Method Field</A><BR>
+<A HREF="#AttributeTargets.Module Field" TARGET="contents">AttributeTargets.Module Field</A><BR>
+<A HREF="#AttributeTargets.Parameter Field" TARGET="contents">AttributeTargets.Parameter Field</A><BR>
+<A HREF="#AttributeTargets.Property Field" TARGET="contents">AttributeTargets.Property Field</A><BR>
+<A HREF="#AttributeTargets.ReturnValue Field" TARGET="contents">AttributeTargets.ReturnValue Field</A><BR>
+<A HREF="#AttributeTargets.Struct Field" TARGET="contents">AttributeTargets.Struct Field</A><BR>
+<A HREF="#AttributeTargets.value__ Field" TARGET="contents">AttributeTargets.value__ Field</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="AttributeTargets.All Field"><H3>AttributeTargets.All Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>All = Assembly | 0x2 | Class | Struct | Enum | Constructor | Method | Property | Field | Event | Interface | Parameter | Delegate | ReturnValue;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Attribute can be applied to any element.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">System.AttributeTargets Enum</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeTargets.Assembly Field"><H3>AttributeTargets.Assembly Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Assembly = 0x1;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+       Attribute can be applied to an assembly.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">System.AttributeTargets Enum</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeTargets.Class Field"><H3>AttributeTargets.Class Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Class = 0x4;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+       Attribute can be applied to a class.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">System.AttributeTargets Enum</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeTargets.Constructor Field"><H3>AttributeTargets.Constructor Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Constructor = 0x20;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+       Attribute can be applied to a constructor.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">System.AttributeTargets Enum</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeTargets.Delegate Field"><H3>AttributeTargets.Delegate Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Delegate = 0x1000;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+       Attribute can be applied to a delegate.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">System.AttributeTargets Enum</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeTargets.Enum Field"><H3>AttributeTargets.Enum Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Enum = 0x10;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+       Attribute can be applied to an enumeration.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">System.AttributeTargets Enum</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeTargets.Event Field"><H3>AttributeTargets.Event Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Event = 0x200;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+       Attribute can be applied to an event.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">System.AttributeTargets Enum</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeTargets.Field Field"><H3>AttributeTargets.Field Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Field = 0x100;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+       Attribute can be applied to a field.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">System.AttributeTargets Enum</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeTargets.Interface Field"><H3>AttributeTargets.Interface Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Interface = 0x400;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+       Attribute can be applied to an interface.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">System.AttributeTargets Enum</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeTargets.Method Field"><H3>AttributeTargets.Method Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Method = 0x40;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+       Attribute can be applied to a method.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">System.AttributeTargets Enum</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeTargets.Module Field"><H3>AttributeTargets.Module Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Module = 0x2;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+       Attribute can be applied to a module.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">System.AttributeTargets Enum</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeTargets.Parameter Field"><H3>AttributeTargets.Parameter Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Parameter = 0x800;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+       Attribute can be applied to a parameter.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">System.AttributeTargets Enum</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeTargets.Property Field"><H3>AttributeTargets.Property Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Property = 0x80;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+       Attribute can be applied to a property.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">System.AttributeTargets Enum</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeTargets.ReturnValue Field"><H3>AttributeTargets.ReturnValue Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>ReturnValue = 0x2000;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Attribute can be applied to a return value.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">System.AttributeTargets Enum</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeTargets.Struct Field"><H3>AttributeTargets.Struct Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Struct = 0x8;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+       Attribute can be applied to a value type.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">System.AttributeTargets Enum</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeTargets.value__ Field"><H3>AttributeTargets.value__ Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>value__;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeTargets.html" TARGET="contents">System.AttributeTargets Enum</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

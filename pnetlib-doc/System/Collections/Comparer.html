@@ -1,0 +1,193 @@
+<HTML>
+<HEAD>
+<TITLE>System.Collections.Comparer Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Collections.Comparer Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class Comparer : IComparer</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Comparer<P>
+
+This type implements <A HREF="IComparer.html" TARGET="contents">IComparer</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Provides the default implementation of the <A HREF="IComparer.html" TARGET="contents">IComparer</A>
+interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Comparer Methods<P>
+
+<A HREF="#Comparer.Compare Method" TARGET="contents">Comparer.Compare Method</A><BR>
+<P>
+
+Comparer Fields<P>
+
+<A HREF="#Comparer.Default Field" TARGET="contents">Comparer.Default Field</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Comparer.Compare Method"><H3>Comparer.Compare Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Compare(object a, object b);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the sort order of two <A HREF="../../System/Object.html" TARGET="contents">Object</A> instances.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> a</DT>
+<DD>The first <A HREF="../../System/Object.html" TARGET="contents">Object</A> to compare.</DD>
+<DT>b</DT>
+<DD>The second <A HREF="../../System/Object.html" TARGET="contents">Object</A> to compare.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order
+   of <I>a</I> as compared to <I>b</I>. The following table defines the conditions under
+   which the returned value is a negative number, zero, or a positive number.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Condition</TH><TH>ValueCondition</TH></TR>
+<TR><TD><I>a </I>&amp;lt;
+      <I>b.</I></TD><TD> Any negative number<I>a </I>&amp;lt;
+      <I>b.</I></TD></TR>
+<TR><TD><I>a </I>==
+<I>b.</I></TD><TD> Zero<I>a </I>==
+<I>b.</I></TD></TR>
+<TR><TD><I>a </I>&amp;gt;
+<I>b.</I></TD><TD> Any positive number<I>a </I>&amp;gt;
+<I>b.</I></TD></TR>
+</TABLE>
+[<I>Note</I>: A null reference is considered to
+   compare less than any other non-null object, and equal to any other null
+   reference, independent of the underlying <A HREF="../../System/Type.html" TARGET="contents">Type</A> of either object.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>Both <I>a</I> and <I>b</I> are not <CODE>null</CODE>
+ and do not implement the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> interface.<P>
+
+ -or-<P>
+
+Both <I>a</I> and <I>b</I> are not <CODE>null</CODE>
+ and are not assignment-compatible types.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The behavior of this method is as follows:<P>
+
+<UL>
+<LI> If <I>a</I> implements the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A>
+   interface, returns
+   <I>a</I>.CompareTo(<I>b</I>).<P>
+
+</LI>
+<LI> If <I>a</I> does not
+   implement the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> interface but <I>b</I>
+   does, returns <I>b</I>.CompareTo(<I>a</I>).<P>
+
+</LI>
+<LI>If <I>a</I> and <I>b</I> both are not
+   <CODE>null</CODE>
+ and do not implement the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> interface, <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A> is
+   thrown.<P>
+
+</LI>
+</UL>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Comparer.html" TARGET="contents">System.Collections.Comparer Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Comparer.Default Field"><H3>Comparer.Default Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly Comparer Default;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a new <A HREF="Comparer.html" TARGET="contents">Comparer</A> instance containing the default implementation of the <A HREF="IComparer.html" TARGET="contents">IComparer</A> 
+interface. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Comparer.html" TARGET="contents">System.Collections.Comparer Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

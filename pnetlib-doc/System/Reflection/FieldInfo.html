@@ -1,0 +1,439 @@
+<HTML>
+<HEAD>
+<TITLE>System.Reflection.FieldInfo Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Reflection.FieldInfo Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class FieldInfo : MemberInfo</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="MemberInfo.html" TARGET="contents">MemberInfo</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;FieldInfo<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides access
+      to field metadata.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+FieldInfo Constructors<P>
+
+<A HREF="#FieldInfo Constructor" TARGET="contents">FieldInfo Constructor</A><BR>
+<P>
+
+FieldInfo Methods<P>
+
+<A HREF="#FieldInfo.GetValue Method" TARGET="contents">FieldInfo.GetValue Method</A><BR>
+<A HREF="#FieldInfo.SetValue(System.Object, System.Object, System.Reflection.BindingFlags, System.Reflection.Binder, System.Globalization.CultureInfo) Method" TARGET="contents">FieldInfo.SetValue(System.Object, System.Object, System.Reflection.BindingFlags, System.Reflection.Binder, System.Globalization.CultureInfo) Method</A><BR>
+<A HREF="#FieldInfo.SetValue(System.Object, System.Object) Method" TARGET="contents">FieldInfo.SetValue(System.Object, System.Object) Method</A><BR>
+<P>
+
+FieldInfo Properties<P>
+
+<A HREF="#FieldInfo.Attributes Property" TARGET="contents">FieldInfo.Attributes Property</A><BR>
+<A HREF="#FieldInfo.FieldType Property" TARGET="contents">FieldInfo.FieldType Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="FieldInfo Constructor"><H3>FieldInfo Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected FieldInfo();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs a new instance of the <A HREF="FieldInfo.html" TARGET="contents">FieldInfo</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FieldInfo.html" TARGET="contents">System.Reflection.FieldInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FieldInfo.GetValue Method"><H3>FieldInfo.GetValue Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract object GetValue(object obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Obtains the value of the field that is reflected by the current instance and contained in the specified object.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>obj</DT>
+<DD>An object that contains the field value to be returned. If the field reflected by the current instance is static, <I>obj </I>is ignored. For non-static fields, <I>obj </I> is required to be an instance of a class that inherits or declares the field. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Object.html" TARGET="contents">Object</A> that contains the
+   value of the field reflected by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>A field is marked literal, but the field does not have one of the accepted literal types. [<I>Note</I>: For information regarding the accepted literal types, see Partition II of the CLI Specification.]<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/FieldAccessException.html" TARGET="contents">FieldAccessException</A></TD><TD>The field reflected by the current instance is non-public, and the caller does not have permission to access non-public members.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The field reflected by the current instance is declared neither directly in <I>obj</I> nor in any class from which <I>obj</I> derives.</TD></TR>
+<TR><TD><A HREF="TargetException.html" TARGET="contents">TargetException</A></TD><TD>The field reflected by the current instance is non-static, and <I>obj</I> is <CODE>null</CODE>
+. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: Before
+      returning the value, the system checks to see if the user has access permission. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FieldInfo.html" TARGET="contents">System.Reflection.FieldInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FieldInfo.SetValue(System.Object, System.Object, System.Reflection.BindingFlags, System.Reflection.Binder, System.Globalization.CultureInfo) Method"><H3>FieldInfo.SetValue(System.Object, System.Object, System.Reflection.BindingFlags, System.Reflection.Binder, System.Globalization.CultureInfo) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract void SetValue(object obj, object value, BindingFlags invokeAttr, Binder binder, CultureInfo culture);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Assigns the specified value to the field that is reflected by the current
+      instance and contained in the specified object. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>obj</DT>
+<DD>The object whose field value will be set. If the field is static, <I>obj </I>is ignored. For non-static fields, <I>obj </I>is required to be an instance of a class that inherits or declares the field. </DD>
+<DT>value</DT>
+<DD>An object that contains the value to assign to the field contained by <I>obj</I> . </DD>
+<DT> invokeAttr</DT>
+<DD>A <A HREF="BindingFlags.html" TARGET="contents">BindingFlags</A> value that controls the binding process.</DD>
+<DT> binder</DT>
+<DD>A <A HREF="Binder.html" TARGET="contents">Binder</A> instance that enables the binding, coercion of argument types, and invocation of members through reflection. If <I>binder </I>is <CODE>null</CODE>
+, the default binder of the current implementation is used. </DD>
+<DT> culture</DT>
+<DD>The only defined value for this parameter is <CODE>null</CODE>
+ .<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The field reflected by the current instance is declared neither directly in <I>obj</I> nor in any class from which <I>obj</I> derives.<P>
+
+<I>value</I> is not assignment-compatible with the type of the field reflected by the current instance.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/FieldAccessException.html" TARGET="contents">FieldAccessException</A></TD><TD>The field reflected by the current instance is non-public, and the caller does not have permission to access non-public members.</TD></TR>
+<TR><TD><A HREF="TargetException.html" TARGET="contents">TargetException</A></TD><TD>The field reflected by the current instance is non-static, and <I>obj</I> is <CODE>null</CODE>
+ .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: Before setting
+      the value, the system verifies that the user has access permission. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FieldInfo.html" TARGET="contents">System.Reflection.FieldInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FieldInfo.SetValue(System.Object, System.Object) Method"><H3>FieldInfo.SetValue(System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void SetValue(object obj, object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Assigns the specified value to the field that is reflected by the current instance and contained in the specified object.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>obj</DT>
+<DD>The object whose field value will be set. If the field is static, <I>obj </I>is ignored. For non-static fields, <I>obj </I>is required to be an instance of a class that inherits or declares the field. </DD>
+<DT> value</DT>
+<DD>A <A HREF="../../System/Object.html" TARGET="contents">Object</A> that contains the value to assign to the field contained by <I>obj</I> . </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The field reflected by the current instance is declared neither directly in <I>obj</I> nor in any class from which <I>obj</I> derives.<P>
+
+<I>value</I> is not assignment-compatible with the type of the field reflected by the current instance.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/FieldAccessException.html" TARGET="contents">FieldAccessException</A></TD><TD>The field reflected by the current instance is non-public, and the caller does not have permission to access non-public members.</TD></TR>
+<TR><TD><A HREF="TargetException.html" TARGET="contents">TargetException</A></TD><TD>The field reflected by the current instance is non-static, and <I>obj</I> is <CODE>null</CODE>
+ .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ Before setting the value, the system
+      verifies that the user has access permission. If the user does not have access
+      permission, a <A HREF="../../System/FieldAccessException.html" TARGET="contents">FieldAccessException</A> is
+      thrown.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FieldInfo.html" TARGET="contents">System.Reflection.FieldInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FieldInfo.Attributes Property"><H3>FieldInfo.Attributes Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract FieldAttributes Attributes { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the attributes of the field reflected by
+      the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="FieldAttributes.html" TARGET="contents">FieldAttributes</A> value that indicates the attributes of
+   the field reflected by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This property
+      is read-only.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this property to determine the accessibility
+      of the field reflected by the current instance. Also use this
+      property to determine if the field reflected by the current instance can be set
+      after it is initialized, is implemented in native code, is a literal, or has a
+      special name.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example
+      demonstrates obtaining the attributes of two fields.<P>
+
+<PRE>using System;
+using System.Reflection;
+
+class MyClass
+{
+
+   public int MyPublicInstanceField;
+   private const int MyPrivateConstField = 10;
+
+}
+
+class FieldAttributesExample
+{
+
+   public static void Main()
+   {
+
+      Type t = (typeof(MyClass));
+      string str;
+      FieldInfo[] fiAry = t.GetFields( BindingFlags.Static |
+         BindingFlags.Instance | BindingFlags.Public |
+         BindingFlags.NonPublic | BindingFlags.DeclaredOnly );
+      foreach (FieldInfo fi in fiAry)
+      {
+         Console.WriteLine(&quot;Field {0} is: &quot;, fi.Name);
+         str = ((fi.Attributes &amp; FieldAttributes.Static) != 0) ?
+            &quot;Static&quot; : &quot;Instance&quot;;
+         Console.Write(str + &quot; &quot;);
+         str = ((fi.Attributes &amp; FieldAttributes.Public) != 0) ?
+            &quot;Public&quot; : &quot;Not-Public&quot;;
+         Console.Write(str + &quot; &quot;);
+         str = ((fi.Attributes &amp; FieldAttributes.Literal) != 0) ?
+            &quot;Literal&quot; : String.Empty;
+         Console.WriteLine(str);
+
+      }
+
+   }
+
+}
+      </PRE>
+The output is<P>
+
+<CODE>Field MyPublicInstanceField is: <P>
+
+Instance Public<P>
+
+Field MyPrivateConstField is: <P>
+
+Static Not-Public Literal<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FieldInfo.html" TARGET="contents">System.Reflection.FieldInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FieldInfo.FieldType Property"><H3>FieldInfo.FieldType Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract Type FieldType { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the type of the field reflected by
+      the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ The <A HREF="../../System/Type.html" TARGET="contents">Type</A> of the field
+   reflected by the current instance.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FieldInfo.html" TARGET="contents">System.Reflection.FieldInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,1489 @@
+<HTML>
+<HEAD>
+<TITLE>System.IO.Directory Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.IO.Directory Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class Directory</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Directory<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides information and performs operations
+      on directories.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Implementations are required to preserve
+      the case of file and directory path strings, and to be case
+      sensitive if and only if the current platform is case-sensitive. <P>
+
+[<I>Note</I>: In most
+   <CODE> Directory</CODE>
+ methods that accept <I>path</I>
+   arguments, the path can refer to a file or a directory. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Directory Methods<P>
+
+<A HREF="#Directory.Delete(System.String) Method" TARGET="contents">Directory.Delete(System.String) Method</A><BR>
+<A HREF="#Directory.Delete(System.String, bool) Method" TARGET="contents">Directory.Delete(System.String, bool) Method</A><BR>
+<A HREF="#Directory.Exists Method" TARGET="contents">Directory.Exists Method</A><BR>
+<A HREF="#Directory.GetCreationTime Method" TARGET="contents">Directory.GetCreationTime Method</A><BR>
+<A HREF="#Directory.GetCurrentDirectory Method" TARGET="contents">Directory.GetCurrentDirectory Method</A><BR>
+<A HREF="#Directory.GetDirectories(System.String) Method" TARGET="contents">Directory.GetDirectories(System.String) Method</A><BR>
+<A HREF="#Directory.GetDirectories(System.String, System.String) Method" TARGET="contents">Directory.GetDirectories(System.String, System.String) Method</A><BR>
+<A HREF="#Directory.GetDirectoryRoot Method" TARGET="contents">Directory.GetDirectoryRoot Method</A><BR>
+<A HREF="#Directory.GetFileSystemEntries(System.String) Method" TARGET="contents">Directory.GetFileSystemEntries(System.String) Method</A><BR>
+<A HREF="#Directory.GetFileSystemEntries(System.String, System.String) Method" TARGET="contents">Directory.GetFileSystemEntries(System.String, System.String) Method</A><BR>
+<A HREF="#Directory.GetFiles(System.String) Method" TARGET="contents">Directory.GetFiles(System.String) Method</A><BR>
+<A HREF="#Directory.GetFiles(System.String, System.String) Method" TARGET="contents">Directory.GetFiles(System.String, System.String) Method</A><BR>
+<A HREF="#Directory.GetLastAccessTime Method" TARGET="contents">Directory.GetLastAccessTime Method</A><BR>
+<A HREF="#Directory.GetLastWriteTime Method" TARGET="contents">Directory.GetLastWriteTime Method</A><BR>
+<A HREF="#Directory.Move Method" TARGET="contents">Directory.Move Method</A><BR>
+<A HREF="#Directory.SetCreationTime Method" TARGET="contents">Directory.SetCreationTime Method</A><BR>
+<A HREF="#Directory.SetCurrentDirectory Method" TARGET="contents">Directory.SetCurrentDirectory Method</A><BR>
+<A HREF="#Directory.SetLastAccessTime Method" TARGET="contents">Directory.SetLastAccessTime Method</A><BR>
+<A HREF="#Directory.SetLastWriteTime Method" TARGET="contents">Directory.SetLastWriteTime Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Directory.Delete(System.String) Method"><H3>Directory.Delete(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Delete(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Deletes the empty directory
+      specified in <I>path</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the directory to delete. This directory must be writable and empty.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The specified <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The directory specified by <I>path</I> is read-only or is not empty.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method behaves identically to System.IO.Directory.Delete(System.String)(<I>path</I>, <CODE>false</CODE>
+ ).<P>
+
+The <I>path</I>
+argument is permitted to specify relative or absolute path
+information. Relative path information is interpreted as relative to the current
+working directory. [<I>Note</I>: To obtain the current
+working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.Delete(System.String, bool) Method"><H3>Directory.Delete(System.String, bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Delete(string path, bool recursive);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Deletes the specified directory and, if indicated, any subdirectories in the directory.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the directory to delete. This directory must be writable and cannot contain files unless <I>recursive</I> is true.</DD>
+<DT>recursive</DT>
+<DD>Specify <CODE>true</CODE>
+ to delete subdirectories and files in <I>path</I>; otherwise, specify <CODE>false</CODE>
+.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The specified <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The directory specified by <I>path</I> is read-only, or <I>recursive</I> is <CODE>false</CODE>
+ and <I>path</I> is not an empty directory.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>path</I> argument is permitted to specify
+   relative or absolute path information. Relative path information is interpreted
+   as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.Exists Method"><H3>Directory.Exists Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool Exists(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> indicating whether
+   the
+   specified directory exists.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the directory to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the caller
+   has the required permissions and <I>path</I> contains the name of an existing directory; otherwise, <CODE>false</CODE>
+. If <I>path</I> is <CODE>null</CODE>
+, a zero-length string, or contains the
+   name of
+   a file, returns <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the caller does not have sufficient permissions to read the files
+      in the directory specified by <I>path</I>, no
+      exception is thrown and the method returns <CODE>false</CODE>
+
+      regardless of the existence of <I>path</I>.<P>
+
+The <I>path</I> argument is permitted to specify
+   relative or absolute path information. Relative path information is interpreted
+   as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.GetCreationTime Method"><H3>Directory.GetCreationTime Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime GetCreationTime(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the creation date and time of the specified file or directory.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file or directory for which to obtain creation date and time information.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> structure set to
+   the creation date and time for the specified directory. This value is expressed in local time.<P>
+
+Platforms that do not
+   support this feature return System.DateTime.MinValue.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The directory specified by <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to System.IO.File.GetCreationTime(System.String)
+(<I>path</I>).<P>
+
+The <I>path</I> argument is permitted to specify
+relative or absolute path information. Relative path information is interpreted
+as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.GetCurrentDirectory Method"><H3>Directory.GetCurrentDirectory Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string GetCurrentDirectory();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the application&apos;s current working directory.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the path of the current working directory.<P>
+
+Platforms that do not
+   support this feature return System.String.Empty.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.GetDirectories(System.String) Method"><H3>Directory.GetDirectories(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string[] GetDirectories(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the names of subdirectories in the specified directory.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the directory for which an array of subdirectory names is returned.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> array containing the names
+   of subdirectories in <I>path</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>is <CODE>null</CODE>
+. </TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is a file name.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is identical to System.IO.Directory.GetDirectories(System.String) (<I>path</I>
+, &quot;*&quot;).<P>
+
+The <I>path</I> argument is permitted to specify
+relative or absolute path information. Relative path information is interpreted
+as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+The names returned by this method are prefixed with the directory information
+provided in <I>path</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.GetDirectories(System.String, System.String) Method"><H3>Directory.GetDirectories(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string[] GetDirectories(string path, string searchPattern);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the names of subdirectories in the specified
+      directory that match the specified search pattern.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the starting location for the search.</DD>
+<DT>searchPattern</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the text pattern to match against the names of subdirectories of <I>path</I>. <I>searchPattern</I> cannot contain System.IO.Path.DirectorySeparatorChar or System.IO.Path.AltDirectorySeparatorChar.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <CODE>String</CODE>
+ array
+   containing the names of subdirectories of <I>path</I> that match
+<I>searchPattern</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>or<I> searchPattern </I>is <CODE>null</CODE>
+. </TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have permission to access the requested information.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains implementation-defined invalid characters.<P>
+
+<I>searchPattern</I> does not contain a valid pattern.<P>
+
+</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is a file name.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The following wild card specifiers are permitted in
+      <I>searchPattern</I>:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Wild cardDescription</TH></TR>
+<TR><TD>Zero or more characters.</TD><TD> *Zero or more characters.</TD></TR>
+<TR><TD>Exactly one character.</TD><TD> ?Exactly one character.</TD></TR>
+</TABLE>
+The period (&quot;.&quot;) character, if immediately followed by a wild card specifier,
+      indicates that the period or the empty string matches the
+      pattern. For example, &quot;foo.*&quot; and &quot;foo.?&quot; match &quot;foo&quot;. Note that
+      &quot;foo.*&quot; and &quot;foo*&quot; behave identically. If the period is not immediately followed
+      by a wildcard, it has no special meaning (it represents a period).<P>
+
+Characters other than the wild card specifiers represent themselves, for example, the<I> searchPattern </I> string &quot;*t&quot; searches for all names in<I>path</I> ending with the letter &quot;t&quot;. The <I>searchPattern</I> string
+   &quot;s*&quot; searches for all names in <I>path</I> beginning with the letter &quot;s&quot;.<P>
+
+The <I>path</I> argument is permitted to specify relative or absolute path
+information. Relative path information is interpreted as relative to the current
+working directory. [<I>Note</I>: To obtain the current
+working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.GetDirectoryRoot Method"><H3>Directory.GetDirectoryRoot Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string GetDirectoryRoot(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the
+      path root component of the specified path.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of a file or directory.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing
+   the root information for the specified path.<P>
+
+Platforms that do not
+   support this feature return System.String.Empty.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters. <P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method obtains the full path information for <I>path</I>, as returned by System.IO.Path.GetFullPath(System.String) (<I>path</I>) and returns the path root component. The specified path is not required to exist.<P>
+
+The <I>path</I> argument is permitted to specify
+relative or absolute path information. Relative path information is interpreted
+as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.IO.Directory.GetDirectoryRoot(System.String) method.<P>
+
+<PRE>using System;
+using System.IO;
+class GetDirectoryTest {
+  public static void Main() {
+    string [] paths = {                                          
+
+@&quot;\ecmatest\examples\pathtests.txt&quot;,
+      &quot;pathtests.xyzzy&quot;,
+      @&quot;\&quot;,
+      @&quot;C:\&quot;,
+      @&quot;\\myserver\myshare\foo\bar\baz.txt&quot;
+    };
+    foreach (string pathString in paths) {
+      string s = Directory.GetDirectoryRoot(pathString);
+      Console.WriteLine(&quot;Path: {0} Directory Root is {1}&quot;,pathString, s== null? &quot;null&quot;:s);
+    }
+  }
+}
+</PRE>
+The output is <P>
+
+<CODE>Path: \ecmatest\examples\pathtests.txt Directory Root is C:\<P>
+
+Path: pathtests.xyzzy Directory Root is C:\<P>
+
+Path: \ Directory Root is C:\<P>
+
+Path: C:\ Directory Root is C:\<P>
+
+Path: \\myserver\myshare\foo\bar\baz.txt 
+   Directory Root is \\myserver\myshare<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.GetFileSystemEntries(System.String) Method"><H3>Directory.GetFileSystemEntries(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string[] GetFileSystemEntries(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the names of all files and subdirectories in the specified directory.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the directory for which file and subdirectory names are returned.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> array containing the names of file system entries in the specified directory.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+ .</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is a file name.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is identical to System.IO.Directory.GetFileSystemEntries(System.String)
+(<I>path</I>, &quot;*&quot;).<P>
+
+The names returned by this method are prefixed with the
+   directory information provided in <I>path</I>. The <I>path</I> argument is permitted to specify
+   relative or absolute path information. Relative path information is interpreted
+   as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory
+   
+   .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.GetFileSystemEntries(System.String, System.String) Method"><H3>Directory.GetFileSystemEntries(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string[] GetFileSystemEntries(string path, string searchPattern);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an
+      array of file and directory names matching the specified search criteria.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the directory to search.</DD>
+<DT>searchPattern</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the text pattern for which to search. <I>searchPattern</I> cannot contain System.IO.Path.DirectorySeparatorChar or System.IO.Path.AltDirectorySeparatorChar .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <CODE>String</CODE>
+ array
+   containing
+   file and directory names matching the specified search criteria.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>searchPattern </I>or <I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is a file name.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The following wild card specifiers are permitted in <I>searchPattern</I>:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Wild
+         cardDescription</TH></TR>
+<TR><TD>Zero
+         or more characters. </TD><TD> * Zero
+         or more characters. </TD></TR>
+<TR><TD>Exactly one character.</TD><TD> ?Exactly one character.</TD></TR>
+</TABLE>
+The period (&quot;.&quot;) character, if immediately followed by a wild card specifier,
+   indicates that the period or the empty string matches the
+   pattern. For example, &quot;foo.*&quot; and &quot;foo.?&quot; match &quot;foo&quot;. Note that
+   &quot;foo.*&quot; and &quot;foo*&quot; behave identically. If the period is not immediately followed
+   by a wildcard, it has no special meaning (it represents a period).<P>
+
+Characters other than the wild card specifiers represent themselves, for example, the
+<I>searchPattern</I> string &quot;*t&quot; searches for all names in 
+<I>path</I> ending with the letter &quot;t&quot;. The <I>searchPattern</I> string &quot;s*&quot; searches for all names in <I>path</I> beginning with the letter &quot;s&quot;.<P>
+
+The names returned by this method are prefixed with the
+   directory information provided in <I>path</I>. The <I>path</I> argument is permitted to specify
+   relative or absolute path information. Relative path information is interpreted
+   as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.GetFiles(System.String) Method"><H3>Directory.GetFiles(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string[] GetFiles(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the names of all files in the specified directory.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the directory for which file names are returned.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> array
+   containing the names of the files in the specified directory.<P>
+
+Platforms that do not support this feature
+   return <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>is null.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>path is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters. <P>
+
+</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is a file name.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is identical to System.IO.Directory.GetFiles(System.String) (<I>path</I>, &quot;*&quot;).<P>
+
+The <I>path</I> argument is permitted to specify
+relative or absolute path information. Relative path information is interpreted
+as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.GetFiles(System.String, System.String) Method"><H3>Directory.GetFiles(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string[] GetFiles(string path, string searchPattern);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the names of files in
+      the specified directory that match the
+      specified search pattern.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the directory to search.</DD>
+<DT>searchPattern</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the text pattern to match against the names of files in <I>path</I>. <I>searchPattern</I> cannot contain System.IO.Path.DirectorySeparatorChar or System.IO.Path.AltDirectorySeparatorChar.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A>
+array containing the names of files in the specified directory that match the
+specified search pattern.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>searchPattern </I>or <I>path</I> is <CODE>null</CODE>
+ .</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.<P>
+
+</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is a file name.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The following wild card specifiers are permitted in <I>searchPattern</I>:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Wild
+         cardDescription</TH></TR>
+<TR><TD>Zero
+         or more characters.</TD><TD> *Zero
+         or more characters.</TD></TR>
+<TR><TD>Exactly one character.</TD><TD> ?Exactly one character.</TD></TR>
+</TABLE>
+ The period (&quot;.&quot;) character, if immediately followed by a wild card specifier,
+   indicates that the period or the empty string matches the
+   pattern. For example, &quot;foo.*&quot; and &quot;foo.?&quot; match &quot;foo&quot;. Note that
+   &quot;foo.*&quot; and &quot;foo*&quot; behave identically. If the period is not immediately followed
+   by a wildcard, it has no special meaning (it represents a period). <P>
+
+Characters other than the wild card specifiers and the period always represent themselves, for example, the
+<I>searchPattern</I> string &quot;*t&quot; searches for all 
+   names in <I>path</I> ending with the letter &quot;t&quot;. The <I>searchPattern</I> string &quot;s*&quot; searches for all
+   names in <I>path</I> beginning with the
+   letter &quot;s&quot;.<P>
+
+The <I>path</I> argument is permitted to specify relative or absolute path
+information. Relative path information is interpreted as relative to the current
+working directory. [<I>Note</I>: To obtain the current
+working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.GetLastAccessTime Method"><H3>Directory.GetLastAccessTime Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime GetLastAccessTime(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the date and time the specified file or directory was last accessed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file or directory for which to obtain access date and time information.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> structure set to
+   the date and time the specified file or directory was last accessed. This value is expressed in local time.<P>
+
+Platforms that do not
+   support this feature return System.DateTime.MinValue.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The specified path was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to System.IO.File.GetLastAccessTime(System.String) (<I>path</I>).<P>
+
+The <I>path</I> argument is permitted to specify
+relative or absolute path information. Relative path information is interpreted
+as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.GetLastWriteTime Method"><H3>Directory.GetLastWriteTime Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime GetLastWriteTime(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the date and time the specified file or directory was last written to.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file or directory for which to obtain modification date and time information.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> structure set to
+   the date and time the specified file or directory was last written to. This value is expressed in local time.<P>
+
+Platforms that do not
+   support this feature return System.DateTime.MinValue.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The specified path was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is equivalent to System.IO.File.GetLastWriteTime(System.String)
+(<I>path</I> ).<P>
+
+The <I>path</I> argument is permitted to specify
+relative or absolute path information. Relative path information is interpreted
+as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.Move Method"><H3>Directory.Move Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Move(string sourceDirName, string destDirName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Moves a file or a directory and its contents to a new location.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>sourceDirName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file or directory to move.</DD>
+<DT>destDirName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the new location for <I>sourceDirName</I>. This string cannot identify an existing file or directory.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>sourceDirName </I>or <I>destDirName </I>is a zero-length string, contains only white space, or contains implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>sourceDirName </I>or <I>destDirName </I>is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An attempt was made to move a directory to a different volume, or <I>destDirName</I> already exists.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>sourceDirName </I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length or absolute path information for <I>sourceDirName</I> or <I>destDirName</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>destDirName</I> argument
+   cannot specify a location on a different disk or volume than
+<I>sourceDirName</I>. The <I>sourceDirName</I> 
+and <I>destDirName</I> arguments cannot identify the same file
+or directory.<P>
+
+[<I>Note</I>: This method throws
+   a <A HREF="IOException.html" TARGET="contents">IOException</A> if, for example, you try
+   to move &quot;\mydir&quot; to &quot;\public&quot;, and &quot;\public&quot; already exists. You must specify
+   &quot;\public\mydir&quot; as the <I>destDirName</I>.]<P>
+
+<P>
+
+The <I>sourceDirName </I>and
+<I>destDirName</I> arguments are permitted to specify 
+relative or absolute path information. Relative path information is interpreted
+as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.SetCreationTime Method"><H3>Directory.SetCreationTime Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void SetCreationTime(string path, DateTime creationTime);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sets the creation date and time for the specified file or directory.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file or directory for which to set the creation date and time information.</DD>
+<DT> creationTime</DT>
+<DD>A <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> containing the value to set for the creation date and time of <I>path</I>. This value is expressed in local time.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>creationTime </I> specifies a value outside the range of date/times permitted for this operation.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while performing the operation.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>path</I> argument is permitted to specify
+   relative or absolute path information. Relative path information is interpreted
+   as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+On platforms that do not
+   support this feature, this method has no effect. If this feature is
+   supported, the range of dates that is valid for this operation
+   is implementation-specific. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.SetCurrentDirectory Method"><H3>Directory.SetCurrentDirectory Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void SetCurrentDirectory(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sets the application&apos;s current working directory to the specified directory.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the path to which the current working directory is set.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while performing the operation.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ When the application terminates, the working directory is restored
+      to its original location (the directory where the process was started).<P>
+
+The <I>path</I> argument is permitted to specify
+   relative or absolute path information. Relative path information is interpreted
+   as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+On platforms that do not support this feature,
+   this method has no effect.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.SetLastAccessTime Method"><H3>Directory.SetLastAccessTime Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void SetLastAccessTime(string path, DateTime lastAccessTime);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sets the date and time the specified file or directory was last accessed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file or directory for which to set the access date and time information.</DD>
+<DT>lastAccessTime</DT>
+<DD>A <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> containing the value to set for the access date and time of <I>path</I>. This value is expressed in local time.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>path</I> argument is permitted to specify
+   relative or absolute path information. Relative path information is interpreted
+   as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+On platforms that do not
+   support this feature, this method has no effect. If this feature is
+   supported, the range of dates that is valid for this operation
+   is implementation-specific. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Directory.SetLastWriteTime Method"><H3>Directory.SetLastWriteTime Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void SetLastWriteTime(string path, DateTime lastWriteTime);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sets the date and time a directory was last written to.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the directory for which to set the date and time information.</DD>
+<DT> lastWriteTime</DT>
+<DD>A <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> containing the value to set for the last write date and time of <I>path</I>. This value is expressed in local time.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ 
+      Relative path information is interpreted as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+On platforms that do not
+      support this feature, this method has no effect. If this feature is
+      supported, the range of dates that is valid for this operation
+      is implementation-specific. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

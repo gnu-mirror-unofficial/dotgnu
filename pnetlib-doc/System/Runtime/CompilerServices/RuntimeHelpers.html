@@ -1,0 +1,198 @@
+<HTML>
+<HEAD>
+<TITLE>System.Runtime.CompilerServices.RuntimeHelpers Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Runtime.CompilerServices.RuntimeHelpers Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class RuntimeHelpers</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;RuntimeHelpers<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implements static methods and properties that provide special support for
+      compilers. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The types in 
+   <CODE>System.Runtime.CompilerServices</CODE>
+
+   are intended primarily for use by compilers, not application
+   programmers. They allow compilers to easily implement certain language
+   features that are not directly visible to programmers.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CompilerServices.html" TARGET="members">System.Runtime.CompilerServices Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+RuntimeHelpers Methods<P>
+
+<A HREF="#RuntimeHelpers.InitializeArray Method" TARGET="contents">RuntimeHelpers.InitializeArray Method</A><BR>
+<A HREF="#RuntimeHelpers.RunClassConstructor Method" TARGET="contents">RuntimeHelpers.RunClassConstructor Method</A><BR>
+<P>
+
+RuntimeHelpers Properties<P>
+
+<A HREF="#RuntimeHelpers.OffsetToStringData Property" TARGET="contents">RuntimeHelpers.OffsetToStringData Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="RuntimeHelpers.InitializeArray Method"><H3>RuntimeHelpers.InitializeArray Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void InitializeArray(Array array, RuntimeFieldHandle fldHandle);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Provides a fast way to initialize a <A HREF="../../../System/Array.html" TARGET="contents">Array</A> from data
+ stored in a module.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>array</DT>
+<DD>The <A HREF="../../../System/Array.html" TARGET="contents">Array</A> to be initialized.</DD>
+<DT>fldHandle</DT>
+<DD>A <A HREF="../../../System/RuntimeFieldHandle.html" TARGET="contents">RuntimeFieldHandle</A> specifying the location of the data used to initialize <I>array</I> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is for compiler use only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="RuntimeHelpers.html" TARGET="contents">System.Runtime.CompilerServices.RuntimeHelpers Class</A>, <A HREF="CompilerServices.html" TARGET="members">System.Runtime.CompilerServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="RuntimeHelpers.RunClassConstructor Method"><H3>RuntimeHelpers.RunClassConstructor Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void RunClassConstructor(RuntimeTypeHandle type);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Runs a specified class constructor method.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>type</DT>
+<DD>A <A HREF="../../../System/RuntimeTypeHandle.html" TARGET="contents">RuntimeTypeHandle</A> specifying the class constructor method to run.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="RuntimeHelpers.html" TARGET="contents">System.Runtime.CompilerServices.RuntimeHelpers Class</A>, <A HREF="CompilerServices.html" TARGET="members">System.Runtime.CompilerServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="RuntimeHelpers.OffsetToStringData Property"><H3>RuntimeHelpers.OffsetToStringData Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int OffsetToStringData { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the number of bytes between the start of a <A HREF="../../../System/String.html" TARGET="contents">String</A> and the first <A HREF="../../../System/Char.html" TARGET="contents">Char</A>
+in the string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes between the start of a <A HREF="../../../System/String.html" TARGET="contents">String</A> and the first <A HREF="../../../System/Char.html" TARGET="contents">Char</A>
+in the string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: This property is deprecated; its design is considered unnecessarily inflexible. It is expected that an improved design can be incorporated into the next revision of this Standard.
+         <P>
+
+Compilers use this property for unsafe, but efficient, pointer operations on
+         the characters in a managed string. Compilers should pin the string against
+         movement by the garbage collector prior to use. Note that strings are immutable:
+         their contents can be read but not changed.<P>
+
+The contents of these offset bytes are implementation-defined.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="RuntimeHelpers.html" TARGET="contents">System.Runtime.CompilerServices.RuntimeHelpers Class</A>, <A HREF="CompilerServices.html" TARGET="members">System.Runtime.CompilerServices Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

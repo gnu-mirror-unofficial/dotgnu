@@ -1,0 +1,1868 @@
+<HTML>
+<HEAD>
+<TITLE>System.Enum Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Enum Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class Enum : ValueType, IComparable, IFormattable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="ValueType.html" TARGET="contents">ValueType</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;Enum<P>
+
+This type implements <A HREF="IComparable.html" TARGET="contents">IComparable</A> and <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Provides support for all enumeration types. Serves as
+      the base
+      class for all enumeration types.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Enum.html" TARGET="contents">Enum</A> is a distinct type
+   with named constant members. Each enumeration type has a corresponding integral
+   type called the <I>underlying type</I> of the enumeration
+   type.
+   
+   This underlying type is required
+   to be a system supplied integer type that is large enough to represent all values
+   defined in the enumeration. A <A HREF="Enum.html" TARGET="contents">Enum</A> declaration is allowed to
+   explicitly declare any integral type other
+   than <A HREF="Char.html" TARGET="contents">Char</A>
+   as an underlying type. This includes <A HREF="Byte.html" TARGET="contents">Byte</A>, <A HREF="SByte.html" TARGET="contents">SByte</A>, <A HREF="Int16.html" TARGET="contents">Int16</A>, <A HREF="Int32.html" TARGET="contents">Int32</A>, <A HREF="Int64.html" TARGET="contents">Int64</A>, <A HREF="UInt16.html" TARGET="contents">UInt16</A>, <A HREF="UInt32.html" TARGET="contents">UInt32</A>, and <A HREF="UInt64.html" TARGET="contents">UInt64</A>. A <A HREF="Enum.html" TARGET="contents">Enum</A> declaration that does not explicitly declare an
+   underlying type has an underlying type of <A HREF="Int32.html" TARGET="contents">Int32</A>
+   
+   .<P>
+
+<A HREF="Enum.html" TARGET="contents">Enum</A> derives from <A HREF="ValueType.html" TARGET="contents">ValueType</A> but is not a value type.
+Programming languages typically provide syntax to declare sets of a specified
+enumeration type consisting of named constants and their values.<P>
+
+It is possible to treat instances of a <A HREF="Enum.html" TARGET="contents">Enum</A> as bit fields containing multiple values. For more information, see <A HREF="FlagsAttribute.html" TARGET="contents">FlagsAttribute</A> 
+.<P>
+
+[<I>Note</I>: <A HREF="Enum.html" TARGET="contents">Enum</A> provides
+methods to compare instances of enumeration types, convert the value of an
+instance to its <A HREF="String.html" TARGET="contents">String</A> representation, convert the <A HREF="String.html" TARGET="contents">String</A> representation of
+a number to an instance of the enumeration type, and create an instance of a
+specified enumeration and value.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Enum Methods<P>
+
+<A HREF="#Enum.CompareTo Method" TARGET="contents">Enum.CompareTo Method</A><BR>
+<A HREF="#Enum.Equals Method" TARGET="contents">Enum.Equals Method</A><BR>
+<A HREF="#Enum.Format Method" TARGET="contents">Enum.Format Method</A><BR>
+<A HREF="#Enum.GetHashCode Method" TARGET="contents">Enum.GetHashCode Method</A><BR>
+<A HREF="#Enum.GetName Method" TARGET="contents">Enum.GetName Method</A><BR>
+<A HREF="#Enum.GetNames Method" TARGET="contents">Enum.GetNames Method</A><BR>
+<A HREF="#Enum.GetUnderlyingType Method" TARGET="contents">Enum.GetUnderlyingType Method</A><BR>
+<A HREF="#Enum.GetValues Method" TARGET="contents">Enum.GetValues Method</A><BR>
+<A HREF="#Enum.IsDefined Method" TARGET="contents">Enum.IsDefined Method</A><BR>
+<A HREF="#Enum.Parse(System.Type, System.String) Method" TARGET="contents">Enum.Parse(System.Type, System.String) Method</A><BR>
+<A HREF="#Enum.Parse(System.Type, System.String, bool) Method" TARGET="contents">Enum.Parse(System.Type, System.String, bool) Method</A><BR>
+<A HREF="#Enum.ToObject(System.Type, System.Object) Method" TARGET="contents">Enum.ToObject(System.Type, System.Object) Method</A><BR>
+<A HREF="#Enum.ToObject(System.Type, sbyte) Method" TARGET="contents">Enum.ToObject(System.Type, sbyte) Method</A><BR>
+<A HREF="#Enum.ToObject(System.Type, short) Method" TARGET="contents">Enum.ToObject(System.Type, short) Method</A><BR>
+<A HREF="#Enum.ToObject(System.Type, int) Method" TARGET="contents">Enum.ToObject(System.Type, int) Method</A><BR>
+<A HREF="#Enum.ToObject(System.Type, byte) Method" TARGET="contents">Enum.ToObject(System.Type, byte) Method</A><BR>
+<A HREF="#Enum.ToObject(System.Type, ushort) Method" TARGET="contents">Enum.ToObject(System.Type, ushort) Method</A><BR>
+<A HREF="#Enum.ToObject(System.Type, uint) Method" TARGET="contents">Enum.ToObject(System.Type, uint) Method</A><BR>
+<A HREF="#Enum.ToObject(System.Type, long) Method" TARGET="contents">Enum.ToObject(System.Type, long) Method</A><BR>
+<A HREF="#Enum.ToObject(System.Type, ulong) Method" TARGET="contents">Enum.ToObject(System.Type, ulong) Method</A><BR>
+<A HREF="#Enum.ToString(System.IFormatProvider) Method" TARGET="contents">Enum.ToString(System.IFormatProvider) Method</A><BR>
+<A HREF="#Enum.ToString(System.String, System.IFormatProvider) Method" TARGET="contents">Enum.ToString(System.String, System.IFormatProvider) Method</A><BR>
+<A HREF="#Enum.ToString() Method" TARGET="contents">Enum.ToString() Method</A><BR>
+<A HREF="#Enum.ToString(System.String) Method" TARGET="contents">Enum.ToString(System.String) Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Enum.CompareTo Method"><H3>Enum.CompareTo Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int CompareTo(object target);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the sort order of the current instance compared
+      to the specified <A HREF="Object.html" TARGET="contents">Object</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>target</DT>
+<DD>An object to compare the current instance to.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A>
+containing a value that reflects the sort order of the current instance as
+compared to <I>target</I>. The following table defines the conditions under
+which the returned value is a negative number, zero, or a positive number.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Return ValueDescription</TH></TR>
+<TR><TD>The value of the current instance is less than
+         the value of <I>target</I>.</TD><TD> 
+         Any negative
+         integerThe value of the current instance is less than
+         the value of <I>target</I>.</TD></TR>
+<TR><TD>The value of the current instance is equal to the
+         value of <I>target</I>.</TD><TD> ZeroThe value of the current instance is equal to the
+         value of <I>target</I>.</TD></TR>
+<TR><TD>The value of the current instance is greater than the
+         value of <I>target</I>, or <I>target</I> is
+      <CODE>null</CODE>
+.</TD><TD> Any
+         positive integerThe value of the current instance is greater than the
+         value of <I>target</I>, or <I>target</I> is
+      <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>target</I> and the current instance are not of the same enumeration type.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  This method is
+      implemented to support the <A HREF="IComparable.html" TARGET="contents">IComparable</A>
+      interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.Equals Method"><H3>Enum.Equals Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool Equals(object obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance and the specified
+   <A HREF="Object.html" TARGET="contents">Object</A> represent the same type and
+      value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> obj</DT>
+<DD>An object to compare the current instance to.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>obj</I> is of the same
+   enumeration type and represents the same value as the current instance;
+   otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  This method
+      overrides System.Object.Equals(System.Object).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.Format Method"><H3>Enum.Format Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Format(Type enumType, object value, string format);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts the specified element of the specified
+      enumeration type to its <A HREF="String.html" TARGET="contents">String</A>
+      representation using the specified format. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>A <A HREF="Type.html" TARGET="contents">Type</A> that specifies the type of the enumeration of which <I>value</I> is a member. </DD>
+<DT> value</DT>
+<DD>The enumeration element to be converted. </DD>
+<DT> format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the output format to use. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The <A HREF="String.html" TARGET="contents">String</A> representation of the value of the enumeration
+   element. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I>, <I>value</I> or <I>format</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not a <A HREF="Enum.html" TARGET="contents">Enum</A>.<P>
+
+ -or-<P>
+
+<I>value</I> is neither of type <I>enumType</I> nor does it have the same underlying type as <I>enumType</I>.<P>
+
+</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> contains an invalid value. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ For cross-platform portability, the only valid values for
+   <I>format</I> are:
+      <P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH> Description</TH><TH> Format Description</TH></TR>
+<TR><TD> If value is equal to a defined value of
+            <I>enumType</I>
+            , returns the element name defined for value. If the <A HREF="FlagsAttribute.html" TARGET="contents">FlagsAttribute</A>
+            attribute is set on the <A HREF="Enum.html" TARGET="contents">Enum</A> declaration and <I>value</I> is
+            a built-in integer type and is equal to a summation of
+            enumeration elements, the return value contains the element names in an
+            unspecified order, separated by commas (e.g. &quot;Red, Yellow&quot;).
+            Otherwise, <I>value</I> is returned in
+            
+            decimal format.<P>
+
+</TD><TD> &quot;G&quot; or &quot;g&quot; If value is equal to a defined value of
+            <I>enumType</I>
+            , returns the element name defined for value. If the <A HREF="FlagsAttribute.html" TARGET="contents">FlagsAttribute</A>
+            attribute is set on the <A HREF="Enum.html" TARGET="contents">Enum</A> declaration and <I>value</I> is
+            a built-in integer type and is equal to a summation of
+            enumeration elements, the return value contains the element names in an
+            unspecified order, separated by commas (e.g. &quot;Red, Yellow&quot;).
+            Otherwise, <I>value</I> is returned in
+            
+            decimal format.<P>
+
+</TD></TR>
+<TR><TD> Returns <I>value</I>
+      in hexadecimal format, without a leading 0x. The value is padded
+      with leading zeroes to ensure the returned value is
+      at least eight digits in length.</TD><TD> &quot;X&quot; or &quot;x&quot; Returns <I>value</I>
+      in hexadecimal format, without a leading 0x. The value is padded
+      with leading zeroes to ensure the returned value is
+      at least eight digits in length.</TD></TR>
+<TR><TD>Behaves identically to &quot;G&quot;, except the
+   <CODE>FlagsAttribute</CODE>
+ is not required to be present
+      on the <A HREF="Enum.html" TARGET="contents">Enum</A>
+      declaration.</TD><TD> &quot;F&quot; or &quot;f&quot;Behaves identically to &quot;G&quot;, except the
+   <CODE>FlagsAttribute</CODE>
+ is not required to be present
+      on the <A HREF="Enum.html" TARGET="contents">Enum</A>
+      declaration.</TD></TR>
+<TR><TD> Returns <I>value</I> in decimal
+   format with no leading zeroes.</TD><TD> &quot;D&quot; or &quot;d&quot; Returns <I>value</I> in decimal
+   format with no leading zeroes.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates formatting enumeration values.<P>
+
+<PRE>using System;
+public enum Signs {
+  Stop = 1,
+  Yield = 2,
+  Merge = 4
+};
+[Flags]
+public enum Lights {
+  Red = 1,
+  Yellow = 2,
+  Green = 4
+};
+public class EnumCompTo {
+  public static void Main() {
+   Console.WriteLine(Signs.Format(typeof(Signs), Signs.Merge, &quot;d&quot;));
+   Console.WriteLine(Signs.Format(typeof(Signs), 7, &quot;g&quot;));
+   Console.WriteLine(Lights.Format(typeof(Lights), Lights.Yellow, &quot;x&quot;));
+   Console.WriteLine(Lights.Format(typeof(Lights), 7, &quot;g&quot;));
+  }
+}
+   </PRE>
+The output is<P>
+
+<CODE>4<P>
+
+7<P>
+
+00000002<P>
+
+Red, Yellow, Green<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.GetHashCode Method"><H3>Enum.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int GetHashCode();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Generates a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The algorithm used to
+      generate the hash code is unspecified.<P>
+
+[<I>Note</I>:  This method
+      overrides System.Object.GetHashCode.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.GetName Method"><H3>Enum.GetName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string GetName(Type enumType, object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Retrieves the name of the constant of the
+      specified enumeration type that has the
+      specified value.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>A <A HREF="Type.html" TARGET="contents">Type</A> that specifies the type of the enumeration. </DD>
+<DT>value</DT>
+<DD>A <A HREF="Object.html" TARGET="contents">Object</A> that contains the integral value or the name of an enumeration constant. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> containing the name of the enumerated constant
+   in <I>enumType</I> whose value is <I>value</I>, or a null reference
+   if no such constant is found.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> or <I>value</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not a <A HREF="Type.html" TARGET="contents">Type</A> that describes a <A HREF="Enum.html" TARGET="contents">Enum</A> .<P>
+
+ -or-<P>
+
+<I>value</I> is neither of type <I>enumType</I> nor does it have the same underlying type as <I>enumType</I>.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.Enum.GetName(System.Type,System.Object) method.<P>
+
+<PRE>using System;
+public enum Signs {
+  Stop = 1,
+  Yield = 2,
+  Merge = 4
+};
+public class EnumCompTo {
+  public static void Main() {
+   Console.Write( &quot;The name of the constant with the value 4 is: &quot; );
+   Console.WriteLine( &quot;{0}.&quot;, Signs.GetName(typeof(Signs), 4));
+   Console.Write( &quot;The name of the constant with the value Stop is: &quot; );
+   Console.WriteLine( &quot;{0}.&quot;, Signs.GetName(typeof(Signs), Signs.Stop ));
+  }
+}
+</PRE>
+The output is<P>
+
+<CODE>The name of the constant with the value 4 is: Merge.<P>
+
+The name of the constant with the value Stop is: Stop.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.GetNames Method"><H3>Enum.GetNames Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string[] GetNames(Type enumType);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a zero-based, one-dimensional <A HREF="String.html" TARGET="contents">String</A> array that contains the names of the constants of the specified enumeration type. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>A <A HREF="Type.html" TARGET="contents">Type</A> that specifies the type of an enumeration. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> vector of the names of the constants in
+<I>enumType</I>. The elements of the vector
+   are sorted by the values of the enumerated constants. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I> enumType</I> is not a <A HREF="Type.html" TARGET="contents">Type</A> that describes a <A HREF="Enum.html" TARGET="contents">Enum</A> .<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.Enum.GetNames(System.Type) method.<P>
+
+<PRE>using System;
+
+public enum Colors {
+   Red,
+   White,
+   Blue
+};
+
+public class enumGetNames {
+
+   public static void Main() {
+      int i = 0;
+      String[] strAry = Colors.GetNames( typeof(Colors) );
+      foreach (String str in strAry) { 
+         Console.Write(&quot;The value indexed &apos;{0}&apos; &quot;, i++ );
+         Console.WriteLine(&quot;is {0}.&quot;, str);
+      }
+   }
+}
+</PRE>
+The output is<P>
+
+<CODE>The value indexed &apos;0&apos; is Red.<P>
+
+The value indexed &apos;1&apos; is White.<P>
+
+The value indexed &apos;2&apos; is Blue.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.GetUnderlyingType Method"><H3>Enum.GetUnderlyingType Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Type GetUnderlyingType(Type enumType);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the underlying type of the specified enumeration type.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Type.html" TARGET="contents">Type</A> instance that describes the underlying type of <I>enumType</I>. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not an enumeration type.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.Enum.GetUnderlyingType(System.Type) 
+method.<P>
+
+<PRE>using System;
+public enum Colors {
+  Red,
+  White,
+  Blue
+}
+public class EnumUnderlyingTypeTest {
+  public static void Main() {
+     Type t = Colors.GetUnderlyingType( typeof(Colors) );
+     Console.WriteLine(&quot;The underlying type of Colors is {0}.&quot;, t.ToString());
+  }
+}
+</PRE>
+The output is<P>
+
+<CODE>The underlying type of Colors is System.Int32.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.GetValues Method"><H3>Enum.GetValues Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Array GetValues(Type enumType);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a zero-based, one-dimensional array of the values of the constants of the
+      specified enumeration type.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A vector of the enumeration type specified by
+   <I>enumType</I> containing the values of the
+      constants in <I>enumType</I>. The elements of the array
+      are sorted by the values of the enumeration constants.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not an enumeration type.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.Enum.GetValues(System.Type) method.<P>
+
+<PRE>using System;
+public enum Colors {
+  Red = 1,
+  White = 2,
+  Blue = 4
+}
+public class enumGetValues {
+   public static void Main() {
+      Array valueAry = Enum.GetValues(typeof(Colors));
+      foreach (int i in valueAry) {
+        Console.WriteLine(&quot;The value of element {0} is {1}&quot;,
+        Enum.Format(typeof(Colors), i, &quot;g&quot;),i);
+      }
+   }
+}
+</PRE>
+The output is<P>
+
+<CODE>The value of element Red is 1.<P>
+
+The value of element White is 2.<P>
+
+The value of element Blue is 4.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.IsDefined Method"><H3>Enum.IsDefined Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool IsDefined(Type enumType, object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> indicating whether a constant with the specified value exists
+   in the specified enumeration type.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>A <A HREF="Type.html" TARGET="contents">Type</A> that describes an enumeration. </DD>
+<DT> value</DT>
+<DD>The constant or value being searched for in <I>enumType</I>. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if a constant
+   in the enumeration described by <I>enumType</I>
+   has a value equal to <I>value</I>; otherwise,
+<CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType </I>or <I>value</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not an enumeration type.<P>
+
+ -or-<P>
+
+ The type of <I>value</I> is not an <I>enumType</I> or an underlying type of <I>enumType</I>.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.Enum.IsDefined(System.Type,System.Object) method.<P>
+
+<PRE>using System;
+public enum Colors {
+  Red = 1,
+  White = 2,
+  Blue = 4
+}
+public class enumIsDefined {
+  public static void Main() {
+     Console.Write(&quot;It is {0} &quot;, Enum.IsDefined(typeof(Colors), 1));
+     Console.WriteLine(&quot;that &apos;1&apos; is defined in &apos;Colors&apos;.&quot;);
+     Console.Write(&quot;It is {0} &quot;, Enum.IsDefined(typeof(Colors), 3)); 
+     Console.WriteLine(&quot;that &apos;3&apos; is defined in &apos;Colors&apos;.&quot;);
+  }
+}
+</PRE>
+The output is<P>
+
+<CODE>It is True that &apos;1&apos; is defined in &apos;Colors&apos;.<P>
+
+It is False that &apos;3&apos; is defined in &apos;Colors&apos;.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.Parse(System.Type, System.String) Method"><H3>Enum.Parse(System.Type, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static object Parse(Type enumType, string value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts the specified <A HREF="String.html" TARGET="contents">String</A> representation of one or more
+   enumerated constants of a specified enumeration type to an equivalent enumerated
+   object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
+<DT> value</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing one or more names or a single numeric value to convert. If the string contains more than one name, each name is required to be separated by a comma (&apos;,&apos;). The names are parsed in a case-sensitive manner. The names or number can be surrounded by any amount of white space.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Object.html" TARGET="contents">Object</A> of type
+<I>enumType</I> whose values are
+   represented by <I>value</I>. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> or <I>value</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not a <A HREF="Type.html" TARGET="contents">Type</A> that describes a <A HREF="Enum.html" TARGET="contents">Enum</A>.<P>
+
+-or-<P>
+
+<I>value</I> is either equal to System.String.Empty or contains only white space.<P>
+
+-or-<P>
+
+<I>value</I> represents one or more names, and at least one name represented by <I>value </I> is not of type <I>enumType</I>.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This version of System.Enum.Parse(System.Type,System.String) is equivalent to System.Enum.Parse(System.Type,System.String)
+(<I>enumType</I>, <I>value</I>, <CODE>false</CODE>
+).<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.Enum.Parse(System.Type,System.String) method.<P>
+
+<PRE>using System;
+public enum Colors {
+  Red = 1,
+  Blue = 2
+}
+public class enumTest {
+  public static void Main() {
+    object o = Enum.Parse( typeof (Colors), &quot;Red, Blue&quot;);
+    Type oType = o.GetType();
+    Console.WriteLine(&quot;The type of the object returned is {0}&quot;,oType.ToString());
+    Array values = Enum.GetValues(oType);
+    foreach (Colors c in values) { 
+      Console.WriteLine(Enum.Format(oType,c,&quot;D&quot;));
+    }
+  }
+}
+</PRE>
+The output is <P>
+
+<CODE>The type of the object returned is Colors<P>
+
+1<P>
+
+2<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.Parse(System.Type, System.String, bool) Method"><H3>Enum.Parse(System.Type, System.String, bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static object Parse(Type enumType, string value, bool ignoreCase);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts the specified <A HREF="String.html" TARGET="contents">String</A>
+representation of one or more enumerated constants of a specified enumeration type to an
+equivalent enumerated object. This method behaves in a case-sensitive or
+insensitive manner according to the specified <A HREF="Boolean.html" TARGET="contents">Boolean</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
+<DT>value</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing one or more names or a single numeric value to convert. If the string contains more than one name, each name is required to be separated by a comma (&apos;,&apos;). The names or number can be surrounded by any amount of white space.<P>
+
+</DD>
+<DT> ignoreCase</DT>
+<DD>A <A HREF="Boolean.html" TARGET="contents">Boolean</A> value. Specify <CODE>true</CODE>
+ to have names in <I>value</I> parsed in a case-insensitive manner. Specify <CODE>false</CODE>
+ to have names parsed in a case-sensitive manner.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Object.html" TARGET="contents">Object</A> of type
+<I>enumType</I>
+whose values are represented by <I>value</I>. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> or <I>value</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not a <A HREF="Type.html" TARGET="contents">Type</A> that describes a <A HREF="Enum.html" TARGET="contents">Enum</A>.<P>
+
+-or-<P>
+
+<I>value</I> is either equal to System.String.Empty or contains only white space.<P>
+
+-or-<P>
+
+<I>value</I> represents one or more names, and at least one name represented by <I>value </I> is not of type <I>enumType</I>.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+For an example that demonstrates parsing strings
+      containing enumeration values, see System.Enum.Parse(System.Type,System.String)(<A HREF="Type.html" TARGET="contents">Type</A>, <A HREF="String.html" TARGET="contents">String</A>).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.ToObject(System.Type, System.Object) Method"><H3>Enum.ToObject(System.Type, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static object ToObject(Type enumType, object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an instance of the specified enumeration type set to the specified value.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of the enumeration. </DD>
+<DT> value</DT>
+<DD>The value to set.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ An enumeration object of type <I>enumType</I> whose value is
+<I>value</I>.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not a <A HREF="Type.html" TARGET="contents">Type</A> that describes a <A HREF="Enum.html" TARGET="contents">Enum</A> .<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.ToObject(System.Type, sbyte) Method"><H3>Enum.ToObject(System.Type, sbyte) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static object ToObject(Type enumType, sbyte value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an instance of the specified enumeration type set
+      to the specified <A HREF="SByte.html" TARGET="contents">SByte</A> value.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
+<DT> value</DT>
+<DD>The <A HREF="SByte.html" TARGET="contents">SByte</A> value to set. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An enumeration object of type <I>enumType</I> whose value is <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not a <A HREF="Type.html" TARGET="contents">Type</A> that describes a <A HREF="Enum.html" TARGET="contents">Enum</A> .<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.Enum.ToObject(System.Type,System.Object)(<A HREF="Type.html" TARGET="contents">Type</A>, <A HREF="Int16.html" TARGET="contents">Int16</A>).<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.ToObject(System.Type, short) Method"><H3>Enum.ToObject(System.Type, short) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static object ToObject(Type enumType, short value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an instance of the specified enumeration type set
+      to the specified <A HREF="Int16.html" TARGET="contents">Int16</A> value.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
+<DT> value</DT>
+<DD>The <A HREF="Int16.html" TARGET="contents">Int16</A> value to set. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ An enumeration object of type <I>enumType</I> whose 
+   value is <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not a <A HREF="Type.html" TARGET="contents">Type</A> that describes a <A HREF="Enum.html" TARGET="contents">Enum</A> .<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.ToObject(System.Type, int) Method"><H3>Enum.ToObject(System.Type, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static object ToObject(Type enumType, int value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an instance of the specified enumeration type set
+      to the specified <A HREF="Int32.html" TARGET="contents">Int32</A> value.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
+<DT> value</DT>
+<DD>The <A HREF="Int32.html" TARGET="contents">Int32</A> value to set. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An enumeration object of type <I>enumType</I> whose value is <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not a <A HREF="Type.html" TARGET="contents">Type</A> that describes a <A HREF="Enum.html" TARGET="contents">Enum</A> .<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.ToObject(System.Type, byte) Method"><H3>Enum.ToObject(System.Type, byte) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static object ToObject(Type enumType, byte value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an instance of the specified enumeration type set
+      to the specified <A HREF="Byte.html" TARGET="contents">Byte</A> value.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
+<DT> value</DT>
+<DD>The <A HREF="Byte.html" TARGET="contents">Byte</A> value to set. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An enumeration object of type <I>enumType</I> whose 
+   value is <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not a <A HREF="Type.html" TARGET="contents">Type</A> that describes a <A HREF="Enum.html" TARGET="contents">Enum</A> .<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.ToObject(System.Type, ushort) Method"><H3>Enum.ToObject(System.Type, ushort) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static object ToObject(Type enumType, ushort value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an instance of the specified enumeration type set
+      to the specified <A HREF="UInt16.html" TARGET="contents">UInt16</A> value.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
+<DT> value</DT>
+<DD>The <A HREF="UInt16.html" TARGET="contents">UInt16</A> value to set. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An enumeration object of type <I>enumType</I> whose value is <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not a <A HREF="Type.html" TARGET="contents">Type</A> that describes a <A HREF="Enum.html" TARGET="contents">Enum</A> .<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.Enum.ToObject(System.Type,System.Object)(<A HREF="Type.html" TARGET="contents">Type</A>, <A HREF="Int32.html" TARGET="contents">Int32</A>).<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.ToObject(System.Type, uint) Method"><H3>Enum.ToObject(System.Type, uint) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static object ToObject(Type enumType, uint value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an instance of the specified enumeration type set
+      to the specified <A HREF="UInt32.html" TARGET="contents">UInt32</A> value.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
+<DT> value</DT>
+<DD>The <A HREF="UInt32.html" TARGET="contents">UInt32</A> value to set. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An enumeration object of type <I>enumType</I> whose
+   value is <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not a <A HREF="Type.html" TARGET="contents">Type</A> that describes a <A HREF="Enum.html" TARGET="contents">Enum</A> .<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.Enum.ToObject(System.Type,System.Object)(<A HREF="Type.html" TARGET="contents">Type</A>, <A HREF="Int64.html" TARGET="contents">Int64</A>).<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.ToObject(System.Type, long) Method"><H3>Enum.ToObject(System.Type, long) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static object ToObject(Type enumType, long value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an instance of the specified enumeration type set
+      to the specified <A HREF="Int64.html" TARGET="contents">Int64</A> value.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
+<DT> value</DT>
+<DD>The <A HREF="Int64.html" TARGET="contents">Int64</A> value to set. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An enumeration object of type <I>enumType</I> whose 
+   value is <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not a <A HREF="Type.html" TARGET="contents">Type</A> that describes a <A HREF="Enum.html" TARGET="contents">Enum</A> .<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.ToObject(System.Type, ulong) Method"><H3>Enum.ToObject(System.Type, ulong) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static object ToObject(Type enumType, ulong value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an instance of the specified enumeration type set
+      to the specified <A HREF="UInt64.html" TARGET="contents">UInt64</A> value.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
+<DT> value</DT>
+<DD>The <A HREF="UInt64.html" TARGET="contents">UInt64</A> value to set. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An enumeration object of type <I>enumType</I> whose
+   value is <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not a <A HREF="Type.html" TARGET="contents">Type</A> that describes a <A HREF="Enum.html" TARGET="contents">Enum</A> .<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant 
+      alternative, use System.Enum.ToObject(System.Type,System.Object)(<A HREF="Type.html" TARGET="contents">Type</A>, <A HREF="Int64.html" TARGET="contents">Int64</A> ).<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.ToString(System.IFormatProvider) Method"><H3>Enum.ToString(System.IFormatProvider) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToString(IFormatProvider provider);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts the name of the value of the current instance to
+      its equivalent <A HREF="String.html" TARGET="contents">String</A>
+      representation. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> provider</DT>
+<DD>An object that implements the <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> interface or a null reference. The <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> is not used in the implementation of this method. [<I>Note</I>:  There is no <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that corresponds to a <A HREF="Enum.html" TARGET="contents">Enum</A> object; therefore, <I>provider</I> is not utilized by this method, and any <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> may be passed as a parameter.]<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+  The <A HREF="String.html" TARGET="contents">String</A> representation of
+   the name of the value of the current instance.
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to the version of System.Enum.ToString(System.String)
+that takes no arguments.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.ToString(System.String, System.IFormatProvider) Method"><H3>Enum.ToString(System.String, System.IFormatProvider) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToString(string format, IFormatProvider provider);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts the numeric value of the current instance to
+      its equivalent <A HREF="String.html" TARGET="contents">String</A> representation using the specified format. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format to use when converting the current instance to a <A HREF="String.html" TARGET="contents">String</A> . Specify one of the following values in upper or lower case: &quot;G&quot;, &quot;D&quot;, &quot;X&quot;, or &quot;F&quot; .</DD>
+<DT> provider</DT>
+<DD>An object that implements the <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> interface or a null reference. The <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> is not used in the implementation of this method. [<I>Note</I>:  There is no <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that corresponds to a <A HREF="Enum.html" TARGET="contents">Enum</A> object; therefore, <I>provider</I> is not utilized by this method, and any <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> may be passed as a parameter.]<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current instance as specified by <I>format</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> does not contain a valid format specifier.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ If
+   <I>format</I> is a null
+      reference or an empty string, the return value is formatted using the general
+      format specifier (&quot;G&quot;).<P>
+
+[<I>Note</I>: For details on the
+         format specifiers used with an enumeration object, see System.Enum.Format(System.Type,System.Object,System.String)
+         .<P>
+
+This method is implemented to support the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A> interface. <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.ToString() Method"><H3>Enum.ToString() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts the name of the value of the current instance to
+      its equivalent <A HREF="String.html" TARGET="contents">String</A> representation. <P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="String.html" TARGET="contents">String</A> representation of the named constant specified by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This version of System.Enum.ToString(System.String) is equivalent to System.Enum.ToString(System.String) (&quot;G&quot;, <CODE>null</CODE>
+
+). <P>
+
+This method returns the same value as System.Enum.Format(System.Type,System.Object,System.String)
+with the &quot;g&quot; or &quot;G&quot; format option. <P>
+
+ An instance of an enumeration is set to
+   a named constant value. This method returns the name of the constant an instance
+   is set to, not the value itself. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Enum.ToString(System.String) Method"><H3>Enum.ToString(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToString(string format);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts the value of the current instance to its
+      equivalent <A HREF="String.html" TARGET="contents">String</A> representation using the specified format. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format to use when converting the current instance to a <A HREF="String.html" TARGET="contents">String</A>. Specify one of the following values in upper or lower case: &quot;G&quot;, &quot;D&quot;, &quot;X&quot;, or &quot;F&quot; .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current
+   instance as specified by <I>format</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> contains an invalid value. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ If
+   <I>format</I> is a null 
+      reference or an empty string, the return value is formatted using the general
+      format specifier (&quot;G&quot;).<P>
+
+[<I>Note</I>: For details on the format specifiers 
+      used with an enumeration object, see System.Enum.Format(System.Type,System.Object,System.String) .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

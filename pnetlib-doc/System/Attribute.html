@@ -1,0 +1,1283 @@
+<HTML>
+<HEAD>
+<TITLE>System.Attribute Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Attribute Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class Attribute</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Attribute<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Serves as the base class for custom attributes. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+All attributes, whether built-in or user-defined, derive
+      directly or indirectly from <A HREF="Attribute.html" TARGET="contents">Attribute</A>. Attributes inherit certain default behaviors: the
+      attribute may be associated with any target element (see <A HREF="AttributeTargets.html" TARGET="contents">AttributeTargets</A>); may
+      or may not be inherited by a derived element; and multiple instances may or may
+      not be allowed on the same target element. These behaviors are specified using
+      <A HREF="AttributeUsageAttribute.html" TARGET="contents">AttributeUsageAttribute</A>.<P>
+
+[<I>Note</I>: 
+      An attribute is an annotation that may be placed on an element of source code
+      and used to store application-specific information at compile time. This
+      information is stored in the metadata and can be accessed either during
+      application execution, through a process known as reflection, or when another
+      tool reads the metadata. Attributes might change the behavior of the application
+      during execution, provide transaction information about an object, or convey
+      organizational information to a designer.
+      ]<P>
+
+<P>
+
+ The CLI predefines some attribute types and
+      uses them to control runtime behavior. Some languages predefine attribute types
+      to represent language features not directly represented in the Common Language
+      Specification (CLS). User-defined attribute classes, inheriting from <A HREF="Attribute.html" TARGET="contents">Attribute</A>, may also be
+      created. The definition of such a class includes the name of the attribute, its
+      default behavior, and the information to be stored. <P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following
+      example creates and assigns multiple custom attributes to a class. The attribute contains the
+      name of the programmer and the version number of the class.<P>
+
+<PRE>using System;
+
+[AttributeUsage(AttributeTargets.Class|
+                AttributeTargets.Struct,
+                AllowMultiple=true)]
+public class Author : Attribute
+{
+   string authorName;
+   public double verSion;
+
+   public Author(string name) 
+   {
+      authorName = name;
+      verSion = 1.0; 
+   }
+
+   public string getName() 
+   {
+      return authorName; 
+   }
+}
+
+[Author(&quot;Some Author&quot;)]
+class FirstClass 
+{
+   /*...*/ 
+}
+
+class SecondClass  // no Author attribute
+{
+   /*...*/ 
+}
+
+[Author(&quot;Some Author&quot;), 
+       Author(&quot;Some Other Author&quot;, verSion=1.1)]
+class ThirdClass 
+{ 
+   /*...*/ 
+}
+
+class AuthorInfo 
+{
+   public static void Main() 
+   {
+      PrintAuthorInfo(typeof(FirstClass));
+      PrintAuthorInfo(typeof(SecondClass));
+      PrintAuthorInfo(typeof(ThirdClass));
+   }
+   public static void PrintAuthorInfo(Type type) 
+   {
+      Console.WriteLine(&quot;Author information for {0}&quot;,
+                        type);
+      Attribute[] attributeArray =
+          Attribute.GetCustomAttributes(type);
+      foreach(Attribute attrib in attributeArray) 
+      {
+         if (attrib is Author) 
+         {
+            Author author = (Author)attrib;
+            Console.WriteLine(&quot;   {0}, version {1:f}&quot;,
+                              author.getName(),
+                              author.verSion);
+         }
+      }
+      Console.WriteLine();
+   }
+}
+      </PRE>
+The output is<P>
+
+<CODE>Author information for FirstClass<P>
+
+ Some Author, version 1.00<P>
+
+Author information for SecondClass<P>
+
+Author information for ThirdClass<P>
+
+ Some Author, version 1.00<P>
+
+ Some Other Author, version 1.10<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>AttributeUsageAttribute(AttributeTargets.All, AllowMultiple=false, Inherited=true)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Attribute Constructors<P>
+
+<A HREF="#Attribute Constructor" TARGET="contents">Attribute Constructor</A><BR>
+<P>
+
+Attribute Methods<P>
+
+<A HREF="#Attribute.Equals Method" TARGET="contents">Attribute.Equals Method</A><BR>
+<A HREF="#Attribute.GetCustomAttribute(System.Reflection.MemberInfo, System.Type) Method" TARGET="contents">Attribute.GetCustomAttribute(System.Reflection.MemberInfo, System.Type) Method</A><BR>
+<A HREF="#Attribute.GetCustomAttribute(System.Reflection.ParameterInfo, System.Type) Method" TARGET="contents">Attribute.GetCustomAttribute(System.Reflection.ParameterInfo, System.Type) Method</A><BR>
+<A HREF="#Attribute.GetCustomAttribute(System.Reflection.Module, System.Type) Method" TARGET="contents">Attribute.GetCustomAttribute(System.Reflection.Module, System.Type) Method</A><BR>
+<A HREF="#Attribute.GetCustomAttribute(System.Reflection.Assembly, System.Type) Method" TARGET="contents">Attribute.GetCustomAttribute(System.Reflection.Assembly, System.Type) Method</A><BR>
+<A HREF="#Attribute.GetCustomAttributes(System.Reflection.MemberInfo, System.Type) Method" TARGET="contents">Attribute.GetCustomAttributes(System.Reflection.MemberInfo, System.Type) Method</A><BR>
+<A HREF="#Attribute.GetCustomAttributes(System.Reflection.MemberInfo) Method" TARGET="contents">Attribute.GetCustomAttributes(System.Reflection.MemberInfo) Method</A><BR>
+<A HREF="#Attribute.GetCustomAttributes(System.Reflection.ParameterInfo, System.Type) Method" TARGET="contents">Attribute.GetCustomAttributes(System.Reflection.ParameterInfo, System.Type) Method</A><BR>
+<A HREF="#Attribute.GetCustomAttributes(System.Reflection.Module, System.Type) Method" TARGET="contents">Attribute.GetCustomAttributes(System.Reflection.Module, System.Type) Method</A><BR>
+<A HREF="#Attribute.GetCustomAttributes(System.Reflection.Assembly, System.Type) Method" TARGET="contents">Attribute.GetCustomAttributes(System.Reflection.Assembly, System.Type) Method</A><BR>
+<A HREF="#Attribute.GetCustomAttributes(System.Reflection.ParameterInfo) Method" TARGET="contents">Attribute.GetCustomAttributes(System.Reflection.ParameterInfo) Method</A><BR>
+<A HREF="#Attribute.GetCustomAttributes(System.Reflection.Module) Method" TARGET="contents">Attribute.GetCustomAttributes(System.Reflection.Module) Method</A><BR>
+<A HREF="#Attribute.GetCustomAttributes(System.Reflection.Assembly) Method" TARGET="contents">Attribute.GetCustomAttributes(System.Reflection.Assembly) Method</A><BR>
+<A HREF="#Attribute.GetHashCode Method" TARGET="contents">Attribute.GetHashCode Method</A><BR>
+<A HREF="#Attribute.IsDefined(System.Reflection.MemberInfo, System.Type) Method" TARGET="contents">Attribute.IsDefined(System.Reflection.MemberInfo, System.Type) Method</A><BR>
+<A HREF="#Attribute.IsDefined(System.Reflection.ParameterInfo, System.Type) Method" TARGET="contents">Attribute.IsDefined(System.Reflection.ParameterInfo, System.Type) Method</A><BR>
+<A HREF="#Attribute.IsDefined(System.Reflection.Module, System.Type) Method" TARGET="contents">Attribute.IsDefined(System.Reflection.Module, System.Type) Method</A><BR>
+<A HREF="#Attribute.IsDefined(System.Reflection.Assembly, System.Type) Method" TARGET="contents">Attribute.IsDefined(System.Reflection.Assembly, System.Type) Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Attribute Constructor"><H3>Attribute Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected Attribute();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs a new instance of the <A HREF="Attribute.html" TARGET="contents">Attribute</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.Equals Method"><H3>Attribute.Equals Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool Equals(object obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance and the
+      specified <A HREF="Object.html" TARGET="contents">Object</A> represent the same type and
+      value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> obj</DT>
+<DD>The <A HREF="Object.html" TARGET="contents">Object</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates <I>obj</I>
+represents the same type and value as the current instance. If <I>obj</I> is a null reference or is not an instance of
+<A HREF="Attribute.html" TARGET="contents">Attribute</A>, returns <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method overrides System.Object.Equals(System.Object).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.GetCustomAttribute(System.Reflection.MemberInfo, System.Type) Method"><H3>Attribute.GetCustomAttribute(System.Reflection.MemberInfo, System.Type) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Attribute GetCustomAttribute(MemberInfo element, Type attributeType);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an instance of a specified custom attribute if a single instance of
+      the attribute is in the metadata for the specified member.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>element</DT>
+<DD>An instance of a type derived from <A HREF="../System/Reflection/MemberInfo.html" TARGET="contents">MemberInfo</A> that describes a type member.</DD>
+<DT>attributeType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of the custom attribute for which to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The single instance of <A HREF="Attribute.html" TARGET="contents">Attribute</A> of type <I>attributeType</I> that is applied to <I>element.</I> Returns <CODE>null </CODE>
+ if the
+   specified attribute was not found.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>element</I> or <I>attributeType</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>attributeType</I> is not a type derived from <A HREF="Attribute.html" TARGET="contents">Attribute</A>.</TD></TR>
+<TR><TD><A HREF="NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD><I>element</I> does not represent a constructor, method, property, event, type, or field member. </TD></TR>
+<TR><TD><A HREF="../System/Reflection/AmbiguousMatchException.html" TARGET="contents">AmbiguousMatchException</A></TD><TD>More than one instance of the specified custom attribute was found.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: If multiple instances of <I>attributeType</I> can be
+   applied to <I>element</I>, use System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.GetCustomAttribute(System.Reflection.ParameterInfo, System.Type) Method"><H3>Attribute.GetCustomAttribute(System.Reflection.ParameterInfo, System.Type) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Attribute GetCustomAttribute(ParameterInfo element, Type attributeType);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an instance of a specified custom attribute if a single instance of
+      the attribute is in the metadata for the specified parameter.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>element</DT>
+<DD>A <A HREF="../System/Reflection/ParameterInfo.html" TARGET="contents">ParameterInfo</A> instance.</DD>
+<DT>attributeType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of the custom attribute for which to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The single instance of <A HREF="Attribute.html" TARGET="contents">Attribute</A> of type <I>attributeType</I> that is applied to <I>element.</I> Returns <CODE>null </CODE>
+ if the
+   specified attribute was not found.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>element</I> or <I>attributeType</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>attributeType</I> is not a type derived from <A HREF="Attribute.html" TARGET="contents">Attribute</A>.</TD></TR>
+<TR><TD><A HREF="../System/Reflection/AmbiguousMatchException.html" TARGET="contents">AmbiguousMatchException</A></TD><TD>More than one instance of the specified custom attribute was found.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: If multiple instances of <I>attributeType</I> can be
+   applied to <I>element</I>, use System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.GetCustomAttribute(System.Reflection.Module, System.Type) Method"><H3>Attribute.GetCustomAttribute(System.Reflection.Module, System.Type) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Attribute GetCustomAttribute(Module element, Type attributeType);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an instance of a specified custom attribute if a single instance of
+      the attribute is in the metadata for the specified module.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>element</DT>
+<DD>A <A HREF="../System/Reflection/Module.html" TARGET="contents">Module</A> instance.</DD>
+<DT>attributeType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of the custom attribute for which to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The single instance of <A HREF="Attribute.html" TARGET="contents">Attribute</A> of type <I>attributeType</I> that is applied to <I>element.</I> Returns <CODE>null </CODE>
+ if the
+   specified attribute was not found.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>element</I> or <I>attributeType</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>attributeType</I> is not a type derived from <A HREF="Attribute.html" TARGET="contents">Attribute</A>.</TD></TR>
+<TR><TD><A HREF="../System/Reflection/AmbiguousMatchException.html" TARGET="contents">AmbiguousMatchException</A></TD><TD>More than one instance of the specified custom attribute was found.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: If multiple instances of <I>attributeType</I> can be
+   applied to <I>element</I>, use System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.GetCustomAttribute(System.Reflection.Assembly, System.Type) Method"><H3>Attribute.GetCustomAttribute(System.Reflection.Assembly, System.Type) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Attribute GetCustomAttribute(Assembly element, Type attributeType);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an instance of a specified custom attribute if a single instance of
+      the attribute is in the metadata for the specified assembly.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>element</DT>
+<DD>A <A HREF="../System/Reflection/Assembly.html" TARGET="contents">Assembly</A> instance.</DD>
+<DT>attributeType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of the custom attribute for which to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The single instance of <A HREF="Attribute.html" TARGET="contents">Attribute</A> of type <I>attributeType</I> that is applied to <I>element.</I> Returns <CODE>null </CODE>
+ if the
+   specified attribute was not found.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>element</I> or <I>attributeType</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>attributeType</I> is not a type derived from <A HREF="Attribute.html" TARGET="contents">Attribute</A>.</TD></TR>
+<TR><TD><A HREF="../System/Reflection/AmbiguousMatchException.html" TARGET="contents">AmbiguousMatchException</A></TD><TD>More than one instance of the specified custom attribute was found.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: If multiple instances of <I>attributeType</I> can be
+   applied to <I>element</I>, use System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.GetCustomAttributes(System.Reflection.MemberInfo, System.Type) Method"><H3>Attribute.GetCustomAttributes(System.Reflection.MemberInfo, System.Type) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Attribute[] GetCustomAttributes(MemberInfo element, Type type);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an array of the instances of a specified custom attribute if the
+      attribute is in the metadata for the specified member.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>element</DT>
+<DD>An instance of a type derived from <A HREF="../System/Reflection/MemberInfo.html" TARGET="contents">MemberInfo</A> that describes a type member.</DD>
+<DT>type</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of the custom attribute for which to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ An array of type <I>type</I> containing the instances that are applied to <I>element.</I> The array includes instances
+   of <I>type</I> that are inherited by
+<I>element</I>, if any. Returns an empty array if the
+   specified attribute was not found.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>element</I> or <I>type</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>type</I> is not a type derived from <A HREF="Attribute.html" TARGET="contents">Attribute</A>.</TD></TR>
+<TR><TD><A HREF="NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD><I>element</I> does not represent a constructor, method, property, event, type, or field member. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.GetCustomAttributes(System.Reflection.MemberInfo) Method"><H3>Attribute.GetCustomAttributes(System.Reflection.MemberInfo) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Attribute[] GetCustomAttributes(MemberInfo element);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an array of all
+      custom attributes in the metadata for the specified member.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>element</DT>
+<DD>An instance of a type derived from <A HREF="../System/Reflection/MemberInfo.html" TARGET="contents">MemberInfo</A> that describes a type member.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Attribute.html" TARGET="contents">Attribute</A> array containing
+   all custom attributes that are applied to <I>element.</I> The array includes custom attributes that are inherited by
+<I>element</I>, if any. Returns 
+   an empty array if no custom attributes were found in the metadata for
+<I>element</I> 
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>element</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD><I>element</I> does not represent a constructor, method, property, event, type, or field member. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.GetCustomAttributes(System.Reflection.ParameterInfo, System.Type) Method"><H3>Attribute.GetCustomAttributes(System.Reflection.ParameterInfo, System.Type) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Attribute[] GetCustomAttributes(ParameterInfo element, Type attributeType);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an array of the instances of a specified custom attribute if the
+      attribute is in the metadata for the specified parameter.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>element</DT>
+<DD>A <A HREF="../System/Reflection/ParameterInfo.html" TARGET="contents">ParameterInfo</A> instance.</DD>
+<DT>attributeType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of the custom attribute for which to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ An array of type <I>attributeType</I> containing the instances that are applied to <I>element.</I> The array includes any inherited instances
+   of <I>attributeType</I>. Returns an empty array if the
+   specified attribute was not found.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>element</I> or <I>type</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>attributeType</I> is not a type derived from <A HREF="Attribute.html" TARGET="contents">Attribute</A>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If <I>element</I> represents a
+   method parameter, the array returned by System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type)
+   includes any <I>attributeType</I> instances
+   for the parameter <I>element</I> in the base methods.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.GetCustomAttributes(System.Reflection.Module, System.Type) Method"><H3>Attribute.GetCustomAttributes(System.Reflection.Module, System.Type) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Attribute[] GetCustomAttributes(Module element, Type attributeType);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an array of the instances of a specified custom attribute if the
+      attribute is in the metadata for the specified module.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>element</DT>
+<DD>A <A HREF="../System/Reflection/Module.html" TARGET="contents">Module</A> instance.</DD>
+<DT>attributeType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of the custom attribute for which to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ An array of type <I>attributeType</I> containing the instances that are applied to <I>element.</I> The array includes any inherited instances
+   of <I>attributeType</I>. Returns an empty array if the
+   specified attribute was not found.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>element</I> or <I>type</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>attributeType</I> is not a type derived from <A HREF="Attribute.html" TARGET="contents">Attribute</A>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.GetCustomAttributes(System.Reflection.Assembly, System.Type) Method"><H3>Attribute.GetCustomAttributes(System.Reflection.Assembly, System.Type) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Attribute[] GetCustomAttributes(Assembly element, Type attributeType);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an array of the instances of a specified custom attribute if the
+      attribute is in the metadata for the specified assembly.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>element</DT>
+<DD>A <A HREF="../System/Reflection/Assembly.html" TARGET="contents">Assembly</A> instance.</DD>
+<DT>attributeType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of the custom attribute for which to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ An array of type <I>attributeType</I> containing the instances that are applied to <I>element.</I> The array includes any inherited instances 
+   of <I>attributeType</I>. Returns an empty array if the
+   specified attribute was not found.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>element</I> or <I>type</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>attributeType</I> is not a type derived from <A HREF="Attribute.html" TARGET="contents">Attribute</A>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.GetCustomAttributes(System.Reflection.ParameterInfo) Method"><H3>Attribute.GetCustomAttributes(System.Reflection.ParameterInfo) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Attribute[] GetCustomAttributes(ParameterInfo element);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an array of all
+      custom attributes in the metadata for the specified parameter.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>element</DT>
+<DD>A <A HREF="../System/Reflection/ParameterInfo.html" TARGET="contents">ParameterInfo</A> instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Attribute.html" TARGET="contents">Attribute</A> array containing
+   all custom attributes that are applied to <I>element.</I> The array includes any inherited custom
+   attributes. Returns
+   an empty array if no custom attributes were found in the metadata for
+<I>element</I> 
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>element</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.GetCustomAttributes(System.Reflection.Module) Method"><H3>Attribute.GetCustomAttributes(System.Reflection.Module) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Attribute[] GetCustomAttributes(Module element);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an array of all
+      custom attributes in the metadata for the specified module.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>element</DT>
+<DD>A <A HREF="../System/Reflection/Module.html" TARGET="contents">Module</A> instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Attribute.html" TARGET="contents">Attribute</A> array containing
+   all custom attributes that are applied to <I>element.</I>
+   The array includes any inherited custom attributes. Returns
+   an empty array if no custom attributes were found in the metadata for
+<I>element</I> 
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>element</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.GetCustomAttributes(System.Reflection.Assembly) Method"><H3>Attribute.GetCustomAttributes(System.Reflection.Assembly) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Attribute[] GetCustomAttributes(Assembly element);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an array of all
+      custom attributes in the metadata for the specified assembly.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>element</DT>
+<DD>A <A HREF="../System/Reflection/Assembly.html" TARGET="contents">Assembly</A> instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Attribute.html" TARGET="contents">Attribute</A> array containing
+   all custom attributes that are applied to <I>element.</I>
+   The
+   array includes any inherited custom attributes. Returns
+   an empty array if no custom attributes were found in the metadata for
+<I>element</I> 
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>element</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.GetHashCode Method"><H3>Attribute.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int GetHashCode();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Generates a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+
+      The algorithm used to generate the hash code is
+      unspecified.
+   <P>
+
+[<I>Note</I>: 
+      This method overrides System.Object.GetHashCode.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.IsDefined(System.Reflection.MemberInfo, System.Type) Method"><H3>Attribute.IsDefined(System.Reflection.MemberInfo, System.Type) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool IsDefined(MemberInfo element, Type attributeType);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether a specified custom
+   attribute is present in the metadata for the specified member.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>element</DT>
+<DD>An instance of a type derived from <A HREF="../System/Reflection/MemberInfo.html" TARGET="contents">MemberInfo</A> that describes a type member.</DD>
+<DT>attributeType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of the custom attribute for which to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if a custom attribute of type
+<I>attributeType</I> is applied to <I>element</I> either directly or through inheritance; otherwise, 
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>element</I> or <I>attributeType</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>attributeType</I> is not derived from <A HREF="Attribute.html" TARGET="contents">Attribute</A>.</TD></TR>
+<TR><TD><A HREF="NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD><I>element</I> is not a constructor, method, property, event, type, or field. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.IsDefined(System.Reflection.ParameterInfo, System.Type) Method"><H3>Attribute.IsDefined(System.Reflection.ParameterInfo, System.Type) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool IsDefined(ParameterInfo element, Type attributeType);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether a specified custom attribute is present in the
+   metadata for the specified parameter.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>element</DT>
+<DD>A <A HREF="../System/Reflection/ParameterInfo.html" TARGET="contents">ParameterInfo</A> instance.</DD>
+<DT>attributeType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of the custom attribute for which to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if a custom attribute of type
+<I>attributeType</I> is applied to <I>element</I> either directly or through 
+   inheritance; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>element</I> or <I>attributeType</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>attributeType</I> is not derived from <A HREF="Attribute.html" TARGET="contents">Attribute</A>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.IsDefined(System.Reflection.Module, System.Type) Method"><H3>Attribute.IsDefined(System.Reflection.Module, System.Type) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool IsDefined(Module element, Type attributeType);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether a specified custom attribute is present in
+   the metadata for the specified module.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>element</DT>
+<DD>A <A HREF="../System/Reflection/Module.html" TARGET="contents">Module</A> instance.</DD>
+<DT>attributeType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of the custom attribute for which to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if a custom attribute of type
+<I>attributeType</I> is applied to <I>element</I> 
+; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>element</I> or <I>attributeType</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>attributeType</I> is not derived from <A HREF="Attribute.html" TARGET="contents">Attribute</A>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Attribute.IsDefined(System.Reflection.Assembly, System.Type) Method"><H3>Attribute.IsDefined(System.Reflection.Assembly, System.Type) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool IsDefined(Assembly element, Type attributeType);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether a specified custom attribute is present in the metadata for the
+   specified assembly.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>element</DT>
+<DD>A <A HREF="../System/Reflection/Assembly.html" TARGET="contents">Assembly</A> instance.</DD>
+<DT>attributeType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of the custom attribute for which to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if a custom attribute of type 
+<I>attributeType</I> is applied to <I>element</I>; otherwise, 
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>element</I> or <I>attributeType</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>attributeType</I> is not derived from <A HREF="Attribute.html" TARGET="contents">Attribute</A>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Attribute.html" TARGET="contents">System.Attribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

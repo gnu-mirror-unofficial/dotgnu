@@ -1,0 +1,143 @@
+<HTML>
+<HEAD>
+<TITLE>System.TypeInitializationException Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.TypeInitializationException Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class TypeInitializationException : SystemException</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="Exception.html" TARGET="contents">Exception</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="SystemException.html" TARGET="contents">SystemException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TypeInitializationException<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents the error that occurs when an exception is thrown inside the
+      static constructor of a type.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ When a static constructor fails to initialize a type, a
+   <A HREF="TypeInitializationException.html" TARGET="contents">TypeInitializationException</A> instance is created and passed a reference to the exception
+      thrown by the static constructor. The System.TypeInitializationException.InnerException property stores the exception that was thrown
+      by the static constructor.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates an error that causes
+      a <A HREF="TypeInitializationException.html" TARGET="contents">TypeInitializationException</A> exception.<P>
+
+<PRE>using System;
+class TypeInit {
+    // Static constructor
+   static TypeInit () {
+          // Throw an application-defined exception.
+        throw new ApplicationException(&quot;Error in Class TypeInit&quot;);
+    }
+    public TypeInit() {}
+}
+class TestTypeInit {
+    static public void Main() {
+        try {
+            TypeInit t = new TypeInit ();
+        }
+        catch (TypeInitializationException e) {
+            Console.WriteLine(&quot;Error: {0}&quot;,e);
+        }
+    }
+}
+   </PRE>
+The output is<P>
+
+<PRE>
+Error: System.TypeInitializationException: The type initializer for &quot;TypeInit&quot; threw an exception. ---&gt; System.ApplicationException: Error in Class TypeInit
+   at TypeInit..cctor()
+   --- End of inner exception stack trace ---
+   at TypeInit..ctor()
+   at TestTypeInit.Main()
+ </PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+TypeInitializationException Properties<P>
+
+<A HREF="#TypeInitializationException.TypeName Property" TARGET="contents">TypeInitializationException.TypeName Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="TypeInitializationException.TypeName Property"><H3>TypeInitializationException.TypeName Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string TypeName { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the fully qualified name of the type that causes the
+      exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> that contains the fully qualified name of the type that caused the exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The System.TypeInitializationException.TypeName property returns the same value as was
+   passed into the constructor.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TypeInitializationException.html" TARGET="contents">System.TypeInitializationException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

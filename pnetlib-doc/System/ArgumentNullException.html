@@ -1,0 +1,239 @@
+<HTML>
+<HEAD>
+<TITLE>System.ArgumentNullException Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.ArgumentNullException Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class ArgumentNullException : ArgumentException</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="Exception.html" TARGET="contents">Exception</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="SystemException.html" TARGET="contents">SystemException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ArgumentNullException<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Represents the error that occurs when an argument passed 
+      to a method is invalid because it is <CODE>null</CODE>
+
+      .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A> is thrown when a method is 
+      invoked and at least one of the passed arguments is <CODE>null</CODE>
+ and
+      should never be <CODE>null</CODE>
+
+      .<P>
+
+<A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A> behaves identically to <A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A>. It is provided so that 
+   application code can differentiate between exceptions caused by
+<CODE>null</CODE>
+ 
+arguments and exceptions caused by non-null arguments. For errors caused by
+non-null arguments, see <A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A>
+.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates an error that causes
+      the <A HREF="String.html" TARGET="contents">String</A>
+      class to throw a <A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A> exception.<P>
+
+<PRE>using System;
+class ArgumentNullTest {
+ public static void Main() {
+ String[] s = null;
+ String sep = &quot; &quot;;
+ try {
+ String j = String.Join(sep,s);
+ }
+ catch (ArgumentNullException e) {
+ Console.WriteLine(&quot;Error: {0}&quot;,e);
+ }
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>Error: System.ArgumentNullException: Value cannot be null.<P>
+
+Parameter name: value<P>
+
+at System.String.Join(String separator, String[] value)<P>
+
+at ArgumentNullTest.Main()<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ArgumentNullException Constructors<P>
+
+<A HREF="#ArgumentNullException() Constructor" TARGET="contents">ArgumentNullException() Constructor</A><BR>
+<A HREF="#ArgumentNullException(System.String) Constructor" TARGET="contents">ArgumentNullException(System.String) Constructor</A><BR>
+<A HREF="#ArgumentNullException(System.String, System.String) Constructor" TARGET="contents">ArgumentNullException(System.String, System.String) Constructor</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ArgumentNullException() Constructor"><H3>ArgumentNullException() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ArgumentNullException();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ArgumentNullException.Message property of the new instance to a 
+   system-supplied message that describes the error, such as &quot;Argument cannot be
+   null.&quot; This message takes into account the current system culture. The System.ArgumentNullException.ParamName property is initialized to <CODE>null</CODE>
+
+   . <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArgumentNullException.html" TARGET="contents">System.ArgumentNullException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ArgumentNullException(System.String) Constructor"><H3>ArgumentNullException(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ArgumentNullException(string paramName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>paramName</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that contains the name of the parameter that caused the exception. The content of <I>paramName</I> is intended to be understood by humans.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ArgumentNullException.ParamName property of the new instance using
+<I>paramName</I> . The System.ArgumentNullException.Message 
+property is initialized to the system-supplied message provided by the
+constructor that takes no arguments.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArgumentNullException.html" TARGET="contents">System.ArgumentNullException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ArgumentNullException(System.String, System.String) Constructor"><H3>ArgumentNullException(System.String, System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ArgumentNullException(string paramName, string message);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>paramName</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that contains the name of the parameter that caused the exception. The content of <I>paramName</I> is intended to be understood by humans.</DD>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ArgumentNullException.ParamName property of the new instance using <I>paramName</I>,
+   and the System.ArgumentNullException.Message property using <I>message</I>. If <I>message</I> is <CODE>null</CODE>
+,
+   the System.ArgumentNullException.Message property is initialized to the system-supplied message
+   provided by the constructor that takes no arguments.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArgumentNullException.html" TARGET="contents">System.ArgumentNullException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,285 @@
+<HTML>
+<HEAD>
+<TITLE>System.Collections.ICollection Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Collections.ICollection Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public interface ICollection : IEnumerable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+This type implements <A HREF="IEnumerable.html" TARGET="contents">IEnumerable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Serves as the base interface for implementing collection
+ classes. Defines
+ size, enumeration, and synchronization methods for all system collections.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <A HREF="ICollection.html" TARGET="contents">ICollection</A> contains the System.Collections.ICollection.CopyTo(System.Array,System.Int32) method. The consumer of 
+ a collection object that implements this interface should call this method when
+ copying the elements of that object to a
+<A HREF="../../System/Array.html" TARGET="contents">Array</A>.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ICollection Methods<P>
+
+<A HREF="#ICollection.CopyTo Method" TARGET="contents">ICollection.CopyTo Method</A><BR>
+<P>
+
+ICollection Properties<P>
+
+<A HREF="#ICollection.Count Property" TARGET="contents">ICollection.Count Property</A><BR>
+<A HREF="#ICollection.IsSynchronized Property" TARGET="contents">ICollection.IsSynchronized Property</A><BR>
+<A HREF="#ICollection.SyncRoot Property" TARGET="contents">ICollection.SyncRoot Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ICollection.CopyTo Method"><H3>ICollection.CopyTo Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>void CopyTo(Array array, int index);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Copies the elements from the current instance to the
+      specified <A HREF="../../System/Array.html" TARGET="contents">Array</A>, starting at the specified
+      index in the array.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>array</DT>
+<DD>A one-dimensional, zero-based <A HREF="../../System/Array.html" TARGET="contents">Array</A> that is the destination of the elements copied from the current instance.</DD>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the zero-based index in <I>array</I> at which copying begins. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>array</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> &lt; 0.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>array</I> has more than one dimension.<P>
+
+<I>index</I> is greater than or equal to <I>array</I>.Length.<P>
+
+ The sum of <I>index</I> and the System.Collections.ICollection.Count of the current instance is greater than <I>array</I>.Length.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/InvalidCastException.html" TARGET="contents">InvalidCastException</A></TD><TD>At least one element in the current instance is not assignment-compatible with the type of <I>array</I>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to copy from a collection to a
+   <A HREF="../../System/Array.html" TARGET="contents">Array</A>.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ICollection.html" TARGET="contents">System.Collections.ICollection Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ICollection.Count Property"><H3>ICollection.Count Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>int Count { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the number of elements contained in the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that indicates the number of elements contained in the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Behaviors</I>: The System.Collections.ICollection.Count property
+      is required to return the total number of elements contained in the current instance.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ICollection.html" TARGET="contents">System.Collections.ICollection Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ICollection.IsSynchronized Property"><H3>ICollection.IsSynchronized Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool IsSynchronized { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> indicating whether access to the
+   current instance is synchronized
+   (thread-safe).<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if access to
+   the current instance is synchronized (thread-safe); otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Behaviors</I>:  As described above.]<P>
+
+<P>
+
+[<I>Usage</I>:  To
+   synchronize a collection, use System.Collections.ICollection.SyncRoot to obtain a <A HREF="../../System/Object.html" TARGET="contents">Object</A>
+   with
+   which to synchronize the collection. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ICollection.html" TARGET="contents">System.Collections.ICollection Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ICollection.SyncRoot Property"><H3>ICollection.SyncRoot Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>object SyncRoot { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="../../System/Object.html" TARGET="contents">Object</A> that can be used
+   for thread-safe synchronized access to the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Object.html" TARGET="contents">Object</A> that can be
+   used for thread-safe synchronized access to the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: For collections with no publicly available underlying 
+         store, the expected implementation is to simply return the current instance.
+         Note that
+         this might not be sufficient for collections that wrap other collections; those
+         should return the underlying collection&apos;s System.Collections.ICollection.SyncRoot
+         property.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ICollection.html" TARGET="contents">System.Collections.ICollection Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

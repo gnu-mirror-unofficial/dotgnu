@@ -1,0 +1,2797 @@
+<HTML>
+<HEAD>
+<TITLE>System.IO.TextWriter Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.IO.TextWriter Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class TextWriter : MarshalByRefObject, IDisposable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/MarshalByRefObject.html" TARGET="contents">MarshalByRefObject</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;TextWriter<P>
+
+This type implements <A HREF="../../System/IDisposable.html" TARGET="contents">IDisposable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ 
+      Represents a writer that can write a sequential series of characters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">TextWriter</A> is designed for character output, whereas the
+<A HREF="Stream.html" TARGET="contents">Stream</A> 
+class is designed for byte input and output.<P>
+
+[<I>Note</I>: By default, a <A HREF="TextWriter.html" TARGET="contents">TextWriter</A> is not thread safe. See System.IO.TextWriter.Synchronized(System.IO.TextWriter) for a
+thread-safe wrapper. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+TextWriter Constructors<P>
+
+<A HREF="#TextWriter() Constructor" TARGET="contents">TextWriter() Constructor</A><BR>
+<A HREF="#TextWriter(System.IFormatProvider) Constructor" TARGET="contents">TextWriter(System.IFormatProvider) Constructor</A><BR>
+<P>
+
+TextWriter Methods<P>
+
+<A HREF="#TextWriter.Close Method" TARGET="contents">TextWriter.Close Method</A><BR>
+<A HREF="#TextWriter.Dispose Method" TARGET="contents">TextWriter.Dispose Method</A><BR>
+<A HREF="#TextWriter.Flush Method" TARGET="contents">TextWriter.Flush Method</A><BR>
+<A HREF="#TextWriter.Synchronized Method" TARGET="contents">TextWriter.Synchronized Method</A><BR>
+<A HREF="#TextWriter.System.IDisposable.Dispose Method" TARGET="contents">TextWriter.System.IDisposable.Dispose Method</A><BR>
+<A HREF="#TextWriter.Write(System.String, System.Object[]) Method" TARGET="contents">TextWriter.Write(System.String, System.Object[]) Method</A><BR>
+<A HREF="#TextWriter.Write(System.String, System.Object, System.Object, System.Object) Method" TARGET="contents">TextWriter.Write(System.String, System.Object, System.Object, System.Object) Method</A><BR>
+<A HREF="#TextWriter.Write(System.String, System.Object, System.Object) Method" TARGET="contents">TextWriter.Write(System.String, System.Object, System.Object) Method</A><BR>
+<A HREF="#TextWriter.Write(System.String, System.Object) Method" TARGET="contents">TextWriter.Write(System.String, System.Object) Method</A><BR>
+<A HREF="#TextWriter.Write(System.Object) Method" TARGET="contents">TextWriter.Write(System.Object) Method</A><BR>
+<A HREF="#TextWriter.Write(System.String) Method" TARGET="contents">TextWriter.Write(System.String) Method</A><BR>
+<A HREF="#TextWriter.Write(System.Decimal) Method" TARGET="contents">TextWriter.Write(System.Decimal) Method</A><BR>
+<A HREF="#TextWriter.Write(double) Method" TARGET="contents">TextWriter.Write(double) Method</A><BR>
+<A HREF="#TextWriter.Write(float) Method" TARGET="contents">TextWriter.Write(float) Method</A><BR>
+<A HREF="#TextWriter.Write(ulong) Method" TARGET="contents">TextWriter.Write(ulong) Method</A><BR>
+<A HREF="#TextWriter.Write(long) Method" TARGET="contents">TextWriter.Write(long) Method</A><BR>
+<A HREF="#TextWriter.Write(uint) Method" TARGET="contents">TextWriter.Write(uint) Method</A><BR>
+<A HREF="#TextWriter.Write(int) Method" TARGET="contents">TextWriter.Write(int) Method</A><BR>
+<A HREF="#TextWriter.Write(bool) Method" TARGET="contents">TextWriter.Write(bool) Method</A><BR>
+<A HREF="#TextWriter.Write(char[], int, int) Method" TARGET="contents">TextWriter.Write(char[], int, int) Method</A><BR>
+<A HREF="#TextWriter.Write(char[]) Method" TARGET="contents">TextWriter.Write(char[]) Method</A><BR>
+<A HREF="#TextWriter.Write(char) Method" TARGET="contents">TextWriter.Write(char) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(System.String, System.Object[]) Method" TARGET="contents">TextWriter.WriteLine(System.String, System.Object[]) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(System.String, System.Object, System.Object, System.Object) Method" TARGET="contents">TextWriter.WriteLine(System.String, System.Object, System.Object, System.Object) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(System.String, System.Object, System.Object) Method" TARGET="contents">TextWriter.WriteLine(System.String, System.Object, System.Object) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(System.String, System.Object) Method" TARGET="contents">TextWriter.WriteLine(System.String, System.Object) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(System.Object) Method" TARGET="contents">TextWriter.WriteLine(System.Object) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(System.String) Method" TARGET="contents">TextWriter.WriteLine(System.String) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(System.Decimal) Method" TARGET="contents">TextWriter.WriteLine(System.Decimal) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(double) Method" TARGET="contents">TextWriter.WriteLine(double) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(float) Method" TARGET="contents">TextWriter.WriteLine(float) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(ulong) Method" TARGET="contents">TextWriter.WriteLine(ulong) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(long) Method" TARGET="contents">TextWriter.WriteLine(long) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(uint) Method" TARGET="contents">TextWriter.WriteLine(uint) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(int) Method" TARGET="contents">TextWriter.WriteLine(int) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(bool) Method" TARGET="contents">TextWriter.WriteLine(bool) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(char[], int, int) Method" TARGET="contents">TextWriter.WriteLine(char[], int, int) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(char[]) Method" TARGET="contents">TextWriter.WriteLine(char[]) Method</A><BR>
+<A HREF="#TextWriter.WriteLine(char) Method" TARGET="contents">TextWriter.WriteLine(char) Method</A><BR>
+<A HREF="#TextWriter.WriteLine() Method" TARGET="contents">TextWriter.WriteLine() Method</A><BR>
+<P>
+
+TextWriter Fields<P>
+
+<A HREF="#TextWriter.Null Field" TARGET="contents">TextWriter.Null Field</A><BR>
+<P>
+
+TextWriter Properties<P>
+
+<A HREF="#TextWriter.Encoding Property" TARGET="contents">TextWriter.Encoding Property</A><BR>
+<A HREF="#TextWriter.FormatProvider Property" TARGET="contents">TextWriter.FormatProvider Property</A><BR>
+<A HREF="#TextWriter.NewLine Property" TARGET="contents">TextWriter.NewLine Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="TextWriter() Constructor"><H3>TextWriter() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected TextWriter();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="TextWriter.html" TARGET="contents">TextWriter</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter(System.IFormatProvider) Constructor"><H3>TextWriter(System.IFormatProvider) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected TextWriter(IFormatProvider formatProvider);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="TextWriter.html" TARGET="contents">TextWriter</A> class with
+   the specified format provider.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>formatProvider</DT>
+<DD>A <A HREF="../../System/IFormatProvider.html" TARGET="contents">IFormatProvider</A> object that supplies a formatting object.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Close Method"><H3>TextWriter.Close Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Close();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Closes the current <A HREF="TextWriter.html" TARGET="contents">TextWriter</A> instance and releases any system
+   resources associated with it.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: After a call to System.IO.TextReader.Close , any operation on the current instance 
+      might throw an exception.<P>
+
+This version of System.IO.TextReader.Close is equivalent to System.IO.TextReader.Dispose(System.Boolean)(<CODE>true</CODE>
+).<P>
+
+]<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Dispose Method"><H3>TextWriter.Dispose Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected virtual void Dispose(bool disposing);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Releases the unmanaged resources used by the <A HREF="TextWriter.html" TARGET="contents">TextWriter</A> and 
+   optionally releases the managed resources.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>disposing</DT>
+<DD><CODE>true</CODE>
+ to release both managed and unmanaged resources; <CODE>false</CODE>
+ to release only unmanaged resources.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+When the <I>disposing</I> parameter is <CODE>true</CODE>
+, this method 
+   releases all resources held by any managed objects that this <A HREF="FileStream.html" TARGET="contents">FileStream</A>
+   references. This method invokes the <CODE>Dispose()</CODE>
+ method of each
+   referenced object.<P>
+
+[<I>Note</I>: System.IO.FileStream.Dispose(System.Boolean) may be called multiple 
+times by other objects. When overriding System.IO.FileStream.Dispose(System.Boolean)(<A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>), be careful not
+to reference objects that have been previously disposed in an earlier call to
+System.IO.FileStream.Dispose(System.Boolean) .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Flush Method"><H3>TextWriter.Flush Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Flush();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes any buffered data to the underlying device and
+      clears all buffers for the current <A HREF="TextWriter.html" TARGET="contents">TextWriter</A> instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Default</I>: This method is not
+      implemented in this abstract class.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Synchronized Method"><H3>TextWriter.Synchronized Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static TextWriter Synchronized(TextWriter writer);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Creates a thread-safe wrapper around the specified
+   <A HREF="TextWriter.html" TARGET="contents">TextWriter</A>
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>writer</DT>
+<DD>The <A HREF="TextWriter.html" TARGET="contents">TextWriter</A> to synchronize.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A thread-safe <A HREF="TextWriter.html" TARGET="contents">TextWriter</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>writer</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method returns a class that wraps around the
+      specified <A HREF="TextWriter.html" TARGET="contents">TextWriter</A> instance and restricts concurrent
+      access to it by multiple threads.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.System.IDisposable.Dispose Method"><H3>TextWriter.System.IDisposable.Dispose Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>void IDisposable.Dispose();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="../../System/IDisposable.html" TARGET="contents">IDisposable</A> interface. [Note: For more information, see System.IDisposable.Dispose.]
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(System.String, System.Object[]) Method"><H3>TextWriter.Write(System.String, System.Object[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(string format, params object[] arg);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes a formatted string to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the format string.</DD>
+<DT>arg</DT>
+<DD>The array of objects referenced from the format string.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to <I>arg</I><CODE>.</CODE>
+Length .<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.Write(System.Char) is equivalent to System.IO.TextWriter.Write(System.Char)(System.String.Format(System.String,System.Object) (<I>format</I>, <I>arg</I>)).<P>
+
+[<I>Note</I>: If a specified object is not referenced in the format string, it is
+      ignored.<P>
+
+This method does not search the specified <A HREF="../../System/String.html" TARGET="contents">String</A> for individual newline characters
+   (hexadecimal 0x000a) and replace them with System.IO.TextWriter.NewLine.<P>
+
+]<P>
+
+[<I>Behaviors</I>: As
+   described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(System.String, System.Object, System.Object, System.Object) Method"><H3>TextWriter.Write(System.String, System.Object, System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(string format, object arg0, object arg1, object arg2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes out a formatted string to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the format string.</DD>
+<DT>arg0</DT>
+<DD>The first object referenced in the format string.</DD>
+<DT>arg1</DT>
+<DD>The second object referenced in the format string.</DD>
+<DT>arg2</DT>
+<DD>The third object referenced in the format string.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is <CODE>null</CODE>
+.<P>
+
+-or-<P>
+
+An object referenced in the <I>format </I>string is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the number of provided objects to be formatted (3).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.Write(System.Char) is equivalent to System.IO.TextWriter.Write(System.Char)(System.String.Format(System.String,System.Object) (<I>format</I>,
+<I>arg0</I>, <I>arg1</I>, <I>arg2</I>)).<P>
+
+[<I>Note</I>: If a specified object is not referenced in the format string, it is
+      ignored.<P>
+
+This method does not search the specified <A HREF="../../System/String.html" TARGET="contents">String</A> for individual newline characters
+   (hexadecimal 0x000a) and replace them with System.IO.TextWriter.NewLine.<P>
+
+]<P>
+
+[<I>Behaviors</I>: As
+   described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(System.String, System.Object, System.Object) Method"><H3>TextWriter.Write(System.String, System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(string format, object arg0, object arg1);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes out a formatted string to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the format string.</DD>
+<DT>arg0</DT>
+<DD>The first object referenced in the format string.</DD>
+<DT>arg1</DT>
+<DD>The second object referenced in the format string.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is <CODE>null</CODE>
+.<P>
+
+-or-<P>
+
+An object referenced in the <I>format </I>string is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the number of provided objects to be formatted (2).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.Write(System.Char) is equivalent to System.IO.TextWriter.Write(System.Char)(System.String.Format(System.String,System.Object) (<I>format</I>,
+<I>arg0</I>, <I>arg1</I>)).<P>
+
+[<I>Note</I>: If a specified object is not referenced in the format string, it is
+      ignored.<P>
+
+This method does not search the specified <A HREF="../../System/String.html" TARGET="contents">String</A> for individual newline characters
+   (hexadecimal 0x000a) and replace them with System.IO.TextWriter.NewLine.<P>
+
+]<P>
+
+[<I>Behaviors</I>: As
+   described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(System.String, System.Object) Method"><H3>TextWriter.Write(System.String, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(string format, object arg0);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes out the format string to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the format string.</DD>
+<DT>arg0</DT>
+<DD>An object referenced in the format string.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is <CODE>null</CODE>
+.<P>
+
+-or-<P>
+
+An object referenced in the <I>format </I>string is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the number of provided objects to be formatted (1).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.Write(System.Char) is equivalent to System.IO.TextWriter.Write(System.Char)(System.String.Format(System.String,System.Object) (<I>format</I>,
+<I>arg0</I>)).<P>
+
+[<I>Note</I>: If the specified object is not referenced in the format string, it is
+      ignored.<P>
+
+This method does not search the specified <A HREF="../../System/String.html" TARGET="contents">String</A> for individual newline characters
+   (hexadecimal 0x000a) and replace them with System.IO.TextWriter.NewLine.<P>
+
+]<P>
+
+[<I>Behaviors</I>: As
+   described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(System.Object) Method"><H3>TextWriter.Write(System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a
+      specified object to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The object to write. If <I>value</I> is <CODE>null</CODE>
+, nothing is written.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.Write(System.Char) is equivalent to System.IO.TextWriter.Write(System.Char)(
+<I>value</I>.ToString()).<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+[<I>Default</I>: The default implementation uses
+   the System.IO.TextWriter.Write(System.Char)(<A HREF="../../System/String.html" TARGET="contents">String</A>) method.]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(System.String) Method"><H3>TextWriter.Write(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(string value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a specified <A HREF="../../System/String.html" TARGET="contents">String</A> to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to write. If <I>value</I> is <CODE>null</CODE>
+, nothing is written.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.Write(System.Char) is equivalent to System.IO.TextWriter.Write(System.Char)(<I>value</I>.ToByteArray()).<P>
+
+[<I>Note</I>: This method does
+   not search the specified <A HREF="../../System/String.html" TARGET="contents">String</A> for individual newline characters (hexadecimal 0x000a)
+   and replace them with System.IO.TextWriter.NewLine
+   .]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(System.Decimal) Method"><H3>TextWriter.Write(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a
+      specified <A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A> to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A> to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.Write(System.Char) is equivalent to System.IO.TextWriter.Write(System.Char)(
+<I>value</I>.ToString ()).<P>
+
+[<I>Behaviors</I>: As
+   described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(double) Method"><H3>TextWriter.Write(double) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(double value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a
+      specified <A HREF="../../System/Double.html" TARGET="contents">Double</A> to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Double.html" TARGET="contents">Double</A> to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.Write(System.Char) is equivalent to System.IO.TextWriter.Write(System.Char)(
+<I>value</I>.ToString()).<P>
+
+[<I>Behaviors</I>: As
+   described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(float) Method"><H3>TextWriter.Write(float) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(float value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a
+      specified <A HREF="../../System/Single.html" TARGET="contents">Single</A> to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Single.html" TARGET="contents">Single</A> to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.Write(System.Char) is equivalent to System.IO.TextWriter.Write(System.Char)(
+<I>value</I>.ToString()).<P>
+
+[<I>Behaviors</I>: As
+   described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(ulong) Method"><H3>TextWriter.Write(ulong) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(ulong value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a
+      specified <A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A> to the text
+      stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A> to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.IO.TextWriter.Write(System.Char)(<A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A>).<P>
+
+This version of System.IO.TextWriter.Write(System.Char) is equivalent to System.IO.TextWriter.Write(System.Char)(
+<I>value</I>.<CODE>ToString</CODE>
+ 
+() ).<P>
+
+[<I>Behaviors</I>: As
+   described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(long) Method"><H3>TextWriter.Write(long) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(long value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a
+      specified <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> to the text
+      stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.Write(System.Char) is equivalent to System.IO.TextWriter.Write(System.Char)(
+<I>value</I>.<CODE>ToString</CODE>
+ 
+() ).<P>
+
+[<I>Behaviors</I>: As
+   described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(uint) Method"><H3>TextWriter.Write(uint) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(uint value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a <A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A> to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A> to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.IO.TextWriter.Write(System.Char)(<A HREF="../../System/Int64.html" TARGET="contents">Int64</A>).<P>
+
+This version of System.IO.TextWriter.Write(System.Char) is equivalent to System.IO.TextWriter.Write(System.Char)(
+<I>value</I>.ToString ()).<P>
+
+[<I>Behaviors</I>: As
+   described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(int) Method"><H3>TextWriter.Write(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(int value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a
+      specified <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.Write(System.Char) is equivalent to System.IO.TextWriter.Write(System.Char)(
+<I>value</I>.<CODE>ToString</CODE>
+ 
+()).<P>
+
+[<I>Behaviors</I>: As
+   described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(bool) Method"><H3>TextWriter.Write(bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(bool value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a specified <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>
+value to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.Write(System.Char) is equivalent to System.IO.TextWriter.Write(System.Char)(
+<I>value</I>.ToString ()).<P>
+
+[<I>Behaviors</I>: As
+   described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(char[], int, int) Method"><H3>TextWriter.Write(char[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(char[] buffer, int index, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a subarray of characters to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>The character array from which characters are read.</DD>
+<DT>index</DT>
+<DD>Starting index in the buffer.</DD>
+<DT>count</DT>
+<DD>The number of characters to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer </I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>(<I>index</I> + <I>count</I> ) &gt; <I>buffer</I><CODE>.</CODE>
+Length.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index &lt; </I>0 or <I>count</I> &lt; 0.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method does not search the
+      specified array for individual newline characters (hexadecimal 0x000a) and
+      replace them with System.IO.TextWriter.NewLine.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As
+      described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: The default implementation uses
+      the System.IO.TextWriter.Write(System.Char)(<CODE>char</CODE>
+[]) method.]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(char[]) Method"><H3>TextWriter.Write(char[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(char[] buffer);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a character array to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> array to write to the text stream. If <I>buffer</I> is <CODE>null</CODE>
+, nothing is written.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.Write(System.Char) is equivalent to System.IO.TextWriter.Write(System.Char)(<I>buffer</I>, 0,
+<I>buffer</I>.Length ).<P>
+
+[<I>Note</I>: This method does not search the
+   specified array for individual newline characters (hexadecimal 0x000a) and
+   replace them with System.IO.TextWriter.NewLine.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Write(char) Method"><H3>TextWriter.Write(char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Write(char value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a character to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> to write to the text stream.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: This method is not
+      implemented in this abstract class.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(System.String, System.Object[]) Method"><H3>TextWriter.WriteLine(System.String, System.Object[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(string format, params object[] arg);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes out a formatted string followed by a line
+      terminator to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the format string.</DD>
+<DT>arg</DT>
+<DD>The array of objects referenced from the format string.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> or <I>arg </I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to <I>arg</I><CODE>.</CODE>
+Length.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.WriteLine(System.String.Format(System.String,System.Object) (<I>format</I>,
+<I>arg</I>)).<P>
+
+[<I>Note</I>: If the specified object is not referenced in the format string, it is
+      ignored.<P>
+
+This method does not search the specified <A HREF="../../System/String.html" TARGET="contents">String</A> for individual newline characters
+   (hexadecimal 0x000a) and replace them with System.IO.TextWriter.NewLine.<P>
+
+]<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(System.String, System.Object, System.Object, System.Object) Method"><H3>TextWriter.WriteLine(System.String, System.Object, System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(string format, object arg0, object arg1, object arg2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes out a formatted string followed by a line
+      terminator to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the format string.</DD>
+<DT>arg0</DT>
+<DD>The first object referenced in the format string.</DD>
+<DT>arg1</DT>
+<DD>The second object referenced in the format string.</DD>
+<DT>arg2</DT>
+<DD>The third object referenced in the format string.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is <CODE>null</CODE>
+.<P>
+
+-or-<P>
+
+An object referenced in the <I>format </I>string is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the number of provided objects to be formatted (3).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.WriteLine(System.String.Format(System.String,System.Object) (<I>format</I>,
+<I>arg0</I>, <I>arg1</I>, <I>arg2</I>)).<P>
+
+[<I>Note</I>: If the specified object is not referenced in the format string, it is
+      ignored.<P>
+
+This method does not search the specified <A HREF="../../System/String.html" TARGET="contents">String</A> for individual newline characters
+   (hexadecimal 0x000a) and replace them with System.IO.TextWriter.NewLine.<P>
+
+]<P>
+
+[<I>Behaviors</I>: As
+   described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(System.String, System.Object, System.Object) Method"><H3>TextWriter.WriteLine(System.String, System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(string format, object arg0, object arg1);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes out a formatted string followed by a line
+      terminator to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the format string.</DD>
+<DT>arg0</DT>
+<DD>The first object referenced in the format string.</DD>
+<DT>arg1</DT>
+<DD>The second object referenced in the format string.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is <CODE>null</CODE>
+.<P>
+
+-or-<P>
+
+An object referenced in the <I>format </I>string is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the number of provided objects to be formatted (2).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.WriteLine(System.String.Format(System.String,System.Object) (<I>format</I>,
+<I>arg0</I>, <I>arg1</I>)).<P>
+
+[<I>Note</I>: If the specified object is not referenced in the format string, it is
+      ignored.<P>
+
+This method does not search the specified <A HREF="../../System/String.html" TARGET="contents">String</A> for individual newline characters
+   (hexadecimal 0x000a) and replace them with System.IO.TextWriter.NewLine.<P>
+
+]<P>
+
+[<I>Behaviors</I>: As
+   described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(System.String, System.Object) Method"><H3>TextWriter.WriteLine(System.String, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(string format, object arg0);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes out a formatted string followed by a line
+      terminator to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the format string.</DD>
+<DT>arg0</DT>
+<DD>The object referenced in the format string.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is <CODE>null</CODE>
+.<P>
+
+-or-<P>
+
+An object referenced in the <I>format </I>string is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the number of provided objects to be formatted (1).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.WriteLine(System.String.Format(System.String,System.Object) (<I>format</I>, <I>arg0</I>)).<P>
+
+[<I>Note</I>: If the specified object is not referenced in the format string, it is
+      ignored.<P>
+
+This method does not search the specified <A HREF="../../System/String.html" TARGET="contents">String</A> for individual newline characters
+   (hexadecimal 0x000a) and replace them with System.IO.TextWriter.NewLine.<P>
+
+]<P>
+
+[<I>Behaviors</I>: As
+   described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(System.Object) Method"><H3>TextWriter.WriteLine(System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a specified object followed by a line
+      terminator to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The object to write. If <I>value</I> is <CODE>null</CODE>
+ , only the line terminator is written.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.WriteLine( <I>value</I>.ToString()
+   ).<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(System.String) Method"><H3>TextWriter.WriteLine(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(string value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a specified <A HREF="../../System/String.html" TARGET="contents">String</A> followed by a line terminator to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to write. If <I>value</I> is <CODE>null</CODE>
+ , only the line terminator is written.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.Write(System.Char) is equivalent to System.IO.TextWriter.Write(System.Char)(
+<I>value</I>.ToByteArray() ).<P>
+
+The line terminator string is defined by the System.IO.TextWriter.NewLine property.<P>
+
+[<I>Note</I>: This method does not search the
+   specified <A HREF="../../System/String.html" TARGET="contents">String</A>
+   for individual newline characters (hexadecimal 0x000a) and replace them with
+System.IO.TextWriter.NewLine.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(System.Decimal) Method"><H3>TextWriter.WriteLine(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a specified <A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A> value followed by a line
+   terminator to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A> value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.WriteLine (<I>value</I>.ToString()).<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(double) Method"><H3>TextWriter.WriteLine(double) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(double value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a specified <A HREF="../../System/Double.html" TARGET="contents">Double</A> value followed by a line
+   terminator to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Double.html" TARGET="contents">Double</A> value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.WriteLine (<I>value</I>.ToString()).<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(float) Method"><H3>TextWriter.WriteLine(float) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(float value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a specified <A HREF="../../System/Single.html" TARGET="contents">Single</A> value followed by a line
+   terminator to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Single.html" TARGET="contents">Single</A> value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.WriteLine(<I>value</I>.ToString()).<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(ulong) Method"><H3>TextWriter.WriteLine(ulong) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(ulong value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a specified <A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A> value followed by a
+   line terminator to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A> value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.IO.TextWriter.WriteLine(<A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A>).<P>
+
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.WriteLine( <I>value</I>.ToString ()
+   ).<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(long) Method"><H3>TextWriter.WriteLine(long) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(long value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a specified <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> value followed by a
+   line terminator to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.WriteLine( <I>value</I>.<CODE>ToString</CODE>
+ ()
+   ).<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(uint) Method"><H3>TextWriter.WriteLine(uint) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(uint value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a specified <A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A> value followed by
+   a line terminator to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A> value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.IO.TextWriter.WriteLine(<A HREF="../../System/Int64.html" TARGET="contents">Int64</A>).<P>
+
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.WriteLine( <I>value</I>.ToString ()
+   ).<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(int) Method"><H3>TextWriter.WriteLine(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(int value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a specified <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> value followed by a line
+   terminator to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.WriteLine(<I>value</I>.ToString()).<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(bool) Method"><H3>TextWriter.WriteLine(bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(bool value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value
+   followed by a line terminator to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.WriteLine( <I>value</I>.ToString ()
+   ).<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(char[], int, int) Method"><H3>TextWriter.WriteLine(char[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(char[] buffer, int index, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a sub-array of characters from a specified character array, followed by a line terminator to
+      the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> array from which characters are read.</DD>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index in <I>buffer</I> at which to begin reading.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the maximum number of characters to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer </I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>(<I>index</I> + <I>count</I> ) &gt; <I>buffer</I>.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index &lt; </I> 0<P>
+
+ -or-<P>
+
+<I>count</I> &lt; 0.<P>
+
+</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.Write(System.Char)(
+<I>value</I>, <I>index</I>, <I>count </I>) followed by System.IO.TextWriter.WriteLine().<P>
+
+[<I>Note</I>: This method does not search the
+   specified array for individual newline characters (hexadecimal 0x000a) and
+   replace them with System.IO.TextWriter.NewLine.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(char[]) Method"><H3>TextWriter.WriteLine(char[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(char[] buffer);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a specified character array followed by a line terminator to
+      the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> array from which data is read. If <I>buffer</I> is <CODE>null</CODE>
+ , only the line terminator is written.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.Write(System.Char)(
+<I>value </I>) followed by System.IO.TextWriter.WriteLine().<P>
+
+[<I>Note</I>: This method does not search the
+   specified array for individual newline characters (hexadecimal 0x000a) and
+   replace them with System.IO.TextWriter.NewLine.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine(char) Method"><H3>TextWriter.WriteLine(char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine(char value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a specified character followed by a line terminator to the text
+      stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> to write to the text stream.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.Write(System.Char)(
+<I>value</I> ) followed by System.IO.TextWriter.WriteLine().<P>
+
+[<I>Behaviors</I>: As
+   described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.WriteLine() Method"><H3>TextWriter.WriteLine() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteLine();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a line terminator to the text stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.IO.TextWriter.WriteLine is equivalent to System.IO.TextWriter.Write(System.Char)(System.IO.TextWriter.NewLine.ToCharArray()).<P>
+
+[<I>Behaviors</I>: As
+   described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Null Field"><H3>TextWriter.Null Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly TextWriter Null;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Provides a <A HREF="TextWriter.html" TARGET="contents">TextWriter</A>
+object without a backing store.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Use System.IO.TextWriter.Null to redirect output to a stream that will not
+   consume any operating system resources.<P>
+
+When a System.IO.TextWriter.Write(System.Char) method is invoked on System.IO.TextWriter.Null, the call simply returns, and no data is actually written
+to any backing store.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.Encoding Property"><H3>TextWriter.Encoding Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract Encoding Encoding { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the <A HREF="../../System/Text/Encoding.html" TARGET="contents">Encoding</A> in which the output is written.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/Text/Encoding.html" TARGET="contents">Encoding</A> in which the output
+   is written.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Usage</I>: This property is required in some XML scenarios where a
+      header must be written containing the encoding used by the <A HREF="TextWriter.html" TARGET="contents">TextWriter</A>. This
+      allows XML code to consume an arbitrary <A HREF="TextWriter.html" TARGET="contents">TextWriter</A> and generate a
+      correct XML header.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.FormatProvider Property"><H3>TextWriter.FormatProvider Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual IFormatProvider FormatProvider { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets an object that provides formatting for the current instance<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/IFormatProvider.html" TARGET="contents">IFormatProvider</A> object for a specific culture, or the formatting of the
+   current culture if no other culture is specified.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="TextWriter.NewLine Property"><H3>TextWriter.NewLine Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string NewLine { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the line terminator string used by the
+      current <A HREF="TextWriter.html" TARGET="contents">TextWriter</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the line terminator string for the current <A HREF="TextWriter.html" TARGET="contents">TextWriter</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The default line terminator string is System.Environment.NewLine
+.<P>
+
+The line terminator string is written to the text stream
+   whenever one of the System.IO.TextWriter.WriteLine methods is called. In order for text written by the
+<A HREF="TextWriter.html" TARGET="contents">TextWriter</A> to be readable by a <A HREF="TextReader.html" TARGET="contents">TextReader</A> , only &quot;\n&quot; or System.Environment.NewLine 
+should be used as terminator strings. If System.IO.TextWriter.NewLine is set to
+<CODE>null</CODE>
+, the default newline character is used instead.<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TextWriter.html" TARGET="contents">System.IO.TextWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

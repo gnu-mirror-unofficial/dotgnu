@@ -1,0 +1,402 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.SocketPermissionAttribute Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.SocketPermissionAttribute Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class SocketPermissionAttribute : CodeAccessSecurityAttribute</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/Attribute.html" TARGET="contents">Attribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../System/Security/Permissions/SecurityAttribute.html" TARGET="contents">SecurityAttribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../System/Security/Permissions/CodeAccessSecurityAttribute.html" TARGET="contents">CodeAccessSecurityAttribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SocketPermissionAttribute<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Used to declaratively specify security actions to control socket connections.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The properties of a <A HREF="SocketPermissionAttribute.html" TARGET="contents">SocketPermissionAttribute</A> are required to have non-null
+   values. Once set, the values of the properties cannot be changed.<P>
+
+[<I>Note</I>: The details of a socket connection are specified using the properties of the
+      current instance. For example, to secure a socket connection to port 80, set the
+   System.Net.SocketPermissionAttribute.Port property equal to
+      &quot;80&quot;.<P>
+
+The security information declared by a security attribute is stored in the
+      metadata of the attribute target, and is accessed by the system at run-time.
+      Security attributes are used for declarative security only. For imperative
+      security, use the corresponding permission class, <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A>
+      .<P>
+
+The allowable <A HREF="SocketPermissionAttribute.html" TARGET="contents">SocketPermissionAttribute</A> targets are
+   determined by the <A HREF="../../System/Security/Permissions/SecurityAction.html" TARGET="contents">SecurityAction</A> passed to the constructor.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>AttributeUsageAttribute(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Constructor | AttributeTargets.Method, AllowMultiple=true, Inherited=false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+SocketPermissionAttribute Constructors<P>
+
+<A HREF="#SocketPermissionAttribute Constructor" TARGET="contents">SocketPermissionAttribute Constructor</A><BR>
+<P>
+
+SocketPermissionAttribute Methods<P>
+
+<A HREF="#SocketPermissionAttribute.CreatePermission Method" TARGET="contents">SocketPermissionAttribute.CreatePermission Method</A><BR>
+<P>
+
+SocketPermissionAttribute Properties<P>
+
+<A HREF="#SocketPermissionAttribute.Access Property" TARGET="contents">SocketPermissionAttribute.Access Property</A><BR>
+<A HREF="#SocketPermissionAttribute.Host Property" TARGET="contents">SocketPermissionAttribute.Host Property</A><BR>
+<A HREF="#SocketPermissionAttribute.Port Property" TARGET="contents">SocketPermissionAttribute.Port Property</A><BR>
+<A HREF="#SocketPermissionAttribute.Transport Property" TARGET="contents">SocketPermissionAttribute.Transport Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="SocketPermissionAttribute Constructor"><H3>SocketPermissionAttribute Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public SocketPermissionAttribute(SecurityAction action);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="SocketPermissionAttribute.html" TARGET="contents">SocketPermissionAttribute</A> class with the specified <A HREF="../../System/Security/Permissions/SecurityAction.html" TARGET="contents">SecurityAction</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>action</DT>
+<DD>A <A HREF="../../System/Security/Permissions/SecurityAction.html" TARGET="contents">SecurityAction</A> value.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SocketPermissionAttribute.html" TARGET="contents">System.Net.SocketPermissionAttribute Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SocketPermissionAttribute.CreatePermission Method"><H3>SocketPermissionAttribute.CreatePermission Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IPermission CreatePermission();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a
+ <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> that
+ contains the security information of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A>
+object with the security information of the current
+instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>One or more of the current instance&apos;s System.Net.SocketPermissionAttribute.Access, System.Net.SocketPermissionAttribute.Host, System.Net.SocketPermissionAttribute.Transport or System.Net.SocketPermissionAttribute.Port properties is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method overrides System.Security.Permissions.SecurityAttribute.CreatePermission.<P>
+
+Applications typically do not call this method; it is intended for use by the
+ system.<P>
+
+The security information described by a security attribute is stored in the
+ metadata of the attribute target, and is accessed by the system at run-time. The
+ system uses the object returned by this method to convert the security
+ information of the current instance into the form stored in metadata.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SocketPermissionAttribute.html" TARGET="contents">System.Net.SocketPermissionAttribute Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SocketPermissionAttribute.Access Property"><H3>SocketPermissionAttribute.Access Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Access { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the network access method specified by the
+      current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing a
+   network access method allowed by the current instance. Valid values are
+   &quot;Accept&quot; and &quot;Connect&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>System.Net.SocketPermissionAttribute.Access is being set and is not <CODE>null</CODE>
+ .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is write-once. Once this property has been 
+      set to a non-null value, attempts to set this
+      property to new value cause a <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A> .<P>
+
+
+   Valid values for this property correspond to <A HREF="NetworkAccess.html" TARGET="contents">NetworkAccess</A> enumeration values.
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SocketPermissionAttribute.html" TARGET="contents">System.Net.SocketPermissionAttribute Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SocketPermissionAttribute.Host Property"><H3>SocketPermissionAttribute.Host Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Host { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the DNS host name or IP address specified
+      by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing a DNS host name or
+   IP address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>System.Net.SocketPermissionAttribute.Host is being set and is not <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This property is write-once. Once this property has been
+      set to a non-null value, attempts to set this property to new value cause a
+   <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SocketPermissionAttribute.html" TARGET="contents">System.Net.SocketPermissionAttribute Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SocketPermissionAttribute.Port Property"><H3>SocketPermissionAttribute.Port Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Port { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the port specified by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing a port number, or &quot;All&quot; or
+   -1 to indicate all
+   ports.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>System.Net.SocketPermissionAttribute.Port is being set and is not <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is write-once. Once this property has been 
+      set to a non-null value, attempts to set this property to new value cause a
+   <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SocketPermissionAttribute.html" TARGET="contents">System.Net.SocketPermissionAttribute Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SocketPermissionAttribute.Transport Property"><H3>SocketPermissionAttribute.Transport Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Transport { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the transport type specified by the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the
+   transport type associated with the current
+   instance. Valid values are &quot;All&quot;, &quot;Connectionless&quot;, &quot;ConnectionOriented&quot;, &quot;Tcp&quot;, and
+   &quot;Udp&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>System.Net.SocketPermissionAttribute.Transport is being set and is not <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is write-once. Once this property has been 
+      set to a non-null value, attempts to set this property to new value cause a
+   <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A> .<P>
+
+[<I>Note</I>: Valid values for this property correspond to <A HREF="TransportType.html" TARGET="contents">TransportType</A> enumeration values.]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SocketPermissionAttribute.html" TARGET="contents">System.Net.SocketPermissionAttribute Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

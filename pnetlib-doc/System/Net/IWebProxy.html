@@ -1,0 +1,231 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.IWebProxy Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.IWebProxy Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public interface IWebProxy</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Defines the methods and properties required by types that 
+      support accessing hosts via proxy
+      servers. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This interface is implemented by 
+      the <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> type.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IWebProxy Methods<P>
+
+<A HREF="#IWebProxy.GetProxy Method" TARGET="contents">IWebProxy.GetProxy Method</A><BR>
+<A HREF="#IWebProxy.IsBypassed Method" TARGET="contents">IWebProxy.IsBypassed Method</A><BR>
+<P>
+
+IWebProxy Properties<P>
+
+<A HREF="#IWebProxy.Credentials Property" TARGET="contents">IWebProxy.Credentials Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IWebProxy.GetProxy Method"><H3>IWebProxy.GetProxy Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Uri GetProxy(Uri destination);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the Uniform Resource Identifier (URI) of a proxy server.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>destination</DT>
+<DD>A <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> specifying the requested Internet resource.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> instance
+   containing the URI of the proxy used to contact
+<I>destination</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: The System.Net.IWebProxy.GetProxy(System.Uri) method returns the URI of the
+   proxy server that handles requests to the Internet resource specified in the
+<I>destination </I>parameter.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to
+   get the URI of the proxy server used to access the specified resource.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IWebProxy.html" TARGET="contents">System.Net.IWebProxy Interface</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IWebProxy.IsBypassed Method"><H3>IWebProxy.IsBypassed Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool IsBypassed(Uri host);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether the proxy server is not used to access a specified server.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>host</DT>
+<DD>The <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> of the server to check for proxy use.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+ if
+   the proxy server is not used to access the server specified in <I>host</I>;
+   otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: The value
+      returned by the System.Net.IWebProxy.IsBypassed(System.Uri) method indicates whether
+      requests that access the server specified in the <I>host </I>
+      parameter bypass the proxy server. ]<P>
+
+<P>
+
+[<I>Usage</I>: If System.Net.IWebProxy.IsBypassed(System.Uri)
+is <CODE>true</CODE>
+ , requests and responses between the
+client and <I>host</I> are not required to go through the proxy
+server.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IWebProxy.html" TARGET="contents">System.Net.IWebProxy Interface</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IWebProxy.Credentials Property"><H3>IWebProxy.Credentials Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>ICredentials Credentials { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the credentials to submit to the proxy server for authentication.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="ICredentials.html" TARGET="contents">ICredentials</A> instance that contains the credentials needed to authenticate a request to the proxy server.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: The <A HREF="ICredentials.html" TARGET="contents">ICredentials</A> instance set and returned
+ by the System.Net.IWebProxy.Credentials property
+ contains the credentials that are sent to the proxy server in response to an
+ HTTP 407 (System.Net.HttpStatusCode.ProxyAuthenticationRequired ) status code.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this property to set the
+ credentials supplied in response to HTTP 407 status code
+ messages.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IWebProxy.html" TARGET="contents">System.Net.IWebProxy Interface</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

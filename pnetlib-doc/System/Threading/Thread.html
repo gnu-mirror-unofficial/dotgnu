@@ -1,0 +1,2412 @@
+<HTML>
+<HEAD>
+<TITLE>System.Threading.Thread Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Threading.Thread Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class Thread</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Thread<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents a sequential
+      thread of execution. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ A process may create
+      and execute one or more threads to execute a portion of the program
+      code associated with the process. A <A HREF="ThreadStart.html" TARGET="contents">ThreadStart</A> delegate is used to specify
+      the program code
+      executed by a thread.<P>
+
+Some operating systems might
+      not utilize the concepts of threads or preemptive scheduling. Also, the concept
+      of &quot;thread priority&quot; might not exist at all or its meaning may vary, depending on
+      the underlying operating system. Implementers of the <A HREF="Thread.html" TARGET="contents">Thread</A>
+      
+      type are required to describe their threading policies,
+      including what thread priority means, how many threading priority
+      levels exist, and
+      whether scheduling is preemptive.<P>
+
+ For the duration of its existence, a thread is always in one
+      or more of the states defined by <A HREF="ThreadState.html" TARGET="contents">ThreadState</A>. A scheduling priority level, as defined
+      by <A HREF="ThreadPriority.html" TARGET="contents">ThreadPriority</A> , can be requested for a thread, but it might
+      not be honored
+      by the operating system.<P>
+
+If an unhandled exception is thrown in the code executed by a thread created
+      by an application, a System.AppDomain.UnhandledException event is raised (System.UnhandledExceptionEventArgs.IsTerminating is set to <CODE>false</CODE>
+), and the thread
+      is terminated; the current process is not terminated.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Thread Constructors<P>
+
+<A HREF="#Thread Constructor" TARGET="contents">Thread Constructor</A><BR>
+<P>
+
+Thread Methods<P>
+
+<A HREF="#Thread.Abort(System.Object) Method" TARGET="contents">Thread.Abort(System.Object) Method</A><BR>
+<A HREF="#Thread.Abort() Method" TARGET="contents">Thread.Abort() Method</A><BR>
+<A HREF="#Thread.Finalize Method" TARGET="contents">Thread.Finalize Method</A><BR>
+<A HREF="#Thread.GetDomain Method" TARGET="contents">Thread.GetDomain Method</A><BR>
+<A HREF="#Thread.Join() Method" TARGET="contents">Thread.Join() Method</A><BR>
+<A HREF="#Thread.Join(int) Method" TARGET="contents">Thread.Join(int) Method</A><BR>
+<A HREF="#Thread.Join(System.TimeSpan) Method" TARGET="contents">Thread.Join(System.TimeSpan) Method</A><BR>
+<A HREF="#Thread.MemoryBarrier  Method" TARGET="contents">Thread.MemoryBarrier  Method</A><BR>
+<A HREF="#Thread.ResetAbort Method" TARGET="contents">Thread.ResetAbort Method</A><BR>
+<A HREF="#Thread.Sleep(int) Method" TARGET="contents">Thread.Sleep(int) Method</A><BR>
+<A HREF="#Thread.Sleep(System.TimeSpan) Method" TARGET="contents">Thread.Sleep(System.TimeSpan) Method</A><BR>
+<A HREF="#Thread.Start Method" TARGET="contents">Thread.Start Method</A><BR>
+<A HREF="#Thread.VolatileRead(System.Byte&) Method" TARGET="contents">Thread.VolatileRead(System.Byte&amp;) Method</A><BR>
+<A HREF="#Thread.VolatileRead(System.Int16&) Method" TARGET="contents">Thread.VolatileRead(System.Int16&amp;) Method</A><BR>
+<A HREF="#Thread.VolatileRead(System.Int32&) Method" TARGET="contents">Thread.VolatileRead(System.Int32&amp;) Method</A><BR>
+<A HREF="#Thread.VolatileRead(System.Int64&) Method" TARGET="contents">Thread.VolatileRead(System.Int64&amp;) Method</A><BR>
+<A HREF="#Thread.VolatileRead(System.SByte&) Method" TARGET="contents">Thread.VolatileRead(System.SByte&amp;) Method</A><BR>
+<A HREF="#Thread.VolatileRead(System.UInt16&) Method" TARGET="contents">Thread.VolatileRead(System.UInt16&amp;) Method</A><BR>
+<A HREF="#Thread.VolatileRead(System.UInt32&) Method" TARGET="contents">Thread.VolatileRead(System.UInt32&amp;) Method</A><BR>
+<A HREF="#Thread.VolatileRead(System.IntPtr&) Method" TARGET="contents">Thread.VolatileRead(System.IntPtr&amp;) Method</A><BR>
+<A HREF="#Thread.VolatileRead(System.UIntPtr&) Method" TARGET="contents">Thread.VolatileRead(System.UIntPtr&amp;) Method</A><BR>
+<A HREF="#Thread.VolatileRead(System.UInt64&) Method" TARGET="contents">Thread.VolatileRead(System.UInt64&amp;) Method</A><BR>
+<A HREF="#Thread.VolatileRead(System.Single&) Method" TARGET="contents">Thread.VolatileRead(System.Single&amp;) Method</A><BR>
+<A HREF="#Thread.VolatileRead(System.Double&) Method" TARGET="contents">Thread.VolatileRead(System.Double&amp;) Method</A><BR>
+<A HREF="#Thread.VolatileRead(System.Object&) Method" TARGET="contents">Thread.VolatileRead(System.Object&amp;) Method</A><BR>
+<A HREF="#Thread.VolatileWrite(System.Byte&, byte) Method" TARGET="contents">Thread.VolatileWrite(System.Byte&amp;, byte) Method</A><BR>
+<A HREF="#Thread.VolatileWrite(System.Int16&, short) Method" TARGET="contents">Thread.VolatileWrite(System.Int16&amp;, short) Method</A><BR>
+<A HREF="#Thread.VolatileWrite(System.Int32&, int) Method" TARGET="contents">Thread.VolatileWrite(System.Int32&amp;, int) Method</A><BR>
+<A HREF="#Thread.VolatileWrite(System.Int64&, long) Method" TARGET="contents">Thread.VolatileWrite(System.Int64&amp;, long) Method</A><BR>
+<A HREF="#Thread.VolatileWrite(System.SByte&, sbyte) Method" TARGET="contents">Thread.VolatileWrite(System.SByte&amp;, sbyte) Method</A><BR>
+<A HREF="#Thread.VolatileWrite(System.UInt16&, ushort) Method" TARGET="contents">Thread.VolatileWrite(System.UInt16&amp;, ushort) Method</A><BR>
+<A HREF="#Thread.VolatileWrite(System.UInt32&, uint) Method" TARGET="contents">Thread.VolatileWrite(System.UInt32&amp;, uint) Method</A><BR>
+<A HREF="#Thread.VolatileWrite(UInt64&, ulong) Method" TARGET="contents">Thread.VolatileWrite(UInt64&amp;, ulong) Method</A><BR>
+<A HREF="#Thread.VolatileWrite(System.UIntPtr&, System.UIntPtr) Method" TARGET="contents">Thread.VolatileWrite(System.UIntPtr&amp;, System.UIntPtr) Method</A><BR>
+<A HREF="#Thread.VolatileWrite(System.IntPtr&, System.IntPtr) Method" TARGET="contents">Thread.VolatileWrite(System.IntPtr&amp;, System.IntPtr) Method</A><BR>
+<A HREF="#Thread.VolatileWrite(System.Single&, float) Method" TARGET="contents">Thread.VolatileWrite(System.Single&amp;, float) Method</A><BR>
+<A HREF="#Thread.VolatileWrite(System.Double&, double) Method" TARGET="contents">Thread.VolatileWrite(System.Double&amp;, double) Method</A><BR>
+<A HREF="#Thread.VolatileWrite(System.Object&, System.Object) Method" TARGET="contents">Thread.VolatileWrite(System.Object&amp;, System.Object) Method</A><BR>
+<P>
+
+Thread Properties<P>
+
+<A HREF="#Thread.CurrentThread Property" TARGET="contents">Thread.CurrentThread Property</A><BR>
+<A HREF="#Thread.IsAlive Property" TARGET="contents">Thread.IsAlive Property</A><BR>
+<A HREF="#Thread.IsBackground Property" TARGET="contents">Thread.IsBackground Property</A><BR>
+<A HREF="#Thread.Name Property" TARGET="contents">Thread.Name Property</A><BR>
+<A HREF="#Thread.Priority Property" TARGET="contents">Thread.Priority Property</A><BR>
+<A HREF="#Thread.ThreadState Property" TARGET="contents">Thread.ThreadState Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Thread Constructor"><H3>Thread Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Thread(ThreadStart start);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="Thread.html" TARGET="contents">Thread</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>start</DT>
+<DD>A <A HREF="ThreadStart.html" TARGET="contents">ThreadStart</A> delegate that references the methods to be invoked when the new thread begins executing. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>start </I>is <CODE>null</CODE>
+ . </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: To schedule the thread for execution, call System.Threading.Thread.Start.]<P>
+
+<P>
+
+Until System.Threading.Thread.Start is called, the thread&apos;s state includes System.Threading.ThreadState.Unstarted.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.Abort(System.Object) Method"><H3>Thread.Abort(System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void Abort(object stateInfo);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Raises a <A HREF="ThreadAbortException.html" TARGET="contents">ThreadAbortException</A> in the thread on which it is
+   invoked to begin the process of terminating the thread. In all but the most extraordinary situations, calling this method will terminate
+   the thread.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>stateInfo</DT>
+<DD>A <A HREF="../../System/Object.html" TARGET="contents">Object</A> that contains application-specific information, such as state, which can be used by the thread being aborted.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>Caller does not have System.Security.Permissions.SecurityPermissionFlag.ControlThread security permission for this thread.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The object passed as the <I>stateInfo</I>
+parameter can be obtained by accessing the
+System.Threading.ThreadAbortException.ExceptionState 
+property.<P>
+
+[<I>Note</I>: For details on
+   aborting threads, see System.Threading.Thread.Abort(System.Object)
+   ().]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.Abort() Method"><H3>Thread.Abort() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void Abort();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Raises a <A HREF="ThreadAbortException.html" TARGET="contents">ThreadAbortException</A> in the thread on
+   which it is invoked to begin the process of terminating the thread. In all but
+   the most extraordinary situations, calling this method will terminate
+   the thread.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>Caller does not have System.Security.Permissions.SecurityPermissionFlag.ControlThread security permission for the thread to be aborted.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ When this method is invoked on a thread, the system
+      throws a <A HREF="ThreadAbortException.html" TARGET="contents">ThreadAbortException</A> in the
+      thread to abort it. Invoking System.Threading.Thread.Abort(System.Object) on a thread is similar
+      to arranging for the target thread to throw a <A HREF="ThreadAbortException.html" TARGET="contents">ThreadAbortException</A>. Because, unlike other
+      exceptions, a <A HREF="ThreadAbortException.html" TARGET="contents">ThreadAbortException</A> is sent to another thread, the exception might
+      be delayed. A <A HREF="ThreadAbortException.html" TARGET="contents">ThreadAbortException</A> is required to be delayed if and while the
+      target thread is executing any of the following:
+      <P>
+
+<UL>
+<LI>
+         
+         unmanaged code</LI>
+<LI>
+         
+         a catch handler</LI>
+<LI>
+         
+         a finally clause</LI>
+<LI>
+         
+         a filter clause</LI>
+<LI>
+         
+         a type initializer</LI>
+</UL>
+A thread abort proceeds as follows:<P>
+
+<OL>
+<LI> An abort begins at the earliest of the following
+         times:<P>
+
+ a. when the thread transitions from unmanaged to managed code execution; <P>
+
+ b. when the thread finishes the outermost currently executing catch handler; <P>
+
+ c. immediately if the thread is running managed code outside of any catch handler, finally clause, filter clause or type initializer <P>
+
+</LI>
+<LI> Whenever an outermost catch handler finishes
+            execution, the <A HREF="ThreadAbortException.html" TARGET="contents">ThreadAbortException</A>
+            is rethrown unless the thread being
+            aborted has called System.Threading.Thread.ResetAbort since the call to System.Threading.Thread.Abort(System.Object).
+            <P>
+
+</LI>
+<LI> When all finally blocks have been called and the
+               thread is about to transition to any unmanaged code which executed before the
+               first entry to managed code, System.Threading.Thread.ResetAbort
+               is called so that a return to managed code will consider the abort to have been successfully processed.
+               <P>
+
+</LI>
+</OL>
+ Unexecuted <CODE>finally</CODE>
+ blocks
+      are executed before the thread is aborted; this includes any finally block that
+      is executing when the exception is thrown. The thread is not guaranteed to abort
+      immediately, or at all. This situation can occur if a thread does an unbounded
+      amount of computation in the finally blocks that are called as part
+      of the abort procedure, thereby indefinitely delaying the abort. To ensure a thread has aborted, invoke System.Threading.Thread.Join
+      on the thread after calling System.Threading.Thread.Abort(System.Object) . <P>
+
+ If System.Threading.Thread.Abort(System.Object) is called on a thread that has not been
+   started, the thread aborts when System.Threading.Thread.Start is called. If the target thread is blocked or sleeping in managed code and is not inside any of the code blocks that are required to delay an abort, the thread is resumed and immediately aborted.<P>
+
+ After System.Threading.Thread.Abort(System.Object)
+is invoked on a thread, the state
+of the thread includes System.Threading.ThreadState.AbortRequested. After the thread has
+terminated as a result of a successful call to System.Threading.Thread.Abort(System.Object), the state of the thread includes
+System.Threading.ThreadState.Stopped and System.Threading.ThreadState.Aborted
+. <P>
+
+[<I>Note</I>: With sufficient permissions, a
+   thread that is the target of a System.Threading.Thread.Abort(System.Object) can cancel the abort using
+   the System.Threading.Thread.ResetAbort
+   method. For an example that demonstrates calling the System.Threading.Thread.ResetAbort method, see <A HREF="ThreadAbortException.html" TARGET="contents">ThreadAbortException</A>
+   .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.Finalize Method"><H3>Thread.Finalize Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>~Thread();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Releases the resources held by this instance.
+ <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Application code
+ does not call this method; it is automatically invoked during garbage
+ collection.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.GetDomain Method"><H3>Thread.GetDomain Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static AppDomain GetDomain();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns an object representing the application domain in
+      which the current thread is executing.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/AppDomain.html" TARGET="contents">AppDomain</A> object that represents the current application domain.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.Join() Method"><H3>Thread.Join() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void Join();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Blocks the calling thread until the thread on which this method
+      is invoked terminates.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ThreadStateException.html" TARGET="contents">ThreadStateException</A></TD><TD>The caller attempted to join a thread that is in the System.Threading.ThreadState.Unstarted state. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Use this method to
+      ensure a thread has terminated. The caller will block indefinitely if the thread
+      does not
+      terminate.]<P>
+
+<P>
+
+System.Threading.Thread.Join cannot be invoked on a thread that is in the System.Threading.ThreadState.Unstarted state.<P>
+
+This method changes the state of the calling thread to include System.Threading.ThreadState.WaitSleepJoin. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.Join(int) Method"><H3>Thread.Join(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool Join(int millisecondsTimeout);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Blocks the calling thread until the thread on which this method is invoked terminates or the specified time elapses.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>millisecondsTimeout</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of milliseconds to wait for the thread to terminate. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the thread has terminated; <CODE>false </CODE>
+ if the
+   thread has not terminated after <I>millisecondsTimeout</I>
+   has elapsed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value of <I>millisecondsTimeout</I> is negative and is not equal to System.Threading.Timeout.Infinite .</TD></TR>
+<TR><TD><A HREF="ThreadStateException.html" TARGET="contents">ThreadStateException</A></TD><TD>The caller attempted to join a thread that is in the System.Threading.ThreadState.Unstarted state. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: If System.Threading.Timeout.Infinite is specified for <I>millisecondsTimeout</I>, this method
+   behaves identically to <CODE>Join</CODE>
+
+   (), except for the return value.]<P>
+
+<P>
+
+<CODE>Join</CODE>
+ cannot be invoked on a thread
+that is in the System.Threading.ThreadState.Unstarted state.<P>
+
+This method changes the state of the calling thread to include System.Threading.ThreadState.WaitSleepJoin.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.Join(System.TimeSpan) Method"><H3>Thread.Join(System.TimeSpan) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool Join(TimeSpan timeout);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Blocks the calling thread until the thread on which this method is invoked terminates or the specified time
+      elapses.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>timeout</DT>
+<DD>A <A HREF="../../System/TimeSpan.html" TARGET="contents">TimeSpan</A> set to the amount of time to wait for the thread to terminate. Specify System.Threading.Timeout.Infinite milliseconds to wait indefinitely. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the thread has terminated;
+<CODE>false </CODE>
+ if the thread has not terminated after the amount 
+   of time specified by <I>timeout</I>
+   has elapsed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value of <I>timeout</I> is negative and is not equal to System.Threading.Timeout.Infinite milliseconds, or is greater than System.Int32.MaxValue milliseconds.</TD></TR>
+<TR><TD><A HREF="ThreadStateException.html" TARGET="contents">ThreadStateException</A></TD><TD>The caller attempted to join a thread that is in the System.Threading.ThreadState.Unstarted state. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method converts <I>timeout </I>to milliseconds,
+   tests the validity of the converted value, and calls System.Threading.Thread.Join(<A HREF="../../System/Int32.html" TARGET="contents">Int32</A>).<P>
+
+[<I>Note</I>: If System.Threading.Timeout.Infinite milliseconds is specified for
+<I>timeout</I>, this method 
+behaves identically to <CODE>Join</CODE>
+ (),
+except for the return value.]<P>
+
+<P>
+
+<CODE>Join</CODE>
+ cannot be invoked on a thread that is in the System.Threading.ThreadState.Unstarted state.<P>
+
+This method changes the state of the current thread to include System.Threading.ThreadState.WaitSleepJoin.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.MemoryBarrier  Method"><H3>Thread.MemoryBarrier  Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void MemoryBarrier ();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Guarantees that all subsequent loads or stores from the current thread will not access memory until after all previous loads and stores from the current thread have completed, as observed from this or other threads.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.ResetAbort Method"><H3>Thread.ResetAbort Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void ResetAbort();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Cancels a System.Threading.Thread.Abort(System.Object) requested for the current thread.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ThreadStateException.html" TARGET="contents">ThreadStateException</A></TD><TD>System.Threading.Thread.Abort(System.Object) was not invoked on the current thread.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>Caller does not have System.Security.Permissions.SecurityPermissionFlag.ControlThread security permission for the current thread.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method cannot be called by untrusted code.
+      <P>
+
+ When a call is made to System.Threading.Thread.Abort(System.Object)
+to destroy a thread, the system throws a <A HREF="ThreadAbortException.html" TARGET="contents">ThreadAbortException</A>. <A HREF="ThreadAbortException.html" TARGET="contents">ThreadAbortException</A> is a special
+exception that can be caught by application code, but is rethrown at the end of
+the catch block unless <CODE>ResetAbort </CODE>
+is called.
+<CODE>ResetAbort </CODE>
+cancels the request to 
+abort, and prevents the <CODE> ThreadAbortException</CODE>
+
+from terminating the thread.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+For an example that demonstrates calling 
+      this method, see <A HREF="ThreadAbortException.html" TARGET="contents">ThreadAbortException</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.Sleep(int) Method"><H3>Thread.Sleep(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Sleep(int millisecondsTimeout);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Blocks the current thread for the specified number of milliseconds.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>millisecondsTimeout</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of milliseconds for which the thread is blocked. Specify zero to indicate that this thread should be suspended temporarily to allow other waiting threads to execute. Specify System.Threading.Timeout.Infinite to block the thread indefinitely. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value of <I>millisecondsTimeout</I> is negative and is not equal to System.Threading.Timeout.Infinite .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The thread will not be scheduled for execution by
+      the operating system for the amount of time specified. This method changes the
+      state of the thread to include System.Threading.ThreadState.WaitSleepJoin.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.Sleep(System.TimeSpan) Method"><H3>Thread.Sleep(System.TimeSpan) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Sleep(TimeSpan timeout);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Blocks the current thread for a specified time.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>timeout</DT>
+<DD>A <A HREF="../../System/TimeSpan.html" TARGET="contents">TimeSpan</A> set to the amount of time for which the current thread will be blocked. Specify zero to indicate that this thread should be suspended temporarily to allow other waiting threads to execute. Specify System.Threading.Timeout.Infinite milliseconds to suspend the thread indefinitely. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value of <I>timeout</I> is negative and is not equal to System.Threading.Timeout.Infinite milliseconds, or is greater than System.Int32.MaxValue milliseconds.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method converts <I>timeout </I>to milliseconds,
+   tests the validity of the converted value, and calls System.Threading.Thread.Sleep(System.Int32)(<A HREF="../../System/Int32.html" TARGET="contents">Int32</A>).<P>
+
+The thread will not be scheduled for execution by the operating system
+   for the amount of time specified. This method changes the state of the thread to
+   include System.Threading.ThreadState.WaitSleepJoin.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.Start Method"><H3>Thread.Start Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void Start();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Causes the operating system to consider the thread ready 
+      to be scheduled for execution.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/OutOfMemoryException.html" TARGET="contents">OutOfMemoryException</A></TD><TD>There is not enough memory available to start the thread.</TD></TR>
+<TR><TD><A HREF="../../System/NullReferenceException.html" TARGET="contents">NullReferenceException</A></TD><TD>This method was invoked on a <CODE>null</CODE>
+ thread reference.</TD></TR>
+<TR><TD><A HREF="ThreadStateException.html" TARGET="contents">ThreadStateException</A></TD><TD>The thread has already been started. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Calling System.Threading.Thread.Start removes the System.Threading.ThreadState.Unstarted state from the
+System.Threading.Thread.ThreadState of the thread.<P>
+
+ Once a thread is started,
+   the operating system can schedule it for execution. When the thread begins executing, the <A HREF="ThreadStart.html" TARGET="contents">ThreadStart</A>
+   delegate supplied to the constructor for the thread invokes its
+   methods.<P>
+
+ Once the thread terminates, it cannot be restarted with another call to System.Threading.Thread.Start.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates creating a thread and starting it.<P>
+
+<PRE>using System;
+using System.Threading;
+public class ThreadWork {
+  public static void DoWork() {
+    for (int i = 0; i&lt;3;i++) {
+         Console.WriteLine (&quot;Working thread ...&quot;);
+         Thread.Sleep(100);
+    }
+  }
+}
+class ThreadTest{
+  public static void Main() {
+    ThreadStart myThreadDelegate = new ThreadStart(ThreadWork.DoWork);
+    Thread myThread = new Thread(myThreadDelegate);
+    myThread.Start();
+    for (int i = 0; i&lt;3; i++) {
+        Console.WriteLine(&quot;In main.&quot;);
+        Thread.Sleep(100);
+    }
+  }
+}
+   </PRE>
+One possible set of output is<P>
+
+<CODE>In main. <P>
+
+Working thread ... <P>
+
+In main. <P>
+
+Working thread ... <P>
+
+In main. <P>
+
+Working thread ... <P>
+
+</CODE> Note that the sequence of the output statements is not guaranteed to be identical across systems. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileRead(System.Byte&amp;) Method"><H3>Thread.VolatileRead(System.Byte&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static byte VolatileRead (ref byte address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile read from the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> that specifies the address in memory from which to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> containing the value at the specified address after any pending writes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value at the given address is atomically loaded with acquire semantics, meaning that the read is guaranteed to occur prior to any references to memory that occur after the execution of this method in the current thread. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileWrite if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the load IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileRead(System.Int16&amp;) Method"><H3>Thread.VolatileRead(System.Int16&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static short VolatileRead (ref short address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile read from the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/Int16.html" TARGET="contents">Int16</A> that specifies the address in memory from which to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int16.html" TARGET="contents">Int16</A> containing the value at the specified address after any pending writes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value at the given address is atomically loaded with acquire semantics, meaning that the read is guaranteed to occur prior to any references to memory that occur after the execution of this method in the current thread. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileWrite if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the load IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileRead(System.Int32&amp;) Method"><H3>Thread.VolatileRead(System.Int32&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int VolatileRead (ref int address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile read from the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the address in memory from which to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the value at the specified address after any pending writes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value at the given address is atomically loaded with acquire semantics, meaning that the read is guaranteed to occur prior to any references to memory that occur after the execution of this method in the current thread. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileWrite if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the load IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileRead(System.Int64&amp;) Method"><H3>Thread.VolatileRead(System.Int64&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static long VolatileRead (ref long address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile read from the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> that specifies the address in memory from which to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> containing the value at the specified address after any pending writes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value at the given address is atomically loaded with acquire semantics, meaning that the read is guaranteed to occur prior to any references to memory that occur after the execution of this method in the current thread. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileWrite if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the load IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileRead(System.SByte&amp;) Method"><H3>Thread.VolatileRead(System.SByte&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static sbyte VolatileRead (ref sbyte address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile read from the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/SByte.html" TARGET="contents">SByte</A> that specifies the address in memory from which to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/SByte.html" TARGET="contents">SByte</A> containing the value at the specified address after any pending writes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value at the given address is atomically loaded with acquire semantics, meaning that the read is guaranteed to occur prior to any references to memory that occur after the execution of this method in the current thread. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileWrite if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the load IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileRead(System.UInt16&amp;) Method"><H3>Thread.VolatileRead(System.UInt16&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static ushort VolatileRead (ref ushort address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile read from the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/UInt16.html" TARGET="contents">UInt16</A> that specifies the address in memory from which to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/UInt16.html" TARGET="contents">UInt16</A> containing the value at the specified address after any pending writes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value at the given address is atomically loaded with acquire semantics, meaning that the read is guaranteed to occur prior to any references to memory that occur after the execution of this method in the current thread. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileWrite if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the load IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileRead(System.UInt32&amp;) Method"><H3>Thread.VolatileRead(System.UInt32&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static uint VolatileRead (ref uint address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile read from the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A> that specifies the address in memory from which to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A> containing the value at the specified address after any pending writes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value at the given address is atomically loaded with acquire semantics, meaning that the read is guaranteed to occur prior to any references to memory that occur after the execution of this method in the current thread. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileWrite if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the load IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileRead(System.IntPtr&amp;) Method"><H3>Thread.VolatileRead(System.IntPtr&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static IntPtr VolatileRead (ref IntPtr address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile read from the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/IntPtr.html" TARGET="contents">IntPtr</A> that specifies the address in memory from which to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/IntPtr.html" TARGET="contents">IntPtr</A> containing the value at the specified address after any pending writes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value at the given address is atomically loaded with acquire semantics, meaning that the read is guaranteed to occur prior to any references to memory that occur after the execution of this method in the current thread. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileWrite if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the load IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileRead(System.UIntPtr&amp;) Method"><H3>Thread.VolatileRead(System.UIntPtr&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static UIntPtr VolatileRead (ref UIntPtr address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile read from the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/UIntPtr.html" TARGET="contents">UIntPtr</A> that specifies the address in memory from which to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/UIntPtr.html" TARGET="contents">UIntPtr</A> containing the value at the specified address after any pending writes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value at the given address is atomically loaded with acquire semantics, meaning that the read is guaranteed to occur prior to any references to memory that occur after the execution of this method in the current thread. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileWrite if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the load IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileRead(System.UInt64&amp;) Method"><H3>Thread.VolatileRead(System.UInt64&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static ulong VolatileRead (ref ulong address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile read from the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A> that specifies the address in memory from which to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A> containing the value at the specified address after any pending writes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value at the given address is atomically loaded with acquire semantics, meaning that the read is guaranteed to occur prior to any references to memory that occur after the execution of this method in the current thread. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileWrite if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the load IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileRead(System.Single&amp;) Method"><H3>Thread.VolatileRead(System.Single&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static float VolatileRead (ref float address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile read from the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/Single.html" TARGET="contents">Single</A> that specifies the address in memory from which to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Single.html" TARGET="contents">Single</A> containing the value at the specified address after any pending writes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value at the given address is atomically loaded with acquire semantics, meaning that the read is guaranteed to occur prior to any references to memory that occur after the execution of this method in the current thread. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileWrite if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the load IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileRead(System.Double&amp;) Method"><H3>Thread.VolatileRead(System.Double&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static double VolatileRead (ref double address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile read from the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/Double.html" TARGET="contents">Double</A> that specifies the address in memory from which to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Double.html" TARGET="contents">Double</A> containing the value at the specified address after any pending writes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value at the given address is atomically loaded with acquire semantics, meaning that the read is guaranteed to occur prior to any references to memory that occur after the execution of this method in the current thread. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileWrite if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the load IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileRead(System.Object&amp;) Method"><H3>Thread.VolatileRead(System.Object&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static object VolatileRead (ref object address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile read from the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/Object.html" TARGET="contents">Object</A> that specifies the address in memory from which to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Object.html" TARGET="contents">Object</A> containing the value at the specified address after any pending writes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value at the given address is atomically loaded with acquire semantics, meaning that the read is guaranteed to occur prior to any references to memory that occur after the execution of this method in the current thread. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileWrite if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the load IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileWrite(System.Byte&amp;, byte) Method"><H3>Thread.VolatileWrite(System.Byte&amp;, byte) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void VolatileWrite (ref byte address, byte value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile write to the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> that specifies the address in memory at which to write.</DD>
+<DT>value</DT>
+<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> that specifies the value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value is written atomically to the specified address with release semantics, meaning that the write is guaranteed to happen after any references to memory that occur prior to the execution. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileRead if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the store IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileWrite(System.Int16&amp;, short) Method"><H3>Thread.VolatileWrite(System.Int16&amp;, short) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void VolatileWrite (ref short address, short value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile write to the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/Int16.html" TARGET="contents">Int16</A> that specifies the address in memory at which to write.</DD>
+<DT>value</DT>
+<DD>A <A HREF="../../System/Int16.html" TARGET="contents">Int16</A> that specifies the value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value is written atomically to the specified address with release semantics, meaning that the write is guaranteed to happen after any references to memory that occur prior to the execution. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileRead if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the store IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileWrite(System.Int32&amp;, int) Method"><H3>Thread.VolatileWrite(System.Int32&amp;, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void VolatileWrite (ref int address, int value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile write to the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the address in memory at which to write.</DD>
+<DT>value</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value is written atomically to the specified address with release semantics, meaning that the write is guaranteed to happen after any references to memory that occur prior to the execution. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileRead if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the store IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileWrite(System.Int64&amp;, long) Method"><H3>Thread.VolatileWrite(System.Int64&amp;, long) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void VolatileWrite (ref long address, long value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile write to the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> that specifies the address in memory at which to write.</DD>
+<DT>value</DT>
+<DD>A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> that specifies the value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value is written atomically to the specified address with release semantics, meaning that the write is guaranteed to happen after any references to memory that occur prior to the execution. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileRead if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the store IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileWrite(System.SByte&amp;, sbyte) Method"><H3>Thread.VolatileWrite(System.SByte&amp;, sbyte) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void VolatileWrite (ref sbyte address, sbyte value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile write to the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/SByte.html" TARGET="contents">SByte</A> that specifies the address in memory at which to write.</DD>
+<DT>value</DT>
+<DD>A <A HREF="../../System/SByte.html" TARGET="contents">SByte</A> that specifies the value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value is written atomically to the specified address with release semantics, meaning that the write is guaranteed to happen after any references to memory that occur prior to the execution. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileRead if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the store IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileWrite(System.UInt16&amp;, ushort) Method"><H3>Thread.VolatileWrite(System.UInt16&amp;, ushort) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void VolatileWrite (ref ushort address, ushort value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile write to the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/UInt16.html" TARGET="contents">UInt16</A> that specifies the address in memory at which to write.</DD>
+<DT>value</DT>
+<DD>A <A HREF="../../System/UInt16.html" TARGET="contents">UInt16</A> that specifies the value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value is written atomically to the specified address with release semantics, meaning that the write is guaranteed to happen after any references to memory that occur prior to the execution. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileRead if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the store IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileWrite(System.UInt32&amp;, uint) Method"><H3>Thread.VolatileWrite(System.UInt32&amp;, uint) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void VolatileWrite (ref uint address, uint value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile write to the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A> that specifies the address in memory at which to write.</DD>
+<DT>value</DT>
+<DD>A <A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A> that specifies the value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value is written atomically to the specified address with release semantics, meaning that the write is guaranteed to happen after any references to memory that occur prior to the execution. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileRead if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the store IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileWrite(UInt64&amp;, ulong) Method"><H3>Thread.VolatileWrite(UInt64&amp;, ulong) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void VolatileWrite (ref ulong address, ulong value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile write to the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A> that specifies the address in memory at which to write.</DD>
+<DT>value</DT>
+<DD>A <A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A> that specifies the value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value is written atomically to the specified address with release semantics, meaning that the write is guaranteed to happen after any references to memory that occur prior to the execution. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileRead if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the store IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileWrite(System.UIntPtr&amp;, System.UIntPtr) Method"><H3>Thread.VolatileWrite(System.UIntPtr&amp;, System.UIntPtr) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void VolatileWrite (ref UIntPtr address, UIntPtr value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile write to the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/UIntPtr.html" TARGET="contents">UIntPtr</A> that specifies the address in memory at which to write.</DD>
+<DT>value</DT>
+<DD>A <A HREF="../../System/UIntPtr.html" TARGET="contents">UIntPtr</A> that specifies the value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value is written atomically to the specified address with release semantics, meaning that the write is guaranteed to happen after any references to memory that occur prior to the execution. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileRead if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the store IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileWrite(System.IntPtr&amp;, System.IntPtr) Method"><H3>Thread.VolatileWrite(System.IntPtr&amp;, System.IntPtr) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void VolatileWrite (ref IntPtr address, IntPtr value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile write to the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/IntPtr.html" TARGET="contents">IntPtr</A> that specifies the address in memory at which to write.</DD>
+<DT>value</DT>
+<DD>A <A HREF="../../System/IntPtr.html" TARGET="contents">IntPtr</A> that specifies the value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value is written atomically to the specified address with release semantics, meaning that the write is guaranteed to happen after any references to memory that occur prior to the execution. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileRead if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the store IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileWrite(System.Single&amp;, float) Method"><H3>Thread.VolatileWrite(System.Single&amp;, float) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void VolatileWrite (ref float address, float value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile write to the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/Single.html" TARGET="contents">Single</A> that specifies the address in memory at which to write.</DD>
+<DT>value</DT>
+<DD>A <A HREF="../../System/Single.html" TARGET="contents">Single</A> that specifies the value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value is written atomically to the specified address with release semantics, meaning that the write is guaranteed to happen after any references to memory that occur prior to the execution. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileRead if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the store IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileWrite(System.Double&amp;, double) Method"><H3>Thread.VolatileWrite(System.Double&amp;, double) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void VolatileWrite (ref double address, double value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile write to the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/Double.html" TARGET="contents">Double</A> that specifies the address in memory at which to write.</DD>
+<DT>value</DT>
+<DD>A <A HREF="../../System/Double.html" TARGET="contents">Double</A> that specifies the value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value is written atomically to the specified address with release semantics, meaning that the write is guaranteed to happen after any references to memory that occur prior to the execution. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileRead if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the store IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.VolatileWrite(System.Object&amp;, System.Object) Method"><H3>Thread.VolatileWrite(System.Object&amp;, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void VolatileWrite (ref object address, object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs a volatile write to the specified address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/Object.html" TARGET="contents">Object</A> that specifies the address in memory at which to write.</DD>
+<DT>value</DT>
+<DD>A <A HREF="../../System/Object.html" TARGET="contents">Object</A> that specifies the value to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value is written atomically to the specified address with release semantics, meaning that the write is guaranteed to happen after any references to memory that occur prior to the execution. It is recommended that System.Threading.Thread.VolatileRead and System.Threading.Thread.VolatileWrite be used in conjunction. Calling this method affects only this single access; other accesses to the same location are required to also be made using this method or System.Threading.Thread.VolatileRead if the volatile semantics are to be preserved. This method has exactly the same semantics as using the volatile prefix on the store IL instruction, except that atomicity is provided for all types, not just those 32 bits or smaller in size. [<I>Note</I>: For additional information, see Partition I of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.CurrentThread Property"><H3>Thread.CurrentThread Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Thread CurrentThread { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="Thread.html" TARGET="contents">Thread</A>
+instance that represents the currently executing thread.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ An instance of <A HREF="Thread.html" TARGET="contents">Thread</A> representing the current thread.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.IsAlive Property"><H3>Thread.IsAlive Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool IsAlive { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value
+   indicating the execution status of the current thread.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+
+if this thread has been started, and has not terminated; otherwise,
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+This property returns true unless the System.Threading.Thread.ThreadState of the thread contains System.Threading.ThreadState.Unstarted,
+   or
+System.Threading.ThreadState.Stopped.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.IsBackground Property"><H3>Thread.IsBackground Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool IsBackground { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>
+value indicating whether a thread is a background thread.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the thread is or is to become
+   a background thread; otherwise, <CODE>false</CODE>
+.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ThreadStateException.html" TARGET="contents">ThreadStateException</A></TD><TD> The thread has reached the System.Threading.ThreadState.Stopped state. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The default value of this property is <CODE>false</CODE>
+. The property value can be changed before
+   the thread is started and before it terminates.<P>
+
+[<I>Note</I>: A thread is either
+   a background thread or a foreground thread. Background threads are identical to
+   foreground threads except for the fact that background threads do not
+   prevent a process from terminating. Once all foreground threads belonging to a
+   process have terminated, the execution engine ends the process by invoking
+System.Threading.Thread.Abort(System.Object) on any background threads that
+   
+   are
+   still alive. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.Name Property"><H3>Thread.Name Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Name { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or
+      sets the name of
+      the thread.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the
+   name of the thread, or <CODE>null</CODE>
+ if no name
+   was set.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>A set operation was requested, and the <CODE>Name</CODE>
+ property has already been set.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is write-once. Once this property has been 
+      set to a non-null value, attempts to set this property to a new value cause an exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.Priority Property"><H3>Thread.Priority Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ThreadPriority Priority { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+
+      Gets or sets a value indicating the scheduling priority of a thread.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="ThreadPriority.html" TARGET="contents">ThreadPriority</A> value.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ThreadStateException.html" TARGET="contents">ThreadStateException</A></TD><TD> The thread is in the System.Threading.ThreadState.Stopped state.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The value specified for a set operation is not a valid <A HREF="ThreadPriority.html" TARGET="contents">ThreadPriority</A> value. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+A thread can be assigned any one of the following
+      priority values:<P>
+
+<UL>
+<LI>System.Threading.ThreadPriority.Highest</LI>
+<LI>System.Threading.ThreadPriority.AboveNormal</LI>
+<LI>System.Threading.ThreadPriority.Normal</LI>
+<LI>System.Threading.ThreadPriority.BelowNormal</LI>
+<LI>System.Threading.ThreadPriority.Lowest</LI>
+</UL>
+ The default value is System.Threading.ThreadPriority.Normal.<P>
+
+Operating systems are not required to honor the priority
+   of a thread.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Thread.ThreadState Property"><H3>Thread.ThreadState Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ThreadState ThreadState { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a value containing the
+      states of the current thread.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A combination of one or more <A HREF="ThreadState.html" TARGET="contents">ThreadState</A> values, which indicate
+   the state of the current thread.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+A thread is running if the value returned by this property does not include System.Threading.ThreadState.Unstarted and does not include System.Threading.ThreadState.Stopped.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Thread.html" TARGET="contents">System.Threading.Thread Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

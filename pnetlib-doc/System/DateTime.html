@@ -1,0 +1,3648 @@
+<HTML>
+<HEAD>
+<TITLE>System.DateTime Structure</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.DateTime Structure</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public struct DateTime : IComparable, IFormattable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="ValueType.html" TARGET="contents">ValueType</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;DateTime<P>
+
+This type implements <A HREF="IComparable.html" TARGET="contents">IComparable</A> and <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents an instant in time, expressed
+      as a date and time of day.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="DateTime.html" TARGET="contents">DateTime</A> value
+   type represents dates and times with values ranging from 00:00:00, 1/1/0001 (Common Era)
+   to 23:59:59 PM, 12/31/9999.<P>
+
+[<I>Note</I>: Time values are measured in 100-nanosecond units,
+   <I>ticks</I>, and a particular date is the number of ticks since 12:00
+      Midnight, January 1, 1 in the Gregorian
+      calendar. For example, a ticks value of 31241376000000000L represents the date, Friday, January
+      01, 0100 12:00:00 AM.<P>
+
+Time values can be added to, or subtracted from, an
+      instance of <A HREF="DateTime.html" TARGET="contents">DateTime</A>. Time values can be negative or positive, and expressed
+      in units such as ticks, seconds, or instances of <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>. Methods and properties in this value
+      type take into account details such as leap years and the number of
+      days in a month.<P>
+
+ 12:00:00 AM is Midnight.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+DateTime Constructors<P>
+
+<A HREF="#DateTime(long) Constructor" TARGET="contents">DateTime(long) Constructor</A><BR>
+<A HREF="#DateTime(int, int, int) Constructor" TARGET="contents">DateTime(int, int, int) Constructor</A><BR>
+<A HREF="#DateTime(int, int, int, int, int, int) Constructor" TARGET="contents">DateTime(int, int, int, int, int, int) Constructor</A><BR>
+<A HREF="#DateTime(int, int, int, int, int, int, int) Constructor" TARGET="contents">DateTime(int, int, int, int, int, int, int) Constructor</A><BR>
+<P>
+
+DateTime Methods<P>
+
+<A HREF="#DateTime.Add Method" TARGET="contents">DateTime.Add Method</A><BR>
+<A HREF="#DateTime.AddDays Method" TARGET="contents">DateTime.AddDays Method</A><BR>
+<A HREF="#DateTime.AddHours Method" TARGET="contents">DateTime.AddHours Method</A><BR>
+<A HREF="#DateTime.AddMilliseconds Method" TARGET="contents">DateTime.AddMilliseconds Method</A><BR>
+<A HREF="#DateTime.AddMinutes Method" TARGET="contents">DateTime.AddMinutes Method</A><BR>
+<A HREF="#DateTime.AddMonths Method" TARGET="contents">DateTime.AddMonths Method</A><BR>
+<A HREF="#DateTime.AddSeconds Method" TARGET="contents">DateTime.AddSeconds Method</A><BR>
+<A HREF="#DateTime.AddTicks Method" TARGET="contents">DateTime.AddTicks Method</A><BR>
+<A HREF="#DateTime.AddYears Method" TARGET="contents">DateTime.AddYears Method</A><BR>
+<A HREF="#DateTime.Compare Method" TARGET="contents">DateTime.Compare Method</A><BR>
+<A HREF="#DateTime.CompareTo Method" TARGET="contents">DateTime.CompareTo Method</A><BR>
+<A HREF="#DateTime.DaysInMonth Method" TARGET="contents">DateTime.DaysInMonth Method</A><BR>
+<A HREF="#DateTime.Equals(System.Object) Method" TARGET="contents">DateTime.Equals(System.Object) Method</A><BR>
+<A HREF="#DateTime.Equals(System.DateTime, System.DateTime) Method" TARGET="contents">DateTime.Equals(System.DateTime, System.DateTime) Method</A><BR>
+<A HREF="#DateTime.GetHashCode Method" TARGET="contents">DateTime.GetHashCode Method</A><BR>
+<A HREF="#DateTime.IsLeapYear Method" TARGET="contents">DateTime.IsLeapYear Method</A><BR>
+<A HREF="#DateTime.Parse(System.String) Method" TARGET="contents">DateTime.Parse(System.String) Method</A><BR>
+<A HREF="#DateTime.Parse(System.String, System.IFormatProvider) Method" TARGET="contents">DateTime.Parse(System.String, System.IFormatProvider) Method</A><BR>
+<A HREF="#DateTime.Parse(System.String, System.IFormatProvider, System.Globalization.DateTimeStyles) Method" TARGET="contents">DateTime.Parse(System.String, System.IFormatProvider, System.Globalization.DateTimeStyles) Method</A><BR>
+<A HREF="#DateTime.ParseExact(System.String, System.String, System.IFormatProvider) Method" TARGET="contents">DateTime.ParseExact(System.String, System.String, System.IFormatProvider) Method</A><BR>
+<A HREF="#DateTime.ParseExact(System.String, System.String, System.IFormatProvider, System.Globalization.DateTimeStyles) Method" TARGET="contents">DateTime.ParseExact(System.String, System.String, System.IFormatProvider, System.Globalization.DateTimeStyles) Method</A><BR>
+<A HREF="#DateTime.ParseExact(System.String, System.String[], System.IFormatProvider, System.Globalization.DateTimeStyles) Method" TARGET="contents">DateTime.ParseExact(System.String, System.String[], System.IFormatProvider, System.Globalization.DateTimeStyles) Method</A><BR>
+<A HREF="#DateTime.Subtract(System.DateTime) Method" TARGET="contents">DateTime.Subtract(System.DateTime) Method</A><BR>
+<A HREF="#DateTime.Subtract(System.TimeSpan) Method" TARGET="contents">DateTime.Subtract(System.TimeSpan) Method</A><BR>
+<A HREF="#DateTime.ToLocalTime Method" TARGET="contents">DateTime.ToLocalTime Method</A><BR>
+<A HREF="#DateTime.ToLongDateString Method" TARGET="contents">DateTime.ToLongDateString Method</A><BR>
+<A HREF="#DateTime.ToLongTimeString Method" TARGET="contents">DateTime.ToLongTimeString Method</A><BR>
+<A HREF="#DateTime.ToShortDateString Method" TARGET="contents">DateTime.ToShortDateString Method</A><BR>
+<A HREF="#DateTime.ToShortTimeString Method" TARGET="contents">DateTime.ToShortTimeString Method</A><BR>
+<A HREF="#DateTime.ToString(System.IFormatProvider) Method" TARGET="contents">DateTime.ToString(System.IFormatProvider) Method</A><BR>
+<A HREF="#DateTime.ToString(System.String, System.IFormatProvider) Method" TARGET="contents">DateTime.ToString(System.String, System.IFormatProvider) Method</A><BR>
+<A HREF="#DateTime.ToString() Method" TARGET="contents">DateTime.ToString() Method</A><BR>
+<A HREF="#DateTime.ToString(System.String) Method" TARGET="contents">DateTime.ToString(System.String) Method</A><BR>
+<A HREF="#DateTime.ToUniversalTime Method" TARGET="contents">DateTime.ToUniversalTime Method</A><BR>
+<A HREF="#DateTime.op_Addition Method" TARGET="contents">DateTime.op_Addition Method</A><BR>
+<A HREF="#DateTime.op_Equality Method" TARGET="contents">DateTime.op_Equality Method</A><BR>
+<A HREF="#DateTime.op_GreaterThan Method" TARGET="contents">DateTime.op_GreaterThan Method</A><BR>
+<A HREF="#DateTime.op_GreaterThanOrEqual Method" TARGET="contents">DateTime.op_GreaterThanOrEqual Method</A><BR>
+<A HREF="#DateTime.op_Inequality Method" TARGET="contents">DateTime.op_Inequality Method</A><BR>
+<A HREF="#DateTime.op_LessThan Method" TARGET="contents">DateTime.op_LessThan Method</A><BR>
+<A HREF="#DateTime.op_LessThanOrEqual Method" TARGET="contents">DateTime.op_LessThanOrEqual Method</A><BR>
+<A HREF="#DateTime.op_Subtraction(System.DateTime, System.TimeSpan) Method" TARGET="contents">DateTime.op_Subtraction(System.DateTime, System.TimeSpan) Method</A><BR>
+<A HREF="#DateTime.op_Subtraction(System.DateTime, System.DateTime) Method" TARGET="contents">DateTime.op_Subtraction(System.DateTime, System.DateTime) Method</A><BR>
+<P>
+
+DateTime Fields<P>
+
+<A HREF="#DateTime.MaxValue Field" TARGET="contents">DateTime.MaxValue Field</A><BR>
+<A HREF="#DateTime.MinValue Field" TARGET="contents">DateTime.MinValue Field</A><BR>
+<P>
+
+DateTime Properties<P>
+
+<A HREF="#DateTime.Date Property" TARGET="contents">DateTime.Date Property</A><BR>
+<A HREF="#DateTime.Day Property" TARGET="contents">DateTime.Day Property</A><BR>
+<A HREF="#DateTime.DayOfYear Property" TARGET="contents">DateTime.DayOfYear Property</A><BR>
+<A HREF="#DateTime.Hour Property" TARGET="contents">DateTime.Hour Property</A><BR>
+<A HREF="#DateTime.Millisecond Property" TARGET="contents">DateTime.Millisecond Property</A><BR>
+<A HREF="#DateTime.Minute Property" TARGET="contents">DateTime.Minute Property</A><BR>
+<A HREF="#DateTime.Month Property" TARGET="contents">DateTime.Month Property</A><BR>
+<A HREF="#DateTime.Now Property" TARGET="contents">DateTime.Now Property</A><BR>
+<A HREF="#DateTime.Second Property" TARGET="contents">DateTime.Second Property</A><BR>
+<A HREF="#DateTime.Ticks Property" TARGET="contents">DateTime.Ticks Property</A><BR>
+<A HREF="#DateTime.TimeOfDay Property" TARGET="contents">DateTime.TimeOfDay Property</A><BR>
+<A HREF="#DateTime.Today Property" TARGET="contents">DateTime.Today Property</A><BR>
+<A HREF="#DateTime.UtcNow Property" TARGET="contents">DateTime.UtcNow Property</A><BR>
+<A HREF="#DateTime.Year Property" TARGET="contents">DateTime.Year Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="DateTime(long) Constructor"><H3>DateTime(long) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime(long ticks);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="DateTime.html" TARGET="contents">DateTime</A> structure with
+   the date and time expressed in 100-nanosecond units.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>ticks</DT>
+<DD>A <A HREF="Int64.html" TARGET="contents">Int64</A>containing the date and time expressed in 100-nanosecond units.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The date and time represented by <I>ticks</I> is less than System.DateTime.MinValue or greater than System.DateTime.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime(int, int, int) Constructor"><H3>DateTime(int, int, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime(int year, int month, int day);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="DateTime.html" TARGET="contents">DateTime</A> structure with a specified year, month, and day.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>year</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the year (1 through 9999).</DD>
+<DT>month</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the month (1 through 12).</DD>
+<DT>day</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the day (1 through the number of days in <I>month</I>).</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>year</I> is less than 1 or greater than 9999<P>
+
+-or-<P>
+
+<I>month</I> is less than 1 or greater than 12<P>
+
+-or-<P>
+
+<I>day</I> is less than 1 or greater than the number of days in <I>month</I><P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The time of day for the resulting <A HREF="DateTime.html" TARGET="contents">DateTime</A> is midnight (00:00:00).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime(int, int, int, int, int, int) Constructor"><H3>DateTime(int, int, int, int, int, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime(int year, int month, int day, int hour, int minute, int second);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="DateTime.html" TARGET="contents">DateTime</A> structure with a
+   specified year, month, day, hour, minute, and second.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>year</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the year (1 through 9999).</DD>
+<DT>month</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the month (1 through 12).</DD>
+<DT>day</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the day (1 through the number of days in <I>month</I>).</DD>
+<DT>hour</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the hours (0 through 23).</DD>
+<DT>minute</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the minutes (0 through 59).</DD>
+<DT>second</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the seconds (0 through 59).</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>year </I>is less than 1 or greater than 9999 -or-<P>
+
+<I>month</I> is less than 1 or greater than 12<P>
+
+-or-<P>
+
+<I>day</I> is less than 1 or greater than the number of days in <I>month</I><P>
+
+-or-<P>
+
+<I>hour </I> is less than 0 or greater than 23<P>
+
+-or-<P>
+
+<I>minute </I> is less than 0 or greater than 59<P>
+
+-or-<P>
+
+<I>second </I> is less than 0 or greater than 59<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime(int, int, int, int, int, int, int) Constructor"><H3>DateTime(int, int, int, int, int, int, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime(int year, int month, int day, int hour, int minute, int second, int millisecond);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="DateTime.html" TARGET="contents">DateTime</A> structure with a
+   specified year, month, day, hour, minute, second, and millisecond.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>year</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the year (1 through 9999).</DD>
+<DT>month</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the month (1 through 12).</DD>
+<DT>day</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the day (1 through the number of days in <I>month</I>).</DD>
+<DT>hour</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the hours (0 through 23).</DD>
+<DT>minute</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the minutes (0 through 59).</DD>
+<DT>second</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the seconds (0 through 59).</DD>
+<DT>millisecond</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the milliseconds.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>year </I>is less than 1 or greater than 9999 -or-<P>
+
+<I>month</I> is less than 1 or greater than 12<P>
+
+-or-<P>
+
+<I>day</I> is less than 1 or greater than the number of days in <I>month</I><P>
+
+-or-<P>
+
+<I>hour </I>is less than 0 or greater than 23<P>
+
+-or-<P>
+
+<I>minute </I>is less than 0 or greater than 59<P>
+
+-or-<P>
+
+<I>second </I>is less than 0 or greater than 59<P>
+
+ -or-<P>
+
+<I>millisecond</I> is less than 0 or greater than 999<P>
+
+</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The specified parameters evaluate to a date less than System.DateTime.MinValue or greater than System.DateTime.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Add Method"><H3>DateTime.Add Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime Add(TimeSpan value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Adds the value of a specified <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> instance to the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="DateTime.html" TARGET="contents">DateTime</A> instance set to the sum of the date and time of the
+   current instance and the time interval represented by <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The resulting <A HREF="DateTime.html" TARGET="contents">DateTime</A> is less than System.DateTime.MinValue or greater than System.DateTime.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+A specified <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> is added to the current instance of
+<A HREF="DateTime.html" TARGET="contents">DateTime</A>, and 
+   the result is returned as a new <A HREF="DateTime.html" TARGET="contents">DateTime</A>. The returned value is equivalent to <A HREF="DateTime.html" TARGET="contents">DateTime</A>( <I>value</I>.Ticks
+   ).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.AddDays Method"><H3>DateTime.AddDays Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime AddDays(double value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds a specified number of days to the value of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="Double.html" TARGET="contents">Double</A> containing the number of whole and fractional days. For example, 4.5 is equivalent to 4 days, 12 hours, 0 minutes, 0 seconds, 0 milliseconds, and 0 ticks. <I>value</I> can be negative or positive.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="DateTime.html" TARGET="contents">DateTime</A> instance set to the sum of the date and time represented
+   by the current instance and the number of days represented by
+<I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The resulting <A HREF="DateTime.html" TARGET="contents">DateTime</A> is less than System.DateTime.MinValue or greater than System.DateTime.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <I>value</I> is rounded to the nearest tick.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.AddHours Method"><H3>DateTime.AddHours Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime AddHours(double value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds a specified number of hours to the value of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> value</DT>
+<DD>A <A HREF="Double.html" TARGET="contents">Double</A> containing the number of whole and fractional hours. For example, 4.5 is equivalent to 4 hours, 30 minutes, 0 seconds, 0 milliseconds, and 0 ticks. <I>value</I> can be negative or positive.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="DateTime.html" TARGET="contents">DateTime</A> instance set to the sum of the date and time represented
+   by the current instance and the number of hours represented by
+<I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The resulting <A HREF="DateTime.html" TARGET="contents">DateTime</A> is less than System.DateTime.MinValue or greater than System.DateTime.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <I>value</I> is rounded to the nearest tick.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.AddMilliseconds Method"><H3>DateTime.AddMilliseconds Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime AddMilliseconds(double value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds a specified number of milliseconds to the value of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> value</DT>
+<DD>A <A HREF="Double.html" TARGET="contents">Double</A> containing the number of whole and fractional milliseconds. For example, 4.5 is equivalent to 4 milliseconds and 5,000 ticks. <I>value</I> can be negative or positive.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="DateTime.html" TARGET="contents">DateTime</A> instance set to the sum of the date and time represented
+   by the current instance and the number of milliseconds represented by
+<I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The resulting <A HREF="DateTime.html" TARGET="contents">DateTime</A> is less than System.DateTime.MinValue or greater than System.DateTime.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <I>value</I> is rounded to the nearest tick.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.AddMinutes Method"><H3>DateTime.AddMinutes Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime AddMinutes(double value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds a specified number of minutes to the value of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> value</DT>
+<DD>A <A HREF="Double.html" TARGET="contents">Double</A> containing the number of whole and fractional minutes. For example, 4.5 is equivalent to 4 minutes, 30 seconds, 0 milliseconds, and 0 ticks. <I>value</I> can be negative or positive.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="DateTime.html" TARGET="contents">DateTime</A> instance set to the sum of the date and time represented
+   by the current instance and the number of minutes represented by
+<I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The resulting <A HREF="DateTime.html" TARGET="contents">DateTime</A> is less than System.DateTime.MinValue or greater than System.DateTime.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <I>value</I> is rounded to the nearest tick.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.AddMonths Method"><H3>DateTime.AddMonths Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime AddMonths(int months);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds a specified number of months to the value of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> months</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of months. <I>months</I> can be positive or negative, and may be greater than the number of months in a year.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="DateTime.html" TARGET="contents">DateTime</A> instance set to the sum of the date and time represented
+   by the current instance and <I>months</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The resulting <A HREF="DateTime.html" TARGET="contents">DateTime</A> is less than System.DateTime.MinValue or greater than System.DateTime.MaxValue.<P>
+
+-or-<P>
+
+The <I>months</I> parameter is less than -120,000 or greater than 120,000<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method does not change the value of the current <CODE>DateTime</CODE>
+ instance. Instead, a new <CODE>DateTime</CODE>
+ instance is returned whose value is the result of this operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.AddSeconds Method"><H3>DateTime.AddSeconds Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime AddSeconds(double value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds a specified number of seconds to the value of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> value</DT>
+<DD>A <A HREF="Double.html" TARGET="contents">Double</A> containing the number of whole and fractional seconds. For example, 4.5 is equivalent to 4 seconds, 500 milliseconds, and 0 ticks. <I>value</I> can be positive or negative.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="DateTime.html" TARGET="contents">DateTime</A> instance set to the sum of the date and time represented
+   by the current instance and the number of seconds represented by
+<I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The resulting <A HREF="DateTime.html" TARGET="contents">DateTime</A> is less than System.DateTime.MinValue or greater than System.DateTime.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <I> value</I> is rounded to the nearest tick.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.AddTicks Method"><H3>DateTime.AddTicks Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime AddTicks(long value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Adds a specified number of ticks to the value of the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="Int64.html" TARGET="contents">Int64</A> containing the number of 100-nanosecond ticks. <I>value</I> can be positive or negative.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="DateTime.html" TARGET="contents">DateTime</A> instance set to the sum of the date and time represented
+   by the current instance and the time represented by <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The resulting <A HREF="DateTime.html" TARGET="contents">DateTime</A> is less than System.DateTime.MinValue or greater than System.DateTime.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.AddYears Method"><H3>DateTime.AddYears Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime AddYears(int value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds a specified number of years to the value of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> value</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of years. <I>value</I> can be positive or negative.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="DateTime.html" TARGET="contents">DateTime</A> instance set to the sum of the date and time represented
+   by the current instance and the number of years represented by
+<I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The resulting <A HREF="DateTime.html" TARGET="contents">DateTime</A> is less than System.DateTime.MinValue or greater than System.DateTime.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Compare Method"><H3>DateTime.Compare Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int Compare(DateTime t1, DateTime t2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the sort order of the two specified instances of
+   <A HREF="DateTime.html" TARGET="contents">DateTime</A>
+   .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>t1</DT>
+<DD>The first <A HREF="DateTime.html" TARGET="contents">DateTime</A>.</DD>
+<DT>t2</DT>
+<DD>The second <A HREF="DateTime.html" TARGET="contents">DateTime</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value
+   that reflects the sort order of the two specified instances of <A HREF="DateTime.html" TARGET="contents">DateTime</A>. The following table
+   defines the conditions under which the returned value is a negative number,
+   zero, or a positive number.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Condition</TH><TH>Value TypeCondition</TH></TR>
+<TR><TD><I>t1</I> &lt; <I>t2</I>.</TD><TD> Any
+         negative
+         number<I>t1</I> &lt; <I>t2</I>.</TD></TR>
+<TR><TD><I>t1</I> == <I>t2</I>.</TD><TD> Zero<I>t1</I> == <I>t2</I>.</TD></TR>
+<TR><TD><I>t1</I> &gt;
+<I>t2</I>
+.</TD><TD> Any
+      positive
+      number<I>t1</I> &gt;
+<I>t2</I>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.CompareTo Method"><H3>DateTime.CompareTo Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int CompareTo(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the sort order of the current instance compared
+      to the specified <A HREF="Object.html" TARGET="contents">Object</A>
+      .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> value</DT>
+<DD>The <A HREF="Object.html" TARGET="contents">Object</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
+   current instance as compared to <I>value</I>. The following table defines the conditions under
+   which the returned value is a negative number, zero, or a positive number.
+   <P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>ValueDescription</TH></TR>
+<TR><TD>Current instance &lt; <I>value</I>.</TD><TD> Any negative numberCurrent instance &lt; <I>value</I>.</TD></TR>
+<TR><TD>Current instance == <I>value</I>.</TD><TD> ZeroCurrent instance == <I>value</I>.</TD></TR>
+<TR><TD>Current instance &gt; <I>value</I>, or value is a
+   null reference.</TD><TD> Any positive numberCurrent instance &gt; <I>value</I>, or value is a
+   null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>value</I> is not a <A HREF="DateTime.html" TARGET="contents">DateTime</A> and is not a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Any instance of <A HREF="DateTime.html" TARGET="contents">DateTime</A>, regardless of its value, is considered
+   greater than a null reference.<P>
+
+[<I>Note</I>:  This method is
+   implemented to support the <A HREF="IComparable.html" TARGET="contents">IComparable</A> interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.DaysInMonth Method"><H3>DateTime.DaysInMonth Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int DaysInMonth(int year, int month);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the number of days in a specified month
+      of a specified year.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>year</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the year.</DD>
+<DT>month</DT>
+<DD>The month (a <A HREF="Int32.html" TARGET="contents">Int32</A> between 1 and 12).</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> set to the number of days in the specified month for the
+   specified year. If the specified month is February, the return value is 28 or 29
+   depending upon whether the specified year is a leap year.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>month</I> is less than 1 or greater than 12.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Equals(System.Object) Method"><H3>DateTime.Equals(System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool Equals(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> indicating whether the current instance is equal to a specified
+   object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> value</DT>
+<DD>A <A HREF="Object.html" TARGET="contents">Object</A> to compare with the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>value</I> is a specified
+<A HREF="DateTime.html" TARGET="contents">DateTime</A> 
+instance is equal to the current instance; otherwise,
+<CODE>false</CODE>
+.<P>
+
+[<I>Note</I>:  This method overrides System.Object.Equals(System.Object).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Equals(System.DateTime, System.DateTime) Method"><H3>DateTime.Equals(System.DateTime, System.DateTime) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool Equals(DateTime t1, DateTime t2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> indicating whether two specified
+   instances of <A HREF="DateTime.html" TARGET="contents">DateTime</A> are equal.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>t1</DT>
+<DD>The first <A HREF="DateTime.html" TARGET="contents">DateTime</A>.</DD>
+<DT>t2</DT>
+<DD>The second <A HREF="DateTime.html" TARGET="contents">DateTime</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the two
+<A HREF="DateTime.html" TARGET="contents">DateTime</A> values are
+   equal; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.GetHashCode Method"><H3>DateTime.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int GetHashCode();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Generates a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the hash code
+   for this instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The algorithm used to
+      generate the hash code is unspecified.<P>
+
+[<I>Note</I>:  This method
+      overrides System.Object.GetHashCode.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.IsLeapYear Method"><H3>DateTime.IsLeapYear Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool IsLeapYear(int year);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether a specified year is a leap year.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>year</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> representing the year. <I>year</I> can be positive or negative.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the specified year is a leap
+   year; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Parse(System.String) Method"><H3>DateTime.Parse(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime Parse(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the specified <A HREF="String.html" TARGET="contents">String</A> converted to a <A HREF="DateTime.html" TARGET="contents">DateTime</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing a value to convert. The string is interpreted using the System.Globalization.DateTimeStyles.None style.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The <A HREF="DateTime.html" TARGET="contents">DateTime</A> value obtained from <I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> does not contain a valid string representation of a time or date and time.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.DateTime.Parse(System.String) is equivalent to System.DateTime.Parse(System.String)(<I>s</I>, <CODE>null</CODE>
+, System.Globalization.DateTimeStyles.None
+).<P>
+
+The string <I>s</I> is parsed using the formatting
+information in a <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A>
+initialized for the current
+system culture.<P>
+
+In order for the string to be successfully parsed, it is
+   required to represent a date and time value in one of the standard <A HREF="DateTime.html" TARGET="contents">DateTime</A> patterns
+   described in <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A>
+   .<P>
+
+If the string contains only a time, and no date, then the
+   current date (System.DateTime.Now ) is
+   used. If the string contains only a date and no time, this method assumes
+   12 a.m.<P>
+
+ Any leading, trailing, and inner white space characters
+   are ignored.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Parse(System.String, System.IFormatProvider) Method"><H3>DateTime.Parse(System.String, System.IFormatProvider) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime Parse(string s, IFormatProvider provider);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the specified <A HREF="String.html" TARGET="contents">String</A> converted to a <A HREF="DateTime.html" TARGET="contents">DateTime</A>
+value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the value to convert. The string is interpreted using the System.Globalization.DateTimeStyles.None style.</DD>
+<DT>provider</DT>
+<DD>A <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that supplies a <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> object containing culture-specific format information about <I>s</I> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="DateTime.html" TARGET="contents">DateTime</A> value obtained from <I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> does not contain a valid string representation of a time or date and time.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.DateTime.Parse(System.String) is equivalent to System.DateTime.Parse(System.String)(<I>s</I>, <I>provider</I>, System.Globalization.DateTimeStyles.None
+).<P>
+
+The string <I>s</I> is parsed using the
+culture-specific formatting information from the <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A>
+instance supplied by <I>provider</I>. If <I>provider</I>
+is <CODE>null</CODE>
+ or a <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> cannot be
+obtained from <I>provider</I>, the formatting information for the current
+system culture is used.<P>
+
+In order for the string to be successfully parsed, it is
+   required to represent a date and time value in one of the standard <A HREF="DateTime.html" TARGET="contents">DateTime</A> patterns
+   described in <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A>
+   .<P>
+
+If the string contains only a time, and no date, then the
+   current date (System.DateTime.Now ) is used. If the string
+   contains only a date and no time, this method assumes 12 a.m.<P>
+
+ Any leading, trailing, and inner white space characters are ignored.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Parse(System.String, System.IFormatProvider, System.Globalization.DateTimeStyles) Method"><H3>DateTime.Parse(System.String, System.IFormatProvider, System.Globalization.DateTimeStyles) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime Parse(string s, IFormatProvider provider, DateTimeStyles styles);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the specified <A HREF="String.html" TARGET="contents">String</A> converted to a <A HREF="DateTime.html" TARGET="contents">DateTime</A>
+value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the value to convert.</DD>
+<DT>provider</DT>
+<DD>A <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that supplies a <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> object containing culture-specific format information about <I>s</I> .</DD>
+<DT> styles</DT>
+<DD>One or more <A HREF="../System/Globalization/DateTimeStyles.html" TARGET="contents">DateTimeStyles</A> values that specify the style of <I>s</I>. Specify multiple values for <I>styles</I> using the bitwise OR operator.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="DateTime.html" TARGET="contents">DateTime</A> value obtained from <I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> does not contain a valid string representation of a time or date and time.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The string <I>s</I> is parsed using the culture-specific 
+   formatting information from the <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance supplied by
+<I>provider</I>. If <I>provider</I> is <CODE>null</CODE>
+ or a <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> cannot be obtained from <I>provider</I>, 
+   the formatting information for the current system culture is
+   used.<P>
+
+In order for the string to be successfully parsed, it is
+   required to represent a date and time value in one of the standard <A HREF="DateTime.html" TARGET="contents">DateTime</A> patterns
+   described in <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A>
+   .<P>
+
+If the string contains only a time, and no date, and if
+   the <I>styles</I> parameter is set to System.Globalization.DateTimeStyles.NoCurrentDateDefault the Gregorian year 1, month 1, day 1 are used. In all
+   other cases where a date is not specified, the current date (System.DateTime.Now
+   ) is used.<P>
+
+ If the string
+   contains only a date and no time, this method assumes 12 a.m.<P>
+
+For all settings of the <I>styles</I>
+parameter, any leading, trailing, and inner white space characters are ignored.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.ParseExact(System.String, System.String, System.IFormatProvider) Method"><H3>DateTime.ParseExact(System.String, System.String, System.IFormatProvider) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime ParseExact(string s, string format, IFormatProvider provider);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts the specified <A HREF="String.html" TARGET="contents">String</A> representation of a date and time to
+   its <A HREF="DateTime.html" TARGET="contents">DateTime</A>
+   equivalent using a specified format and <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A>
+   .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing a date and time to convert. The format of the string is required to match the specified format exactly. </DD>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the expected format of <I>s</I>. [<I>Note</I>: For a list of valid <I>format</I> values, see <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> .]<P>
+
+</DD>
+<DT>provider</DT>
+<DD>A <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that supplies a <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> object containing culture-specific format information about <I>s</I> . </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="DateTime.html" TARGET="contents">DateTime</A> equivalent to the date and time contained in
+<I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s </I>or <I>format</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> or <I>format</I> is an empty string.<P>
+
+ -or-<P>
+
+<I>s</I> does not contain a date and time that were recognized as the pattern specified in <I>format</I> . <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider) constructs a <A HREF="DateTime.html" TARGET="contents">DateTime</A> from the string <I>s</I>. The string is required to specify a date and,
+   optionally, a time in the specified format.<P>
+
+The string <I>s</I> is parsed using the culture-specific
+formatting information from the <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance supplied by
+<I>provider</I>. If <I>provider</I> is <CODE>null</CODE>
+ or a <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> cannot be obtained from <I>provider</I>, the formatting information 
+for the current system culture is
+used.<P>
+
+If the <I>s </I> string contains only a time, and no date, then
+the current date (System.DateTime.Now ) is used. If the string contains only a date and
+no time, this method assumes 12
+a.m.<P>
+
+Leading, trailing, and inner white space characters are
+   not
+   allowed.<P>
+
+[<I>Note</I>:  For information on formatting system-supplied
+   data types, see the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>
+   interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+This example demonstrates the System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider) method.<P>
+
+<PRE>using System;
+using System.Globalization;
+
+public class DateTimeTest {
+ public static void Main() {
+     DateTimeFormatInfo dtfi = new DateTimeFormatInfo();
+
+     DateTime dt = DateTime.ParseExact(&quot;January 22&quot;, dtfi.MonthDayPattern, null);
+     Console.WriteLine(dt);
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>1/22/2001
+      12:00:00 AM</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.ParseExact(System.String, System.String, System.IFormatProvider, System.Globalization.DateTimeStyles) Method"><H3>DateTime.ParseExact(System.String, System.String, System.IFormatProvider, System.Globalization.DateTimeStyles) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime ParseExact(string s, string format, IFormatProvider provider, DateTimeStyles style);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts the <A HREF="String.html" TARGET="contents">String</A> representation of a date and time to
+   its <A HREF="DateTime.html" TARGET="contents">DateTime</A>
+   equivalent using a specified style, the expected format, and
+   culture-specific format information.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing a date and time to convert. The format of the string is required to match the specified format exactly. </DD>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the expected format of <I>s</I>. [<I>Note</I>: For a list of valid <I>format</I> values, see <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> .]<P>
+
+</DD>
+<DT>provider</DT>
+<DD>A <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that supplies a <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> object containing culture-specific format information about <I>s</I> . </DD>
+<DT>style</DT>
+<DD>One or more <A HREF="../System/Globalization/DateTimeStyles.html" TARGET="contents">DateTimeStyles</A> values that specify the style of <I>s</I>. Specify multiple values for <I>styles</I> using the bitwise OR operator.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="DateTime.html" TARGET="contents">DateTime</A> equivalent to the date and time contained in
+<I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s </I>or <I>format</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> or format is an empty string.<P>
+
+ -or-<P>
+
+<I>s</I> does not contain a date and time that were recognized as the pattern specified in <I>format.</I><P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider) constructs a <A HREF="DateTime.html" TARGET="contents">DateTime</A> from the string <I>s</I>. The string is required to specify a date and,
+   optionally, a time in the provided format.<P>
+
+The string <I>s</I> is parsed using the culture-specific
+formatting information from the <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance supplied by
+<I>provider</I>. If <I>provider</I> is <CODE>null</CODE>
+ or a <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> cannot be obtained from <I>provider</I>, the formatting information 
+for the current system culture is used.<P>
+
+If the <I>s</I> string contains only a time, and no date, and if
+the <I>styles</I> parameter is set to System.Globalization.DateTimeStyles.NoCurrentDateDefault the Gregorian year 1, month 1, day 1 are used, and no
+leading, trailing, or inner white space characters are allowed. In all other
+cases where a date is not specified, the current date (System.DateTime.Now) is
+used.<P>
+
+If the <I>s</I> string contains only a date and no time,
+this method assumes 12 a.m.<P>
+
+[<I>Note</I>:  For information
+   on formatting system-supplied data types, see the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>
+   interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+This example demonstrates the System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider) method.<P>
+
+<PRE>using System;
+using System.Globalization;
+
+public class DateTimeTest {
+ public static void Main() {
+     DateTimeFormatInfo dtfi = new DateTimeFormatInfo();
+
+     DateTime dt = DateTime.ParseExact(&quot; January 22 &quot;, dtfi.MonthDayPattern, null, DateTimeStyles.AllowWhiteSpaces);
+     Console.WriteLine(dt);
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>1/22/2001
+         12:00:00 AM<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.ParseExact(System.String, System.String[], System.IFormatProvider, System.Globalization.DateTimeStyles) Method"><H3>DateTime.ParseExact(System.String, System.String[], System.IFormatProvider, System.Globalization.DateTimeStyles) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime ParseExact(string s, string[] formats, IFormatProvider provider, DateTimeStyles style);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts the <A HREF="String.html" TARGET="contents">String</A> representation of a date and time to
+   its <A HREF="DateTime.html" TARGET="contents">DateTime</A>
+   equivalent using a specified style, an array
+   of expected formats, and culture-specific format information.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing one or more dates and times to convert. The format of the string is required to match the specified format exactly. </DD>
+<DT>formats</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> array containing the expected formats of <I>s. </I>[<I>Note</I>: For a list of valid <I>format</I> values, see <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> .]<P>
+
+</DD>
+<DT>provider</DT>
+<DD>A <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that supplies a <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> object containing culture-specific format information about <I>s</I> . </DD>
+<DT>style</DT>
+<DD>One or more <A HREF="../System/Globalization/DateTimeStyles.html" TARGET="contents">DateTimeStyles</A> values that specify the style of <I>s</I>. Specify multiple values for <I>styles</I> using the bitwise OR operator.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="DateTime.html" TARGET="contents">DateTime</A> equivalent to the date and time contained in
+<I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s </I>or <I>formats</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> or <I>format</I> is an empty string.<P>
+
+ -or-<P>
+
+<I>s</I> does not contain a date and time that were recognized as the pattern specified in <I>format</I><P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider)
+constructs a <A HREF="DateTime.html" TARGET="contents">DateTime</A> from the <I>s</I><A HREF="String.html" TARGET="contents">String</A>. The string is
+required to specify a date and, optionally, a
+time in the provided format.<P>
+
+The string <I>s</I> is parsed using the culture-specific
+formatting information from the <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance supplied by
+<I>provider</I>. If <I>provider</I> is <CODE>null</CODE>
+ or a <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> cannot be obtained from <I>provider</I>, 
+the formatting information for the
+current system culture is used.<P>
+
+If the <I>s</I> string contains only a time, and no date, and if the <I>styles</I>
+parameter is set to System.Globalization.DateTimeStyles.NoCurrentDateDefault the Gregorian year 1, month 1, day 1 are
+used, and no leading, trailing, or inner white space characters are allowed. In
+all other cases where a date is not specified, the current date (System.DateTime.Now) is
+used.<P>
+
+If the <I>s</I> string contains only a date and no time, this method assumes
+12 a.m.<P>
+
+[<I>Note</I>:  For information
+   on formatting system-supplied data types, see the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>
+   interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+This example demonstrates the System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider) method.<P>
+
+<PRE>using System;
+using System.Globalization;
+
+public class DateTimeTest {
+ public static void Main() {
+     DateTimeFormatInfo dtfi = new DateTimeFormatInfo();
+     string [] patterns = {dtfi.LongTimePattern, dtfi.ShortTimePattern}; 
+
+     DateTime dt = DateTime.ParseExact(&quot;10:11:12&quot;, patterns, null, DateTimeStyles.NoCurrentDateDefault);
+     Console.WriteLine(dt);
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>1/1/0001
+      10:11:12 AM</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Subtract(System.DateTime) Method"><H3>DateTime.Subtract(System.DateTime) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public TimeSpan Subtract(DateTime value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Subtracts a specified date and
+      time from the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>An instance of <A HREF="DateTime.html" TARGET="contents">DateTime</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> interval equal to
+   the date and time represented by the current instance minus the date and time
+   represented by the specified <A HREF="DateTime.html" TARGET="contents">DateTime</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Subtract(System.TimeSpan) Method"><H3>DateTime.Subtract(System.TimeSpan) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime Subtract(TimeSpan value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Subtracts a specified <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> from the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>An instance of <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="DateTime.html" TARGET="contents">DateTime</A> instance equal to the date and time represented by the
+   current instance minus the time interval of the specified <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The resulting date and time is less than System.DateTime.MinValue or greater than System.DateTime.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.ToLocalTime Method"><H3>DateTime.ToLocalTime Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime ToLocalTime();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts the universal time coordinate (UTC) time value in the current instance to local time.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An instance of <A HREF="DateTime.html" TARGET="contents">DateTime</A> equivalent of the time value in the
+   current instance, adjusted to the local time zone and daylight saving time. If
+   the result is too large or too small to be represented as a <A HREF="DateTime.html" TARGET="contents">DateTime</A> , this
+   method returns a <A HREF="DateTime.html" TARGET="contents">DateTime</A> set to System.DateTime.MaxValue or System.DateTime.MinValue
+   
+   .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method assumes that the current instance of <A HREF="DateTime.html" TARGET="contents">DateTime</A> holds the
+   UTC time value, and not a local time. Each time it is invoked, this method
+   performs the necessary modifications on the <A HREF="DateTime.html" TARGET="contents">DateTime</A> to derive the local time, whether the
+   current <A HREF="DateTime.html" TARGET="contents">DateTime</A> holds the UTC time or not.<P>
+
+The local time zone information is obtained from the operating system.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.ToLongDateString Method"><H3>DateTime.ToLongDateString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToLongDateString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts the date denoted by the current instance to its
+      equivalent long date <A HREF="String.html" TARGET="contents">String</A> representation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the same value as a <A HREF="String.html" TARGET="contents">String</A> returned by
+System.DateTime.ToString (&quot;D&quot;, 
+<CODE>null</CODE>
+
+).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value of the current instance is formatted using the 
+      long date format
+      specifier, &apos;D&apos;.<P>
+
+[<I>Note</I>: This format uses the culture of the current thread. To
+         specify formatting using a different culture, use System.DateTime.ToString
+         .<P>
+
+For more information regarding the long date specifier,
+         see <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A>
+         .<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.ToLongTimeString Method"><H3>DateTime.ToLongTimeString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToLongTimeString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts the time denoted by the current instance to its
+      equivalent long time <A HREF="String.html" TARGET="contents">String</A> representation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the same value as a <A HREF="String.html" TARGET="contents">String</A> returned by
+System.DateTime.ToString (&quot;T&quot;, 
+<CODE>null</CODE>
+ 
+).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value of the current instance is formatted using the 
+      long time format specifier, &apos;T&apos;.<P>
+
+[<I>Note</I>: This format uses the culture of the current thread. To
+         specify formatting using a different culture, use System.DateTime.ToString .<P>
+
+For more information regarding the long time specifier,
+         see <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> .<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.ToShortDateString Method"><H3>DateTime.ToShortDateString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToShortDateString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts the date denoted by the current instance to its
+      equivalent short date <A HREF="String.html" TARGET="contents">String</A> representation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the same value as a <A HREF="String.html" TARGET="contents">String</A> returned by
+System.DateTime.ToString (&quot;d&quot;, 
+<CODE>null</CODE>
+
+).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value of the current instance is formatted using the 
+      long time format specifier,
+      &apos;d&apos;.<P>
+
+[<I>Note</I>: This format uses the culture of the current thread. To specify formatting
+         using a different culture, use System.DateTime.ToString .<P>
+
+For more information regarding the long time specifier, see <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> .<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.ToShortTimeString Method"><H3>DateTime.ToShortTimeString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToShortTimeString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts the time denoted by this instance to its
+      equivalent short time <A HREF="String.html" TARGET="contents">String</A> representation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the same value as a <A HREF="String.html" TARGET="contents">String</A> returned by
+System.DateTime.ToString (&quot;t&quot;, 
+<CODE>null</CODE>
+ 
+).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value of the current instance is formatted using the 
+      long time format specifier,
+      &apos;t&apos;.<P>
+
+[<I>Note</I>: This format uses the culture of the current thread. To specify formatting
+         using a different culture, use System.DateTime.ToString .<P>
+
+For more information regarding the long time specifier, see <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> .<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.ToString(System.IFormatProvider) Method"><H3>DateTime.ToString(System.IFormatProvider) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToString(IFormatProvider provider);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value of
+   the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>provider</DT>
+<DD>A <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that supplies a <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> containing culture-specific formatting information.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> representation of the current instance formatted using
+   the general format specifier, (&quot;G&quot;). The string takes into account the
+   formatting information in the <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance supplied by
+<I>provider</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.DateTime.ToString is equivalent to System.DateTime.ToString
+(&quot;<I>G</I>&quot;, <I>provider</I>
+).<P>
+
+If <I>provider</I> is
+<CODE>null</CODE>
+ or the <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A>
+cannot be obtained from <I>provider</I>, the formatting information for the current system culture
+is
+used.<P>
+
+[<I>Note</I>: The general format specifier (&quot;G&quot;) provides the general
+      date pattern including the long time form, equivalent to System.Globalization.DateTimeFormatInfo.ShortDatePattern combined with System.Globalization.DateTimeFormatInfo.LongTimePattern. For more information on format specifiers, see <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> . For
+      information on formatting system-supplied data types, see the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>
+      interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.ToString(System.String, System.IFormatProvider) Method"><H3>DateTime.ToString(System.String, System.IFormatProvider) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToString(string format, IFormatProvider provider);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value of
+   the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing a character that specifies the format of the returned string. [<I>Note</I>: For a list of valid values, see <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> .]<P>
+
+</DD>
+<DT>provider</DT>
+<DD>A <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that supplies a <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance containing culture-specific formatting information.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> representation of the current instance formatted as
+   specified by <I>format</I>. The string takes into account the information in
+   the <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> supplied by <I>provider</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD>The length of the <I>format</I> string is 1, and it is not one of the format specifier characters defined for <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A>.<P>
+
+-or-<P>
+
+The <I>format</I> string does not contain a valid custom format pattern.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If <I>provider</I> is 
+<CODE>null</CODE>
+ or a <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A>
+cannot be obtained from <I>provider</I>, the formatting information for the
+current system culture is used.<P>
+
+If <I>format</I> is a null reference, the general
+format specifier &quot;G&quot; is used.<P>
+
+[<I>Note</I>: For more information regarding the standard format
+      specifier, see <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A>. For
+      information on formatting system-supplied data types, see the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>
+      interface.<P>
+
+This method is implemented to support the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>
+interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.ToString() Method"><H3>DateTime.ToString() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> representation of the current instance formatted using
+   the general format specifier, (&quot;G&quot;). The string takes
+   into account the current system culture.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.DateTime.ToString is equivalent to System.DateTime.ToString (&quot;G&quot;, <CODE>null</CODE>
+ 
+).<P>
+
+[<I>Note</I>: For more information about the general format specifier
+      (&quot;G&quot;) see <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A>.<P>
+
+This method overrides System.Object.ToString.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.ToString(System.String) Method"><H3>DateTime.ToString(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToString(string format);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value of
+   the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format of the returned string. [<I>Note</I>:  For a list of valid values, see <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> .]<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> representation of the current instance formatted as
+   specified by <I>format</I>. The string takes into account the current system
+   culture.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD>The length of the <I>format</I> string is 1, and it is not one of the format specifier characters defined for <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A>.<P>
+
+-or-<P>
+
+The <I>format</I> string does not contain a valid custom format pattern.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.DateTime.ToString is equivalent to System.DateTime.ToString (<I>format</I> ,
+<CODE>null</CODE>
+
+).<P>
+
+If <I>format</I> is a null reference, the general
+format specifier &quot;G&quot; is used.<P>
+
+[<I>Note</I>: This method uses the culture information of the current
+      thread.<P>
+
+ For information on formatting system-supplied data 
+      types, see the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A> interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.ToUniversalTime Method"><H3>DateTime.ToUniversalTime Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime ToUniversalTime();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts the current <A HREF="DateTime.html" TARGET="contents">DateTime</A> value to coordinated universal time (UTC). <P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The UTC <A HREF="DateTime.html" TARGET="contents">DateTime</A> equivalent of the current <A HREF="DateTime.html" TARGET="contents">DateTime</A> value. If the
+   result is too large or too small to be represented as a <A HREF="DateTime.html" TARGET="contents">DateTime</A>, the current
+   function returns a <A HREF="DateTime.html" TARGET="contents">DateTime</A> set to System.DateTime.MaxValue or System.DateTime.MinValue
+   .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method assumes that the current instance of <A HREF="DateTime.html" TARGET="contents">DateTime</A> holds the
+   local time value, and not a UTC time. Therefore each time it is run, this
+   method performs the necessary modifications on the <A HREF="DateTime.html" TARGET="contents">DateTime</A> to derive the
+   UTC time, whether the current <A HREF="DateTime.html" TARGET="contents">DateTime</A> holds the local time or not.
+   <P>
+
+ The local time zone information is obtained from the
+   operating system.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.op_Addition Method"><H3>DateTime.op_Addition Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime operator +(DateTime d, TimeSpan t);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Adds a specified <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> value to a specified <A HREF="DateTime.html" TARGET="contents">DateTime</A>
+value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d</DT>
+<DD>A <A HREF="DateTime.html" TARGET="contents">DateTime</A> value. </DD>
+<DT>t</DT>
+<DD>A <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> value. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="DateTime.html" TARGET="contents">DateTime</A> instance that is the sum of the values of <I>d</I> and
+<I>t</I> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The resulting date and time is less than System.DateTime.MinValue or greater than System.DateTime.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The returned value is equivalent to
+   <CODE>DateTime</CODE>
+( <I>d</I>.Ticks + <I>t</I>.Ticks ).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.op_Equality Method"><H3>DateTime.op_Equality Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator ==(DateTime d1, DateTime d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether the two
+   specified instances of <A HREF="DateTime.html" TARGET="contents">DateTime</A>
+   are equal.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The first <A HREF="DateTime.html" TARGET="contents">DateTime</A> to compare. </DD>
+<DT>d2</DT>
+<DD>The second <A HREF="DateTime.html" TARGET="contents">DateTime</A> to compare. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if
+<I>d1</I>.Ticks value is equal to the 
+<I>d2</I>.Ticks value; otherwise, 
+<CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.op_GreaterThan Method"><H3>DateTime.op_GreaterThan Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator &gt;(DateTime t1, DateTime t2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether one specified
+<A HREF="DateTime.html" TARGET="contents">DateTime</A> is 
+   greater than another specified <A HREF="DateTime.html" TARGET="contents">DateTime</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>t1</DT>
+<DD>A <A HREF="DateTime.html" TARGET="contents">DateTime</A>. <P>
+
+</DD>
+<DT>t2</DT>
+<DD>A <A HREF="DateTime.html" TARGET="contents">DateTime</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if
+<I>t1</I>.Ticks value is greater than the 
+<I>t2</I>.Ticks value; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.op_GreaterThanOrEqual Method"><H3>DateTime.op_GreaterThanOrEqual Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator &gt;=(DateTime t1, DateTime t2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether one specified
+<A HREF="DateTime.html" TARGET="contents">DateTime</A> is 
+   greater than or equal to another specified <A HREF="DateTime.html" TARGET="contents">DateTime</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>t1</DT>
+<DD>A <A HREF="DateTime.html" TARGET="contents">DateTime</A>. <P>
+
+</DD>
+<DT>t2</DT>
+<DD>A <A HREF="DateTime.html" TARGET="contents">DateTime</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if
+<I>t1</I>.Ticks value is greater than or equal to 
+<I>t2</I>.Ticks value; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.op_Inequality Method"><H3>DateTime.op_Inequality Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator !=(DateTime d1, DateTime d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether two specified
+   instances of <A HREF="DateTime.html" TARGET="contents">DateTime</A>
+   are not equal.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>A <A HREF="DateTime.html" TARGET="contents">DateTime</A>. </DD>
+<DT>d2</DT>
+<DD>A <A HREF="DateTime.html" TARGET="contents">DateTime</A>. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if
+<I>d1</I>.Ticks value is not equal to 
+<I>d2</I>.Ticks value; otherwise, <CODE>false</CODE>
+.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.op_LessThan Method"><H3>DateTime.op_LessThan Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator  &lt;(DateTime t1, DateTime t2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether one specified
+<A HREF="DateTime.html" TARGET="contents">DateTime</A> is less 
+   than another specified <A HREF="DateTime.html" TARGET="contents">DateTime</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>t1</DT>
+<DD>A <A HREF="DateTime.html" TARGET="contents">DateTime</A>. <P>
+
+</DD>
+<DT>t2</DT>
+<DD>A <A HREF="DateTime.html" TARGET="contents">DateTime</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if
+<I>t1</I>.Ticks value is less than 
+<I>t2</I>.Ticks value; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.op_LessThanOrEqual Method"><H3>DateTime.op_LessThanOrEqual Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator &lt;=(DateTime t1, DateTime t2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether one specified
+<A HREF="DateTime.html" TARGET="contents">DateTime</A> is less 
+   than or equal to another specified <A HREF="DateTime.html" TARGET="contents">DateTime</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>t1</DT>
+<DD>A <A HREF="DateTime.html" TARGET="contents">DateTime</A>. <P>
+
+</DD>
+<DT>t2</DT>
+<DD>A <A HREF="DateTime.html" TARGET="contents">DateTime</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if
+<I>t1</I>.Ticks value is less than or equal to 
+<I>t2</I>.Ticks value; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.op_Subtraction(System.DateTime, System.TimeSpan) Method"><H3>DateTime.op_Subtraction(System.DateTime, System.TimeSpan) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime operator -(DateTime d, TimeSpan t);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Subtracts a specified <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> from a specified <A HREF="DateTime.html" TARGET="contents">DateTime</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d</DT>
+<DD>A <A HREF="DateTime.html" TARGET="contents">DateTime</A>. </DD>
+<DT>t</DT>
+<DD>A <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="DateTime.html" TARGET="contents">DateTime</A> whose value is the value of <I>d</I> minus the value
+   of <I>t</I>
+   .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The resulting date and time is less than System.DateTime.MinValue or greater than System.DateTime.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The returned value is equivalent to <A HREF="DateTime.html" TARGET="contents">DateTime</A>( <I>d</I>.Ticks -
+<I>t</I>.Ticks 
+   ).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.op_Subtraction(System.DateTime, System.DateTime) Method"><H3>DateTime.op_Subtraction(System.DateTime, System.DateTime) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static TimeSpan operator -(DateTime d1, DateTime d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Subtracts a specified <A HREF="DateTime.html" TARGET="contents">DateTime</A> from another specified <A HREF="DateTime.html" TARGET="contents">DateTime</A>
+value, producing a time interval.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>A <A HREF="DateTime.html" TARGET="contents">DateTime</A> (the minuend). </DD>
+<DT>d2</DT>
+<DD>A <A HREF="DateTime.html" TARGET="contents">DateTime</A> (the subtrahend). </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> that is the time interval between <I>d1</I> and
+<I>d2</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The resulting date and time is less than System.DateTime.MinValue or greater than System.DateTime.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The returned value is equivalent to <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>( <I>d1</I>.Ticks -
+<I>d2</I>.Ticks).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.MaxValue Field"><H3>DateTime.MaxValue Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly DateTime MaxValue;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+A constant representing the largest possible value of
+   <A HREF="DateTime.html" TARGET="contents">DateTime</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+The value of this field is equivalent to
+      23:59:59.9999999, 12/31/9999, exactly one 100-nanosecond tick before 00:00:00,
+      01/01/10000.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.MinValue Field"><H3>DateTime.MinValue Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly DateTime MinValue;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+A constant representing the smallest possible value of
+   <A HREF="DateTime.html" TARGET="contents">DateTime</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+The value of this field is equivalent to 00:00:00.0000000, 1/1/0001. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Date Property"><H3>DateTime.Date Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime Date { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the date component of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="DateTime.html" TARGET="contents">DateTime</A> instance with the same date as the current instance,
+ and the time value set to midnight (00:00:00).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Day Property"><H3>DateTime.Day Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Day { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the day of the month represented by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> between 1 and 31 set to the day of the month component of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.DayOfYear Property"><H3>DateTime.DayOfYear Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int DayOfYear { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the day of the year represented by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Int32.html" TARGET="contents">Int32</A> between 1 and 366 set to the day of the year component of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Hour Property"><H3>DateTime.Hour Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Hour { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the hour represented by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Int32.html" TARGET="contents">Int32</A> between 0 and 23 set to the hour component
+   of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Millisecond Property"><H3>DateTime.Millisecond Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Millisecond { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the milliseconds component of the date represented by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Int32.html" TARGET="contents">Int32</A> between 0 and 999 set to the milliseconds component of
+   the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Minute Property"><H3>DateTime.Minute Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Minute { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the minute component of the date represented by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> between 0 and 59 set to the minute component of the
+   current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Month Property"><H3>DateTime.Month Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Month { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the month component of the date represented by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> between 1 and 12 set to the month component of the
+   current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Now Property"><H3>DateTime.Now Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime Now { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="DateTime.html" TARGET="contents">DateTime</A> representing the current local date and time.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The resolution of this property depends on the system timer.<P>
+
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Second Property"><H3>DateTime.Second Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Second { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the seconds component of the date represented by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> between 0 and 59 set to the seconds component of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Ticks Property"><H3>DateTime.Ticks Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public long Ticks { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the number of 100-nanosecond ticks that represent the date and time of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int64.html" TARGET="contents">Int64</A> set to the number of ticks that represent the date and
+   time of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The value of this property is the number of
+      100-nanosecond intervals that have elapsed since 00:00:00, 1/1/0001. The value
+      of the property is between System.DateTime.MinValue and System.DateTime.MaxValue
+      
+      .<P>
+
+ This
+      property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.TimeOfDay Property"><H3>DateTime.TimeOfDay Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public TimeSpan TimeOfDay { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the
+      time of day of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> instance set to the
+   time component of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Today Property"><H3>DateTime.Today Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime Today { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets
+ the current date.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="DateTime.html" TARGET="contents">DateTime</A> instance set to the date of the current instance, with the time set to
+ 00:00:00.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.UtcNow Property"><H3>DateTime.UtcNow Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime UtcNow { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the current
+      time converted to coordinated
+      universal time (UTC).<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="DateTime.html" TARGET="contents">DateTime</A> instance set to the current date and time in coordinated universal time (UTC). <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTime.Year Property"><H3>DateTime.Year Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Year { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the year component of the date represented by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> between 1 and 9999 set to the year component of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTime.html" TARGET="contents">System.DateTime Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,1056 @@
+<HTML>
+<HEAD>
+<TITLE>System.Reflection.PropertyInfo Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Reflection.PropertyInfo Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class PropertyInfo : MemberInfo</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="MemberInfo.html" TARGET="contents">MemberInfo</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;PropertyInfo<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides access to property
+      metadata.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ A property
+      is a named aspect of an object&apos;s state whose value is typically accessible
+      through <CODE>get</CODE>
+ and <CODE>set</CODE>
+ accessors. [<I>Note</I>: Properties can be read-only, in which case the
+   <CODE> set</CODE>
+
+   accessor is not available.]<P>
+
+<P>
+
+ Several methods in this class assume that the <CODE>Get</CODE>
+
+and <CODE>Set</CODE>
+
+accessors of a property have certain formats. The signatures of the
+accessors are required to match the following conventions:<P>
+
+<UL>
+<LI>
+      
+      The return type of the <CODE>Get</CODE>
+ accessor and the last
+      argument of the <CODE>Set</CODE>
+ accessor are required to be identical to the
+      type of the property reflected by the current instance.</LI>
+<LI>
+      
+      The <CODE>Get</CODE>
+ and <CODE>Set</CODE>
+ accessors are required to have the same number, type, and order of
+      indices.</LI>
+</UL>
+If this format is not followed, the behavior of
+   the System.Reflection.PropertyInfo.GetValue(System.Object,System.Object[]) and System.Reflection.PropertyInfo.SetValue(System.Object,System.Object,System.Object[])
+   methods is undefined.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+PropertyInfo Constructors<P>
+
+<A HREF="#PropertyInfo Constructor" TARGET="contents">PropertyInfo Constructor</A><BR>
+<P>
+
+PropertyInfo Methods<P>
+
+<A HREF="#PropertyInfo.GetAccessors(bool) Method" TARGET="contents">PropertyInfo.GetAccessors(bool) Method</A><BR>
+<A HREF="#PropertyInfo.GetAccessors() Method" TARGET="contents">PropertyInfo.GetAccessors() Method</A><BR>
+<A HREF="#PropertyInfo.GetGetMethod(bool) Method" TARGET="contents">PropertyInfo.GetGetMethod(bool) Method</A><BR>
+<A HREF="#PropertyInfo.GetGetMethod() Method" TARGET="contents">PropertyInfo.GetGetMethod() Method</A><BR>
+<A HREF="#PropertyInfo.GetIndexParameters Method" TARGET="contents">PropertyInfo.GetIndexParameters Method</A><BR>
+<A HREF="#PropertyInfo.GetSetMethod(bool) Method" TARGET="contents">PropertyInfo.GetSetMethod(bool) Method</A><BR>
+<A HREF="#PropertyInfo.GetSetMethod() Method" TARGET="contents">PropertyInfo.GetSetMethod() Method</A><BR>
+<A HREF="#PropertyInfo.GetValue(System.Object, System.Reflection.BindingFlags, System.Reflection.Binder, System.Object[], System.Globalization.CultureInfo) Method" TARGET="contents">PropertyInfo.GetValue(System.Object, System.Reflection.BindingFlags, System.Reflection.Binder, System.Object[], System.Globalization.CultureInfo) Method</A><BR>
+<A HREF="#PropertyInfo.GetValue(System.Object, System.Object[]) Method" TARGET="contents">PropertyInfo.GetValue(System.Object, System.Object[]) Method</A><BR>
+<A HREF="#PropertyInfo.SetValue(System.Object, System.Object, System.Reflection.BindingFlags, System.Reflection.Binder, System.Object[], System.Globalization.CultureInfo) Method" TARGET="contents">PropertyInfo.SetValue(System.Object, System.Object, System.Reflection.BindingFlags, System.Reflection.Binder, System.Object[], System.Globalization.CultureInfo) Method</A><BR>
+<A HREF="#PropertyInfo.SetValue(System.Object, System.Object, System.Object[]) Method" TARGET="contents">PropertyInfo.SetValue(System.Object, System.Object, System.Object[]) Method</A><BR>
+<P>
+
+PropertyInfo Properties<P>
+
+<A HREF="#PropertyInfo.Attributes Property" TARGET="contents">PropertyInfo.Attributes Property</A><BR>
+<A HREF="#PropertyInfo.CanRead Property" TARGET="contents">PropertyInfo.CanRead Property</A><BR>
+<A HREF="#PropertyInfo.CanWrite Property" TARGET="contents">PropertyInfo.CanWrite Property</A><BR>
+<A HREF="#PropertyInfo.PropertyType Property" TARGET="contents">PropertyInfo.PropertyType Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="PropertyInfo Constructor"><H3>PropertyInfo Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected PropertyInfo();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new instance of the <A HREF="PropertyInfo.html" TARGET="contents">PropertyInfo</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PropertyInfo.html" TARGET="contents">System.Reflection.PropertyInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PropertyInfo.GetAccessors(bool) Method"><H3>PropertyInfo.GetAccessors(bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract MethodInfo[] GetAccessors(bool nonPublic);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns an array whose elements reflect the public and,
+      if specified, non-public <CODE>Get</CODE>
+, <CODE>Set</CODE>
+, and other
+      accessors of the property reflected by the
+      current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>nonPublic</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether non-public accessors will be included in the return value. Specify <CODE>true</CODE>
+ to include the non-public accessors; otherwise, specify <CODE>false</CODE>
+ .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An array of <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A> objects whose elements reflect the
+<CODE>Get</CODE>
+, <CODE>Set</CODE>
+, and other accessors of the property 
+   reflected by the current instance. If <I>nonPublic</I> is
+<CODE>true</CODE>
+, this array contains public and non-public 
+   accessors. If
+<I>nonPublic</I> is <CODE>false</CODE>
+, this array contains only public accessors. 
+   If no
+   accessors with the specified visibility are found, returns
+   an array with zero elements.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PropertyInfo.html" TARGET="contents">System.Reflection.PropertyInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PropertyInfo.GetAccessors() Method"><H3>PropertyInfo.GetAccessors() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MethodInfo[] GetAccessors();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns an array whose elements reflect the public
+   <CODE>Get</CODE>
+ , <CODE>Set</CODE>
+, and other
+      accessors of the property reflected by the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An array of <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A> objects that reflect the public 
+<CODE>Get</CODE>
+, <CODE>Set</CODE>
+, and other 
+   accessors of
+   the property reflected by the current instance, if found; otherwise, returns
+   an array with zero elements.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to System.Reflection.PropertyInfo.GetAccessors(<CODE>false</CODE>
+).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PropertyInfo.html" TARGET="contents">System.Reflection.PropertyInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PropertyInfo.GetGetMethod(bool) Method"><H3>PropertyInfo.GetGetMethod(bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract MethodInfo GetGetMethod(bool nonPublic);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the public or, if
+      specified, non-public <CODE>Get</CODE>
+ accessor for the property reflected by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>nonPublic</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether non-public <CODE>Get</CODE>
+ accessors will be included in the return value. Specify <CODE>true</CODE>
+ to include non-public accessors; otherwise, specify <CODE>false</CODE>
+ .<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+If <I>nonPublic</I> is <CODE>true</CODE>
+, returns
+   a <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A> instance that reflects the
+<CODE>Get</CODE>
+ 
+accessor for the property reflected by the current instance if that accessor
+exists. If
+<I>nonPublic </I>is <CODE>false</CODE>
+ and the <CODE>Get</CODE>
+ accessor is non-public, or <I>nonPublic</I> 
+is <CODE>true</CODE>
+ but no <CODE>Get</CODE>
+ accessor exists for the property reflected by
+the current instance, returns <CODE>null</CODE>
+
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/MethodAccessException.html" TARGET="contents">MethodAccessException</A></TD><TD><I>nonPublic</I> is <CODE>true</CODE>
+, the <CODE>Get</CODE>
+ accessor for the property reflected by the current instance is non-public, and the caller does not have <A HREF="../../System/Security/Permissions/ReflectionPermission.html" TARGET="contents">ReflectionPermission</A> to reflect on non-public methods.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PropertyInfo.html" TARGET="contents">System.Reflection.PropertyInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PropertyInfo.GetGetMethod() Method"><H3>PropertyInfo.GetGetMethod() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MethodInfo GetGetMethod();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the public <CODE>Get</CODE>
+ accessor for the property reflected
+   by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A> instance that reflects the public
+<CODE>Get</CODE>
+ accessor for the property reflected by the current 
+   instance. Returns <CODE>null</CODE>
+ if no public <CODE>Get</CODE>
+
+   accessor exists.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PropertyInfo.html" TARGET="contents">System.Reflection.PropertyInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PropertyInfo.GetIndexParameters Method"><H3>PropertyInfo.GetIndexParameters Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract ParameterInfo[] GetIndexParameters();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an array of the indexers of the property reflected by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ An array
+      of <A HREF="ParameterInfo.html" TARGET="contents">ParameterInfo</A> objects that reflect the indexers
+      of the property reflected by the current instance. If no indexers exist for
+      the property reflected by the current instance,
+      returns an array with zero elements.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/MethodAccessException.html" TARGET="contents">MethodAccessException</A></TD><TD>The property reflected by the current instance is visible, but its <CODE>Get</CODE>
+ and <CODE>Set</CODE>
+ accessors are not, and the caller does not have <A HREF="../../System/Security/Permissions/ReflectionPermission.html" TARGET="contents">ReflectionPermission</A>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PropertyInfo.html" TARGET="contents">System.Reflection.PropertyInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PropertyInfo.GetSetMethod(bool) Method"><H3>PropertyInfo.GetSetMethod(bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract MethodInfo GetSetMethod(bool nonPublic);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the public or, if specified, non-public <CODE>Set</CODE>
+ accessor
+   for the property reflected by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>nonPublic</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether non-public <CODE>Set</CODE>
+ accessors are included in the return value. Specify <CODE>true</CODE>
+ if non-public accessors are to be included; otherwise, specify <CODE>false</CODE>
+ .<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+If <I>nonPublic</I> is <CODE>true</CODE>
+, returns a <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A>
+instance that reflects the <CODE>Set</CODE>
+ accessor
+for the property reflected by the current instance if that accessor exists. If
+<I>nonPublic </I>is <CODE>false</CODE>
+ and the <CODE>Set</CODE>
+ accessor is non-public, or <I>nonPublic</I> 
+is <CODE>true</CODE>
+
+but no <CODE>Set</CODE>
+ accessor exists for the property
+reflected by the current instance, returns <CODE>null</CODE>
+ .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/MethodAccessException.html" TARGET="contents">MethodAccessException</A></TD><TD><I>nonPublic</I> is <CODE>true</CODE>
+, the <CODE>Set</CODE>
+ accessor for the property reflected by the current instance is non-public, and the caller does not have <A HREF="../../System/Security/Permissions/ReflectionPermission.html" TARGET="contents">ReflectionPermission</A> to reflect on non-public methods.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PropertyInfo.html" TARGET="contents">System.Reflection.PropertyInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PropertyInfo.GetSetMethod() Method"><H3>PropertyInfo.GetSetMethod() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MethodInfo GetSetMethod();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the public <CODE>Set</CODE>
+ accessor for the property reflected
+   by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A> instance that reflects the public
+<CODE>Set</CODE>
+ accessor for the property reflected by the current 
+   instance. Returns <CODE>null</CODE>
+ if no public <CODE>Set</CODE>
+
+   accessor exists.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to System.Reflection.PropertyInfo.GetSetMethod(<CODE>false</CODE>
+).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PropertyInfo.html" TARGET="contents">System.Reflection.PropertyInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PropertyInfo.GetValue(System.Object, System.Reflection.BindingFlags, System.Reflection.Binder, System.Object[], System.Globalization.CultureInfo) Method"><H3>PropertyInfo.GetValue(System.Object, System.Reflection.BindingFlags, System.Reflection.Binder, System.Object[], System.Globalization.CultureInfo) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract object GetValue(object obj, BindingFlags invokeAttr, Binder binder, object[] index, CultureInfo culture);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the value of the property that is reflected by the current instance in the specified object
+      and corresponds to the specified criteria.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>obj</DT>
+<DD>The object whose property value is returned. Specify <CODE>null</CODE>
+ to invoke a static <CODE>Get</CODE>
+ accessor on the property reflected by the current instance. </DD>
+<DT> invokeAttr</DT>
+<DD>A <A HREF="BindingFlags.html" TARGET="contents">BindingFlags</A> value that controls the binding process. [<I>Note</I>: Specify System.Reflection.BindingFlags.Public or System.Reflection.BindingFlags.NonPublic, and System.Reflection.BindingFlags.Instance or System.Reflection.BindingFlags.Static; or this method will not invoke any <CODE>get</CODE>
+ accessors of the property reflected by the current instance.]<P>
+
+</DD>
+<DT> binder</DT>
+<DD>A <A HREF="Binder.html" TARGET="contents">Binder</A> that enables the binding, coercion of argument types, invocation of members, and retrieval of <A HREF="MemberInfo.html" TARGET="contents">MemberInfo</A> objects via reflection. If <I>binder</I> is <CODE>null</CODE>
+ , the default binder is used.</DD>
+<DT> index</DT>
+<DD>An array of objects that is an index or values for indexed properties. This value is required to be <CODE>null</CODE>
+ for non-indexed properties. </DD>
+<DT> culture</DT>
+<DD>The only defined value for this parameter is <CODE>null</CODE>
+ .<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Object.html" TARGET="contents">Object</A> that
+   contains the property value for <I>obj</I> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>index </I> does not contain the exact type of arguments needed.<P>
+
+The <CODE>Get</CODE>
+ accessor of the property reflected by the current instance was not found.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/MethodAccessException.html" TARGET="contents">MethodAccessException</A></TD><TD>The <CODE>Get</CODE>
+ accessor of the property reflected by the current instance is non-public and the caller does not have <A HREF="../../System/Security/Permissions/ReflectionPermission.html" TARGET="contents">ReflectionPermission</A> to reflect on non-public methods.</TD></TR>
+<TR><TD><A HREF="TargetException.html" TARGET="contents">TargetException</A></TD><TD>The property reflected by the current instance is non-static, and <I>obj</I> is <CODE>null</CODE>
+ or is of a type that does not implement the property reflected by the current instance.</TD></TR>
+<TR><TD><A HREF="TargetParameterCountException.html" TARGET="contents">TargetParameterCountException</A></TD><TD>The current instance reflects an indexer and <I>index</I>.Length does not equal the rank of the indexer.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PropertyInfo.html" TARGET="contents">System.Reflection.PropertyInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PropertyInfo.GetValue(System.Object, System.Object[]) Method"><H3>PropertyInfo.GetValue(System.Object, System.Object[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual object GetValue(object obj, object[] index);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the value of the property reflected by the current instance in the
+      specified object, using the specified index values. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>obj</DT>
+<DD>The object whose property value will be returned. Specify <CODE>null</CODE>
+ to invoke a static <CODE>Get</CODE>
+ accessor of a property.</DD>
+<DT> index</DT>
+<DD>An array of objects that is an index of values for indexed properties. This value is required to be <CODE>null</CODE>
+ for non-indexed properties.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Object.html" TARGET="contents">Object</A> that contains the property value for <I>obj</I> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>index </I>does not contain the exact type of arguments needed.<P>
+
+ -or-<P>
+
+ The <CODE>Get</CODE>
+ accessor of the property reflected by the current instance is not found.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/MethodAccessException.html" TARGET="contents">MethodAccessException</A></TD><TD>The <CODE>Get</CODE>
+ accessor of the property reflected by the current instance is non-public and the caller does not have <A HREF="../../System/Security/Permissions/ReflectionPermission.html" TARGET="contents">ReflectionPermission</A> to reflect on non-public methods.</TD></TR>
+<TR><TD><A HREF="TargetException.html" TARGET="contents">TargetException</A></TD><TD>The property reflected by the current instance is non-static, and <I>obj</I> is <CODE>null</CODE>
+ or is of a type that does not implement the property reflected by the current instance.</TD></TR>
+<TR><TD><A HREF="TargetParameterCountException.html" TARGET="contents">TargetParameterCountException</A></TD><TD>The current instance reflects an indexer and <I>index</I>.Length does not equal the rank of the indexer.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PropertyInfo.html" TARGET="contents">System.Reflection.PropertyInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PropertyInfo.SetValue(System.Object, System.Object, System.Reflection.BindingFlags, System.Reflection.Binder, System.Object[], System.Globalization.CultureInfo) Method"><H3>PropertyInfo.SetValue(System.Object, System.Object, System.Reflection.BindingFlags, System.Reflection.Binder, System.Object[], System.Globalization.CultureInfo) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract void SetValue(object obj, object value, BindingFlags invokeAttr, Binder binder, object[] index, CultureInfo culture);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sets the value of the property that is reflected by the current instance on the specified objects and
+      corresponds to the specified properties. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>obj</DT>
+<DD>The object whose property value is returned. Specify <CODE>null</CODE>
+ to invoke a static <CODE>Set</CODE>
+ accessor on the property reflected by the current instance. </DD>
+<DT> value</DT>
+<DD>A object that contains the new value for the property. </DD>
+<DT>invokeAttr</DT>
+<DD>A <A HREF="BindingFlags.html" TARGET="contents">BindingFlags</A> value that controls the binding process. [<I>Note</I>: Specify System.Reflection.BindingFlags.Public or System.Reflection.BindingFlags.NonPublic, and System.Reflection.BindingFlags.Instance or System.Reflection.BindingFlags.Static; otherwise, this method will not invoke any <CODE>Set</CODE>
+ accessors of the property reflected by the current instance.]<P>
+
+</DD>
+<DT>binder</DT>
+<DD>A <A HREF="Binder.html" TARGET="contents">Binder</A> that enables the binding, coercion of argument types, invocation of members, and retrieval of <A HREF="MemberInfo.html" TARGET="contents">MemberInfo</A> objects via reflection. If <I>binder</I> is <CODE>null</CODE>
+ , the default binder is used. </DD>
+<DT>index</DT>
+<DD>An array of objects that is an index or values for indexed properties. This value is required to be <CODE>null</CODE>
+ for non-indexed properties. </DD>
+<DT>culture</DT>
+<DD>The only defined value for this parameter is <CODE>null</CODE>
+ .<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The <I>index </I> array does not contain the exact type of arguments needed. The <CODE>Set</CODE>
+ accessor of the property reflected by the current instance is not found.<P>
+
+</TD></TR>
+<TR><TD><A HREF="TargetException.html" TARGET="contents">TargetException</A></TD><TD>The property reflected by the current instance is non-static, and <I>obj</I> is <CODE>null</CODE>
+ or is of a type that does not implement the property reflected by the current instance.</TD></TR>
+<TR><TD><A HREF="../../System/MethodAccessException.html" TARGET="contents">MethodAccessException</A></TD><TD>The <CODE>Set</CODE>
+ accessor of the property reflected by the current instance is non-public and the caller does not have <A HREF="../../System/Security/Permissions/ReflectionPermission.html" TARGET="contents">ReflectionPermission</A> to reflect on non-public methods.</TD></TR>
+<TR><TD><A HREF="TargetParameterCountException.html" TARGET="contents">TargetParameterCountException</A></TD><TD>The current instance reflects an indexer and <I>index</I>.Length does not equal the rank of the indexer.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PropertyInfo.html" TARGET="contents">System.Reflection.PropertyInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PropertyInfo.SetValue(System.Object, System.Object, System.Object[]) Method"><H3>PropertyInfo.SetValue(System.Object, System.Object, System.Object[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void SetValue(object obj, object value, object[] index);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sets the value of the property reflected by the current instance on the
+      specified object, using the specified index values. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>obj</DT>
+<DD>The object whose property value is returned. Specify <CODE>null</CODE>
+ to invoke a static <CODE>Set</CODE>
+ accessor on the property reflected by the current instance.</DD>
+<DT> value</DT>
+<DD>A object that contains the new value for the property.</DD>
+<DT> index</DT>
+<DD>An array of objects that is an index or values for indexed properties. This value is required to be <CODE>null</CODE>
+ for non-indexed properties. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>index </I> does not contain the exact type of arguments needed.<P>
+
+-or-<P>
+
+ The <CODE>Set</CODE>
+ accessor of the property reflected by the current instance was not found.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/MethodAccessException.html" TARGET="contents">MethodAccessException</A></TD><TD>The <CODE>Set</CODE>
+ accessor of the property reflected by the current instance is non-public and the caller does not have <A HREF="../../System/Security/Permissions/ReflectionPermission.html" TARGET="contents">ReflectionPermission</A> to reflect on non-public methods.</TD></TR>
+<TR><TD><A HREF="TargetException.html" TARGET="contents">TargetException</A></TD><TD>The property reflected by the current instance is non-static, and <I>obj</I> is <CODE>null</CODE>
+ or is of a type that does not implement the property reflected by the current instance.</TD></TR>
+<TR><TD><A HREF="TargetParameterCountException.html" TARGET="contents">TargetParameterCountException</A></TD><TD>The current instance reflects an indexer and <I>index</I>.Length does not equal the rank of the indexer.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PropertyInfo.html" TARGET="contents">System.Reflection.PropertyInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PropertyInfo.Attributes Property"><H3>PropertyInfo.Attributes Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract PropertyAttributes Attributes { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the attributes of the property reflected by the
+      current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="PropertyAttributes.html" TARGET="contents">PropertyAttributes</A> value that specifies the attributes of
+   the property reflected by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This property is read-only.<P>
+
+This property
+         gets a <A HREF="PropertyAttributes.html" TARGET="contents">PropertyAttributes</A> value that
+         indicates the attributes set in the metadata of the property reflected by
+         the current instance.<P>
+
+]<P>
+
+[<I>Usage</I>: Use this property
+      to determine if the property reflected by the current instance has
+      a special name or a default value.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PropertyInfo.html" TARGET="contents">System.Reflection.PropertyInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PropertyInfo.CanRead Property"><H3>PropertyInfo.CanRead Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool CanRead { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the property
+   reflected by the current instance has a <CODE>Get</CODE>
+ accessor.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the
+   property reflected by the current instance has a <CODE>Get</CODE>
+
+   accessor;
+   otherwise, <CODE>false</CODE>
+
+   .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This property is read-only.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PropertyInfo.html" TARGET="contents">System.Reflection.PropertyInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PropertyInfo.CanWrite Property"><H3>PropertyInfo.CanWrite Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool CanWrite { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the property
+   reflected by the current instance has a <CODE>Set</CODE>
+ accessor.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the
+   property reflected by the current instance has a <CODE>Set</CODE>
+
+   accessor;
+   otherwise, <CODE>false</CODE>
+
+   .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This property is read-only.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PropertyInfo.html" TARGET="contents">System.Reflection.PropertyInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="PropertyInfo.PropertyType Property"><H3>PropertyInfo.PropertyType Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract Type PropertyType { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the type of the property reflected by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Type.html" TARGET="contents">Type</A> that represents the
+   type of the
+   property reflected by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This property is read-only.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PropertyInfo.html" TARGET="contents">System.Reflection.PropertyInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,3807 @@
+<HTML>
+<HEAD>
+<TITLE>System.Xml.XmlReader Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Xml.XmlReader Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class XmlReader</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;XmlReader<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System.Xml
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents a reader that provides non-cached, forward-only access
+      to XML data.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This class provides forward-only,
+      read-only access to a stream of XML data. This class enforces the rules of
+      well-formed XML but does not perform data validation.<P>
+
+ This class conforms to the W3C Extensible Markup
+      Language (XML) 1.0 and the Namespaces
+      in XML recommendations. <P>
+
+ A given set of
+      XML data is modeled as a tree of nodes. The different types of
+      nodes are specified in the <A HREF="XmlNodeType.html" TARGET="contents">XmlNodeType</A> enumeration. The reader is advanced to the next node
+      using the System.Xml.XmlReader.Read method.
+      The current node refers to the node on which the reader
+      is positioned. The following table lists the node properties exposed for the
+      current
+      node. <P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>PropertyDescription</TH></TR>
+<TR><TD> The
+            number of attributes on the
+            node.</TD><TD> AttributeCount The
+            number of attributes on the
+            node.</TD></TR>
+<TR><TD>The
+            base URI of
+            the node.</TD><TD> BaseUriThe
+            base URI of
+            the node.</TD></TR>
+<TR><TD>The
+            depth of the
+            node in the tree.</TD><TD> DepthThe
+            depth of the
+            node in the tree.</TD></TR>
+<TR><TD>Whether the node has attributes.</TD><TD> HasAttributesWhether the node has attributes.</TD></TR>
+<TR><TD>Whether the node can have a text value.</TD><TD> HasValueWhether the node can have a text value.</TD></TR>
+<TR><TD>Whether an <CODE>Attribute</CODE>
+ node was
+         generated from the default value defined in the DTD or schema.</TD><TD> IsDefaultWhether an <CODE>Attribute</CODE>
+ node was
+         generated from the default value defined in the DTD or schema.</TD></TR>
+<TR><TD>Whether an <CODE>Element</CODE>
+ node is empty.</TD><TD> IsEmptyElementWhether an <CODE>Element</CODE>
+ node is empty.</TD></TR>
+<TR><TD>The local name of the node.</TD><TD> LocalNameThe local name of the node.</TD></TR>
+<TR><TD>The
+      qualified name of the node, equal to
+   <CODE>Prefix</CODE>
+:<CODE>LocalName</CODE>
+.</TD><TD> NameThe
+      qualified name of the node, equal to
+   <CODE>Prefix</CODE>
+:<CODE>LocalName</CODE>
+.</TD></TR>
+<TR><TD>The
+      URI defining the namespace associated with the node.</TD><TD> NamespaceUriThe
+      URI defining the namespace associated with the node.</TD></TR>
+<TR><TD>The <A HREF="XmlNodeType.html" TARGET="contents">XmlNodeType</A> of the
+   node.</TD><TD> NodeTypeThe <A HREF="XmlNodeType.html" TARGET="contents">XmlNodeType</A> of the
+   node.</TD></TR>
+<TR><TD>A
+      shorthand reference to the namespace associated with the node.</TD><TD> PrefixA
+      shorthand reference to the namespace associated with the node.</TD></TR>
+<TR><TD>The
+      quotation mark character used to enclose the value of an
+      attribute.</TD><TD> QuoteCharThe
+      quotation mark character used to enclose the value of an
+      attribute.</TD></TR>
+<TR><TD>The
+      text value of the node.</TD><TD> ValueThe
+      text value of the node.</TD></TR>
+<TR><TD>The
+      <CODE>xml:lang</CODE> scope within which the node
+      resides.</TD><TD> XmlLangThe
+      <CODE>xml:lang</CODE> scope within which the node
+      resides.</TD></TR>
+</TABLE>
+ This class does not expand default attributes or general
+   entities. Any general entities encountered are returned as a single empty
+<CODE>EntityReference</CODE>
+ node. <P>
+
+This class checks that a Document Type Definition (DTD) is well-formed, but does not validate using the
+   DTD.<P>
+
+To read strongly typed data, use the <A HREF="XmlConvert.html" TARGET="contents">XmlConvert</A> class. <P>
+
+This class throws a <A HREF="XmlException.html" TARGET="contents">XmlException</A> on XML parse errors.
+After an exception is thrown, the state of the reader is not predictable. For
+example, the reported node type may be different than the actual node type of
+the current node.<P>
+
+[<I>Note</I>: This class is <CODE>abstract</CODE>
+ and implemented in the <A HREF="XmlTextReader.html" TARGET="contents">XmlTextReader</A>
+class.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>DefaultMemberAttribute(&quot;Item&quot;)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+XmlReader Constructors<P>
+
+<A HREF="#XmlReader Constructor" TARGET="contents">XmlReader Constructor</A><BR>
+<P>
+
+XmlReader Methods<P>
+
+<A HREF="#XmlReader.Close Method" TARGET="contents">XmlReader.Close Method</A><BR>
+<A HREF="#XmlReader.GetAttribute(int) Method" TARGET="contents">XmlReader.GetAttribute(int) Method</A><BR>
+<A HREF="#XmlReader.GetAttribute(System.String, System.String) Method" TARGET="contents">XmlReader.GetAttribute(System.String, System.String) Method</A><BR>
+<A HREF="#XmlReader.GetAttribute(System.String) Method" TARGET="contents">XmlReader.GetAttribute(System.String) Method</A><BR>
+<A HREF="#XmlReader.IsName Method" TARGET="contents">XmlReader.IsName Method</A><BR>
+<A HREF="#XmlReader.IsNameToken Method" TARGET="contents">XmlReader.IsNameToken Method</A><BR>
+<A HREF="#XmlReader.IsStartElement(System.String, System.String) Method" TARGET="contents">XmlReader.IsStartElement(System.String, System.String) Method</A><BR>
+<A HREF="#XmlReader.IsStartElement(System.String) Method" TARGET="contents">XmlReader.IsStartElement(System.String) Method</A><BR>
+<A HREF="#XmlReader.IsStartElement() Method" TARGET="contents">XmlReader.IsStartElement() Method</A><BR>
+<A HREF="#XmlReader.LookupNamespace Method" TARGET="contents">XmlReader.LookupNamespace Method</A><BR>
+<A HREF="#XmlReader.MoveToAttribute(int) Method" TARGET="contents">XmlReader.MoveToAttribute(int) Method</A><BR>
+<A HREF="#XmlReader.MoveToAttribute(System.String, System.String) Method" TARGET="contents">XmlReader.MoveToAttribute(System.String, System.String) Method</A><BR>
+<A HREF="#XmlReader.MoveToAttribute(System.String) Method" TARGET="contents">XmlReader.MoveToAttribute(System.String) Method</A><BR>
+<A HREF="#XmlReader.MoveToContent Method" TARGET="contents">XmlReader.MoveToContent Method</A><BR>
+<A HREF="#XmlReader.MoveToElement Method" TARGET="contents">XmlReader.MoveToElement Method</A><BR>
+<A HREF="#XmlReader.MoveToFirstAttribute Method" TARGET="contents">XmlReader.MoveToFirstAttribute Method</A><BR>
+<A HREF="#XmlReader.MoveToNextAttribute Method" TARGET="contents">XmlReader.MoveToNextAttribute Method</A><BR>
+<A HREF="#XmlReader.Read Method" TARGET="contents">XmlReader.Read Method</A><BR>
+<A HREF="#XmlReader.ReadAttributeValue Method" TARGET="contents">XmlReader.ReadAttributeValue Method</A><BR>
+<A HREF="#XmlReader.ReadElementString(System.String, System.String) Method" TARGET="contents">XmlReader.ReadElementString(System.String, System.String) Method</A><BR>
+<A HREF="#XmlReader.ReadElementString(System.String) Method" TARGET="contents">XmlReader.ReadElementString(System.String) Method</A><BR>
+<A HREF="#XmlReader.ReadElementString() Method" TARGET="contents">XmlReader.ReadElementString() Method</A><BR>
+<A HREF="#XmlReader.ReadEndElement Method" TARGET="contents">XmlReader.ReadEndElement Method</A><BR>
+<A HREF="#XmlReader.ReadInnerXml Method" TARGET="contents">XmlReader.ReadInnerXml Method</A><BR>
+<A HREF="#XmlReader.ReadOuterXml Method" TARGET="contents">XmlReader.ReadOuterXml Method</A><BR>
+<A HREF="#XmlReader.ReadStartElement(System.String, System.String) Method" TARGET="contents">XmlReader.ReadStartElement(System.String, System.String) Method</A><BR>
+<A HREF="#XmlReader.ReadStartElement(System.String) Method" TARGET="contents">XmlReader.ReadStartElement(System.String) Method</A><BR>
+<A HREF="#XmlReader.ReadStartElement() Method" TARGET="contents">XmlReader.ReadStartElement() Method</A><BR>
+<A HREF="#XmlReader.ReadString Method" TARGET="contents">XmlReader.ReadString Method</A><BR>
+<A HREF="#XmlReader.ResolveEntity Method" TARGET="contents">XmlReader.ResolveEntity Method</A><BR>
+<A HREF="#XmlReader.Skip Method" TARGET="contents">XmlReader.Skip Method</A><BR>
+<P>
+
+XmlReader Properties<P>
+
+<A HREF="#XmlReader.AttributeCount Property" TARGET="contents">XmlReader.AttributeCount Property</A><BR>
+<A HREF="#XmlReader.BaseURI Property" TARGET="contents">XmlReader.BaseURI Property</A><BR>
+<A HREF="#XmlReader.CanResolveEntity Property" TARGET="contents">XmlReader.CanResolveEntity Property</A><BR>
+<A HREF="#XmlReader.Depth Property" TARGET="contents">XmlReader.Depth Property</A><BR>
+<A HREF="#XmlReader.EOF Property" TARGET="contents">XmlReader.EOF Property</A><BR>
+<A HREF="#XmlReader.HasAttributes Property" TARGET="contents">XmlReader.HasAttributes Property</A><BR>
+<A HREF="#XmlReader.HasValue Property" TARGET="contents">XmlReader.HasValue Property</A><BR>
+<A HREF="#XmlReader.IsDefault Property" TARGET="contents">XmlReader.IsDefault Property</A><BR>
+<A HREF="#XmlReader.IsEmptyElement Property" TARGET="contents">XmlReader.IsEmptyElement Property</A><BR>
+<A HREF="#XmlReader.Item(int) Property" TARGET="contents">XmlReader.Item(int) Property</A><BR>
+<A HREF="#XmlReader.Item(System.String) Property" TARGET="contents">XmlReader.Item(System.String) Property</A><BR>
+<A HREF="#XmlReader.Item(System.String, System.String) Property" TARGET="contents">XmlReader.Item(System.String, System.String) Property</A><BR>
+<A HREF="#XmlReader.LocalName Property" TARGET="contents">XmlReader.LocalName Property</A><BR>
+<A HREF="#XmlReader.Name Property" TARGET="contents">XmlReader.Name Property</A><BR>
+<A HREF="#XmlReader.NameTable Property" TARGET="contents">XmlReader.NameTable Property</A><BR>
+<A HREF="#XmlReader.NamespaceURI Property" TARGET="contents">XmlReader.NamespaceURI Property</A><BR>
+<A HREF="#XmlReader.NodeType Property" TARGET="contents">XmlReader.NodeType Property</A><BR>
+<A HREF="#XmlReader.Prefix Property" TARGET="contents">XmlReader.Prefix Property</A><BR>
+<A HREF="#XmlReader.QuoteChar Property" TARGET="contents">XmlReader.QuoteChar Property</A><BR>
+<A HREF="#XmlReader.ReadState Property" TARGET="contents">XmlReader.ReadState Property</A><BR>
+<A HREF="#XmlReader.Value Property" TARGET="contents">XmlReader.Value Property</A><BR>
+<A HREF="#XmlReader.XmlLang Property" TARGET="contents">XmlReader.XmlLang Property</A><BR>
+<A HREF="#XmlReader.XmlSpace Property" TARGET="contents">XmlReader.XmlSpace Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="XmlReader Constructor"><H3>XmlReader Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected XmlReader();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new instance of the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A> class.
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.Close Method"><H3>XmlReader.Close Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract void Close();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Changes the System.Xml.XmlReader.ReadState to System.Xml.ReadState.Closed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  This method
+      releases any resources allocated by the current instance, changes the System.Xml.XmlReader.ReadState
+      to System.Xml.ReadState.Closed, and calls the <CODE>Close</CODE>
+
+      method of any underlying <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> or <A HREF="../../System/IO/TextReader.html" TARGET="contents">TextReader</A> instance.
+      ]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.GetAttribute(int) Method"><H3>XmlReader.GetAttribute(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string GetAttribute(int i);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the value of the attribute with the specified index relative to the containing element.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>i</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> specifying the zero-based index of the attribute relative to the containing element.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the value of the specified attribute.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>i</I> is less than 0, or greater than or equal to the System.Xml.XmlReader.AttributeCount of the containing element.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  This method does not move the
+      reader. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+For an example demonstrating this method, see System.Xml.XmlTextReader.GetAttribute(System.Int32)(<A HREF="../../System/String.html" TARGET="contents">String</A>, <A HREF="../../System/String.html" TARGET="contents">String</A>).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.GetAttribute(System.String, System.String) Method"><H3>XmlReader.GetAttribute(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string GetAttribute(string name, string namespaceURI);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the value of the attribute with the specified local
+      name and namespace URI.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the local name of the attribute.</DD>
+<DT> namespaceURI</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the namespace URI of the attribute.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the value of the specified attribute, or <CODE>null</CODE>
+ if the
+attribute is not found.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  This method does not move the
+      reader. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+For an example demonstrating this method, see System.Xml.XmlTextReader.GetAttribute(System.Int32)(<A HREF="../../System/String.html" TARGET="contents">String</A>, <A HREF="../../System/String.html" TARGET="contents">String</A>).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.GetAttribute(System.String) Method"><H3>XmlReader.GetAttribute(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string GetAttribute(string name);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the value of the attribute with the specified qualified name.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the qualified name of the attribute.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the value of the specified attribute, or <CODE>null</CODE>
+ if the
+attribute is not found.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  This method does not move the
+      reader. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+For an example demonstrating this method, see System.Xml.XmlTextReader.GetAttribute(System.Int32)(<A HREF="../../System/String.html" TARGET="contents">String</A>, <A HREF="../../System/String.html" TARGET="contents">String</A>).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.IsName Method"><H3>XmlReader.IsName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool IsName(string str);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether
+      the specified string is a valid XML name.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>str</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the name to validate.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates the name
+   is valid; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  This method uses the W3C XML
+         1.0 Recommendation (http://www.w3.org/TR/2000/REC-xml-20001006#NT-Name) to determine whether the name is valid.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.IsNameToken Method"><H3>XmlReader.IsNameToken Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool IsNameToken(string str);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether the specified
+      string is a valid XML name token (Nmtoken).<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>str</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the name to validate.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates
+   the name is valid; otherwise <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  This method uses the W3C XML 1.0 Recommendation (http://www.w3.org/TR/2000/REC-xml-20001006#NT-Nmtoken
+         ) to determine whether the name token is valid.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.IsStartElement(System.String, System.String) Method"><H3>XmlReader.IsStartElement(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool IsStartElement(string localname, string ns);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines if a node containing content is an
+   <CODE>Element</CODE>
+ node with the specified local name
+      and namespace URI. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>localname</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the local name of an element.</DD>
+<DT>ns</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the namespace URI associated with the element. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates the node
+   is an <CODE>Element</CODE>
+ node with the specified local name and namespace
+   URI; <CODE>false</CODE>
+
+   otherwise.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>An error occurred while parsing the XML.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above. ]<P>
+
+<P>
+
+[<I>Default</I>:  This method
+      calls the System.Xml.XmlReader.MoveToContent method, which
+      determines whether the current node can
+      contain content and, if not, moves the reader to the next content node or
+      the end of the input stream. When the reader is positioned on a content node,
+      the node is checked to determine if it is an <CODE>Element</CODE>
+ node with System.Xml.XmlReader.LocalName
+      and System.Xml.XmlReader.NamespaceURI properties equal to
+   <I>localname</I> and <I> ns</I>, respectively. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  Override this
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
+      class.
+   ]<P>
+
+<P>
+
+[<I>Usage</I>:  Use this method to
+      determine whether the node returned by the System.Xml.XmlReader.MoveToContent method
+      is an <CODE> Element</CODE>
+ node with the specified local
+      name and namespace URI.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.IsStartElement(System.String) Method"><H3>XmlReader.IsStartElement(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool IsStartElement(string name);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines if a node containing content is an <CODE>Element</CODE>
+ node
+   with the specified qualified name.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the qualified name of an element.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>
+where <CODE>true</CODE>
+ indicates the node is an
+<CODE>Element</CODE>
+ node with the specified name; <CODE>false</CODE>
+ 
+otherwise.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>An error occurred while parsing the XML.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above. ]<P>
+
+<P>
+
+[<I>Default</I>:  This method
+      calls the System.Xml.XmlReader.MoveToContent method, which
+      determines whether the current node can
+      contain content and, if not, moves the reader to the next content node or
+      the end of the input stream. When the reader is positioned on a content node,
+      the node is checked to determine if it is an <CODE>Element</CODE>
+ node with a System.Xml.XmlReader.Name property equal
+      to <I> name</I>.]<P>
+
+<P>
+
+[<I>Overrides</I>:  Override this 
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
+      class.
+
+   ]<P>
+
+<P>
+
+[<I>Usage</I>:  Use this method to
+      determine whether the node returned by the System.Xml.XmlReader.MoveToContent method is an <CODE> Element</CODE>
+ node with the specified name.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.IsStartElement() Method"><H3>XmlReader.IsStartElement() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool IsStartElement();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines if a node containing content is an
+   <CODE>Element</CODE>
+
+   node.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates the node is an
+<CODE>Element</CODE>
+ 
+node; <CODE>false</CODE>
+
+otherwise.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>An error occurred while parsing the XML.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above.]<P>
+
+<P>
+
+[<I>Default</I>: This method calls the System.Xml.XmlReader.MoveToContent method, which 
+   determines whether
+   the current node can contain content and, if not, moves the reader
+   to the next content node or the end of the input stream. When the reader
+   is positioned on a content node, the node is checked to determine if it is
+   an <CODE>Element</CODE>
+
+   node. ]<P>
+
+<P>
+
+[<I>Overrides</I>:   Override this 
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
+      class.
+
+]<P>
+
+<P>
+
+[<I>Usage</I>:  Use this method to
+   determine whether the node returned by the System.Xml.XmlReader.MoveToContent method is an <CODE> Element</CODE>
+
+   node.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.LookupNamespace Method"><H3>XmlReader.LookupNamespace Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string LookupNamespace(string prefix);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Resolves a namespace prefix in the scope of the current element.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>prefix</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the prefix whose namespace URI is to be resolved. To return the default namespace, specify System.String.Empty. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the
+   namespace URI to which the prefix maps. If <I>prefix</I> is not in System.Xml.XmlReader.NameTable or no matching namespace is found, <CODE>null</CODE>
+ is returned.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.MoveToAttribute(int) Method"><H3>XmlReader.MoveToAttribute(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract void MoveToAttribute(int i);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Moves the position of the current instance to the attribute with the specified index relative to the containing element.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>i</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> specifying the zero-based index of the attribute relative to the containing element.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>i</I> is less than 0 or greater than or equal to the System.Xml.XmlReader.AttributeCount of the containing element.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  After calling
+      this method, the System.Xml.XmlReader.Name,
+      System.Xml.XmlReader.NamespaceURI, and System.Xml.XmlReader.Prefix properties reflect the properties of current attribute.]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.MoveToAttribute(System.String, System.String) Method"><H3>XmlReader.MoveToAttribute(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool MoveToAttribute(string name, string ns);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Moves the position of the current instance to the attribute with the specified local name and
+      namespace URI.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the local name of the attribute.</DD>
+<DT> ns</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the namespace URI of the attribute.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>
+where <CODE>true</CODE>
+ indicates the attribute was found; otherwise,
+<CODE>false</CODE>
+. If <CODE>false</CODE>
+, the position of the current 
+instance does not change.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  After calling
+      this method, the System.Xml.XmlReader.Name,
+      System.Xml.XmlReader.NamespaceURI, and System.Xml.XmlReader.Prefix properties reflect the properties of current attribute.]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.MoveToAttribute(System.String) Method"><H3>XmlReader.MoveToAttribute(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool MoveToAttribute(string name);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Moves the position of the current instance to the attribute with the specified qualified
+      name.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the qualified name of the attribute.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>
+where <CODE>true</CODE>
+ indicates the attribute was found; otherwise,
+<CODE>false</CODE>
+. If <CODE>false</CODE>
+, the reader&apos;s position does 
+not change.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  After calling
+      this method, the System.Xml.XmlReader.Name,
+      System.Xml.XmlReader.NamespaceURI, and System.Xml.XmlReader.Prefix properties reflect the properties of current attribute.]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.MoveToContent Method"><H3>XmlReader.MoveToContent Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual XmlNodeType MoveToContent();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether the current node can contain content and, if not,
+      moves the position of the current instance to the next content node or the
+      end of the input stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The <A HREF="XmlNodeType.html" TARGET="contents">XmlNodeType</A><CODE> </CODE>
+of the content
+   node, or System.Xml.XmlNodeType.None if the
+   position
+   of the reader has reached the end of the input stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>An error occurred while parsing the XML.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: 
+      The following members of <A HREF="XmlNodeType.html" TARGET="contents">XmlNodeType</A> can contain content:
+   <CODE>Attribute</CODE>
+, <CODE>CDATA</CODE>
+, <CODE>Element</CODE>
+, <CODE>EndElement</CODE>
+,
+   <CODE>EntityReference</CODE>
+, <CODE>EndEntity</CODE>
+, and <CODE>Text</CODE>
+.
+   ]<P>
+
+<P>
+
+[<I>Behaviors</I>:  As described above.]<P>
+
+<P>
+
+[<I>Default</I>:  If the
+      current node is an <CODE>Attribute</CODE>
+ node, this method
+      moves the position of the reader
+      back to the <CODE>Element</CODE>
+ node that owns the attribute. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  Override this
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
+      class.
+   ]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to determine whether the current
+      node can contain content and, if not, move the position of the reader to the next content node.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.MoveToElement Method"><H3>XmlReader.MoveToElement Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool MoveToElement();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Moves the position of the current instance to the node that contains the current
+      <CODE>Attribute</CODE>
+ node.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates the position of the reader was moved; <CODE>false</CODE>
+ indicates the reader was not positioned on an <CODE>Attribute</CODE>
+ node and
+   therefore the position of the reader was not
+   moved.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: 
+      The <CODE>DocumentType</CODE>
+, <CODE>Element</CODE>
+, and<CODE> XmlDeclaration</CODE>
+ members of <A HREF="XmlNodeType.html" TARGET="contents">XmlNodeType</A> can contain
+      attributes.
+      ]<P>
+
+<P>
+
+[<I>Behaviors</I>:  As described
+      above. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.MoveToFirstAttribute Method"><H3>XmlReader.MoveToFirstAttribute Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool MoveToFirstAttribute();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Moves the position of the current instance to the first attribute associated with the current node.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>
+where <CODE>true</CODE>
+ indicates the current node contains at least one attribute; otherwise,
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  If System.Xml.XmlReader.AttributeCount is non-zero,
+   the position of
+   the reader
+   moves to the first attribute; otherwise, the position of the reader does not change. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.MoveToNextAttribute Method"><H3>XmlReader.MoveToNextAttribute Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool MoveToNextAttribute();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Moves the position of the current instance to the next attribute associated with the current node.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates the position of the reader moved to the next attribute; <CODE>false</CODE>
+ if there were no more attributes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.Read Method"><H3>XmlReader.Read Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool Read();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Moves the position of the current instance to the next node in the stream, exposing its properties.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>
+where <CODE>true</CODE>
+ indicates the node was read successfully, and
+<CODE>false</CODE>
+ indicates there were no more nodes to read.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>An error occurred while parsing the XML.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above. ]<P>
+
+<P>
+
+[<I>Overrides</I>: 
+      This method must be overridden in order to provide the functionality as described herein, as there is no default implementation.
+      ]<P>
+
+<P>
+
+[<I>Usage</I>: When a reader
+      is first created and initialized, there is no information available. Calling
+      this method is required to read the first node.
+      ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.ReadAttributeValue Method"><H3>XmlReader.ReadAttributeValue Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool ReadAttributeValue();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Parses an attribute value into one or more
+   <CODE>Text</CODE>
+, <CODE>EntityReference</CODE>
+, and <CODE>EndEntity</CODE>
+
+   nodes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates the attribute value was parsed, and
+<CODE>false</CODE>
+ indicates the reader was not 
+   positioned on an attribute node or all the attribute values have been read.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  To parse an
+      <CODE>EntityReference</CODE>
+ node, call the System.Xml.XmlReader.ResolveEntity method. After the node is parsed into child nodes, call
+         the System.Xml.XmlReader.ReadAttributeValue
+         method again to read the value of the entity.<P>
+
+The
+      System.Xml.XmlReader.Depth of an
+         attribute value node is one plus the depth of the attribute node. When general entity references
+         are stepped into or out of, the System.Xml.XmlReader.Depth
+         
+         increments or decrements by one, respectively.<P>
+
+]<P>
+
+[<I>Behaviors</I>: 
+      As described above.
+   ]<P>
+
+<P>
+
+[<I>Overrides</I>: 
+      
+      Implementations that cannot expand general entities should return general
+      entities as a single empty (System.Xml.XmlReader.Value equals System.String.Empty)
+   <CODE>EntityReference</CODE>
+
+   node.
+]<P>
+
+<P>
+
+[<I>Usage</I>:  Use this method after calling System.Xml.XmlReader.MoveToAttribute(System.String) to
+read through the <CODE>Text</CODE>
+ , <CODE>EntityReference,</CODE>
+ or <CODE>EndEntity</CODE>
+
+nodes that make up the attribute
+value. Call the System.Xml.XmlReader.ResolveEntity method to resolve the
+<CODE>EntityReference</CODE>
+ 
+nodes. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.ReadElementString(System.String, System.String) Method"><H3>XmlReader.ReadElementString(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string ReadElementString(string localname, string ns);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reads the contents of a text-only
+      element with the specified local name and namespace URI.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>localname</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the local name of an element.</DD>
+<DT> ns</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the namespace URI associated with the element.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the contents of the element.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>The node is not an <CODE>Element</CODE>
+ node, the System.Xml.XmlReader.LocalName property of the <CODE>Element</CODE>
+ node does not equal <I>localname</I>, or the System.Xml.XmlReader.NamespaceURI property of the <CODE>Element</CODE>
+ node does not equal <I>ns</I>, the element does not contain a simple text value, or an error occurred while parsing the XML.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above. ]<P>
+
+<P>
+
+[<I>Default</I>:  This method
+      calls the System.Xml.XmlReader.MoveToContent method. If the returned node is an
+   <CODE>Element</CODE>
+ node, this method compares the System.Xml.XmlReader.LocalName
+   and System.Xml.XmlReader.NamespaceURI properties of the node to <I>localname</I> and
+<I>ns</I>, respectively. If they are equal, this method calls the System.Xml.XmlReader.ReadString 
+method to read
+the contents of the element. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  Override this
+   method to customize the behavior of this method in types derived from
+   the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
+   class.
+]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to
+   read the contents of a text-only element with the specified local name and namespace URI.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.ReadElementString(System.String) Method"><H3>XmlReader.ReadElementString(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string ReadElementString(string name);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reads the contents of a text-only element with the specified qualified
+      name.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the qualified name of an element.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the contents of the element.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>The node is not an <CODE>Element</CODE>
+ node, the System.Xml.XmlReader.Name property of the <CODE>Element</CODE>
+ node does not equal <I>name</I>, the element does not contain a simple text value, or an error occurred while parsing the XML.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above. ]<P>
+
+<P>
+
+[<I>Default</I>: This method calls the
+      System.Xml.XmlReader.MoveToContent method and, if
+      the returned node is an <CODE>Element</CODE>
+ node,
+      compares the System.Xml.XmlReader.Name property of the node
+      to <I> name</I>. If they are equal, this method calls the System.Xml.XmlReader.ReadString method to read
+      the contents of the element. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  Override this 
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
+      class.
+
+      ]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to read the contents of a text-only element with the specified qualified name.
+      ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.ReadElementString() Method"><H3>XmlReader.ReadElementString() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string ReadElementString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reads the contents of a text-only element.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the contents of the element.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>The node is not an <CODE>Element</CODE>
+ node, the element does not contain a simple text value, or an error occurred while parsing the XML.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above. ]<P>
+
+<P>
+
+[<I>Default</I>:  This method calls the
+      System.Xml.XmlReader.MoveToContent method and, if
+      the returned node is an <CODE>Element</CODE>
+ node, calls the System.Xml.XmlReader.ReadString
+      method to read the contents. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  Override this 
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
+      class.
+
+      ]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to read the contents of a text-only element.
+      ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.ReadEndElement Method"><H3>XmlReader.ReadEndElement Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void ReadEndElement();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reads an <CODE>EndElement</CODE>
+ node and advances the reader to
+   the next node.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>The node is not an <CODE>EndElement</CODE>
+ node or an error occurred while parsing the XML.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above. ]<P>
+
+<P>
+
+[<I>Default</I>:  This method
+      calls the System.Xml.XmlReader.MoveToContent method, which determines whether the
+      current node can contain content and, if not, moves the reader to the next
+      content node or the end of the input stream. The node the reader ends up
+      positioned on is checked to determine if it is an <CODE>EndElement</CODE>
+
+      node. If so, the node is read and the reader is moved to the next node.]<P>
+
+<P>
+
+[<I>Overrides</I>:   Override this 
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
+      class.
+
+      ]<P>
+
+<P>
+
+[<I>Usage</I>:  Use this method to
+      read an <CODE>EndElement</CODE>
+ node and advance the reader to the next node.
+      ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.ReadInnerXml Method"><H3>XmlReader.ReadInnerXml Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string ReadInnerXml();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reads the contents of the current node, including child nodes and markup.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the XML content, or System.String.Empty if the current node is neither an element nor
+attribute, or has no child nodes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>The XML was not well-formed, or an error occurred while parsing the XML.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  The current node and corresponding end node are not returned. <P>
+
+If the current node is an element, after the call to this method, the reader
+         is positioned after the corresponding end element.<P>
+
+If the current node is an attribute, the position of the reader is not changed.<P>
+
+[<I>Note</I>:  For a comparison
+      between this method and the System.Xml.XmlReader.ReadOuterXml method, see System.Xml.XmlTextReader.ReadInnerXml.<P>
+
+]<P>
+
+]<P>
+
+[<I>Overrides</I>:  This method must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.ReadOuterXml Method"><H3>XmlReader.ReadOuterXml Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string ReadOuterXml();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reads the current node and its contents, including child nodes and markup.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the XML content, or System.String.Empty if the current node is neither an element nor
+attribute.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>The XML was not well-formed, or an error occurred while parsing the XML.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  The current node and corresponding end node are returned. <P>
+
+If the current node is an element, after the call to this method, the reader
+         is positioned after the corresponding end element.<P>
+
+If the current node is an attribute, the position of the reader is not changed.<P>
+
+[<I>Note</I>:  For a comparison
+      between this method and the System.Xml.XmlReader.ReadOuterXml method, see System.Xml.XmlTextReader.ReadInnerXml.<P>
+
+]<P>
+
+]<P>
+
+[<I>Overrides</I>:  This method must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.ReadStartElement(System.String, System.String) Method"><H3>XmlReader.ReadStartElement(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void ReadStartElement(string localname, string ns);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reads an <CODE>Element</CODE>
+ node with the specified local name and
+   namespace URI and advances the reader to the next node.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>localname</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the local name of an element.</DD>
+<DT> ns</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the namespace URI associated with the element.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>The node is not an <CODE>Element</CODE>
+ node, the System.Xml.XmlReader.LocalName property of the <CODE>Element</CODE>
+ node does not equal <I>localname</I>, the System.Xml.XmlReader.NamespaceURI property of the <CODE>Element</CODE>
+ node does not equal <I>ns</I>, or an error occurred while parsing the XML.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above. ]<P>
+
+<P>
+
+[<I>Default</I>: This method calls
+      the System.Xml.XmlReader.MoveToContent method. If the returned node is an
+   <CODE>Element</CODE>
+ node, this method compares the System.Xml.XmlReader.LocalName
+   and System.Xml.XmlReader.NamespaceURI properties of the node to <I>localname</I>
+   and <I>ns</I>, respectively. If they are equal, this method calls the System.Xml.XmlReader.Read
+   method to read the element and move to the next node. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  Override this
+   method to customize the behavior of this method in types derived from
+   the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
+   class.
+]<P>
+
+<P>
+
+[<I>Usage</I>:  Use this method to
+   read an <CODE>Element</CODE>
+ node with the specified
+   local name and namespace URI, and advance the reader to the next node.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.ReadStartElement(System.String) Method"><H3>XmlReader.ReadStartElement(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void ReadStartElement(string name);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reads an <CODE>Element</CODE>
+
+node with the specified qualified name and advances
+the reader to the next node.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the qualified name of an element.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>The node is not an <CODE>Element</CODE>
+ node, the System.Xml.XmlReader.Name property of the <CODE>Element</CODE>
+ node does not equal <I>name</I>, or an error occurred while parsing the XML.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above. ]<P>
+
+<P>
+
+[<I>Default</I>: This method calls
+      the System.Xml.XmlReader.MoveToContent method and, if the returned node is an
+      <CODE>Element</CODE>
+ node, compares the System.Xml.XmlReader.Name property of the node to
+      <I>name</I>. If they are equal, this method calls the System.Xml.XmlReader.Read
+   method to read the element and move to the next node. ]<P>
+
+<P>
+
+[<I>Overrides</I>:   Override this 
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
+      class.
+
+]<P>
+
+<P>
+
+[<I>Usage</I>:  Use this method to
+   read an <CODE>Element</CODE>
+ node with the specified
+   qualified name, and advance the reader to the next node.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.ReadStartElement() Method"><H3>XmlReader.ReadStartElement() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void ReadStartElement();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Reads an <CODE>Element</CODE>
+ node and advances the reader to the next
+   node.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>The node is not an <CODE>Element</CODE>
+ node or an error occurred while parsing the XML.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above. ]<P>
+
+<P>
+
+[<I>Default</I>: This method
+      calls the System.Xml.XmlReader.MoveToContent method, which determines whether the
+      current node can contain content and, if not, moves the reader to the next
+      content node or the end of the input stream. The node the reader ends up
+      positioned on is checked to determine if it is an <CODE>Element</CODE>
+
+      node. If so, the node is read and the reader is moved to the next node. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  Override this 
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
+      class.
+
+      ]<P>
+
+<P>
+
+[<I>Usage</I>:  Use this method to
+      read an <CODE>Element</CODE>
+ node and advance the reader to the next node.
+      ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.ReadString Method"><H3>XmlReader.ReadString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string ReadString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reads the contents of an element or text node as a string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the contents of the <CODE>Element</CODE>
+ or <CODE>Text</CODE>
+
+node, or System.String.Empty if the reader is positioned on any other type of
+node.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>An error occurred while parsing the XML.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: If positioned on an <CODE>Element</CODE>
+ node, this method concatenates all
+      <CODE>Text</CODE>
+, <CODE>SignificantWhitespace</CODE>
+,
+      <CODE>Whitespace</CODE>
+, and <CODE>CDATA</CODE>
+ node types, and returns the concatenated
+      data as the element content. If none of these node types exist,
+      System.String.Empty
+   is returned. Concatenation
+   stops when any markup is encountered, which can occur in a mixed content
+   model or when an element end tag is read.<P>
+
+If positioned on an element <CODE>Text</CODE>
+ node, this method performs the same
+concatenation from the <CODE>Text</CODE>
+ node to the element end tag. If the
+reader is positioned on an attribute <CODE>Text</CODE>
+ node, this method has the same functionality as
+if the reader were position on the element start tag. <P>
+
+]<P>
+
+[<I>Overrides</I>:  This method must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.ResolveEntity Method"><H3>XmlReader.ResolveEntity Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract void ResolveEntity();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Resolves the entity
+      reference for <CODE>EntityReference</CODE>
+ nodes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The reader is not positioned on a System.Xml.XmlNodeType.EntityReference node.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  This method
+         parses the entity reference into child nodes. When the parsing is finished a
+         new System.Xml.XmlNodeType.EndEntity node is
+         placed
+         in the
+         stream to close the <CODE>EntityReference</CODE>
+
+         
+         scope. To step into the entity after this
+         method has been called, call the System.Xml.XmlReader.ReadAttributeValue method if the entity is part of an attribute value,
+         or the System.Xml.XmlReader.Read method if the entity is part of element
+         content.<P>
+
+ If this method is not called, the parser moves to the
+         next node past the entity (child nodes are bypassed).<P>
+
+]<P>
+
+[<I>Overrides</I>: This method must be overridden in order to provide the functionality as described in
+         the Behaviors and Usage sections, as there is no default implementation.<P>
+
+This method is required
+         to throw an exception for implementations that do not support schema or DTD
+         information. In this case, the System.Xml.XmlReader.CanResolveEntity
+         property is required to return
+      <CODE> false</CODE>
+.<P>
+
+]<P>
+
+[<I>Usage</I>:  Use this method
+      to resolve the entity reference for <CODE> EntityReference</CODE>
+ nodes. Before calling
+      this method, determine whether the reader can resolve an entity by
+      checking the System.Xml.XmlReader.CanResolveEntity property. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.Skip Method"><H3>XmlReader.Skip Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Skip();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Skips over the current element and moves the position of the current instance to the next node in the stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>The XML was not well-formed, or an error occurred while parsing the XML.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  If the reader
+      is positioned on a non-empty <CODE>Element</CODE>
+ node (System.Xml.XmlReader.IsEmptyElement equals <CODE>false</CODE>
+), the position of the reader is moved to the node following the
+      corresponding <CODE>EndElement</CODE>
+ node. The properties of the
+      nodes that are skipped over are not exposed. If the reader is positioned on any
+      other node type, the position of the reader is moved to the next node, in this
+      case behaving like the System.Xml.XmlReader.Read
+      
+      method. ]<P>
+
+<P>
+
+[<I>Default</I>:  This method
+      calls the System.Xml.XmlReader.MoveToElement method before skipping to the next node. ]<P>
+
+<P>
+
+[<I>Overrides</I>: 
+      Override this
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
+      class.
+   ]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to skip over the current node.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.AttributeCount Property"><H3>XmlReader.AttributeCount Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract int AttributeCount { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the number of attributes on the current node.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the
+   number of attributes on the current node, or zero if the current node does not support attributes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: 
+      This property is only relevant to the <CODE>DocumentType</CODE>
+,
+   <CODE>Element</CODE>
+, and <CODE>XmlDeclaration</CODE>
+ node types of the
+   <A HREF="XmlNodeType.html" TARGET="contents">XmlNodeType</A>
+   enumeration. Other node types do not have attributes.
+]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+      above.<P>
+
+ This property is
+      read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.BaseURI Property"><H3>XmlReader.BaseURI Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string BaseURI { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the base Uniform Resource Identifier (URI) of the current node. <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The base URI of the current node.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  A networked XML document is comprised of chunks of
+      data aggregated using various W3C standard inclusion mechanisms and
+      therefore contains nodes that come from different places. DTD entities are an example
+      of this, but this is not limited to DTDs. The base URI tells where these nodes
+      come from. If there is no base URI for the nodes being returned (for example,
+      they were parsed from an in-memory string), System.String.Empty
+      
+      is returned.
+      ]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+      above.<P>
+
+ This property is
+      read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.CanResolveEntity Property"><H3>XmlReader.CanResolveEntity Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool CanResolveEntity { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a value indicating whether this reader can parse
+      and resolve entities.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>
+equal to <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This property
+         returns <CODE>true</CODE>
+ to indicate the reader can parse and resolve
+         entities; otherwise, <CODE> false</CODE>
+.<P>
+
+This property is
+         read-only.<P>
+
+]<P>
+
+[<I>Default</I>:  This property
+      always returns <CODE> false</CODE>
+. ]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this property
+      to return <CODE>true</CODE>
+ for
+      implementations that support schema or
+      DTD information.]<P>
+
+<P>
+
+[<I>Usage</I>:  Use this
+      property to determine whether the reader can parse and resolve entities.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.Depth Property"><H3>XmlReader.Depth Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract int Depth { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the depth of
+      the current node in the XML document.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A>
+containing the depth of the current node in the XML document. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+         above.<P>
+
+ This property is
+         read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.EOF Property"><H3>XmlReader.EOF Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool EOF { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a value indicating whether the System.Xml.XmlReader.ReadState
+is System.Xml.ReadState.EndOfFile, signifying the reader is positioned at the end of the
+stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates the reader is positioned at the end
+   of the stream; otherwise, <CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+         above.<P>
+
+ This property is
+         read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.HasAttributes Property"><H3>XmlReader.HasAttributes Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool HasAttributes { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a value indicating whether the current node has any attributes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates the current node has attributes; otherwise,
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+         above.<P>
+
+ This property is
+         read-only.<P>
+
+]<P>
+
+[<I>Default</I>:  This property
+      returns <CODE>true</CODE>
+ if the System.Xml.XmlReader.AttributeCount property of the current node is greater than zero. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  Override this 
+      property to customize the behavior of this property in types derived from
+      the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
+      class.
+   ]<P>
+
+<P>
+
+[<I>Usage</I>:  Use this property to determine whether the current node has any attributes.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.HasValue Property"><H3>XmlReader.HasValue Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool HasValue { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a value indicating whether the current node can have an associated text
+      value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>
+where <CODE>true</CODE>
+ indicates the node on which the reader is currently
+positioned can have an associated text value; otherwise,
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: 
+      The following members of the <A HREF="XmlNodeType.html" TARGET="contents">XmlNodeType</A>
+      enumeration can have an associated value: <CODE>Attribute</CODE>
+,
+      <CODE>CDATA</CODE>
+, <CODE>Comment</CODE>
+, <CODE>DocumentType</CODE>
+,
+      <CODE>ProcessingInstruction</CODE>
+, <CODE>SignificantWhitespace</CODE>
+,
+      <CODE>Text</CODE>
+, <CODE>Whitespace</CODE>
+, and
+      <CODE>XmlDeclaration</CODE>
+.
+      ]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+         above.<P>
+
+ This property is
+         read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.IsDefault Property"><H3>XmlReader.IsDefault Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool IsDefault { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a value indicating whether the current node is an
+      attribute that was generated from the default value defined
+      in the DTD or schema.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>
+where <CODE>true</CODE>
+ indicates the
+current node is an attribute whose value was generated from the default value
+defined in the DTD or schema; <CODE>false</CODE>
+ indicates the attribute value was
+explicitly set. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+         above.<P>
+
+ This property is
+         read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>: 
+     This property
+      should return
+   <CODE>false</CODE>
+
+   for implementations that do not support schema or DTD information.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.IsEmptyElement Property"><H3>XmlReader.IsEmptyElement Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool IsEmptyElement { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a value indicating whether the current node is an
+      empty element (for example, <CODE>&amp;lt;MyElement /&gt;</CODE>).<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates the
+   current node is an element (System.Xml.XmlReader.NodeType
+   equals System.Xml.XmlNodeType.Element) that ends with &quot;<CODE>/&gt;</CODE>&quot;, otherwise,<CODE> false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: A corresponding <CODE>EndElement</CODE>
+ node is not
+      generated for empty elements.<P>
+
+This property
+      is read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.Item(int) Property"><H3>XmlReader.Item(int) Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string this[int i] { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Retrieves the value of the attribute with the specified index relative to the containing element.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>i</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> specifying the zero-based index of the attribute relative to the containing element.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the value of the attribute.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>i</I> is less than 0 or greater than or equal to the System.Xml.XmlReader.AttributeCount of the containing element.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  This property does not move the reader.]<P>
+
+<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.Item(System.String) Property"><H3>XmlReader.Item(System.String) Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string this[string name] { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Retrieves the value of the attribute with the specified qualified name.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the qualified name of the attribute.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the value of the specified attribute, or
+<CODE>null</CODE>
+ 
+if the attribute is not found.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This property does not move the reader.<P>
+
+If the reader
+         is positioned on a <CODE>DocumentType</CODE>
+
+         
+         node, this method can be used to get the PUBLIC and
+         SYSTEM literals.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.Item(System.String, System.String) Property"><H3>XmlReader.Item(System.String, System.String) Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string this[string name, string namespaceURI] { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Retrieves the value of the attribute with the specified local name and namespace URI.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the local name of the attribute.</DD>
+<DT> namespaceURI</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the namespace URI of the attribute.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the value of the specified attribute, or <CODE>null</CODE>
+ if the
+attribute is not found.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  This property does not move the reader. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+      to provide the functionality described above, as there is no default implementation.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.LocalName Property"><H3>XmlReader.LocalName Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string LocalName { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the local name of the current node.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the local name of the current node or, for node types that do not
+have a name (like <CODE>Text</CODE>
+, <CODE>Comment</CODE>
+ , and so on),
+System.String.Empty.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described
+      above. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.Name Property"><H3>XmlReader.Name Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string Name { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the qualified name of the current node.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the qualified name of the current node or, for node types that do not
+have a name (like <CODE>Text</CODE>
+, <CODE>Comment</CODE>
+ , and so on),
+System.String.Empty.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  The qualified name is equivalent to
+         the System.Xml.XmlReader.LocalName
+         
+         prefixed with System.Xml.XmlReader.Prefix and the
+         &apos;:&apos; character. For example, System.Xml.XmlReader.Name is
+         &quot;bk:book&quot; for the element <CODE>&amp;lt;bk:book&gt;</CODE>.
+      <P>
+
+ The name returned is dependent on the System.Xml.XmlReader.NodeType of the node. The following node types
+   return the listed values. All other node types return an empty string.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Name</TH><TH>Node TypeName</TH></TR>
+<TR><TD>The name of the attribute.</TD><TD><CODE>Attribute</CODE>
+The name of the attribute.</TD></TR>
+<TR><TD>The document type name.</TD><TD><CODE>DocumentType</CODE>
+The document type name.</TD></TR>
+<TR><TD>The tag name.</TD><TD><CODE>Element</CODE>
+The tag name.</TD></TR>
+<TR><TD>The name of the entity referenced.</TD><TD><CODE>EntityReference</CODE>
+The name of the entity referenced.</TD></TR>
+<TR><TD>The target of the processing
+   instruction.</TD><TD><CODE>ProcessingInstruction</CODE>
+The target of the processing
+   instruction.</TD></TR>
+<TR><TD>The literal string &quot;xml&quot;.</TD><TD><CODE>XmlDeclaration</CODE>
+The literal string &quot;xml&quot;.</TD></TR>
+</TABLE>
+This property is read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.NameTable Property"><H3>XmlReader.NameTable Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract XmlNameTable NameTable { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the name table used by the current instance to store
+      and look up element and attribute names, prefixes, and namespaces.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="XmlNameTable.html" TARGET="contents">XmlNameTable</A> used by the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: Element and attribute names,
+         prefixes, and namespaces are stored as individual <A HREF="../../System/String.html" TARGET="contents">String</A> objects when a document is
+         read.<P>
+
+This property is read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.NamespaceURI Property"><H3>XmlReader.NamespaceURI Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string NamespaceURI { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the namespace URI associated with the node on which the reader is positioned. <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the namespace URI of the current node or, if
+   no namespace URI is associated with the current node, System.String.Empty.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This property is relevant to <CODE>Element</CODE>
+
+   and <CODE>Attribute</CODE>
+
+   
+   nodes
+   only.<P>
+
+Namespaces conform to the W3C &quot;Namespaces in XML&quot; recommendation,
+   REC-xml-names-19990114. <P>
+
+This property is read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.NodeType Property"><H3>XmlReader.NodeType Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract XmlNodeType NodeType { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the type of the current node.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+One of the members of the <A HREF="XmlNodeType.html" TARGET="contents">XmlNodeType</A> enumeration representing the type of the current
+   node. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This property does not return the following <A HREF="XmlNodeType.html" TARGET="contents">XmlNodeType</A> members:
+      <CODE>Document</CODE>
+, <CODE>DocumentFragment</CODE>
+,
+      <CODE>Entity</CODE>
+, <CODE>EndEntity</CODE>
+, and
+      <CODE>Notation</CODE>
+.<P>
+
+This property is
+      read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.Prefix Property"><H3>XmlReader.Prefix Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string Prefix { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the namespace prefix associated with the current node.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the namespace prefix associated with the current node. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  A namespace prefix
+      is used as a reference for a namespace URI and is defined in an element
+      declaration. For example, <CODE>&amp;lt;someElement xmlns:bk=&quot;someURL&quot;&gt;</CODE>, defines a
+   prefix name &quot;bk&quot;.
+]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+      above.<P>
+
+ This property is
+      read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.QuoteChar Property"><H3>XmlReader.QuoteChar Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract char QuoteChar { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the quotation mark character used to enclose the value of an attribute.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Char.html" TARGET="contents">Char</A> specifying the quotation mark character (&quot; or &apos;) used to enclose the value of
+   an attribute.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+         above.<P>
+
+ This property is
+         read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.ReadState Property"><H3>XmlReader.ReadState Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract ReadState ReadState { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the read state of the reader.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ One of the members of the <A HREF="ReadState.html" TARGET="contents">ReadState</A> enumeration.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+         above.<P>
+
+ This property is
+         read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.Value Property"><H3>XmlReader.Value Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string Value { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the text value of the current node.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the text value of the current node.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: The value returned depends on the System.Xml.XmlReader.NodeType. The following table lists node types that have a value to return. All
+      other node types return System.String.Empty.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Value</TH><TH>Node TypeValue</TH></TR>
+<TR><TD>The value of the attribute.</TD><TD><CODE>Attribute</CODE>
+The value of the attribute.</TD></TR>
+<TR><TD>The content of the CDATA section.</TD><TD><CODE>CDATA</CODE>
+The content of the CDATA section.</TD></TR>
+<TR><TD>The content of the comment.</TD><TD><CODE>Comment</CODE>
+The content of the comment.</TD></TR>
+<TR><TD>The internal subset.</TD><TD><CODE>DocumentType</CODE>
+The internal subset.</TD></TR>
+<TR><TD>The entire content, excluding the target.</TD><TD><CODE>ProcessingInstruction</CODE>
+The entire content, excluding the target.</TD></TR>
+<TR><TD>The white space between markup in a mixed content
+   model, or in the scope of <CODE>xml:space = &quot;preserve&quot;</CODE>.</TD><TD><CODE>SignificantWhitespace</CODE>
+The white space between markup in a mixed content
+   model, or in the scope of <CODE>xml:space = &quot;preserve&quot;</CODE>.</TD></TR>
+<TR><TD>The content of the text node.<P>
+
+</TD><TD><CODE>Text</CODE>
+The content of the text node.<P>
+
+</TD></TR>
+<TR><TD>The white space between markup.</TD><TD><CODE>Whitespace</CODE>
+The white space between markup.</TD></TR>
+<TR><TD>The content of the declaration.</TD><TD><CODE>XmlDeclaration</CODE>
+The content of the declaration.</TD></TR>
+</TABLE>
+This property is read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.XmlLang Property"><H3>XmlReader.XmlLang Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string XmlLang { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the current <CODE>xml:lang</CODE> scope.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the
+   current <CODE>xml:lang</CODE> scope.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+         above.<P>
+
+ This property is
+         read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlReader.XmlSpace Property"><H3>XmlReader.XmlSpace Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract XmlSpace XmlSpace { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the current <CODE>xml:space</CODE> scope.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+One of the members of the <A HREF="XmlSpace.html" TARGET="contents">XmlSpace</A>
+enumeration. If no <CODE>xml:space</CODE> scope exists, this property defaults to
+System.Xml.XmlSpace.None.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+         above.<P>
+
+ This property is
+         read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order
+   to provide the functionality described above, as there is no default implementation.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlReader.html" TARGET="contents">System.Xml.XmlReader Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

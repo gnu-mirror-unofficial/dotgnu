@@ -1,0 +1,1434 @@
+<HTML>
+<HEAD>
+<TITLE>System.Version Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Version Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class Version : ICloneable, IComparable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Version<P>
+
+This type implements <A HREF="ICloneable.html" TARGET="contents">ICloneable</A> and <A HREF="IComparable.html" TARGET="contents">IComparable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents the version number of an assembly.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">Version</A> numbers for an 
+   assembly consist of two to four components: <I>major</I>, <I>minor</I>,
+<I>build</I>, and <I>revision</I>. Components <I>major</I> and <I>minor</I> must 
+   be defined. <I>Build</I> and <I>revision</I> components are optional. Component
+<I>revision</I> may be 
+   used if and only if build is defined. All defined components must be
+   a <A HREF="Int32.html" TARGET="contents">Int32</A>
+   greater than or equal to zero.<P>
+
+[<I>Note</I>: By convention, the components are used as follows:<P>
+
+<UL>
+<LI>
+         
+         Major: Assemblies with the same name but different
+         major versions are not interchangeable. This would be appropriate, for
+         example, for a major rewrite of a product where backwards compatibility cannot
+         be assumed.</LI>
+<LI>
+         
+         Minor: If the name and major number on two assemblies
+         are the same, but the minor number is different, this indicates significant
+         enhancement with the intention of backwards compatibility. This would be
+         appropriate, for example, on a &quot;point release&quot; of a product or a fully
+         backward compatible new version of a product.</LI>
+<LI>
+         
+         Assemblies with the same name, major, and minor
+         version numbers but different revisions are intended to be fully
+         interchangeable. This would be appropriate, for example, to fix a security
+         hole in a previously released assembly.</LI>
+<LI>
+         
+         A difference in build number is intended to represent a recompilation of
+         the same source. This would be appropriate, for example, because of processor,
+         platform, or compiler changes.</LI>
+</UL>
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Version Constructors<P>
+
+<A HREF="#Version(int, int, int, int) Constructor" TARGET="contents">Version(int, int, int, int) Constructor</A><BR>
+<A HREF="#Version(int, int, int) Constructor" TARGET="contents">Version(int, int, int) Constructor</A><BR>
+<A HREF="#Version(int, int) Constructor" TARGET="contents">Version(int, int) Constructor</A><BR>
+<A HREF="#Version(System.String) Constructor" TARGET="contents">Version(System.String) Constructor</A><BR>
+<A HREF="#Version() Constructor" TARGET="contents">Version() Constructor</A><BR>
+<P>
+
+Version Methods<P>
+
+<A HREF="#Version.Clone Method" TARGET="contents">Version.Clone Method</A><BR>
+<A HREF="#Version.CompareTo Method" TARGET="contents">Version.CompareTo Method</A><BR>
+<A HREF="#Version.Equals Method" TARGET="contents">Version.Equals Method</A><BR>
+<A HREF="#Version.GetHashCode Method" TARGET="contents">Version.GetHashCode Method</A><BR>
+<A HREF="#Version.op_Equality Method" TARGET="contents">Version.op_Equality Method</A><BR>
+<A HREF="#Version.op_GreaterThan Method" TARGET="contents">Version.op_GreaterThan Method</A><BR>
+<A HREF="#Version.op_GreaterThanOrEqual Method" TARGET="contents">Version.op_GreaterThanOrEqual Method</A><BR>
+<A HREF="#Version.op_Inequality Method" TARGET="contents">Version.op_Inequality Method</A><BR>
+<A HREF="#Version.op_LessThan Method" TARGET="contents">Version.op_LessThan Method</A><BR>
+<A HREF="#Version.op_LessThanOrEqual Method" TARGET="contents">Version.op_LessThanOrEqual Method</A><BR>
+<P>
+
+Version Properties<P>
+
+<A HREF="#Version.Build Property" TARGET="contents">Version.Build Property</A><BR>
+<A HREF="#Version.Major Property" TARGET="contents">Version.Major Property</A><BR>
+<A HREF="#Version.Minor Property" TARGET="contents">Version.Minor Property</A><BR>
+<A HREF="#Version.Revision Property" TARGET="contents">Version.Revision Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Version(int, int, int, int) Constructor"><H3>Version(int, int, int, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Version(int major, int minor, int build, int revision);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="Version.html" TARGET="contents">Version</A> class with the
+   specified major, minor, build, and revision numbers.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> major</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> specifying the major component.</DD>
+<DT> minor</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> specifying the minor component.</DD>
+<DT> build</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> specifying the build component.</DD>
+<DT> revision</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> specifying the revision component.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>major</I>, <I>minor</I>, <I>build</I>, or <I>revision</I> is less than zero. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example sets the version to &quot;6.1.2.4&quot; and writes the result to the console.<P>
+
+<PRE>
+using System;
+
+public class Vers {
+  public static void Main() {
+
+    Version vers = new Version( 6, 1, 2, 4 );
+    Console.WriteLine( &quot;Version is {0}&quot;, vers.ToString() );
+  }
+}
+   </PRE>
+The output is<P>
+
+
+Version is 6.1.2.4<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version(int, int, int) Constructor"><H3>Version(int, int, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Version(int major, int minor, int build);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="Version.html" TARGET="contents">Version</A> class using the
+   specified major, minor, and build values.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> major</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> specifying the major component.</DD>
+<DT> minor</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> specifying the minor component.</DD>
+<DT> build</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> specifying the build component.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>major</I>, <I>minor</I>, or <I>build</I> is less than zero. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example sets the version to &quot;6.1.2&quot; and writes the result to the console.<P>
+
+<PRE>
+using System;
+
+public class Vers {
+  public static void Main() {
+
+    Version vers = new Version( 6, 1, 2 );
+    Console.WriteLine( &quot;Version is {0}&quot;, vers.ToString() );
+  }
+}
+   </PRE>
+The output is<P>
+
+
+Version is 6.1.2<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version(int, int) Constructor"><H3>Version(int, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Version(int major, int minor);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="Version.html" TARGET="contents">Version</A> class using the
+   specified major and minor values.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> major</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> specifying the major component.</DD>
+<DT> minor</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> specifying the minor component.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>major</I> or <I>minor</I> is less than zero. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example sets the version to &quot;6.1&quot; and writes the result to the console.<P>
+
+<PRE>
+using System;
+
+public class Vers {
+  public static void Main() {
+
+    Version vers = new Version( 6, 1 );
+    Console.WriteLine( &quot;Version is {0}&quot;, vers.ToString() );
+  }
+}
+   </PRE>
+The output is<P>
+
+
+Version is 6.1<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version(System.String) Constructor"><H3>Version(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Version(string version);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="Version.html" TARGET="contents">Version</A> class using
+   the values represented by the specified <A HREF="String.html" TARGET="contents">String</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> version</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that represents 2 to 4 <A HREF="Int32.html" TARGET="contents">Int32</A> integers separated by period characters (&apos;.&apos;). Each component delineated by a period character will be parsed to a <A HREF="Int32.html" TARGET="contents">Int32</A> with System.Int32.Parse(System.String)(<A HREF="String.html" TARGET="contents">String</A>). The numbers will be processed in the following order: <I>major</I>, <I>minor</I>, <I>build</I>, <I>revision</I>. If the <I>revision</I> or the <I>revision</I> and the <I>build</I> components are not represented by <I>version</I>, their values will be undefined.<P>
+
+[<I>Note</I>: The formatting of <I>version</I> must be as follows, with optional components shown in square brackets (&apos;[&apos; and&apos;]&apos;): <I>major</I>.<I>minor</I>[.<I>build</I>[.<I>revision</I>]], where each component returns a <A HREF="Int32.html" TARGET="contents">Int32</A> with System.Int32.Parse(System.String) (<A HREF="String.html" TARGET="contents">String</A>).<P>
+
+]<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>version</I> has fewer than 2 components or more than 4 components (i.e. fewer than 1 or more than 3 period characters).</TD></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>version</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>major</I>, <I>minor</I>, <I>build</I>, or <I>revision </I> is less than zero.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD>At least one component of <I>version</I> does not parse to a <A HREF="Int32.html" TARGET="contents">Int32</A> with System.Int32.Parse(System.String) (<A HREF="String.html" TARGET="contents">String</A>).</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example sets the version to &quot;6.1.2.4&quot; and writes the result to the console.<P>
+
+<PRE>
+using System;
+
+public class Vers {
+  public static void Main() {
+
+    Version vers = new Version( &quot;6.1.2.4&quot; );
+    Console.WriteLine( &quot;Version is {0}&quot;, vers.ToString() );
+  }
+}
+   </PRE>
+The output is<P>
+
+
+Version is 6.1.2.4<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version() Constructor"><H3>Version() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Version();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of
+      the <A HREF="Version.html" TARGET="contents">Version</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.Version.Major and System.Version.Minor are set to zero. System.Version.Build
+and System.Version.Revision are unspecified.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version.Clone Method"><H3>Version.Clone Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public object Clone();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a new <A HREF="Object.html" TARGET="contents">Object</A> with values equal to the property values of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="Object.html" TARGET="contents">Object</A>
+whose values are equal to the property values of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="Object.html" TARGET="contents">Object</A> returned by this method must be explicitly cast to a
+<A HREF="Version.html" TARGET="contents">Version</A> before it may be used as 
+   one.<P>
+
+[<I>Note</I>: This method is
+   implemented to support the <A HREF="ICloneable.html" TARGET="contents">ICloneable</A> interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example clones the version number and
+      writes the result to the console.<P>
+
+<PRE>using System;
+class VersionCloneExample {
+  public static void Main() {
+    Version vers = new Version(&quot;6.1.2.4&quot;);
+    Console.WriteLine(&quot;The string representation of the&quot; +
+                      &quot; version is {0}.&quot;,
+                      vers.ToString());
+    Version clone = (Version) vers.Clone();
+    Console.WriteLine(&quot;The original version was&quot; +
+                      &quot; successfully cloned.&quot;);
+    Console.Write(&quot;The string representation of the&quot; +
+                  &quot; cloned version is {0}.&quot;,
+                  clone.ToString());
+  }
+}
+   </PRE>
+The output is<P>
+
+<CODE> The string representation of the version is 6.1.2.4.<P>
+
+ The original version was successfully cloned.<P>
+
+The string representation of the cloned version is 6.1.2.4.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version.CompareTo Method"><H3>Version.CompareTo Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int CompareTo(object version);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the sort order of the current instance compared
+      to the specified <A HREF="Object.html" TARGET="contents">Object</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> version</DT>
+<DD>The <A HREF="Object.html" TARGET="contents">Object</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
+   current instance as compared to <I>version</I>. The following table defines
+   the conditions under which the returned value is a negative number, zero, or a
+   positive number.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Return ValueDescription</TH></TR>
+<TR><TD> Current instance &lt; <I>version</I>.</TD><TD> Any negative number Current instance &lt; <I>version</I>.</TD></TR>
+<TR><TD>Current instance ==
+   <I>version</I>.</TD><TD> ZeroCurrent instance ==
+   <I>version</I>.</TD></TR>
+<TR><TD> Current instance &gt;
+      <I>version</I>, or <I>version</I> is a null
+         reference.<P>
+
+</TD><TD> Any positive number Current instance &gt;
+      <I>version</I>, or <I>version</I> is a null
+         reference.<P>
+
+</TD></TR>
+</TABLE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>version</I> is not a <A HREF="Version.html" TARGET="contents">Version</A> and is not a null reference</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  The components of <A HREF="Version.html" TARGET="contents">Version</A> in decreasing order of importance are: <I>major</I>,
+   <I>minor</I>, <I>build</I>, and <I>revision</I>. An undefined component
+      is assumed to be older than any defined component.
+      <P>
+
+ This method is implemented to support the <A HREF="IComparable.html" TARGET="contents">IComparable</A>
+interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<PRE>using System;
+class VersionTest {
+   static string Test ( Version v1, Version v2 ) {
+      int i = v1.CompareTo(v2);
+      if ( i &lt; 0 )
+         return &quot;older than&quot;;
+      else if ( i == 0 )
+         return &quot;the same as&quot;;
+      else
+         return &quot;newer than&quot;;
+   }
+   public static void Main() {
+      Version vers1 = new Version( &quot;6.1.2.4&quot; );
+      Version vers2 = new Version( 6, 1 );
+      Version vers3 = new Version( 6, 1, 3 );
+      Console.Write(&quot;Version {0} is {1} &quot;,
+                    vers1, Test(vers1, vers2));
+      Console.WriteLine(&quot;version {0}&quot;, vers2); 
+      Console.Write(&quot;Version {0} is {1} &quot;,
+                    vers1, Test(vers1, vers3));
+      Console.WriteLine(&quot;version {0}&quot;, vers3); 
+      Console.Write(&quot;Version {0} is {1} &quot;,
+                    vers3, Test(vers3, vers3));
+      Console.WriteLine(&quot;version {0}&quot;, vers3); 
+      Console.Write(&quot;Version {0} is {1} &quot;,
+                    vers2, Test(vers2, vers1));
+      Console.WriteLine(&quot;version {0}&quot;, vers1);
+   }
+}
+   </PRE>
+The output is<P>
+
+<CODE>Version 6.1.2.4 is newer than version 6.1<P>
+
+Version 6.1.2.4 is older than version 6.1.3<P>
+
+Version 6.1.3 is the same as version 6.1.3<P>
+
+Version 6.1 is older than version 6.1.2.4<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version.Equals Method"><H3>Version.Equals Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool Equals(object obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance and the
+      specified <A HREF="Object.html" TARGET="contents">Object</A> represent the same type and
+      value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> obj</DT>
+<DD>The <A HREF="Object.html" TARGET="contents">Object</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+
+indicates <I>obj</I> is
+the same type as the current instance and has equal System.Version.Major, System.Version.Minor, System.Version.Build, and System.Version.Revision properties as the current
+instance. If <I>obj</I> is a null reference or is not an instance of <A HREF="Version.html" TARGET="contents">Version</A>, returns <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method
+      overrides System.Object.Equals(System.Object).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<PRE>using System;
+class VersionEqualsExample {
+   static void testEquals(Version v1, Version v2) {
+      Console.Write(&quot;It is {0} that version &quot;,
+                    v1.Equals(v2));
+      Console.WriteLine(&quot;{0} is equal to {1}.&quot;,
+                    v1, v2);
+   }
+   public static void Main() {
+      Version vers1 = new Version( &quot;6.1.2.4&quot; );
+      Version vers2 = new Version( 6, 1 );
+      testEquals( vers1, vers1 );
+      testEquals( vers1, vers2 );
+   }
+}
+   </PRE>
+The output is<P>
+
+<CODE>It is True that version 6.1.2.4 is equal to 6.1.2.4.<P>
+
+It is False that version 6.1.2.4 is equal to 6.1.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version.GetHashCode Method"><H3>Version.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int GetHashCode();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Generates a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> 
+containing the hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The algorithm used to generate the hash code is
+      unspecified.<P>
+
+[<I>Note</I>: This method
+   overrides System.Object.GetHashCode.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version.op_Equality Method"><H3>Version.op_Equality Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator ==(Version v1, Version v2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether two instances of <A HREF="Version.html" TARGET="contents">Version</A>
+are equal.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>v1</DT>
+<DD>An instance of the <A HREF="Version.html" TARGET="contents">Version</A> class. </DD>
+<DT>v2</DT>
+<DD>An instance of the <A HREF="Version.html" TARGET="contents">Version</A> class. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Boolean.html" TARGET="contents">Boolean</A> where
+<CODE>true</CODE>
+ 
+indicates <I>v1</I> and <I>v2</I> have equal System.Version.Major, System.Version.Minor, System.Version.Build, and System.Version.Revision properties, or both <I>v1</I> and
+<I>v2</I> are <CODE>null</CODE>
+; otherwise <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The parts of the version number are compared 
+      independently starting with the System.Version.Major property and then the System.Version.Minor, System.Version.Build, and System.Version.Revision properties, in order. This method returns
+      as soon as one of the properties is determined not to be equal.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version.op_GreaterThan Method"><H3>Version.op_GreaterThan Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator &gt;(Version v1, Version v2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether the first instance of 
+   <A HREF="Version.html" TARGET="contents">Version</A> is greater than 
+      the second instance of <A HREF="Version.html" TARGET="contents">Version</A>.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>v1</DT>
+<DD>An instance of the <A HREF="Version.html" TARGET="contents">Version</A> class. </DD>
+<DT>v2</DT>
+<DD>An instance of the <A HREF="Version.html" TARGET="contents">Version</A> class. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates <I>v1 </I>is greater
+   than <I>v2</I>; otherwise <CODE>false</CODE>
+. If <I>v1</I> is
+<CODE>null</CODE>
+, <CODE>false</CODE>
+ is returned.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>v2</I> is a <CODE>null</CODE>
+ reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The parts of the version number are compared independently starting with the 
+   System.Version.Major 
+   property and then the System.Version.Minor, System.Version.Build, and System.Version.Revision properties, in order. This
+   method returns as soon as one of the properties is determined not to be
+   equal.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version.op_GreaterThanOrEqual Method"><H3>Version.op_GreaterThanOrEqual Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator &gt;=(Version v1, Version v2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether the first instance of 
+   <A HREF="Version.html" TARGET="contents">Version</A> is greater than or 
+      equal to the second instance of <A HREF="Version.html" TARGET="contents">Version</A>.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>v1</DT>
+<DD>An instance of the <A HREF="Version.html" TARGET="contents">Version</A> class. </DD>
+<DT>v2</DT>
+<DD>An instance of the <A HREF="Version.html" TARGET="contents">Version</A> class. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates <I>v1 </I>is greater
+   than or equal to <I>v2</I>; otherwise <CODE>false</CODE>
+. If <I>v1</I>
+   is <CODE>null</CODE>
+, <CODE>false</CODE>
+ is returned.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>v2</I> is a <CODE>null</CODE>
+ reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The parts of the version number are compared independently starting with the 
+   System.Version.Major 
+   property and then the System.Version.Minor, System.Version.Build, and System.Version.Revision properties, in order. This
+   method returns as soon as one of the properties is determined not to be
+   equal.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version.op_Inequality Method"><H3>Version.op_Inequality Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator !=(Version v1, Version v2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether two instances of <A HREF="Version.html" TARGET="contents">Version</A> are
+   not equal. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>v1</DT>
+<DD>An instance of the <A HREF="Version.html" TARGET="contents">Version</A> class. </DD>
+<DT>v2</DT>
+<DD>An instance of the <A HREF="Version.html" TARGET="contents">Version</A> class. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Boolean.html" TARGET="contents">Boolean</A>
+where <CODE>true</CODE>
+ indicates <I>v1</I> and <I>v2</I> have at least
+one unequal property; otherwise
+<CODE>false</CODE>
+. If 
+<I>v1</I> and <I>v2</I> are 
+both <CODE>null</CODE>
+, returns false; if one is
+<CODE>null</CODE>
+ 
+but not the other, returns <CODE>true</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The parts of the version number are compared independently starting with the 
+   System.Version.Major 
+   property and then the System.Version.Minor, System.Version.Build, and System.Version.Revision properties, in order. This
+   method returns as soon as one of the properties is determined not to be
+   equal.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version.op_LessThan Method"><H3>Version.op_LessThan Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator  &lt;(Version v1, Version v2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether the first instance of 
+   <A HREF="Version.html" TARGET="contents">Version</A> is less than the 
+      second instance of <A HREF="Version.html" TARGET="contents">Version</A>.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>v1</DT>
+<DD>An instance of the <A HREF="Version.html" TARGET="contents">Version</A> class. </DD>
+<DT>v2</DT>
+<DD>An instance of the <A HREF="Version.html" TARGET="contents">Version</A> class. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates <I>v1 </I>is less than
+<I>v2</I>; otherwise <CODE>false</CODE>
+. If <I>v2</I> is <CODE>null</CODE>
+, 
+<CODE>false</CODE>
+ is returned.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>v1</I> is a <CODE>null</CODE>
+ reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The parts of the version number are compared independently starting with the 
+   System.Version.Major 
+   property and then the System.Version.Minor, System.Version.Build, and System.Version.Revision properties, in order. This
+   method returns as soon as one of the properties is determined not to be
+   equal.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version.op_LessThanOrEqual Method"><H3>Version.op_LessThanOrEqual Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator &lt;=(Version v1, Version v2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether the first instance of 
+   <A HREF="Version.html" TARGET="contents">Version</A> is less than or 
+      equal to the second instance of <A HREF="Version.html" TARGET="contents">Version</A>.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>v1</DT>
+<DD>An instance of the <A HREF="Version.html" TARGET="contents">Version</A> class. </DD>
+<DT>v2</DT>
+<DD>An instance of the <A HREF="Version.html" TARGET="contents">Version</A> class. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates <I>v1 </I>is less than or
+   equal to <I>v2</I>; otherwise <CODE>false</CODE>
+. If <I>v2</I> is
+<CODE>null</CODE>
+, <CODE>false</CODE>
+ is returned.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>v1</I> is a <CODE>null</CODE>
+ reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The parts of the version number are compared independently starting with the 
+   System.Version.Major 
+   property and then the System.Version.Minor, System.Version.Build, and System.Version.Revision properties, in order. This
+   method returns as soon as one of the properties is determined not to be
+   equal.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version.Build Property"><H3>Version.Build Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Build { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the value of the build component of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> specifying the build component, or -1 if the build component is undefined.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: If the version
+      number is 6.1.2.4, the build component is 2. If the version number is 6.1, the build
+      component is -1, which is considered to be undefined.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<PRE>using System;
+class VersionBuildExample {
+   public static void Main() {
+      Version vers = new Version(&quot;6.1.2.4&quot;);
+      Console.Write(&quot;The build component of &quot;);
+      Console.WriteLine(&quot;version vers = {0}.&quot;, vers.Build);
+   }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The build
+      component of version vers = 2.</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version.Major Property"><H3>Version.Major Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Major { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the value of the major component of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A>
+specifying the major component. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Example</I>: If the version number is 6.1, the major version is 6.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<PRE>using System;
+class VersionMajorExample {
+   public static void Main() {
+      Version vers = new Version(&quot;6.1.2.4&quot;);
+      Console.Write(&quot;The major component &quot;);
+      Console.WriteLine(&quot;of version vers = {0}.&quot;,
+                        vers.Major);
+   }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The major component of version vers = 6.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version.Minor Property"><H3>Version.Minor Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Minor { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the value of the minor component of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A>
+specifying the minor component. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Example</I>: If the version number is 6.1, the minor component is 1.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<PRE>using System;
+class VersionMinorExample {
+   public static void Main() {
+      Version vers = new Version(&quot;6.1.2.4&quot;);
+      Console.Write(&quot;The minor component &quot;);
+      Console.WriteLine(&quot;of version vers = {0}.&quot;,
+                        vers.Minor);
+   }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The minor
+      component of version vers = 1.</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Version.Revision Property"><H3>Version.Revision Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Revision { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the value of the revision component of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A>
+specifying the revision component, or -1 if the revision component is
+undefined.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Example</I>: If the version number is 6.1.2.4, the revision component is 4. If the version number
+      is 6.1, the revision component is considered to be undefined.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<PRE>using System;
+class VersionRevisionExample {
+   public static void Main() {
+      Version vers = new Version(&quot;6.1.2.4&quot;);
+      Console.Write(&quot;The revision component of &quot;);
+      Console.WriteLine(&quot;version vers = {0}.&quot;,
+                        vers.Revision);
+   }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The revision component of version vers = 4.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,305 @@
+<HTML>
+<HEAD>
+<TITLE>System.IAsyncResult Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.IAsyncResult Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public interface IAsyncResult</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Supported by objects
+      that represent the state
+      of an asynchronous operation.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+An object that supports the <A HREF="IAsyncResult.html" TARGET="contents">IAsyncResult</A>
+interface stores state information for an asynchronous operation, and provides a
+synchronization object to allow threads to be signaled when the operation
+completes.<P>
+
+<A HREF="IAsyncResult.html" TARGET="contents">IAsyncResult</A> objects are returned by methods that begin
+asynchronous operations, such as System.IO.FileStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object), and are passed to methods used to
+complete asynchronous operations, such as System.IO.FileStream.EndRead(System.IAsyncResult). <A HREF="IAsyncResult.html" TARGET="contents">IAsyncResult</A>
+objects are also passed to methods invoked by <A HREF="AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegates
+when an asynchronous operation completes.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IAsyncResult Properties<P>
+
+<A HREF="#IAsyncResult.AsyncState Property" TARGET="contents">IAsyncResult.AsyncState Property</A><BR>
+<A HREF="#IAsyncResult.AsyncWaitHandle Property" TARGET="contents">IAsyncResult.AsyncWaitHandle Property</A><BR>
+<A HREF="#IAsyncResult.CompletedSynchronously Property" TARGET="contents">IAsyncResult.CompletedSynchronously Property</A><BR>
+<A HREF="#IAsyncResult.IsCompleted Property" TARGET="contents">IAsyncResult.IsCompleted Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IAsyncResult.AsyncState Property"><H3>IAsyncResult.AsyncState Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>object AsyncState { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the user-provided state object supplied at the time the asynchronous
+      operation was started.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The supplied <A HREF="Object.html" TARGET="contents">Object</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  The object returned by this property is required to be
+         the object specified as the last parameter to methods that begin asynchronous
+         operations, such as System.IO.FileStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object).<P>
+
+This property is read-only.<P>
+
+]<P>
+
+[<I>Overrides</I>: 
+      
+      Implement this property to allow the caller of an
+      asynchronous operation to obtain an application-defined object specified at the
+      start of the operation.
+      ]<P>
+
+<P>
+
+[<I>Usage</I>:  The object returned by
+      
+      this property can be used to pass state information for
+      the asynchronous operation to a <A HREF="AsyncCallback.html" TARGET="contents">AsyncCallback</A>
+      delegate.
+      ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IAsyncResult.html" TARGET="contents">System.IAsyncResult Interface</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IAsyncResult.AsyncWaitHandle Property"><H3>IAsyncResult.AsyncWaitHandle Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>WaitHandle AsyncWaitHandle { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="../System/Threading/WaitHandle.html" TARGET="contents">WaitHandle</A> that can be used to block a thread until an asynchronous
+   operation completes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../System/Threading/WaitHandle.html" TARGET="contents">WaitHandle</A> that is signaled when an asynchronous operation completes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: The object returned by System.IAsyncResult.AsyncWaitHandle can be allocated in advance or on demand. However, once
+      allocated it is required to be kept alive until the user calls a method that
+      ends the asynchronous operation, such as System.IO.FileStream.EndRead(System.IAsyncResult).
+      Only after the operation completes or is canceled, can the object be disposed
+      of.<P>
+
+[<I>Note</I>: <CODE>WaitHandle</CODE>
+ supplies methods that support waiting 
+   for synchronization objects to become signaled, such as System.Threading.WaitHandle.WaitOne(System.Int32,System.Boolean)
+   .]<P>
+
+<P>
+
+This property is read-only.<P>
+
+]<P>
+
+[<I>Usage</I>: Clients that wait for the operation to complete (as
+      opposed to polling), use this property to obtain a synchronization object to
+      wait on.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IAsyncResult.html" TARGET="contents">System.IAsyncResult Interface</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IAsyncResult.CompletedSynchronously Property"><H3>IAsyncResult.CompletedSynchronously Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool CompletedSynchronously { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="Boolean.html" TARGET="contents">Boolean</A> 
+value that specifies whether the
+asynchronous operation completed synchronously.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the operation synchronously;
+   otherwise <CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  
+         As described above.<P>
+
+[<I>Note</I>: Most 
+         implementations of the <A HREF="IAsyncResult.html" TARGET="contents">IAsyncResult</A> interface will not use this property, and should return
+      <CODE>false</CODE>
+ 
+      .]<P>
+
+<P>
+
+This property is read-only.<P>
+
+]<P>
+
+[<I>Usage</I>: 
+   Use this property to determine if the asynchronous
+   operation completed synchronously. For example, this property can return
+<CODE>true</CODE>
+ for an asynchronous IO
+   operation if the IO request was small.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IAsyncResult.html" TARGET="contents">System.IAsyncResult Interface</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IAsyncResult.IsCompleted Property"><H3>IAsyncResult.IsCompleted Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool IsCompleted { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="Boolean.html" TARGET="contents">Boolean</A> 
+value that specifies
+whether an asynchronous operation has completed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the operation has completed;
+   otherwise <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above. <P>
+
+This property is read-only.<P>
+
+]<P>
+
+[<I>Usage</I>: Clients that poll for operation status (as opposed to waiting on a
+         synchronization object) use this property to determine the status of the
+         operation.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IAsyncResult.html" TARGET="contents">System.IAsyncResult Interface</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

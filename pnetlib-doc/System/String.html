@@ -1,0 +1,6096 @@
+<HTML>
+<HEAD>
+<TITLE>System.String Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.String Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class String : ICloneable, IComparable, IEnumerable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;String<P>
+
+This type implements <A HREF="IComparable.html" TARGET="contents">IComparable</A>, <A HREF="ICloneable.html" TARGET="contents">ICloneable</A>, and <A HREF="../System/Collections/IEnumerable.html" TARGET="contents">IEnumerable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Represents an immutable series of characters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+An <I>index</I> is the position of a character within a
+   string. The first character in the string is at index 0. The length of a string
+   is the number of characters it is made up of. The last accessible <I>index</I>
+   of a string
+   instance is System.String.Length
+   - 1.<P>
+
+Strings are immutable; once created, the contents of a
+<A HREF="String.html" TARGET="contents">String</A> do not change. Combining 
+   operations, such as System.String.Replace(System.Char,System.Char), cannot alter existing strings.
+   Instead, such operations return a new string that contains the results of the
+   operation, an unchanged string, or the null value. To perform modifications to a
+<A HREF="String.html" TARGET="contents">String</A> use the 
+<A HREF="../System/Text/StringBuilder.html" TARGET="contents">StringBuilder</A> 
+.<P>
+
+Implementations of <A HREF="String.html" TARGET="contents">String</A> are required to contain
+a variable-length character buffer positioned a fixed number of bytes after
+the beginning of the String object. [<I>Note</I>:  The System.Runtime.CompilerServices.RuntimeHelpers.OffsetToStringData
+method returns
+the number of bytes between the start of the String object and the character buffer. This
+information is intended primarily for use by compilers, not application programmers. For additional information, see System.Runtime.CompilerServices.RuntimeHelpers.OffsetToStringData
+.]<P>
+
+<P>
+
+[<I>Note</I>: Comparisons and searches are case-sensitive by default
+      and unless otherwise specified, use the culture defined for the current thread
+      to determine the order of the alphabet used by the strings. This information is
+      then used to compare the two strings on a character-by-character basis. Upper
+      case letters evaluate greater than their lower case equivalents.<P>
+
+The following characters are considered white space when present in a
+      System.String instance: 0x9, 0xA, 0xB, 0xC, 0xD, 0x20, 0xA0, 0x2000, 0x2001,
+      0x2002, 0x2003, 0x2004, 0x2005, 0x2006, 0x2007, 0x2008, 0x2009, 0x200A, 0x200B,
+      0x3000, and 0xFEFF.<P>
+
+The null character is defined as hexadecimal 0x00.<P>
+
+The <A HREF="String.html" TARGET="contents">String</A>(<A HREF="String.html" TARGET="contents">String</A>) constructor is
+   omitted for performance reasons. If you need a copy of a <A HREF="String.html" TARGET="contents">String</A>, consider using
+System.String.Copy(System.String) or 
+   the <A HREF="../System/Text/StringBuilder.html" TARGET="contents">StringBuilder</A>
+   class.<P>
+
+To insert a formatted string representation of an object
+   into a string use the System.String.Format(System.String,System.Object) methods.
+   These methods take one or more arguments to be formatted and a format string.
+   The format string contains literals and zero or more format
+   specifications in the form { <I>N</I> [, <I>M</I> ][: <I>formatSpecifier</I>
+   ]}, where:
+   <P>
+
+<UL>
+<LI><I>N</I> is a zero-based integer 
+      indicating the argument to be formatted. If the actual argument is a null
+      reference, then an empty string is used in its place.</LI>
+<LI><I>M</I> is an optional integer
+      indicating the minimum width of the region to contain the formatted value of
+      argument <I>N</I>
+      . If the length of
+      the string representation of the value is less than <I>M</I>, then the
+      region is padded with spaces. If <I>M</I> is negative, the formatted value
+      is left justified in the region; if <I>M</I> is positive, then the value is right
+      justified. If <I>M</I> is
+      not specified, it is assumed to be zero indicating that neither padding nor
+      alignment is customized. Note that if the length of the formatted value is
+      greater than <I>M</I>, then <I>M</I> is ignored.</LI>
+<LI><I>formatSpecifier</I> is an
+      optional string that determines the representation used for arguments.
+      For example, an integer can be represented in hexadecimal or decimal format, or as a
+      monetary value. If <I>formatSpecifier</I> is
+      omitted and an argument implements the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A> interface, then a null reference is
+      used as the System.IFormattable.ToString(System.String,System.IFormatProvider) format specifier. Therefore, all implementations of
+   System.IFormattable.ToString(System.String,System.IFormatProvider) are required to allow a null reference as
+      a format specifier, and return a string containing the default representation
+      of the object as determined by the object type. For additional information on
+      format specifiers, see <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>
+      .</LI>
+</UL>
+If an object referenced in the format string implements
+<A HREF="IFormattable.html" TARGET="contents">IFormattable</A>, 
+   then the System.IFormattable.ToString(System.String,System.IFormatProvider) method of the object provides the formatting. If the
+   argument does not implement <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>, then the System.Object.ToString method of the object provides default
+   formatting, and <I>formatSpecifier</I>
+   , if present, is ignored.
+   For an example that demonstrates this, see Example 2.<P>
+
+To include a
+   curly bracket in a formatted
+   string, specify the bracket twice; for example, specify &quot;{{&quot; to
+   include &quot;{&quot; in the formatted string. See Example 1.<P>
+
+The <A HREF="Console.html" TARGET="contents">Console</A> class exposes the same functionality as the System.String.Format(System.String,System.Object) methods
+via System.Console.Write(System.String,System.Object) and System.Console.WriteLine. The primary difference is that the
+System.String.Format(System.String,System.Object) 
+methods return the formatted string, while the
+System.Console methods write the formatted string to a stream.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+Example 1<P>
+
+The following example demonstrates formatting numeric
+      data types and inserting literal curly brackets into strings.<P>
+
+<PRE>using System;
+class StringFormatTest {
+    public static void Main() {
+        decimal dec = 1.99999m;
+        double doub = 1.0000000001;
+
+        string somenums = String.Format(&quot;Some formatted numbers: dec={0,15:E} doub={1,20}&quot;, dec, doub);
+        Console.WriteLine(somenums);
+
+        string curlies = &quot;Literal curly brackets: {{ and }} and {{0}}&quot;;
+        Console.WriteLine(curlies);
+
+        object nullObject = null;
+        string embeddedNull = String.Format(&quot;A null argument looks like: {0}&quot;, nullObject);
+        Console.WriteLine(embeddedNull);
+    }
+}
+   </PRE>
+The output is<P>
+
+<PRE>
+Some formatted numbers: dec=  1.999990E+000 doub=        1.0000000001
+Literal curly brackets: {{ and }} and {{0}}
+A null argument looks like: 
+ </PRE>
+Example 2<P>
+
+The following example demonstrates how formatting works if <A HREF="IFormattable.html" TARGET="contents">IFormattable</A> is or is
+   not implemented by an argument to the System.String.Format(System.String,System.Object) method. Note that the format specifier
+   is ignored if the argument does not implement <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>.<P>
+
+<PRE>using System;
+class StringFormatTest {
+    public class DefaultFormatEleven {
+        public override string ToString() {
+            return &quot;11 string&quot;;
+        }
+    }
+    public class FormattableEleven:IFormattable {
+        // The IFormattable ToString implementation.
+        public string ToString(string format, IFormatProvider formatProvider) {
+            Console.Write(&quot;[IFormattable called] &quot;);
+            return 11.ToString(format, formatProvider);
+        }
+        // Override Object.ToString to show that it is not called.
+        public override string ToString() {
+            return &quot;Formatted 11 string&quot;;
+        }
+    }
+
+    public static void Main() {
+        DefaultFormatEleven def11 = new DefaultFormatEleven ();
+         FormattableEleven for11 = new  FormattableEleven();
+        string def11string = String.Format(&quot;{0}&quot;,def11);
+        Console.WriteLine(def11string);
+        // The format specifier x is ignored.
+        def11string = String.Format(&quot;{0,15:x}&quot;, def11);
+        Console.WriteLine(def11string);
+
+        string form11string = String.Format(&quot;{0}&quot;,for11);
+        Console.WriteLine(form11string );
+        form11string = String.Format(&quot;{0,15:x}&quot;,for11);
+        Console.WriteLine(form11string);
+    }
+}
+</PRE>
+The output is<P>
+
+<PRE>
+11 string
+      11 string
+[IFormattable called] 11
+[IFormattable called]               b
+ </PRE>
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>DefaultMemberAttribute(&quot;Chars&quot;)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+String Constructors<P>
+
+<A HREF="#String(char*) Constructor" TARGET="contents">String(char*) Constructor</A><BR>
+<A HREF="#String(char*, int, int) Constructor" TARGET="contents">String(char*, int, int) Constructor</A><BR>
+<A HREF="#String(sbyte*, int, int, System.Text.Encoding) Constructor" TARGET="contents">String(sbyte*, int, int, System.Text.Encoding) Constructor</A><BR>
+<A HREF="#String(char[], int, int) Constructor" TARGET="contents">String(char[], int, int) Constructor</A><BR>
+<A HREF="#String(char[]) Constructor" TARGET="contents">String(char[]) Constructor</A><BR>
+<A HREF="#String(char, int) Constructor" TARGET="contents">String(char, int) Constructor</A><BR>
+<P>
+
+String Methods<P>
+
+<A HREF="#String.Clone Method" TARGET="contents">String.Clone Method</A><BR>
+<A HREF="#String.Compare(System.String, System.String) Method" TARGET="contents">String.Compare(System.String, System.String) Method</A><BR>
+<A HREF="#String.Compare(System.String, System.String, bool) Method" TARGET="contents">String.Compare(System.String, System.String, bool) Method</A><BR>
+<A HREF="#String.Compare(System.String, int, System.String, int, int) Method" TARGET="contents">String.Compare(System.String, int, System.String, int, int) Method</A><BR>
+<A HREF="#String.Compare(System.String, int, System.String, int, int, bool) Method" TARGET="contents">String.Compare(System.String, int, System.String, int, int, bool) Method</A><BR>
+<A HREF="#String.CompareOrdinal(System.String, System.String) Method" TARGET="contents">String.CompareOrdinal(System.String, System.String) Method</A><BR>
+<A HREF="#String.CompareOrdinal(System.String, int, System.String, int, int) Method" TARGET="contents">String.CompareOrdinal(System.String, int, System.String, int, int) Method</A><BR>
+<A HREF="#String.CompareTo Method" TARGET="contents">String.CompareTo Method</A><BR>
+<A HREF="#String.Concat(System.Object, System.Object) Method" TARGET="contents">String.Concat(System.Object, System.Object) Method</A><BR>
+<A HREF="#String.Concat(System.Object, System.Object, System.Object) Method" TARGET="contents">String.Concat(System.Object, System.Object, System.Object) Method</A><BR>
+<A HREF="#String.Concat(System.Object[]) Method" TARGET="contents">String.Concat(System.Object[]) Method</A><BR>
+<A HREF="#String.Concat(System.String, System.String) Method" TARGET="contents">String.Concat(System.String, System.String) Method</A><BR>
+<A HREF="#String.Concat(System.String, System.String, System.String) Method" TARGET="contents">String.Concat(System.String, System.String, System.String) Method</A><BR>
+<A HREF="#String.Concat(System.String[]) Method" TARGET="contents">String.Concat(System.String[]) Method</A><BR>
+<A HREF="#String.Copy Method" TARGET="contents">String.Copy Method</A><BR>
+<A HREF="#String.CopyTo Method" TARGET="contents">String.CopyTo Method</A><BR>
+<A HREF="#String.EndsWith Method" TARGET="contents">String.EndsWith Method</A><BR>
+<A HREF="#String.Equals(System.Object) Method" TARGET="contents">String.Equals(System.Object) Method</A><BR>
+<A HREF="#String.Equals(System.String, System.String) Method" TARGET="contents">String.Equals(System.String, System.String) Method</A><BR>
+<A HREF="#String.Format(System.String, System.Object) Method" TARGET="contents">String.Format(System.String, System.Object) Method</A><BR>
+<A HREF="#String.Format(System.String, System.Object, System.Object) Method" TARGET="contents">String.Format(System.String, System.Object, System.Object) Method</A><BR>
+<A HREF="#String.Format(System.String, System.Object, System.Object, System.Object) Method" TARGET="contents">String.Format(System.String, System.Object, System.Object, System.Object) Method</A><BR>
+<A HREF="#String.Format(System.String, System.Object[]) Method" TARGET="contents">String.Format(System.String, System.Object[]) Method</A><BR>
+<A HREF="#String.Format(System.IFormatProvider, System.String, System.Object[]) Method" TARGET="contents">String.Format(System.IFormatProvider, System.String, System.Object[]) Method</A><BR>
+<A HREF="#String.GetEnumerator Method" TARGET="contents">String.GetEnumerator Method</A><BR>
+<A HREF="#String.GetHashCode Method" TARGET="contents">String.GetHashCode Method</A><BR>
+<A HREF="#String.IndexOf(char) Method" TARGET="contents">String.IndexOf(char) Method</A><BR>
+<A HREF="#String.IndexOf(char, int) Method" TARGET="contents">String.IndexOf(char, int) Method</A><BR>
+<A HREF="#String.IndexOf(char, int, int) Method" TARGET="contents">String.IndexOf(char, int, int) Method</A><BR>
+<A HREF="#String.IndexOf(System.String) Method" TARGET="contents">String.IndexOf(System.String) Method</A><BR>
+<A HREF="#String.IndexOf(System.String, int) Method" TARGET="contents">String.IndexOf(System.String, int) Method</A><BR>
+<A HREF="#String.IndexOf(System.String, int, int) Method" TARGET="contents">String.IndexOf(System.String, int, int) Method</A><BR>
+<A HREF="#String.IndexOfAny(char[]) Method" TARGET="contents">String.IndexOfAny(char[]) Method</A><BR>
+<A HREF="#String.IndexOfAny(char[], int) Method" TARGET="contents">String.IndexOfAny(char[], int) Method</A><BR>
+<A HREF="#String.IndexOfAny(char[], int, int) Method" TARGET="contents">String.IndexOfAny(char[], int, int) Method</A><BR>
+<A HREF="#String.Insert Method" TARGET="contents">String.Insert Method</A><BR>
+<A HREF="#String.Intern Method" TARGET="contents">String.Intern Method</A><BR>
+<A HREF="#String.IsInterned Method" TARGET="contents">String.IsInterned Method</A><BR>
+<A HREF="#String.Join(System.String, System.String[]) Method" TARGET="contents">String.Join(System.String, System.String[]) Method</A><BR>
+<A HREF="#String.Join(System.String, System.String[], int, int) Method" TARGET="contents">String.Join(System.String, System.String[], int, int) Method</A><BR>
+<A HREF="#String.LastIndexOf(char) Method" TARGET="contents">String.LastIndexOf(char) Method</A><BR>
+<A HREF="#String.LastIndexOf(char, int) Method" TARGET="contents">String.LastIndexOf(char, int) Method</A><BR>
+<A HREF="#String.LastIndexOf(char, int, int) Method" TARGET="contents">String.LastIndexOf(char, int, int) Method</A><BR>
+<A HREF="#String.LastIndexOf(System.String) Method" TARGET="contents">String.LastIndexOf(System.String) Method</A><BR>
+<A HREF="#String.LastIndexOf(System.String, int) Method" TARGET="contents">String.LastIndexOf(System.String, int) Method</A><BR>
+<A HREF="#String.LastIndexOf(System.String, int, int) Method" TARGET="contents">String.LastIndexOf(System.String, int, int) Method</A><BR>
+<A HREF="#String.LastIndexOfAny(char[]) Method" TARGET="contents">String.LastIndexOfAny(char[]) Method</A><BR>
+<A HREF="#String.LastIndexOfAny(char[], int) Method" TARGET="contents">String.LastIndexOfAny(char[], int) Method</A><BR>
+<A HREF="#String.LastIndexOfAny(char[], int, int) Method" TARGET="contents">String.LastIndexOfAny(char[], int, int) Method</A><BR>
+<A HREF="#String.PadLeft(int) Method" TARGET="contents">String.PadLeft(int) Method</A><BR>
+<A HREF="#String.PadLeft(int, char) Method" TARGET="contents">String.PadLeft(int, char) Method</A><BR>
+<A HREF="#String.PadRight(int) Method" TARGET="contents">String.PadRight(int) Method</A><BR>
+<A HREF="#String.PadRight(int, char) Method" TARGET="contents">String.PadRight(int, char) Method</A><BR>
+<A HREF="#String.Remove Method" TARGET="contents">String.Remove Method</A><BR>
+<A HREF="#String.Replace(char, char) Method" TARGET="contents">String.Replace(char, char) Method</A><BR>
+<A HREF="#String.Replace(System.String, System.String) Method" TARGET="contents">String.Replace(System.String, System.String) Method</A><BR>
+<A HREF="#String.Split(char[]) Method" TARGET="contents">String.Split(char[]) Method</A><BR>
+<A HREF="#String.Split(char[], int) Method" TARGET="contents">String.Split(char[], int) Method</A><BR>
+<A HREF="#String.StartsWith Method" TARGET="contents">String.StartsWith Method</A><BR>
+<A HREF="#String.Substring(int) Method" TARGET="contents">String.Substring(int) Method</A><BR>
+<A HREF="#String.Substring(int, int) Method" TARGET="contents">String.Substring(int, int) Method</A><BR>
+<A HREF="#String.System.Collections.IEnumerable.GetEnumerator Method" TARGET="contents">String.System.Collections.IEnumerable.GetEnumerator Method</A><BR>
+<A HREF="#String.ToCharArray() Method" TARGET="contents">String.ToCharArray() Method</A><BR>
+<A HREF="#String.ToCharArray(int, int) Method" TARGET="contents">String.ToCharArray(int, int) Method</A><BR>
+<A HREF="#String.ToLower Method" TARGET="contents">String.ToLower Method</A><BR>
+<A HREF="#String.ToString(System.IFormatProvider) Method" TARGET="contents">String.ToString(System.IFormatProvider) Method</A><BR>
+<A HREF="#String.ToString() Method" TARGET="contents">String.ToString() Method</A><BR>
+<A HREF="#String.ToUpper Method" TARGET="contents">String.ToUpper Method</A><BR>
+<A HREF="#String.Trim(char[]) Method" TARGET="contents">String.Trim(char[]) Method</A><BR>
+<A HREF="#String.Trim() Method" TARGET="contents">String.Trim() Method</A><BR>
+<A HREF="#String.TrimEnd Method" TARGET="contents">String.TrimEnd Method</A><BR>
+<A HREF="#String.TrimStart Method" TARGET="contents">String.TrimStart Method</A><BR>
+<A HREF="#String.op_Equality Method" TARGET="contents">String.op_Equality Method</A><BR>
+<A HREF="#String.op_Inequality Method" TARGET="contents">String.op_Inequality Method</A><BR>
+<P>
+
+String Fields<P>
+
+<A HREF="#String.Empty Field" TARGET="contents">String.Empty Field</A><BR>
+<P>
+
+String Properties<P>
+
+<A HREF="#String.Chars Property" TARGET="contents">String.Chars Property</A><BR>
+<A HREF="#String.Length Property" TARGET="contents">String.Length Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="String(char*) Constructor"><H3>String(char*) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>unsafe public String(char* value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of <A HREF="String.html" TARGET="contents">String</A> using a specified pointer to a sequence of Unicode characters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A pointer to a null-terminated array of Unicode characters. If <I>value</I> is a null pointer, System.String.Empty is created.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative,
+      use the <A HREF="String.html" TARGET="contents">String</A>(<A HREF="Char.html" TARGET="contents">Char</A> ) constructor.<P>
+
+This constructor copies the sequence of Unicode characters at the specified
+      pointer until a null character (hexadecimal 0x00) is reached.<P>
+
+If the specified array is not null-terminated, the
+      behavior of this constructor is system dependent. For example, such a situation
+      might cause
+      an access violation.<P>
+
+[<I>Note</I>:  In C# this
+      constructor is defined only in the context of unmanaged code.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String(char*, int, int) Constructor"><H3>String(char*, int, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>unsafe public String(char* value, int startIndex, int length);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of <A HREF="String.html" TARGET="contents">String</A> using a specified
+   pointer to a sequence of Unicode characters, the index within that sequence at
+   which to start copying characters, and the number of characters to be copied to
+   construct the <A HREF="String.html" TARGET="contents">String</A>
+   .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A pointer to an array of Unicode characters.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index within the array referenced by <I>value</I> from which to start copying.</DD>
+<DT>length</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters to copy from <I>value</I> to the new <A HREF="String.html" TARGET="contents">String</A>. If <I>length</I> is zero, System.String.Empty is created.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>length</I> is less than zero.<P>
+
+ -or-<P>
+
+<I>value</I> is a null pointer and <I>length</I> is not zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use the 
+   <A HREF="String.html" TARGET="contents">String</A>(<A HREF="Char.html" TARGET="contents">Char</A>, <A HREF="Int32.html" TARGET="contents">Int32</A>, <A HREF="Int32.html" TARGET="contents">Int32</A>) constructor. <P>
+
+This constructor copies Unicode characters from
+   <I>value</I>, starting at <I>startIndex</I> and ending at
+      (<I>startIndex</I> + <I>length</I> - 1).<P>
+
+If the specified range is outside of the memory
+      allocated for the sequence of characters, the behavior of this constructor is
+      system dependent. For example, such a situation might cause an access violation.<P>
+
+[<I>Note</I>:  In C# this
+      constructor is defined only in the context of unmanaged code.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String(sbyte*, int, int, System.Text.Encoding) Constructor"><H3>String(sbyte*, int, int, System.Text.Encoding) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>unsafe public String(sbyte* value, int startIndex, int length, Encoding enc);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <CODE>String</CODE>
+ class to the value indicated by a specified pointer to an array of
+   8-bit signed integers, a starting character position within that array, a
+   length, and an <CODE>Encoding</CODE>
+
+   object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A pointer to a <A HREF="SByte.html" TARGET="contents">SByte</A> array.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the starting position within <I>value</I>.</DD>
+<DT>length</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters within <I>value</I> to use. If <I>length</I> is zero, System.String.Empty is created.</DD>
+<DT> enc</DT>
+<DD>A <A HREF="../System/Text/Encoding.html" TARGET="contents">Encoding</A> object that specifies how the array referenced by <I>value</I> is encoded.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>length</I> is less than zero.<P>
+
+-or-<P>
+
+<I>value</I> is a null pointer and <I>length</I> is not zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If <I>value</I> is a
+<CODE>null</CODE>
+ pointer, a System.String.Empty instance is constructed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String(char[], int, int) Constructor"><H3>String(char[], int, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public String(char[] value, int startIndex, int length);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of <A HREF="String.html" TARGET="contents">String</A> using an array of Unicode characters, the index within array at which to start
+   copying characters, and the number of characters
+   to be copied.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>An array of Unicode characters.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index within the array referenced by <I>value</I> from which to start copying.</DD>
+<DT>length</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters to copy from the <I>value</I> array. If <I>length</I> is zero, System.String.Empty is created.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>length</I> is less than zero.<P>
+
+ -or-<P>
+
+The sum of <I>startIndex</I> and <I>length</I> is greater than the number of elements in <I>value</I> .<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor copies the sequence Unicode characters
+      found at <I>value</I> between indexes <I>startIndex</I> and
+   <I>startIndex</I> + <I>length</I> - 1.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String(char[]) Constructor"><H3>String(char[]) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public String(char[] value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of <A HREF="String.html" TARGET="contents">String</A>
+by copying the specified array of Unicode characters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>An array of Unicode characters.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the specified array is a null reference or contains
+      no elements, System.String.Empty is created.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String(char, int) Constructor"><H3>String(char, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public String(char c, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of <A HREF="String.html" TARGET="contents">String</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>c</DT>
+<DD>A <A HREF="Char.html" TARGET="contents">Char</A> . </DD>
+<DT> count</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of occurrences of <I>c</I>. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>count</I> is less than zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the specified number is 0, System.String.Empty is
+   created.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates using this constructor.<P>
+
+<PRE>using System;
+
+public class StringExample {
+ public static void Main() {
+ 
+ string s = new String(&apos;a&apos;, 10);
+
+ Console.WriteLine(s);            
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>aaaaaaaaaa</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Clone Method"><H3>String.Clone Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public object Clone();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a reference to the current instance of <A HREF="String.html" TARGET="contents">String</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A reference to the current instance of <A HREF="String.html" TARGET="contents">String</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: System.String.Clone does not generate a new <A HREF="String.html" TARGET="contents">String</A> instance. Use the System.String.Copy(System.String) or System.String.CopyTo(System.Int32,System.Char[],System.Int32,System.Int32) method to
+      create a separate <A HREF="String.html" TARGET="contents">String</A> object with the same
+      value as the current instance.<P>
+
+This method is implemented to support the <A HREF="ICloneable.html" TARGET="contents">ICloneable</A> interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Compare(System.String, System.String) Method"><H3>String.Compare(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int Compare(string strA, string strB);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Compares two <A HREF="String.html" TARGET="contents">String</A> objects in a case sensitive manner.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>strA</DT>
+<DD>The first <A HREF="String.html" TARGET="contents">String</A> to compare. Can be a null reference.</DD>
+<DT>strB</DT>
+<DD>The second <A HREF="String.html" TARGET="contents">String</A> to compare. Can be a null reference.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
+   two specified strings. The following table defines conditions under which the returned value is a negative number, zero, or a positive number.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Meaning</TH><TH> ValueMeaning</TH></TR>
+<TR><TD><I>strA</I> is lexicographically &lt; <I>strB</I>,
+      or <I>strA</I> is a null reference.</TD><TD> Any negative number<I>strA</I> is lexicographically &lt; <I>strB</I>,
+      or <I>strA</I> is a null reference.</TD></TR>
+<TR><TD><I>strA</I> is lexicographically == <I>strB</I>,
+   or both <I>strA</I> and <I>strB</I> are null references.</TD><TD> Zero<I>strA</I> is lexicographically == <I>strB</I>,
+   or both <I>strA</I> and <I>strB</I> are null references.</TD></TR>
+<TR><TD><I>strA</I> is lexicographically &gt; <I>strB</I>,
+   or <I>strB</I> is a null reference.</TD><TD> Any positive number<I>strA</I> is lexicographically &gt; <I>strB</I>,
+   or <I>strB</I> is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method performs a case-sensitive operation.<P>
+
+[<I>Note</I>: The result of comparing any <A HREF="String.html" TARGET="contents">String</A> (including the empty string) to a null
+      reference is greater than zero. The
+      result of comparing two null references is zero. Upper case letters evaluate
+      greater than their lower case equivalents.<P>
+
+The method uses the culture of the
+      current thread to determine the ordering of individual characters. The two strings
+      are compared on a character-by-character basis.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Compare(System.String, System.String, bool) Method"><H3>String.Compare(System.String, System.String, bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int Compare(string strA, string strB, bool ignoreCase);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns sort order of two <A HREF="String.html" TARGET="contents">String</A>
+objects.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>strA</DT>
+<DD>The first <A HREF="String.html" TARGET="contents">String</A> to compare. Can be a null reference.</DD>
+<DT>strB</DT>
+<DD>The second <A HREF="String.html" TARGET="contents">String</A> to compare. Can be a null reference.</DD>
+<DT>ignoreCase</DT>
+<DD>A <A HREF="Boolean.html" TARGET="contents">Boolean</A> indicating whether the comparison is case-insensitive. If <I>ignoreCase</I> is <CODE>true</CODE>
+, the comparison is case-insensitive. If <I>ignoreCase</I> is <CODE>false</CODE>
+, the comparison is case-sensitive, and upper case letters evaluate greater than their lower case equivalents.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
+   two specified strings. The following table defines the conditions under which
+   the returned value is a negative number, zero, or a positive
+   number.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Meaning</TH><TH> ValueMeaning</TH></TR>
+<TR><TD><I>strA</I> is &lt; <I>strB</I>, or
+   <I>strA</I> is a null reference.</TD><TD> Any negative number<I>strA</I> is &lt; <I>strB</I>, or
+   <I>strA</I> is a null reference.</TD></TR>
+<TR><TD><I>strA</I> == <I>strB</I>, or both <I>strA</I>
+and <I>strB</I> are null references.</TD><TD> Zero<I>strA</I> == <I>strB</I>, or both <I>strA</I>
+and <I>strB</I> are null references.</TD></TR>
+<TR><TD><I>strA</I> is &gt; <I>strB</I>, or <I>strB</I>
+is a null reference.</TD><TD> Any positive number<I>strA</I> is &gt; <I>strB</I>, or <I>strB</I>
+is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The result of comparing any <A HREF="String.html" TARGET="contents">String</A> (including the empty string) to a null
+      reference is greater than zero. The
+      result of comparing two null references is zero. Upper case letters evaluate
+      greater than their lower case
+      equivalents.<P>
+
+The method uses the culture of the
+      current thread to determine the ordering of individual characters. The two strings
+      are compared on a character-by-character
+      basis.<P>
+
+<CODE>String.Compare</CODE>
+(<I>strA</I>,
+<I>strB</I>, 
+<CODE>false</CODE>
+) is equivalent to 
+<CODE>String.Compare</CODE>
+(<I>strA</I>, <I>strB</I> 
+).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates comparing strings with and without case 
+      sensitivity.<P>
+
+<PRE>using System;
+public class StringCompareExample {
+ public static void Main() {
+ string strA = &quot;A STRING&quot;;
+ string strB = &quot;a string&quot;;
+ int first = String.Compare( strA, strB, true );
+ int second = String.Compare( strA, strB, false );
+ Console.WriteLine( &quot;When &apos;A STRING&apos; is compared to &apos;a string&apos; in a case-insensitive manner, the return value is {0}.&quot;, first );
+ Console.WriteLine( &quot;When &apos;A STRING&apos; is compared to &apos;a string&apos; in a case-sensitive manner, the return value is {0}.&quot;, second );
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>When &apos;A STRING&apos; is compared to &apos;a string&apos; in a case-insensitive manner, the
+         return value is 0.<P>
+
+When &apos;A STRING&apos; is compared to &apos;a string&apos; in a case-sensitive manner, the
+         return value is 1.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Compare(System.String, int, System.String, int, int) Method"><H3>String.Compare(System.String, int, System.String, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int Compare(string strA, int indexA, string strB, int indexB, int length);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Compares substrings of two
+      strings.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>strA</DT>
+<DD>The first <A HREF="String.html" TARGET="contents">String</A> to compare.</DD>
+<DT>indexA</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the starting index of the substring within <I>strA</I>.</DD>
+<DT>strB</DT>
+<DD>The second <A HREF="String.html" TARGET="contents">String</A> to compare.</DD>
+<DT>indexB</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the starting index of the substring within <I>strB</I>.</DD>
+<DT>length</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters in the substrings to compare. If <I>length</I> is zero, then zero is returned.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of
+   substrings of the two specified strings. The following table defines the
+   conditions under which the returned value is a negative number, zero, or a positive
+   number.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Meaning</TH><TH> ValueMeaning</TH></TR>
+<TR><TD>The
+         substring in <I>strA</I> is &lt; the substring in <I>strB</I>, or
+      <I>strA</I> is a null reference.</TD><TD> Any negative numberThe
+         substring in <I>strA</I> is &lt; the substring in <I>strB</I>, or
+      <I>strA</I> is a null reference.</TD></TR>
+<TR><TD> The
+         substring in <I>strA</I> ==
+         the substring in <I>strB</I>, or both
+      <I>strA</I> and <I>strB</I> are null references.</TD><TD> Zero The
+         substring in <I>strA</I> ==
+         the substring in <I>strB</I>, or both
+      <I>strA</I> and <I>strB</I> are null references.</TD></TR>
+<TR><TD>The
+         substring in <I>strA</I> is &gt; the substring in <I>strB</I>, or
+      <I>strB</I> is a null reference.</TD><TD> Any positive numberThe
+         substring in <I>strA</I> is &gt; the substring in <I>strB</I>, or
+      <I>strB</I> is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The sum of <I>indexA</I> and <I>length</I> is greater than <I>strA</I> .Length .<P>
+
+ -or-<P>
+
+The sum of <I>indexB</I> and <I>length</I> is greater than <I>strB</I> .Length .<P>
+
+ -or-<P>
+
+<I>indexA</I>, <I>indexB</I>, or <I>length</I> is negative.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The result of comparing any <A HREF="String.html" TARGET="contents">String</A> (including the empty string) to a null
+      reference is greater than zero. The result of comparing two null references is
+      zero. Upper case letters evaluate greater than their lower case
+      equivalents.<P>
+
+The method uses the culture of the current thread to
+      determine the ordering of individual characters. The two strings are compared on a character-by-character
+      basis.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates comparing substrings.<P>
+
+<PRE>using System;
+public class StringCompareExample {
+ public static void Main() {
+ string strA = &quot;A string&quot;;
+ string strB = &quot;B ring&quot;;
+ int first = String.Compare( strA, 4, strB, 2, 3 );
+ int second = String.Compare( strA, 3, strB, 3, 3 );
+ Console.WriteLine( &quot;When the substring &apos;rin&apos; of &apos;A string&apos; is compared to the substring &apos;rin&apos; of &apos;B ring&apos;, the return value is {0}.&quot;, first );
+ Console.WriteLine( &quot;When the substring &apos;tri&apos; of &apos;A string&apos; is compared to the substring &apos;ing&apos; of &apos;B ring&apos;, the return value is {0}.&quot;, second );
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>When the substring &apos;rin&apos; of &apos;A string&apos; is compared to the substring &apos;rin&apos; of
+         &apos;B ring&apos;, the return value is 0.<P>
+
+When the substring &apos;tri&apos; of &apos;A string&apos; is compared to the substring &apos;ing&apos; of
+         &apos;B ring&apos;, the return value is 1.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Compare(System.String, int, System.String, int, int, bool) Method"><H3>String.Compare(System.String, int, System.String, int, int, bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int Compare(string strA, int indexA, string strB, int indexB, int length, bool ignoreCase);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Compares substrings of two strings.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>strA</DT>
+<DD>The first <A HREF="String.html" TARGET="contents">String</A> containing a substring to compare.</DD>
+<DT>indexA</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the starting index of the substring within <I>strA</I>.</DD>
+<DT>strB</DT>
+<DD>The second <A HREF="String.html" TARGET="contents">String</A> containing a substring to compare.</DD>
+<DT>indexB</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the starting index of the substring within <I>strB</I>.</DD>
+<DT>length</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters in the substrings to compare. If <I>length</I> is zero, then zero is returned.</DD>
+<DT> ignoreCase</DT>
+<DD>A <A HREF="Boolean.html" TARGET="contents">Boolean</A> indicating if the comparison is case-insensitive. If <I>ignoreCase</I> is <CODE>true</CODE>
+, the comparison is case-insensitive. If <I>ignoreCase</I> is <CODE>false</CODE>
+, the comparison is case-sensitive, and upper case letters evaluate greater than their lower case equivalents. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of
+   substrings of the two specified strings. The following table defines the
+   conditions under which the returned value is a negative number, zero, or a positive
+   number.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Condition</TH><TH>Value TypeCondition</TH></TR>
+<TR><TD>The substring in <I>strA</I> is &lt; the substring
+      in <I>strB</I>, or <I>strA</I> is a null reference.</TD><TD> Any negative numberThe substring in <I>strA</I> is &lt; the substring
+      in <I>strB</I>, or <I>strA</I> is a null reference.</TD></TR>
+<TR><TD>The substring in <I>strA</I> == 
+   the substring in
+<I>strB</I>, or both <I>strA</I> and strB are null 
+   references.</TD><TD> ZeroThe substring in <I>strA</I> == 
+   the substring in
+<I>strB</I>, or both <I>strA</I> and strB are null 
+   references.</TD></TR>
+<TR><TD>The substring in <I>strA</I> is &gt; the substring
+   in <I>strB</I>, or <I>strB</I> is a null
+   reference.</TD><TD> Any positive numberThe substring in <I>strA</I> is &gt; the substring
+   in <I>strB</I>, or <I>strB</I> is a null
+   reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The sum of <I>indexA</I> and <I>length</I> is greater than <I>strA</I> .Length<P>
+
+ -or-<P>
+
+The sum of <I>indexB</I> and length is greater than <I>strB</I> .Length<P>
+
+ -or-<P>
+
+<I>indexA</I>, <I>indexB</I>, or <I>length</I> is negative.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The result of comparing any <A HREF="String.html" TARGET="contents">String</A> (including the
+      empty string) to a null reference is greater than zero. The result of comparing
+      two null references is zero. Upper case letters evaluate greater than their
+      lower
+      case
+      equivalents.<P>
+
+The method uses the culture of the current thread to
+      determine the ordering of individual characters. The two strings are compared on
+      a character-by-character
+      basis.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates comparing substrings with and without case 
+      sensitivity.<P>
+
+<PRE>using System;
+public class StringCompareExample {
+ public static void Main() {
+ string strA = &quot;STRING A&quot;;
+ string strB = &quot;string b&quot;;
+ int first = String.Compare( strA, strB, true );
+ int second = String.Compare( strA, 0, strB, 0, 4, true );
+ int third = String.Compare( strA, 0, strB, 0, 4, false );
+ Console.WriteLine( &quot;When the string &apos;STRING A&apos; is compared to the string &apos;string b&apos; in a case-insensitive manner, the return value is {0}.&quot;, first );
+ Console.WriteLine( &quot;When the substring &apos;STRI&apos; of &apos;STRING A&apos; is compared to the substring &apos;stri&apos; of &apos;string b&apos; in a case-insensitive manner, the return value is {0}.&quot;, second );
+ Console.WriteLine( &quot;When the substring &apos;STRI&apos; of &apos;STRING A&apos; is compared to the substring &apos;stri&apos; of &apos;string b&apos; in a case-sensitive manner, the return value is {0}.&quot;, third );
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>When the string &apos;STRING A&apos; is compared to the string &apos;string b&apos; in a
+         case-insensitive manner, the return value is -1.<P>
+
+When the substring &apos;STRI&apos; of &apos;STRING A&apos; is compared to the substring &apos;stri&apos;
+         of &apos;string b&apos; in a case-insensitive manner, the return value is 0.<P>
+
+When the substring &apos;STRI&apos; of &apos;STRING A&apos; is compared to the substring &apos;stri&apos;
+         of &apos;string b&apos; in a case-sensitive manner, the return value is 1.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.CompareOrdinal(System.String, System.String) Method"><H3>String.CompareOrdinal(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int CompareOrdinal(string strA, string strB);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Compares two specified <A HREF="String.html" TARGET="contents">String</A> objects based
+   on the code points of
+   the contained Unicode characters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>strA</DT>
+<DD>The first <A HREF="String.html" TARGET="contents">String</A> to compare.</DD>
+<DT>strB</DT>
+<DD>The second <A HREF="String.html" TARGET="contents">String</A> to compare.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
+   two specified strings. The following table defines the conditions under which
+   the returned value is a negative number, zero, or a positive number.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>PermissionDescription</TH></TR>
+<TR><TD><I>strA</I> is &lt; <I>strB</I>, or <I>strA</I>
+   is a null reference.</TD><TD> Any negative number<I>strA</I> is &lt; <I>strB</I>, or <I>strA</I>
+   is a null reference.</TD></TR>
+<TR><TD><I>strA</I> == <I>strB</I>, or both <I>strA</I>
+and <I>strB</I> are null references.</TD><TD> Zero<I>strA</I> == <I>strB</I>, or both <I>strA</I>
+and <I>strB</I> are null references.</TD></TR>
+<TR><TD><I>strA</I> is &gt; <I>strB</I>, or <I>strB</I>
+is a null reference.</TD><TD> Any positive number<I>strA</I> is &gt; <I>strB</I>, or <I>strB</I>
+is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The result of comparing any <A HREF="String.html" TARGET="contents">String</A> (including the
+      empty string) to a null reference is greater than zero. The result of comparing
+      two null references is zero. Upper case letters evaluate greater than
+      their lower case equivalents.<P>
+
+The method uses the culture of the current thread to
+      determine the ordering of individual characters. The two strings are compared
+      on a character-by-character basis.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.CompareOrdinal(System.String, int, System.String, int, int) Method"><H3>String.CompareOrdinal(System.String, int, System.String, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int CompareOrdinal(string strA, int indexA, string strB, int indexB, int length);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Compares substrings of two specified <A HREF="String.html" TARGET="contents">String</A>
+objects based
+on
+the code points of the contained Unicode characters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>strA</DT>
+<DD>The first <A HREF="String.html" TARGET="contents">String</A> to compare.</DD>
+<DT>indexA</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the starting index of the substring in <I>strA</I>.</DD>
+<DT>strB</DT>
+<DD>The second <A HREF="String.html" TARGET="contents">String</A> to compare.</DD>
+<DT>indexB</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the starting index of the substring in <I>strB</I>.</DD>
+<DT>length</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters in the substrings to compare.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
+   two specified strings. The following table defines the conditions under which
+   the returned value is a negative number, zero, or a positive number.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Condition</TH><TH>Value TypeCondition</TH></TR>
+<TR><TD>The substring in <I>strA</I> is &lt; the
+      substring in <I>strB</I>, or <I>strA</I> is a null reference.</TD><TD> Any negative numberThe substring in <I>strA</I> is &lt; the
+      substring in <I>strB</I>, or <I>strA</I> is a null reference.</TD></TR>
+<TR><TD>The substring in <I>strA</I> ==
+   the substring in
+<I>strB</I>, or both <I>strA</I> and <I>strB</I> are null 
+   references.</TD><TD> ZeroThe substring in <I>strA</I> ==
+   the substring in
+<I>strB</I>, or both <I>strA</I> and <I>strB</I> are null 
+   references.</TD></TR>
+<TR><TD>The substring in <I>strA</I> is &gt; the substring
+   in <I>strB</I>, or <I>strB</I> is a null
+   reference.</TD><TD> Any positive numberThe substring in <I>strA</I> is &gt; the substring
+   in <I>strB</I>, or <I>strB</I> is a null
+   reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD> The sum of <I>indexA</I> and <I>length</I> is greater than <I>strA</I> .Length<P>
+
+ -or-<P>
+
+ The sum of <I>indexB</I> and <I>length</I> is greater than <I>strB</I> .Length<P>
+
+ -or-<P>
+
+<I>indexA</I>, <I>indexB</I>, or <I>length</I>is negative.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The result of comparing any <A HREF="String.html" TARGET="contents">String</A> (including the empty string) to a null reference is
+      greater than zero. The result of comparing two null references is zero. Upper
+      case letters evaluate greater than their lower case equivalents.<P>
+
+The method uses the culture of the current thread to determine the ordering
+      of individual characters. The two strings are compared on a
+      character-by-character basis.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.CompareTo Method"><H3>String.CompareTo Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int CompareTo(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the sort order of the current instance compared 
+      to the specified object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Object.html" TARGET="contents">Object</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value
+   that reflects the sort order of the current instance as compared to
+<I>value</I> 
+. The following table defines the
+conditions under which the returned value is a negative number, zero, or a positive
+number.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Condition</TH><TH>ValueCondition</TH></TR>
+<TR><TD>The current instance is lexicographically &lt;
+      <I>value</I>.</TD><TD> Any negative numberThe current instance is lexicographically &lt;
+      <I>value</I>.</TD></TR>
+<TR><TD>The current instance is lexicographically ==
+      <I>value</I>.</TD><TD> ZeroThe current instance is lexicographically ==
+      <I>value</I>.</TD></TR>
+<TR><TD>The current instance is lexicographically &gt;
+            <I>value</I>, or <I>value</I> is a null
+               reference.<P>
+
+</TD><TD> Any positive number<P>
+
+The current instance is lexicographically &gt;
+            <I>value</I>, or <I>value</I> is a null
+               reference.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>value</I> is not a <A HREF="String.html" TARGET="contents">String</A>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<I>value</I> is required to be a <A HREF="String.html" TARGET="contents">String</A>
+object.<P>
+
+[<I>Note</I>: The result of comparing any <A HREF="String.html" TARGET="contents">String</A> (including the
+   empty string) to a null reference is greater than zero. The result of comparing
+   two null references is zero. Upper case letters evaluate greater than their
+   lower case equivalents.<P>
+
+The method uses the culture of the current thread to
+   determine the ordering of individual characters. The two strings are compared on
+   a character-by-character
+   basis.<P>
+
+ This method is implemented to support the <A HREF="IComparable.html" TARGET="contents">IComparable</A> interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Concat(System.Object, System.Object) Method"><H3>String.Concat(System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Concat(object arg0, object arg1);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Concatenates the <A HREF="String.html" TARGET="contents">String</A> representations of two specified objects.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>arg0</DT>
+<DD>The first <A HREF="Object.html" TARGET="contents">Object</A> to concatenate.</DD>
+<DT>arg1</DT>
+<DD>The second <A HREF="Object.html" TARGET="contents">Object</A> to concatenate.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The concatenated <A HREF="String.html" TARGET="contents">String</A> representation of the values of
+<I>arg0</I> and <I>arg1</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.String.Empty is used in place of any null argument.<P>
+
+This version of System.String.Concat(System.Object) is equivalent to System.String.Concat(System.Object)( <I>arg0</I>.ToString(),
+<I>arg1</I>.ToString () ).<P>
+
+[<I>Note</I>:  If either of the
+   arguments is an array reference, the method concatenates a string representing
+   that array, instead of its members (for example, <A HREF="String.html" TARGET="contents">String</A> )[].]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates concatenating two objects.<P>
+
+<PRE>using System;
+public class StringConcatExample {
+ public static void Main() {
+ string str = String.Concat( &apos;c&apos;, 32 );
+ Console.WriteLine( &quot;The concatenated Objects are: {0}&quot;, str );
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The
+      concatenated Objects are: c32</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Concat(System.Object, System.Object, System.Object) Method"><H3>String.Concat(System.Object, System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Concat(object arg0, object arg1, object arg2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Concatenates the <A HREF="String.html" TARGET="contents">String</A> representations of three specified objects, in order provided.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>arg0</DT>
+<DD>The first <A HREF="Object.html" TARGET="contents">Object</A> to concatenate.</DD>
+<DT>arg1</DT>
+<DD>The second <A HREF="Object.html" TARGET="contents">Object</A> to concatenate.</DD>
+<DT>arg2</DT>
+<DD>The third <A HREF="Object.html" TARGET="contents">Object</A> to concatenate.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The concatenated <A HREF="String.html" TARGET="contents">String</A> representations of the values of
+<I>arg0</I>, <I>arg1</I>, and <I>arg2</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method concatenates the values returned by
+      the System.String.ToString methods on every argument. System.String.Empty is used in place of any null argument.<P>
+
+This version of System.String.Concat(System.Object) is equivalent to
+<CODE>String.Concat</CODE>
+( <I>arg0</I>.<CODE>ToString</CODE>
+(), 
+<I>arg1</I>.<CODE>ToString</CODE>
+(), 
+<I>arg2</I>.<CODE>ToString</CODE>
+ () ).<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates concatenating three objects.<P>
+
+<PRE>using System;
+public class StringConcatExample {
+ public static void Main() {
+ string str = String.Concat( &apos;c&apos;, 32, &quot;String&quot; );
+ Console.WriteLine( &quot;The concatenated Objects are: {0}&quot;, str );
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The
+      concatenated Objects are: c32String</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Concat(System.Object[]) Method"><H3>String.Concat(System.Object[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Concat(params object[] args);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Concatenates the <A HREF="String.html" TARGET="contents">String</A> representations of the elements in an
+   array of <A HREF="Object.html" TARGET="contents">Object</A>
+   instances.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>args</DT>
+<DD>An array of <A HREF="Object.html" TARGET="contents">Object</A> instances to concatenate.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The concatenated <A HREF="String.html" TARGET="contents">String</A> representations of the values of the
+   elements in <I>args</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>args</I> is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method concatenates the values returned by
+      the System.String.ToString methods on every
+      object in the <I>args</I> array. System.String.Empty is
+      used in place of any null reference in the array.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates concatenating an array of objects.<P>
+
+<PRE>using System;
+public class StringConcatExample {
+ public static void Main() {
+ string str = String.Concat( &apos;c&apos;, 32, &quot;String&quot; );
+ Console.WriteLine( &quot;The concatenated Object array is: {0}&quot;, str );
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The
+      concatenated Object array is: c32String</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Concat(System.String, System.String) Method"><H3>String.Concat(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Concat(string str0, string str1);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Concatenates two specified instances of <A HREF="String.html" TARGET="contents">String</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>str0</DT>
+<DD>The first <A HREF="String.html" TARGET="contents">String</A> to concatenate.</DD>
+<DT>str1</DT>
+<DD>The second <A HREF="String.html" TARGET="contents">String</A> to concatenate.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the concatenation of <I>str0</I> and
+<I>str1</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.String.Empty is used in place of any null argument.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates concatenating two strings.<P>
+
+<PRE>using System;
+public class StringConcatExample {
+ public static void Main() {
+ string str = String.Concat( &quot;one&quot;, &quot;two&quot; );
+ Console.WriteLine( &quot;The concatenated strings are: {0}&quot;, str );
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The
+      concatenated strings are: onetwo</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Concat(System.String, System.String, System.String) Method"><H3>String.Concat(System.String, System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Concat(string str0, string str1, string str2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Concatenates three specified instances of <A HREF="String.html" TARGET="contents">String</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>str0</DT>
+<DD>The first <A HREF="String.html" TARGET="contents">String</A> to concatenate.</DD>
+<DT>str1</DT>
+<DD>The second <A HREF="String.html" TARGET="contents">String</A> to concatenate.</DD>
+<DT>str2</DT>
+<DD>The third <A HREF="String.html" TARGET="contents">String</A> to concatenate.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the concatenation of <I>str0</I>, <I>str1</I>, and
+<I>str2</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.String.Empty is used in place of any null argument.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates concatenating three strings.<P>
+
+<PRE>using System;
+public class StringConcatExample {
+ public static void Main() {
+ string str = String.Concat( &quot;one&quot;, &quot;two&quot;, &quot;three&quot; );
+ Console.WriteLine( &quot;The concatenated strings are: {0}&quot;, str );
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The
+      concatenated strings are: onetwothree</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Concat(System.String[]) Method"><H3>String.Concat(System.String[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Concat(params string[] values);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Concatenates the elements of a specified array.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>values</DT>
+<DD>An array of <A HREF="String.html" TARGET="contents">String</A> instances to concatenate.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> containing the concatenated elements of <I>values</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>values</I> is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.String.Empty is used in place of any null reference in the array.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates concatenating an array of strings.<P>
+
+<PRE>using System;
+public class StringConcatExample {
+ public static void Main() {
+ string str = String.Concat( &quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot; );
+ Console.WriteLine( &quot;The concatenated String array is: {0}&quot;, str );
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The
+      concatenated String array is: onetwothreefourfive</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Copy Method"><H3>String.Copy Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Copy(string str);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Creates a new instance of <A HREF="String.html" TARGET="contents">String</A> with the same value as a specified
+   instance of <A HREF="String.html" TARGET="contents">String</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>str</DT>
+<DD>The <A HREF="String.html" TARGET="contents">String</A> to be copied.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="String.html" TARGET="contents">String</A> with the same value as
+<I>str</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>str</I> is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates copying strings.<P>
+
+<PRE>using System;
+public class StringCopyExample {
+ public static void Main() {
+ string strA = &quot;string&quot;;
+ Console.WriteLine( &quot;The initial string, strA, is &apos;{0}&apos;.&quot;, strA );
+ string strB = String.Copy( strA );
+ strA = strA.ToUpper();
+ Console.WriteLine( &quot;The copied string, strB, before strA.ToUpper, is &apos;{0}&apos;.&quot;, strB );
+ Console.WriteLine( &quot;The initial string after StringCopy and ToUpper, is &apos;{0}&apos;.&quot;, strA );
+ Console.WriteLine( &quot;The copied string, strB, after strA.ToUpper, is &apos;{0}&apos;.&quot;, strB );
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The initial string, strA, is &apos;string&apos;.<P>
+
+The copied string, strB, before strA.ToUpper, is &apos;string&apos;.<P>
+
+The initial string after StringCopy and ToUpper, is &apos;STRING&apos;.<P>
+
+The copied string, strB, after strA.ToUpper, is &apos;string&apos;.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.CopyTo Method"><H3>String.CopyTo Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void CopyTo(int sourceIndex, char[] destination, int destinationIndex, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Copies a specified number of characters from a specified
+      position in the current <A HREF="String.html" TARGET="contents">String</A>
+      instance to
+      a specified position in a specified array of Unicode characters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>sourceIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to copy.</DD>
+<DT>destination</DT>
+<DD>An array of Unicode characters.</DD>
+<DT>destinationIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of an array element in <I>destination</I> to copy.</DD>
+<DT>count</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters in the current instance to copy to <I>destination</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>destination</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>sourceIndex</I>, <I>destinationIndex</I>, or <I>count</I> is negative <P>
+
+-or- <P>
+
+<I>count</I> is greater than the length of the substring from <I>startIndex</I> to the end of the current instance <P>
+
+-or- <P>
+
+<I>count</I> is greater than the length of the subarray from <I>destinationIndex</I> to the end of <I>destination</I><P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates copying characters from a string to a 
+      Unicode character array.<P>
+
+<PRE>using System;
+public class StringCopyToExample {
+ public static void Main() {
+ string str = &quot;this is the new string&quot;;
+ Char[] cAry = {&apos;t&apos;,&apos;h&apos;,&apos;e&apos;,&apos; &apos;,&apos;o&apos;,&apos;l&apos;,&apos;d&apos;};
+ Console.WriteLine( &quot;The initial string is &apos;{0}&apos;&quot;, str );
+ Console.Write( &quot;The initial character array is: &apos;&quot; );
+ foreach( Char c in cAry)
+ Console.Write( c );
+ Console.WriteLine( &quot;&apos;&quot; );
+ str.CopyTo( 12, cAry, 4, 3 );
+ Console.Write( &quot;The character array after CopyTo is: &apos;&quot; );
+ foreach( Char c in cAry)
+ Console.Write( c );
+ Console.WriteLine(&quot;&apos;&quot;);
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The initial string is &apos;this is the new string&apos;<P>
+
+The initial character array is: &apos;the old&apos;<P>
+
+The character array after CopyTo is: &apos;the new&apos;<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.EndsWith Method"><H3>String.EndsWith Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool EndsWith(string value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value that indicates whether the ending characters of the current
+   instance match the specified <A HREF="String.html" TARGET="contents">String</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> to match.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the end of the current instance
+   is equal to <I>value</I>; <CODE>false</CODE>
+ if <I>value</I> is not
+   equal to the end of the current instance or is longer than the
+   current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method compares <I>value</I>
+with the substring at
+the end of the current instance that has a same length as <I>value.</I><P>
+
+ The comparison
+   is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates determining whether the current instance 
+      ends with a specified string.<P>
+
+<PRE>using System;
+public class StringEndsWithExample {
+ public static void Main() {
+ string str = &quot;One string to compare&quot;;
+ Console.WriteLine( &quot;The given string is &apos;{0}&apos;&quot;, str );
+ Console.Write( &quot;The given string ends with &apos;compare&apos;? &quot; );
+ Console.WriteLine( str.EndsWith( &quot;compare&quot; ) );
+ Console.Write( &quot;The given string ends with &apos;Compare&apos;? &quot; );
+ Console.WriteLine( str.EndsWith( &quot;Compare&quot; ) );
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The given string is &apos;One string to compare&apos;<P>
+
+The given string ends with &apos;compare&apos;? True<P>
+
+The given string ends with &apos;Compare&apos;? False<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Equals(System.Object) Method"><H3>String.Equals(System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool Equals(object obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance and the specified
+      object have the
+      same value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>obj</DT>
+<DD>A <A HREF="Object.html" TARGET="contents">Object</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>obj</I> is a <A HREF="String.html" TARGET="contents">String</A> and its value is
+   the same as the value of the current instance; otherwise,
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="NullReferenceException.html" TARGET="contents">NullReferenceException</A></TD><TD>The current instance is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method checks for value equality. This comparison is case-sensitive.<P>
+
+[<I>Note</I>:  This method
+      overrides System.Object.Equals(System.Object) .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates checking to see if an object is equal to 
+      the current instance.<P>
+
+<PRE>using System;
+public class StringEqualsExample {
+ public static void Main() {
+ string str = &quot;A string&quot;;
+ Console.WriteLine( &quot;The given string is &apos;{0}&apos;&quot;, str );
+ Console.Write( &quot;The given string is equal to &apos;A string&apos;? &quot; );
+ Console.WriteLine( str.Equals( &quot;A string&quot; ) );
+ Console.Write( &quot;The given string is equal to &apos;A String&apos;? &quot; );
+ Console.WriteLine( str.Equals( &quot;A String&quot; ) );
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The given string is &apos;A string&apos;<P>
+
+The given string is equal to &apos;A string&apos;? True<P>
+
+The given string is equal to &apos;A String&apos;? False<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Equals(System.String, System.String) Method"><H3>String.Equals(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool Equals(string a, string b);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether two specified <A HREF="String.html" TARGET="contents">String</A> objects have the
+   same value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>a</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> or a null reference.</DD>
+<DT>b</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> or a null reference.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the value of <I>a</I> is the
+   same as the value of <I>b</I>; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The comparison
+      is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates checking to see if two strings are 
+      equal.<P>
+
+<PRE>using System;
+public class StringEqualsExample {
+ public static void Main() {
+ string strA = &quot;A string&quot;;
+ string strB = &quot;a string&quot;;
+ string strC = &quot;a string&quot;;
+ Console.Write( &quot;The string &apos;{0}&apos; is equal to the string &apos;{1}&apos;? &quot;, strA, strB );
+ Console.WriteLine( String.Equals( strA, strB ) );
+ Console.Write( &quot;The string &apos;{0}&apos; is equal to the string &apos;{1}&apos;? &quot;, strC, strB );
+ Console.WriteLine( String.Equals( strC, strB ) );
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The string &apos;A string&apos; is equal to the string &apos;a string&apos;? False<P>
+
+The string &apos;a string&apos; is equal to the string &apos;a string&apos;? True<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Format(System.String, System.Object) Method"><H3>String.Format(System.String, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Format(string format, object arg0);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Replaces the format specification in a provided <A HREF="String.html" TARGET="contents">String</A> with a specified
+   textual equivalent of the value of a specified <A HREF="Object.html" TARGET="contents">Object</A> instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing zero or more format specifications.</DD>
+<DT>arg0</DT>
+<DD>A <A HREF="Object.html" TARGET="contents">Object</A> to be formatted.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A copy of <I>format</I> in which the
+   first format specification has been replaced by the formatted <A HREF="String.html" TARGET="contents">String</A> equivalent of the
+<I>arg0</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format </I>or <I>arg0</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+ -or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the number of provided objects to be formatted (1).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  This version of
+      System.String.Format(System.String,System.Object) is
+      equivalent to <CODE>String.Format</CODE>
+( <CODE>null</CODE>
+ , <I>format</I>, <CODE>new Object</CODE>
+[] {<I>arg0</I>} ). For more information on the format
+      specification see the <A HREF="String.html" TARGET="contents">String</A> class overview.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.String.Format(System.String,System.Object) method.<P>
+
+<PRE>
+using System;
+public class StringFormat {
+ public static void Main() {
+ Console.WriteLine(String.Format(&quot;The high temperature today was {0:###} degrees.&quot;, 88));
+ Console.WriteLine(&quot;The museum had {0,-6} visitors today.&quot;, 88);
+ }
+}
+</PRE>
+The output is<P>
+
+<PRE>
+The high temperature today was 88 degrees.
+The museum had 88     visitors today.
+</PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Format(System.String, System.Object, System.Object) Method"><H3>String.Format(System.String, System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Format(string format, object arg0, object arg1);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Replaces the format specification in a specified <A HREF="String.html" TARGET="contents">String</A> with the textual equivalent of the value of two
+   specified <A HREF="Object.html" TARGET="contents">Object</A>
+   instances.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing zero or more format specifications.</DD>
+<DT>arg0</DT>
+<DD>A <A HREF="Object.html" TARGET="contents">Object</A> to be formatted. Can be a null reference.</DD>
+<DT>arg1</DT>
+<DD>A <A HREF="Object.html" TARGET="contents">Object</A> to be formatted. Can be a null reference.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing a copy of <I>format</I> in which the format
+   specifications have been replaced by the <A HREF="String.html" TARGET="contents">String</A> equivalent of <I>arg0</I> and
+<I>arg1</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> is invalid.<P>
+
+ -or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the number of provided objects to be formatted (2).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If an object referenced in the format string is a null
+      reference, an empty string is used in its place.<P>
+
+[<I>Note</I>:  This version of
+      System.String.Format(System.String,System.Object) is
+      equivalent to <CODE>String.Format</CODE>
+( <CODE>null</CODE>
+,
+      <I>format</I>, <CODE>new Object[]</CODE>
+ {<I>arg0</I>, <I>arg1</I>} ).
+      For more information on the format specification see the <A HREF="String.html" TARGET="contents">String</A> class
+      overview.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.String.Format(System.String,System.Object) method.<P>
+
+<PRE>using System;
+public class StringFormat {
+  public static void Main() {
+  Console.WriteLine( String.Format(&quot;The temperature today oscillated between {0:####} and {1:####} degrees.&quot;, 78, 100) );
+  Console.WriteLine( String.Format(&quot;The temperature today oscillated between {0:0000} and {1:0000} degrees.&quot;, 78, 100) );
+  Console.WriteLine( &quot;The temperature today oscillated between {0, -4} and {1, -4} degrees.&quot;, 78, 100 );
+   }
+}
+</PRE>
+The output is<P>
+
+<PRE>
+The temperature today oscillated between 78 and 100 degrees.
+The temperature today oscillated between 0078 and 0100 degrees.
+The temperature today oscillated between 78   and 100  degrees.
+</PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Format(System.String, System.Object, System.Object, System.Object) Method"><H3>String.Format(System.String, System.Object, System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Format(string format, object arg0, object arg1, object arg2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Replaces the format specification in a specified <A HREF="String.html" TARGET="contents">String</A> with the textual
+   equivalent of the value of three specified <A HREF="Object.html" TARGET="contents">Object</A> instances.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing zero or more format specifications.</DD>
+<DT>arg0</DT>
+<DD>The first <A HREF="Object.html" TARGET="contents">Object</A> to be formatted. Can be a null reference.</DD>
+<DT>arg1</DT>
+<DD>The second <A HREF="Object.html" TARGET="contents">Object</A> to be formatted. Can be a null reference.</DD>
+<DT>arg2</DT>
+<DD>The third <A HREF="Object.html" TARGET="contents">Object</A> to be formatted. Can be a null reference.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing a copy of <I>format</I> in which the first, second,
+   and third format specifications have been replaced by the <A HREF="String.html" TARGET="contents">String</A> equivalent of
+<I>arg0</I>, <I>arg1</I>, and <I>arg2</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> is invalid.<P>
+
+ -or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the number of provided objects to be formatted (3).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If an object referenced in the format string is a null
+      reference, an empty string is used in its place. <P>
+
+[<I>Note</I>:  This version of
+      System.String.Format(System.String,System.Object) is
+      equivalent to <CODE>String.Format</CODE>
+( <CODE>null</CODE>
+,
+      <I>format</I>, <CODE>new Object[]</CODE>
+ {<I>arg0</I>, <I>arg1</I>,
+      <I>arg2</I>} ). For more information on the format specification see the
+      <A HREF="String.html" TARGET="contents">String</A> class
+      overview.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.String.Format(System.String,System.Object) method.<P>
+
+<PRE>
+using System;
+public class StringFormat {
+   public static void Main() {
+      Console.WriteLine(String.Format(&quot;The temperature today oscillated between {0:###} and {1:###} degrees. The average temperature  was {2:000} degrees.&quot;, 78, 100, 91));
+      Console.WriteLine(&quot;The temperature today oscillated between {0, 4} and {1, 4} degrees. The average temperature was {2, 4}  degrees.&quot;, 78, 100, 91);
+   }
+}
+</PRE>
+The output is<P>
+
+<PRE>
+The temperature today oscillated between 78 and 100 degrees. The average temperature was 091 degrees.
+The temperature today oscillated between   78 and  100 degrees. The average temperature was   91 degrees.</PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Format(System.String, System.Object[]) Method"><H3>String.Format(System.String, System.Object[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Format(string format, params object[] args);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Replaces the format specification in a specified <A HREF="String.html" TARGET="contents">String</A> with the textual
+   equivalent of the value of a corresponding <A HREF="Object.html" TARGET="contents">Object</A> instance in a specified array.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing zero or more format specifications.</DD>
+<DT>args</DT>
+<DD>A <A HREF="Object.html" TARGET="contents">Object</A> array containing the objects to be formatted.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing a copy of <I>format</I> in which the format
+   specifications have been replaced by the <A HREF="String.html" TARGET="contents">String</A> equivalent of the corresponding
+   instances of <A HREF="Object.html" TARGET="contents">Object</A> in <I>args</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> or <I>args </I>is a null reference.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> is invalid.<P>
+
+ -or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the length of the <I>args</I> array.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If an object referenced in the format string is a null
+      reference, an empty string is used in its place. <P>
+
+[<I>Note</I>:  This version of
+      System.String.Format(System.String,System.Object) is
+      equivalent to System.String.Format(System.String,System.Object)( null, <I>format</I>, <I>args</I> ). For more
+      information on the format specification see the <A HREF="String.html" TARGET="contents">String</A>
+      class
+      overview.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.String.Format(System.String,System.Object) method.<P>
+
+<PRE>
+using System;
+public class StringFormat {
+   public static void Main() {
+      Console.WriteLine( String.Format(&quot;The winning numbers were {0:000} {1:000} {2:000} {3:000} {4:000} today.&quot;, 5, 10, 11, 37, 42) );
+      Console.WriteLine( &quot;The winning numbers were {0, -6}{1, -6}{2, -6}{3, -6}{4, -6} today.&quot;, 5, 10, 11, 37, 42 );
+ }
+}
+</PRE>
+The output is<P>
+
+<PRE>
+The winning numbers were 005 010 011 037 042 today.
+The winning numbers were 5     10    11    37    42     today.
+</PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Format(System.IFormatProvider, System.String, System.Object[]) Method"><H3>String.Format(System.IFormatProvider, System.String, System.Object[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Format(IFormatProvider provider, string format, params object[] args);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Replaces the format specification in a specified <A HREF="String.html" TARGET="contents">String</A> with the
+   culture-specific textual equivalent of the value of a corresponding <A HREF="Object.html" TARGET="contents">Object</A> instance in a
+   specified array. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>provider</DT>
+<DD>A <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> interface that supplies an object that provides culture-specific formatting information. Can be a null reference.</DD>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing zero or more format specifications.</DD>
+<DT>args</DT>
+<DD>A <A HREF="Object.html" TARGET="contents">Object</A> array to be formatted.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing a copy of <I>format</I> in which the format
+   specifications have been replaced by the <A HREF="String.html" TARGET="contents">String</A> equivalent of the corresponding
+   instances of <A HREF="Object.html" TARGET="contents">Object</A> in <I>args</I> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> or <I>args</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted (<I>N</I>) is less than zero, or greater than or equal to the length of the <I>args</I> array.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If an object referenced in the format string is a null
+      reference, an empty string is used in its place.<P>
+
+The <I>format</I> parameter string is embedded with
+   zero or more format specifications of the form, {<I>N</I> [, <I>M</I> ][:
+<I>formatString</I> ]}, where <I>N </I>is a zero-based integer indicating 
+   the argument to be formatted, <I>M</I> is an optional integer indicating the
+   width of the region to contain the formatted value, and <I>formatString</I> is
+   an optional string of formatting codes. [<I>Note</I>: 
+   For more information on the format specification see the <A HREF="String.html" TARGET="contents">String</A> class
+   overview.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.GetEnumerator Method"><H3>String.GetEnumerator Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public CharEnumerator GetEnumerator();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Retrieves an object that can iterate through the individual
+      characters in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="CharEnumerator.html" TARGET="contents">CharEnumerator</A> object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is required by programming languages
+      that support the <A HREF="../System/Collections/IEnumerator.html" TARGET="contents">IEnumerator</A> interface to iterate through members of a
+      collection.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.GetHashCode Method"><H3>String.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int GetHashCode();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Generates a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the hash code for this instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The algorithm used to
+      generate the hash code is unspecified.<P>
+
+[<I>Note</I>:  This method
+      overrides System.Object.GetHashCode.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.IndexOf(char) Method"><H3>String.IndexOf(char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int IndexOf(char value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the index of the first occurrence of a specified
+      Unicode character in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A Unicode character.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a 
+   positive value equal to the index of the first occurrence of <I>value</I>
+   character in the current instance; otherwise, -1 if <I>value</I> was not found.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.IndexOf(char, int) Method"><H3>String.IndexOf(char, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int IndexOf(char value, int startIndex);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the index of the first occurrence of a specified Unicode character
+      in the current instance, with the search starting from a specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A Unicode character.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a
+   positive value equal to the index of the first occurrence of
+<I>value</I> in the current instance; otherwise, -1 if <I>value</I> was not found.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> is less than zero or greater than the length of the current instance.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is case-sensitive. <P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.String.IndexOf(System.Char) 
+method.<P>
+
+<PRE>using System;
+public class StringIndexOf {
+ public static void Main() {
+ String str = &quot;This is the string&quot;;
+ Console.WriteLine( &quot;Searching for the index of &apos;h&apos; starting from index 0 yields {0}.&quot;, str.IndexOf( &apos;h&apos;, 0 ) );
+ Console.WriteLine( &quot;Searching for the index of &apos;h&apos; starting from index 10 yields {0}.&quot;, str.IndexOf( &apos;h&apos;, 10 ) );
+ }
+}
+</PRE>
+The output is<P>
+
+<CODE>Searching for the index of &apos;h&apos; starting from index 0 yields 1.<P>
+
+Searching for the index of &apos;h&apos; starting from index 10 yields -1.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.IndexOf(char, int, int) Method"><H3>String.IndexOf(char, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int IndexOf(char value, int startIndex, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the index of the first occurrence of a specified Unicode character in the
+      current instance, with the search over the specified range starting
+      at the provided index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A Unicode character.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
+<DT>count</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the range of the current instance at which to end searching.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a 
+   positive value equal to the index of
+   the first occurrence of <I>value</I> in the current instance; otherwise, -1 if
+<I>value</I>
+was not found.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>count</I> is negative<P>
+
+ -or-<P>
+
+<I>startIndex</I> + <I>count</I> is greater than the length of the current instance.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The search begins at <I>startIndex</I> and continues until
+<I>startIndex</I> + <I>count</I> - 1 is reached. The character at 
+<I>startIndex</I> + <I>count</I> is not included in the search.<P>
+
+This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.IndexOf(System.String) Method"><H3>String.IndexOf(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int IndexOf(string value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the index of the first occurrence of a specified
+   <A HREF="String.html" TARGET="contents">String</A> in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="String.html" TARGET="contents">String</A> to seek.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> that indicates the result of the search for
+<I>value</I> in the current instance as follows:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Return ValueDescription</TH></TR>
+<TR><TD><I>value</I>
+   was found.</TD><TD> A
+         positive number equal to the index of the start of the first substring in
+         the current instance that is equal to <I>value</I>
+         
+         .<I>value</I>
+   was found.</TD></TR>
+<TR><TD><I>value</I> is equal to System.String.Empty .</TD><TD> 
+      0<I>value</I> is equal to System.String.Empty .</TD></TR>
+<TR><TD><I>value</I> was not found.</TD><TD> -1<I>value</I> was not found.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The search begins at the first character of the current instance. The search is
+      case-sensitive, culture-sensitive, and the culture of the current thread
+      is
+      used.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.String.IndexOf(System.Char) 
+method.<P>
+
+<PRE>using System;
+public class StringIndexOf {
+ public static void Main() {
+ String str = &quot;This is the string&quot;;
+ Console.WriteLine( &quot;Searching for the index of \&quot;is\&quot; yields {0,2}.&quot;, str.IndexOf( &quot;is&quot; ) );
+ Console.WriteLine( &quot;Searching for the index of \&quot;Is\&quot; yields {0,2}.&quot;, str.IndexOf( &quot;Is&quot; ) );
+ Console.WriteLine( &quot;Searching for the index of \&quot;\&quot; yields {0,2}.&quot;, str.IndexOf( &quot;&quot; ) );
+ }
+}
+</PRE>
+The output is<P>
+
+<CODE>Searching for the index of &quot;is&quot; yields 2.<P>
+
+Searching for the index of &quot;Is&quot; yields -1.<P>
+
+Searching for the index of &quot;&quot; yields 0.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.IndexOf(System.String, int) Method"><H3>String.IndexOf(System.String, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int IndexOf(string value, int startIndex);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the index of the first occurrence of a specified
+   <A HREF="String.html" TARGET="contents">String</A> in the current instance, with
+      the search starting from a specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="String.html" TARGET="contents">String</A> to seek.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> that indicates the result of the search for
+<I>value</I> in the current instance as follows:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Return ValueDescription</TH></TR>
+<TR><TD><I>value</I> was found.</TD><TD> A
+         positive number equal to the index of the start of the first substring in
+         the current instance that is equal to <I>value</I>
+         .<I>value</I> was found.</TD></TR>
+<TR><TD><I>value</I> is <CODE>Empty</CODE>
+ .</TD><TD><I>startIndex</I><I>value</I> is <CODE>Empty</CODE>
+ .</TD></TR>
+<TR><TD><I>value</I> was not found.</TD><TD> -1<I>value</I> was not found.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> is greater than the length of the current instance.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is
+      case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.IndexOf(System.String, int, int) Method"><H3>String.IndexOf(System.String, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int IndexOf(string value, int startIndex, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the index of the first occurrence of a specified
+   <A HREF="String.html" TARGET="contents">String</A> in the current
+      instance, with the search over the specified range starting at the provided index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="String.html" TARGET="contents">String</A> to seek.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
+<DT>count</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the range of the current instance at which to end searching.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> that indicates the result of the search for
+<I>value</I> in the current instance as follows:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Return ValueDescription</TH></TR>
+<TR><TD><I>value</I> was found.</TD><TD> A
+         positive number equal to the index of the start of the first substring in
+         the current instance that is equal to <I>value</I>
+         .<I>value</I> was found.</TD></TR>
+<TR><TD><I>value</I> is <CODE>Empty</CODE>
+ .</TD><TD><I>startIndex</I><I>value</I> is <CODE>Empty</CODE>
+ .</TD></TR>
+<TR><TD><I>value</I> was not found.</TD><TD> -1<I>value</I> was not found.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>count</I> is negative<P>
+
+ -or-<P>
+
+<I>startIndex</I> + <I>count</I> is greater than the length of the current instance.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The search begins at <I>startIndex</I> and continues
+   until <I>startIndex</I> + <I>count</I> - 1 is reached. The character at
+<I>startIndex</I> + <I>count</I> is
+   not included in the
+   search.<P>
+
+ This method is
+   case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.IndexOfAny(char[]) Method"><H3>String.IndexOfAny(char[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int IndexOfAny(char[] anyOf);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reports the index of the first occurrence in the current
+      instance of any character in a specified array of Unicode
+      characters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>anyOf</DT>
+<DD> An array of Unicode characters.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The index of the first occurrence of an element of <I>anyOf</I> in the
+   current instance; otherwise, -1 if no element of <I>anyOf</I> was found.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>anyOf</I> is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.IndexOfAny(char[], int) Method"><H3>String.IndexOfAny(char[], int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int IndexOfAny(char[] anyOf, int startIndex);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the index of the first occurrence of any element in a specified array
+      of Unicode characters in the current instance, with the search starting from a
+      specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>anyOf</DT>
+<DD>An array of Unicode characters.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a positive value equal to the index of the
+   first occurrence of an element of <I>anyOf</I> in the current instance;
+   otherwise, -1 if no element of <I>anyOf</I>
+   was found.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>anyOf</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> is greater than the length of the current instance</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.IndexOfAny(char[], int, int) Method"><H3>String.IndexOfAny(char[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int IndexOfAny(char[] anyOf, int startIndex, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the index of the first occurrence of any element in a specified Array
+      of Unicode characters in the current instance, with the search over the
+      specified range starting from the provided index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>anyOf</DT>
+<DD>An array containing the Unicode characters to seek.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
+<DT>count</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the range of the current instance at which to end searching.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a positive value equal to the index of
+   the first occurrence of an element of <I>anyOf</I> in the current instance;
+   otherwise, -1 if no element of <I>anyOf</I> was found.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>anyOf</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>count</I> is negative.<P>
+
+-or-<P>
+
+<I>startIndex</I> + <I>count</I> is greater than the length of the current instance. <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The search begins at <I>startIndex</I> and continues
+   until <I>startIndex</I> + <I>count</I> - <I>1</I>. The character at
+<I>startIndex</I> + <I>count</I> is not included in the search.<P>
+
+This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Insert Method"><H3>String.Insert Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Insert(int startIndex, string value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="String.html" TARGET="contents">String</A> equivalent to the current instance with a specified
+<A HREF="String.html" TARGET="contents">String</A> inserted at the specified position.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the insertion. </DD>
+<DT>value</DT>
+<DD>The <A HREF="String.html" TARGET="contents">String</A> to insert. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="String.html" TARGET="contents">String</A> that is equivalent to the current string with
+<I>value</I> inserted at index <I>startIndex.</I><P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> is greater than the length of the current instance. <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+In the new string returned by this method, the first
+      character of <I>value</I> is at <I>startIndex,</I> and all characters in the
+      current string from <I>startIndex</I> to the end are inserted in the new
+      string after the last character of <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Intern Method"><H3>String.Intern Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Intern(string str);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Retrieves the system&apos;s reference to a specified <A HREF="String.html" TARGET="contents">String</A>. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>str</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A>. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The <A HREF="String.html" TARGET="contents">String</A> reference to <I>str</I>.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>str</I> is a null reference. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ Instances of each unique literal string constant
+      declared in a program, as well as any unique instance of <A HREF="String.html" TARGET="contents">String</A> you add
+      programmatically are kept in a table, called
+      
+      the &quot;intern pool&quot;.
+      <P>
+
+ The intern pool conserves string storage. If a literal
+      string constant is assigned to several variables, each variable is set to
+      reference the same constant in the intern pool instead of referencing several
+      different instances of <A HREF="String.html" TARGET="contents">String</A> that
+      
+      have identical values.
+      <P>
+
+ This method looks up a specified string in the intern
+      pool. If the string exists, a reference to it is returned. If it does not exist,
+      an instance equal to the specified string is added to the intern pool and a
+      reference that
+      
+      instance is returned.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.String.Intern(System.String) method.<P>
+
+<PRE>using System;
+using System.Text;
+public class StringExample {
+ public static void Main() {
+
+     String s1 = &quot;MyTest&quot;; 
+        String s2 = new StringBuilder().Append(&quot;My&quot;).Append(&quot;Test&quot;).ToString(); 
+        String s3 = String.Intern(s2);
+
+        Console.WriteLine(Object.ReferenceEquals(s1, s2));    //different
+        Console.WriteLine(Object.ReferenceEquals(s1, s3));    //the same
+    }
+}
+</PRE>
+The output is<P>
+
+<CODE>False<P>
+
+True<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.IsInterned Method"><H3>String.IsInterned Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string IsInterned(string str);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Retrieves a reference to a specified <A HREF="String.html" TARGET="contents">String</A>. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>str</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A>. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> reference to <I>str</I> if it is in the system&apos;s
+   intern pool; otherwise, a null reference.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>str</I> is a null reference. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Instances of each unique literal string constant
+      declared in a program, as well as any unique instance of <A HREF="String.html" TARGET="contents">String</A> you add
+      programmatically are kept in a table, called the &quot;intern pool&quot;. <P>
+
+The intern pool conserves string storage. If a literal
+      string constant is assigned to several variables, each variable is set to
+      reference the same constant in the intern pool instead of referencing several
+      different instances of <A HREF="String.html" TARGET="contents">String</A> that have identical values. <P>
+
+[<I>Note</I>:  This method
+      does not return a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value, but can still be used where a <A HREF="Boolean.html" TARGET="contents">Boolean</A>
+      is needed.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.String.IsInterned(System.String)
+method.<P>
+
+<PRE>using System;
+using System.Text;
+
+public class StringExample {
+    public static void Main() {
+
+        String s1 = new StringBuilder().Append(&quot;My&quot;).Append(&quot;Test&quot;).ToString(); 
+
+        Console.WriteLine(String.IsInterned(s1) != null);
+    }
+}
+</PRE>
+The output is<P>
+
+<CODE>True</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Join(System.String, System.String[]) Method"><H3>String.Join(System.String, System.String[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Join(string separator, string[] value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Concatenates the elements of a specified <A HREF="String.html" TARGET="contents">String</A> array, inserting
+   a separator string between each element pair and yielding
+   a single concatenated string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>separator</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A>. </DD>
+<DT>value</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> array. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> consisting of the elements of <I>value</I> separated
+   by instances of the <I>separator</I>
+   string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.String.Join(System.String,System.String[]) method.<P>
+
+<PRE>using System;
+public class StringJoin {
+ public static void Main() {
+ String[] strAry = { &quot;Red&quot; , &quot;Green&quot; , &quot;Blue&quot; };
+ Console.WriteLine( String.Join( &quot; :: &quot;, strAry ) );
+ }
+}
+</PRE>
+The output is<P>
+
+<CODE>Red :: Green
+   :: Blue</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Join(System.String, System.String[], int, int) Method"><H3>String.Join(System.String, System.String[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Join(string separator, string[] value, int startIndex, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Concatenates a specified separator <A HREF="String.html" TARGET="contents">String</A>
+between the elements of a
+specified <A HREF="String.html" TARGET="contents">String</A>
+array, yielding a
+single concatenated string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>separator</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A>. </DD>
+<DT>value</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> array. </DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the first array element in <I>value</I> to join. </DD>
+<DT>count</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of elements in <I>value</I> to join. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> consisting of the strings in <I>value</I> joined by
+<I>separator</I>. Returns System.String.Empty if <I>count</I> is zero, <I>value</I> has no
+   elements, or <I>separator</I> and all the elements of <I>value</I> are
+<CODE>Empty</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> plus <I>count</I> is greater than the number of elements in <I>value</I>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.String.Join(System.String,System.String[]) method.<P>
+
+<PRE>using System;
+public class StringJoin {
+ public static void Main() {
+ String[] strAry = { &quot;Red&quot; , &quot;Green&quot; , &quot;Blue&quot; };
+ Console.WriteLine( String.Join( &quot; :: &quot;, strAry, 1, 2 ) );
+ }
+}
+</PRE>
+The output is<P>
+
+<CODE>Green ::
+   Blue</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.LastIndexOf(char) Method"><H3>String.LastIndexOf(char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int LastIndexOf(char value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the index of the last occurrence of a specified character
+      within the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The Unicode character to locate. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the last occurrence of <I>value</I>
+in the current instance, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.LastIndexOf(char, int) Method"><H3>String.LastIndexOf(char, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int LastIndexOf(char value, int startIndex);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the index of the last occurrence of a specified character within the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A Unicode character to locate.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index in the current instance from which to begin searching.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the last occurrence of <I>value</I> in the current instance, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> is less than zero or greater than the length of the current instance.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method searches for the last occurrence of the specified character between the start of the string and the indicated index.<P>
+
+This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.String.LastIndexOf(System.Char) 
+method.<P>
+
+<PRE>using System;
+public class StringLastIndexOfTest {
+   public static void Main() {
+      String str = &quot;aa bb cc dd&quot;;
+      
+      Console.WriteLine( str.LastIndexOf(&apos;d&apos;, 8) );
+      Console.WriteLine( str.LastIndexOf(&apos;b&apos;, 8) );
+   }
+}
+</PRE>
+The output is<P>
+
+<CODE>-1<P>
+
+4<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.LastIndexOf(char, int, int) Method"><H3>String.LastIndexOf(char, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int LastIndexOf(char value, int startIndex, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the index of the last occurrence of a specified character in the provided range of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A Unicode character to locate.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
+<DT>count</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the range of the current instance at which to end searching.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the last occurrence of <I>value</I> in the
+   current instance if found between <I>startIndex</I> and (<I>startIndex</I> -
+<I>count</I> + 1); otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>count</I> is less than zero.<P>
+
+ -or-<P>
+
+<I>startIndex</I> - <I>count</I> is less than -1.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.LastIndexOf(System.String) Method"><H3>String.LastIndexOf(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int LastIndexOf(string value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the index of the last occurrence of a specified
+   <A HREF="String.html" TARGET="contents">String</A> within
+      the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+
+   A <A HREF="Int32.html" TARGET="contents">Int32</A> that indicates the result of the search for <I>value</I>
+   in the current instance as follows:
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Return ValueDescription</TH></TR>
+<TR><TD><I>value</I> was found.</TD><TD> A
+         positive number equal to the index of the start of the last substring in
+         the current instance that is equal to <I>value</I>
+         .<I>value</I> was found.</TD></TR>
+<TR><TD><I>value</I> is
+<CODE>Empty</CODE>
+.</TD><TD> 0<I>value</I> is
+<CODE>Empty</CODE>
+.</TD></TR>
+<TR><TD><I>value</I> was not found.</TD><TD> -1<I>value</I> was not found.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The search is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.LastIndexOf(System.String, int) Method"><H3>String.LastIndexOf(System.String, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int LastIndexOf(string value, int startIndex);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the index of the last occurrence of a specified
+   <A HREF="String.html" TARGET="contents">String</A>
+   within the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> .</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> that indicates the result of the search for <I>value</I>
+in the current instance as follows:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Return ValueDescription</TH></TR>
+<TR><TD><I>value</I> was found.</TD><TD> A
+         positive number equal to the index of the start of the last substring in
+         the current instance that is equal to <I>value</I>
+         .<I>value</I> was found.</TD></TR>
+<TR><TD><I>value</I> is Empty.</TD><TD><I>startIndex</I><I>value</I> is Empty.</TD></TR>
+<TR><TD><I>value</I> was not found.</TD><TD> -1<I>value</I> was not found.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference. <I></I></TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> is less than zero or greater than or equal to the length of the current instance. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method searches for the last occurrence of the
+      specified <A HREF="String.html" TARGET="contents">String</A> between the start of the string and the indicated index.<P>
+
+ This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.LastIndexOf(System.String, int, int) Method"><H3>String.LastIndexOf(System.String, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int LastIndexOf(string value, int startIndex, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the index of the last occurrence of a specified
+   <A HREF="String.html" TARGET="contents">String</A>
+   in the provided range of
+   the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The substring to search for.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
+<DT>count</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the range of the current instance at which to end searching.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+
+   A <A HREF="Int32.html" TARGET="contents">Int32</A> that indicates the result of the search for <I>value</I>
+   in the current instance as follows:
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Return ValueDescription</TH></TR>
+<TR><TD><I>value</I> was found.</TD><TD> A
+         positive number equal to the index of the start of the last substring in
+         the current instance that is equal to <I>value</I>
+         .<I>value</I> was found.</TD></TR>
+<TR><TD><I>value</I> is <CODE>Empty</CODE>
+ .</TD><TD><I>startIndex</I><I>value</I> is <CODE>Empty</CODE>
+ .</TD></TR>
+<TR><TD><I>value</I> was not found.</TD><TD> -1<I>value</I> was not found.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value </I>is a null reference.</TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>count</I> is less than zero.<P>
+
+ -or-<P>
+
+<I>startIndex</I> - <I>count</I> is smaller than -1.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The search begins at <I>startIndex</I> and continues
+   until <I>startIndex</I> - <I>count</I>
+   + 1.<P>
+
+ This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.LastIndexOfAny(char[]) Method"><H3>String.LastIndexOfAny(char[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int LastIndexOfAny(char[] anyOf);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the index of the last occurrence of any element of a specified array of characters in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>anyOf</DT>
+<DD>An array of Unicode characters. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the last occurrence of any element of
+<I>anyOf</I> in the current instance, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>anyOf</I> is a null reference. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.LastIndexOfAny(char[], int) Method"><H3>String.LastIndexOfAny(char[], int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int LastIndexOfAny(char[] anyOf, int startIndex);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the index of the last occurrence of any element of a specified array of characters in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>anyOf</DT>
+<DD>An array of Unicode characters. </DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the last occurrence of any element of <I>anyOf</I> in the
+   current instance, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>anyOf</I> is a null reference.<I></I></TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> is less than zero or greater than or equal to the length of the current instance.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method searches for the last occurrence of the specified
+      characters between the start of the string and the indicated index.<P>
+
+This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.LastIndexOfAny(char[], int, int) Method"><H3>String.LastIndexOfAny(char[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int LastIndexOfAny(char[] anyOf, int startIndex, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the index of the last occurrence of any of specified characters in the provided range of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>anyOf</DT>
+<DD>An array of Unicode characters.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
+<DT>count</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the range of the current instance at which to end searching.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the last occurrence of any element of
+<I>anyOf</I> if found between <I>startIndex</I> and (<I>startIndex</I> -
+<I>count</I> + 1); otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>anyOf</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>count</I> is less than zero.<P>
+
+ -or-<P>
+
+<I>startIndex</I> - <I>count</I> is smaller than -1.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The search begins at <I>startIndex</I> and continues
+   until <I>startIndex</I> - <I>count</I> + 1. The character at
+<I>startIndex</I> - <I>count</I> is not included 
+   in the search.<P>
+
+ This
+   method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.PadLeft(int) Method"><H3>String.PadLeft(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string PadLeft(int totalWidth);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Right-aligns the characters in the current instance, padding with spaces on the left,
+      for a specified total length.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>totalWidth</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters in the resulting string.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="String.html" TARGET="contents">String</A> that 
+   is equivalent to the current instance right-aligned and padded on the left with as
+   many spaces as needed to create a length of <I>totalWidth</I>. If <I>totalWidth</I> is less than the length of the current instance, returns a new
+<A HREF="String.html" TARGET="contents">String</A> that is identical 
+   to the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>totalWidth </I> is less than zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  A space in Unicode
+      format is defined as the hexadecimal value 0x20.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.PadLeft(int, char) Method"><H3>String.PadLeft(int, char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string PadLeft(int totalWidth, char paddingChar);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Right-aligns the characters in the current instance, padding on the left with a specified
+      Unicode character, for a specified total length.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>totalWidth</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters in the resulting string. </DD>
+<DT>paddingChar</DT>
+<DD>A <A HREF="Char.html" TARGET="contents">Char</A> that specifies the padding character to use.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="String.html" TARGET="contents">String</A> that is equivalent to the current instance right-aligned
+   and padded on the left with as many <I>paddingChar</I> characters as needed to
+   create a length of <I>totalWidth</I> . If <I>totalWidth</I> is less than the length of the current
+   instance, returns a new <A HREF="String.html" TARGET="contents">String</A> that is identical
+   to the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>totalWidth</I> is less than zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.PadRight(int) Method"><H3>String.PadRight(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string PadRight(int totalWidth);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Left-aligns the characters in the current instance, padding with spaces on the right, for a
+      specified total number of characters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>totalWidth</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters in the resulting string.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="String.html" TARGET="contents">String</A> that is equivalent to this instance left aligned and
+   padded on the right with as many spaces as needed to create a length of
+<I>totalWidth</I>. If <I>totalWidth</I> is less than the length of the current
+   instance, returns a new <A HREF="String.html" TARGET="contents">String</A> that is identical
+   to the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>totalWidth </I>is less than zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.PadRight(int, char) Method"><H3>String.PadRight(int, char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string PadRight(int totalWidth, char paddingChar);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Left-aligns the characters in the current instance, padding on the right with a specified Unicode character,
+      for a specified total number of characters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>totalWidth</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters in the resulting string. </DD>
+<DT>paddingChar</DT>
+<DD>A <A HREF="Char.html" TARGET="contents">Char</A> that specifies the padding character to use.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="String.html" TARGET="contents">String</A> that is equivalent to the current instance left aligned and
+   padded on the right with as many <I>paddingChar</I> characters as needed to
+   create a length of <I>totalWidth</I>. If <I>totalWidth</I> is less than the length of the current instance, returns a new
+<A HREF="String.html" TARGET="contents">String</A> that is identical 
+   to the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>totalWidth</I> is less than zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Remove Method"><H3>String.Remove Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Remove(int startIndex, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Deletes a specified number of characters from the current
+      instance beginning at a specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start deleting characters.</DD>
+<DT>count</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters to delete.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A new <A HREF="String.html" TARGET="contents">String</A> that is equivalent to the current instance without the
+   specified range characters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>count</I> is less than zero.<P>
+
+ -or-<P>
+
+<I>startIndex</I> plus <I>count</I> is greater than the length of the current instance.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Replace(char, char) Method"><H3>String.Replace(char, char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Replace(char oldChar, char newChar);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Replaces all instances of a specified Unicode character
+      with another specified Unicode character. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>oldChar</DT>
+<DD>The Unicode character to be replaced. </DD>
+<DT>newChar</DT>
+<DD>The Unicode character to replace all occurrences of <I>oldChar</I>. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> equivalent to the current instance with all occurrences of
+<I>oldChar</I> replaced with <I>NewChar</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Replace(System.String, System.String) Method"><H3>String.Replace(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Replace(string oldValue, string newValue);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Replaces all instances of a specified substring within
+      the current instance with another specified string. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>oldValue</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the string value to be replaced. </DD>
+<DT>newValue</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the string value to replace all occurrences of <I>oldValue</I>. Can be a null reference. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> equivalent to the current instance with all occurrences of
+<I>oldValue</I> replaced with <I>newValue</I>. If the replacement value is a 
+   null reference, the specified substring is removed.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Split(char[]) Method"><H3>String.Split(char[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string[] Split(params char[] separator);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns substrings of the current instance that are
+      delimited by the specified characters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>separator</DT>
+<DD>A <A HREF="Char.html" TARGET="contents">Char</A> array of delimiters. Can be a null reference.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> array containing the results of the split operation as
+   follows:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Return ValueDescription</TH></TR>
+<TR><TD>None of the elements of <I>separator</I>
+   are contained in the current instance.</TD><TD> A single-element array containing the
+         current instance.None of the elements of <I>separator</I>
+   are contained in the current instance.</TD></TR>
+<TR><TD>At least one element of <I>separator</I> is contained in the current
+   instance.</TD><TD> A
+      multi-element <A HREF="String.html" TARGET="contents">String</A> array, each element of which is a substring of the
+      current instance that was delimited by one or more characters in
+      <I>separator.</I>At least one element of <I>separator</I> is contained in the current
+   instance.</TD></TR>
+<TR><TD>The current instance contains white space characters and
+<I>separator</I> is a null reference or an empty 
+   array.</TD><TD>A multi-element <A HREF="String.html" TARGET="contents">String</A> array, each
+   element of which is a substring of the current instance that was delimited
+   by white space characters.The current instance contains white space characters and
+<I>separator</I> is a null reference or an empty 
+   array.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.String.Empty is returned for any substring where two delimiters are
+   adjacent or a delimiter is found at the beginning or end of the current
+   instance.<P>
+
+Delimiter characters are not included in the
+   substrings.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Split(char[], int) Method"><H3>String.Split(char[], int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string[] Split(char[] separator, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns substrings of the current instance that are delimited by the specified characters. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>separator</DT>
+<DD>An array of Unicode characters that delimit the substrings in the current instance, an empty array containing no delimiters, or a null reference.</DD>
+<DT>count</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the maximum number of array elements to return.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> array containing the results of the split operation as
+   follows:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Return ValueDescription</TH></TR>
+<TR><TD>None of the elements of <I>separator</I> are
+      contained in the current instance.</TD><TD> A single-element array containing the
+         current instance.None of the elements of <I>separator</I> are
+      contained in the current instance.</TD></TR>
+<TR><TD>At least one element of <I>separator</I> is
+   contained in the current instance.</TD><TD> A
+      multi-element <A HREF="String.html" TARGET="contents">String</A> array, each element of
+      which is a substring of the current instance that was delimited by one or
+      more characters in <I>separator</I>At least one element of <I>separator</I> is
+   contained in the current instance.</TD></TR>
+<TR><TD>The current instance contains white space
+      characters and <I>separator</I> is a null reference or an empty
+      array.</TD><TD> A
+      multi-element <A HREF="String.html" TARGET="contents">String</A> array, each element of
+      which is a substring of the current instance that was delimited by white
+      space characters.The current instance contains white space
+      characters and <I>separator</I> is a null reference or an empty
+      array.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>count</I> is negative.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.String.Empty is returned for any substring where two delimiters are
+   adjacent or a delimiter is found at the beginning or end of the current
+   instance.<P>
+
+Delimiter characters are not included in the
+   substrings.<P>
+
+If there are more substrings in the current instance than the
+   maximum specified number, the first <I>count</I> -1 elements of the array
+   contain the first <I>count</I> - 1 substrings. The remaining characters in the
+   current instance are returned in the last element of the array.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.StartsWith Method"><H3>String.StartsWith Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool StartsWith(string value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value that indicates whether the start of the current instance
+   matches the specified <A HREF="String.html" TARGET="contents">String</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> . </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the start of the current
+   instance is equal to <I>value</I>; <CODE>false</CODE>
+ if <I>value</I> is
+   not equal to the start of the current instance or is longer than the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method compares <I>value</I> with the substring
+   at the start of the current instance that has a length of
+<I>value</I>.Length. If <I>value</I>.Length is greater than the length of 
+   the current instance or the relevant substring of the current instance is not
+   equal to <I>value</I>, this method returns <CODE>false</CODE>
+; otherwise,
+   this method returns <CODE>true</CODE>
+
+   .
+   <P>
+
+ The
+   comparison is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Substring(int) Method"><H3>String.Substring(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Substring(int startIndex);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Retrieves a substring from the current instance, starting from a specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the start of the substring in the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> equivalent to the substring that begins at
+<I>startIndex</I> of the current 
+   instance. Returns System.String.Empty
+   if <I>startIndex</I> is equal to the length of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> is less than zero or greater than or equal to the length of the current instance.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Substring(int, int) Method"><H3>String.Substring(int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Substring(int startIndex, int length);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Retrieves a substring from the current instance, starting from a specified index, continuing for a specified
+      length.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the start of the substring in the current instance.</DD>
+<DT>length</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters in the substring.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the substring of the current instance with 
+   the specified length that begins at the specified position. Returns System.String.Empty if <I>startIndex</I> is equal to the length of
+   the current instance and length is zero.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>length</I> is greater than the length of the current instance.<P>
+
+ -or-<P>
+
+<I>startIndex</I> or <I>length</I> is less than zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.System.Collections.IEnumerable.GetEnumerator Method"><H3>String.System.Collections.IEnumerable.GetEnumerator Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>IEnumerator IEnumerable.GetEnumerator();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="../System/Collections/IEnumerable.html" TARGET="contents">IEnumerable</A> interface. [Note: For more information, see System.Collections.IEnumerable.GetEnumerator.]
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.ToCharArray() Method"><H3>String.ToCharArray() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public char[] ToCharArray();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Copies the characters in the current instance to a Unicode character array. <P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Char.html" TARGET="contents">Char</A> 
+array whose elements are the individual characters of
+the current instance. If the current instance is an empty string, the array returned by this method is empty
+and has a zero length.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.ToCharArray(int, int) Method"><H3>String.ToCharArray(int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public char[] ToCharArray(int startIndex, int length);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Copies the characters in a specified substring in the current instance to a Unicode character array. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the start of a substring in the current instance. </DD>
+<DT>length</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the length of the substring in the current instance. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Char.html" TARGET="contents">Char</A> array whose elements are the
+<I>length</I> number of characters in the current instance, starting from the
+   index <I>startIndex</I> in the current instance. If the specified length is
+   zero, the entire string is copied starting from the beginning of the current
+   instance, and ignoring the value of <I>startIndex</I>. If the current instance
+   is an empty string, the returned array is empty and has a zero length.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>length</I> is less than zero. <P>
+
+ -or- <P>
+
+<I>startIndex</I> plus <I>length</I> is greater than the length of the current instance. <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.ToLower Method"><H3>String.ToLower Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToLower();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a copy of this <A HREF="String.html" TARGET="contents">String</A> in lower case.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> in lower case..<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method takes into account the culture of the
+      current
+      thread.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.ToString(System.IFormatProvider) Method"><H3>String.ToString(System.IFormatProvider) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToString(IFormatProvider provider);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns this instance of <CODE>String</CODE>
+; no
+   actual conversion is performed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>provider</DT>
+<DD>(Reserved) A <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> interface implementation which supplies culture-specific formatting information.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+This <CODE>String</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<I>provider</I> is reserved, and does not
+   currently participate in this operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.ToString() Method"><H3>String.ToString() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value
+   of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current <A HREF="String.html" TARGET="contents">String</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  This method
+      overrides System.Object.ToString.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.ToUpper Method"><H3>String.ToUpper Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToUpper();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a copy of the current instance with all elements
+      converted to
+      upper case, using default properties.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="String.html" TARGET="contents">String</A> 
+in upper case.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Trim(char[]) Method"><H3>String.Trim(char[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Trim(params char[] trimChars);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Removes all occurrences of a set of characters provided
+      in a character <A HREF="Array.html" TARGET="contents">Array</A> from the beginning and
+      end of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>trimChars</DT>
+<DD>An array of Unicode characters. Can be a null reference.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="String.html" TARGET="contents">String</A> equivalent to the current instance with the characters
+   in <I>trimChars</I> removed from its beginning and end. If <I>trimChars</I>
+   is a null reference, all of the white space characters are removed from the
+   beginning and end of
+   the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Trim() Method"><H3>String.Trim() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Trim();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Removes all occurrences of white space characters from the beginning and
+      end of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="String.html" TARGET="contents">String</A> equivalent to the current instance after
+   white space characters
+   are removed from its
+   beginning and end.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.TrimEnd Method"><H3>String.TrimEnd Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string TrimEnd(params char[] trimChars);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Removes all occurrences of a set of characters specified
+      in a Unicode character <A HREF="Array.html" TARGET="contents">Array</A> from the
+      end of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>trimChars</DT>
+<DD>An array of Unicode characters. Can be a null reference.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="String.html" TARGET="contents">String</A> equivalent to the current instance with characters in
+<I>trimChars</I> removed from its end. If <I>trimChars</I> is a null reference, white space
+   characters are removed.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.TrimStart Method"><H3>String.TrimStart Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string TrimStart(params char[] trimChars);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Removes all occurrences of a set of characters specified in a Unicode character array from the
+      beginning of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>trimChars</DT>
+<DD>An array of Unicode characters or a null reference.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="String.html" TARGET="contents">String</A> equivalent to the current instance with the characters
+   in <I>trimChars</I> removed from its beginning. If <I>trimChars</I> is a
+   null reference, white space
+   characters are removed.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.op_Equality Method"><H3>String.op_Equality Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator ==(String a, String b);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether the two
+   specified string values are equal to
+   each other.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>a</DT>
+<DD>The first <A HREF="String.html" TARGET="contents">String</A> to compare.</DD>
+<DT>b</DT>
+<DD>The second <A HREF="String.html" TARGET="contents">String</A> to compare.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>a</I> and <I>b</I>
+represent the same string value; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.op_Inequality Method"><H3>String.op_Inequality Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator !=(String a, String b);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether the two string
+   values are not equal to
+   each other.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>a</DT>
+<DD>The first <A HREF="String.html" TARGET="contents">String</A> to compare.</DD>
+<DT>b</DT>
+<DD>The second <A HREF="String.html" TARGET="contents">String</A> to compare.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>a</I> and <I>b</I> do not
+   represent the same string value; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Empty Field"><H3>String.Empty Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly string Empty;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ A constant string representing the empty string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+This field is a string of length zero, &quot;&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Chars Property"><H3>String.Chars Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public char this[int index] { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the character at a specified position in the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A Unicode character at the location index in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IndexOutOfRangeException.html" TARGET="contents">IndexOutOfRangeException</A></TD><TD><I>index</I> is greater than or equal to the length of the current instance or less than zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+<I>index</I> is the position of a character within a
+   string. The first character in the string is at index 0. The length of a string
+   is the number of characters it is made up of. The last accessible <I>index</I>
+   of a string instance is its length
+   - 1.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="String.Length Property"><H3>String.Length Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Length { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the number of characters in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.String.Length property.<P>
+
+<PRE>using System;
+public class StringLengthExample {
+ public static void Main() {
+ string str = &quot;STRING&quot;;
+ Console.WriteLine( &quot;The length of string {0} is {1}&quot;, str, str.Length );
+ }
+}
+</PRE>
+The output is<P>
+
+<CODE>The length
+   of string STRING is 6</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,256 @@
+<HTML>
+<HEAD>
+<TITLE>System.Threading.ThreadStateException Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Threading.ThreadStateException Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class ThreadStateException : SystemException</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/Exception.html" TARGET="contents">Exception</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../System/SystemException.html" TARGET="contents">SystemException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ThreadStateException<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents errors that occur when a method is invoked on
+ a <A HREF="Thread.html" TARGET="contents">Thread</A> and the
+ thread is in a System.Threading.Thread.ThreadState that is
+ invalid for the method.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Once a thread is created, it is in one or more states, as defined
+ by <A HREF="ThreadState.html" TARGET="contents">ThreadState</A>, until it
+ terminates. <A HREF="ThreadStateException.html" TARGET="contents">ThreadStateException</A> is
+ thrown by methods that cannot perform the requested operation due to
+ the current state of
+ a thread. For example, calling System.Threading.Thread.Start
+ on a thread that has terminated results in a <A HREF="ThreadStateException.html" TARGET="contents">ThreadStateException</A> exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates an error that causes
+ a <A HREF="ThreadStateException.html" TARGET="contents">ThreadStateException</A> exception to be thrown.<P>
+
+<PRE>using System;
+using System.Threading;
+public class ThreadWork {
+ public static void DoWork() {
+ Console.WriteLine(&quot;Working thread...&quot;); 
+ }
+}
+
+class ThreadStateTest{
+ public static void Main() {
+ ThreadStart myThreadDelegate = new ThreadStart(ThreadWork.DoWork);
+ Thread myThread = new Thread(myThreadDelegate);
+ myThread.Start();
+ Thread.Sleep(0);
+ Console.WriteLine(&quot;In main. Attempting to restart myThread.&quot;);
+ try {
+ myThread.Start();
+ }
+ catch (ThreadStateException e) {
+ Console.WriteLine(&quot;Caught: {0}&quot;, e.Message);
+ }
+ 
+ }
+}
+ </PRE>
+The output is <P>
+
+<CODE>Working thread... <P>
+
+In main. Attempting to restart myThread.<P>
+
+Caught: Thread is running or terminated. Cannot restart.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ThreadStateException Constructors<P>
+
+<A HREF="#ThreadStateException() Constructor" TARGET="contents">ThreadStateException() Constructor</A><BR>
+<A HREF="#ThreadStateException(System.String) Constructor" TARGET="contents">ThreadStateException(System.String) Constructor</A><BR>
+<A HREF="#ThreadStateException(System.String, System.Exception) Constructor" TARGET="contents">ThreadStateException(System.String, System.Exception) Constructor</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ThreadStateException() Constructor"><H3>ThreadStateException() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ThreadStateException();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="ThreadStateException.html" TARGET="contents">ThreadStateException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.Threading.ThreadStateException.Message property of the new
+   instance to a system-supplied message that describes the error, such as &quot;The
+   requested operation cannot be performed on the thread due to its current state.&quot;
+   This message takes into account the current system culture.<P>
+
+The System.Threading.ThreadStateException.InnerException property 
+of the new instance is initialized to <CODE>null</CODE>
+
+
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ThreadStateException.html" TARGET="contents">System.Threading.ThreadStateException Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ThreadStateException(System.String) Constructor"><H3>ThreadStateException(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ThreadStateException(string message);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="ThreadStateException.html" TARGET="contents">ThreadStateException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.Threading.ThreadStateException.Message property
+   of the new instance using <I>message</I>. If <I>message</I> is
+<CODE>null</CODE>
+, the System.Threading.ThreadStateException.Message property is initialized to 
+   the system-supplied message provided by the constructor that takes no
+   arguments. <P>
+
+ The System.Threading.ThreadStateException.InnerException property of the new
+instance is initialized to <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ThreadStateException.html" TARGET="contents">System.Threading.ThreadStateException Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ThreadStateException(System.String, System.Exception) Constructor"><H3>ThreadStateException(System.String, System.Exception) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ThreadStateException(string message, Exception innerException);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ThreadStateException.html" TARGET="contents">ThreadStateException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture. </DD>
+<DT>innerException</DT>
+<DD>An instance of <A HREF="../../System/Exception.html" TARGET="contents">Exception</A> that is the cause of the current exception. If <I>innerException</I> is non-null, then the current Exception was raised in a catch block handling <I>innerException.</I></DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.Threading.ThreadStateException.Message property
+   of the new instance using <I>message</I> and the System.Threading.ThreadStateException.InnerException property using
+<I>innerException</I>. If <I>message</I> is 
+<CODE>null</CODE>
+, the System.Threading.ThreadStateException.Message property is initialized to 
+   the system-supplied message provided by the constructor that takes no
+   arguments. <P>
+
+[<I>Note</I>: For more information on inner
+   exceptions, see System.Exception.InnerException.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ThreadStateException.html" TARGET="contents">System.Threading.ThreadStateException Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,2660 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.HttpWebRequest Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.HttpWebRequest Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class HttpWebRequest : WebRequest</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/MarshalByRefObject.html" TARGET="contents">MarshalByRefObject</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="WebRequest.html" TARGET="contents">WebRequest</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HttpWebRequest<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Provides an HTTP-specific implementation of the <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> 
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This class implements
+      properties and methods defined in <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> and provides additional
+      properties and methods that enable the user to interact directly with servers
+      using the Hypertext Transfer Protocol (HTTP). <P>
+
+[<I>Note</I>: Instances of this class are
+         automatically created by the <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> class. For example,
+         an instance of <A HREF="HttpWebRequest.html" TARGET="contents">HttpWebRequest</A> is created when the System.Net.WebRequest.Create(System.Uri,System.Boolean)
+         method is called and a Uniform Resource Identifier (URI) beginning with <CODE>http://</CODE> is specified.
+      It is expected that an instance of this class will be constructed for every
+      request made to the server. For example, after a call to System.Net.HttpWebRequest.Abort
+      cancels an asynchronous operation, a call to System.Net.HttpWebRequest.GetRequestStream causes a <A HREF="WebException.html" TARGET="contents">WebException</A> to
+      be thrown.<P>
+
+Requests can be sent synchronously or
+      asynchronously. The System.Net.HttpWebRequest.GetResponse method
+      sends a request to
+      a server synchronously and returns a <A HREF="HttpWebResponse.html" TARGET="contents">HttpWebResponse</A>
+      instance containing the response. An asynchronous request for a resource
+      is sent using the System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object) and System.Net.HttpWebRequest.EndGetResponse(System.IAsyncResult) methods. <P>
+
+ Request data is sent using a request stream. The System.Net.HttpWebRequest.GetRequestStream
+, System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object), and System.Net.HttpWebRequest.EndGetRequestStream(System.IAsyncResult) methods
+return a <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> instance used to send
+data.<P>
+
+When errors occur while accessing an Internet resource,
+   the <A HREF="HttpWebRequest.html" TARGET="contents">HttpWebRequest</A> class throws a <A HREF="WebException.html" TARGET="contents">WebException</A>
+   , and the System.Net.WebException.Status
+   property that indicates the source of the error. When System.Net.WebException.Status is System.Net.WebExceptionStatus.ProtocolError, the System.Net.WebException.Response property contains the <A HREF="HttpWebResponse.html" TARGET="contents">HttpWebResponse</A>
+   received from the Internet resource. <P>
+
+ Certain HTTP headers are protected; the user cannot set
+   them directly in the header collection obtained from the System.Net.HttpWebRequest.Headers
+   property. Instead, these headers are set using the
+   associated properties of a <A HREF="HttpWebRequest.html" TARGET="contents">HttpWebRequest</A> instance, or are set by the system. The following table describes how
+   each protected header is set.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Set by</TH><TH>HeaderSet by</TH></TR>
+<TR><TD>System.Net.HttpWebRequest.Accept</TD><TD> AcceptSystem.Net.HttpWebRequest.Accept</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.Connection<P>
+
+System.Net.HttpWebRequest.KeepAlive<P>
+
+</TD><TD> ConnectionSystem.Net.HttpWebRequest.Connection<P>
+
+System.Net.HttpWebRequest.KeepAlive<P>
+
+</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.ContentLength</TD><TD> Content-LengthSystem.Net.HttpWebRequest.ContentLength</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.ContentType</TD><TD> Content-TypeSystem.Net.HttpWebRequest.ContentType</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.Expect</TD><TD> ExpectSystem.Net.HttpWebRequest.Expect</TD></TR>
+<TR><TD>Set to current date by the system.</TD><TD> DateSet to current date by the system.</TD></TR>
+<TR><TD> Set to current host by the
+      system.</TD><TD> Host Set to current host by the
+      system.</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.IfModifiedSince</TD><TD> if-Modified-sinceSystem.Net.HttpWebRequest.IfModifiedSince</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.AddRange(System.Int32,System.Int32)</TD><TD> RangeSystem.Net.HttpWebRequest.AddRange(System.Int32,System.Int32)</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.Referer</TD><TD> RefererSystem.Net.HttpWebRequest.Referer</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.TransferEncoding<P>
+
+System.Net.HttpWebRequest.SendChunked<P>
+
+</TD><TD> Transfer-EncodingSystem.Net.HttpWebRequest.TransferEncoding<P>
+
+System.Net.HttpWebRequest.SendChunked<P>
+
+</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.UserAgent</TD><TD> User-AgentSystem.Net.HttpWebRequest.UserAgent</TD></TR>
+</TABLE>
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+HttpWebRequest Methods<P>
+
+<A HREF="#HttpWebRequest.Abort Method" TARGET="contents">HttpWebRequest.Abort Method</A><BR>
+<A HREF="#HttpWebRequest.AddRange(int, int) Method" TARGET="contents">HttpWebRequest.AddRange(int, int) Method</A><BR>
+<A HREF="#HttpWebRequest.AddRange(int) Method" TARGET="contents">HttpWebRequest.AddRange(int) Method</A><BR>
+<A HREF="#HttpWebRequest.AddRange(System.String, int, int) Method" TARGET="contents">HttpWebRequest.AddRange(System.String, int, int) Method</A><BR>
+<A HREF="#HttpWebRequest.AddRange(System.String, int) Method" TARGET="contents">HttpWebRequest.AddRange(System.String, int) Method</A><BR>
+<A HREF="#HttpWebRequest.BeginGetRequestStream Method" TARGET="contents">HttpWebRequest.BeginGetRequestStream Method</A><BR>
+<A HREF="#HttpWebRequest.BeginGetResponse Method" TARGET="contents">HttpWebRequest.BeginGetResponse Method</A><BR>
+<A HREF="#HttpWebRequest.EndGetRequestStream Method" TARGET="contents">HttpWebRequest.EndGetRequestStream Method</A><BR>
+<A HREF="#HttpWebRequest.EndGetResponse Method" TARGET="contents">HttpWebRequest.EndGetResponse Method</A><BR>
+<A HREF="#HttpWebRequest.GetHashCode Method" TARGET="contents">HttpWebRequest.GetHashCode Method</A><BR>
+<A HREF="#HttpWebRequest.GetRequestStream Method" TARGET="contents">HttpWebRequest.GetRequestStream Method</A><BR>
+<A HREF="#HttpWebRequest.GetResponse Method" TARGET="contents">HttpWebRequest.GetResponse Method</A><BR>
+<P>
+
+HttpWebRequest Properties<P>
+
+<A HREF="#HttpWebRequest.Accept Property" TARGET="contents">HttpWebRequest.Accept Property</A><BR>
+<A HREF="#HttpWebRequest.Address Property" TARGET="contents">HttpWebRequest.Address Property</A><BR>
+<A HREF="#HttpWebRequest.AllowAutoRedirect Property" TARGET="contents">HttpWebRequest.AllowAutoRedirect Property</A><BR>
+<A HREF="#HttpWebRequest.AllowWriteStreamBuffering Property" TARGET="contents">HttpWebRequest.AllowWriteStreamBuffering Property</A><BR>
+<A HREF="#HttpWebRequest.Connection Property" TARGET="contents">HttpWebRequest.Connection Property</A><BR>
+<A HREF="#HttpWebRequest.ConnectionGroupName Property" TARGET="contents">HttpWebRequest.ConnectionGroupName Property</A><BR>
+<A HREF="#HttpWebRequest.ContentLength Property" TARGET="contents">HttpWebRequest.ContentLength Property</A><BR>
+<A HREF="#HttpWebRequest.ContentType Property" TARGET="contents">HttpWebRequest.ContentType Property</A><BR>
+<A HREF="#HttpWebRequest.ContinueDelegate Property" TARGET="contents">HttpWebRequest.ContinueDelegate Property</A><BR>
+<A HREF="#HttpWebRequest.Credentials Property" TARGET="contents">HttpWebRequest.Credentials Property</A><BR>
+<A HREF="#HttpWebRequest.Expect Property" TARGET="contents">HttpWebRequest.Expect Property</A><BR>
+<A HREF="#HttpWebRequest.HaveResponse Property" TARGET="contents">HttpWebRequest.HaveResponse Property</A><BR>
+<A HREF="#HttpWebRequest.Headers Property" TARGET="contents">HttpWebRequest.Headers Property</A><BR>
+<A HREF="#HttpWebRequest.IfModifiedSince Property" TARGET="contents">HttpWebRequest.IfModifiedSince Property</A><BR>
+<A HREF="#HttpWebRequest.KeepAlive Property" TARGET="contents">HttpWebRequest.KeepAlive Property</A><BR>
+<A HREF="#HttpWebRequest.MaximumAutomaticRedirections Property" TARGET="contents">HttpWebRequest.MaximumAutomaticRedirections Property</A><BR>
+<A HREF="#HttpWebRequest.MediaType Property" TARGET="contents">HttpWebRequest.MediaType Property</A><BR>
+<A HREF="#HttpWebRequest.Method Property" TARGET="contents">HttpWebRequest.Method Property</A><BR>
+<A HREF="#HttpWebRequest.Pipelined Property" TARGET="contents">HttpWebRequest.Pipelined Property</A><BR>
+<A HREF="#HttpWebRequest.PreAuthenticate Property" TARGET="contents">HttpWebRequest.PreAuthenticate Property</A><BR>
+<A HREF="#HttpWebRequest.ProtocolVersion Property" TARGET="contents">HttpWebRequest.ProtocolVersion Property</A><BR>
+<A HREF="#HttpWebRequest.Proxy Property" TARGET="contents">HttpWebRequest.Proxy Property</A><BR>
+<A HREF="#HttpWebRequest.Referer Property" TARGET="contents">HttpWebRequest.Referer Property</A><BR>
+<A HREF="#HttpWebRequest.RequestUri Property" TARGET="contents">HttpWebRequest.RequestUri Property</A><BR>
+<A HREF="#HttpWebRequest.SendChunked Property" TARGET="contents">HttpWebRequest.SendChunked Property</A><BR>
+<A HREF="#HttpWebRequest.ServicePoint Property" TARGET="contents">HttpWebRequest.ServicePoint Property</A><BR>
+<A HREF="#HttpWebRequest.Timeout Property" TARGET="contents">HttpWebRequest.Timeout Property</A><BR>
+<A HREF="#HttpWebRequest.TransferEncoding Property" TARGET="contents">HttpWebRequest.TransferEncoding Property</A><BR>
+<A HREF="#HttpWebRequest.UserAgent Property" TARGET="contents">HttpWebRequest.UserAgent Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="HttpWebRequest.Abort Method"><H3>HttpWebRequest.Abort Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void Abort();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Cancels
+      an asynchronous operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.Net.HttpWebRequest.Abort 
+cancels any pending asynchronous operation. After this method is called, calling System.Net.HttpWebRequest.GetResponse, System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object), System.Net.HttpWebRequest.EndGetResponse(System.IAsyncResult), System.Net.HttpWebRequest.GetRequestStream, System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object), or System.Net.HttpWebRequest.EndGetRequestStream(System.IAsyncResult) will throw a <A HREF="WebException.html" TARGET="contents">WebException</A> with System.Net.WebException.Status set to System.Net.WebExceptionStatus.RequestCanceled
+.<P>
+
+[<I>Note</I>: If no pending request exists, calling this method does not cause an exception
+      to be thrown.<P>
+
+This method
+      overrides System.Net.WebRequest.Abort.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.AddRange(int, int) Method"><H3>HttpWebRequest.AddRange(int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void AddRange(int from, int to);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds a HTTP Range header to the current instance for a specified range.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>from</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> indicating the starting byte position of the entity-body data to be returned.</DD>
+<DT> to</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> indicating the last byte.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>from </I> &lt; 0.<P>
+
+-or-<P>
+
+<I>to </I> &lt; 0.<P>
+
+-or-<P>
+
+<I>from </I> &gt; <I>to </I>.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The range header could not be added.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to System.Net.HttpWebRequest.AddRange(System.Int32,System.Int32)(&quot;bytes&quot;, <I>from</I>, <I>to</I>).<P>
+
+[<I>Note</I>: The HTTP Range header specifies either a single range of bytes or a set
+      of byte ranges in an entity-body to be returned. If the server accessed by
+      the current instance supports the use of this header, this allows for the
+      partial retrieval of the entity due to, for example, the entity being
+      particularly large or there having been a failed transfer of data.<P>
+
+For more information on the HTTP Range header, see Section 14.35 of RFC
+      2616.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.AddRange(int) Method"><H3>HttpWebRequest.AddRange(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void AddRange(int range);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds a HTTP Range header to the current instance for
+      a specific range from the beginning or end of the requested data.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>range</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the starting or ending point of the range. If this value is positive, the range is from the beginning of the data to <I>range</I>. If this value is negative, the range is from <I>range</I> to the end of the data.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The range header could not be added.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to System.Net.HttpWebRequest.AddRange(System.Int32,System.Int32)(&quot;bytes&quot;, <I>range</I>).<P>
+
+[<I>Note</I>: The HTTP Range header specifies either a single range of bytes or a set of
+      byte ranges in an entity-body to be returned. If the server accessed by the
+      current instance supports the use of this header, this allows for the partial
+      retrieval of the entity due to, for example, the entity being particularly
+      large or there having been a failed transfer of data.<P>
+
+For more information on the HTTP Range header, see Section 14.35 of RFC
+      2616.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.AddRange(System.String, int, int) Method"><H3>HttpWebRequest.AddRange(System.String, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void AddRange(string rangeSpecifier, int from, int to);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds a HTTP Range header to the current instance for
+      a specified range.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>rangeSpecifier</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that contains the description of the range.</DD>
+<DT> from</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> designating the position at which to start sending data.</DD>
+<DT> to</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> designating the position at which to stop sending data. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>rangeSpecifier </I>is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>from </I>&amp;lt; 0.<P>
+
+-or-<P>
+
+<I>to </I>&amp;lt; 0.<P>
+
+-or-<P>
+
+<I>from </I>&amp;gt; <I>to </I>.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>rangeSpecifier</I> is invalid.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The range header could not be added.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The HTTP Range header specifies either a single range of bytes or a set of
+         byte ranges in an entity-body to be returned. If the server accessed by the
+         current instance supports the use of this header, this allows for the partial
+         retrieval of the entity due to, for example, the entity being particularly
+         large or there having been a failed transfer of data.<P>
+
+For more information on the HTTP Range header, see Section 14.35 of IETF RFC
+         2616.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.AddRange(System.String, int) Method"><H3>HttpWebRequest.AddRange(System.String, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void AddRange(string rangeSpecifier, int range);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Adds a HTTP Range header to the current request for a specific range from the
+      beginning or end of the requested data.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>rangeSpecifier</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that contains the description of the range.</DD>
+<DT>range</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that designates the starting or ending point of the range. If this value is positive, the range is from the beginning of the data to <I>range</I>. If this value is negative, the range is from <I>range</I> to the end of the data. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>rangeSpecifier </I>is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>rangeSpecifier</I> is invalid.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The range header could not be added.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The HTTP Range header specifies either a single range of bytes or a set of
+      byte ranges in an entity-body to be returned. If the server accessed by the
+      current instance supports the use of this header, this allows for the partial
+      retrieval of the entity due to, for example, the entity being particularly
+      large or there having been a failed transfer of data.<P>
+
+For more information on the HTTP Range header, see Section 14.35 of RFC
+      2616.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.BeginGetRequestStream Method"><H3>HttpWebRequest.BeginGetRequestStream Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IAsyncResult BeginGetRequestStream(AsyncCallback callback, object state);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Begins an asynchronous request for a stream in which to write data to
+      be sent in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>callback</DT>
+<DD>A <A HREF="../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate to be called when the stream is available. Can be <CODE>null</CODE>
+ .</DD>
+<DT>state</DT>
+<DD>A <A HREF="../../System/Object.html" TARGET="contents">Object</A> containing state information for the asynchronous request. Can be <CODE>null</CODE>
+ .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> that contains information about the asynchronous operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The stream is being used by a previous call to System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object) .<P>
+
+-or-<P>
+
+No writeable stream is available.<P>
+
+</TD></TR>
+<TR><TD><A HREF="ProtocolViolationException.html" TARGET="contents">ProtocolViolationException</A></TD><TD>The System.Net.HttpWebRequest.ContentLength property of the current instance is not set.<P>
+
+-or-<P>
+
+The System.Net.HttpWebRequest.Method property of the current instance is &quot;GET&quot; or &quot;HEAD&quot;.<P>
+
+</TD></TR>
+<TR><TD><A HREF="WebException.html" TARGET="contents">WebException</A></TD><TD>System.Net.HttpWebRequest.Abort was previously called.<P>
+
+-or-<P>
+
+An error occurred while processing the request.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method starts an asynchronous operation. To get the
+      request stream, call the System.Net.HttpWebRequest.EndGetRequestStream(System.IAsyncResult) method and specify the <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object returned by
+      this method. [<I>Note</I>:  The
+   System.Net.HttpWebRequest.EndGetRequestStream(System.IAsyncResult) method
+      should be called exactly once for each call to System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object).]<P>
+
+<P>
+
+If the <I>callback</I> parameter is not
+<CODE>null</CODE>
+, the method(s) referenced by <I>callback</I> are invoked 
+   when the asynchronous operation completes. The <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object
+   returned by this method is passed as the argument to the method(s) referenced by
+<I>callback</I> 
+.<P>
+
+The <I>state</I> parameter can be any object that the
+caller wishes to have available for the duration of the asynchronous operation.
+This object is available via the System.IAsyncResult.AsyncState
+property of the
+object returned by this method.<P>
+
+The value of the System.Net.HttpWebRequest.ContentLength property of the current instance is
+required to be set prior to calling this method. <P>
+
+[<I>Note</I>:  The method(s) invoked by
+      the callback delegate can call the System.Net.HttpWebRequest.EndGetRequestStream(System.IAsyncResult) method to retrieve the stream.<P>
+
+This method is the asynchronous version of
+      the System.Net.HttpWebRequest.GetRequestStream method.<P>
+
+This method overrides System.Net.WebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object) .<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.BeginGetResponse Method"><H3>HttpWebRequest.BeginGetResponse Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IAsyncResult BeginGetResponse(AsyncCallback callback, object state);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Begins sending the current HTTP request
+      asynchronously.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>callback</DT>
+<DD>A <A HREF="../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate to be called when the stream is available. Can be <CODE>null</CODE>
+ .</DD>
+<DT>state</DT>
+<DD>A <A HREF="../../System/Object.html" TARGET="contents">Object</A> containing state information for the asynchronous request. Can be <CODE>null</CODE>
+ .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> that contains information about the asynchronous
+   operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object) or System.Net.HttpWebRequest.GetResponse was previously called on this instance.</TD></TR>
+<TR><TD><A HREF="ProtocolViolationException.html" TARGET="contents">ProtocolViolationException</A></TD><TD>The System.Net.HttpWebRequest.ContentLength property of the current instance has not been set.</TD></TR>
+<TR><TD><A HREF="WebException.html" TARGET="contents">WebException</A></TD><TD>System.Net.HttpWebRequest.Abort was previously called.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method starts an asynchronous operation. To get
+      the response, call the System.Net.HttpWebRequest.EndGetResponse(System.IAsyncResult) method and
+      specify the <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object returned by
+      this method. [<I>Note</I>:  The System.Net.HttpWebRequest.EndGetResponse(System.IAsyncResult) method
+      should be called exactly once for each call to System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object).]<P>
+
+<P>
+
+If the <I>callback</I> parameter is not
+<CODE>null</CODE>
+, the method referenced by <I>callback</I> is invoked 
+   when the asynchronous operation completes. The <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object
+   returned by this method is passed as the argument to the method referenced by
+<I>callback</I>.<P>
+
+The <I>state</I> parameter can be any object that the
+caller wishes to have available for the duration of the asynchronous operation.
+This object is available via the System.IAsyncResult.AsyncState
+property of the object returned by this method.<P>
+
+[<I>Note</I>: The method(s) invoked by the callback delegate can call the System.Net.HttpWebRequest.EndGetResponse(System.IAsyncResult) method to retrieve the response.<P>
+
+This method is the asynchronous version of the System.Net.HttpWebRequest.GetResponse method.<P>
+
+This method overrides System.Net.WebRequest.BeginGetResponse(System.AsyncCallback,System.Object).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.EndGetRequestStream Method"><H3>HttpWebRequest.EndGetRequestStream Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override Stream EndGetRequestStream(IAsyncResult asyncResult);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Completes an asynchronous request for a stream that was
+      started by the System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)
+      method.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>asyncResult</DT>
+<DD>The <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object that holds the state information for the asynchronous operation.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> to write request data to.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>asyncResult </I>is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>asyncResult</I> was not returned by the current instance from a call to System.Net.WebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object).</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD> This method was called previously using <I>asyncResult.</I><P>
+
+-or-<P>
+
+No stream is available.<P>
+
+</TD></TR>
+<TR><TD><A HREF="WebException.html" TARGET="contents">WebException</A></TD><TD>System.Net.HttpWebRequest.Abort was previously called.<P>
+
+-or-<P>
+
+An error occurred while processing the request.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  The caller is responsible for calling the System.IO.Stream.Close
+   method to close the
+   stream.
+   <P>
+
+This method overrides System.Net.WebRequest.EndGetRequestStream(System.IAsyncResult).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.EndGetResponse Method"><H3>HttpWebRequest.EndGetResponse Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override WebResponse EndGetResponse(IAsyncResult asyncResult);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> that contains a response to the specified pending
+   Internet request.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>asyncResult</DT>
+<DD>The <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object that hold the state information for the asynchronous operation. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> that contains a response to the Internet request
+   referenced by <I>asyncResult</I> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>asyncResult </I>is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>asyncResult</I> was not returned by the current instance from a call to System.Net.WebRequest.BeginGetResponse(System.AsyncCallback,System.Object).</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD> This method was called previously using <I>asyncResult.</I><P>
+
+-or-<P>
+
+The System.Net.HttpWebRequest.ContentLength property of the current instance is greater than 0 but the data has not been written to the request stream.<P>
+
+</TD></TR>
+<TR><TD><A HREF="WebException.html" TARGET="contents">WebException</A></TD><TD>System.Net.HttpWebRequest.Abort was previously called.<P>
+
+-or-<P>
+
+An error occurred while processing the request.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method completes an asynchronous request for
+         an Internet resource that was started by calling System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object).<P>
+
+This method overrides System.Net.WebRequest.EndGetResponse(System.IAsyncResult).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.GetHashCode Method"><H3>HttpWebRequest.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int GetHashCode();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Generates a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The algorithm used to 
+ generate the hash code is unspecified.<P>
+
+[<I>Note</I>: This method overrides System.Object.GetHashCode.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.GetRequestStream Method"><H3>HttpWebRequest.GetRequestStream Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override Stream GetRequestStream();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> for writing data to the Internet resource requested by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> for writing
+   data to an Internet resource requested by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ProtocolViolationException.html" TARGET="contents">ProtocolViolationException</A></TD><TD>The System.Net.HttpWebRequest.Method property of the current instance is &quot;GET&quot; or &quot;HEAD&quot;. <P>
+
+ -or- <P>
+
+The System.Net.HttpWebRequest.ContentLength property of the current instance is not set. <P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The System.Net.HttpWebRequest.GetRequestStream method was called more than once.<P>
+
+-or-<P>
+
+No writeable stream is available.<P>
+
+</TD></TR>
+<TR><TD><A HREF="WebException.html" TARGET="contents">WebException</A></TD><TD>System.Net.HttpWebRequest.Abort was previously called.<P>
+
+-or-<P>
+
+The timeout period for the request expired.<P>
+
+-or-<P>
+
+An error occurred while processing the request.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The value of the
+   System.Net.HttpWebRequest.ContentLength property is required to be set before writing data to the
+      stream.
+      <P>
+
+[<I>Note</I>: This method returns a stream to use to
+         send data for the <A HREF="HttpWebRequest.html" TARGET="contents">HttpWebRequest</A>. Once the <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> instance has been returned,
+         data can be sent with the <A HREF="HttpWebRequest.html" TARGET="contents">HttpWebRequest</A> by using the System.IO.Stream.Write(System.Byte[],System.Int32,System.Int32) method. <P>
+
+ Call the System.IO.Stream.Close method to close the stream and release
+      the connection
+      for reuse. Failure to close the stream may cause the application to run out of
+      connections.
+      <P>
+
+This method overrides System.Net.WebRequest.GetRequestStream.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.GetResponse Method"><H3>HttpWebRequest.GetResponse Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override WebResponse GetResponse();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a response to an Internet request.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> containing the response from the Internet resource requested by the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ProtocolViolationException.html" TARGET="contents">ProtocolViolationException</A></TD><TD>The System.Net.HttpWebRequest.ContentLength property of the current instance is not set. </TD></TR>
+<TR><TD><A HREF="WebException.html" TARGET="contents">WebException</A></TD><TD>System.Net.HttpWebRequest.Abort was previously called.<P>
+
+-or-<P>
+
+The timeout period for the request expired.<P>
+
+-or-<P>
+
+An error occurred while processing the request.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method returns a <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> instance containing the response from the Internet resource requested
+      by the current instance. The actual instance returned is an instance of
+   <A HREF="HttpWebResponse.html" TARGET="contents">HttpWebResponse</A> , and can be typecast to that class to access
+      HTTP-specific properties.<P>
+
+This method overrides System.Net.WebRequest.GetResponse
+.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.Accept Property"><H3>HttpWebRequest.Accept Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Accept { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets a <A HREF="../../System/String.html" TARGET="contents">String</A> containing the value of the HTTP Accept header.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the value of the HTTP Accept header. The default value of this property is
+<CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: For additional information see section
+      14.1 of IETF RFC 2068 - HTTP/1.1.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.Address Property"><H3>HttpWebRequest.Address Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Uri Address { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the URI that responds to the current request.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Uri.html" TARGET="contents">Uri</A>
+identifying the Internet resource that responds to the current request.
+The default is the URI used by the System.Net.WebRequest.Create(System.Uri,System.Boolean)
+method to initialize
+the current
+instance. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This property is
+      read-only.<P>
+
+ The
+      value of this property is set to the URI that is the source of
+      the response after all redirections are complete.<P>
+
+[<I>Note</I>: The URI of the original request is kept in the System.Net.HttpWebRequest.RequestUri property.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.AllowAutoRedirect Property"><H3>HttpWebRequest.AllowAutoRedirect Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool AllowAutoRedirect { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether the current request will follow redirection responses.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the current request will automatically follow redirection
+   responses from the Internet resource; otherwise <CODE>false </CODE>
+
+   . The default value is
+<CODE>true</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Set System.Net.HttpWebRequest.AllowAutoRedirect to <CODE>true</CODE>
+ to allow the current request to
+      automatically follow HTTP redirection headers to the new location of a
+      resource.<P>
+
+ The maximum number
+      of redirections to follow is set by the System.Net.HttpWebRequest.MaximumAutomaticRedirections
+      property.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.AllowWriteStreamBuffering Property"><H3>HttpWebRequest.AllowWriteStreamBuffering Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool AllowWriteStreamBuffering { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether to buffer the data sent to the Internet resource requested by the
+   current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+to enable
+   buffering of the data sent
+   to the Internet resource requested by the current instance; <CODE>false </CODE>
+to disable buffering. The default is
+<CODE>true</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: When System.Net.HttpWebRequest.AllowWriteStreamBuffering is <CODE>true</CODE>
+
+   , the data is buffered in memory so it is ready to be resent in the
+   event of redirections or authentication requests.<P>
+
+ Depending on available memory, setting System.Net.HttpWebRequest.AllowWriteStreamBuffering
+as <CODE>true</CODE>
+
+might
+impact system performance when uploading large amounts of data.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.Connection Property"><H3>HttpWebRequest.Connection Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Connection { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the value of the Connection HTTP header.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the
+   value of the Connection HTTP header. The
+   default value is <CODE>null</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The value of System.Net.HttpWebRequest.Connection is set to &quot;Keep-alive&quot; or &quot;Close&quot;. This value is case insensitive.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The current request sends the System.Net.HttpWebRequest.Connection property to the Internet resource as
+   the Connection
+   HTTP header. <P>
+
+[<I>Note</I>: If System.Net.HttpWebRequest.KeepAlive is
+<CODE>true</CODE>
+ , the value &quot;Keep-alive&quot; is appended to the 
+   end of the Connection
+   header.<P>
+
+For additional
+   information see section 14.10 of IETF RFC 2068 - HTTP/1.1.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.ConnectionGroupName Property"><H3>HttpWebRequest.ConnectionGroupName Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ConnectionGroupName { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the name of the connection group for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> that contains the name of the connection group for the current instance. The default value is
+<CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The System.Net.HttpWebRequest.ConnectionGroupName property
+ enables a request to be associated with a connection group. This is useful when
+ an application makes requests to one server for different users, such as a Web
+ site that retrieves customer information from a database server.<P>
+
+ Each
+ connection group creates additional connections for a server. This may
+ result in exceeding System.Net.ServicePoint.ConnectionLimit for that server.<P>
+
+This property overrides System.Net.WebRequest.ConnectionGroupName.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.ContentLength Property"><H3>HttpWebRequest.ContentLength Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override long ContentLength { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the Content-length HTTP header.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> value that specifies the number of bytes of data to send to the Internet resource. The default is -1,
+   which indicates that this value has not been set.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>Data has already been written to the request stream.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>A value less than zero is specified for a set operation.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Net.HttpWebRequest.ContentLength property contains the value to send
+   as the Content-length
+   HTTP header of the request.<P>
+
+Any value other than -1 in the System.Net.HttpWebRequest.ContentLength
+property indicates that the request will upload data;
+only methods that upload data are allowed in the System.Net.HttpWebRequest.Method
+property.<P>
+
+This property is required to be set prior to writing data to the request data
+   stream. Once the System.Net.HttpWebRequest.ContentLength property is set to a value, that
+   number of bytes is required to be written to the request data stream.
+[<I>Note</I>: Get the request data stream by calling System.Net.HttpWebRequest.GetRequestStream , or System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object) and System.Net.HttpWebRequest.EndGetRequestStream(System.IAsyncResult) 
+.]<P>
+
+<P>
+
+[<I>Note</I>: For additional information see section 14.13 of IETF RFC
+      2068 - HTTP/1.1.<P>
+
+This property overrides System.Net.WebRequest.ContentLength.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.ContentType Property"><H3>HttpWebRequest.ContentType Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ContentType { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the value of the Content-type HTTP header of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The value of the Content-type HTTP header of the current instance. The default
+      value is <CODE>null</CODE>
+
+      . <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Net.HttpWebRequest.ContentType property contains the media type
+   of the current instance. Values assigned to the System.Net.HttpWebRequest.ContentType property replace any existing
+   contents when the request sends the Content-type HTTP header. <P>
+
+[<I>Note</I>: To clear the Content-type HTTP header, set the System.Net.HttpWebRequest.ContentType property
+   to <CODE>null </CODE>
+
+   .<P>
+
+For additional information see section 14.17 of IETF RFC
+   2068 - HTTP/1.1.<P>
+
+This property overrides System.Net.WebRequest.ContentType.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.ContinueDelegate Property"><H3>HttpWebRequest.ContinueDelegate Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public HttpContinueDelegate ContinueDelegate { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the delegate method whose methods are invoked when an HTTP 100-continue response is received
+ by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="HttpContinueDelegate.html" TARGET="contents">HttpContinueDelegate</A> 
+that references the methods that are invoked when an HTTP Continue response is
+received. The default value is <CODE>null</CODE>
+
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  
+ This delegate is useful to display the status of responses received by the current
+ instance.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.Credentials Property"><H3>HttpWebRequest.Credentials Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override ICredentials Credentials { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the credentials used for authenticating
+      the current request.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="ICredentials.html" TARGET="contents">ICredentials</A> object containing
+   the authentication credentials associated with
+   the current instance. The default is
+<CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The System.Net.HttpWebRequest.Credentials property contains
+      authentication information to identify the client making the request. The System.Net.HttpWebRequest.Credentials property can be either an instance
+      of <A HREF="NetworkCredential.html" TARGET="contents">NetworkCredential</A>, in which case the user, password, and domain
+      information contained in the <A HREF="NetworkCredential.html" TARGET="contents">NetworkCredential</A> instance is used to authenticate
+      the request, or it can be an instance of <A HREF="CredentialCache.html" TARGET="contents">CredentialCache</A>, in which case the uniform resource
+      identifier (URI) of the request is used to determine the user, password, and
+      domain information to use to authenticate the request.<P>
+
+This property overrides System.Net.WebRequest.Credentials
+.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.Expect Property"><H3>HttpWebRequest.Expect Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Expect { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the value of the HTTP Expect header.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> that contains the
+   contents of the HTTP Expect header. The default value is
+<CODE>null</CODE>
+ . <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The value specified for a set operation is &quot;100-continue&quot;. This value is case insensitive.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: By default, System.Net.HttpWebRequest.Expect is <CODE>null</CODE>
+ . Other values can be added to the
+      list that System.Net.HttpWebRequest.Expect maintains, or all values except &quot;100-continue&quot; can be
+      deleted from the list by setting System.Net.HttpWebRequest.Expect to <CODE>null</CODE>
+ .<P>
+
+For additional information see section 14.20 of IETF RFC
+      2068 - HTTP/1.1.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.HaveResponse Property"><H3>HttpWebRequest.HaveResponse Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool HaveResponse { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether a response has been received for the current
+   instance.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if a response has been received; otherwise
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.Headers Property"><H3>HttpWebRequest.Headers Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override WebHeaderCollection Headers { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the collection of HTTP header name/value pairs associated with the
+      current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="WebHeaderCollection.html" TARGET="contents">WebHeaderCollection</A> containing the name/value pairs of the headers for
+   the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>A set operation was requested but data has already been written to the request data stream.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ 
+      The following table
+      lists the HTTP headers that cannot be set using the collection
+      returned by this property.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Set by</TH><TH>HeaderSet by</TH></TR>
+<TR><TD>System.Net.HttpWebRequest.Accept
+      .</TD><TD> AcceptSystem.Net.HttpWebRequest.Accept
+      .</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.Connection
+   .<P>
+
+System.Net.HttpWebRequest.KeepAlive.<P>
+
+</TD><TD> ConnectionSystem.Net.HttpWebRequest.Connection
+   .<P>
+
+System.Net.HttpWebRequest.KeepAlive.<P>
+
+</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.ContentLength.</TD><TD> Content-LengthSystem.Net.HttpWebRequest.ContentLength.</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.ContentType.</TD><TD> Content-TypeSystem.Net.HttpWebRequest.ContentType.</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.Expect.</TD><TD> ExpectSystem.Net.HttpWebRequest.Expect.</TD></TR>
+<TR><TD>Set
+      by the system to the current date.</TD><TD> DateSet
+      by the system to the current date.</TD></TR>
+<TR><TD>Set
+      by the system to the current host information.</TD><TD> HostSet
+      by the system to the current host information.</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.AddRange(System.Int32,System.Int32)
+.</TD><TD> RangeSystem.Net.HttpWebRequest.AddRange(System.Int32,System.Int32)
+.</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.Referer.</TD><TD> RefererSystem.Net.HttpWebRequest.Referer.</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.TransferEncoding. <CODE></CODE>
+<P>
+
+System.Net.HttpWebRequest.SendChunked.<P>
+
+</TD><TD> Transfer-EncodingSystem.Net.HttpWebRequest.TransferEncoding. <CODE></CODE>
+<P>
+
+System.Net.HttpWebRequest.SendChunked.<P>
+
+</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.UserAgent.</TD><TD> User-AgentSystem.Net.HttpWebRequest.UserAgent.</TD></TR>
+</TABLE>
+[<I>Note</I>: This property overrides System.Net.WebRequest.Headers.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.IfModifiedSince Property"><H3>HttpWebRequest.IfModifiedSince Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime IfModifiedSince { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the value of the HTTP If-Modified-Since 
+      header.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> that contains the 
+   contents of the HTTP If-Modified-Since
+   header. The default value is the current
+   date and time of the system.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: For additional
+      information see section 14.25 of IETF RFC 2068 - HTTP/1.1.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.KeepAlive Property"><H3>HttpWebRequest.KeepAlive Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool KeepAlive { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether to make a persistent connection to the server hosting the Internet resource requested by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+indicates
+   that the current request will contain an HTTP Connection header with the value
+   &quot;Keep-alive&quot;
+   ; otherwise, <CODE>false</CODE>
+. The default
+   value is <CODE>true</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: An application uses System.Net.HttpWebRequest.KeepAlive
+to indicate a preference for persistent connections. When this property is <CODE>true</CODE>
+ , the application makes persistent connections to
+the servers that support them.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.MaximumAutomaticRedirections Property"><H3>HttpWebRequest.MaximumAutomaticRedirections Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int MaximumAutomaticRedirections { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the maximum number of redirects that the current instance will follow.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> value that
+   indicates the maximum number of redirection responses that the current instance will follow. The
+   default value is implementation-defined.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The value specified for a set operation is less than or equal to zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This
+      property sets the maximum number of
+      redirections for the request to follow if the System.Net.HttpWebRequest.AllowAutoRedirect property
+      is <CODE>true</CODE>
+.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.MediaType Property"><H3>HttpWebRequest.MediaType Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string MediaType { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the media type of the current request.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> that identifies the media type of the current request. The default value is
+<CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The value of this
+      property affects the System.Net.HttpWebResponse.CharacterSet property. When this property is set in
+      the current instance,
+      the corresponding media type is chosen from the list of character sets returned
+      in the response HTTP Content-type
+      header. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.Method Property"><H3>HttpWebRequest.Method Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string Method { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the HTTP protocol request method used by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing an HTTP method. The default value
+   is &quot;GET&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><CODE>null</CODE>
+, System.String.Empty, or an invalid value was specified for a set operation.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the System.Net.HttpWebRequest.ContentLength property is set to any value other
+   than -1, the System.Net.HttpWebRequest.Method property
+   is
+   required to be set to a protocol method that sends request data.<P>
+
+The System.Net.HttpWebRequest.Method
+property
+can be set to any of the following HTTP 1.1
+protocol methods:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>HTTP MethodDescription</TH></TR>
+<TR><TD>Retrieves in entity-body form the
+         information identified by the System.Net.HttpWebRequest.RequestUri property of the current
+         instance.</TD><TD> GETRetrieves in entity-body form the
+         information identified by the System.Net.HttpWebRequest.RequestUri property of the current
+         instance.</TD></TR>
+<TR><TD>Identical to GET except that the message-body is not
+         returned in the response.</TD><TD> HEADIdentical to GET except that the message-body is not
+         returned in the response.</TD></TR>
+<TR><TD> Requests that the origin server accept the entity
+         enclosed in the request as a new subordinate of the resource identified the
+         Request-URI in the Request-Line.</TD><TD> POST Requests that the origin server accept the entity
+         enclosed in the request as a new subordinate of the resource identified the
+         Request-URI in the Request-Line.</TD></TR>
+<TR><TD>Requests that the enclosed entity be stored
+         under the supplied Request-URI.</TD><TD> PUTRequests that the enclosed entity be stored
+         under the supplied Request-URI.</TD></TR>
+<TR><TD>Requests that the origin server delete the resource
+         identified by the Request-URI.</TD><TD> DELETERequests that the origin server delete the resource
+         identified by the Request-URI.</TD></TR>
+<TR><TD>Invokes a remote, application-layer loopback of the
+         request message.</TD><TD> TRACEInvokes a remote, application-layer loopback of the
+         request message.</TD></TR>
+<TR><TD>Requests information about the communication
+         options available on the request/response chain identified by the
+         Request-URI. [<I>Note</I>: This allows the
+         client to determine the options and/or requirements associated with a
+         resource, or the capabilities of a server, without implying a resource
+         action or initiating a resource
+         retrieval.]<P>
+
+</TD><TD> OPTIONSRequests information about the communication
+         options available on the request/response chain identified by the
+         Request-URI. [<I>Note</I>: This allows the
+         client to determine the options and/or requirements associated with a
+         resource, or the capabilities of a server, without implying a resource
+         action or initiating a resource
+         retrieval.]<P>
+
+</TD></TR>
+</TABLE>
+[<I>Note</I>: For detailed information regarding these methods, see
+      sections 9.2 to 9.8 of RFC 2616.<P>
+
+This property overrides System.Net.WebRequest.Method
+.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.Pipelined Property"><H3>HttpWebRequest.Pipelined Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool Pipelined { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether to pipeline the current request to the Internet resource.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the current request can be pipelined; otherwise,
+<CODE>false</CODE>
+. The default is <CODE>true</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+An application uses this property to indicate a preference for pipelined connections. If System.Net.HttpWebRequest.Pipelined is <CODE>true</CODE>
+ , an application makes pipelined connections to servers that support them.<P>
+
+[<I>Note</I>: Pipelined connections are made only when the System.Net.HttpWebRequest.KeepAlive
+property is <CODE>true</CODE>
+ .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.PreAuthenticate Property"><H3>HttpWebRequest.PreAuthenticate Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool PreAuthenticate { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets a Boolean value that indicates whether to send HTTP
+      preauthentication header information with current instance without waiting for
+      an authentication challenge from the requested resource.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+to send a HTTP
+WWW-authenticate header with the current 
+   instance without waiting for an authentication challenge from the requested
+   resource; otherwise, <CODE>false</CODE>
+. The default is
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+When System.Net.HttpWebRequest.PreAuthenticate is <CODE>true</CODE>
+ and credentials are supplied, the HTTP WWW-authenticate header is sent with the current
+   instance without waiting for an authentication
+   challenge from the requested resource; otherwise the request uses standard authentication procedures.<P>
+
+[<I>Note</I>: Set this property to <CODE>true </CODE>
+to allow
+   clients to improve server efficiency by avoiding extra round trips caused by
+   authentication challenges.<P>
+
+This property overrides System.Net.WebRequest.PreAuthenticate.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.ProtocolVersion Property"><H3>HttpWebRequest.ProtocolVersion Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Version ProtocolVersion { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the version of the
+      HTTP protocol to use for the current request.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Version.html" TARGET="contents">Version</A> that represents
+   the HTTP version to use for the request. The default is System.Net.HttpVersion.Version11.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The HTTP version is set to a value other than 1.0 or 1.1.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="HttpWebRequest.html" TARGET="contents">HttpWebRequest</A> class supports only versions 1.0 and 1.1 of
+   HTTP. Setting System.Net.HttpWebRequest.ProtocolVersion to a
+   different version causes a <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A> exception to be thrown.<P>
+
+[<I>Note</I>: To set
+   the System.Net.HttpWebRequest.ProtocolVersion property of the current instance, specify one of the members of
+   the use the
+<A HREF="HttpVersion.html" TARGET="contents">HttpVersion</A> class. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.Proxy Property"><H3>HttpWebRequest.Proxy Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IWebProxy Proxy { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets network proxy information for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="WebProxy.html" TARGET="contents">WebProxy</A> instance to
+   use as a
+   proxy for the current instance. The default value is set by calling System.Net.GlobalProxySelection.Select . <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>A set operation was requested and the specified value was <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>A set operation was requested but data has already been sent to the request stream.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have permission for the requested operation.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Net.HttpWebRequest.Proxy
+property identifies the <A HREF="WebProxy.html" TARGET="contents">WebProxy</A> instance to use
+to communicate with the destination server.<P>
+
+[<I>Note</I>:  To specify that no proxy should be used, set the System.Net.HttpWebRequest.Proxy
+property to the proxy instance returned by the System.Net.GlobalProxySelection.GetEmptyWebProxy method.<P>
+
+This property overrides System.Net.WebRequest.Proxy.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.Referer Property"><H3>HttpWebRequest.Referer Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Referer { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the value of the HTTP Referer header.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the 
+   value of the HTTP Referer header. The default value is
+<CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: For additional
+      information see section 14.36 of IETF RFC 2068 - HTTP/1.1.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.RequestUri Property"><H3>HttpWebRequest.RequestUri Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override Uri RequestUri { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> of the resource that receives requests sent by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> of the resource that receives requests sent by the
+   current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+This property is the <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> instance passed to the current instance via the System.Net.WebRequest.Create(System.Uri,System.Boolean) method. <P>
+
+[<I>Note</I>: Following a redirection header does not change the System.Net.HttpWebRequest.RequestUri property.
+   The URI of the resource
+   that actually responded to the current instance is contained by System.Net.HttpWebRequest.Address property of the current
+   instance.<P>
+
+This property overrides System.Net.WebRequest.RequestUri.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.SendChunked Property"><H3>HttpWebRequest.SendChunked Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool SendChunked { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets a value indicating whether to send data in segments.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+
+to send data in segments; otherwise,
+<CODE>false</CODE>
+. The default value is <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>A set operation was requested but data has already been written to the request data stream.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+When System.Net.HttpWebRequest.SendChunked is <CODE>true</CODE>
+ , the request sends data to the destination in segments. The
+   destination server is required to support receiving chunked data.<P>
+
+[<I>Note</I>: Set this property
+   to <CODE>true</CODE>
+ only if the server specified by the System.Net.HttpWebRequest.Address property of the current instance accepts chunked
+   data (i.e. is HTTP/1.1 or greater in compliance). If the server does not
+   accept chunked data, buffer all data to be written and send a HTTP Content-Length header with the
+   buffered data.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.ServicePoint Property"><H3>HttpWebRequest.ServicePoint Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ServicePoint ServicePoint { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the service point to use for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> 
+that represents the network connection to the
+destination. The value of this property is <CODE>null</CODE>
+ until the System.Net.HttpWebRequest.GetResponse method is called.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.Timeout Property"><H3>HttpWebRequest.Timeout Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int Timeout { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the length of time before the request times out.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> indicating the number of milliseconds to wait for a response until the request times out,
+   or System.Threading.Timeout.Infinite to indicate that the request does not
+   time out.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>A value less than zero and not equal to System.Threading.Timeout.Infinite is specified for a set operation.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.Net.HttpWebRequest.Timeout is the number of milliseconds that a
+   synchronous request made with the System.Net.HttpWebRequest.GetResponse method waits for a response. If a resource does
+   not respond within the time-out period, the request throws a <A HREF="WebException.html" TARGET="contents">WebException</A> with
+   the System.Net.WebException.Status property set to System.Net.WebExceptionStatus.Timeout.<P>
+
+[<I>Note</I>: This property overrides System.Net.WebRequest.Timeout.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.TransferEncoding Property"><H3>HttpWebRequest.TransferEncoding Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string TransferEncoding { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the value of the HTTP
+   Transfer-encoding header.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> that contains the value of the
+   HTTP Transfer-encoding header.
+   The default value is <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>System.Net.HttpWebRequest.TransferEncoding is set when System.Net.HttpWebRequest.SendChunked is <CODE>false</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>System.Net.HttpWebRequest.TransferEncoding is set to the value &quot;Chunked&quot;. This value is case insensitive.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property can be set in the current instance only if
+      the System.Net.HttpWebRequest.SendChunked property in the current instance is
+   <CODE>true</CODE>
+.<P>
+
+[<I>Note</I>:  Clearing System.Net.HttpWebRequest.TransferEncoding by setting it to <CODE>null </CODE>
+has no effect on
+      the value of System.Net.HttpWebRequest.SendChunked.<P>
+
+Values assigned to the System.Net.HttpWebRequest.TransferEncoding property replace any
+   existing contents.<P>
+
+For additional information see section 14.41 of IETF RFC
+   2068 - HTTP/1.1.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebRequest.UserAgent Property"><H3>HttpWebRequest.UserAgent Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string UserAgent { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the value of the HTTP
+   User-agent header.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the value of the HTTP User-agent header. The default value is
+<CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: For additional 
+      information see section 14.43 of IETF RFC 2068 - HTTP/1.1.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,1653 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.Sockets.NetworkStream Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.Sockets.NetworkStream Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class NetworkStream : Stream</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../../System/MarshalByRefObject.html" TARGET="contents">MarshalByRefObject</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../../System/IO/Stream.html" TARGET="contents">Stream</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NetworkStream<P>
+
+This type implements <A HREF="../../../System/IDisposable.html" TARGET="contents">IDisposable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Implements the standard stream mechanism to read
+      and write network data through an instance of the <A HREF="Socket.html" TARGET="contents">Socket</A> class.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A> class allows network data to be read and written
+   in the same manner as the <A HREF="../../../System/IO/Stream.html" TARGET="contents">Stream</A>
+   class.<P>
+
+ This class supports simultaneous synchronous and asynchronous access
+   to the network data. Random access is not supported and thus
+   the System.Net.Sockets.NetworkStream.CanSeek
+   property always returns
+<CODE>false.</CODE>
+<P>
+
+ The following properties and methods inherited from the <A HREF="../../../System/IO/Stream.html" TARGET="contents">Stream</A> class are
+not supported and throw a <A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>
+exception when
+accessed:<P>
+
+<UL>
+<LI>System.Net.Sockets.NetworkStream.Length</LI>
+<LI>System.Net.Sockets.NetworkStream.Position</LI>
+<LI>System.Net.Sockets.NetworkStream.Seek(System.Int64,System.IO.SeekOrigin)</LI>
+<LI>System.Net.Sockets.NetworkStream.SetLength(System.Int64)</LI>
+</UL>
+The System.Net.Sockets.NetworkStream.Flush method is reserved for future use but does not throw an exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+NetworkStream Constructors<P>
+
+<A HREF="#NetworkStream(System.Net.Sockets.Socket) Constructor" TARGET="contents">NetworkStream(System.Net.Sockets.Socket) Constructor</A><BR>
+<A HREF="#NetworkStream(System.Net.Sockets.Socket, bool) Constructor" TARGET="contents">NetworkStream(System.Net.Sockets.Socket, bool) Constructor</A><BR>
+<A HREF="#NetworkStream(System.Net.Sockets.Socket, System.IO.FileAccess) Constructor" TARGET="contents">NetworkStream(System.Net.Sockets.Socket, System.IO.FileAccess) Constructor</A><BR>
+<A HREF="#NetworkStream(System.Net.Sockets.Socket, System.IO.FileAccess, bool) Constructor" TARGET="contents">NetworkStream(System.Net.Sockets.Socket, System.IO.FileAccess, bool) Constructor</A><BR>
+<P>
+
+NetworkStream Methods<P>
+
+<A HREF="#NetworkStream.BeginRead Method" TARGET="contents">NetworkStream.BeginRead Method</A><BR>
+<A HREF="#NetworkStream.BeginWrite Method" TARGET="contents">NetworkStream.BeginWrite Method</A><BR>
+<A HREF="#NetworkStream.Close Method" TARGET="contents">NetworkStream.Close Method</A><BR>
+<A HREF="#NetworkStream.Dispose Method" TARGET="contents">NetworkStream.Dispose Method</A><BR>
+<A HREF="#NetworkStream.EndRead Method" TARGET="contents">NetworkStream.EndRead Method</A><BR>
+<A HREF="#NetworkStream.EndWrite Method" TARGET="contents">NetworkStream.EndWrite Method</A><BR>
+<A HREF="#NetworkStream.Finalize Method" TARGET="contents">NetworkStream.Finalize Method</A><BR>
+<A HREF="#NetworkStream.Flush Method" TARGET="contents">NetworkStream.Flush Method</A><BR>
+<A HREF="#NetworkStream.Read Method" TARGET="contents">NetworkStream.Read Method</A><BR>
+<A HREF="#NetworkStream.Seek Method" TARGET="contents">NetworkStream.Seek Method</A><BR>
+<A HREF="#NetworkStream.SetLength Method" TARGET="contents">NetworkStream.SetLength Method</A><BR>
+<A HREF="#NetworkStream.Write Method" TARGET="contents">NetworkStream.Write Method</A><BR>
+<P>
+
+NetworkStream Properties<P>
+
+<A HREF="#NetworkStream.CanRead Property" TARGET="contents">NetworkStream.CanRead Property</A><BR>
+<A HREF="#NetworkStream.CanSeek Property" TARGET="contents">NetworkStream.CanSeek Property</A><BR>
+<A HREF="#NetworkStream.CanWrite Property" TARGET="contents">NetworkStream.CanWrite Property</A><BR>
+<A HREF="#NetworkStream.DataAvailable Property" TARGET="contents">NetworkStream.DataAvailable Property</A><BR>
+<A HREF="#NetworkStream.Length Property" TARGET="contents">NetworkStream.Length Property</A><BR>
+<A HREF="#NetworkStream.Position Property" TARGET="contents">NetworkStream.Position Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="NetworkStream(System.Net.Sockets.Socket) Constructor"><H3>NetworkStream(System.Net.Sockets.Socket) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public NetworkStream(Socket socket);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>socket</DT>
+<DD>An instance of the <A HREF="Socket.html" TARGET="contents">Socket</A> class.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>socket</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>The System.Net.Sockets.Socket.Blocking property of <I>socket</I> is <CODE>false</CODE>
+.<P>
+
+ -or-<P>
+
+The System.Net.Sockets.Socket.Connected property of <I>socket</I> is <CODE>false</CODE>
+.<P>
+
+ -or-<P>
+
+The System.Net.Sockets.Socket.SocketType property of <I>socket</I> is not System.Net.Sockets.SocketType.Stream.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor is equivalent to
+   System.Net.Sockets.NetworkStream.NetworkStream(<I>socket</I>, System.IO.FileAccess.ReadWrite, <CODE>false</CODE>
+).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream(System.Net.Sockets.Socket, bool) Constructor"><H3>NetworkStream(System.Net.Sockets.Socket, bool) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public NetworkStream(Socket socket, bool ownsSocket);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>socket</DT>
+<DD>An instance of the <A HREF="Socket.html" TARGET="contents">Socket</A> class.</DD>
+<DT> ownsSocket</DT>
+<DD><CODE>true</CODE>
+ if <I>socket</I> is owned by the current instance; otherwise, <CODE>false</CODE>
+.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>socket</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>The System.Net.Sockets.Socket.Blocking property of <I>socket</I> is <CODE>false</CODE>
+.<P>
+
+ -or-<P>
+
+The System.Net.Sockets.Socket.Connected property of <I>socket</I> is <CODE>false</CODE>
+.<P>
+
+ -or-<P>
+
+The System.Net.Sockets.Socket.SocketType property of <I>socket</I> is not System.Net.Sockets.SocketType.Stream.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor is
+      equivalent to System.Net.Sockets.NetworkStream.NetworkStream(<I>socket</I>, System.IO.FileAccess.ReadWrite,
+   <I>ownsSocket</I>).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream(System.Net.Sockets.Socket, System.IO.FileAccess) Constructor"><H3>NetworkStream(System.Net.Sockets.Socket, System.IO.FileAccess) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public NetworkStream(Socket socket, FileAccess access);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>socket</DT>
+<DD>An instance of the <A HREF="Socket.html" TARGET="contents">Socket</A> class.</DD>
+<DT> access</DT>
+<DD>One of the values of the <A HREF="../../../System/IO/FileAccess.html" TARGET="contents">FileAccess</A> enumeration.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>socket</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>The System.Net.Sockets.Socket.Blocking property of <I>socket</I> is <CODE>false</CODE>
+.<P>
+
+ -or-<P>
+
+The System.Net.Sockets.Socket.Connected property of <I>socket</I> is <CODE>false</CODE>
+.<P>
+
+ -or-<P>
+
+The System.Net.Sockets.Socket.SocketType property of <I>socket</I> is not System.Net.Sockets.SocketType.Stream.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor is equivalent to
+   System.Net.Sockets.NetworkStream.NetworkStream(<I>socket</I>, <I>access</I>, <CODE>false</CODE>
+).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream(System.Net.Sockets.Socket, System.IO.FileAccess, bool) Constructor"><H3>NetworkStream(System.Net.Sockets.Socket, System.IO.FileAccess, bool) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public NetworkStream(Socket socket, FileAccess access, bool ownsSocket);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>socket</DT>
+<DD>An instance of the <A HREF="Socket.html" TARGET="contents">Socket</A> class.</DD>
+<DT>access</DT>
+<DD>One of the values of the <A HREF="../../../System/IO/FileAccess.html" TARGET="contents">FileAccess</A> enumeration.</DD>
+<DT> ownsSocket</DT>
+<DD><CODE>true</CODE>
+ if <I>socket</I> is owned by the current instance; otherwise, <CODE>false</CODE>
+.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>socket</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>The System.Net.Sockets.Socket.Blocking property of <I>socket</I> is <CODE>false</CODE>
+.<P>
+
+ -or-<P>
+
+The System.Net.Sockets.Socket.Connected property of <I>socket</I> is <CODE>false</CODE>
+.<P>
+
+ -or-<P>
+
+The System.Net.Sockets.Socket.SocketType property of <I>socket</I> is not System.Net.Sockets.SocketType.Stream.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<I>socket</I> is required to be an
+   instance of the <A HREF="Socket.html" TARGET="contents">Socket</A> class with its System.Net.Sockets.Socket.Connected
+   property equal to <CODE>true</CODE>
+
+   , System.Net.Sockets.Socket.Blocking property equal to <CODE>true</CODE>
+ ,
+   and <A HREF="SocketType.html" TARGET="contents">SocketType</A> equal to System.Net.Sockets.SocketType.Stream.<P>
+
+ When <I>ownsSocket</I> is <CODE>true</CODE>
+, the current instance owns <I>socket</I>, meaning the System.Net.Sockets.NetworkStream.Close
+and System.Net.Sockets.NetworkStream.Dispose(System.Boolean) methods call the System.Net.Sockets.Socket.Close
+method of <I>socket</I>.<P>
+
+The System.Net.Sockets.NetworkStream.Readable and System.Net.Sockets.NetworkStream.Writeable properties are set depending on the value of
+<I>access</I>. If <I>access</I> is 
+not one of the values defined in the <A HREF="../../../System/IO/FileAccess.html" TARGET="contents">FileAccess</A> enumeration, the System.Net.Sockets.NetworkStream.Readable and System.Net.Sockets.NetworkStream.Writeable properties are set to
+<CODE>true</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.BeginRead Method"><H3>NetworkStream.BeginRead Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IAsyncResult BeginRead(byte[] buffer, int offset, int size, AsyncCallback callback, object state);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Begins an asynchronous operation to read data from the current instance.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>A <A HREF="../../../System/Byte.html" TARGET="contents">Byte</A> array to store data read from the stream. </DD>
+<DT> offset</DT>
+<DD>A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the zero-based position in <I>buffer</I> at which to begin storing the data. </DD>
+<DT> size</DT>
+<DD>A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes to read. </DD>
+<DT>callback</DT>
+<DD>A <A HREF="../../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate, or <CODE>null</CODE>
+.</DD>
+<DT> state</DT>
+<DD>An application-defined object, or <CODE>null</CODE>
+.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> instance that contains information about the asynchronous operation.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset</I> &lt; 0.<P>
+
+-or-<P>
+
+<I>offset</I> &gt; <I>buffer</I>.Length. <P>
+
+-or-<P>
+
+<I>size</I> &lt; 0.<P>
+
+-or-<P>
+
+<I>size</I> &gt; <I>buffer</I>.Length - <I>offset</I>.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An error occurred while accessing the underlying socket.<P>
+
+[<I>Note</I>: Any exception thrown by the System.Net.Sockets.Socket.BeginReceive(System.Byte[],System.Int32,System.Int32,System.Net.Sockets.SocketFlags,System.AsyncCallback,System.Object) method is caught and rethrown as an <CODE>IOException</CODE>
+ with the original exception stored in the System.Exception.InnerException property.]<P>
+
+<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+To retrieve the results of the operation and release
+      resources allocated by the System.Net.Sockets.NetworkStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object) method, call
+      the System.Net.Sockets.NetworkStream.EndRead(System.IAsyncResult) method, and specify the
+   <A HREF="../../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object returned by this
+      
+      method.<P>
+
+[<I>Note</I>: The System.Net.Sockets.NetworkStream.EndRead(System.IAsyncResult) method should be
+   called exactly once for each call to the System.Net.Sockets.NetworkStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object) method.]<P>
+
+<P>
+
+If the <I>callback</I> parameter is not
+<CODE>null</CODE>
+, the method referenced by 
+<I>callback</I> is invoked 
+when the asynchronous operation completes. The <A HREF="../../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object returned by this method is
+passed as the argument to the method referenced by <I>callback</I>. The method
+referenced by <I>callback</I> can retrieve the results of the operation by calling
+the System.Net.Sockets.NetworkStream.EndRead(System.IAsyncResult)
+method.<P>
+
+ The <I>state</I> parameter
+can be any object that the caller wishes to have available for the duration of
+the asynchronous operation. This object is available via the
+System.IAsyncResult.AsyncState 
+property of the object returned by this
+method.<P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+For an outline of an asynchronous operation, see the System.Net.Sockets.Socket.BeginAccept(System.AsyncCallback,System.Object) method. For the complete example, see
+   the <A HREF="Socket.html" TARGET="contents">Socket</A> class overview.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.BeginWrite Method"><H3>NetworkStream.BeginWrite Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IAsyncResult BeginWrite(byte[] buffer, int offset, int size, AsyncCallback callback, object state);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Begins an asynchronous operation to write data to the current instance.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>A <A HREF="../../../System/Byte.html" TARGET="contents">Byte</A> array containing data to write to the stream. </DD>
+<DT> offset</DT>
+<DD>A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the zero-based position in <I>buffer</I> containing the starting location of the data to write. </DD>
+<DT> size</DT>
+<DD>A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes to write to the stream. </DD>
+<DT>callback</DT>
+<DD>A <A HREF="../../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate, or <CODE>null</CODE>
+.</DD>
+<DT> state</DT>
+<DD>An application-defined object, or <CODE>null</CODE>
+.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> instance that contains information about the asynchronous operation. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset</I> &lt; 0.<P>
+
+-or-<P>
+
+<I>offset</I> &gt; <I>buffer</I>.Length. <P>
+
+-or-<P>
+
+<I>size</I> &lt; 0.<P>
+
+-or-<P>
+
+<I>size</I> &gt; <I>buffer</I>.Length - <I>offset</I>.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An error occurred while accessing the underlying socket. <P>
+
+[<I>Note</I>: Any exception thrown by the System.Net.Sockets.Socket.BeginSend(System.Byte[],System.Int32,System.Int32,System.Net.Sockets.SocketFlags,System.AsyncCallback,System.Object) method is caught and rethrown as an <CODE>IOException</CODE>
+ with the original exception stored in the System.Exception.InnerException property.]<P>
+
+<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ To release
+      resources allocated by the System.Net.Sockets.NetworkStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object) method, call
+      the System.Net.Sockets.NetworkStream.EndWrite(System.IAsyncResult) method, and specify the
+   <A HREF="../../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object returned by this
+      
+      method.<P>
+
+[<I>Note</I>: The System.Net.Sockets.NetworkStream.EndWrite(System.IAsyncResult) method should be
+   called exactly once for each call to the System.Net.Sockets.NetworkStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object) method.]<P>
+
+<P>
+
+If the <I>callback</I> parameter is not
+<CODE>null</CODE>
+, the method referenced by <I>callback</I> is invoked 
+when the asynchronous operation completes. The <A HREF="../../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object returned by this method is
+passed as the argument to the method referenced by <I>callback</I>. The method
+referenced by <I>callback</I> can retrieve the results of the operation by calling
+the System.Net.Sockets.NetworkStream.EndWrite(System.IAsyncResult)
+method.<P>
+
+ The <I>state</I> parameter
+can be any object that the caller wishes to have available for the duration of
+the asynchronous operation. This object is available via the
+System.IAsyncResult.AsyncState 
+property of the object returned by this
+method.<P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+For an outline of an asynchronous operation, see the System.Net.Sockets.Socket.BeginAccept(System.AsyncCallback,System.Object)
+method. For the complete example, see the <A HREF="Socket.html" TARGET="contents">Socket</A> class overview.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.Close Method"><H3>NetworkStream.Close Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void Close();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Closes the stream and, if owned by the current instance, the underlying socket.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method calls System.Net.Sockets.NetworkStream.Dispose(System.Boolean)(<CODE>true</CODE>
+ ), which frees both managed and unmanaged
+   resources used by the current instance. When the underlying socket is owned by
+   the current instance, the System.Net.Sockets.Socket.Close
+   method of the socket is called, which frees both managed and unmanaged resources
+   used by the socket.<P>
+
+[<I>Note</I>:  Ownership of a socket is
+      specified using the <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A> constructor.<P>
+
+This method overrides System.IO.Stream.Close.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.Dispose Method"><H3>NetworkStream.Dispose Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected virtual void Dispose(bool disposing);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Releases the unmanaged resources used by the current instance and optionally
+      releases the managed resources.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>disposing</DT>
+<DD>A <A HREF="../../../System/Boolean.html" TARGET="contents">Boolean</A>. Specify <CODE>true</CODE>
+ to release both managed and unmanaged resources; specify <CODE>false</CODE>
+ to release only unmanaged resources.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  Ownership of a socket is specified using the <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A>
+   constructor.<P>
+
+ The
+System.Net.Sockets.NetworkStream.Close method calls this method with
+   the <I>disposing</I> parameter set to <CODE>true</CODE>
+. The finalizer
+   calls this method with the <I>disposing</I> parameter set to <CODE>false</CODE>
+.<P>
+
+]<P>
+
+[<I>Behaviors</I>: 
+   
+   This method
+   closes the current <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A>
+   instance releasing all unmanaged resources allocated by the current instance.
+   When the underlying socket is owned by the current
+   instance, the System.Net.Sockets.Socket.Close method of
+   the socket is called, which frees
+   the managed and unmanaged resources used by the
+   socket. When the <I>disposing</I> parameter is <CODE>true</CODE>
+ , this method also releases all resources held by any other
+   managed objects allocated by the current
+   instance.
+]<P>
+
+<P>
+
+[<I>Default</I>: 
+   
+   This method
+   closes the current <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A>
+   instance releasing all unmanaged resources allocated by the current instance.
+   When the underlying socket is owned by the current
+   instance, the System.Net.Sockets.Socket.Close method of
+   the socket is called, which frees the managed and unmanaged resources used by the
+   socket.
+]<P>
+
+<P>
+
+[<I>Overrides</I>: 
+   
+   The System.Net.Sockets.Socket.Dispose(System.Boolean) method can be called
+   multiple times by other objects. When overriding this method, do not reference
+   objects that have been previously disposed in an earlier call.
+]<P>
+
+<P>
+
+[<I>Usage</I>: 
+   
+   Use this method to release
+   resources allocated by
+   the current
+   instance.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.EndRead Method"><H3>NetworkStream.EndRead Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int EndRead(IAsyncResult asyncResult);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Ends an asynchronous call to
+      read data from the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>asyncResult</DT>
+<DD>A <A HREF="../../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object that holds the state information for the asynchronous operation. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes read from the stream.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>asyncResult</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An error occurred while accessing the underlying socket. [<I>Note</I>: This method catches all exceptions thrown by the System.Net.Sockets.Socket.EndReceive(System.IAsyncResult) method.]<P>
+
+<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method blocks if the asynchronous operation has not completed.<P>
+
+The System.Net.Sockets.NetworkStream.EndRead(System.IAsyncResult)
+method completes an asynchronous request that was started with a call to the
+System.Net.Sockets.NetworkStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object) method. The object specified for the 
+<I>asyncResult</I> parameter is required to be the same object as was returned 
+by the System.Net.Sockets.NetworkStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)
+method call that began the
+request.<P>
+
+If the System.Net.Sockets.NetworkStream.EndRead(System.IAsyncResult)
+method is invoked via the <A HREF="../../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate specified to the System.Net.Sockets.NetworkStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object) method, the
+<I>asyncResult</I> parameter is the <A HREF="../../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> 
+argument passed to the
+delegate&apos;s method.<P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.EndRead(System.IAsyncResult).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+For an outline of an asynchronous operation, see the System.Net.Sockets.Socket.BeginAccept(System.AsyncCallback,System.Object) method.
+   For the complete example, see the <A HREF="Socket.html" TARGET="contents">Socket</A> class overview.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.EndWrite Method"><H3>NetworkStream.EndWrite Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void EndWrite(IAsyncResult asyncResult);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Ends an asynchronous call to write data to the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>asyncResult</DT>
+<DD>A <A HREF="../../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object that holds the state information for the asynchronous operation. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>asyncResult</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An error occurred while accessing the underlying socket. [<I>Note</I>: This method catches all exceptions thrown by the System.Net.Sockets.Socket.EndSend(System.IAsyncResult) method.]<P>
+
+<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method blocks if the asynchronous operation has not completed.<P>
+
+The System.Net.Sockets.NetworkStream.EndWrite(System.IAsyncResult)
+method completes an asynchronous request that was started with a call to the
+System.Net.Sockets.NetworkStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object) method. The object specified for the 
+<I>asyncResult</I> parameter is required to be the same object as was returned 
+by the System.Net.Sockets.NetworkStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)
+method call that began the
+request.<P>
+
+If the System.Net.Sockets.NetworkStream.EndWrite(System.IAsyncResult)
+method is invoked via the <A HREF="../../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate specified to the System.Net.Sockets.NetworkStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object) method, the
+<I>asyncResult</I> parameter is the <A HREF="../../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> 
+argument passed to the
+delegate&apos;s method.<P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.EndWrite(System.IAsyncResult).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+For an outline of an asynchronous operation, see the System.Net.Sockets.Socket.BeginAccept(System.AsyncCallback,System.Object) method.
+   For the complete example, see the <A HREF="Socket.html" TARGET="contents">Socket</A> class
+   overview.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.Finalize Method"><H3>NetworkStream.Finalize Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>~NetworkStream();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Frees unmanaged resources used by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Application code does not call this method; it is automatically invoked
+         during garbage collection unless finalization by the garbage collector has been
+         disabled. For more information, see System.GC.SuppressFinalize(System.Object), and System.Object.Finalize.<P>
+
+ This method calls System.Net.Sockets.NetworkStream.Dispose(System.Boolean)(<CODE>false</CODE>
+), which frees unmanaged resources used by
+      the current instance. When the underlying socket is owned by the current
+      instance, it is closed and the managed and unmanaged resources used by the
+      socket are freed.<P>
+
+Ownership of a socket is specified using the <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A> constructor.<P>
+
+This method overrides System.Object.Finalize.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.Flush Method"><H3>NetworkStream.Flush Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void Flush();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ This method is reserved for future use.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Calling this method does not throw an exception.<P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.Flush.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.Read Method"><H3>NetworkStream.Read Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int Read(byte[] buffer, int offset, int size);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Reads data from the current instance and stores it in a data buffer.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>A <A HREF="../../../System/Byte.html" TARGET="contents">Byte</A> array to store data read from the stream. </DD>
+<DT> offset</DT>
+<DD>A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the zero-based position in <I>buffer</I> at which to begin storing the data. </DD>
+<DT> size</DT>
+<DD>A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes to read. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes read from the
+   stream.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset</I> &lt; 0.<P>
+
+-or-<P>
+
+<I>offset</I> &gt; <I>buffer</I>.Length. <P>
+
+-or-<P>
+
+<I>size</I> &lt; 0.<P>
+
+-or-<P>
+
+<I>size</I> &gt; <I>buffer</I>.Length - <I>offset</I>.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An error occurred while accessing the underlying socket. [<I>Note</I>: This method catches all exceptions thrown by the System.Net.Sockets.Socket.Receive(System.Byte[],System.Int32,System.Net.Sockets.SocketFlags) method.]<P>
+
+<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ When no incoming data is available, this method blocks and
+      waits for data to arrive.<P>
+
+ If the remote socket was shut down gracefully (System.Net.Sockets.Socket.Shutdown(System.Net.Sockets.SocketShutdown) was called on the socket or
+   the System.Net.Sockets.SocketOptionName.Linger option was enabled
+   and System.Net.Sockets.Socket.Close was called on the socket) and all data was received, this
+   method immediately returns zero.<P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.Read(System.Byte[],System.Int32,System.Int32).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.Seek Method"><H3>NetworkStream.Seek Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override long Seek(long offset, SeekOrigin origin);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Throws a <A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>offset</DT>
+<DD>This parameter is not used.</DD>
+<DT> origin</DT>
+<DD>This parameter is not used.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>Any call to this method.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  The <A HREF="../../../System/IO/Stream.html" TARGET="contents">Stream</A> base class uses this method to set the current
+      position in the stream. This functionality is not supported in the <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A>
+      class.<P>
+
+This method overrides System.IO.Stream.Seek(System.Int64,System.IO.SeekOrigin).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.SetLength Method"><H3>NetworkStream.SetLength Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void SetLength(long value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Throws a <A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>This parameter is not used.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>Any call to this method.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The <A HREF="../../../System/IO/Stream.html" TARGET="contents">Stream</A>
+   base class uses this method to set the length of the data available on the
+   stream. This functionality is not supported in the <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A> class.<P>
+
+This method overrides System.IO.Stream.SetLength(System.Int64).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.Write Method"><H3>NetworkStream.Write Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void Write(byte[] buffer, int offset, int size);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes data from a specific area of a data buffer to the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>A <A HREF="../../../System/Byte.html" TARGET="contents">Byte</A> array containing data to write to the stream.</DD>
+<DT>offset</DT>
+<DD>A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the zero-based position in <I>buffer</I> containing the starting location of the data to write.</DD>
+<DT>size</DT>
+<DD>A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes to write to the stream.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset</I> &lt; 0.<P>
+
+-or-<P>
+
+<I>offset</I> &gt; <I>buffer</I>.Length. <P>
+
+-or-<P>
+
+<I>size</I> &lt; 0.<P>
+
+-or-<P>
+
+<I>size</I> &gt; <I>buffer</I>.Length - <I>offset</I>.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An error occurred while accessing the underlying socket. [<I>Note</I>: This method catches all exceptions thrown by the System.Net.Sockets.Socket.Send(System.Byte[],System.Int32,System.Net.Sockets.SocketFlags) method.]<P>
+
+<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+When no buffer space is available within the underlying protocol, this method
+      blocks unless the socket is in non-blocking mode. <P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.Write(System.Byte[],System.Int32,System.Int32).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.CanRead Property"><H3>NetworkStream.CanRead Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool CanRead { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="../../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current stream supports reading.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ indicates that the current stream supports reading; 
+<CODE>false</CODE>
+. indicates that the current stream does not 
+   support reading.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The value of this property is initially set by the 
+   <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A> constructors and can be changed using the System.Net.Sockets.NetworkStream.Readable property.<P>
+
+[<I>Note</I>: This property overrides System.IO.Stream.CanRead.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.CanSeek Property"><H3>NetworkStream.CanSeek Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool CanSeek { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the <A HREF="../../../System/Boolean.html" TARGET="contents">Boolean</A> value <CODE>false</CODE>
+ to indicate that the
+<A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A> class 
+   cannot access a specific location in the data
+   stream.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This property is read-only. <P>
+
+[<I>Note</I>: This property overrides System.IO.Stream.CanSeek.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.CanWrite Property"><H3>NetworkStream.CanWrite Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool CanWrite { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="../../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current stream supports writing.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ indicates that the current stream supports writing; 
+<CODE>false</CODE>
+ 
+indicates that the current stream does not support writing.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The value of this property is initially set by the 
+   <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A> 
+   constructors and can be changed using the System.Net.Sockets.NetworkStream.Writeable property.<P>
+
+[<I>Note</I>: This property overrides System.IO.Stream.CanWrite.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.DataAvailable Property"><H3>NetworkStream.DataAvailable Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool DataAvailable { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="../../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether data is available to be read from the underlying socket buffer.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ indicates that data is available to be
+   read; <CODE>false</CODE>
+
+   indicates that there is no data available to be read.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Behaviors</I>:  As
+      described
+      above. ]<P>
+
+<P>
+
+[<I>Default</I>: Accessing this
+      property causes a call to the System.Net.Sockets.Socket.Available method of the underlying <A HREF="Socket.html" TARGET="contents">Socket</A> instance. If the <CODE>Available</CODE>
+
+      method returns a
+      non-zero value, indicating data is available to be read, this property returns
+   <CODE>true</CODE>
+; otherwise, this property returns
+   <CODE>false</CODE>
+.
+   ]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this property
+      to determine if data is available to be read in the underlying socket
+      buffer.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.Length Property"><H3>NetworkStream.Length Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override long Length { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Throws a <A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>Any attempt to access this property. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  The <A HREF="../../../System/IO/Stream.html" TARGET="contents">Stream</A> base class implements this property to return the length of the data
+      available on the stream. This functionality is not supported in
+      the <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A> class.<P>
+
+This property overrides System.IO.Stream.Length.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="NetworkStream.Position Property"><H3>NetworkStream.Position Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override long Position { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Throws a <A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>Any attempt to access this property.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  The <A HREF="../../../System/IO/Stream.html" TARGET="contents">Stream</A> base class implements this property to return or set the
+      current position in the stream. This functionality is not supported in the <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A>
+      class.<P>
+
+This property overrides System.IO.Stream.Position.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

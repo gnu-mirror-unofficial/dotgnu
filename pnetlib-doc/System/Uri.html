@@ -1,0 +1,3136 @@
+<HTML>
+<HEAD>
+<TITLE>System.Uri Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Uri Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class Uri : MarshalByRefObject</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="MarshalByRefObject.html" TARGET="contents">MarshalByRefObject</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;Uri<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides an object representation of a uniform resource identifier
+      (URI) as defined by IETF RFC 2396.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  A Uniform Resource Identifier (URI) is a compact
+         string of
+         characters used to identify a resource located on a computer. A resource can be anything that
+         has identity. Examples of resources that may be accessed using a
+         URI include an electronic document, an image, a web service, and a collection
+         of other resources. A URI is represented as a sequence of characters.
+         While the exact format of a URI is determined by the protocol
+         used to access the resource, many URI consist of four major
+         components:<P>
+
+ &lt;<I>scheme</I>&amp;gt;://&lt;<I>authority</I>&amp;gt;&lt;<I>path</I>&amp;gt;?&lt;<I>query</I>&amp;gt;<P>
+
+<I>Scheme</I> - Indicates a protocol used to access the
+   resource.<P>
+
+<I>Authority</I> - Indicates the
+naming authority (server or registry) that governs the namespace defined by the
+remainder of the URI. The authority component is composed of <I>userinfo</I>,
+<I>host</I> and <I>port</I> subcomponents in the form 
+&lt;<I>userinfo</I>&amp;gt;@&lt;<I>host</I>&amp;gt;:&lt;<I>port</I>&amp;gt;. Only
+the <I>host</I> subcomponent is required to be present in the
+<I>Authority</I> component. Authority information is stored in the System.Uri.Authority
+property.<P>
+
+<I>Path</I> - Identifies the
+resource within the scope of the scheme and, if present, the authority. This
+information is stored in the System.Uri.AbsolutePath , System.Uri.PathAndQuery, and System.Uri.LocalPath
+properties.<P>
+
+<I>Query</I> - Parameter
+information that is passed to the executable script identified
+by the URI. The query, if present, is the last element in a URI and begins
+with a &quot;?&quot;. This information is stored in the System.Uri.Query
+property.<P>
+
+<I>Userinfo -</I> [Subcomponent of <I>Authority</I>] Consists of a user name and, optionally,
+scheme-specific authorization information used to access <I>Host</I>
+. The <I>userinfo</I>,
+if present, is separated from the <I>Host</I> component by the &quot;@&quot; character.
+Note that for some URI schemes, the format of the <I>userinfo</I> subcomponent
+is &quot;username:password&quot;. Passing authorization information in this manner is
+strongly discouraged due to security issues. The
+<I>userinfo</I> information is stored in the System.Uri.UserInfo 
+property.<P>
+
+<I>Host</I> - [Subcomponent of
+<I>Authority</I>] The Domain Name system (DNS) name or IP4 address of a machine that provides
+access to the resource. This information is stored in the System.Uri.Host property.<P>
+
+<I>Port</I> - [Subcomponent of
+<I>Authority</I> ] The network port number used to connect
+to the host. If no port number is specified in the URI, most schemes designate
+protocols that have a default port number. This information is stored
+in the System.Uri.Port
+property.<P>
+
+<I>Fragment</I> - The fragment is
+not part of the URI, but is used in conjunction with the URI and is included here for completeness. This component contains resource-specific information that
+is used after a resource is retrieved. The <I>fragment</I>
+, if present, is separated from the
+URI by the &quot;#&quot; character. This information is stored in the System.Uri.Fragment
+property.<P>
+
+ URIs include components consisting of or delimited by
+   certain special (reserved) characters that have a special meaning in a URI
+   component. If the reserved meaning is not intended, then the character is
+   required to be escaped in the URI. An escaped character is encoded as a
+   character triplet consisting of the percent character &quot;%&quot; followed by the
+   US-ASCII character code specified as two hexadecimal digits. For example, &quot;%20&quot;
+   is the escaped encoding for the US-ASCII space character. The URI represented by
+   a <A HREF="Uri.html" TARGET="contents">Uri</A>
+   
+   instance is always
+   in &quot;escaped&quot; form. The following characters are reserved:<P>
+
+<UL>
+<LI>Semi-colon (&quot;;&quot; )<P>
+
+</LI>
+<LI>Forward slash ( &quot;/&quot;)<P>
+
+</LI>
+<LI>Question mark ( &quot;?&quot; )<P>
+
+</LI>
+<LI>Colon ( &quot;:&quot; )<P>
+
+</LI>
+<LI>At-sign (&quot;@&quot;) <P>
+
+</LI>
+<LI>Ampersand ( &quot;&amp;&quot; )<P>
+
+</LI>
+<LI>Equal sign (&quot;=&quot; )<P>
+
+</LI>
+<LI>Plus sign (&quot;+&quot; )<P>
+
+</LI>
+<LI>US Dollar sign (&quot;$&quot; )<P>
+
+</LI>
+<LI>Comma (&quot;,&quot;)<P>
+
+</LI>
+</UL>
+To transform the URI contained in a <A HREF="Uri.html" TARGET="contents">Uri</A> instance from an
+                           escape encoded URI to a human-readable URI, use the System.Uri.ToString method.<P>
+
+]<P>
+
+<P>
+
+URIs are stored as canonical URIs in escaped encoding,
+                        with all characters with ASCII values greater than 127 replaced with their
+                        hexadecimal equivalents. The <A HREF="Uri.html" TARGET="contents">Uri</A> constructors do not escape URI strings
+                        if the string is a well-formed URI, including a scheme identifier, that
+                        contains escape sequences. To put the URI in canonical form, the <A HREF="Uri.html" TARGET="contents">Uri</A>
+                        
+                        constructors perform
+                        the following steps.<P>
+
+<UL>
+<LI>
+                           
+                           Converts the URI scheme to lower case.</LI>
+<LI>
+                           
+                           Converts the host name to lower case.</LI>
+<LI>
+                           
+                           Removes default and empty port numbers.</LI>
+<LI>
+                           
+                           Simplifies the URI by removing superfluous segments such as &quot;/&quot; and
+                           &quot;/test&quot; segments.</LI>
+</UL>
+The <A HREF="Uri.html" TARGET="contents">Uri</A>
+               class stores only absolute URIs (for example, &quot;http://www.contoso.com/index.htm&quot;). Relative URIs (for example, &quot;/new/index.htm&quot;) are
+               expanded to absolute form using a specified base URI. The System.Uri.MakeRelative(System.Uri)
+               method converts absolute URIs to relative URIs.<P>
+
+ The <A HREF="Uri.html" TARGET="contents">Uri</A> class properties
+            are read-only; to modify a <A HREF="Uri.html" TARGET="contents">Uri</A> instance use the <A HREF="UriBuilder.html" TARGET="contents">UriBuilder</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Uri Constructors<P>
+
+<A HREF="#Uri(System.String) Constructor" TARGET="contents">Uri(System.String) Constructor</A><BR>
+<A HREF="#Uri(System.String, bool) Constructor" TARGET="contents">Uri(System.String, bool) Constructor</A><BR>
+<A HREF="#Uri(System.Uri, System.String) Constructor" TARGET="contents">Uri(System.Uri, System.String) Constructor</A><BR>
+<A HREF="#Uri(System.Uri, System.String, bool) Constructor" TARGET="contents">Uri(System.Uri, System.String, bool) Constructor</A><BR>
+<P>
+
+Uri Methods<P>
+
+<A HREF="#Uri.Canonicalize Method" TARGET="contents">Uri.Canonicalize Method</A><BR>
+<A HREF="#Uri.CheckHostName Method" TARGET="contents">Uri.CheckHostName Method</A><BR>
+<A HREF="#Uri.CheckSchemeName Method" TARGET="contents">Uri.CheckSchemeName Method</A><BR>
+<A HREF="#Uri.CheckSecurity Method" TARGET="contents">Uri.CheckSecurity Method</A><BR>
+<A HREF="#Uri.Equals Method" TARGET="contents">Uri.Equals Method</A><BR>
+<A HREF="#Uri.Escape Method" TARGET="contents">Uri.Escape Method</A><BR>
+<A HREF="#Uri.EscapeString Method" TARGET="contents">Uri.EscapeString Method</A><BR>
+<A HREF="#Uri.FromHex Method" TARGET="contents">Uri.FromHex Method</A><BR>
+<A HREF="#Uri.GetHashCode Method" TARGET="contents">Uri.GetHashCode Method</A><BR>
+<A HREF="#Uri.GetLeftPart Method" TARGET="contents">Uri.GetLeftPart Method</A><BR>
+<A HREF="#Uri.HexEscape Method" TARGET="contents">Uri.HexEscape Method</A><BR>
+<A HREF="#Uri.HexUnescape Method" TARGET="contents">Uri.HexUnescape Method</A><BR>
+<A HREF="#Uri.IsBadFileSystemCharacter Method" TARGET="contents">Uri.IsBadFileSystemCharacter Method</A><BR>
+<A HREF="#Uri.IsExcludedCharacter Method" TARGET="contents">Uri.IsExcludedCharacter Method</A><BR>
+<A HREF="#Uri.IsHexDigit Method" TARGET="contents">Uri.IsHexDigit Method</A><BR>
+<A HREF="#Uri.IsHexEncoding Method" TARGET="contents">Uri.IsHexEncoding Method</A><BR>
+<A HREF="#Uri.IsReservedCharacter Method" TARGET="contents">Uri.IsReservedCharacter Method</A><BR>
+<A HREF="#Uri.MakeRelative Method" TARGET="contents">Uri.MakeRelative Method</A><BR>
+<A HREF="#Uri.Parse Method" TARGET="contents">Uri.Parse Method</A><BR>
+<A HREF="#Uri.ToString Method" TARGET="contents">Uri.ToString Method</A><BR>
+<A HREF="#Uri.Unescape Method" TARGET="contents">Uri.Unescape Method</A><BR>
+<P>
+
+Uri Fields<P>
+
+<A HREF="#Uri.SchemeDelimiter Field" TARGET="contents">Uri.SchemeDelimiter Field</A><BR>
+<A HREF="#Uri.UriSchemeFile Field" TARGET="contents">Uri.UriSchemeFile Field</A><BR>
+<A HREF="#Uri.UriSchemeFtp Field" TARGET="contents">Uri.UriSchemeFtp Field</A><BR>
+<A HREF="#Uri.UriSchemeGopher Field" TARGET="contents">Uri.UriSchemeGopher Field</A><BR>
+<A HREF="#Uri.UriSchemeHttp Field" TARGET="contents">Uri.UriSchemeHttp Field</A><BR>
+<A HREF="#Uri.UriSchemeHttps Field" TARGET="contents">Uri.UriSchemeHttps Field</A><BR>
+<A HREF="#Uri.UriSchemeMailto Field" TARGET="contents">Uri.UriSchemeMailto Field</A><BR>
+<A HREF="#Uri.UriSchemeNews Field" TARGET="contents">Uri.UriSchemeNews Field</A><BR>
+<A HREF="#Uri.UriSchemeNntp Field" TARGET="contents">Uri.UriSchemeNntp Field</A><BR>
+<P>
+
+Uri Properties<P>
+
+<A HREF="#Uri.AbsolutePath Property" TARGET="contents">Uri.AbsolutePath Property</A><BR>
+<A HREF="#Uri.AbsoluteUri Property" TARGET="contents">Uri.AbsoluteUri Property</A><BR>
+<A HREF="#Uri.Authority Property" TARGET="contents">Uri.Authority Property</A><BR>
+<A HREF="#Uri.Fragment Property" TARGET="contents">Uri.Fragment Property</A><BR>
+<A HREF="#Uri.Host Property" TARGET="contents">Uri.Host Property</A><BR>
+<A HREF="#Uri.HostNameType Property" TARGET="contents">Uri.HostNameType Property</A><BR>
+<A HREF="#Uri.IsDefaultPort Property" TARGET="contents">Uri.IsDefaultPort Property</A><BR>
+<A HREF="#Uri.IsFile Property" TARGET="contents">Uri.IsFile Property</A><BR>
+<A HREF="#Uri.IsLoopback Property" TARGET="contents">Uri.IsLoopback Property</A><BR>
+<A HREF="#Uri.LocalPath Property" TARGET="contents">Uri.LocalPath Property</A><BR>
+<A HREF="#Uri.PathAndQuery Property" TARGET="contents">Uri.PathAndQuery Property</A><BR>
+<A HREF="#Uri.Port Property" TARGET="contents">Uri.Port Property</A><BR>
+<A HREF="#Uri.Query Property" TARGET="contents">Uri.Query Property</A><BR>
+<A HREF="#Uri.Scheme Property" TARGET="contents">Uri.Scheme Property</A><BR>
+<A HREF="#Uri.UserEscaped Property" TARGET="contents">Uri.UserEscaped Property</A><BR>
+<A HREF="#Uri.UserInfo Property" TARGET="contents">Uri.UserInfo Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Uri(System.String) Constructor"><H3>Uri(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Uri(string uriString);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="Uri.html" TARGET="contents">Uri</A> class
+   by parsing the specified
+   URI.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>uriString</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing a URI.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>uriString </I> is <CODE>null</CODE>
+ .<P>
+
+</TD></TR>
+<TR><TD><A HREF="UriFormatException.html" TARGET="contents">UriFormatException</A></TD><TD><I>uriString</I> is a zero length string or contains only spaces.<P>
+
+<I>uriString </I>is in an invalid form and cannot be parsed.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor is equivalent to calling the <A HREF="Uri.html" TARGET="contents">Uri</A> (<A HREF="String.html" TARGET="contents">String</A>, <A HREF="Boolean.html" TARGET="contents">Boolean</A>) constructor, and specifying
+<I>uriString</I> and <CODE>false</CODE>
+ as the arguments.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri(System.String, bool) Constructor"><H3>Uri(System.String, bool) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Uri(string uriString, bool dontEscape);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="Uri.html" TARGET="contents">Uri</A> class by parsing the specified
+   URI.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>uriString</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing a URI.</DD>
+<DT> dontEscape</DT>
+<DD><CODE>true</CODE>
+ if the URI in <I>uriString</I> is already escaped; otherwise, <CODE>false</CODE>
+.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>uriString </I> is <CODE>null</CODE>
+ .<P>
+
+</TD></TR>
+<TR><TD><A HREF="UriFormatException.html" TARGET="contents">UriFormatException</A></TD><TD><I>uriString</I> is a zero length string or contains only spaces.<P>
+
+The parsing routine detected a scheme in an invalid form.<P>
+
+The parser detected more than two consecutive slashes in a URI that does not use the &quot;file&quot; scheme.<P>
+
+<I>uriString </I>is in an invalid form and cannot be parsed.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This constructor parses the URI, places
+      its components into the appropriate properties, and puts the URI in
+      canonical form. If the specified URI does not contain a scheme component, the URI
+      is parsed using &quot;file&quot; as the scheme.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example creates a <A HREF="Uri.html" TARGET="contents">Uri</A> instance for the URI
+   &quot;http://www.contoso.com/Hello%20World.htm&quot;. Because the URI contains escaped
+   characters, the third parameter, <I>dontEscape</I> , is set to
+<CODE>true</CODE>
+ .<P>
+
+<PRE>using System;
+
+public class UriTest {
+ public static void Main() {
+ 
+ Uri myUri = new Uri(&quot;http://www.contoso.com/Hello%20World.htm&quot;, true);
+
+ Console.WriteLine(myUri.ToString());
+ }
+}
+</PRE>
+The output is<P>
+
+<CODE>http://www.contoso.com/Hello World.htm<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri(System.Uri, System.String) Constructor"><H3>Uri(System.Uri, System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Uri(Uri baseUri, string relativeUri);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="Uri.html" TARGET="contents">Uri</A> class by
+   combining the specified
+   base and relative URIs.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>baseUri</DT>
+<DD>A <A HREF="Uri.html" TARGET="contents">Uri</A> containing a base URI.</DD>
+<DT> relativeUri</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing a relative URI.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="UriFormatException.html" TARGET="contents">UriFormatException</A></TD><TD><I>relativeUri </I>is in an invalid form.<P>
+
+</TD></TR>
+<TR><TD><A HREF="NullReferenceException.html" TARGET="contents">NullReferenceException</A></TD><TD><I>baseUri</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor is equivalent to calling the <A HREF="Uri.html" TARGET="contents">Uri</A> (<A HREF="Uri.html" TARGET="contents">Uri</A>, <A HREF="Boolean.html" TARGET="contents">Boolean</A>, <A HREF="Boolean.html" TARGET="contents">Boolean</A>) constructor, and specifying <I>baseUri,    relativeUri, </I>and <CODE>false</CODE>
+ as the arguments.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri(System.Uri, System.String, bool) Constructor"><H3>Uri(System.Uri, System.String, bool) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Uri(Uri baseUri, string relativeUri, bool dontEscape);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="Uri.html" TARGET="contents">Uri</A> class by combining the specified
+   base and relative URIs.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>baseUri</DT>
+<DD>A <A HREF="Uri.html" TARGET="contents">Uri</A> containing the base URI. This parameter can, but is not required to contain a terminating slash (&quot;/&quot;) character.</DD>
+<DT>relativeUri</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the relative URI to add to the base URI. This parameter can, but is not required to contain a leading slash (&quot;/&quot;) character.</DD>
+<DT> dontEscape</DT>
+<DD><CODE>true</CODE>
+ if <I>baseUri</I> and <I>relativeUri</I> are already escaped; otherwise, <CODE>false</CODE>
+.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="UriFormatException.html" TARGET="contents">UriFormatException</A></TD><TD><I>relativeUri </I>is in an invalid form.<P>
+
+</TD></TR>
+<TR><TD><A HREF="NullReferenceException.html" TARGET="contents">NullReferenceException</A></TD><TD><I>baseUri</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor compensates for the presence or absence
+      of a terminating slash in <I>baseUri</I> and/or a leading slash in
+   <I>relativeUri</I>
+   to produce a well-formed URI.<P>
+
+ 
+   If the relative URI contains a System.Uri.Scheme that is the same as the
+   scheme of the base URI and the System.Uri.SchemeDelimiter is not present, or the
+   relative URI does not contain a scheme, the new instance is composed of the
+   relative URI (without its scheme component, if any) qualified by the scheme and
+   authority information from the base URI. <P>
+
+If the relative URI contains a System.Uri.Scheme followed by the System.Uri.SchemeDelimiter, 
+it is treated as an absolute URI and the base URI is ignored. If the relative
+URI contains a scheme that differs from the scheme of the base URI, the
+base URI is ignored. If the System.Uri.SchemeDelimiter is not present in the relative URI,
+it is assumed, and the new instance is constructed as though the relative URI
+were an absolute URI.<P>
+
+[<I>Note</I>: When the base URI is ignored, only the 
+   components of the relative URI are used to construct the new
+   instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example creates new instances of the
+   <A HREF="Uri.html" TARGET="contents">Uri</A> class by
+      combining a <A HREF="Uri.html" TARGET="contents">Uri</A> instance representing the
+      base URI and a string containing a relative URI.
+      <P>
+
+<PRE>using System;
+
+public class UriTest {
+ public static void Main() {
+
+ // Typical base and relative URI constructor usage.
+
+ Uri baseUri = new Uri(&quot;http://www.contoso.com&quot;, true);
+ Uri myUri = new Uri(baseUri, &quot;index.htm&quot;,true);
+ Console.WriteLine(&quot;Typical usage: {0}&quot;,myUri.ToString());
+
+ // Base and relative URI contain slashes.
+ Uri baseUri2 = new Uri(&quot;http://www.contoso.com/&quot;, true);
+ Uri myUri2 = new Uri(baseUri2, &quot;/index.htm&quot;,true);
+ Console.WriteLine(&quot;Slash example: {0}&quot;,myUri2.ToString());
+
+ // Relative URI contains a different scheme than the base URI.
+ Uri baseUri3 = new Uri(&quot;http://www.contoso.com/&quot;, true);
+ Uri myUri3 = new Uri(baseUri3, &quot;ftp://www.contoso2.com/index.htm&quot;,true);
+ Console.WriteLine(&quot;Different schemes: {0}&quot;, myUri3.ToString());
+
+
+ // Relative URI contains the same scheme as the base URI.
+ // The scheme delimiter is not present in the relative URI.
+ Uri baseUri4 = new Uri(&quot;http://www.contoso.com/&quot;, true);
+ Uri myUri4 = new Uri(baseUri4, &quot;http:www.contoso2.com/index.htm&quot;,true);
+ Console.WriteLine(&quot;Same schemes - relative treated as relative: {0}&quot;,myUri4.ToString());
+
+ // Relative URI contains the same scheme as the base URI.
+ // The scheme delimiter is present in the relative URI.
+ Uri baseUri5 = new Uri(&quot;http://www.contoso.com/&quot;, true);
+ Uri myUri5 = new Uri(baseUri5, &quot;http://www.contoso2/index.htm&quot;,true);
+ Console.WriteLine(&quot;Same schemes - relative treated as absolute: {0}&quot;,myUri5.ToString());
+
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>Typical usage: http://www.contoso.com/index.htm
+         <P>
+
+Slash example: http://www.contoso.com/index.htm<P>
+
+Different schemes: ftp://www.contoso2.com/index.htm <P>
+
+Same schemes - relative treated as relative: http://www.contoso.com/www.contoso2 .com/index.htm<P>
+
+Same schemes - relative treated as absolute: http://www.contoso2/index.htm <P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.Canonicalize Method"><H3>Uri.Canonicalize Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected virtual void Canonicalize();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts the components of the URI represented by
+      the current instance to canonical form.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This method converts the URI to a format suitable for machine interpretation
+      according to the scheme of the current instance. The conversions
+      are required to preserve all information that could, if removed or
+      altered, change the URI represented by the current instance. ]<P>
+
+<P>
+
+[<I>Default</I>: This method performs the following conversions:<P>
+
+<UL>
+<LI>
+            
+            Converts file references to the format of the current
+            platform, for example on a Windows system, file://c|/AFile.txt is converted to
+            &quot;file:///c:/AFile.txt&quot;.</LI>
+<LI>
+            
+            Converts any backslash characters (&apos;\&apos;) to forward
+            slashes (&apos;/&apos;).</LI>
+<LI>
+            
+            Compresses multiple consecutive forward slashes (&apos;/&apos;)
+            in the path component to a single forward slash.</LI>
+<LI>
+            
+            Compresses any path meta sequences (&quot;/.&quot; and &quot;/..&quot;).</LI>
+</UL>
+]<P>
+
+[<I>Overrides</I>: Override this
+      method to canonicalize the type derived from <A HREF="Uri.html" TARGET="contents">Uri</A>
+      .]<P>
+
+<P>
+
+[<I>Usage</I>: Applications
+      do not call this method; it is called by constructors after
+      parsing the URI and escaping the components. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.CheckHostName Method"><H3>Uri.CheckHostName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static UriHostNameType CheckHostName(string name);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a value that describes the format of a host name
+      string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the host name to validate. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="UriHostNameType.html" TARGET="contents">UriHostNameType</A> that indicates the type of the host name. If the type of
+   the host name cannot be determined, or the host name is <CODE>null</CODE>
+ or
+   a zero-length string, returns System.UriHostNameType.Unknown .
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example demonstrates using the System.Uri.CheckHostName(System.String) method.
+   <P>
+
+<PRE>using System;
+
+public class UriTest {
+ public static void Main() {
+ 
+ Console.WriteLine(Uri.CheckHostName(&quot;www.contoso.com&quot;));
+ }
+}
+</PRE>
+The output is<P>
+
+<CODE>Dns<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.CheckSchemeName Method"><H3>Uri.CheckSchemeName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool CheckSchemeName(string schemeName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether the specified scheme name is valid.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>schemeName</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the scheme name to validate. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the scheme name is valid; otherwise,
+<CODE>false</CODE>
+. If 
+<I>schemeName</I> is <CODE>null</CODE>
+ or is a zero-length string, returns 
+<CODE>false</CODE>
+.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The scheme name is
+      required to begin with a letter, and contain only letters, digits,
+      and the characters &apos;.&apos;, &apos;+&apos; or &apos;-&apos;.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.CheckSecurity Method"><H3>Uri.CheckSecurity Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected virtual void CheckSecurity();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Checks the current instance for character sequences that can result in unauthorized access to resources,
+      and removes them.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This method checks for invalid
+      or dangerous character sequences in the components of the current instance, and
+      removes them. The semantics that determine whether a character sequence presents
+      a security risk are determined by the scheme of the current
+      instance.]<P>
+
+<P>
+
+[<I>Default</I>: The default implementation does
+      nothing.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this method to provide
+      security checks for types derived from <A HREF="Uri.html" TARGET="contents">Uri</A>.]<P>
+
+<P>
+
+[<I>Usage</I>: Invoke this method on instances of
+      types derived from <A HREF="Uri.html" TARGET="contents">Uri</A> to remove any URI content that allows unauthorized
+      access to resources.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.Equals Method"><H3>Uri.Equals Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool Equals(object comparand);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Compares the current instance and the specified
+      object for equality.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>comparand</DT>
+<DD>The <A HREF="Uri.html" TARGET="contents">Uri</A> instance to compare with the current instance. This argument can be a <A HREF="String.html" TARGET="contents">String</A> or a <A HREF="Uri.html" TARGET="contents">Uri</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if
+<I>comparand </I>represents the same URI (ignoring any fragment or query information) as
+   the current instance; otherwise, <CODE>false</CODE>
+ . If <I>comparand</I> is
+<CODE>null</CODE>
+, a zero-length string, or is not an instance of <A HREF="String.html" TARGET="contents">String</A> or <A HREF="Uri.html" TARGET="contents">Uri</A> 
+, returns false.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If <I>comparand</I> is a <A HREF="String.html" TARGET="contents">String</A>, it is converted
+   to a <A HREF="Uri.html" TARGET="contents">Uri</A> by
+   calling <A HREF="Uri.html" TARGET="contents">Uri</A>(<I>comparand</I>).<P>
+
+The System.Uri.Scheme, System.Uri.Host and unescaped version of the System.Uri.AbsolutePath of the
+current instance and <I>comparand</I> are compared for equality.<P>
+
+If the scheme of
+   the current instance is the System.Uri.UriSchemeFile scheme, the absolute paths are compared
+   in accordance with the case sensitivity of the current
+   platform.<P>
+
+[<I>Note</I>: 
+   This method overrides System.Object.Equals(System.Object).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.Escape Method"><H3>Uri.Escape Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected virtual void Escape();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts any unsafe or reserved characters in the System.Uri.AbsolutePath component to equivalent escaped hexadecimal
+   sequences.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: Converts any unsafe or reserved characters in the System.Uri.AbsolutePath component to a character 
+      sequence
+      consisting of a &quot;%&quot; followed by the hexadecimal value of the character
+      as described by IETF 2396. <P>
+
+If the path component of the current instance is <CODE>null</CODE>
+, the
+   escaped path is System.String.Empty.<P>
+
+]<P>
+
+[<I>Default</I>: As described
+   above.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this
+   method to customize the escaping behavior provided by the <A HREF="Uri.html" TARGET="contents">Uri</A>
+   type.]<P>
+
+<P>
+
+[<I>Usage</I>: Applications
+   typically do not call this method; it is intended for use by the
+   constructors.]<P>
+
+<P>
+
+[<I>Note</I>: For additional
+   information on escaping URI, see section 2 of RFC 2396.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.EscapeString Method"><H3>Uri.EscapeString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected static string EscapeString(string str);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a string to its escaped representation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>str</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> to convert to its escaped representation.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the escaped representation of
+<I>str</I> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ 
+      The string is escaped in accordance with RFC 2396. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.FromHex Method"><H3>Uri.FromHex Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int FromHex(char digit);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the decimal value of a hexadecimal digit.
+ <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>digit</DT>
+<DD>The hexadecimal digit (0-9, a-f, A-F) to convert. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing an integer from 0 - 15 that corresponds to the specified hexadecimal
+ digit.
+ <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>digit </I>is not a valid hexadecimal digit (0-9, a-f, A-F).</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.GetHashCode Method"><H3>Uri.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int GetHashCode();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Generates a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the hash code for this instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The hash code is generated without the fragment component.
+      For example, the URIs &quot;http://www.contoso.com/index.htm#search&quot;
+      and &quot;http://www.contoso.com/index.htm&quot;
+      produce the same hash code.<P>
+
+The algorithm used to generate the hash code is unspecified.<P>
+
+[<I>Note</I>: 
+      This method overrides System.Object.GetHashCode. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.GetLeftPart Method"><H3>Uri.GetLeftPart Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string GetLeftPart(UriPartial part);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the specified portion of the URI represented by
+      the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>part</DT>
+<DD>A <A HREF="UriPartial.html" TARGET="contents">UriPartial</A> value that specifies the component to return.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing all
+   components up to the specified portion of the URI, or System.String.Empty if
+   the current instance does not contain the component identified by
+<I>part</I> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The <I>part</I> parameter is not a valid <A HREF="UriPartial.html" TARGET="contents">UriPartial</A> value.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Uri.GetLeftPart(System.UriPartial) method returns a string containing the URI
+   components starting with the left-most component of
+   the URI and ending with the component specified by <I>part</I>
+   . The returned string does not include fragment or
+   query information.<P>
+
+System.Uri.GetLeftPart(System.UriPartial) includes delimiters as follows:<P>
+
+<UL>
+<LI>System.UriPartial.Scheme has 
+      the scheme delimiter added.</LI>
+<LI>System.UriPartial.Authority does 
+      not have the path delimiter added.</LI>
+<LI>System.UriPartial.Path
+   includes any delimiters in the original URI up to the query or
+   fragment delimiter.</LI>
+</UL>
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.Uri.GetLeftPart(System.UriPartial) method.<P>
+
+<PRE>using System;
+
+public class UriTest {
+  public static void Main() {
+    string[] myUri  = {
+            &quot;http://www.contoso.com/index.htm&quot;,
+            &quot;http:www.contoso.com/index.htm#mark&quot;,
+                    &quot;mailto:user@contoso.com?subject=uri&quot;,
+                    &quot;nntp://news.contoso.com/123456@contoso.com&quot;
+    };
+    foreach (string s in myUri) {
+      Uri aUri = new Uri(s);
+      Console.WriteLine(&quot;URI: {0}&quot;, aUri.ToString());
+      Console.WriteLine(&quot;Scheme: {0}&quot;,aUri.GetLeftPart(UriPartial.Scheme));
+      Console.WriteLine(&quot;Authority: {0}&quot;,aUri.GetLeftPart(UriPartial.Authority));
+      Console.WriteLine(&quot;Path: {0}&quot;,aUri.GetLeftPart(UriPartial.Path));
+    }  
+  }
+}
+</PRE>
+The output is<P>
+
+<CODE>URI: http://www.contoso.com/index.htm<P>
+
+Scheme: http://<P>
+
+Authority: http://www.contoso.com<P>
+
+Path: http://www.contoso.com/index.htm<P>
+
+URI: http://www.contoso.com/index.htm#mark<P>
+
+Scheme: http://<P>
+
+Authority: http://www.contoso.com<P>
+
+Path: http://www.contoso.com/index.htm<P>
+
+URI: mailto:user@contoso.com?subject=uri<P>
+
+Scheme: mailto:<P>
+
+Authority:<P>
+
+Path: mailto:user@contoso.com<P>
+
+URI: nntp://news.contoso.com/123456@contoso.com<P>
+
+Scheme: nntp://<P>
+
+Authority: nntp://news.contoso.com<P>
+
+Path: nntp://news.contoso.com/123456@contoso.com<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.HexEscape Method"><H3>Uri.HexEscape Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string HexEscape(char character);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a specified ASCII character into its escaped hexadecimal equivalent.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>character</DT>
+<DD>A <A HREF="Char.html" TARGET="contents">Char</A> containing the character to convert to escaped hexadecimal representation. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> containing the escaped hexadecimal representation of the specified character.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The numerical value of <I>character</I> is greater than 255. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The returned string is in the
+      form &quot;%XX&quot;, where X represents a hexadecimal digit (0-9, A-F).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.HexUnescape Method"><H3>Uri.HexUnescape Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static char HexUnescape(string pattern, ref int index);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a specified escaped hexadecimal representation of a character to the character.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>pattern</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the hexadecimal representation of a character. </DD>
+<DT> index</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the location in <I>pattern</I> where the hexadecimal representation of a character begins. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Char.html" TARGET="contents">Char</A> containing a character. If the character pointed to
+   by <I>index</I> is a &quot;%&quot; and there are at least two characters following the
+   &quot;%&quot;, and the two characters are valid hexadecimal digits, the hexadecimal
+   digits are converted to <A HREF="Char.html" TARGET="contents">Char</A>. Otherwise, the character at <I>index</I> is returned. Valid hexadecimal digits are:
+   0-9,
+   a-f, A-F.
+   <P>
+
+On return, the value of <I>index </I>
+contains the index of the character following the one returned.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index &lt; </I>0 or <I>index </I>&amp;gt; the number of characters in pattern.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.IsBadFileSystemCharacter Method"><H3>Uri.IsBadFileSystemCharacter Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected virtual bool IsBadFileSystemCharacter(char character);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value that indicates whether the specified character would be an invalid character
+   if used in a file system name.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>character</DT>
+<DD>A <A HREF="Char.html" TARGET="contents">Char</A> containing the character to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the specified character is not acceptable for use in a file
+   system name; otherwise, <CODE>false</CODE>
+.<P>
+
+The value returned by this
+   method is implementation-defined.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This method
+      returns <CODE>false</CODE>
+ if the specified character cannot be used in a
+      URI that identifies a file, as defined by the current file system on the current
+      platform.]<P>
+
+<P>
+
+[<I>Default</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this
+      method to provide a check for invalid characters as defined by the current file system on the current
+      platform.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to determine if a character can be used in a file
+      name.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.IsExcludedCharacter Method"><H3>Uri.IsExcludedCharacter Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected static bool IsExcludedCharacter(char character);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value that indicates whether the specified 
+   character is excluded from use or is unwise in URIs, as defined by IETF
+   RFC 2396.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>character</DT>
+<DD>A <A HREF="Char.html" TARGET="contents">Char</A> containing the character to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the
+   specified character is required to
+   be escaped; otherwise, <CODE>false</CODE>
+ .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method returns <CODE>true</CODE>
+ for the following characters:
+   <P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Character(s)Description</TH></TR>
+<TR><TD>Any character with the ASCII value less than
+      hexadecimal 0x20 (32). </TD><TD><I>character </I>&amp;lt; 0x0020 Any character with the ASCII value less than
+      hexadecimal 0x20 (32). </TD></TR>
+<TR><TD>Any character with the ASCII value greater than
+   hexadecimal 0x7f (127).</TD><TD><I>character </I>&amp;lt; 0x007fAny character with the ASCII value greater than
+   hexadecimal 0x7f (127).</TD></TR>
+<TR><TD>Less than sign.</TD><TD> &lt;Less than sign.</TD></TR>
+<TR><TD>Greater than sign.</TD><TD> &gt;Greater than sign.</TD></TR>
+<TR><TD> Number sign (crosshatch, pound sign).</TD><TD> # Number sign (crosshatch, pound sign).</TD></TR>
+<TR><TD>Percent.</TD><TD> %Percent.</TD></TR>
+<TR><TD>Quotation mark.<P>
+
+</TD><TD> &quot;Quotation mark.<P>
+
+</TD></TR>
+<TR><TD>Left curly brace.</TD><TD> {Left curly brace.</TD></TR>
+<TR><TD>Right curly brace.</TD><TD> }Right curly brace.</TD></TR>
+<TR><TD>Pipe sign (vertical bar).</TD><TD> |Pipe sign (vertical bar).</TD></TR>
+<TR><TD> Backward slash.</TD><TD> \ Backward slash.</TD></TR>
+<TR><TD>Circumflex (caret).</TD><TD> ^Circumflex (caret).</TD></TR>
+<TR><TD>Left square bracket.</TD><TD> [Left square bracket.</TD></TR>
+<TR><TD>Right square bracket.</TD><TD> ]Right square bracket.</TD></TR>
+<TR><TD>Grave accent.</TD><TD> `Grave accent.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.IsHexDigit Method"><H3>Uri.IsHexDigit Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool IsHexDigit(char character);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value that indicates whether the specified character is a valid hexadecimal digit.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>character</DT>
+<DD>A <A HREF="Char.html" TARGET="contents">Char</A> containing the character to validate. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the
+   character is a valid hexadecimal digit (0-9, A-F, a-f);
+   otherwise <CODE>false</CODE>
+.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.IsHexEncoding Method"><H3>Uri.IsHexEncoding Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool IsHexEncoding(string pattern, int index);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value that indicates whether
+   a substring of the specified string is in escaped hexadecimal encoding format (&quot;%&quot; followed by two hexadecimal
+   characters).
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>pattern</DT>
+<DD>The <A HREF="String.html" TARGET="contents">String</A> to check. </DD>
+<DT> index</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the location in <I>pattern </I>to check for hex encoding. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the 
+   specified location in <I>pattern </I>contains a
+   substring in escaped hexadecimal encoding
+   format; otherwise, <CODE>false</CODE>
+.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Uri.IsHexEncoding(System.String,System.Int32)
+method checks for hexadecimal digits case-insensitively.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.IsReservedCharacter Method"><H3>Uri.IsReservedCharacter Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected virtual bool IsReservedCharacter(char character);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value that indicates whether a character is part of the URI reserved set.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>character</I> is a URI reserved character as defined by IETF RFC
+   2396; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The following characters are reserved for the use in URI:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>CharacterDescription</TH></TR>
+<TR><TD>Semi-colon.</TD><TD> ;Semi-colon.</TD></TR>
+<TR><TD> Forward slash.</TD><TD> / Forward slash.</TD></TR>
+<TR><TD>Colon.</TD><TD> :Colon.</TD></TR>
+<TR><TD>At sign (commercial at).</TD><TD> @At sign (commercial at).</TD></TR>
+<TR><TD>Ampersand.</TD><TD> &amp;Ampersand.</TD></TR>
+<TR><TD>Equals sign.</TD><TD> =Equals sign.</TD></TR>
+<TR><TD>Plus sign.</TD><TD> +Plus sign.</TD></TR>
+<TR><TD>US
+            Dollar sign.</TD><TD> $US
+            Dollar sign.</TD></TR>
+<TR><TD>Comma.</TD><TD> ,Comma.</TD></TR>
+</TABLE>
+[<I>Behaviors</I>:  As described above. 
+   ]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this 
+   method to customize the escaping behavior provided by the <A HREF="Uri.html" TARGET="contents">Uri</A>
+   type.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to determine if a character is reserved.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.MakeRelative Method"><H3>Uri.MakeRelative Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string MakeRelative(Uri toUri);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the specified <A HREF="Uri.html" TARGET="contents">Uri</A> as a relative URI.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>toUri</DT>
+<DD>The URI to compare to the current URI.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> with
+   the difference between the current instance and <I>toUri</I> if the two
+   URIs are the same except for the path information. If the two
+   URIs differ in more than the System.Uri.AbsolutePath, this method returns a <A HREF="String.html" TARGET="contents">String</A>
+   with the absolute URI of <I>toUri</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.Uri.MakeRelative(System.Uri)
+method.<P>
+
+<PRE>using System;
+public class UriTest {
+  public static void Main() {
+    Uri myUri = new Uri(&quot;http://www.contoso.com/Hello%20World.htm&quot;, true);
+    Console.WriteLine(myUri.ToString());
+    Console.WriteLine(myUri.MakeRelative(new Uri (&quot;http://www.contoso.com/index.htm&quot;)));
+  }
+}
+</PRE>
+The output is <P>
+
+<CODE>http://www.contoso.com/Hello World.htm<P>
+
+index.htm<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.Parse Method"><H3>Uri.Parse Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected virtual void Parse();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Parses the URI into its constituent components.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="UriFormatException.html" TARGET="contents">UriFormatException</A></TD><TD>The scheme of the URI is in an invalid format.<P>
+
+The URI is in an invalid form and cannot be parsed.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  This method parses the System.Uri.AbsolutePath
+property, separates it into various URI components, and stores the
+components in the appropriate <A HREF="Uri.html" TARGET="contents">Uri</A>
+properties.
+]<P>
+
+<P>
+
+[<I>Default</I>:  This method parses path components as defined in IETF RFC 2396. 
+]<P>
+
+<P>
+
+[<I>Overrides</I>: 
+   Override this method to provide parsing for URIs in
+   formats that are not defined in IETF RFC 2396.
+]<P>
+
+<P>
+
+[<I>Usage</I>: Applications typically do not call this 
+   method; it is intended for use by the constructors.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.ToString Method"><H3>Uri.ToString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the unescaped, canonical form of the URI
+      information used to construct the current instance.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> containing the unescaped, canonical form of the URI
+   represented by the current instance.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The string returned by this method includes the System.Uri.Query and System.Uri.Fragment
+components.<P>
+
+[<I>Note</I>: 
+   This method overrides System.Object.ToString.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.Unescape Method"><H3>Uri.Unescape Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected virtual string Unescape(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts escape sequences in the specified <A HREF="String.html" TARGET="contents">String</A> into their
+ unescaped equivalents.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>The <A HREF="String.html" TARGET="contents">String</A> to unescape.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing <I>path</I> with its escaped characters
+ converted to their unescaped equivalents. If path is <CODE>null</CODE>
+ or a
+ zero-length string, returns System.String.Empty.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  Escape sequences can be hex-encoded reserved characters (for example
+ &quot;%40&quot;) or hex-encoded UTF-8 sequences (for example &quot;%C4%D2&quot;).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.SchemeDelimiter Field"><H3>Uri.SchemeDelimiter Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly string SchemeDelimiter;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> containing the 
+   characters that separate the scheme
+   component from the remainder of a URI.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only. The value of this field is &quot;://&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.UriSchemeFile Field"><H3>Uri.UriSchemeFile Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly string UriSchemeFile;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the 
+   characters that indicate that
+   a URI identifies a file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only. The value of this field is &quot;file&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.UriSchemeFtp Field"><H3>Uri.UriSchemeFtp Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly string UriSchemeFtp;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> containing the 
+   characters that indicate that a URI is accessed through the File Transfer Protocol
+   (FTP).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only. The value of this field is &quot;ftp&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.UriSchemeGopher Field"><H3>Uri.UriSchemeGopher Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly string UriSchemeGopher;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> containing the 
+   characters that indicate that a URI is accessed through
+   the Gopher protocol.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only. The value of this field is &quot;gopher&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.UriSchemeHttp Field"><H3>Uri.UriSchemeHttp Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly string UriSchemeHttp;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> containing the 
+   characters that indicate that a URI is accessed through
+   the Hypertext Transfer Protocol (HTTP).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only. The value of this field is &quot;http&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.UriSchemeHttps Field"><H3>Uri.UriSchemeHttps Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly string UriSchemeHttps;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> 
+containing the characters that indicate that a URI is accessed through the Secure Hypertext Transfer
+Protocol (HTTPS).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only. The value of this field is &quot;https&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.UriSchemeMailto Field"><H3>Uri.UriSchemeMailto Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly string UriSchemeMailto;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> containing the 
+   characters that indicate that a URI is an email address and is accessed through the
+   Simple Network Mail Protocol (SNMP).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only. The value of this field is &quot;mailto&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.UriSchemeNews Field"><H3>Uri.UriSchemeNews Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly string UriSchemeNews;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> containing the 
+   characters that indicate that a URI is an Internet news group and is accessed through
+   the Network News Transport Protocol (NNTP).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only. The value of this field is &quot;news&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.UriSchemeNntp Field"><H3>Uri.UriSchemeNntp Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly string UriSchemeNntp;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> containing the characters that indicate that a URI is an Internet news group and
+   is accessed through the Network News Transport Protocol (NNTP).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only. The value of this field is &quot;nntp&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.AbsolutePath Property"><H3>Uri.AbsolutePath Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string AbsolutePath { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the absolute path of the resource identified by the
+      current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the
+   absolute path to the resource.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The System.Uri.AbsolutePath
+property contains the path to
+the resource identified by the current instance. The System.Uri.AbsolutePath
+property always returns at least a slash
+(&apos;/&apos;).<P>
+
+If, when the current instance was constructed, the URI was already escaped or
+   the constructor&apos;s <I>dontEscape</I> parameter was set to <CODE>false</CODE>
+ ,
+   the value returned by this property is escaped.<P>
+
+[<I>Note</I>: The path information
+   does not include the scheme, host name,
+   query, or fragment components of the URI. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example outputs the absolute
+      path of a URI.<P>
+
+<PRE>using System;
+
+public class UriTest {
+ public static void Main() {
+   Uri myUri = new Uri (&quot;http://www.contoso.com/URI/Hello%20World.htm?date=today&quot;, true);
+   Console.WriteLine(myUri.AbsolutePath);
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>/URI/Hello%20World.htm<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.AbsoluteUri Property"><H3>Uri.AbsoluteUri Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string AbsoluteUri { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the absolute URI of the resource identified by the current instance in canonical form.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the URI
+   used to construct the current instance, in canonical format.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The System.Uri.AbsoluteUri property includes the entire URI stored in the current <A HREF="Uri.html" TARGET="contents">Uri</A> instance, including any
+   fragment or query information. If, when the current instance was constructed,
+   the URI was already escaped or the constructor&apos;s <I>dontEscape</I> parameter was
+   set to <CODE>false</CODE>
+ , the value returned
+   by this property is escaped.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.Authority Property"><H3>Uri.Authority Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Authority { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the authority component of the URI used to construct the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the
+ authority component of the current instance. The value returned by this property
+ is composed of the values returned by the System.Uri.Host and System.Uri.Port properties.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The System.Uri.Authority property returns the System.Uri.Host and System.Uri.Port information
+ specified in the URI used to construct the current instance. The value of this
+ property includes the port information only if the URI specified a port that is
+ not the default for the current scheme. When port information is included
+ in the value returned by this property, the host and port are separated by a
+ colon (&quot;:&quot;).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.Fragment Property"><H3>Uri.Fragment Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Fragment { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the fragment component of the URI used to construct the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing any
+   fragment information contained in the URI used to construct the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The System.Uri.Fragment property gets
+   any text following a fragment marker (&apos;#&apos;) in the URI, including the fragment
+   marker itself. If, when the current instance was constructed, the URI
+   was already escaped or the constructor&apos;s <I>dontEscape</I> parameter was set to
+<CODE>false</CODE>
+ 
+, the value
+returned by this property is escaped. <P>
+
+[<I>Note</I>:  The System.Uri.Fragment property is not considered in a System.Uri.Equals(System.Object) comparison.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the use of the
+   System.Uri.Fragment
+   property.<P>
+
+<PRE>using System;
+
+public class UriTest {
+ public static void Main() {
+
+ Uri baseUri = new Uri(&quot;http://www.contoso.com/&quot;);
+ Uri myUri = new Uri(baseUri, &quot;index.htm#main&quot;);
+ 
+ Console.WriteLine(myUri.Fragment);
+ }
+}
+</PRE>
+The output is<P>
+
+<CODE>#main<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.Host Property"><H3>Uri.Host Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Host { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the host component of the URI used to construct the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the DNS host
+   name or IP address of the host server. If the host information was not
+   specified to the constructor, the value of this property is System.String.Empty .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+ If the host information is an IP6 address, the information is enclosed in square brackets (&quot;[&quot; and &quot;]&quot;).<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates using the System.Uri.Host 
+property.<P>
+
+<PRE>using System;
+
+public class UriTest {
+ public static void Main() {
+
+ Uri baseUri = new Uri(&quot;http://www.contoso.com:8080/&quot;);
+ Uri myUri = new Uri(baseUri, &quot;shownew.htm?date=today&quot;);
+ 
+ Console.WriteLine(myUri.Host);
+ }
+}
+</PRE>
+The output is<P>
+
+<CODE>www.contoso.com<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.HostNameType Property"><H3>Uri.HostNameType Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public UriHostNameType HostNameType { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the format of the host address in the URI used to construct the current instance.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="UriHostNameType.html" TARGET="contents">UriHostNameType</A> that indicates the format of the host address 
+   information in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+If System.Uri.Host is <CODE>null</CODE>
+, the value of this property is
+System.UriHostNameType.Unknown .<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.IsDefaultPort Property"><H3>Uri.IsDefaultPort Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool IsDefaultPort { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether the System.Uri.Port value of the current instance is the default port for the scheme of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the value in the System.Uri.Port property is the default
+ port for the System.Uri.Scheme
+ ; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: For a list of default
+ port values, see the System.Uri.Port property.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.IsFile Property"><H3>Uri.IsFile Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool IsFile { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current instance identifies a file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the 
+ resource identified by the current <A HREF="Uri.html" TARGET="contents">Uri</A> is a file; otherwise,
+<CODE>false</CODE>
+ .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The System.Uri.IsFile property is <CODE>true</CODE>
+ when the System.Uri.Scheme property
+ equals System.Uri.UriSchemeFile.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.IsLoopback Property"><H3>Uri.IsLoopback Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool IsLoopback { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating
+ whether the host information of the current instance is the current computer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the host of
+ the current instance is the reserved hostname &quot;localhost&quot; or the
+ loop-back IP address (127.0.0.1); otherwise,
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.Uri.IsLoopback property.<P>
+
+<PRE>using System;
+
+public class UriTest {
+ public static void Main() {
+ Uri myUri = new Uri(&quot;http://127.0.0.1/index.htm&quot;, true);
+ Console.WriteLine(&quot;{0} is loopback? {1}&quot;, myUri.ToString(), myUri.IsLoopback);
+
+ myUri = new Uri(&quot;http://localhost/index.htm&quot;, true);
+ Console.WriteLine(&quot;{0} is loopback? {1}&quot;, myUri.ToString(), myUri.IsLoopback);
+
+ }
+}
+</PRE>
+The output is <P>
+
+ 
+ http://127.0.0.1/index.htm is loopback?
+ True<P>
+
+http://localhost/index.htm is loopback? True<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.LocalPath Property"><H3>Uri.LocalPath Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string LocalPath { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the local operating-system representation of the resource identified by the
+      current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> containing the
+   local representation of the resource identified by the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+If the System.Uri.Scheme of the current instance is not equal to System.Uri.UriSchemeFile, this
+   property returns the same value as System.Uri.AbsolutePath . <P>
+
+If the scheme is equal to
+System.Uri.UriSchemeFile, this 
+   property returns an unescaped platform-dependent local representation of the file name.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.PathAndQuery Property"><H3>Uri.PathAndQuery Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string PathAndQuery { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the System.Uri.AbsolutePath and System.Uri.Query components of the URI used to 
+   construct the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> that contains the
+   values of the System.Uri.AbsolutePath and System.Uri.Query properties.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example uses the System.Uri.PathAndQuery property to extract the path and query information 
+   from a <A HREF="Uri.html" TARGET="contents">Uri</A>
+   instance.<P>
+
+<PRE>using System;
+
+public class UriTest {
+ public static void Main() {
+
+ Uri baseUri = new Uri(&quot;http://www.contoso.com/&quot;);
+ Uri myUri = new Uri(baseUri, &quot;catalog/shownew.htm?date=today&quot;);
+ 
+ Console.WriteLine(myUri.PathAndQuery);
+ }
+}
+</PRE>
+The output is<P>
+
+<CODE>/catalog/shownew.htm?date=today<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.Port Property"><H3>Uri.Port Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Port { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the port number used to connect to the System.Uri.Host referenced by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the port number, or -1 if no port is used by
+   the URI System.Uri.Scheme . If no port was specified as part of the URI used
+   to construct the current instance, the System.Uri.Port property returns the default port for the URI scheme.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: The following table lists the default port number
+         for each supported scheme.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Port</TH><TH>SchemePort</TH></TR>
+<TR><TD>-1</TD><TD> file-1</TD></TR>
+<TR><TD>21</TD><TD> ftp21</TD></TR>
+<TR><TD>70</TD><TD> gopher70</TD></TR>
+<TR><TD>80</TD><TD> http80</TD></TR>
+<TR><TD>43</TD><TD> https43</TD></TR>
+<TR><TD>25</TD><TD> mailto25</TD></TR>
+<TR><TD>119</TD><TD> news119</TD></TR>
+<TR><TD>119</TD><TD> nntp119</TD></TR>
+</TABLE>
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.Query Property"><H3>Uri.Query Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Query { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the query component of the URI used to construct the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the
+   query information included in the specified URI, or System.String.Empty .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+If, when the current instance was constructed, the URI was already escaped or
+      the constructor&apos;s <I>dontEscape</I> parameter was set to <CODE>false</CODE>
+ ,
+      the value returned by this property is escaped.<P>
+
+[<I>Note</I>: Query information is separated from the
+      path information by a question mark (&apos;?&apos;) and is located at the end of a
+      URI. The query information includes the
+      leading question mark.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example uses the System.Uri.Query
+property to extract the
+query from a URI.<P>
+
+<PRE>using System;
+
+public class UriTest {
+ public static void Main() {
+
+ Uri baseUri = new Uri(&quot;http://www.contoso.com/&quot;);
+ Uri myUri = new Uri(baseUri, &quot;catalog/shownew.htm?date=today&quot;);
+ 
+ Console.WriteLine(myUri.Query);
+ }
+}
+</PRE>
+The output is<P>
+
+<CODE>?date=today<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.Scheme Property"><H3>Uri.Scheme Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Scheme { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the scheme component of the URI used to construct the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the URI scheme.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.UserEscaped Property"><H3>Uri.UserEscaped Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool UserEscaped { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value that indicates whether the URI information used to
+   construct the current instance was escaped before the current instance was created.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if
+   the <I>dontEscape </I>parameter of the constructor for
+   the current instance was set to
+<CODE>true </CODE>
+ ; otherwise, 
+<CODE>false</CODE>
+ .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Uri.UserInfo Property"><H3>Uri.UserInfo Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string UserInfo { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the userinfo component of the URI
+ used to construct the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing any 
+ user information included in the URI used to construct the current instance, or
+System.String.Empty if no user 
+ information was included.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: For details on the 
+ userinfo component of a URI, see IETF RFC 2396, 3.2.2.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Uri.html" TARGET="contents">System.Uri Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,231 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.IPHostEntry Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.IPHostEntry Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class IPHostEntry</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;IPHostEntry<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Provides a container class for Internet host address information.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="IPHostEntry.html" TARGET="contents">IPHostEntry</A> class associates a Domain Name System (DNS) host
+   name with an array of aliases and an array of matching IP addresses.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example queries the DNS database for information
+      on the host &quot;www.contoso.com&quot; and
+      displays the information in the
+      returned <A HREF="IPHostEntry.html" TARGET="contents">IPHostEntry</A> instance.<P>
+
+<PRE>using System;
+using System.Net;
+
+public class IPHostEntryTest {
+ public static void Main() {
+ 
+ IPHostEntry hostInfo = Dns.GetHostByName(&quot;www.contoso.com&quot;);
+
+ string[] aliases = hostInfo.Aliases;
+ IPAddress[] addresses = hostInfo.AddressList;
+ 
+ Console.WriteLine(&quot;The host name is: {0}&quot;, hostInfo.HostName);
+
+ for(int x = 0; x &lt; aliases.Length; x++)
+ Console.WriteLine(&quot;Alias {0} == {1}&quot;, aliases[x], addresses[x]);
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The host name is: contoso.com<P>
+
+Alias www.contoso.com == 207.46.230.186 <P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IPHostEntry Constructors<P>
+
+<A HREF="#IPHostEntry Constructor" TARGET="contents">IPHostEntry Constructor</A><BR>
+<P>
+
+IPHostEntry Properties<P>
+
+<A HREF="#IPHostEntry.AddressList Property" TARGET="contents">IPHostEntry.AddressList Property</A><BR>
+<A HREF="#IPHostEntry.Aliases Property" TARGET="contents">IPHostEntry.Aliases Property</A><BR>
+<A HREF="#IPHostEntry.HostName Property" TARGET="contents">IPHostEntry.HostName Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IPHostEntry Constructor"><H3>IPHostEntry Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected IPHostEntry();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new instance of the <A HREF="IPHostEntry.html" TARGET="contents">IPHostEntry</A> class.
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPHostEntry.html" TARGET="contents">System.Net.IPHostEntry Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPHostEntry.AddressList Property"><H3>IPHostEntry.AddressList Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public IPAddress[] AddressList { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets a list of IP addresses associated with a host.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="IPAddress.html" TARGET="contents">IPAddress</A> array containing IP addresses that resolve
+ to the host names contained in the System.Net.IPHostEntry.Aliases
+ property. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPHostEntry.html" TARGET="contents">System.Net.IPHostEntry Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPHostEntry.Aliases Property"><H3>IPHostEntry.Aliases Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string[] Aliases { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets a list of aliases associated with a host.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> array containing DNS names that resolve to the IP addresses
+ in the System.Net.IPHostEntry.AddressList property.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPHostEntry.html" TARGET="contents">System.Net.IPHostEntry Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPHostEntry.HostName Property"><H3>IPHostEntry.HostName Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string HostName { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the DNS
+      name of the host.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the DNS host name that corresponds to
+   the address and alias information contained in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The System.Net.IPHostEntry.HostName property contains the primary host name for
+   a server. If the DNS entry for the host defines additional aliases, they are
+   available via the System.Net.IPHostEntry.Aliases
+   property.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPHostEntry.html" TARGET="contents">System.Net.IPHostEntry Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

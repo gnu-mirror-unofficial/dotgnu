@@ -1,0 +1,958 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.IPAddress Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.IPAddress Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class IPAddress</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;IPAddress<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Represents an Internet Protocol (IP) address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+An instance of the <A HREF="IPAddress.html" TARGET="contents">IPAddress</A> class contains the
+   value of an address on an IP
+   network. This address is stored internally as a <A HREF="../../System/Int64.html" TARGET="contents">Int64</A>
+   
+   in network-byte-order.<P>
+
+[<I>Note</I>: 
+   
+   Different conventions are in use
+   for ordering bytes within multi-byte data types. All IP address values must be sent over the network in
+   network-byte-order. Network-byte-order puts the most significant byte first (also known
+   as big-endian order). On the host, the ordering of bytes
+   is platform-specific and this ordering is referred to as host-byte-order.]<P>
+
+<P>
+
+The IP address can be represented as four numbers in the range
+   0-255 separated by periods (for example, &quot;192.168.1.2&quot;), known as dotted-quad notation. <P>
+
+[<I>Note</I>:  The address space is fragmented into
+      different types determined by bits 31-28 as shown in the following table.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Address typeAddress range</TH><TH> Bits 31-28Address typeAddress range</TH></TR>
+<TR><TD>class A 0.0.0.0-127.255.255.255</TD><TD> 0xxxclass A 0.0.0.0-127.255.255.255</TD></TR>
+<TR><TD>class B128.0.0.0-191.255.255.255</TD><TD> 10xxclass B128.0.0.0-191.255.255.255</TD></TR>
+<TR><TD>class C192.0.0.0-223.255.255.255</TD><TD> 110xclass C192.0.0.0-223.255.255.255</TD></TR>
+<TR><TD>multicast224.0.0.0-239.255.255.255</TD><TD> 1110multicast224.0.0.0-239.255.255.255</TD></TR>
+<TR><TD>reserved240.0.0.0-255.255.255.255</TD><TD> 1111reserved240.0.0.0-255.255.255.255</TD></TR>
+</TABLE>
+]<P>
+
+Instances of the <A HREF="IPAddress.html" TARGET="contents">IPAddress</A> class are provided for common IP address values as shown in the
+following table.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>IP
+         Address</TH><TH>FieldIP
+         Address</TH></TR>
+<TR><TD>0.0.0.0</TD><TD> Any0.0.0.0</TD></TR>
+<TR><TD>255.255.255.255</TD><TD> Broadcast255.255.255.255</TD></TR>
+<TR><TD>127.0.0.1</TD><TD> Loopback127.0.0.1</TD></TR>
+<TR><TD>255.255.255.255</TD><TD> None255.255.255.255</TD></TR>
+</TABLE>
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IPAddress Constructors<P>
+
+<A HREF="#IPAddress Constructor" TARGET="contents">IPAddress Constructor</A><BR>
+<P>
+
+IPAddress Methods<P>
+
+<A HREF="#IPAddress.Equals Method" TARGET="contents">IPAddress.Equals Method</A><BR>
+<A HREF="#IPAddress.GetHashCode Method" TARGET="contents">IPAddress.GetHashCode Method</A><BR>
+<A HREF="#IPAddress.HostToNetworkOrder(long) Method" TARGET="contents">IPAddress.HostToNetworkOrder(long) Method</A><BR>
+<A HREF="#IPAddress.HostToNetworkOrder(int) Method" TARGET="contents">IPAddress.HostToNetworkOrder(int) Method</A><BR>
+<A HREF="#IPAddress.HostToNetworkOrder(short) Method" TARGET="contents">IPAddress.HostToNetworkOrder(short) Method</A><BR>
+<A HREF="#IPAddress.IsLoopback Method" TARGET="contents">IPAddress.IsLoopback Method</A><BR>
+<A HREF="#IPAddress.NetworkToHostOrder(long) Method" TARGET="contents">IPAddress.NetworkToHostOrder(long) Method</A><BR>
+<A HREF="#IPAddress.NetworkToHostOrder(int) Method" TARGET="contents">IPAddress.NetworkToHostOrder(int) Method</A><BR>
+<A HREF="#IPAddress.NetworkToHostOrder(short) Method" TARGET="contents">IPAddress.NetworkToHostOrder(short) Method</A><BR>
+<A HREF="#IPAddress.Parse Method" TARGET="contents">IPAddress.Parse Method</A><BR>
+<A HREF="#IPAddress.ToString Method" TARGET="contents">IPAddress.ToString Method</A><BR>
+<P>
+
+IPAddress Fields<P>
+
+<A HREF="#IPAddress.Any Field" TARGET="contents">IPAddress.Any Field</A><BR>
+<A HREF="#IPAddress.Broadcast Field" TARGET="contents">IPAddress.Broadcast Field</A><BR>
+<A HREF="#IPAddress.Loopback Field" TARGET="contents">IPAddress.Loopback Field</A><BR>
+<A HREF="#IPAddress.None Field" TARGET="contents">IPAddress.None Field</A><BR>
+<P>
+
+IPAddress Properties<P>
+
+<A HREF="#IPAddress.Address Property" TARGET="contents">IPAddress.Address Property</A><BR>
+<A HREF="#IPAddress.AddressFamily Property" TARGET="contents">IPAddress.AddressFamily Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IPAddress Constructor"><H3>IPAddress Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public IPAddress(long newAddress);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="IPAddress.html" TARGET="contents">IPAddress</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>newAddress</DT>
+<DD>A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> containing the IP address in host-byte-order. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>newAddress</I> is less than 0 or greater than 0x00000000FFFFFFFF.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.Equals Method"><H3>IPAddress.Equals Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool Equals(object comparand);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance and the
+      specified <A HREF="../../System/Object.html" TARGET="contents">Object</A>
+      represent the same IP address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>comparand</DT>
+<DD>A <A HREF="../../System/Object.html" TARGET="contents">Object</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates <I>comparand</I> is an instance of the <A HREF="IPAddress.html" TARGET="contents">IPAddress</A> class
+   and has the same System.Net.IPAddress.Address property value
+   as the current instance; otherwise
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method
+         overrides System.Object.Equals(System.Object).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.GetHashCode Method"><H3>IPAddress.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int GetHashCode();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Generates a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A>
+containing the hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The algorithm used to generate the hash code is
+         unspecified.<P>
+
+[<I>Note</I>: This method overrides System.Object.GetHashCode.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.HostToNetworkOrder(long) Method"><H3>IPAddress.HostToNetworkOrder(long) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static long HostToNetworkOrder(long host);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> from host-byte-order to network-byte-order.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>host</DT>
+<DD>A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> in host-byte-order.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> in network-byte-order.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method performs conversions on systems where the host-byte-order differs 
+      from network-byte-order. On systems where this is not the case, this method does
+      nothing.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.HostToNetworkOrder(int) Method"><H3>IPAddress.HostToNetworkOrder(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int HostToNetworkOrder(int host);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> from host-byte-order to network-byte-order.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>host</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> in host-byte-order.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A>
+in network-byte-order.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method performs conversions on systems where the host-byte-order differs 
+      from network-byte-order. On systems where this is not the case, this method does
+      nothing.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.HostToNetworkOrder(short) Method"><H3>IPAddress.HostToNetworkOrder(short) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static short HostToNetworkOrder(short host);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/Int16.html" TARGET="contents">Int16</A> from host-byte-order to network-byte-order.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>host</DT>
+<DD>A <A HREF="../../System/Int16.html" TARGET="contents">Int16</A> in host-byte-order.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int16.html" TARGET="contents">Int16</A>
+in network-byte-order.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method performs conversions on systems where the host-byte-order differs 
+      from network-byte-order. On systems where this is not the case, this method does
+      nothing.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.IsLoopback Method"><H3>IPAddress.IsLoopback Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool IsLoopback(IPAddress address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> that indicates whether the specified IP address is a loopback address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD> A <A HREF="IPAddress.html" TARGET="contents">IPAddress</A> containing the IP address to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if
+<I>address </I> is a loopback address; otherwise
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ All IP addresses of the form 127.X.Y.Z, where X, Y, and Z are
+      in the range 0-255, are forwarded to the IP loopback address 127.0.0.1.
+      The System.Net.IPAddress.Loopback address is
+      used to specify the address of the local computer. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.NetworkToHostOrder(long) Method"><H3>IPAddress.NetworkToHostOrder(long) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static long NetworkToHostOrder(long network);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> from network-byte-order to host-byte-order.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>network</DT>
+<DD>A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> in network-byte-order.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> in host-byte-order.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method performs conversions on systems where the host-byte-order differs 
+      from network-byte-order. On systems where this is not the case, this method does
+      nothing.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.NetworkToHostOrder(int) Method"><H3>IPAddress.NetworkToHostOrder(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int NetworkToHostOrder(int network);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> from network-byte-order to host-byte-order.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>network</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> in network-byte-order.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> in host-byte-order.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method performs conversions on systems where the host-byte-order differs 
+      from network-byte-order. On systems where this is not the case, this method does
+      nothing.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.NetworkToHostOrder(short) Method"><H3>IPAddress.NetworkToHostOrder(short) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static short NetworkToHostOrder(short network);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/Int16.html" TARGET="contents">Int16</A> from network-byte-order to host-byte-order.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>network</DT>
+<DD>A <A HREF="../../System/Int16.html" TARGET="contents">Int16</A> in network-byte-order.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int16.html" TARGET="contents">Int16</A>
+in host-byte-order.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method performs conversions on systems where the host-byte-order differs 
+      from network-byte-order. On systems where this is not the case, this method does
+      nothing.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.Parse Method"><H3>IPAddress.Parse Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static IPAddress Parse(string ipString);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> representation of an IP address in dotted-quad notation, to a <A HREF="IPAddress.html" TARGET="contents">IPAddress</A> instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>ipString</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> in dotted-quad notation containing the IP address to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="IPAddress.html" TARGET="contents">IPAddress</A> instance that represents the address specified in <I>ipString</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>ipString </I>is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>ipString </I>is not a valid IP address.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: An example of a string in dotted-quad notation is &quot;127.0.0.1&quot;.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.ToString Method"><H3>IPAddress.ToString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="../../System/String.html" TARGET="contents">String</A> representation of the value of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> representation of 
+   the current instance. The returned string is an IP address expressed in dotted-quad notation (for example, &quot;192.168.1.2&quot;).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The System.Net.IPAddress.ToString method converts the IP address stored in the System.Net.IPAddress.Address property of the current instance to
+      a <A HREF="../../System/String.html" TARGET="contents">String</A>
+      containing
+      
+      the address in dotted-quad notation (for example, &quot;192.168.1.2&quot;). <P>
+
+This method overrides System.Object.ToString.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.Any Field"><H3>IPAddress.Any Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly IPAddress Any;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Indicates that the protocol will
+      select which address to use. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+ This is equivalent to System.Net.IPAddress.IPAddress (0x0000000000000000) and represents the address
+   0.0.0.0.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.Broadcast Field"><H3>IPAddress.Broadcast Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly IPAddress Broadcast;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides the IP broadcast address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+ This is equivalent to System.Net.IPAddress.IPAddress (0x00000000FFFFFFFF) and represents the address 255.255.255.255.<P>
+
+This value is used to simultaneously address every host on the network.<P>
+
+[<I>Note</I>: Multiple fields are defined for this IP address based on prior
+      art. This field is identical to System.Net.IPAddress.None.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.Loopback Field"><H3>IPAddress.Loopback Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly IPAddress Loopback;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides the IP loopback
+      address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+ This is equivalent to System.Net.IPAddress.IPAddress (0x000000000100007F) and represents the address
+   127.0.0.1.<P>
+
+ The loopback address is used to specify the address of the local computer.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.None Field"><H3>IPAddress.None Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly IPAddress None;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides the IP address that indicates
+      that no network interface should be used.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+ This is equivalent to System.Net.IPAddress.IPAddress (0x00000000FFFFFFFF) and represents the address 255.255.255.255.<P>
+
+[<I>Note</I>: Multiple fields are defined for this IP address based on prior
+      art. This field is identical to System.Net.IPAddress.Broadcast.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.Address Property"><H3>IPAddress.Address Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public long Address { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets an Internet Protocol (IP) address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> containing
+   the IP address in host-byte-order.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value specified in a set operation is less than 0 or greater than 0x00000000FFFFFFFF.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: To convert System.Net.IPAddress.Address
+   to dotted-quad notation, use the System.Net.IPAddress.ToString
+   method.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IPAddress.AddressFamily Property"><H3>IPAddress.AddressFamily Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public AddressFamily AddressFamily { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the address family.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+System.Net.Sockets.AddressFamily.InterNetwork 
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IPAddress.html" TARGET="contents">System.Net.IPAddress Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

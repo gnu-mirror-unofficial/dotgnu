@@ -1,0 +1,493 @@
+<HTML>
+<HEAD>
+<TITLE>System.Reflection.Assembly Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Reflection.Assembly Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class Assembly</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Assembly<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Defines a <A HREF="Assembly.html" TARGET="contents">Assembly</A>
+, which is a reusable, versionable, and
+self-describing building block of an application.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ An assembly is a
+      reusable, versionable, self-describing deployment unit for types and resources. Assemblies are
+      the fundamental units of deployment, and consist of collections of types and resources that are
+      built to work together and form logical units of
+      functionality.<P>
+
+An assembly consists of the following two logical
+      elements:<P>
+
+<UL>
+<LI>
+         
+         The sets of types and resources that form some
+         logical unit of functionality.</LI>
+<LI>
+         
+         A manifest, which is the metadata that describes how the types and
+         resources of an assembly relate and what they depend on to work
+         properly.</LI>
+</UL>
+The following information is captured in an assembly
+   manifest: <P>
+
+<UL>
+<LI><CODE>Identity.</CODE>
+ An 
+      assembly&apos;s identity includes its simple name (also called its weak name), a
+      version number, an optional culture if the assembly contains localized
+      resources, and an optional public key used to guarantee name uniqueness and to
+      &quot;protect&quot; the name from unwanted reuse.</LI>
+<LI><CODE>Contents.</CODE>
+ 
+   Assemblies contain types and resources. The manifest lists the names of all
+   the types and resources that are visible outside the assembly, along with
+   information about where they can be found within the assembly.</LI>
+<LI><CODE>Dependencies. </CODE>
+Each assembly explicitly describes other assemblies that it is 
+      dependent upon. Included in this dependency information is the version of each
+      dependency that was present when the manifest was built and tested. In this
+      way the &quot;known good&quot; configuration is recorded and can be reverted to in case
+      of failures due to version mismatches.</LI>
+<LI><CODE>Requested Permissions. </CODE>
+
+   As an assembly is being built, the
+   assembly records the set of permissions that the assembly requires to run.</LI>
+</UL>
+[<I>Note</I>: For additional information about assemblies, see Partition II of the CLI
+   Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Assembly Methods<P>
+
+<A HREF="#Assembly.CreateInstance Method" TARGET="contents">Assembly.CreateInstance Method</A><BR>
+<A HREF="#Assembly.GetType Method" TARGET="contents">Assembly.GetType Method</A><BR>
+<A HREF="#Assembly.GetTypes Method" TARGET="contents">Assembly.GetTypes Method</A><BR>
+<A HREF="#Assembly.Load Method" TARGET="contents">Assembly.Load Method</A><BR>
+<A HREF="#Assembly.ToString Method" TARGET="contents">Assembly.ToString Method</A><BR>
+<P>
+
+Assembly Properties<P>
+
+<A HREF="#Assembly.FullName Property" TARGET="contents">Assembly.FullName Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Assembly.CreateInstance Method"><H3>Assembly.CreateInstance Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public object CreateInstance(string typeName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Locates the specified type from this assembly and creates an instance of it using the
+      system activator, using case-sensitive search. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>typeName</DT>
+<DD>The name of the type to locate.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An instance of <CODE>Object</CODE>
+ representing the type, with culture, 
+   arguments, and binding and activation attributes set to <CODE>null</CODE>
+, or <CODE>null</CODE>
+ if <I>typeName</I> is not found.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>typeName</I> is the empty string (&quot;&quot;) or &quot;\0anything&quot;.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>typeName</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Assembly.html" TARGET="contents">System.Reflection.Assembly Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Assembly.GetType Method"><H3>Assembly.GetType Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual Type GetType(string name);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the <A HREF="../../System/Type.html" TARGET="contents">Type</A> object with the specified name defined in the
+   current assembly.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the type defined in the current assembly.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A
+   <A HREF="../../System/Type.html" TARGET="contents">Type</A> object that
+      represents the specified type, or <CODE>null</CODE>
+ if the specified
+   <A HREF="../../System/Type.html" TARGET="contents">Type</A>
+   was not found.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>name</I> is equal to System.String.Empty or starts with the null character (&apos;\0&apos;).</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>name</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Assembly.html" TARGET="contents">System.Reflection.Assembly Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Assembly.GetTypes Method"><H3>Assembly.GetTypes Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual Type[] GetTypes();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the
+      types defined in the current assembly.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An array of type
+   <A HREF="../../System/Type.html" TARGET="contents">Type</A> containing
+      all of the types defined in the current assembly.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Assembly.html" TARGET="contents">System.Reflection.Assembly Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Assembly.Load Method"><H3>Assembly.Load Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Assembly Load(string assemblyString);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Loads the specified assembly.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>assemblyString</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the assembly.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The loaded <A HREF="Assembly.html" TARGET="contents">Assembly</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>assemblyString</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>assemblyString</I> is equal to System.String.Empty or starts with the null character (&apos;\0&apos;).</TD></TR>
+<TR><TD><A HREF="../../System/IO/FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD>The <A HREF="Assembly.html" TARGET="contents">Assembly</A> identified by <I>assemblyString</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/BadImageFormatException.html" TARGET="contents">BadImageFormatException</A></TD><TD>The <A HREF="Assembly.html" TARGET="contents">Assembly</A> identified by <I>assemblyString</I> is not a valid assembly. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Assembly.html" TARGET="contents">System.Reflection.Assembly Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Assembly.ToString Method"><H3>Assembly.ToString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="../../System/String.html" TARGET="contents">String</A> representation of the value of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> representation of
+   the current instance. The string takes into account the
+   current system culture.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method returns the System.Reflection.Assembly.FullName of the
+   current assembly.<P>
+
+[<I>Note</I>: This method
+   overrides System.Object.ToString
+   .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the use of the System.Reflection.Assembly.ToString method in an assembly compiled into
+   a file named &quot;HelloWorld&quot;.<P>
+
+<PRE>using System;
+using System.Reflection;
+
+public class AssemblyExample {
+ public static void Main() {
+
+ Assembly a = Assembly.Load(&quot;helloworld&quot;);
+ Console.WriteLine(a.ToString());
+ } 
+}
+</PRE>
+The output is<P>
+
+<CODE>HelloWorld, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Assembly.html" TARGET="contents">System.Reflection.Assembly Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Assembly.FullName Property"><H3>Assembly.FullName Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string FullName { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the full name of the assembly. <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the full name of the assembly.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This property is read-only.<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>:  The full name is returned in the following
+         format:<P>
+
+<CODE><I>&lt;assemblyTextualName&gt;, Version=&lt;major.minor.build.revision&gt;,             Culture=neutral, PublicKeyToken=&lt;publicKeyToken&gt;</I><P>
+
+</CODE>[<I>Note</I>: The <I>&lt;assemblyTextualName&gt;</I> section of the string contains
+      the textual name of the assembly, and is equivalent to the name of
+      the file into which the assembly manifest is compiled. This name does not change
+      even if the file with the assembly manifest is later renamed. For additional information about
+      assembly manifests, see Partition II of the CLI Specification.<P>
+
+For information on the <I>Version</I> information in the
+   full name of a <A HREF="Assembly.html" TARGET="contents">Assembly</A>, see <A HREF="../../System/Version.html" TARGET="contents">Version</A>. <P>
+
+The <I>&lt;publicKeyToken&gt;</I> is a <A HREF="../../System/String.html" TARGET="contents">String</A> containing the value of the public key token in
+hexadecimal format. A <CODE>null </CODE>
+<I>publicKeyToken</I>
+indicates that the current assembly is private. For additional information about
+public keys and public key tokens, see Partition II of the CLI
+Specification.<P>
+
+]<P>
+
+]<P>
+
+[<I>Usage</I>: This property is
+   used by the System.Reflection.Assembly.ToString method.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example demonstrates using
+      the System.Reflection.Assembly.FullName property to get the full name of an assembly compiled into a file named
+      &quot;HelloWorld&quot;. <P>
+
+<PRE>using System;
+using System.Reflection;
+
+public class AssemblyExample {
+ public static void Main() {
+
+ Assembly a = Assembly.Load(&quot;helloworld&quot;);
+ Console.WriteLine(a.FullName);
+ } 
+}
+   </PRE>
+The output is<P>
+
+<CODE>HelloWorld, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Assembly.html" TARGET="contents">System.Reflection.Assembly Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

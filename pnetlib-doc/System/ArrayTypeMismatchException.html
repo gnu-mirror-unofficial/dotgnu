@@ -1,0 +1,265 @@
+<HTML>
+<HEAD>
+<TITLE>System.ArrayTypeMismatchException Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.ArrayTypeMismatchException Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class ArrayTypeMismatchException : SystemException</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="Exception.html" TARGET="contents">Exception</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="SystemException.html" TARGET="contents">SystemException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ArrayTypeMismatchException<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Represents the error that occurs when an attempt is made to
+      store an element of the wrong type in an array.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArrayTypeMismatchException.html" TARGET="contents">ArrayTypeMismatchException</A> is thrown when the system
+   cannot convert the element to the type declared for the array. [<I>Note</I>: This exception will not be thrown if the element
+   can be converted to the type declared for the array. For example, an element
+   of type <A HREF="Byte.html" TARGET="contents">Byte</A> can
+   be stored in an array declared to store <A HREF="Int32.html" TARGET="contents">Int32</A> values, but an element of type <A HREF="String.html" TARGET="contents">String</A> cannot be stored
+   in a <A HREF="Int32.html" TARGET="contents">Int32</A> array because conversion between these types is
+   not supported.]<P>
+
+<P>
+
+[<I>Note</I>: This exception is thrown by the System.Array.Copy(System.Array,System.Array,System.Int32) method if a
+   widening conversion cannot be performed on the operand
+   to convert it to the array type.<P>
+
+ It is generally unnecessary for applications to throw
+   this exception.<P>
+
+The following IL instructions throw <A HREF="ArrayTypeMismatchException.html" TARGET="contents">ArrayTypeMismatchException</A>
+: <P>
+
+<UL>
+<LI>
+      
+      ldelem.&lt;type&gt;</LI>
+<LI>
+      
+      ldelema</LI>
+<LI>
+      
+      stelem.&lt;type&gt;</LI>
+</UL>
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates an error that causes
+      the system to throw a <A HREF="ArrayTypeMismatchException.html" TARGET="contents">ArrayTypeMismatchException</A> exception.<P>
+
+<PRE>using System;
+class ArrayTypeMisMatchExample {
+ public static void Main() {
+ string[] array1={&quot;hello&quot;,&quot;world&quot;};
+ int[] array2 = {1,2};
+ try {
+ Array.Copy(array1,array2,2);
+ }
+ catch (ArrayTypeMismatchException e) {
+ Console.WriteLine(&quot;Error: {0}&quot;,e);
+ }
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>Error: System.ArrayTypeMismatchException: Source array type cannot be
+         assigned to destination array type.<P>
+
+at System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array
+         destinationArray, Int32 destinationIndex, Int32 length)<P>
+
+at System.Array.Copy(Array sourceArray, Array destinationArray, Int32
+         length)<P>
+
+at ArrayTypeMisMatchExample.Main()<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ArrayTypeMismatchException Constructors<P>
+
+<A HREF="#ArrayTypeMismatchException() Constructor" TARGET="contents">ArrayTypeMismatchException() Constructor</A><BR>
+<A HREF="#ArrayTypeMismatchException(System.String) Constructor" TARGET="contents">ArrayTypeMismatchException(System.String) Constructor</A><BR>
+<A HREF="#ArrayTypeMismatchException(System.String, System.Exception) Constructor" TARGET="contents">ArrayTypeMismatchException(System.String, System.Exception) Constructor</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ArrayTypeMismatchException() Constructor"><H3>ArrayTypeMismatchException() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ArrayTypeMismatchException();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ArrayTypeMismatchException.html" TARGET="contents">ArrayTypeMismatchException</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ArrayTypeMismatchException.Message property of the new instance to a system-supplied
+   message that describes the error, such as &quot;Source array type cannot be assigned
+   to destination array type.&quot; This message takes into account the current system
+   culture.<P>
+
+
+The System.ArrayTypeMismatchException.InnerException
+property is initialized to <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArrayTypeMismatchException.html" TARGET="contents">System.ArrayTypeMismatchException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ArrayTypeMismatchException(System.String) Constructor"><H3>ArrayTypeMismatchException(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ArrayTypeMismatchException(string message);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ArrayTypeMismatchException.html" TARGET="contents">ArrayTypeMismatchException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ArrayTypeMismatchException.Message property of the new instance using <I>message</I>. If <I>message</I> is
+<CODE>null</CODE>
+, the System.ArrayTypeMismatchException.Message property is initialized to the system-supplied message 
+   provided by the constructor that takes no arguments. The System.ArrayTypeMismatchException.InnerException property is initialized to
+<CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArrayTypeMismatchException.html" TARGET="contents">System.ArrayTypeMismatchException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ArrayTypeMismatchException(System.String, System.Exception) Constructor"><H3>ArrayTypeMismatchException(System.String, System.Exception) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ArrayTypeMismatchException(string message, Exception innerException);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ArrayTypeMismatchException.html" TARGET="contents">ArrayTypeMismatchException</A> class. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+<DT>innerException</DT>
+<DD>An instance of <A HREF="Exception.html" TARGET="contents">Exception</A> that is the cause of the current exception. If <I>innerException</I> is non-null, then the current exception was raised in a catch block handling <I>innerException</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ArrayTypeMismatchException.Message property of the new instance
+   using <I>message</I> , and
+   the System.Exception.InnerException property using <I>innerException</I>. If <I>message</I> is
+<CODE>null</CODE>
+, the System.ArrayTypeMismatchException.Message property is initialized to the system-supplied message 
+   provided by the constructor that takes no arguments. <P>
+
+[<I>Note</I>:  For information on inner exceptions,
+   see System.Exception.InnerException.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArrayTypeMismatchException.html" TARGET="contents">System.ArrayTypeMismatchException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,470 @@
+<HTML>
+<HEAD>
+<TITLE>System.Runtime.InteropServices.GCHandle Structure</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Runtime.InteropServices.GCHandle Structure</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public struct GCHandle</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../../System/ValueType.html" TARGET="contents">ValueType</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;GCHandle<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides a means for referencing a managed object from
+      unmanaged memory.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Use a <A HREF="GCHandle.html" TARGET="contents">GCHandle</A> when an 
+   object reference is required to be accessible from unmanaged
+   memory.<P>
+
+ The <A HREF="GCHandleType.html" TARGET="contents">GCHandleType</A> enumeration describes the
+possible <A HREF="GCHandle.html" TARGET="contents">GCHandle</A>
+types.<P>
+
+[<I>Note</I>: If the type of the <A HREF="GCHandle.html" TARGET="contents">GCHandle</A> is
+System.Runtime.InteropServices.GCHandleType.Normal, then it is an opaque
+handle, and the address of the object it references cannot be resolved through
+it.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+GCHandle Methods<P>
+
+<A HREF="#GCHandle.AddrOfPinnedObject Method" TARGET="contents">GCHandle.AddrOfPinnedObject Method</A><BR>
+<A HREF="#GCHandle.Alloc(System.Object) Method" TARGET="contents">GCHandle.Alloc(System.Object) Method</A><BR>
+<A HREF="#GCHandle.Alloc(System.Object, System.Runtime.InteropServices.GCHandleType) Method" TARGET="contents">GCHandle.Alloc(System.Object, System.Runtime.InteropServices.GCHandleType) Method</A><BR>
+<A HREF="#GCHandle.Free Method" TARGET="contents">GCHandle.Free Method</A><BR>
+<A HREF="#System.Runtime.InteropServices.GCHandle GCHandle.op_Explicit(System.IntPtr) Method" TARGET="contents">System.Runtime.InteropServices.GCHandle GCHandle.op_Explicit(System.IntPtr) Method</A><BR>
+<A HREF="#System.IntPtr GCHandle.op_Explicit(System.Runtime.InteropServices.GCHandle) Method" TARGET="contents">System.IntPtr GCHandle.op_Explicit(System.Runtime.InteropServices.GCHandle) Method</A><BR>
+<P>
+
+GCHandle Properties<P>
+
+<A HREF="#GCHandle.IsAllocated Property" TARGET="contents">GCHandle.IsAllocated Property</A><BR>
+<A HREF="#GCHandle.Target Property" TARGET="contents">GCHandle.Target Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="GCHandle.AddrOfPinnedObject Method"><H3>GCHandle.AddrOfPinnedObject Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public IntPtr AddrOfPinnedObject();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the address of an object being referred to by a System.Runtime.InteropServices.GCHandleType.Pinned handle.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../../System/IntPtr.html" TARGET="contents">IntPtr</A> containing the address of the of the System.Runtime.InteropServices.GCHandleType.Pinned object as a
+<A HREF="../../../System/IntPtr.html" TARGET="contents">IntPtr</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The handle type is not System.Runtime.InteropServices.GCHandleType.Pinned .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="GCHandle.html" TARGET="contents">System.Runtime.InteropServices.GCHandle Structure</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="GCHandle.Alloc(System.Object) Method"><H3>GCHandle.Alloc(System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static GCHandle Alloc(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Allocates a System.Runtime.InteropServices.GCHandleType.Normal
+handle for the specified object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The object for which the <A HREF="GCHandle.html" TARGET="contents">GCHandle</A> is created. Can be <CODE>null</CODE>
+ .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A new <A HREF="GCHandle.html" TARGET="contents">GCHandle</A> instance that protects the
+   object from garbage collection.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+A System.Runtime.InteropServices.GCHandleType.Normal handle ensures the
+   object will not be collected by the garbage collector.<P>
+
+If the <I>value</I>
+parameter is <CODE>null</CODE>
+, this method
+returns a valid <A HREF="GCHandle.html" TARGET="contents">GCHandle</A>. [<I>Note</I>: The target of the handle may be changed via the
+System.Runtime.InteropServices.GCHandle.Target property.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="GCHandle.html" TARGET="contents">System.Runtime.InteropServices.GCHandle Structure</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="GCHandle.Alloc(System.Object, System.Runtime.InteropServices.GCHandleType) Method"><H3>GCHandle.Alloc(System.Object, System.Runtime.InteropServices.GCHandleType) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static GCHandle Alloc(object value, GCHandleType type);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Allocates a handle of the specified type for the specified object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The object for which the <A HREF="GCHandle.html" TARGET="contents">GCHandle</A> is created. Can be <CODE>null</CODE>
+ .</DD>
+<DT> type</DT>
+<DD>A <A HREF="GCHandleType.html" TARGET="contents">GCHandleType</A> value that specifies the type of <A HREF="GCHandle.html" TARGET="contents">GCHandle</A> to create.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A new <A HREF="GCHandle.html" TARGET="contents">GCHandle</A> instance
+   that protects the object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ If the <I>value</I> parameter is
+<CODE>null</CODE>
+ , this method returns a valid <A HREF="GCHandle.html" TARGET="contents">GCHandle</A>. [<I>Note</I>: The target of 
+   the handle may be changed via the System.Runtime.InteropServices.GCHandle.Target
+   property.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="GCHandle.html" TARGET="contents">System.Runtime.InteropServices.GCHandle Structure</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="GCHandle.Free Method"><H3>GCHandle.Free Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void Free();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Frees a <A HREF="GCHandle.html" TARGET="contents">GCHandle</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The handle has already been freed or was never initialized.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The caller is required to provide synchronization to
+ prevent multiple threads from executing this method simultaneously for a given
+ handle.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="GCHandle.html" TARGET="contents">System.Runtime.InteropServices.GCHandle Structure</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="System.Runtime.InteropServices.GCHandle GCHandle.op_Explicit(System.IntPtr) Method"><H3>System.Runtime.InteropServices.GCHandle GCHandle.op_Explicit(System.IntPtr) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static explicit operator GCHandle(IntPtr value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Convert a <A HREF="../../../System/IntPtr.html" TARGET="contents">IntPtr</A> to a <A HREF="GCHandle.html" TARGET="contents">GCHandle</A>
+instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../../System/IntPtr.html" TARGET="contents">IntPtr</A> to be converted.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="GCHandle.html" TARGET="contents">GCHandle</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="GCHandle.html" TARGET="contents">GCHandle</A>
+instances are stored using an internal integer
+representation. This method allows you to retrieve a <A HREF="GCHandle.html" TARGET="contents">GCHandle</A>
+from its integer representation.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="GCHandle.html" TARGET="contents">System.Runtime.InteropServices.GCHandle Structure</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="System.IntPtr GCHandle.op_Explicit(System.Runtime.InteropServices.GCHandle) Method"><H3>System.IntPtr GCHandle.op_Explicit(System.Runtime.InteropServices.GCHandle) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static explicit operator IntPtr(GCHandle value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a <A HREF="GCHandle.html" TARGET="contents">GCHandle</A> instance to
+   a <A HREF="../../../System/IntPtr.html" TARGET="contents">IntPtr</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="GCHandle.html" TARGET="contents">GCHandle</A> to be converted.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../../System/IntPtr.html" TARGET="contents">IntPtr</A> representation of the specified <A HREF="GCHandle.html" TARGET="contents">GCHandle</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="GCHandle.html" TARGET="contents">GCHandle</A> instances are stored using
+   an internal integer representation. This method allows you to retrieve that
+   representation.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="GCHandle.html" TARGET="contents">System.Runtime.InteropServices.GCHandle Structure</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="GCHandle.IsAllocated Property"><H3>GCHandle.IsAllocated Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool IsAllocated { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current <A HREF="GCHandle.html" TARGET="contents">GCHandle</A> instance is allocated.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the handle
+ is allocated; otherwise, <CODE>false</CODE>
+ .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+ Use this method to determine whether
+ the <A HREF="GCHandle.html" TARGET="contents">GCHandle</A>
+ 
+ is still available.<P>
+
+[<I>Note</I>: When the garbage collector collects the
+ object, the handle could still be resurrected in the finalizer.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="GCHandle.html" TARGET="contents">System.Runtime.InteropServices.GCHandle Structure</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="GCHandle.Target Property"><H3>GCHandle.Target Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public object Target { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets a reference to the object the current <A HREF="GCHandle.html" TARGET="contents">GCHandle</A> instance represents.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The object this handle represents.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current <A HREF="GCHandle.html" TARGET="contents">GCHandle</A> instance has already been freed or was never initialized.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="GCHandle.html" TARGET="contents">System.Runtime.InteropServices.GCHandle Structure</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

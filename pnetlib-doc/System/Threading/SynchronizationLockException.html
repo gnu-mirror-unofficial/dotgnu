@@ -1,0 +1,208 @@
+<HTML>
+<HEAD>
+<TITLE>System.Threading.SynchronizationLockException Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Threading.SynchronizationLockException Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class SynchronizationLockException : SystemException</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/Exception.html" TARGET="contents">Exception</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../System/SystemException.html" TARGET="contents">SystemException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SynchronizationLockException<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents the error that occurs when a method requires the
+      caller to own the lock on a given <A HREF="Monitor.html" TARGET="contents">Monitor</A> , and the method is
+      invoked by a caller that does not own that lock.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="SynchronizationLockException.html" TARGET="contents">SynchronizationLockException</A> is
+   thrown if the System.Threading.Monitor.Pulse(System.Object), System.Threading.Monitor.PulseAll(System.Object), or System.Threading.Monitor.Wait(System.Object,System.Int32,System.Boolean) methods
+   are invoked for a specified object, but the caller does not own the lock on that
+   object.<A HREF="SynchronizationLockException.html" TARGET="contents">SynchronizationLockException</A> is also thrown when the System.Threading.Monitor.Exit(System.Object) method is
+   called to release the lock on an object, but the caller does not own the lock on
+   that object.
+   <P>
+
+To acquire the lock on an object, use System.Threading.Monitor.Enter(System.Object). To release the
+lock on an object, use System.Threading.Monitor.Exit(System.Object).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+SynchronizationLockException Constructors<P>
+
+<A HREF="#SynchronizationLockException() Constructor" TARGET="contents">SynchronizationLockException() Constructor</A><BR>
+<A HREF="#SynchronizationLockException(System.String) Constructor" TARGET="contents">SynchronizationLockException(System.String) Constructor</A><BR>
+<A HREF="#SynchronizationLockException(System.String, System.Exception) Constructor" TARGET="contents">SynchronizationLockException(System.String, System.Exception) Constructor</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="SynchronizationLockException() Constructor"><H3>SynchronizationLockException() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public SynchronizationLockException();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="SynchronizationLockException.html" TARGET="contents">SynchronizationLockException</A> class. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.Threading.SynchronizationLockException.Message property of the
+   new instance to a system-supplied message that describes the error, such as
+   &quot;Synchronization method was invoked from an unsynchronized block of code.&quot; This
+   message takes into account the current system culture.<P>
+
+The System.Threading.SynchronizationLockException.InnerException property is initialized to
+<CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SynchronizationLockException.html" TARGET="contents">System.Threading.SynchronizationLockException Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SynchronizationLockException(System.String) Constructor"><H3>SynchronizationLockException(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public SynchronizationLockException(string message);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="SynchronizationLockException.html" TARGET="contents">SynchronizationLockException</A> class. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.Threading.SynchronizationLockException.Message property of the new instance using <I>message</I>. If <I>message</I> is
+<CODE>null</CODE>
+, the System.Threading.SynchronizationLockException.Message property is initialized to the system-supplied 
+   message provided by the constructor that takes no arguments. <P>
+
+ The System.Threading.SynchronizationLockException.InnerException property is initialized to <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SynchronizationLockException.html" TARGET="contents">System.Threading.SynchronizationLockException Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SynchronizationLockException(System.String, System.Exception) Constructor"><H3>SynchronizationLockException(System.String, System.Exception) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public SynchronizationLockException(string message, Exception innerException);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="SynchronizationLockException.html" TARGET="contents">SynchronizationLockException</A> class. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture. </DD>
+<DT>innerException</DT>
+<DD>An instance of <A HREF="../../System/Exception.html" TARGET="contents">Exception</A> that is the cause of the current exception. If <I>innerException</I> is non-null, then the current Exception was raised in a catch block handling <I>innerException</I> . </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.Threading.SynchronizationLockException.Message property
+   of the new instance using <I>message</I> and the System.Threading.SynchronizationLockException.InnerException property using
+<I>innerException</I>. If <I>message</I> is 
+<CODE>null</CODE>
+, the System.Threading.SynchronizationLockException.Message property is initialized to the system-supplied 
+   message provided by the constructor that takes no arguments.<P>
+
+[<I>Note</I>: For more information on inner
+   exceptions, see System.Exception.InnerException.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SynchronizationLockException.html" TARGET="contents">System.Threading.SynchronizationLockException Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

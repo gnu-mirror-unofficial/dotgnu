@@ -1,0 +1,673 @@
+<HTML>
+<HEAD>
+<TITLE>System.Reflection.EventInfo Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Reflection.EventInfo Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class EventInfo : MemberInfo</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="MemberInfo.html" TARGET="contents">MemberInfo</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;EventInfo<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides access to event metadata.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ Events are handled by delegates. An event listener supplies an event-handler
+      delegate that is invoked whenever the event is raised by an event source. In order
+      to connect to the event source, the event listener adds this delegate to the
+      invocation list of the source. When the event is raised, the event-handler delegate
+      invokes the methods in its invocation list. The System.Reflection.EventInfo.GetAddMethod,
+   System.Reflection.EventInfo.AddEventHandler(System.Object,System.Delegate)
+   , System.Reflection.EventInfo.GetRemoveMethod, and System.Reflection.EventInfo.RemoveEventHandler(System.Object,System.Delegate) methods,
+   and the
+   delegate type of the event-handler associated
+   with an event, are required to be marked in the metadata.<P>
+
+[<I>Note</I>: For information on
+   delegates, see the <A HREF="../../System/Delegate.html" TARGET="contents">Delegate</A>
+   
+   class
+   overview.]<P>
+
+<P>
+
+[<I>Note</I>: For
+   information on events, see Partitions I and II of the CLI
+   specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+EventInfo Constructors<P>
+
+<A HREF="#EventInfo Constructor" TARGET="contents">EventInfo Constructor</A><BR>
+<P>
+
+EventInfo Methods<P>
+
+<A HREF="#EventInfo.AddEventHandler Method" TARGET="contents">EventInfo.AddEventHandler Method</A><BR>
+<A HREF="#EventInfo.GetAddMethod(bool) Method" TARGET="contents">EventInfo.GetAddMethod(bool) Method</A><BR>
+<A HREF="#EventInfo.GetAddMethod() Method" TARGET="contents">EventInfo.GetAddMethod() Method</A><BR>
+<A HREF="#EventInfo.GetRaiseMethod(bool) Method" TARGET="contents">EventInfo.GetRaiseMethod(bool) Method</A><BR>
+<A HREF="#EventInfo.GetRaiseMethod() Method" TARGET="contents">EventInfo.GetRaiseMethod() Method</A><BR>
+<A HREF="#EventInfo.GetRemoveMethod(bool) Method" TARGET="contents">EventInfo.GetRemoveMethod(bool) Method</A><BR>
+<A HREF="#EventInfo.GetRemoveMethod() Method" TARGET="contents">EventInfo.GetRemoveMethod() Method</A><BR>
+<A HREF="#EventInfo.RemoveEventHandler Method" TARGET="contents">EventInfo.RemoveEventHandler Method</A><BR>
+<P>
+
+EventInfo Properties<P>
+
+<A HREF="#EventInfo.Attributes Property" TARGET="contents">EventInfo.Attributes Property</A><BR>
+<A HREF="#EventInfo.EventHandlerType Property" TARGET="contents">EventInfo.EventHandlerType Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="EventInfo Constructor"><H3>EventInfo Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected EventInfo();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs a new instance of the <A HREF="EventInfo.html" TARGET="contents">EventInfo</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EventInfo.html" TARGET="contents">System.Reflection.EventInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EventInfo.AddEventHandler Method"><H3>EventInfo.AddEventHandler Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void AddEventHandler(object target, Delegate handler);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Adds the specified event handler delegate to the specified event source.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>target</DT>
+<DD>An object that represents an event source. </DD>
+<DT>handler</DT>
+<DD>A <A HREF="../../System/Delegate.html" TARGET="contents">Delegate</A> instance to be added to <I>target</I> that references methods to be invoked when the event reflected by the current instance is raised by <I>target</I>. <P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>handler </I>is not the same type <A HREF="../../System/Type.html" TARGET="contents">Type</A> as the event handler delegate declared for the event reflected by the current instance.<P>
+
+</TD></TR>
+<TR><TD><A HREF="TargetException.html" TARGET="contents">TargetException</A></TD><TD>The event reflected by the current instance is non-static, and <I>obj</I> is <CODE>null</CODE>
+ or is of a type that does not implement the event reflected by the current instance.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ Each time the event reflected by the current instance is raised by <I>target</I>, the methods
+   in the invocation list of <I>handler</I> are invoked.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EventInfo.html" TARGET="contents">System.Reflection.EventInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EventInfo.GetAddMethod(bool) Method"><H3>EventInfo.GetAddMethod(bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract MethodInfo GetAddMethod(bool nonPublic);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the method used to add an event handler delegate to an event source for the event reflected by the current
+      instance, specifying whether or not to return non-public methods.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>nonPublic</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that specifies whether non-public methods can be returned by this method. Specify <CODE>true</CODE>
+ to return non-public methods; otherwise, specify <CODE>false</CODE>
+ . </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A>
+instance that
+reflects the method used to add an event handler delegate to an event source
+for the event reflected by the current instance, if found; otherwise, returns
+<CODE>null</CODE>
+ 
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/MethodAccessException.html" TARGET="contents">MethodAccessException</A></TD><TD><I>nonPublic</I> is <CODE>true</CODE>
+, the method used to add an event handler delegate is non-public, and the caller does not have permission to reflect on non-public methods.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The returned method is used to add an event-handler
+         delegate to the invocation list of an event source. Typically, the method has
+         the following signature format:<P>
+
+<CODE>add_&lt;EventName&gt;(&lt;EventHandlerType&gt; handler)</CODE><P>
+
+]<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EventInfo.html" TARGET="contents">System.Reflection.EventInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EventInfo.GetAddMethod() Method"><H3>EventInfo.GetAddMethod() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MethodInfo GetAddMethod();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the public method used to add an event
+      handler delegate to an event source for the event reflected by the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A> 
+instance that reflects
+the public method used to add an event handler delegate to an event
+source for the event reflected by the current instance, if found; otherwise,
+returns <CODE>null</CODE>
+
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to System.Reflection.EventInfo.GetAddMethod(<CODE>false</CODE>
+).<P>
+
+[<I>Note</I>: The returned method is used to add an event-handler delegate to the 
+      invocation list of an event source. Typically, the method has the following
+      signature format:<P>
+
+<CODE>add_&lt;EventName&gt;(&lt;EventHandlerType&gt; handler)</CODE><P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EventInfo.html" TARGET="contents">System.Reflection.EventInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EventInfo.GetRaiseMethod(bool) Method"><H3>EventInfo.GetRaiseMethod(bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract MethodInfo GetRaiseMethod(bool nonPublic);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the method that is called when the event reflected by the current instance is raised, specifying whether the method to
+      be returned is public or non-public.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>nonPublic</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that specifies whether non-public methods can be returned by this method. Specify <CODE>true</CODE>
+ to return non-public methods; otherwise, specify <CODE>false</CODE>
+ . </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A> instance that reflects the method that is
+   called when the event reflected by the current instance is raised, if found;
+   otherwise, returns <CODE>null</CODE>
+
+   
+   . <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/MethodAccessException.html" TARGET="contents">MethodAccessException</A></TD><TD><I>nonPublic</I> is <CODE>true</CODE>
+, the method used to raise the event is non-public, and the caller does not have permission to reflect on non-public methods.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EventInfo.html" TARGET="contents">System.Reflection.EventInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EventInfo.GetRaiseMethod() Method"><H3>EventInfo.GetRaiseMethod() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MethodInfo GetRaiseMethod();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the public method that is called when the event reflected by the
+      current instance is raised.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A> instance that reflects the public method that
+   is called when the event reflected by the current instance is raised, if
+   found; otherwise, returns <CODE>null</CODE>
+ . <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EventInfo.html" TARGET="contents">System.Reflection.EventInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EventInfo.GetRemoveMethod(bool) Method"><H3>EventInfo.GetRemoveMethod(bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract MethodInfo GetRemoveMethod(bool nonPublic);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the method used to remove an event-handler delegate from the event
+      reflected by the current
+      instance, specifying whether or not to return non-public methods.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>nonPublic</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that specifies whether non-public methods can be returned by this method. Specify <CODE>true</CODE>
+ to return non-public methods; otherwise, specify <CODE>false</CODE>
+ . </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A>
+instance that reflects the method used to remove an event handler delegate from
+the event reflected by the current instance, if found; otherwise, returns
+<CODE>null</CODE>
+ 
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/MethodAccessException.html" TARGET="contents">MethodAccessException</A></TD><TD><I>nonPublic</I> is <CODE>true</CODE>
+, the method used to remove an event handler delegate is non-public, and the caller does not have permission to reflect on non-public methods.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Typically, the method has the
+         following signature format:<P>
+
+<CODE>remove_&lt;EventName&gt;(&lt;EventHandlerType&gt; handler)</CODE><P>
+
+]<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EventInfo.html" TARGET="contents">System.Reflection.EventInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EventInfo.GetRemoveMethod() Method"><H3>EventInfo.GetRemoveMethod() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MethodInfo GetRemoveMethod();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the public method used to remove an event-handler delegate from the event reflected by the
+      current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A>
+instance that reflects the public method used to remove an event handler
+delegate from the event reflected by the current instance, if found; otherwise,
+returns <CODE>null</CODE>
+
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to System.Reflection.EventInfo.GetRemoveMethod(<CODE>false</CODE>
+).<P>
+
+[<I>Note</I>: Typically, the method has the following signature 
+      format:<P>
+
+<CODE>remove_&lt;EventName&gt;(&lt;EventHandlerType&gt; 
+      handler)</CODE><P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EventInfo.html" TARGET="contents">System.Reflection.EventInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EventInfo.RemoveEventHandler Method"><H3>EventInfo.RemoveEventHandler Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void RemoveEventHandler(object target, Delegate handler);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes the specified event handler delegate from the specified event source.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>target</DT>
+<DD>An object that represents an event source.</DD>
+<DT>handler</DT>
+<DD>A <A HREF="../../System/Delegate.html" TARGET="contents">Delegate</A> instance to be disassociated from the events reflected by the current instance that are raised by <I>target</I>.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>handler </I>is not the same type <A HREF="../../System/Type.html" TARGET="contents">Type</A> as the event handler delegate declared for the event reflected by the current instance.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+After this method is invoked, subsequent events 
+      reflected by the current instance that are raised by <I>target</I> will
+      no longer cause <I>handler</I> to
+      
+      invoke its methods.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EventInfo.html" TARGET="contents">System.Reflection.EventInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EventInfo.Attributes Property"><H3>EventInfo.Attributes Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract EventAttributes Attributes { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the attributes of the event reflected by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="EventAttributes.html" TARGET="contents">EventAttributes</A> value that specifies the attributes in the metadata of the
+   event reflected by the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EventInfo.html" TARGET="contents">System.Reflection.EventInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="EventInfo.EventHandlerType Property"><H3>EventInfo.EventHandlerType Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Type EventHandlerType { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the <A HREF="../../System/Type.html" TARGET="contents">Type</A> of the
+   event-handler <A HREF="../../System/Delegate.html" TARGET="contents">Delegate</A>
+   associated with the event reflected by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Type.html" TARGET="contents">Type</A> that represents
+   the type of the
+   event-handler <A HREF="../../System/Delegate.html" TARGET="contents">Delegate</A> associated with the event reflected by the current
+   instance. Returns <CODE>null</CODE>
+ if the method used to add a delegate to
+   the event is not public and is in a loaded assembly, and the caller does not have the required permission.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="EventInfo.html" TARGET="contents">System.Reflection.EventInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,2907 @@
+<HTML>
+<HEAD>
+<TITLE>System.Console Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Console Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class Console</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Console<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Represents the standard input, output, and error streams
+      for console applications.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="Console.html" TARGET="contents">Console</A>
+class provides basic input and output support for applications that
+read from and write characters to the console. If the console does not exist,
+as in a GUI application, writing to the console produces
+no result, and no exception is raised.<P>
+
+ 
+   The standard input, output, and
+   error streams are represented by properties, and are automatically associated with
+   the console when the application starts. Applications can redirect these properties to other streams;
+   for example, streams associated with files instead of the console. [<I>Note</I>: For additional information see the System.Console.SetIn(System.IO.TextReader), System.Console.SetOut(System.IO.TextWriter), and
+System.Console.SetError(System.IO.TextWriter) methods.]<P>
+
+ By default, the read 
+methods in this class use the standard input stream and the write methods use
+the standard output
+stream.<P>
+
+ The
+   write methods support writing data with or without automatically appending carriage
+   return and linefeed characters. This enables the writing of strings, formatted strings, arrays of characters,
+   instances of primitive types, and arbitrary objects without first having to convert them
+   to strings.<P>
+
+This class uses synchronized <A HREF="../System/IO/TextReader.html" TARGET="contents">TextReader</A> and
+<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A> instances. Multiple threads can concurrently read 
+from and/or write to an instance of this
+type.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the use of basic <A HREF="Console.html" TARGET="contents">Console</A> input and output
+   functions. The program waits for the user to enter a name.<P>
+
+<PRE>
+using System;
+
+public class ConsoleTest {
+   public static void Main() {       
+      Console.Write(&quot;Hello &quot;);
+      Console.WriteLine(&quot;World!&quot;);
+      Console.Write(&quot;What is your name: &quot;);
+      string name = Console.ReadLine();
+      Console.Write(&quot;Hello, &quot;);
+      Console.Write(name);
+      Console.WriteLine(&quot;!&quot;);
+   }
+}
+</PRE>
+The output for a user who entered the name &quot;Fred&quot; is<P>
+
+<CODE>Hello World!<P>
+
+What is your name: Fred<P>
+
+Hello, Fred!<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Console Methods<P>
+
+<A HREF="#Console.OpenStandardError() Method" TARGET="contents">Console.OpenStandardError() Method</A><BR>
+<A HREF="#Console.OpenStandardError(int) Method" TARGET="contents">Console.OpenStandardError(int) Method</A><BR>
+<A HREF="#Console.OpenStandardInput() Method" TARGET="contents">Console.OpenStandardInput() Method</A><BR>
+<A HREF="#Console.OpenStandardInput(int) Method" TARGET="contents">Console.OpenStandardInput(int) Method</A><BR>
+<A HREF="#Console.OpenStandardOutput() Method" TARGET="contents">Console.OpenStandardOutput() Method</A><BR>
+<A HREF="#Console.OpenStandardOutput(int) Method" TARGET="contents">Console.OpenStandardOutput(int) Method</A><BR>
+<A HREF="#Console.Read Method" TARGET="contents">Console.Read Method</A><BR>
+<A HREF="#Console.ReadLine Method" TARGET="contents">Console.ReadLine Method</A><BR>
+<A HREF="#Console.SetError Method" TARGET="contents">Console.SetError Method</A><BR>
+<A HREF="#Console.SetIn Method" TARGET="contents">Console.SetIn Method</A><BR>
+<A HREF="#Console.SetOut Method" TARGET="contents">Console.SetOut Method</A><BR>
+<A HREF="#Console.Write(System.String, System.Object) Method" TARGET="contents">Console.Write(System.String, System.Object) Method</A><BR>
+<A HREF="#Console.Write(System.String, System.Object, System.Object) Method" TARGET="contents">Console.Write(System.String, System.Object, System.Object) Method</A><BR>
+<A HREF="#Console.Write(System.String, System.Object, System.Object, System.Object) Method" TARGET="contents">Console.Write(System.String, System.Object, System.Object, System.Object) Method</A><BR>
+<A HREF="#Console.Write(System.String, System.Object[]) Method" TARGET="contents">Console.Write(System.String, System.Object[]) Method</A><BR>
+<A HREF="#Console.Write(bool) Method" TARGET="contents">Console.Write(bool) Method</A><BR>
+<A HREF="#Console.Write(char) Method" TARGET="contents">Console.Write(char) Method</A><BR>
+<A HREF="#Console.Write(char[]) Method" TARGET="contents">Console.Write(char[]) Method</A><BR>
+<A HREF="#Console.Write(char[], int, int) Method" TARGET="contents">Console.Write(char[], int, int) Method</A><BR>
+<A HREF="#Console.Write(double) Method" TARGET="contents">Console.Write(double) Method</A><BR>
+<A HREF="#Console.Write(System.Decimal) Method" TARGET="contents">Console.Write(System.Decimal) Method</A><BR>
+<A HREF="#Console.Write(float) Method" TARGET="contents">Console.Write(float) Method</A><BR>
+<A HREF="#Console.Write(int) Method" TARGET="contents">Console.Write(int) Method</A><BR>
+<A HREF="#Console.Write(uint) Method" TARGET="contents">Console.Write(uint) Method</A><BR>
+<A HREF="#Console.Write(long) Method" TARGET="contents">Console.Write(long) Method</A><BR>
+<A HREF="#Console.Write(ulong) Method" TARGET="contents">Console.Write(ulong) Method</A><BR>
+<A HREF="#Console.Write(System.Object) Method" TARGET="contents">Console.Write(System.Object) Method</A><BR>
+<A HREF="#Console.Write(System.String) Method" TARGET="contents">Console.Write(System.String) Method</A><BR>
+<A HREF="#Console.WriteLine() Method" TARGET="contents">Console.WriteLine() Method</A><BR>
+<A HREF="#Console.WriteLine(bool) Method" TARGET="contents">Console.WriteLine(bool) Method</A><BR>
+<A HREF="#Console.WriteLine(char) Method" TARGET="contents">Console.WriteLine(char) Method</A><BR>
+<A HREF="#Console.WriteLine(char[]) Method" TARGET="contents">Console.WriteLine(char[]) Method</A><BR>
+<A HREF="#Console.WriteLine(char[], int, int) Method" TARGET="contents">Console.WriteLine(char[], int, int) Method</A><BR>
+<A HREF="#Console.WriteLine(System.Decimal) Method" TARGET="contents">Console.WriteLine(System.Decimal) Method</A><BR>
+<A HREF="#Console.WriteLine(double) Method" TARGET="contents">Console.WriteLine(double) Method</A><BR>
+<A HREF="#Console.WriteLine(float) Method" TARGET="contents">Console.WriteLine(float) Method</A><BR>
+<A HREF="#Console.WriteLine(int) Method" TARGET="contents">Console.WriteLine(int) Method</A><BR>
+<A HREF="#Console.WriteLine(uint) Method" TARGET="contents">Console.WriteLine(uint) Method</A><BR>
+<A HREF="#Console.WriteLine(long) Method" TARGET="contents">Console.WriteLine(long) Method</A><BR>
+<A HREF="#Console.WriteLine(ulong) Method" TARGET="contents">Console.WriteLine(ulong) Method</A><BR>
+<A HREF="#Console.WriteLine(System.Object) Method" TARGET="contents">Console.WriteLine(System.Object) Method</A><BR>
+<A HREF="#Console.WriteLine(System.String) Method" TARGET="contents">Console.WriteLine(System.String) Method</A><BR>
+<A HREF="#Console.WriteLine(System.String, System.Object) Method" TARGET="contents">Console.WriteLine(System.String, System.Object) Method</A><BR>
+<A HREF="#Console.WriteLine(System.String, System.Object, System.Object) Method" TARGET="contents">Console.WriteLine(System.String, System.Object, System.Object) Method</A><BR>
+<A HREF="#Console.WriteLine(System.String, System.Object, System.Object, System.Object) Method" TARGET="contents">Console.WriteLine(System.String, System.Object, System.Object, System.Object) Method</A><BR>
+<A HREF="#Console.WriteLine(System.String, System.Object[]) Method" TARGET="contents">Console.WriteLine(System.String, System.Object[]) Method</A><BR>
+<P>
+
+Console Properties<P>
+
+<A HREF="#Console.Error Property" TARGET="contents">Console.Error Property</A><BR>
+<A HREF="#Console.In Property" TARGET="contents">Console.In Property</A><BR>
+<A HREF="#Console.Out Property" TARGET="contents">Console.Out Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Console.OpenStandardError() Method"><H3>Console.OpenStandardError() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Stream OpenStandardError();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the standard error stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A new synchronized <A HREF="../System/IO/Stream.html" TARGET="contents">Stream</A> object that writes to the console.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.OpenStandardError(int) Method"><H3>Console.OpenStandardError(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Stream OpenStandardError(int bufferSize);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the standard error stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>bufferSize</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the desired internal stream buffer size.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A new synchronized <A HREF="../System/IO/Stream.html" TARGET="contents">Stream</A> object that writes to the console.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Buffering console streams is not required to be 
+      supported. If it is not supported, the <I>bufferSize</I> parameter is ignored,
+      and this method behaves identically to System.Console.OpenStandardError(). If buffering is supported, the buffering behavior of
+      the <A HREF="Console.html" TARGET="contents">Console</A>
+      class is implementation-defined.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.OpenStandardInput() Method"><H3>Console.OpenStandardInput() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Stream OpenStandardInput();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the standard input stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new synchronized <A HREF="../System/IO/Stream.html" TARGET="contents">Stream</A> object that reads from the console.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.OpenStandardInput(int) Method"><H3>Console.OpenStandardInput(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Stream OpenStandardInput(int bufferSize);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the standard input stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> bufferSize</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the desired internal stream buffer size.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new synchronized <A HREF="../System/IO/Stream.html" TARGET="contents">Stream</A> object that reads from the console.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Buffering console streams is not required to be 
+      supported. If it is not supported, the <I>bufferSize</I> parameter is ignored,
+      and this method behaves identically to System.Console.OpenStandardInput(). If buffering is supported, the buffering behavior of
+      the <A HREF="Console.html" TARGET="contents">Console</A>
+      class is implementation-defined.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.OpenStandardOutput() Method"><H3>Console.OpenStandardOutput() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Stream OpenStandardOutput();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the standard output stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A new synchronized <A HREF="../System/IO/Stream.html" TARGET="contents">Stream</A> object that writes to the console.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.OpenStandardOutput(int) Method"><H3>Console.OpenStandardOutput(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Stream OpenStandardOutput(int bufferSize);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the standard output stream. The desired size of the internal buffer
+      for the stream is specified.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> bufferSize</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the desired internal stream buffer size.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new synchronized <A HREF="../System/IO/Stream.html" TARGET="contents">Stream</A> object that writes to the console.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Buffering console streams is not required to be 
+      supported. If it is not supported, the <I>bufferSize</I> parameter is ignored,
+      and this method behaves identically to System.Console.OpenStandardOutput(). If buffering is supported, the buffering behavior of
+      the <A HREF="Console.html" TARGET="contents">Console</A>
+      class is implementation-defined.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Read Method"><H3>Console.Read Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int Read();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Reads the next character from the standard input
+      stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The next character from the character source represented
+      as a <A HREF="Int32.html" TARGET="contents">Int32</A>
+      , or -1 if at the
+      end of the
+      stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method will not return until the read operation is
+      terminated; for example, by the user pressing the enter key. If data is
+      available, the input stream contains what the user entered, suffixed with the
+      environment dependent newline character.
+      
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.ReadLine Method"><H3>Console.ReadLine Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ReadLine();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Reads the next line of characters from the System.Console.In<A HREF="../System/IO/TextReader.html" TARGET="contents">TextReader</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> containing the next line from the input stream, or
+<CODE>null</CODE>
+
+if the end of the input stream has already been reached.
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+<TR><TD><A HREF="OutOfMemoryException.html" TARGET="contents">OutOfMemoryException</A></TD><TD>There is insufficient memory to allocate a buffer for the returned string.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ A line is defined as a sequence of characters followed
+      by a carriage return (Unicode 0x000d), a line feed (Unicode 0x000a), or a System.Environment.NewLine. The returned string
+      does not contain the terminating character(s).
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.SetError Method"><H3>Console.SetError Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void SetError(TextWriter newError);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Sets the System.Console.Error property to the specified <A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>newError</DT>
+<DD>A <A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A> that becomes the new standard error output stream. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission. </TD></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>newError</I> is <CODE>null</CODE>
+. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method replaces the System.Console.Error property
+   with a synchronized <A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A> returned by System.IO.TextWriter.Synchronized(System.IO.TextWriter)( <I>newError</I> ).<P>
+
+[<I>Note</I>: By default, the System.Console.Error property is set
+to the system&apos;s standard error stream.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.SetIn Method"><H3>Console.SetIn Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void SetIn(TextReader newIn);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Sets the System.Console.In property to the specified <A HREF="../System/IO/TextReader.html" TARGET="contents">TextReader</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>newIn</DT>
+<DD>A <A HREF="../System/IO/TextReader.html" TARGET="contents">TextReader</A> that becomes the new standard input stream. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>newIn</I> is <CODE>null</CODE>
+. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method replaces the System.Console.In property with a synchronized <A HREF="../System/IO/TextReader.html" TARGET="contents">TextReader</A> returned
+   by System.IO.TextReader.Synchronized(System.IO.TextReader)( <I>newIn</I> ).<P>
+
+[<I>Note</I>: By
+   default, the System.Console.In property
+   is set
+   to the system&apos;s standard input stream.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.SetOut Method"><H3>Console.SetOut Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void SetOut(TextWriter newOut);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Sets the System.Console.Out property to the specified <A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>newOut</DT>
+<DD>A <A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A> that becomes the new standard output stream.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>newOut</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method replaces the System.Console.Out property with a synchronized <A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A> returned
+   by System.IO.TextWriter.Synchronized(System.IO.TextWriter)( <I>newOut</I> ).<P>
+
+[<I>Note</I>: By default, the System.Console.Out property is set to
+the system&apos;s standard output stream.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(System.String, System.Object) Method"><H3>Console.Write(System.String, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(string format, object arg0);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes a formatted string to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format string. </DD>
+<DT>arg0</DT>
+<DD>An object referenced in the format string. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the number of provided objects to be formatted (1).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: If the specified object is not referenced in <I> format</I>, it is ignored.<P>
+
+For more information on format strings, see the <A HREF="String.html" TARGET="contents">String</A> class overview.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(System.String, System.Object, System.Object) Method"><H3>Console.Write(System.String, System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(string format, object arg0, object arg1);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes a formatted string to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format string. </DD>
+<DT>arg0</DT>
+<DD>The first object referenced in the format string. </DD>
+<DT>arg1</DT>
+<DD>The second object referenced in the format string. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the number of provided objects to be formatted (2).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: If a specified object is not referenced in <I> format</I>, it is ignored.<P>
+
+For more information on format strings, see the <A HREF="String.html" TARGET="contents">String</A> class overview.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(System.String, System.Object, System.Object, System.Object) Method"><H3>Console.Write(System.String, System.Object, System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(string format, object arg0, object arg1, object arg2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes a formatted string to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format string. </DD>
+<DT>arg0</DT>
+<DD>The first object referenced in the format string. </DD>
+<DT>arg1</DT>
+<DD>The second object referenced in the format string. </DD>
+<DT>arg2</DT>
+<DD>The third object referenced in the format string. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the number of provided objects to be formatted (3).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: If a specified
+      object is not referenced in the format string, it is ignored.]<P>
+
+<P>
+
+[<I>Note</I>: For more 
+   information on format strings see the <A HREF="String.html" TARGET="contents">String</A>
+   class overview.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(System.String, System.Object[]) Method"><H3>Console.Write(System.String, System.Object[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(string format, params object[] arg);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes a formatted string to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format string. </DD>
+<DT>arg</DT>
+<DD>An array of objects referenced in the format string. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> or <I>arg </I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to <I>arg</I>.Length.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: If a specified object is not referenced in <I> format</I>, it is ignored.<P>
+
+For more information on format strings, see the <A HREF="String.html" TARGET="contents">String</A> class overview.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(bool) Method"><H3>Console.Write(bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(bool value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a <A HREF="Boolean.html" TARGET="contents">Boolean</A> to the
+System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Boolean.html" TARGET="contents">Boolean</A> to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.Write(System.String,System.Object) is equivalent to System.Console.Out.<CODE>Write</CODE>
+(
+<I>value</I>.ToString () ).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(char) Method"><H3>Console.Write(char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(char value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a character to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The Unicode character to write to the text stream. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(char[]) Method"><H3>Console.Write(char[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(char[] buffer);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a character array to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>The Unicode character array to write to the text stream. If <I>buffer</I> is <CODE>null</CODE>
+ , nothing is written. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.Write(System.String,System.Object) is equivalent to System.Console.Out.<CODE>Write</CODE>
+( <I>buffer</I>
+).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(char[], int, int) Method"><H3>Console.Write(char[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(char[] buffer, int index, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes a subarray of characters to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>The Unicode character array from which characters are read. </DD>
+<DT>index</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the starting offset in <I>buffer</I> at which to begin reading.</DD>
+<DT>count</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the number of characters to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>(<I>index</I> + <I>count</I> ) is greater than the length of <I>buffer</I>.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> or <I>count</I> is negative.</TD></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.Write(System.String,System.Object) is equivalent to System.Console.Out.<CODE>Write</CODE>
+( <I>buffer</I>,
+<I>index</I>, <I>count</I> ).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(double) Method"><H3>Console.Write(double) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(double value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes the text representation of a specified <A HREF="Double.html" TARGET="contents">Double</A> to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Double.html" TARGET="contents">Double</A> to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This version of System.Console.Write(System.String,System.Object) is equivalent to System.Console.Out.<CODE>Write </CODE>
+(<I>value</I>.ToString()).
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(System.Decimal) Method"><H3>Console.Write(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes the text representation of a specified <A HREF="Decimal.html" TARGET="contents">Decimal</A> to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This version of System.Console.Write(System.String,System.Object) is equivalent to System.Console.Out.<CODE>Write </CODE>
+(<I>value</I>.ToString()).
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(float) Method"><H3>Console.Write(float) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(float value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes the text representation of a specified <A HREF="Single.html" TARGET="contents">Single</A> to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Single.html" TARGET="contents">Single</A> to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This version of System.Console.Write(System.String,System.Object) is equivalent to System.Console.Out.<CODE>Write </CODE>
+(<I>value</I> 
+.ToString()).
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(int) Method"><H3>Console.Write(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(int value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes the text representation of a specified <A HREF="Int32.html" TARGET="contents">Int32</A> to the
+System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Int32.html" TARGET="contents">Int32</A> to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.Write(System.String,System.Object) is equivalent to System.Console.Out.<CODE>Write</CODE>
+(
+<I>value</I>.ToString()).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(uint) Method"><H3>Console.Write(uint) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(uint value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes the text representation of a
+      specified <A HREF="UInt32.html" TARGET="contents">UInt32</A> to the
+   System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="UInt32.html" TARGET="contents">UInt32</A> to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.Console.Write(System.String,System.Object)(<A HREF="Int64.html" TARGET="contents">Int64</A>).<P>
+
+This version of System.Console.Write(System.String,System.Object) is equivalent to System.Console.Out.<CODE>Write</CODE>
+(
+<I>value</I>.<CODE>ToString</CODE>
+ ()).<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(long) Method"><H3>Console.Write(long) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(long value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes the text representation of a
+      specified <A HREF="Int64.html" TARGET="contents">Int64</A> to the
+   System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Int64.html" TARGET="contents">Int64</A> to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.Write(System.String,System.Object) is equivalent to System.Console.Out.<CODE>Write</CODE>
+(
+<I>value</I>.ToString() ).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(ulong) Method"><H3>Console.Write(ulong) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(ulong value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes the text representation of a
+      specified <A HREF="UInt64.html" TARGET="contents">UInt64</A>
+      to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+   
+   .
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="UInt64.html" TARGET="contents">UInt64</A> to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.Console.Write(System.String,System.Object)(<A HREF="Decimal.html" TARGET="contents">Decimal</A>).<P>
+
+This version of System.Console.Write(System.String,System.Object) is equivalent to System.Console.Out.<CODE>Write</CODE>
+(
+<I>value</I> .ToString()).<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(System.Object) Method"><H3>Console.Write(System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes the text representation of a specified object to the
+   System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The object to write. If <I>value</I> is <CODE>null</CODE>
+ , System.String.Empty is written. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.Write(System.String,System.Object) is equivalent to System.Console.Out.<CODE>Write</CODE>
+(
+<I>value</I>.ToString () ).<P>
+
+[<I>Note</I>: If <I> value</I> is <CODE>null</CODE>
+, no exception is thrown and nothing
+is written. Otherwise, the object&apos;s System.Object.ToString method is called to
+produce the string representation, and the resulting string is written to the
+output stream.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Write(System.String) Method"><H3>Console.Write(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Write(string value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes a specified string to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="String.html" TARGET="contents">String</A> to write. If <I>value</I> is <CODE>null</CODE>
+, the System.String.Empty string is written. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.Write(System.String,System.Object) is equivalent to System.Console.Out.<CODE>Write</CODE>
+(
+<I>value</I> ).<P>
+
+[<I>Note</I>: If specified value is <CODE>null</CODE>
+ , nothing is written to the output stream.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine() Method"><H3>Console.WriteLine() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes a line terminator to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The default line terminator is the value of the System.Environment.NewLine property. The line terminator can be set using the
+System.IO.TextWriter.NewLine property of the System.Console.Out stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(bool) Method"><H3>Console.WriteLine(bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(bool value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes the text representation of a <A HREF="Boolean.html" TARGET="contents">Boolean</A> followed by
+   a line terminator to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Boolean.html" TARGET="contents">Boolean</A> to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.WriteLine is equivalent to System.Console.Out.<CODE>WriteLine</CODE>
+(
+<I>value</I>.ToString() ).<P>
+
+ The default line terminator is the value of the System.Environment.NewLine
+property. The line terminator can be set using the System.IO.TextWriter.NewLine property
+of the System.Console.Out
+stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(char) Method"><H3>Console.WriteLine(char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(char value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes a character followed by a line terminator to the
+   System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The Unicode character to write to the text stream. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.WriteLine is equivalent to System.Console.Out.<CODE>WriteLine</CODE>
+(
+<I>value</I> ).<P>
+
+ The default line terminator is the value of the System.Environment.NewLine
+property. The line terminator can be set using the System.IO.TextWriter.NewLine property
+of the System.Console.Out
+stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(char[]) Method"><H3>Console.WriteLine(char[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(char[] buffer);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes an array of characters followed by a line
+      terminator to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+   .
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>The Unicode character array to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
+. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.WriteLine is equivalent to System.Console.Out.<CODE>WriteLine</CODE>
+(
+<I>buffer</I> ).<P>
+
+The default line terminator is the value of the System.Environment.NewLine
+property. The line terminator can be set using the System.IO.TextWriter.NewLine property
+of the System.Console.Out
+stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(char[], int, int) Method"><H3>Console.WriteLine(char[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(char[] buffer, int index, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes a subarray of characters followed by a line
+      terminator to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+   .
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>The Unicode character array from which data is read. </DD>
+<DT>index</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the index into <I>buffer</I> at which to begin reading. </DD>
+<DT>count</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the number of characters to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>(<I>index</I> + <I>count</I> ) is greater than the length of <I>buffer</I>.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> or <I>count</I> is negative.</TD></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.WriteLine is equivalent to System.Console.Out.<CODE>WriteLine</CODE>
+(
+<I>buffer</I>, <I>index</I>, <I>count</I> ).<P>
+
+ The default line terminator is the value of the System.Environment.NewLine
+property. The line terminator can be set using the System.IO.TextWriter.NewLine property
+of the System.Console.Out
+stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(System.Decimal) Method"><H3>Console.WriteLine(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a specified <A HREF="Decimal.html" TARGET="contents">Decimal</A> followed by a line terminator to the
+System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.WriteLine is equivalent to System.Console.Out.<CODE>WriteLine </CODE>
+(<I>value</I>.ToString ()).<P>
+
+The default line terminator is the value of the System.Environment.NewLine property. The
+line terminator can be set using the System.IO.TextWriter.NewLine property of the System.Console.Out stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(double) Method"><H3>Console.WriteLine(double) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(double value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a specified <A HREF="Double.html" TARGET="contents">Double</A> followed by a line terminator to the
+System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Double.html" TARGET="contents">Double</A> to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.WriteLine is equivalent to System.Console.Out.<CODE>WriteLine </CODE>
+(<I>value</I>.ToString ()).<P>
+
+ The default line terminator is the value of theSystem.Environment.NewLine property. The
+line terminator can be set using theSystem.IO.TextWriter.NewLine property of the System.Console.Out stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(float) Method"><H3>Console.WriteLine(float) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(float value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a specified <A HREF="Single.html" TARGET="contents">Single</A> followed by a line terminator to the
+System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Single.html" TARGET="contents">Single</A> to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.WriteLine is equivalent to System.Console.Out.<CODE>WriteLine </CODE>
+(<I>value</I>.ToString ()).<P>
+
+The default line terminator is the value of the System.Environment.NewLine
+property. The line terminator can be set using the System.IO.TextWriter.NewLine property
+of the System.Console.Out stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(int) Method"><H3>Console.WriteLine(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(int value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the text representation of a specified <A HREF="Int32.html" TARGET="contents">Int32</A> followed by a line terminator to the
+System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Int32.html" TARGET="contents">Int32</A> to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.WriteLine is equivalent to System.Console.Out.<CODE>WriteLine</CODE>
+(
+<I>value</I> .ToString ()).<P>
+
+ The default line terminator is the value of the System.Environment.NewLine
+property. The line terminator can be set using the System.IO.TextWriter.NewLine property
+of the System.Console.Out
+stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(uint) Method"><H3>Console.WriteLine(uint) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(uint value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes the text representation of a specified <A HREF="UInt32.html" TARGET="contents">UInt32</A> followed by a
+   line terminator to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="UInt32.html" TARGET="contents">UInt32</A> to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.Console.WriteLine(<A HREF="Int64.html" TARGET="contents">Int64</A>).<P>
+
+This version of System.Console.WriteLine is equivalent to System.Console.Out.<CODE>WriteLine</CODE>
+(
+<I>value</I>.ToString() ).<P>
+
+ The default line terminator is the value of the System.Environment.NewLine
+property. The line terminator can be set using the System.IO.TextWriter.NewLine property
+of the System.Console.Out
+stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(long) Method"><H3>Console.WriteLine(long) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(long value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes the text representation of a specified <A HREF="Int64.html" TARGET="contents">Int64</A> followed by a line
+   terminator to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Int64.html" TARGET="contents">Int64</A> to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.WriteLine is equivalent to System.Console.Out.<CODE>WriteLine</CODE>
+(
+<I>value</I>.ToString() ).<P>
+
+ The default line terminator is the value of the System.Environment.NewLine
+property. The line terminator can be set using the System.IO.TextWriter.NewLine property
+of the System.Console.Out
+stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(ulong) Method"><H3>Console.WriteLine(ulong) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(ulong value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes the text representation of a specified <A HREF="UInt64.html" TARGET="contents">UInt64</A> followed by a
+   line terminator to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="UInt64.html" TARGET="contents">UInt64</A> to write. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.Console.WriteLine(<A HREF="Decimal.html" TARGET="contents">Decimal</A>).<P>
+
+This version of System.Console.WriteLine is equivalent to System.Console.Out.<CODE>WriteLine</CODE>
+(
+<I>value</I> .ToString()).<P>
+
+ The default line terminator is the value of the System.Environment.NewLine
+property. The line terminator can be set using the System.IO.TextWriter.NewLine property
+of the System.Console.Out
+stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(System.Object) Method"><H3>Console.WriteLine(System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes the text representation of a
+      specified object followed by a line terminator to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+   .
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The object to write. If <I>value</I> is <CODE>null</CODE>
+, only the line terminator is written. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.WriteLine is equivalent to System.Console.Out.<CODE>WriteLine</CODE>
+(
+<I>value</I>.ToString() ).<P>
+
+ The default line terminator is the value of the System.Environment.NewLine
+property. The line terminator can be set using the System.IO.TextWriter.NewLine property
+of the System.Console.Out
+stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(System.String) Method"><H3>Console.WriteLine(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(string value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes a specified <A HREF="String.html" TARGET="contents">String</A> followed by a line terminator
+   to the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="String.html" TARGET="contents">String</A> to write. If <I>value</I> is <CODE>null</CODE>
+, only the line terminator is written.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Console.WriteLine is equivalent to System.Console.Out.<CODE>WriteLine</CODE>
+(
+<I>value</I> ).<P>
+
+ The default line terminator is the value of the System.Environment.NewLine
+property. The line terminator can be set using the System.IO.TextWriter.NewLine property
+of the System.Console.Out
+stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(System.String, System.Object) Method"><H3>Console.WriteLine(System.String, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(string format, object arg0);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes a formatted string and a line terminator to
+      the System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format string. </DD>
+<DT>arg0</DT>
+<DD>An object referenced in the format string. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the number of provided objects to be formatted (1).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The default line terminator is the value of the System.Environment.NewLine
+property. The line terminator can be set using the System.IO.TextWriter.NewLine property
+of the System.Console.Out
+stream.<P>
+
+[<I>Note</I>: If the specified object is not referenced in <I> format</I>, it is ignored.<P>
+
+For more information on format strings, see the <A HREF="String.html" TARGET="contents">String</A> class overview.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(System.String, System.Object, System.Object) Method"><H3>Console.WriteLine(System.String, System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(string format, object arg0, object arg1);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes a formatted string and a new line to the
+   System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format string. </DD>
+<DT>arg0</DT>
+<DD>The first object referenced in the format string. </DD>
+<DT>arg1</DT>
+<DD>The second object referenced in the format string. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the number of provided objects to be formatted (2).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The default line terminator is the value of the System.Environment.NewLine
+property. The line terminator can be set using the System.IO.TextWriter.NewLine property
+of the System.Console.Out
+stream.<P>
+
+[<I>Note</I>: If a specified object is not referenced in <I> format</I>, it is ignored.<P>
+
+For more information on format strings, see the <A HREF="String.html" TARGET="contents">String</A> class overview.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(System.String, System.Object, System.Object, System.Object) Method"><H3>Console.WriteLine(System.String, System.Object, System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(string format, object arg0, object arg1, object arg2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes a formatted string and a new line to the
+   System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format string. </DD>
+<DT>arg0</DT>
+<DD>The first object referenced in the format string. </DD>
+<DT>arg1</DT>
+<DD>The second object referenced in the format string. </DD>
+<DT>arg2</DT>
+<DD>The third object referenced in the format string. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the number of provided objects to be formatted (3).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The default line terminator is the value of the System.Environment.NewLine
+property. The line terminator can be set using the System.IO.TextWriter.NewLine property
+of the System.Console.Out
+stream.<P>
+
+[<I>Note</I>: If a specified object is not referenced in <I> format</I>, it is ignored.<P>
+
+For more information on format strings, see the <A HREF="String.html" TARGET="contents">String</A> class overview.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.WriteLine(System.String, System.Object[]) Method"><H3>Console.WriteLine(System.String, System.Object[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WriteLine(string format, params object[] arg);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes a formatted string and a new line to the
+   System.Console.Out<A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format string. </DD>
+<DT>arg</DT>
+<DD>An array of objects referenced in the format string. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> or <I>arg </I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
+
+-or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to <I>arg</I>.Length .<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The default line terminator is the value of the System.Environment.NewLine
+property. The line terminator can be set using the System.IO.TextWriter.NewLine property
+of the System.Console.Out
+stream.<P>
+
+[<I>Note</I>: If a specified object is not referenced in <I> format</I>, it is ignored.<P>
+
+For more information on format strings, see the <A HREF="String.html" TARGET="contents">String</A> class overview.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Error Property"><H3>Console.Error Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static TextWriter Error { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the system&apos;s standard error output stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A synchronized <A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A> object where error
+   output is sent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+ This property can be redirected using the System.Console.SetError(System.IO.TextWriter) method. <P>
+
+[<I>Note</I>: 
+   If the application does not have a <A HREF="Console.html" TARGET="contents">Console</A>, System.Console.Error behaves
+   like System.IO.TextWriter.Null.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.In Property"><H3>Console.In Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static TextReader In { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the system&apos;s standard input stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A synchronized <A HREF="../System/IO/TextReader.html" TARGET="contents">TextReader</A> object from which user input is received.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+ This property can be redirected using the System.Console.SetIn(System.IO.TextReader) method. <P>
+
+[<I>Note</I>: 
+   
+   If the application does not have a <A HREF="Console.html" TARGET="contents">Console</A>, System.Console.In behaves like System.IO.TextReader.Null.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Console.Out Property"><H3>Console.Out Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static TextWriter Out { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the system&apos;s standard output stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A synchronized <A HREF="../System/IO/TextWriter.html" TARGET="contents">TextWriter</A> object where normal output is sent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+ This property can be redirected using the System.Console.SetOut(System.IO.TextWriter) method. <P>
+
+[<I>Note</I>: 
+   
+   If the application does not have a <A HREF="Console.html" TARGET="contents">Console</A>, System.Console.Out behaves like System.IO.TextWriter.Null.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Console.html" TARGET="contents">System.Console Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

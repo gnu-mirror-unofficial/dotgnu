@@ -1,0 +1,754 @@
+<HTML>
+<HEAD>
+<TITLE>System.Exception Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Exception Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class Exception</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Exception<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Represents errors that occur during application execution. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This class is
+      the base class for all Exceptions.<P>
+
+When an error occurs, either the system or the currently executing
+      application reports it by throwing an Exception containing information about the
+      error. Once thrown, an Exception is handled by the application or by the default
+      exception handler.<P>
+
+[<I>Note</I>: For a description of the exception handling model,
+      see Partition I of the CLI Specification.]<P>
+
+<P>
+
+[<I>Note</I>: If an application handles exceptions that occur during the execution of a
+      block of application code, the code is required to be placed within a
+   <CODE>try</CODE>
+ statement. Application code within a <CODE>try</CODE>
+ statement is a <I>try       block</I>
+      . Application code that handles Exceptions thrown by a
+      try block is placed within a <CODE>catch</CODE>
+ statement, and is
+      called a <I>catch block</I>
+      . Zero or more catch blocks are associated with a try block, and each
+      catch block includes a type filter that determines the types of Exceptions it
+      handles. <P>
+
+When an Exception occurs in a try block, the system
+      searches the associated catch blocks in the order they appear in application
+      code, until it locates a catch block that handles the Exception. A catch block
+      handles an exception of type <I>T</I>, if the type filter of the catch block
+      specifies <I>T</I> or any type that <I>T</I>
+      
+      derives from. The system stops searching after it finds the first catch block
+      that handles the Exception. For this reason, in application code, a catch block
+      that handles a type must be specified before a catch block that handles its base
+      types, as demonstrated in the example that follows this section. A catch block
+      that handles <A HREF="Exception.html" TARGET="contents">Exception</A> is specified last.<P>
+
+If the catch blocks associated with the current try block do not handle the
+      Exception, and the current try block is nested within other try blocks in the
+      current call, the catch blocks associated with the next enclosing try block are
+      searched. If no catch block for the Exception is found, the system searches
+      previous nesting levels in the current call. If no catch block for the Exception
+      is found in the current call, the Exception is passed up the call stack, and the
+      previous stack frame is searched for a catch block that handles the Exception.
+      The search of the call stack continues until the Exception is handled or there
+      are no more frames in the call stack. If the top of the call stack is reached
+      without finding a catch block that handles the Exception, the default exception
+      handler handles it and the application terminates.<P>
+
+]<P>
+
+<A HREF="Exception.html" TARGET="contents">Exception</A> types support the following features:<P>
+
+<UL>
+<LI>
+      Human-readable text that describes the error. [<I>Note</I>: See System.Exception.Message property.]<P>
+
+</LI>
+<LI>
+      The state of the call stack when the Exception was thrown. [<I>Note</I>: See the System.Exception.StackTrace property.]<P>
+
+</LI>
+<LI>
+      When there is a causal relationship between two or more Exceptions, this
+      information is maintained via the System.Exception.InnerException property.</LI>
+</UL>
+The Base Class Library provides two types that inherit 
+   directly from <A HREF="Exception.html" TARGET="contents">Exception</A>
+   :<P>
+
+<UL>
+<LI><A HREF="ApplicationException.html" TARGET="contents">ApplicationException</A></LI>
+<LI><A HREF="SystemException.html" TARGET="contents">SystemException</A></LI>
+</UL>
+[<I>Note</I>: Most user-defined
+   exceptions derive from <A HREF="ApplicationException.html" TARGET="contents">ApplicationException</A>. For more information, see
+<A HREF="ApplicationException.html" TARGET="contents">ApplicationException</A> 
+and <A HREF="SystemException.html" TARGET="contents">SystemException</A>
+.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates a catch block that is
+      defined to handle <A HREF="ArithmeticException.html" TARGET="contents">ArithmeticException</A> errors. This catch block also catches <A HREF="DivideByZeroException.html" TARGET="contents">DivideByZeroException</A>
+      errors because <A HREF="DivideByZeroException.html" TARGET="contents">DivideByZeroException</A> derives from <A HREF="ArithmeticException.html" TARGET="contents">ArithmeticException</A>, and there is no catch block explicitly
+      defined for <A HREF="DivideByZeroException.html" TARGET="contents">DivideByZeroException</A> errors.<P>
+
+<PRE>using System;
+class ExceptionTestClass {
+ public static void Main() {
+ int x = 0;
+ try {
+ int y = 100/x;
+ }
+ catch (ArithmeticException e) {
+ Console.WriteLine(&quot;ArithmeticException Handler: {0}&quot;, e.ToString());
+ }
+ catch (Exception e) {
+ Console.WriteLine(&quot;Generic Exception Handler: {0}&quot;, e.ToString());
+ }
+ } 
+}
+   </PRE>
+The output is<P>
+
+<PRE>
+ArithmeticException Handler: System.DivideByZeroException: Attempted to divide by zero.
+   at ExceptionTestClass.Main()
+ </PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Exception Constructors<P>
+
+<A HREF="#Exception() Constructor" TARGET="contents">Exception() Constructor</A><BR>
+<A HREF="#Exception(System.String) Constructor" TARGET="contents">Exception(System.String) Constructor</A><BR>
+<A HREF="#Exception(System.String, System.Exception) Constructor" TARGET="contents">Exception(System.String, System.Exception) Constructor</A><BR>
+<P>
+
+Exception Methods<P>
+
+<A HREF="#Exception.GetBaseException Method" TARGET="contents">Exception.GetBaseException Method</A><BR>
+<A HREF="#Exception.ToString Method" TARGET="contents">Exception.ToString Method</A><BR>
+<P>
+
+Exception Properties<P>
+
+<A HREF="#Exception.InnerException Property" TARGET="contents">Exception.InnerException Property</A><BR>
+<A HREF="#Exception.Message Property" TARGET="contents">Exception.Message Property</A><BR>
+<A HREF="#Exception.StackTrace Property" TARGET="contents">Exception.StackTrace Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Exception() Constructor"><H3>Exception() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Exception();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="Exception.html" TARGET="contents">Exception</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.Exception.Message property of the new instance to a 
+   system-supplied message that describes the error and takes into account the
+   current system culture. The System.Exception.InnerException property is initialized to
+<CODE>null</CODE>
+ and the System.Exception.StackTrace property is initialized to System.String.Empty
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Exception.html" TARGET="contents">System.Exception Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Exception(System.String) Constructor"><H3>Exception(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Exception(string message);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new instance of the <A HREF="Exception.html" TARGET="contents">Exception</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.Exception.Message
+property of the new instance using <I>message</I>. If <I>message</I> is
+<CODE>null</CODE>
+, the System.Exception.Message property is initialized to the 
+system-supplied message provided by the constructor that takes no arguments. The System.Exception.InnerException property is initialized to
+<CODE>null</CODE>
+ and the System.Exception.StackTrace property is initialized to System.String.Empty.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Exception.html" TARGET="contents">System.Exception Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Exception(System.String, System.Exception) Constructor"><H3>Exception(System.String, System.Exception) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Exception(string message, Exception innerException);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new instance of the <A HREF="Exception.html" TARGET="contents">Exception</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+<DT>innerException</DT>
+<DD>An instance of <A HREF="Exception.html" TARGET="contents">Exception</A> that is the cause of the current exception. If <I>innerException</I> is non-null, then the current exception was raised in a catch block handling <I>innerException</I> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.Exception.Message property of the new instance using
+<I>message</I>, and the System.Exception.InnerException property using 
+<I>innerException</I>. If <I>message</I> is 
+<CODE>null</CODE>
+, the System.Exception.Message property is initialized to the 
+   system-supplied message provided by the constructor that takes no arguments.<P>
+
+ The System.Exception.StackTrace property is initialized to System.String.Empty.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Exception.html" TARGET="contents">System.Exception Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Exception.GetBaseException Method"><H3>Exception.GetBaseException Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual Exception GetBaseException();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the <A HREF="Exception.html" TARGET="contents">Exception</A> that is the root cause of one or more subsequent Exceptions.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+Returns the first Exception thrown in a chain of
+      Exceptions. If the System.Exception.InnerException property
+      of the current Exception is <CODE>null</CODE>
+ , returns the current Exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: A chain of
+      Exceptions consists of a set of Exceptions such that each Exception in the chain
+      was thrown as a direct result of the Exception referenced in its System.Exception.InnerException
+      property. For a given chain, there can be exactly one Exception that is the root
+      cause of all other Exceptions in the chain. This Exception is called the
+      <I>base</I><I>exception</I> and its System.Exception.InnerException
+property always contains a null reference.]<P>
+
+<P>
+
+[<I>Behaviors</I>: 
+   
+   For all Exceptions in a chain of Exceptions, the System.Exception.GetBaseException method is required to return the same object (the <I>base    exception</I>
+   ).]<P>
+
+<P>
+
+[<I>Overrides</I>: 
+   The System.Exception.GetBaseException method is overridden in classes
+   that require control over the exception content or format.
+]<P>
+
+<P>
+
+[<I>Usage</I>: 
+   Use the System.Exception.GetBaseException method when you want to find the root cause of an
+   Exception but do not need information about Exceptions that may have
+   occurred between the current Exception and the first Exception.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example shows an implementation of the
+      System.Exception.GetBaseException method.<P>
+
+<PRE>public virtual Exception GetBaseException() {
+ Exception inner = InnerException;
+ Exception back = this;
+ while (inner != null) {
+ back = inner;
+ inner = inner.InnerException;
+ }
+ return back;
+}
+      </PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Exception.html" TARGET="contents">System.Exception Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Exception.ToString Method"><H3>Exception.ToString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Creates and returns a <A HREF="String.html" TARGET="contents">String</A>
+representation of the current
+Exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A>
+representation of the current Exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: System.Exception.ToString returns a representation of the current
+      Exception that is intended to be understood by humans. Where the Exception
+      contains culture-sensitive data, the string representation returned by System.Exception.ToString is
+      required to take into account the current system culture. [<I>Note</I>:  Although there are no exact requirements for the
+      format of the returned string, it should as much as possible reflect the value
+      of the object as perceived by the user.]<P>
+
+<P>
+
+[<I>Note</I>: This method
+      overrides System.Object.ToString.]<P>
+
+<P>
+
+]<P>
+
+[<I>Default</I>:  The System.Exception.ToString implementation obtains the fully
+   qualified name of the current Exception, the message, the result of calling
+System.Exception.ToString on the inner exception, and the result of calling 
+System.Environment.StackTrace. If any of these 
+   members is <CODE>null</CODE>
+ or equal to System.String.Empty , its value is not
+   included in the returned string.<P>
+
+]<P>
+
+[<I>Overrides</I>:  It is recommended, but not required, that System.Exception.ToString be
+   overridden to return information about members declared in the derived class.
+   For example, the <A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A> class overrides System.Exception.ToString so
+   that it returns the value of the System.ArgumentException.ParamName property, if that value is not
+<CODE>null</CODE>
+ .<P>
+
+]<P>
+
+[<I>Usage</I>:  Use the System.Exception.ToString method to obtain a string
+   representation of an Exception.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example causes an Exception and displays
+      the result of calling System.Exception.ToString on that Exception.<P>
+
+<PRE>using System;
+public class MyClass {}
+public class ArgExceptionExample {
+ public static void Main() {
+ MyClass my = new MyClass();
+ string s = &quot;sometext&quot;;
+ try {
+ int i = s.CompareTo(my);
+ }
+ catch (Exception e) {
+ Console.WriteLine(&quot;Error: {0}&quot;,e.ToString());
+ }
+ }
+}
+   </PRE>
+The output is<P>
+
+<PRE>
+Error: System.ArgumentException: Object must be of type String.
+   at System.String.CompareTo(Object value)
+   at ArgExceptionExample.Main()
+ </PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Exception.html" TARGET="contents">System.Exception Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Exception.InnerException Property"><H3>Exception.InnerException Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Exception InnerException { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the <A HREF="Exception.html" TARGET="contents">Exception</A> instance that caused the current Exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+An instance of <A HREF="Exception.html" TARGET="contents">Exception</A> that describes the error that caused the current Exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: When an Exception
+   <I>X</I> is thrown as a direct result of a previous exception <I> Y</I>
+   , the System.Exception.InnerException property of
+<I>X</I> should contain a reference to <I>Y</I>
+.]<P>
+
+<P>
+
+ The System.Exception.InnerException property returns the same value as was passed 
+into the constructor, or <CODE>null</CODE>
+
+if the
+inner exception value was not supplied to the constructor.<P>
+
+[<I>Note</I>: Using the System.Exception.InnerException
+property, you can obtain the set of Exceptions that led to the current
+Exception. System.Exception.GetBaseException includes an
+example that demonstrates this procedure.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates throwing and catching
+      an Exception that references an inner Exception.<P>
+
+<PRE>using System;
+public class MyAppException:ApplicationException {
+ public MyAppException (String message) : base (message) {}
+ public MyAppException (String message, Exception inner) : base(message,inner) {} 
+}
+public class ExceptExample {
+ public void ThrowInner () {
+ throw new MyAppException(&quot;ExceptExample inner exception&quot;);
+ }
+ public void CatchInner() {
+ try {
+ this.ThrowInner();
+ }
+ catch (Exception e) {
+ throw new MyAppException(&quot;Error caused by trying ThrowInner.&quot;,e);
+ }
+ }
+}
+public class Test {
+ public static void Main() {
+ ExceptExample testInstance = new ExceptExample();
+ try {
+ testInstance.CatchInner();
+ }
+ catch(Exception e) {
+ Console.WriteLine (&quot;In Main catch block. Caught: {0}&quot;, e.Message);
+ Console.WriteLine (&quot;Inner Exception is {0}&quot;,e.InnerException);
+ }
+}
+}
+   </PRE>
+The output is<P>
+
+<PRE>
+In Main catch block. Caught: Error caused by trying ThrowInner.
+Inner Exception is MyAppException: ExceptExample inner exception
+   at ExceptExample.ThrowInner()
+   at ExceptExample.CatchInner()
+ </PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Exception.html" TARGET="contents">System.Exception Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Exception.Message Property"><H3>Exception.Message Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string Message { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="String.html" TARGET="contents">String</A> containing a message that describes the current Exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> that contains a detailed description of the error, or
+System.String.Empty. 
+ This value is intended to be understood by humans.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  The text of System.Exception.Message
+ should completely describe the error and should, when
+ possible, explain how to correct it.<P>
+
+ The value of the System.Exception.Message
+property is included in the information returned by System.Exception.ToString
+.<P>
+
+]<P>
+
+ 
+ This property is read-only.<P>
+
+[<I>Behaviors</I>:  The System.Exception.Message
+property is set
+only when creating an Exception instance.<P>
+
+ If no message was supplied to the constructor
+ for the current instance, the system supplies a default message that is
+ formatted using the current system culture.<P>
+
+]<P>
+
+[<I>Overrides</I>:  The System.Exception.Message
+property is overridden in classes that require
+control over message content or format.<P>
+
+]<P>
+
+[<I>Usage</I>:  Application code typically
+ accesses this property when there is a need to display information about
+ an exception that has been caught.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Exception.html" TARGET="contents">System.Exception Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Exception.StackTrace Property"><H3>Exception.StackTrace Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string StackTrace { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="String.html" TARGET="contents">String</A> representation of the frames on the call stack at the time the
+ current Exception was thrown.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> that describes the contents of the call stack.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: System.Exception.StackTrace
+may not report as many method calls as expected, due to code transformations, such
+as inlining, that occur during optimization.]<P>
+
+<P>
+
+ 
+ This property is read-only.<P>
+
+[<I>Behaviors</I>: The format of the information returned by this property
+ is required to be identical to the format of the information returned by System.Environment.StackTrace
+ 
+ .<P>
+
+]<P>
+
+[<I>Overrides</I>: The System.Exception.StackTrace
+property is overridden in classes that require control over
+the stack trace content or format.<P>
+
+]<P>
+
+[<I>Usage</I>: Use the System.Exception.StackTrace
+property to obtain a string representation of the contents of the call stack at
+the time the exception was thrown.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Exception.html" TARGET="contents">System.Exception Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

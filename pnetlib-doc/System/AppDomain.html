@@ -1,0 +1,449 @@
+<HTML>
+<HEAD>
+<TITLE>System.AppDomain Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.AppDomain Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class AppDomain : MarshalByRefObject</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="MarshalByRefObject.html" TARGET="contents">MarshalByRefObject</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;AppDomain<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Represents an application domain, which is an isolated
+      environment where applications execute.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ Application domains, which are represented by <A HREF="AppDomain.html" TARGET="contents">AppDomain</A> objects, provide isolation,
+   unloading, and security boundaries for executing managed
+   code. <P>
+
+Multiple application domains can run in a single
+   process; however, there is not a one-to-one correlation between application
+   domains and threads. Several threads can belong to a single application domain,
+   and while a given thread is not confined to a single application domain, at any
+   given time, a thread executes in a single application
+   domain.<P>
+
+Application domains are created using 
+   the <CODE>CreateDomain</CODE>
+ method.
+<A HREF="AppDomain.html" TARGET="contents">AppDomain</A> 
+instances are used to load and execute assemblies (<A HREF="../System/Reflection/Assembly.html" TARGET="contents">Assembly</A>).
+When a <A HREF="AppDomain.html" TARGET="contents">AppDomain</A> is no longer in use, it can
+be unloaded.<P>
+
+The <A HREF="AppDomain.html" TARGET="contents">AppDomain</A> class implements a set of
+events to enable applications to respond to the following conditions:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Event</TH><TH>ConditionEvent</TH></TR>
+<TR><TD>System.AppDomain.AssemblyLoad</TD><TD>An assembly was loaded. <P>
+
+System.AppDomain.AssemblyLoad</TD></TR>
+<TR><TD>System.AppDomain.DomainUnload</TD><TD> An
+         application
+         domain will be unloaded. System.AppDomain.DomainUnload</TD></TR>
+<TR><TD>System.AppDomain.UnhandledException</TD><TD> An unhandled exception was thrown. System.AppDomain.UnhandledException</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+AppDomain Methods<P>
+
+<A HREF="#AppDomain.CreateDomain Method" TARGET="contents">AppDomain.CreateDomain Method</A><BR>
+<A HREF="#AppDomain.ToString Method" TARGET="contents">AppDomain.ToString Method</A><BR>
+<A HREF="#AppDomain.Unload Method" TARGET="contents">AppDomain.Unload Method</A><BR>
+<P>
+
+AppDomain Properties<P>
+
+<A HREF="#AppDomain.FriendlyName Property" TARGET="contents">AppDomain.FriendlyName Property</A><BR>
+<P>
+
+AppDomain Events<P>
+
+<A HREF="#AppDomain.AssemblyLoad Event" TARGET="contents">AppDomain.AssemblyLoad Event</A><BR>
+<A HREF="#AppDomain.DomainUnload Event" TARGET="contents">AppDomain.DomainUnload Event</A><BR>
+<A HREF="#AppDomain.UnhandledException Event" TARGET="contents">AppDomain.UnhandledException Event</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="AppDomain.CreateDomain Method"><H3>AppDomain.CreateDomain Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static AppDomain CreateDomain(string friendlyName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Creates and returns a new application domain with the specified name.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>friendlyName</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the friendly name of the domain. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="AppDomain.html" TARGET="contents">AppDomain</A> representing the newly created application domain.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>friendlyName</I> is <CODE>null</CODE>
+ .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The <I>friendlyName</I> parameter is intended to identify the domain
+   in a manner that is meaningful to humans. This string should be suitable for
+   display in user interfaces. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AppDomain.html" TARGET="contents">System.AppDomain Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AppDomain.ToString Method"><H3>AppDomain.ToString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the current instance.
+ <P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing
+ information about the current <A HREF="AppDomain.html" TARGET="contents">AppDomain</A>
+ instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The string returned by this method includes the friendly name of the
+ application domain.
+ <P>
+
+[<I>Note</I>: This method
+ overrides System.Object.ToString
+ .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AppDomain.html" TARGET="contents">System.AppDomain Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AppDomain.Unload Method"><H3>AppDomain.Unload Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Unload(AppDomain domain);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Unloads the specified application domain.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>domain</DT>
+<DD>A <A HREF="AppDomain.html" TARGET="contents">AppDomain</A> representing the application domain to be unloaded. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>domain</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="CannotUnloadAppDomainException.html" TARGET="contents">CannotUnloadAppDomainException</A></TD><TD><I>domain</I> could not be unloaded.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the thread that invoked System.AppDomain.Unload(System.AppDomain)
+is running in <I>domain</I>, another thread is started to perform the unload
+operation. If <I>domain</I> cannot be unloaded, a <A HREF="CannotUnloadAppDomainException.html" TARGET="contents">CannotUnloadAppDomainException</A> is thrown in that thread, not the original thread that invoked
+System.AppDomain.Unload(System.AppDomain). However, if the thread that invoked System.AppDomain.Unload(System.AppDomain) is 
+running outside <I>domain</I>, that is the thread that receives the exception.<P>
+
+The threads in <I>domain</I>
+are terminated using
+the System.Threading.Thread.Abort(System.Object) method, which throws the thread an instance of
+<A HREF="../System/Threading/ThreadAbortException.html" TARGET="contents">ThreadAbortException</A>. [<I>Note</I>: Although 
+the thread should terminate promptly, it can continue executing for an
+unbounded amount of time in its <CODE>finally</CODE>
+ clause.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AppDomain.html" TARGET="contents">System.AppDomain Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AppDomain.FriendlyName Property"><H3>AppDomain.FriendlyName Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string FriendlyName { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the friendly name of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> containing the friendly name of the current application domain.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+ The friendly name of a <A HREF="AppDomain.html" TARGET="contents">AppDomain</A> instance created by an application is
+   specified to the constructor. The friendly name of the default
+<A HREF="AppDomain.html" TARGET="contents">AppDomain</A> is the name
+   of the assembly file loaded in the application domain. The friendly name is
+   formed by stripping the directory information from the assembly&apos;s file
+   name. For example, if the loaded assembly has the name <CODE>&quot;\MyAppDirectory\MyAssembly.exe&quot;</CODE> , the friendly name
+of the default application domain is <CODE>&quot;MyAssembly.exe&quot;</CODE> .<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AppDomain.html" TARGET="contents">System.AppDomain Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AppDomain.AssemblyLoad Event"><H3>AppDomain.AssemblyLoad Event</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public event AssemblyLoadEventHandler AssemblyLoad</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Raised when an assembly is loaded.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  This event is handled by a <A HREF="AssemblyLoadEventHandler.html" TARGET="contents">AssemblyLoadEventHandler</A> delegate. Information about the event
+      is passed to the delegate in a <A HREF="AssemblyLoadEventArgs.html" TARGET="contents">AssemblyLoadEventArgs</A> instance.<P>
+
+For additional information about events, see Partitions I and II of the CLI Specification.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AppDomain.html" TARGET="contents">System.AppDomain Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AppDomain.DomainUnload Event"><H3>AppDomain.DomainUnload Event</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public event EventHandler DomainUnload</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Raised when a <A HREF="AppDomain.html" TARGET="contents">AppDomain</A> is about to be unloaded.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This event is handled by a <A HREF="EventHandler.html" TARGET="contents">EventHandler</A> delegate. Information about the event is passed to the
+      delegate in a <A HREF="EventArgs.html" TARGET="contents">EventArgs</A> instance. The delegate for
+      this event can perform any termination activities before the application domain
+      is unloaded.<P>
+
+ For additional information about events, see Partitions I and II of
+      the CLI Specification.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AppDomain.html" TARGET="contents">System.AppDomain Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AppDomain.UnhandledException Event"><H3>AppDomain.UnhandledException Event</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public event UnhandledExceptionEventHandler UnhandledException</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Raised when an exception is
+      not caught by the default application domain.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: 
+      This event is handled by a <A HREF="UnhandledExceptionEventHandler.html" TARGET="contents">UnhandledExceptionEventHandler</A> delegate. Information about the event is passed to the
+      delegate in a <A HREF="UnhandledExceptionEventArgs.html" TARGET="contents">UnhandledExceptionEventArgs</A> instance. The delegate
+      provides default handling for uncaught exceptions. When this event is not
+      handled, the system default handler reports the exception to the user and
+      might terminate the application. For additional information, see
+   System.UnhandledExceptionEventArgs.IsTerminating.   
+]<P>
+
+<P>
+
+This event is raised only for the application domain that is created by the
+   system when an application is started. If an application creates additional
+   application domains, specifying a delegate for this event in those applications
+   domains has no effect.<P>
+
+[<I>Note</I>: For additional
+   information about events, see Partitions I and II of the CLI
+   Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AppDomain.html" TARGET="contents">System.AppDomain Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

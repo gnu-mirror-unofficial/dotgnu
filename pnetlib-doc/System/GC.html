@@ -1,0 +1,361 @@
+<HTML>
+<HEAD>
+<TITLE>System.GC Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.GC Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class GC</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;GC<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides a mechanism for programmatic control of
+      the garbage collector.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The <I>garbage</I><I>collector</I> is responsible for tracking and reclaiming
+   objects allocated in managed memory. Periodically, the garbage collector
+   performs a garbage collection to reclaim memory allocated to objects for which
+   there are no valid references. Garbage collections happen automatically when a
+   request for memory cannot be satisfied using available free memory. <P>
+
+A garbage collection consists of the following
+   steps:
+   <P>
+
+<OL>
+<LI>
+      The garbage collector searches for managed objects
+      that are referenced in managed code.</LI>
+<LI>
+      The garbage collector attempts to finalize
+      unreferenced objects.</LI>
+<LI>
+      The garbage collector frees unreferenced objects and reclaims their
+      memory.</LI>
+</OL>
+During a collection, the garbage collector will not free an object if it
+   finds one or more references to the object in managed code. However, the garbage
+   collector does not recognize references to an object from unmanaged code, and
+   may free objects that are being used exclusively in unmanaged code unless
+   explicitly prevented from doing so. The System.GC.KeepAlive(System.Object) method provides a mechanism that
+   prevents the garbage collector from collecting objects that are still in use in
+   unmanaged code.<P>
+
+Implementations of the garbage collector should track the following
+      information:<P>
+
+<UL>
+<LI>
+         Memory allocated to objects that are still in use</LI>
+<LI>
+         Memory allocated to objects that are no longer in use</LI>
+<LI>
+         Objects that require finalization prior to being
+         freed</LI>
+</UL>
+Other than managed memory allocations, implementations
+   of the garbage collector should not maintain information about resources held by
+   an object, such as file handles or database connections. When a type uses
+   unmanaged resources that must be released before instances of the type are
+   reclaimed, the type should implement a <I>finalizer</I>
+   
+   . In most cases, finalizers are implemented by
+   overriding the System.Object.Finalize method; however, types written in C# or C++ implement
+   destructors, which compilers turn into an override of
+System.Object.Finalize. <P>
+
+In most cases, if an object has a finalizer, the garbage collector calls it
+   prior to freeing the object. However, the garbage collector is not required to
+   call finalizers in all situations. Also, the garbage collector is not required
+   to use a specific thread to finalize objects, or guarantee the order in which
+   finalizers are called for objects that reference each other but are otherwise
+   available for garbage collection. <P>
+
+In scenarios where resources must be released at a specific time, classes
+   should implement the <A HREF="IDisposable.html" TARGET="contents">IDisposable</A> interface, which contains a single method (System.IDisposable.Dispose)
+   that is used to perform resource management and cleanup tasks. Classes that
+   implement System.IDisposable.Dispose must specify, as part of their class contract, if and when class
+   consumers call the method to clean up the object. The garbage collector does
+   not, by default, call the System.IDisposable.Dispose method; however, implementations of the
+System.IDisposable.Dispose method can call methods in the <A HREF="GC.html" TARGET="contents">GC</A> class to customize the finalization
+   behavior of the garbage collector.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+GC Methods<P>
+
+<A HREF="#GC.KeepAlive Method" TARGET="contents">GC.KeepAlive Method</A><BR>
+<A HREF="#GC.ReRegisterForFinalize Method" TARGET="contents">GC.ReRegisterForFinalize Method</A><BR>
+<A HREF="#GC.SuppressFinalize Method" TARGET="contents">GC.SuppressFinalize Method</A><BR>
+<A HREF="#GC.WaitForPendingFinalizers Method" TARGET="contents">GC.WaitForPendingFinalizers Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="GC.KeepAlive Method"><H3>GC.KeepAlive Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void KeepAlive(object obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Creates a reference to the specified
+      object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> obj</DT>
+<DD>A <A HREF="Object.html" TARGET="contents">Object</A> that is not to be reclaimed by the garbage collector.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The purpose of the System.GC.KeepAlive(System.Object)
+method is to ensure the existence of
+a reference to an object that is at risk of being reclaimed by the
+garbage collector prematurely.<P>
+
+The System.GC.KeepAlive(System.Object)
+method performs no operations and does not produce
+any side effects.<P>
+
+This method is required to be implemented in
+   such a way as to prevent optimizing tools from omitting the method call from
+   the executable code.<P>
+
+During program execution, after the call to the System.GC.KeepAlive(System.Object) method is
+executed, if there are no additional references to <I>obj</I> in managed code
+or data, <I>obj</I>
+is eligible
+for garbage collection.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="GC.html" TARGET="contents">System.GC Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="GC.ReRegisterForFinalize Method"><H3>GC.ReRegisterForFinalize Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void ReRegisterForFinalize(object obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Requests that the specified object be added to the list
+      of objects that require finalization.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> obj</DT>
+<DD>The <A HREF="Object.html" TARGET="contents">Object</A> to add to the set of objects that require finalization.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>obj</I> is a <CODE>null</CODE>
+ reference.</TD></TR>
+<TR><TD><A HREF="ExecutionEngineException.html" TARGET="contents">ExecutionEngineException</A></TD><TD>The caller of this method is not the same as the object passed to this method.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.GC.ReRegisterForFinalize(System.Object) method adds <I>obj</I> to the list of
+   objects that request finalization before the garbage collector frees the object.
+<I>obj</I> is required to be the caller of this
+   method.<P>
+
+Calling the System.GC.ReRegisterForFinalize(System.Object) method 
+does not guarantee that the garbage collector will call an object&apos;s finalizer.
+[<I>Note</I>:  For more information, see
+System.Object.Finalize 
+.]<P>
+
+<P>
+
+[<I>Note</I>: By default, all
+   objects that implement finalizers are added to the list of objects that require
+   finalization; however, an object may have already been finalized, or may have
+   disabled finalization by calling the System.GC.SuppressFinalize(System.Object)
+   method.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="GC.html" TARGET="contents">System.GC Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="GC.SuppressFinalize Method"><H3>GC.SuppressFinalize Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void SuppressFinalize(object obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Instructs the garbage collector not to call the System.Object.Finalize method on the specified
+   object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>obj</DT>
+<DD>The <A HREF="Object.html" TARGET="contents">Object</A> whose System.Object.Finalize method will not be called.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>obj</I> is a <CODE>null</CODE>
+ reference.</TD></TR>
+<TR><TD><A HREF="InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The caller of this method is not the same as the object passed to this method.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The method removes <I>obj</I> from the set of objects
+   that require finalization. <I>obj</I> is required to be the caller of this
+   method.<P>
+
+[<I>Note</I>: Objects that
+   implement the <A HREF="IDisposable.html" TARGET="contents">IDisposable</A> interface should call this method from the System.IDisposable.Dispose
+   method to prevent the garbage collector from calling System.Object.Finalize on an
+   object that does not require it.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="GC.html" TARGET="contents">System.GC Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="GC.WaitForPendingFinalizers Method"><H3>GC.WaitForPendingFinalizers Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void WaitForPendingFinalizers();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Suspends the current thread until the set of objects
+ waiting for finalization is empty.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.GC.WaitForPendingFinalizers 
+
+blocks an application until all objects that are awaiting
+finalization have been finalized.<P>
+
+When the garbage collector finds objects that can be 
+ reclaimed, it checks each object to determine the object&apos;s finalization
+ requirements. If an object implements a finalizer and has not disabled
+ finalization by calling System.GC.SuppressFinalize(System.Object), the object is passed to the thread
+ that handles finalization. The System.GC.WaitForPendingFinalizers
+ 
+ method blocks until all finalizers
+ have run to completion.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="GC.html" TARGET="contents">System.GC Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

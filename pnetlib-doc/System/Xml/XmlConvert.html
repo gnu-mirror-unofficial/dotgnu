@@ -1,0 +1,2636 @@
+<HTML>
+<HEAD>
+<TITLE>System.Xml.XmlConvert Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Xml.XmlConvert Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class XmlConvert</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;XmlConvert<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System.Xml
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Encodes and decodes XML names and provides methods for converting
+      between common language infrastructure (CLI) types and XML Schema Definition
+      language (XSD) types. When converting data types, the values returned are locale independent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Element and attribute names or ID values are limited to a 
+      range of XML characters according to the Extensible Markup Language (XML) 1.0
+      (Second Edition) recommendation, located at
+      www.w3.org/TR/2000/REC-xml-20001006.html. When names contain invalid characters, they need to be translated into valid XML
+      names.<P>
+
+ Many languages
+      and applications allow Unicode characters in their names, which are not valid in XML names.
+      For example, if &apos;Order Detail&apos; were a column heading in a database, the database
+      allows the space between the words Order and Detail. However, in XML, the space
+      between Order and Detail is considered an invalid XML character. Thus, the
+      space, the invalid character, needs to be converted into an escaped hexadecimal
+      encoding and can be decoded later.<P>
+
+ 
+      The System.Xml.XmlConvert.EncodeName(System.String) and System.Xml.XmlConvert.DecodeName(System.String) methods are
+      used to translate invalid
+      XML names into valid XML names and vice versa.<P>
+
+<A HREF="XmlConvert.html" TARGET="contents">XmlConvert</A> 
+provides methods that enable the conversion of a <A HREF="../../System/String.html" TARGET="contents">String</A>
+to a
+CLI data type and vice-versa. Locale settings
+are not taken into account during data conversion.<P>
+
+<A HREF="XmlConvert.html" TARGET="contents">XmlConvert</A> also provides 
+methods that convert between XML Schema Definition (XSD) data types (see http://www.w3.org/TR/xmlschema-2/#built-in-datatypes) and their
+corresponding common language infrastructure (CLI) data
+types. The following table shows the XSD
+data types and their corresponding CLI data types.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>CLI
+         data type</TH><TH>XSD
+         data typeCLI
+         data type</TH></TR>
+<TR><TD>A
+      <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array</TD><TD> hexBinaryA
+      <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array</TD></TR>
+<TR><TD>A
+      <A HREF="../../System/Byte.html" TARGET="contents">Byte</A>
+      array</TD><TD> base64BinaryA
+      <A HREF="../../System/Byte.html" TARGET="contents">Byte</A>
+      array</TD></TR>
+<TR><TD><A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A></TD><TD> Boolean<A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A></TD></TR>
+<TR><TD><A HREF="../../System/SByte.html" TARGET="contents">SByte</A></TD><TD> Byte<A HREF="../../System/SByte.html" TARGET="contents">SByte</A></TD></TR>
+<TR><TD><A HREF="../../System/String.html" TARGET="contents">String</A></TD><TD> normalizedString<A HREF="../../System/String.html" TARGET="contents">String</A></TD></TR>
+<TR><TD><A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD><TD> Date<A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD></TR>
+<TR><TD><A HREF="../../System/TimeSpan.html" TARGET="contents">TimeSpan</A></TD><TD> duration<A HREF="../../System/TimeSpan.html" TARGET="contents">TimeSpan</A></TD></TR>
+<TR><TD><A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD><TD> dateTime<A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD></TR>
+<TR><TD><A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A></TD><TD> decimal<A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A></TD></TR>
+<TR><TD><A HREF="../../System/Double.html" TARGET="contents">Double</A></TD><TD> Double<A HREF="../../System/Double.html" TARGET="contents">Double</A></TD></TR>
+<TR><TD>A <A HREF="../../System/String.html" TARGET="contents">String</A> array</TD><TD> ENTITIESA <A HREF="../../System/String.html" TARGET="contents">String</A> array</TD></TR>
+<TR><TD><A HREF="../../System/String.html" TARGET="contents">String</A></TD><TD> ENTITY<A HREF="../../System/String.html" TARGET="contents">String</A></TD></TR>
+<TR><TD><A HREF="../../System/Single.html" TARGET="contents">Single</A></TD><TD> Float<A HREF="../../System/Single.html" TARGET="contents">Single</A></TD></TR>
+<TR><TD><A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD><TD> gMonthDay<A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD></TR>
+<TR><TD><A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD><TD> gDay<A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD></TR>
+<TR><TD><A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD><TD> gYear<A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD></TR>
+<TR><TD><A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD><TD> gYearMonth<A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD></TR>
+<TR><TD><A HREF="../../System/String.html" TARGET="contents">String</A></TD><TD> ID<A HREF="../../System/String.html" TARGET="contents">String</A></TD></TR>
+<TR><TD><A HREF="../../System/String.html" TARGET="contents">String</A></TD><TD> IDREF<A HREF="../../System/String.html" TARGET="contents">String</A></TD></TR>
+<TR><TD>A
+   <A HREF="../../System/String.html" TARGET="contents">String</A> array</TD><TD> IDREFSA
+   <A HREF="../../System/String.html" TARGET="contents">String</A> array</TD></TR>
+<TR><TD><A HREF="../../System/Int32.html" TARGET="contents">Int32</A></TD><TD> int<A HREF="../../System/Int32.html" TARGET="contents">Int32</A></TD></TR>
+<TR><TD><A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A></TD><TD> integer<A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A></TD></TR>
+<TR><TD><A HREF="../../System/String.html" TARGET="contents">String</A></TD><TD> language<A HREF="../../System/String.html" TARGET="contents">String</A></TD></TR>
+<TR><TD><A HREF="../../System/Int64.html" TARGET="contents">Int64</A></TD><TD> long<A HREF="../../System/Int64.html" TARGET="contents">Int64</A></TD></TR>
+<TR><TD><A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD><TD> month<A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD></TR>
+<TR><TD><A HREF="../../System/String.html" TARGET="contents">String</A></TD><TD> Name<A HREF="../../System/String.html" TARGET="contents">String</A></TD></TR>
+<TR><TD><A HREF="../../System/String.html" TARGET="contents">String</A></TD><TD> NCName<A HREF="../../System/String.html" TARGET="contents">String</A></TD></TR>
+<TR><TD><A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A></TD><TD> negativeInteger<A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A></TD></TR>
+<TR><TD><A HREF="../../System/String.html" TARGET="contents">String</A></TD><TD> NMTOKEN<A HREF="../../System/String.html" TARGET="contents">String</A></TD></TR>
+<TR><TD>A
+   <A HREF="../../System/String.html" TARGET="contents">String</A> array</TD><TD> NMTOKENSA
+   <A HREF="../../System/String.html" TARGET="contents">String</A> array</TD></TR>
+<TR><TD><A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A></TD><TD> nonNegativeInteger<A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A></TD></TR>
+<TR><TD><A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A></TD><TD> nonPositiveInteger<A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A></TD></TR>
+<TR><TD><A HREF="../../System/String.html" TARGET="contents">String</A></TD><TD> NOTATION<A HREF="../../System/String.html" TARGET="contents">String</A></TD></TR>
+<TR><TD><A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A></TD><TD> positiveInteger<A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A></TD></TR>
+<TR><TD><A HREF="../../System/Int16.html" TARGET="contents">Int16</A></TD><TD> short<A HREF="../../System/Int16.html" TARGET="contents">Int16</A></TD></TR>
+<TR><TD><A HREF="../../System/String.html" TARGET="contents">String</A></TD><TD> string<A HREF="../../System/String.html" TARGET="contents">String</A></TD></TR>
+<TR><TD><A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD><TD> time<A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD></TR>
+<TR><TD><A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD><TD> timePeriod<A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A></TD></TR>
+<TR><TD><A HREF="../../System/String.html" TARGET="contents">String</A></TD><TD> token<A HREF="../../System/String.html" TARGET="contents">String</A></TD></TR>
+<TR><TD><A HREF="../../System/Byte.html" TARGET="contents">Byte</A></TD><TD> unsignedByte<A HREF="../../System/Byte.html" TARGET="contents">Byte</A></TD></TR>
+<TR><TD><A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A></TD><TD> unsignedInt<A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A></TD></TR>
+<TR><TD><A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A></TD><TD> unsignedLong<A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A></TD></TR>
+<TR><TD><A HREF="../../System/UInt16.html" TARGET="contents">UInt16</A></TD><TD> unsignedShort<A HREF="../../System/UInt16.html" TARGET="contents">UInt16</A></TD></TR>
+<TR><TD><A HREF="../../System/Uri.html" TARGET="contents">Uri</A></TD><TD> anyURI<A HREF="../../System/Uri.html" TARGET="contents">Uri</A></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+XmlConvert Constructors<P>
+
+<A HREF="#XmlConvert Constructor" TARGET="contents">XmlConvert Constructor</A><BR>
+<P>
+
+XmlConvert Methods<P>
+
+<A HREF="#XmlConvert.DecodeName Method" TARGET="contents">XmlConvert.DecodeName Method</A><BR>
+<A HREF="#XmlConvert.EncodeLocalName Method" TARGET="contents">XmlConvert.EncodeLocalName Method</A><BR>
+<A HREF="#XmlConvert.EncodeName Method" TARGET="contents">XmlConvert.EncodeName Method</A><BR>
+<A HREF="#XmlConvert.EncodeNmToken Method" TARGET="contents">XmlConvert.EncodeNmToken Method</A><BR>
+<A HREF="#XmlConvert.ToBoolean Method" TARGET="contents">XmlConvert.ToBoolean Method</A><BR>
+<A HREF="#XmlConvert.ToByte Method" TARGET="contents">XmlConvert.ToByte Method</A><BR>
+<A HREF="#XmlConvert.ToChar Method" TARGET="contents">XmlConvert.ToChar Method</A><BR>
+<A HREF="#XmlConvert.ToDateTime(System.String) Method" TARGET="contents">XmlConvert.ToDateTime(System.String) Method</A><BR>
+<A HREF="#XmlConvert.ToDateTime(System.String, System.String) Method" TARGET="contents">XmlConvert.ToDateTime(System.String, System.String) Method</A><BR>
+<A HREF="#XmlConvert.ToDateTime(System.String, System.String[]) Method" TARGET="contents">XmlConvert.ToDateTime(System.String, System.String[]) Method</A><BR>
+<A HREF="#XmlConvert.ToDecimal Method" TARGET="contents">XmlConvert.ToDecimal Method</A><BR>
+<A HREF="#XmlConvert.ToDouble Method" TARGET="contents">XmlConvert.ToDouble Method</A><BR>
+<A HREF="#XmlConvert.ToInt16 Method" TARGET="contents">XmlConvert.ToInt16 Method</A><BR>
+<A HREF="#XmlConvert.ToInt32 Method" TARGET="contents">XmlConvert.ToInt32 Method</A><BR>
+<A HREF="#XmlConvert.ToInt64 Method" TARGET="contents">XmlConvert.ToInt64 Method</A><BR>
+<A HREF="#XmlConvert.ToSByte Method" TARGET="contents">XmlConvert.ToSByte Method</A><BR>
+<A HREF="#XmlConvert.ToSingle Method" TARGET="contents">XmlConvert.ToSingle Method</A><BR>
+<A HREF="#XmlConvert.ToString(bool) Method" TARGET="contents">XmlConvert.ToString(bool) Method</A><BR>
+<A HREF="#XmlConvert.ToString(char) Method" TARGET="contents">XmlConvert.ToString(char) Method</A><BR>
+<A HREF="#XmlConvert.ToString(System.Decimal) Method" TARGET="contents">XmlConvert.ToString(System.Decimal) Method</A><BR>
+<A HREF="#XmlConvert.ToString(sbyte) Method" TARGET="contents">XmlConvert.ToString(sbyte) Method</A><BR>
+<A HREF="#XmlConvert.ToString(short) Method" TARGET="contents">XmlConvert.ToString(short) Method</A><BR>
+<A HREF="#XmlConvert.ToString(int) Method" TARGET="contents">XmlConvert.ToString(int) Method</A><BR>
+<A HREF="#XmlConvert.ToString(long) Method" TARGET="contents">XmlConvert.ToString(long) Method</A><BR>
+<A HREF="#XmlConvert.ToString(byte) Method" TARGET="contents">XmlConvert.ToString(byte) Method</A><BR>
+<A HREF="#XmlConvert.ToString(ushort) Method" TARGET="contents">XmlConvert.ToString(ushort) Method</A><BR>
+<A HREF="#XmlConvert.ToString(uint) Method" TARGET="contents">XmlConvert.ToString(uint) Method</A><BR>
+<A HREF="#XmlConvert.ToString(ulong) Method" TARGET="contents">XmlConvert.ToString(ulong) Method</A><BR>
+<A HREF="#XmlConvert.ToString(float) Method" TARGET="contents">XmlConvert.ToString(float) Method</A><BR>
+<A HREF="#XmlConvert.ToString(double) Method" TARGET="contents">XmlConvert.ToString(double) Method</A><BR>
+<A HREF="#XmlConvert.ToString(System.TimeSpan) Method" TARGET="contents">XmlConvert.ToString(System.TimeSpan) Method</A><BR>
+<A HREF="#XmlConvert.ToString(System.DateTime) Method" TARGET="contents">XmlConvert.ToString(System.DateTime) Method</A><BR>
+<A HREF="#XmlConvert.ToString(System.DateTime, System.String) Method" TARGET="contents">XmlConvert.ToString(System.DateTime, System.String) Method</A><BR>
+<A HREF="#XmlConvert.ToTimeSpan Method" TARGET="contents">XmlConvert.ToTimeSpan Method</A><BR>
+<A HREF="#XmlConvert.ToUInt16 Method" TARGET="contents">XmlConvert.ToUInt16 Method</A><BR>
+<A HREF="#XmlConvert.ToUInt32 Method" TARGET="contents">XmlConvert.ToUInt32 Method</A><BR>
+<A HREF="#XmlConvert.ToUInt64 Method" TARGET="contents">XmlConvert.ToUInt64 Method</A><BR>
+<A HREF="#XmlConvert.VerifyNCName Method" TARGET="contents">XmlConvert.VerifyNCName Method</A><BR>
+<A HREF="#XmlConvert.VerifyName Method" TARGET="contents">XmlConvert.VerifyName Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="XmlConvert Constructor"><H3>XmlConvert Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected XmlConvert();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new instance of the <A HREF="XmlConvert.html" TARGET="contents">XmlConvert</A> class.
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.DecodeName Method"><H3>XmlConvert.DecodeName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string DecodeName(string name);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Decodes a name.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the name to be decoded.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the decoded name.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ Names are decoded using the following rules:<P>
+
+<UL>
+<LI>
+         
+         Names are decoded from left to right.</LI>
+<LI>
+         
+         Any sequence <CODE>_xHHHH_</CODE> (where <CODE>HHHH</CODE> stands for a valid, four
+      digit hexadecimal UCS-2 code) that has not been previously decoded is
+      transformed into the corresponding Unicode 2.1 (Unicode 3.0 if supported by
+      the application) character.</LI>
+<LI>
+      
+      No
+      
+      short forms are recognized. They are passed on without translation. For
+      example, &quot;_x70_&quot; or &quot;__&quot; are not decoded.</LI>
+</UL>
+[<I>Note</I>: This method does the reverse of the System.Xml.XmlConvert.EncodeName(System.String), System.Xml.XmlConvert.EncodeLocalName(System.String), and System.Xml.XmlConvert.EncodeNmToken(System.String) methods.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the valid and invalid
+      character formats for decoding.<P>
+
+<PRE>using System;
+using System.Xml;
+
+public class App {
+
+  public static void Main() {
+
+    Console.WriteLine( &quot;{0} : {1} : {2}&quot;,
+      // _x0069_ decodes to i
+      XmlConvert.DecodeName(&quot;Order #1_x0069_&quot;),
+
+      // missing beginning _
+      XmlConvert.DecodeName(&quot;Order #1x0069_&quot;),
+
+      // short form
+      XmlConvert.DecodeName(&quot;Order #1_x69_&quot;) ); 
+  }
+}
+   </PRE>
+The output is<P>
+
+Order #1i : Order #1x0069_ : Order #1_x69_<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.EncodeLocalName Method"><H3>XmlConvert.EncodeLocalName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string EncodeLocalName(string name);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a name to a valid XML local name.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the name to be encoded.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the XML local name. If <I>name</I> is <CODE>null</CODE>
+ or System.String.Empty, <I>name</I> is returned.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is similar to the System.Xml.XmlConvert.EncodeName(System.String) method except that it encodes the colon (:) character, which
+   guarantees that the name can be used as the local name part of a namespace
+   qualified name.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example compares the System.Xml.XmlConvert.EncodeLocalName(System.String), System.Xml.XmlConvert.EncodeName(System.String), and System.Xml.XmlConvert.EncodeNmToken(System.String) methods when the name to be encoded is &quot;7:+&quot;.<P>
+
+<PRE>using System;
+using System.Xml;
+
+public class App {
+
+  public static void Main() {
+
+    Console.WriteLine( &quot;LocalName  {0}&quot;,
+      XmlConvert.EncodeLocalName(&quot;7:+&quot;) ); 
+    Console.WriteLine( &quot;Name  {0}&quot;,
+      XmlConvert.EncodeName(&quot;7:+&quot;) );
+    Console.WriteLine( &quot;NmToken  {0}&quot;,
+      XmlConvert.EncodeNmToken(&quot;7:+&quot;) );
+  }
+}
+</PRE>
+The output is<P>
+
+LocalName _x0037__x003A__x002B_<P>
+
+Name _x0037_:_x002B_<P>
+
+NmToken 7:_x002B_<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.EncodeName Method"><H3>XmlConvert.EncodeName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string EncodeName(string name);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a
+      name to a valid XML name.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the name to be encoded.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the XML name. If <I>name</I> is <CODE>null</CODE>
+ or System.String.Empty, <I>name</I> is returned.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method translates invalid characters, such as spaces or half-width
+      Katakana, that need to be mapped to XML names without the support or presence of
+      schemas. The invalid characters are translated into escaped numeric entity
+      encodings.<P>
+
+The escape character is &apos;_&apos;. Any XML name character that does not conform to
+      the W3C Extensible Markup Language (XML) 1.0 specification is escaped as
+      <CODE>_xHHHH_</CODE>. The <CODE>HHHH</CODE> string stands for the four-digit hexadecimal UCS-2 code for the
+      character in most significant bit first order. For example, the name &quot;Order
+      Details&quot; is encoded as &quot;Order<CODE>_x0020_</CODE>Details&quot;.<P>
+
+ The underscore character does not need to be escaped
+      unless it is followed by a character sequence that together with the underscore can be misinterpreted as an escape sequence
+      when decoding the name. No short forms are encoded. For example, the
+      forms &quot;_x20_&quot; and &quot;__&quot; are not encoded.<P>
+
+ This method guarantees the name is valid according to the XML specification.
+      It allows colons in any position, which means the name may still be invalid according
+      to the W3C Namespace Specification (www.w3.org/TR/REC-xml-names). To guarantee it is a valid namespace qualified
+      name use the System.Xml.XmlConvert.EncodeLocalName(System.String)
+      method for the prefix and local name
+      parts and join the result with a colon.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+See the System.Xml.XmlConvert.EncodeLocalName(System.String) method for an example comparing the System.Xml.XmlConvert.EncodeLocalName(System.String), System.Xml.XmlConvert.EncodeName(System.String), and System.Xml.XmlConvert.EncodeNmToken(System.String) methods.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.EncodeNmToken Method"><H3>XmlConvert.EncodeNmToken Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string EncodeNmToken(string name);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts
+      a name to a valid XML name token.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the name to be encoded.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the XML name token. If <I>name</I> is <CODE>null</CODE>
+ or System.String.Empty, <I>name</I> is
+   returned.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+See the System.Xml.XmlConvert.EncodeLocalName(System.String) method for an example comparing the
+System.Xml.XmlConvert.EncodeLocalName(System.String), System.Xml.XmlConvert.EncodeName(System.String), and System.Xml.XmlConvert.EncodeNmToken(System.String) methods.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToBoolean Method"><H3>XmlConvert.ToBoolean Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool ToBoolean(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> equivalent of
+<I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> does not represent a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method removes leading and trailing white space. After this trimming, valid strings are &quot;1&quot; and &quot;true&quot;, which return
+   <CODE>true</CODE>
+, and &quot;0&quot; and &quot;false&quot;, which return <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToByte Method"><H3>XmlConvert.ToByte Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static byte ToByte(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> equivalent of
+<I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct format.</TD></TR>
+<TR><TD><A HREF="../../System/OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a number less than System.Byte.MinValue or greater than System.Byte.MaxValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method calls System.Byte.Parse(System.String)(<I>s</I>, System.Globalization.NumberStyles.AllowLeadingWhite|System.Globalization.NumberStyles.AllowTrailingWhite, System.Globalization.NumberFormatInfo.InvariantInfo).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToChar Method"><H3>XmlConvert.ToChar Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static char ToChar(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/Char.html" TARGET="contents">Char</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The string containing a single character to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/Char.html" TARGET="contents">Char</A> equivalent of
+<I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> contains more than one character.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method calls System.Char.Parse(System.String)(<I>s</I>).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToDateTime(System.String) Method"><H3>XmlConvert.ToDateTime(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime ToDateTime(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> equivalent of <I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is System.String.Empty or is not in the correct format.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<I>s</I> is required to be in one of the following string formats or
+   a <A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A> is thrown.<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.f&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.ff&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.fff&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.ffff&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.fffff&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.ffffff&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.fffffff&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ssZ&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.fZ&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.ffZ&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.fffZ&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.ffffZ&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.fffffZ&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.ffffffZ&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.fffffffZ&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:sszzzzzz&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.fzzzzzz&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.ffzzzzzz&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.fffzzzzzz&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.ffffzzzzzz&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.fffffzzzzzz&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.ffffffzzzzzz&quot;<P>
+
+ &quot;yyyy-MM-ddTHH:mm:ss.fffffffzzzzzz&quot;<P>
+
+ &quot;HH:mm:ss&quot;<P>
+
+ &quot;HH:mm:ss.f&quot;<P>
+
+ &quot;HH:mm:ss.ff&quot;<P>
+
+ &quot;HH:mm:ss.fff&quot;<P>
+
+ &quot;HH:mm:ss.ffff&quot;<P>
+
+ &quot;HH:mm:ss.fffff&quot;<P>
+
+ &quot;HH:mm:ss.ffffff&quot;<P>
+
+ &quot;HH:mm:ss.fffffff&quot;<P>
+
+ &quot;HH:mm:ssZ&quot;<P>
+
+ &quot;HH:mm:ss.fZ&quot;<P>
+
+ &quot;HH:mm:ss.ffZ&quot;<P>
+
+ &quot;HH:mm:ss.fffZ&quot;<P>
+
+ &quot;HH:mm:ss.ffffZ&quot;<P>
+
+ &quot;HH:mm:ss.fffffZ&quot;<P>
+
+ &quot;HH:mm:ss.ffffffZ&quot;<P>
+
+ &quot;HH:mm:ss.fffffffZ&quot;<P>
+
+ &quot;HH:mm:sszzzzzz&quot;<P>
+
+ &quot;HH:mm:ss.fzzzzzz&quot;<P>
+
+ &quot;HH:mm:ss.ffzzzzzz&quot;<P>
+
+ &quot;HH:mm:ss.fffzzzzzz&quot;<P>
+
+ &quot;HH:mm:ss.ffffzzzzzz&quot;<P>
+
+ &quot;HH:mm:ss.fffffzzzzzz&quot;<P>
+
+ &quot;HH:mm:ss.ffffffzzzzzz&quot;<P>
+
+ &quot;HH:mm:ss.fffffffzzzzzz&quot;<P>
+
+ &quot;yyyy-MM-dd&quot;<P>
+
+ &quot;yyyy-MM-ddZ&quot;<P>
+
+ &quot;yyyy-MM-ddzzzzzz&quot;<P>
+
+ &quot;yyyy-MM&quot;<P>
+
+ &quot;yyyy-MMZ&quot;<P>
+
+ &quot;yyyy-MMzzzzzz&quot;<P>
+
+ &quot;yyyy&quot;<P>
+
+ &quot;yyyyZ&quot;<P>
+
+ &quot;yyyyzzzzzz&quot;<P>
+
+ &quot;--MM-dd&quot;<P>
+
+ &quot;--MM-ddZ&quot;<P>
+
+ &quot;--MM-ddzzzzzz&quot;<P>
+
+ &quot;---dd&quot;<P>
+
+ &quot;---ddZ&quot;<P>
+
+ &quot;---ddzzzzzz&quot;<P>
+
+ &quot;--MM--&quot;<P>
+
+ &quot;--MM--Z&quot;<P>
+
+ &quot;--MM--zzzzzz&quot;<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToDateTime(System.String, System.String) Method"><H3>XmlConvert.ToDateTime(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime ToDateTime(string s, string format);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to convert.</DD>
+<DT> format</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the format used to validate <I>s</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> equivalent of <I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> or <I>format</I> is System.String.Empty .<P>
+
+-or-<P>
+
+<I>s</I> does not contain a date and time that corresponds to <I>format</I>.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method calls System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider)(<I>s</I>, <I>format</I>, System.Globalization.DateTimeFormatInfo.InvariantInfo, System.Globalization.DateTimeStyles.AllowLeadingWhite|System.Globalization.DateTimeStyles.AllowTrailingWhite).<P>
+
+Valid formats include &quot;yyyy-MM-ddTHH:mm:sszzzzzz&quot; and its subsets.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToDateTime(System.String, System.String[]) Method"><H3>XmlConvert.ToDateTime(System.String, System.String[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime ToDateTime(string s, string[] formats);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to convert.</DD>
+<DT> formats</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> array specifying formats used to validate <I>s</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> equivalent of <I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> or an element of <I>formats</I> is System.String.Empty.<P>
+
+-or-<P>
+
+<I>s</I> does not contain a date and time that corresponds to any of the elements of <I>formats</I>.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method calls System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider)(<I>s</I>, <I>formats</I>, System.Globalization.DateTimeFormatInfo.InvariantInfo, System.Globalization.DateTimeStyles.AllowLeadingWhite|System.Globalization.DateTimeStyles.AllowTrailingWhite).<P>
+
+This method allows <I>s</I> to
+be validated against multiple formats.<P>
+
+Valid formats include &quot;yyyy-MM-ddTHH:mm:sszzzzzz&quot; and its subsets.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> and writes the
+   result to the console.<P>
+
+<PRE>using System;
+using System.Xml;
+
+public class App {
+
+  public static void Main() {
+
+    String someDate = &quot;1966-09-19T03:45:11Z&quot;;
+    String[] datetimeFormats = new String[]
+      {&quot;HH:mm:ss&quot;, &quot;yyyy-MM-ddTHH:mm:ssZ&quot;};
+    DateTime dateTime =
+      XmlConvert.ToDateTime(someDate, datetimeFormats);
+    Console.WriteLine( &quot;{0}&quot;, dateTime.ToString() );
+  }
+}
+</PRE>
+The output is<P>
+
+9/18/1966 8:45:11 PM<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToDecimal Method"><H3>XmlConvert.ToDecimal Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static decimal ToDecimal(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A>
+equivalent of <I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct format.</TD></TR>
+<TR><TD><A HREF="../../System/OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a number less than System.Decimal.MinValue or greater than System.Decimal.MaxValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method calls System.Decimal.Parse(System.String)(<I>s</I>, System.Globalization.NumberStyles.AllowLeadingSign|System.Globalization.NumberStyles.AllowDecimalPoint|System.Globalization.NumberStyles.AllowLeadingWhite|System.Globalization.NumberStyles.AllowTrailingWhite, System.Globalization.NumberFormatInfo.InvariantInfo).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToDouble Method"><H3>XmlConvert.ToDouble Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static double ToDouble(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/Double.html" TARGET="contents">Double</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/Double.html" TARGET="contents">Double</A>
+equivalent of <I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct format.</TD></TR>
+<TR><TD><A HREF="../../System/OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a number less than System.Double.MinValue or greater than System.Double.MaxValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If <I>s</I> is &quot;-INF&quot;, this method returns System.Double.NegativeInfinity.<P>
+
+If <I>s</I> is &quot;INF&quot;, this method returns System.Double.PositiveInfinity.<P>
+
+Otherwise, this method calls System.Double.Parse(System.String)(<I>s</I>, System.Globalization.NumberStyles.AllowLeadingSign|System.Globalization.NumberStyles.AllowDecimalPoint|System.Globalization.NumberStyles.AllowExponent|System.Globalization.NumberStyles.AllowLeadingWhite|System.Globalization.NumberStyles.AllowTrailingWhite, System.Globalization.NumberFormatInfo.InvariantInfo).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToInt16 Method"><H3>XmlConvert.ToInt16 Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static short ToInt16(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/Int16.html" TARGET="contents">Int16</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/Int16.html" TARGET="contents">Int16</A>
+equivalent of <I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct format.</TD></TR>
+<TR><TD><A HREF="../../System/OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a number less than System.Int16.MinValue or greater than System.Int16.MaxValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method calls System.Int16.Parse(System.String)(<I>s</I>, System.Globalization.NumberStyles.AllowLeadingSign|System.Globalization.NumberStyles.AllowLeadingWhite|System.Globalization.NumberStyles.AllowTrailingWhite, System.Globalization.NumberFormatInfo.InvariantInfo).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToInt32 Method"><H3>XmlConvert.ToInt32 Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int ToInt32(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/Int32.html" TARGET="contents">Int32</A>
+equivalent of <I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct format.</TD></TR>
+<TR><TD><A HREF="../../System/OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a number less than System.Int32.MinValue or greater than System.Int32.MaxValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method calls System.Int32.Parse(System.String)(<I>s</I>, System.Globalization.NumberStyles.AllowLeadingSign|System.Globalization.NumberStyles.AllowLeadingWhite|System.Globalization.NumberStyles.AllowTrailingWhite, System.Globalization.NumberFormatInfo.InvariantInfo).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToInt64 Method"><H3>XmlConvert.ToInt64 Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static long ToInt64(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/Int64.html" TARGET="contents">Int64</A>
+equivalent of <I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct format.</TD></TR>
+<TR><TD><A HREF="../../System/OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a number less than System.Int64.MinValue or greater than System.Int64.MaxValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method calls System.Int64.Parse(System.String)(<I>s</I>, System.Globalization.NumberStyles.AllowLeadingSign|System.Globalization.NumberStyles.AllowLeadingWhite|System.Globalization.NumberStyles.AllowTrailingWhite, System.Globalization.NumberFormatInfo.InvariantInfo).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToSByte Method"><H3>XmlConvert.ToSByte Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static sbyte ToSByte(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/SByte.html" TARGET="contents">SByte</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/SByte.html" TARGET="contents">SByte</A> equivalent of
+<I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct format.</TD></TR>
+<TR><TD><A HREF="../../System/OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a number less than System.SByte.MinValue or greater than System.SByte.MaxValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use
+   System.Xml.XmlConvert.ToInt16(System.String)(<A HREF="../../System/String.html" TARGET="contents">String</A>).<P>
+
+This method calls System.SByte.Parse(System.String)(<I>s</I>, System.Globalization.NumberStyles.AllowLeadingSign|System.Globalization.NumberStyles.AllowLeadingWhite|System.Globalization.NumberStyles.AllowTrailingWhite, System.Globalization.NumberFormatInfo.InvariantInfo).<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToSingle Method"><H3>XmlConvert.ToSingle Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static float ToSingle(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/Single.html" TARGET="contents">Single</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/Single.html" TARGET="contents">Single</A> equivalent of
+<I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct format.</TD></TR>
+<TR><TD><A HREF="../../System/OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a number less than System.Single.MinValue or greater than System.Single.MaxValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If <I>s</I> is &quot;-INF&quot;, this method returns System.Single.NegativeInfinity.<P>
+
+If <I>s</I> is &quot;INF&quot;, this method returns System.Single.PositiveInfinity.<P>
+
+Otherwise, this method calls System.Single.Parse(System.String)(<I>s</I>, System.Globalization.NumberStyles.AllowLeadingSign|System.Globalization.NumberStyles.AllowDecimalPoint|System.Globalization.NumberStyles.AllowExponent|System.Globalization.NumberStyles.AllowLeadingWhite|System.Globalization.NumberStyles.AllowTrailingWhite, System.Globalization.NumberFormatInfo.InvariantInfo).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToString(bool) Method"><H3>XmlConvert.ToString(bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ToString(bool value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> &quot;true&quot; or the <A HREF="../../System/String.html" TARGET="contents">String</A>
+&quot;false&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToString(char) Method"><H3>XmlConvert.ToString(char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ToString(char value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a <A HREF="../../System/Char.html" TARGET="contents">Char</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> representation of <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method calls <I>value</I>.ToString(<CODE>null</CODE>
+).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToString(System.Decimal) Method"><H3>XmlConvert.ToString(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ToString(decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a <A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> representation of <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method calls <I>value</I>.ToString(<CODE>null</CODE>
+, System.Globalization.NumberFormatInfo.InvariantInfo ).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToString(sbyte) Method"><H3>XmlConvert.ToString(sbyte) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ToString(sbyte value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a <A HREF="../../System/SByte.html" TARGET="contents">SByte</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/SByte.html" TARGET="contents">SByte</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> representation of <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use
+   System.Xml.XmlConvert.ToString(System.Boolean)(<A HREF="../../System/Int16.html" TARGET="contents">Int16</A>).<P>
+
+This method calls <I>value</I>.ToString(<CODE>null</CODE>
+, System.Globalization.NumberFormatInfo.InvariantInfo ).<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToString(short) Method"><H3>XmlConvert.ToString(short) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ToString(short value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/Int16.html" TARGET="contents">Int16</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Int16.html" TARGET="contents">Int16</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> representation of <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method calls <I>value</I>.ToString(<CODE>null</CODE>
+, System.Globalization.NumberFormatInfo.InvariantInfo ).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToString(int) Method"><H3>XmlConvert.ToString(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ToString(int value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> representation of <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method calls <I>value</I>.ToString(<CODE>null</CODE>
+, System.Globalization.NumberFormatInfo.InvariantInfo ).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToString(long) Method"><H3>XmlConvert.ToString(long) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ToString(long value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> representation of <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method calls <I>value</I>.ToString(<CODE>null</CODE>
+, System.Globalization.NumberFormatInfo.InvariantInfo).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToString(byte) Method"><H3>XmlConvert.ToString(byte) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ToString(byte value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> representation of <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method calls <I>value</I>.ToString(<CODE>null</CODE>
+, System.Globalization.NumberFormatInfo.InvariantInfo ).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToString(ushort) Method"><H3>XmlConvert.ToString(ushort) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ToString(ushort value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/UInt16.html" TARGET="contents">UInt16</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/UInt16.html" TARGET="contents">UInt16</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> representation of <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant
+      alternative, use System.Xml.XmlConvert.ToString(System.Boolean)(<A HREF="../../System/Int32.html" TARGET="contents">Int32</A>).<P>
+
+This method calls <I>value</I>.ToString(<CODE>null</CODE>
+, System.Globalization.NumberFormatInfo.InvariantInfo ).<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToString(uint) Method"><H3>XmlConvert.ToString(uint) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ToString(uint value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> representation of <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use
+   System.Xml.XmlConvert.ToString(System.Boolean)(<A HREF="../../System/Int64.html" TARGET="contents">Int64</A>).<P>
+
+This method calls <I>value</I>.ToString(<CODE>null</CODE>
+, System.Globalization.NumberFormatInfo.InvariantInfo ).<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToString(ulong) Method"><H3>XmlConvert.ToString(ulong) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ToString(ulong value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a <A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> representation of <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use
+   System.Xml.XmlConvert.ToString(System.Boolean)(<A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A>).<P>
+
+This method calls <I>value</I>.ToString(<CODE>null</CODE>
+, System.Globalization.NumberFormatInfo.InvariantInfo).<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToString(float) Method"><H3>XmlConvert.ToString(float) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ToString(float value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/Single.html" TARGET="contents">Single</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Single.html" TARGET="contents">Single</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> representation of <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If <I>value</I> is System.Double.NegativeInfinity, this method returns &quot;-INF&quot;.<P>
+
+If <I>value</I> is System.Double.PositiveInfinity, this method returns &quot;INF&quot;.<P>
+
+Otherwise, this method calls <I>value</I>.ToString(&quot;R&quot;, System.Globalization.NumberFormatInfo.InvariantInfo).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToString(double) Method"><H3>XmlConvert.ToString(double) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ToString(double value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a <A HREF="../../System/Char.html" TARGET="contents">Char</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> representation of <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If <I>value</I> is System.Double.NegativeInfinity, this method returns &quot;-INF&quot;.<P>
+
+If <I>value</I> is System.Double.PositiveInfinity, this method returns &quot;INF&quot;.<P>
+
+Otherwise, this method calls <I>value</I>.ToString(&quot;R&quot;, System.Globalization.NumberFormatInfo.InvariantInfo).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToString(System.TimeSpan) Method"><H3>XmlConvert.ToString(System.TimeSpan) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ToString(TimeSpan value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a <A HREF="../../System/TimeSpan.html" TARGET="contents">TimeSpan</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/TimeSpan.html" TARGET="contents">TimeSpan</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> representation of <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example converts a <A HREF="../../System/TimeSpan.html" TARGET="contents">TimeSpan</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A> and writes the result
+   to the console.<P>
+
+<PRE>using System;
+using System.Xml;
+
+public class App {
+
+  public static void Main() {
+
+    TimeSpan timeSpan = new TimeSpan(3, 11, 59, 6, 128);
+    Console.WriteLine( &quot;{0}&quot;,
+      XmlConvert.ToString(timeSpan) );
+  }
+}
+</PRE>
+The output is<P>
+
+P3DT11H59M6.128S<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToString(System.DateTime) Method"><H3>XmlConvert.ToString(System.DateTime) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ToString(DateTime value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> representation of <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method calls System.Xml.XmlConvert.ToString(System.Boolean)(<I>value</I>, 
+   &quot;yyyy-MM-ddTHH:mm:ss.fffffffzzzzzz&quot;).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToString(System.DateTime, System.String) Method"><H3>XmlConvert.ToString(System.DateTime, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ToString(DateTime value, string format);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts a <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> to a <A HREF="../../System/String.html" TARGET="contents">String</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> to convert.</DD>
+<DT> format</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the format to apply to <I>value</I>. Valid formats include &quot;yyyy-MM-ddTHH:mm:sszzzzzz&quot; and its subsets. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> representation of <I>value</I> in the specified format..<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method calls <I>value</I>.ToString(<I>format</I>, System.Globalization.DateTimeFormatInfo.InvariantInfo).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToTimeSpan Method"><H3>XmlConvert.ToTimeSpan Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static TimeSpan ToTimeSpan(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/TimeSpan.html" TARGET="contents">TimeSpan</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/TimeSpan.html" TARGET="contents">TimeSpan</A> equivalent of
+<I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct format to represent a <A HREF="../../System/TimeSpan.html" TARGET="contents">TimeSpan</A> value.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToUInt16 Method"><H3>XmlConvert.ToUInt16 Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static ushort ToUInt16(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/UInt16.html" TARGET="contents">UInt16</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/UInt16.html" TARGET="contents">UInt16</A> equivalent of
+<I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct format.</TD></TR>
+<TR><TD><A HREF="../../System/OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a number less than System.UInt16.MinValue or greater than System.UInt16.MaxValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use
+   System.Xml.XmlConvert.ToInt32(System.String)(<A HREF="../../System/String.html" TARGET="contents">String</A>).<P>
+
+This method calls System.UInt16.Parse(System.String)(<I>s</I>, System.Globalization.NumberStyles.AllowLeadingSign|System.Globalization.NumberStyles.AllowLeadingWhite|System.Globalization.NumberStyles.AllowTrailingWhite, System.Globalization.NumberFormatInfo.InvariantInfo).<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToUInt32 Method"><H3>XmlConvert.ToUInt32 Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static uint ToUInt32(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A> equivalent of
+<I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct format.</TD></TR>
+<TR><TD><A HREF="../../System/OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a number less than System.UInt32.MinValue or greater than System.UInt32.MaxValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use
+   System.Xml.XmlConvert.ToInt64(System.String)(<A HREF="../../System/String.html" TARGET="contents">String</A>).<P>
+
+This method calls System.UInt32.Parse(System.String)(<I>s</I>, System.Globalization.NumberStyles.AllowLeadingSign|System.Globalization.NumberStyles.AllowLeadingWhite|System.Globalization.NumberStyles.AllowTrailingWhite, System.Globalization.NumberFormatInfo.InvariantInfo).<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.ToUInt64 Method"><H3>XmlConvert.ToUInt64 Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static ulong ToUInt64(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts a <A HREF="../../System/String.html" TARGET="contents">String</A> to a <A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A> equivalent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A> equivalent of
+<I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct format.</TD></TR>
+<TR><TD><A HREF="../../System/OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a number less than System.UInt64.MinValue or greater than System.UInt64.MaxValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use
+   System.Xml.XmlConvert.ToDecimal(System.String)(<A HREF="../../System/String.html" TARGET="contents">String</A>).<P>
+
+This method calls System.UInt64.Parse(System.String)(<I>s</I>, System.Globalization.NumberStyles.AllowLeadingSign|System.Globalization.NumberStyles.AllowLeadingWhite|System.Globalization.NumberStyles.AllowTrailingWhite, System.Globalization.NumberFormatInfo.InvariantInfo).<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.VerifyNCName Method"><H3>XmlConvert.VerifyNCName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string VerifyNCName(string name);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Verifies that the name is a valid qualified name as defined in the
+      W3C Extended Markup Language recommendation (REC-xml-names-19990114).<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the name to verify.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The <A HREF="../../System/String.html" TARGET="contents">String</A><I>name</I>, if it is a valid XML qualified name.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>name</I> is <CODE>null</CODE>
+ or System.String.Empty.</TD></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD><I>name</I> is not a valid XML qualified name.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If <I>name</I> contains a colon, <A HREF="XmlException.html" TARGET="contents">XmlException</A> is
+   thrown.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlConvert.VerifyName Method"><H3>XmlConvert.VerifyName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string VerifyName(string name);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Verifies that the name is a valid name as defined in
+      the W3C Extended Markup Language recommendation (REC-xml-names-19990114).<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the name to verify.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A><I>name</I>, if it is a valid XML name.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>name</I> is <CODE>null</CODE>
+ or System.String.Empty.</TD></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD><I>name</I> is not a valid XML name.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlConvert.html" TARGET="contents">System.Xml.XmlConvert Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

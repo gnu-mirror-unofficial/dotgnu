@@ -1,0 +1,457 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.Authorization Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.Authorization Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class Authorization</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Authorization<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Supplies authentication messages used to authenticate a client to server.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The <A HREF="Authorization.html" TARGET="contents">Authorization</A> class contains authentication information returned by
+   a <A HREF="IAuthenticationModule.html" TARGET="contents">IAuthenticationModule</A> module. <A HREF="Authorization.html" TARGET="contents">Authorization</A> instances are used
+   to pass server challenge responses and client preauthentication information. <P>
+
+[<I>Note</I>: Applications do not create or access instances of this type directly;
+   instances of this type are created by authentication modules and used by the
+<A HREF="AuthenticationManager.html" TARGET="contents">AuthenticationManager</A>.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Authorization Constructors<P>
+
+<A HREF="#Authorization(System.String) Constructor" TARGET="contents">Authorization(System.String) Constructor</A><BR>
+<A HREF="#Authorization(System.String, bool) Constructor" TARGET="contents">Authorization(System.String, bool) Constructor</A><BR>
+<A HREF="#Authorization(System.String, bool, System.String) Constructor" TARGET="contents">Authorization(System.String, bool, System.String) Constructor</A><BR>
+<P>
+
+Authorization Properties<P>
+
+<A HREF="#Authorization.Complete Property" TARGET="contents">Authorization.Complete Property</A><BR>
+<A HREF="#Authorization.ConnectionGroupId Property" TARGET="contents">Authorization.ConnectionGroupId Property</A><BR>
+<A HREF="#Authorization.Message Property" TARGET="contents">Authorization.Message Property</A><BR>
+<A HREF="#Authorization.ProtectionRealm Property" TARGET="contents">Authorization.ProtectionRealm Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Authorization(System.String) Constructor"><H3>Authorization(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Authorization(string token);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="Authorization.html" TARGET="contents">Authorization</A> class with the specified
+   authorization message.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>token</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the authorization message to be sent to the server.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor creates a <A HREF="Authorization.html" TARGET="contents">Authorization</A> instance with the System.Net.Authorization.Message property set to <I>token </I>and the System.Net.Authorization.Complete property set to <CODE>true</CODE>
+. If <I>token</I> is <CODE>null</CODE>
+ or a zero-length string, System.Net.Authorization.Message
+is set to <CODE>null</CODE>
+. System.Net.Authorization.ConnectionGroupId is set to
+<CODE>null</CODE>
+.<P>
+
+[<I>Note</I>: The System.Net.Authorization.Complete property
+indicates whether the authentication, as defined by the authentication protocol implemented by
+the caller, is finished or requires additional information exchange between the client and
+server.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Authorization.html" TARGET="contents">System.Net.Authorization Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Authorization(System.String, bool) Constructor"><H3>Authorization(System.String, bool) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Authorization(string token, bool finished);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="Authorization.html" TARGET="contents">Authorization</A> class with the specified
+   authorization message and completion status.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>token</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the authentication message to be sent to the server.</DD>
+<DT>finished</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating the completion status of the client authentication. Specify <CODE>true</CODE>
+ if the authentication is complete; otherwise, <CODE>false</CODE>
+. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor creates a <A HREF="Authorization.html" TARGET="contents">Authorization</A> instance with the System.Net.Authorization.Message property set to <I>token </I>and the
+System.Net.Authorization.Complete property set to <I>finished</I>. If <I>token</I> is <CODE>null</CODE>
+ or 
+   a zero-length string, System.Net.Authorization.Message is set to
+<CODE>null</CODE>
+. System.Net.Authorization.ConnectionGroupId is set to 
+<CODE>null</CODE>
+.<P>
+
+[<I>Note</I>: The System.Net.Authorization.Complete property indicates
+whether the authentication, as defined by the authentication protocol
+implemented by the caller, is finished or requires additional information
+exchange between the client and server.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Authorization.html" TARGET="contents">System.Net.Authorization Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Authorization(System.String, bool, System.String) Constructor"><H3>Authorization(System.String, bool, System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Authorization(string token, bool finished, string connectionGroupId);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="Authorization.html" TARGET="contents">Authorization</A> class with the specified
+   authorization message, completion status, and connection group identifier.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>token</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the authentication message to be sent to the server. </DD>
+<DT>finished</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating the completion status of the authentication. Specify <CODE>true</CODE>
+ if the authentication is complete; otherwise, <CODE>false</CODE>
+. </DD>
+<DT>connectionGroupId</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing a unique identifier that will be used to identify the authenticated connection, or <CODE>null</CODE>
+ . </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor creates a <A HREF="Authorization.html" TARGET="contents">Authorization</A> instance with the System.Net.Authorization.Message property set to <I>token</I>, the
+System.Net.Authorization.Complete property set to <I>finished</I>, and 
+   the System.Net.Authorization.ConnectionGroupId property set to <I>connectionGroupId</I>. If <I>token</I> is
+<CODE>null</CODE>
+ or a zero-length string, System.Net.Authorization.Message is set to <CODE>null</CODE>
+. If 
+<I>connectionGroupId </I> is <CODE>null</CODE>
+ or a zero-length string, 
+System.Net.Authorization.ConnectionGroupId is set to <CODE>null</CODE>
+.<P>
+
+[<I>Note</I>: The connection group identifier is used to restrict access to the
+      server connection established with the current authorization instance. Only
+   <A HREF="WebRequest.html" TARGET="contents">WebRequest</A>
+   instances that have <I>connectionGroupId</I> as their System.Net.WebRequest.ConnectionGroupName
+   property value can use the connection. The connection group information
+   set by this constructor is also available in the System.Net.ServicePoint.ConnectionName property of
+   the service point that represents the connection.<P>
+
+The System.Net.Authorization.Complete property indicates whether the
+authentication, as defined by the authentication protocol implemented by the
+caller, is finished or requires additional information exchange between the
+client and server.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Authorization.html" TARGET="contents">System.Net.Authorization Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Authorization.Complete Property"><H3>Authorization.Complete Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool Complete { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating the completion status of the authentication.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the authentication process is complete; otherwise,
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The System.Net.Authorization.Complete property is set to <CODE>true </CODE>
+when the
+   authentication process between the client and the server is finished.<P>
+
+[<I>Note</I>: Some authentication
+   modules, such as a Kerberos module, use multiple
+   round trips between the client and server to complete an authentication. The authentication module sets the
+System.Net.Authorization.Complete property to 
+<CODE>false</CODE>
+ until the authentication is complete.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Authorization.html" TARGET="contents">System.Net.Authorization Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Authorization.ConnectionGroupId Property"><H3>Authorization.ConnectionGroupId Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ConnectionGroupId { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the unique identifier for an authenticated connection.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing a unique
+   connection identifier, or <CODE>null</CODE>
+ if no value was specified to the
+   constructor for the
+   current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The connection group identifier is used to restrict access to the server connection
+      established with the current authorization instance. <P>
+
+[<I>Note</I>: Only <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> instances that have System.Net.Authorization.ConnectionGroupId as
+   their System.Net.WebRequest.ConnectionGroupName property value
+   can use the connection. If the value of this property is
+<CODE>null</CODE>
+ , access to the connection is
+   not restricted in this manner. The connection group information is also available in
+   the System.Net.ServicePoint.ConnectionName property of the service point that
+   represents the connection.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Authorization.html" TARGET="contents">System.Net.Authorization Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Authorization.Message Property"><H3>Authorization.Message Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Message { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the response to an authentication
+      challenge.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the message that will be returned to the server in response to an
+   authentication challenge.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: The content of the
+      string returned by this property is determined by the protocol implemented
+      by the <A HREF="IAuthenticationModule.html" TARGET="contents">IAuthenticationModule</A>
+      
+      object that created
+      the current instance. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Authorization.html" TARGET="contents">System.Net.Authorization Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Authorization.ProtectionRealm Property"><H3>Authorization.ProtectionRealm Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string[] ProtectionRealm { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the URIs that can be authenticated using the value in the System.Net.Authorization.Message property.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> array containing URIs.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: A <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> compares a URI
+   to this list to determine if the current instance can be used to
+   authenticate a request for a given URI.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Authorization.html" TARGET="contents">System.Net.Authorization Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

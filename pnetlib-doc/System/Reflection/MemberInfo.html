@@ -1,0 +1,325 @@
+<HTML>
+<HEAD>
+<TITLE>System.Reflection.MemberInfo Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Reflection.MemberInfo Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class MemberInfo</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;MemberInfo<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides access
+      to member metadata.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <A HREF="MemberInfo.html" TARGET="contents">MemberInfo</A> is used
+      to represent all members of a type: nested types, fields, events, properties,
+      methods, and constructors. The Base Class Library includes the following derived
+      types:<P>
+
+<UL>
+<LI><A HREF="FieldInfo.html" TARGET="contents">FieldInfo</A></LI>
+<LI><A HREF="EventInfo.html" TARGET="contents">EventInfo</A></LI>
+<LI><A HREF="PropertyInfo.html" TARGET="contents">PropertyInfo</A></LI>
+<LI><A HREF="../../System/Type.html" TARGET="contents">Type</A></LI>
+</UL>
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+MemberInfo Constructors<P>
+
+<A HREF="#MemberInfo Constructor" TARGET="contents">MemberInfo Constructor</A><BR>
+<P>
+
+MemberInfo Properties<P>
+
+<A HREF="#MemberInfo.DeclaringType Property" TARGET="contents">MemberInfo.DeclaringType Property</A><BR>
+<A HREF="#MemberInfo.Name Property" TARGET="contents">MemberInfo.Name Property</A><BR>
+<A HREF="#MemberInfo.ReflectedType Property" TARGET="contents">MemberInfo.ReflectedType Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="MemberInfo Constructor"><H3>MemberInfo Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected MemberInfo();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new instance of the <A HREF="MemberInfo.html" TARGET="contents">MemberInfo</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemberInfo.html" TARGET="contents">System.Reflection.MemberInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemberInfo.DeclaringType Property"><H3>MemberInfo.DeclaringType Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract Type DeclaringType { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the type that declares the member reflected by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/Type.html" TARGET="contents">Type</A><CODE> </CODE>
+object of the class that declares the member
+reflected by the current instance; or, <CODE>null</CODE>
+ if the
+member reflected by the current instance is a global member.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  A member of a class (or interface) is either declared on
+         that type or inherited from a base class (or interface). The System.Reflection.MemberInfo.DeclaringType property value may not be the same
+         as the <A HREF="../../System/Type.html" TARGET="contents">Type</A>
+         object used to obtain the current instance. These values will differ if
+         either of the following conditions
+         is true.<P>
+
+<UL>
+<LI>If the <A HREF="../../System/Type.html" TARGET="contents">Type</A> object from which the current instance was obtained
+            did not declare the member reflected by the current instance, the System.Reflection.MemberInfo.DeclaringType will represent the base type that
+            is closest to that object in its hierarchy chain and declares the member reflected by the current instance.<P>
+
+</LI>
+<LI>If the current instance reflects a global member, (that is,
+               it was obtained from System.Reflection.Module.GetMethods , which returns global methods on a
+               module), then the System.Reflection.MemberInfo.DeclaringType property
+               value is
+            <CODE>null</CODE>
+ .<P>
+
+</LI>
+</UL>
+]<P>
+
+[<I>Behaviors</I>: This property is read-only.<P>
+
+ This property is required to return the
+      <A HREF="../../System/Type.html" TARGET="contents">Type</A> object for the type that
+         declares the member reflected by the current instance. This property value is
+         required to be equal to the System.Reflection.MemberInfo.ReflectedType property value of
+         the current instance if and only if the reflected
+         type also contains a declaration for the member reflected by the current instance.<P>
+
+]<P>
+
+[<I>Overrides</I>: Override this
+      property to get the <A HREF="../../System/Type.html" TARGET="contents">Type</A>
+      of the class that declared the member that is reflected by
+      the current instance.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this property
+      to determine the <A HREF="../../System/Type.html" TARGET="contents">Type</A>
+      of the class that declared the member that is reflected by the
+      current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the difference 
+      between the System.Reflection.MemberInfo.DeclaringType<CODE> </CODE>
+ and
+   System.Reflection.MemberInfo.ReflectedType of a member.<P>
+
+<PRE>using System;
+using System.Reflection;
+
+public class BaseClass {
+   public void ReflectedMethod() {}
+}
+
+public class DerivedClass: BaseClass {}
+
+public class DeclaringTypeExample {
+   public static void Main() {
+    Type t = typeof(DerivedClass);
+    MemberInfo [] memInfo = t.GetMember(&quot;ReflectedMethod&quot;);
+    Console.WriteLine(&quot;Reflected type is {0}.&quot;, memInfo[0].ReflectedType);
+    Console.WriteLine(&quot;Declaring type is {0}.&quot;, memInfo[0].DeclaringType);    
+   }
+}
+   </PRE>
+The output is<P>
+
+<CODE>Reflected type is DerivedClass.<P>
+
+Declaring type is BaseClass.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemberInfo.html" TARGET="contents">System.Reflection.MemberInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemberInfo.Name Property"><H3>MemberInfo.Name Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string Name { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the name of the member reflected by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the
+   name of the
+   member reflected by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This property is read-only.<P>
+
+Only the
+         simple name, not the fully qualified name, of
+         the member reflected by the current instance is returned.<P>
+
+[<I>Note</I>: For example, if the current instance reflects the member <CODE>Print</CODE>
+      in <CODE>System.MyClass</CODE>, the System.Reflection.MemberInfo.Name
+   property would be &quot;Print&quot;.]<P>
+
+<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemberInfo.html" TARGET="contents">System.Reflection.MemberInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemberInfo.ReflectedType Property"><H3>MemberInfo.ReflectedType Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract Type ReflectedType { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the type of the class through which the current instance was
+      obtained.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/Type.html" TARGET="contents">Type</A><CODE></CODE>
+object for the class through which the current instance was
+obtained.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This property is read-only.<P>
+
+<CODE>ReflectedType</CODE>
+ is required to get the type of
+      the object that was used to obtain the current instance. This property
+      value is required to be equal to the System.Reflection.MemberInfo.DeclaringType property value of the current instance if and
+      only if the reflected type also contains a declaration for the member reflected by the current
+      instance.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemberInfo.html" TARGET="contents">System.Reflection.MemberInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,423 @@
+<HTML>
+<HEAD>
+<TITLE>System.Xml.XmlNameTable Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Xml.XmlNameTable Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class XmlNameTable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;XmlNameTable<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System.Xml
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Creates a table that stores unique instances of <A HREF="../../System/String.html" TARGET="contents">String</A> objects.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Only a single instance of any given string is stored even if the string is 
+      added multiple times to the table.<P>
+
+Using this class provides an efficient means for an XML parser to use the 
+      same <A HREF="../../System/String.html" TARGET="contents">String</A>
+      object for all repeated element and attribute names in an XML document. If the
+      same object is used for all repeated names, the efficiency of name comparisons
+      is increased by allowing the names to be compared using object comparisons
+      rather than string comparisons.<P>
+
+[<I>Note</I>:  This class is
+      <CODE>abstract</CODE>
+ and is implemented in the <A HREF="NameTable.html" TARGET="contents">NameTable</A> class.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+See the <A HREF="NameTable.html" TARGET="contents">NameTable</A> class for an example using this 
+   class.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+XmlNameTable Constructors<P>
+
+<A HREF="#XmlNameTable Constructor" TARGET="contents">XmlNameTable Constructor</A><BR>
+<P>
+
+XmlNameTable Methods<P>
+
+<A HREF="#XmlNameTable.Add(System.String) Method" TARGET="contents">XmlNameTable.Add(System.String) Method</A><BR>
+<A HREF="#XmlNameTable.Add(char[], int, int) Method" TARGET="contents">XmlNameTable.Add(char[], int, int) Method</A><BR>
+<A HREF="#XmlNameTable.Get(System.String) Method" TARGET="contents">XmlNameTable.Get(System.String) Method</A><BR>
+<A HREF="#XmlNameTable.Get(char[], int, int) Method" TARGET="contents">XmlNameTable.Get(char[], int, int) Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="XmlNameTable Constructor"><H3>XmlNameTable Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected XmlNameTable();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new instance of the <A HREF="XmlNameTable.html" TARGET="contents">XmlNameTable</A> class.
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlNameTable.html" TARGET="contents">System.Xml.XmlNameTable Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlNameTable.Add(System.String) Method"><H3>XmlNameTable.Add(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string Add(string array);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds the specified <A HREF="../../System/String.html" TARGET="contents">String</A> to the table if a <A HREF="../../System/String.html" TARGET="contents">String</A> instance with the same value does not
+   already exist in the table.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>array</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to add.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<I>array</I>, if it did not exist in the table at the time of the call, or
+   the <A HREF="../../System/String.html" TARGET="contents">String</A>
+   instance previously stored in the table with a value equal to <I>array</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>array</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  Only a single
+      instance of any given <A HREF="../../System/String.html" TARGET="contents">String</A> is stored in the table. If the value
+      of <I>array</I> is already stored in the table, the <A HREF="../../System/String.html" TARGET="contents">String</A> instance with that
+      value is returned.]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method must be overridden in order to
+      provide the functionality described above, as there is no default implementation.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlNameTable.html" TARGET="contents">System.Xml.XmlNameTable Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlNameTable.Add(char[], int, int) Method"><H3>XmlNameTable.Add(char[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string Add(char[] array, int offset, int length);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds the <A HREF="../../System/String.html" TARGET="contents">String</A> equivalent of a specified subset of a <A HREF="../../System/Char.html" TARGET="contents">Char</A> array to the
+   table if the string equivalent does not already exist in the
+   table.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>array</DT>
+<DD>A <A HREF="../../System/Char.html" TARGET="contents">Char</A> array containing the string to add.</DD>
+<DT>offset</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> specifying the zero-based index into the array of the first character of the string.</DD>
+<DT>length</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of characters in the string.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A>
+equivalent of the specified subset of the <A HREF="../../System/Char.html" TARGET="contents">Char</A> array that is stored in the table, or
+System.String.Empty if
+<I>length</I> is zero.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/IndexOutOfRangeException.html" TARGET="contents">IndexOutOfRangeException</A></TD><TD><I>offset</I> &lt; 0.<P>
+
+- or -<P>
+
+<I>offset</I> &gt;= <I>array</I>.Length.<P>
+
+- or -<P>
+
+<I>length</I> &gt; <I>array</I>.Length - <I>offset</I>.<P>
+
+The above conditions do not cause an exception to be thrown if <I>length</I> = 0.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>length</I> &lt; 0.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  Only a single
+      instance of any given <A HREF="../../System/String.html" TARGET="contents">String</A> is stored in the table. Calling this method with the
+      same subset (containing the same characters) of any <A HREF="../../System/Char.html" TARGET="contents">Char</A> array, returns
+      the same instance of the <A HREF="../../System/String.html" TARGET="contents">String</A>
+      equivalent.]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method must be overridden in order to
+      provide the functionality described above, as there is no default implementation.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlNameTable.html" TARGET="contents">System.Xml.XmlNameTable Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlNameTable.Get(System.String) Method"><H3>XmlNameTable.Get(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string Get(string array);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Looks up the value of the specified <A HREF="../../System/String.html" TARGET="contents">String</A> in the table.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>array</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to look up.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A>
+instance previously stored in the table with a value equal to <I>array</I>, or <CODE>null</CODE>
+ if it does not exist.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>array</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  Only a single
+      instance of any given <A HREF="../../System/String.html" TARGET="contents">String</A> is stored in the table. If the value
+      of <I>array</I> is already stored in the table, the <A HREF="../../System/String.html" TARGET="contents">String</A> instance with that value is returned. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method must be overridden in order to
+      provide the functionality described above, as there is no default implementation.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlNameTable.html" TARGET="contents">System.Xml.XmlNameTable Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlNameTable.Get(char[], int, int) Method"><H3>XmlNameTable.Get(char[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract string Get(char[] array, int offset, int length);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Looks up the <A HREF="../../System/String.html" TARGET="contents">String</A> equivalent of a specified subset of a <A HREF="../../System/Char.html" TARGET="contents">Char</A> array in the
+   table.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>array</DT>
+<DD>A <A HREF="../../System/Char.html" TARGET="contents">Char</A> array containing the string to look up.</DD>
+<DT>offset</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> specifying the zero-based index into the array of the first character of the string.</DD>
+<DT>length</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of characters in the string.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A>
+equivalent of the specified subset of the <A HREF="../../System/Char.html" TARGET="contents">Char</A> array that is stored in the table, or
+<CODE>null</CODE>
+ if the equivalent <A HREF="../../System/String.html" TARGET="contents">String</A> is not in the table.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/IndexOutOfRangeException.html" TARGET="contents">IndexOutOfRangeException</A></TD><TD><I>offset</I> &lt; 0. - or -<P>
+
+<I>offset</I> &gt;= <I>array</I>.Length.<P>
+
+- or -<P>
+
+<I>length</I> &gt; <I>array</I>.Length - <I>offset</I>.<P>
+
+The above conditions do not cause an exception to be thrown if <I>length</I> = 0.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>length</I> &lt; 0.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  Only a single
+      instance of any given <A HREF="../../System/String.html" TARGET="contents">String</A> is stored in the table. Calling this method with the
+      same subset (containing the same characters) of any <A HREF="../../System/Char.html" TARGET="contents">Char</A> array, returns
+      the same instance of the <A HREF="../../System/String.html" TARGET="contents">String</A> equivalent, if it exists. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method must be overridden in order to
+      provide the functionality described above, as there is no default implementation.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlNameTable.html" TARGET="contents">System.Xml.XmlNameTable Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

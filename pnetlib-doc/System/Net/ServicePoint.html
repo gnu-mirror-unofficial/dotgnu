@@ -1,0 +1,535 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.ServicePoint Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.ServicePoint Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class ServicePoint</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;ServicePoint<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents connections to Internet hosts.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> class handles connections to a resource based on the host information
+   passed in the Uniform Resource Identifier (URI) of the resource. The initial
+   connection to the host determines the information the <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> maintains, which is then
+   shared by all subsequent requests for resources residing on the host. <P>
+
+[<I>Note</I>: <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instances are
+   created and managed by the <A HREF="ServicePointManager.html" TARGET="contents">ServicePointManager</A>
+   class. The maximum number of <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instances is
+   set by the System.Net.ServicePointManager.MaxServicePoints
+   property.<P>
+
+A <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instance that is not connected to any host is idle. 
+An idle <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A>
+is managed by the <A HREF="ServicePointManager.html" TARGET="contents">ServicePointManager</A>
+only until it has been
+idle longer than the time specified in its System.Net.ServicePoint.MaxIdleTime property.
+After a <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A>
+instance exceeds the System.Net.ServicePoint.MaxIdleTime , it is
+released by the service point
+manager and subsequently freed. The default value of System.Net.ServicePoint.MaxIdleTime is set by the System.Net.ServicePointManager.MaxServicePointIdleTime
+property. <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ServicePoint Methods<P>
+
+<A HREF="#ServicePoint.GetHashCode Method" TARGET="contents">ServicePoint.GetHashCode Method</A><BR>
+<P>
+
+ServicePoint Properties<P>
+
+<A HREF="#ServicePoint.Address Property" TARGET="contents">ServicePoint.Address Property</A><BR>
+<A HREF="#ServicePoint.ConnectionLimit Property" TARGET="contents">ServicePoint.ConnectionLimit Property</A><BR>
+<A HREF="#ServicePoint.ConnectionName Property" TARGET="contents">ServicePoint.ConnectionName Property</A><BR>
+<A HREF="#ServicePoint.CurrentConnections Property" TARGET="contents">ServicePoint.CurrentConnections Property</A><BR>
+<A HREF="#ServicePoint.IdleSince Property" TARGET="contents">ServicePoint.IdleSince Property</A><BR>
+<A HREF="#ServicePoint.MaxIdleTime Property" TARGET="contents">ServicePoint.MaxIdleTime Property</A><BR>
+<A HREF="#ServicePoint.ProtocolVersion Property" TARGET="contents">ServicePoint.ProtocolVersion Property</A><BR>
+<A HREF="#ServicePoint.SupportsPipelining Property" TARGET="contents">ServicePoint.SupportsPipelining Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ServicePoint.GetHashCode Method"><H3>ServicePoint.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int GetHashCode();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Generates a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the hash code for this instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The algorithm used to
+ generate the hash code is unspecified.<P>
+
+[<I>Note</I>: This method overrides System.Object.GetHashCode.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePoint.html" TARGET="contents">System.Net.ServicePoint Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ServicePoint.Address Property"><H3>ServicePoint.Address Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Uri Address { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the Uniform Resource Identifier (URI) of the <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A>.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> instance
+   representing the URI specified at the time the current instance was constructed <CODE>.</CODE>
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: The System.Uri.Host property
+   of the <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> returned by this property names the host to which the current instance connects.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePoint.html" TARGET="contents">System.Net.ServicePoint Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ServicePoint.ConnectionLimit Property"><H3>ServicePoint.ConnectionLimit Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int ConnectionLimit { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the maximum number of
+      simultaneous connections that the <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> can make to an Internet
+      host.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the 
+   maximum number of simultaneous connections allowed on the current <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value specified for a set operation is less than or equal to zero. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: When the <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> is created, the value of
+   this property is determined by the value of the
+System.Net.ServicePointManager.DefaultConnectionLimit 
+property.
+Note that subsequent changes to System.Net.ServicePointManager.DefaultConnectionLimit have no effect on existing <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instances.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePoint.html" TARGET="contents">System.Net.ServicePoint Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ServicePoint.ConnectionName Property"><H3>ServicePoint.ConnectionName Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ConnectionName { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the connection group name specified by the <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> that created the connection.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the 
+   value of the System.Net.WebRequest.ConnectionGroupName property of the <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> that
+   initiated the connection provided
+   by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: If this
+      property is set, only <A HREF="WebRequest.html" TARGET="contents">WebRequest</A>
+      instances with the same System.Net.WebRequest.ConnectionGroupName can communicate with
+      the host using the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePoint.html" TARGET="contents">System.Net.ServicePoint Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ServicePoint.CurrentConnections Property"><H3>ServicePoint.CurrentConnections Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int CurrentConnections { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+
+ Gets the number of connections held by the current
+ instance.
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of connections held by
+ the current instance.
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: The value of System.Net.ServicePoint.CurrentConnections cannot
+ exceed that of System.Net.ServicePoint.ConnectionLimit.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePoint.html" TARGET="contents">System.Net.ServicePoint Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ServicePoint.IdleSince Property"><H3>ServicePoint.IdleSince Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime IdleSince { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the date and time that the <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> was last connected to a host.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> instance
+   containing the date and time at which the <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> was last
+   connected.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: When the difference between the current time
+      and System.Net.ServicePoint.IdleSince exceeds the
+      value of System.Net.ServicePoint.MaxIdleTime, the current instance is released by
+      the <A HREF="ServicePointManager.html" TARGET="contents">ServicePointManager</A> and subsequently freed.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePoint.html" TARGET="contents">System.Net.ServicePoint Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ServicePoint.MaxIdleTime Property"><H3>ServicePoint.MaxIdleTime Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int MaxIdleTime { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+
+   Gets or sets the maximum amount of time the current
+   instance can remain idle (unconnected to a host).
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of milliseconds that a <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> can remain idle before it is released by the <A HREF="ServicePointManager.html" TARGET="contents">ServicePointManager</A> 
+and subsequently freed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value specified for a set operation is less than System.Threading.Timeout.Infinite or greater than System.Int32.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: When the difference between the current 
+      time and System.Net.ServicePoint.IdleSince exceeds the value of System.Net.ServicePoint.MaxIdleTime, the current instance is released by
+      the <A HREF="ServicePointManager.html" TARGET="contents">ServicePointManager</A> and subsequently freed.]<P>
+
+<P>
+
+The default value of this property is the value of the System.Net.ServicePointManager.MaxServicePointIdleTime
+property at the time the <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> was created.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePoint.html" TARGET="contents">System.Net.ServicePoint Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ServicePoint.ProtocolVersion Property"><H3>ServicePoint.ProtocolVersion Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual Version ProtocolVersion { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the version of the protocol that the <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> uses.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Version.html" TARGET="contents">Version</A> instance
+   containing the version of the protocol used by the <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Behaviors</I>: As described
+      above. ]<P>
+
+<P>
+
+[<I>Default</I>: This property returns a <A HREF="../../System/Version.html" TARGET="contents">Version</A> instance
+   initialized to System.Net.HttpVersion.Version11.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this property to return
+   the version information for types derived from <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A>.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this property to determine the protocol
+   version information used by the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePoint.html" TARGET="contents">System.Net.ServicePoint Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ServicePoint.SupportsPipelining Property"><H3>ServicePoint.SupportsPipelining Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool SupportsPipelining { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether the <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> supports pipelined connections.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> supports pipelined connections;
+   otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: For information on pipelining, see IETF 
+      RFC 2068.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePoint.html" TARGET="contents">System.Net.ServicePoint Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

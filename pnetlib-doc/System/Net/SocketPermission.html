@@ -1,0 +1,723 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.SocketPermission Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.SocketPermission Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class SocketPermission : CodeAccessPermission</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/Security/CodeAccessPermission.html" TARGET="contents">CodeAccessPermission</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;SocketPermission<P>
+
+This type implements <A HREF="../../System/Security/IPermission.html" TARGET="contents">IPermission</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Secures socket connections.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> instances control permission to accept connections
+   or initiate socket connections. A socket permission can secure access based
+   on host name or IP address, a port number, and a transport
+   protocol. <P>
+
+The XML encoding of a <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> instance is defined below in EBNF format,
+   in particular the following conventions are used: <P>
+
+<UL>
+<LI> All non-literals in the grammar below are shown in normal type.<P>
+
+</LI>
+<LI> All literals are in bold font. <P>
+
+</LI>
+</UL>
+ The following meta-language symbols are used: <P>
+
+<UL>
+<LI>
+         
+         &apos;*&apos; represents a meta-language symbol suffixing an
+         expression that can appear zero or more times.</LI>
+<LI>
+         
+         &apos;?&apos; represents a meta-language symbol suffixing an
+         expression that can appear zero or one time.</LI>
+<LI>
+         
+         &apos;+&apos; represents a meta-language symbol suffixing an
+         expression that can appear one or more times.</LI>
+<LI>
+         
+         &apos;(&apos;,&apos;)&apos; is used to group literals, non-literals or a
+         mixture of literals and non-literals.</LI>
+<LI>
+         
+         &apos;|&apos; denotes an exclusive disjunction between two
+         expressions.</LI>
+<LI>
+         
+         &apos;::= &apos; denotes a production rule where a left hand
+         non-literal is replaced by a right hand expression containing literals,
+         non-literals or both.</LI>
+</UL>
+ BuildVersion refers to the build version of the shipping CLI. This is
+   a dotted build number such as &apos;2412.0&apos;.<P>
+
+ECMAPubKeyToken ::= <CODE>b77a5c561934e089</CODE>
+<P>
+
+HostName refers to a host name such as <CODE>www.contoso.com</CODE> . <P>
+
+Portnumber denotes a <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> value indicating a port. <P>
+
+TransportProtocol ::= <CODE>1</CODE>
+ | <CODE>2</CODE>
+ | <CODE>3 </CODE>
+/*1= UDP , 2 = TCP, 3 = both */ <P>
+
+SocketPermissionXML::=
+   <P>
+
+<CODE><CODE>&lt;IPermission class=&quot;</CODE>
+</CODE><P>
+
+<CODE><CODE>System.Net.SocketPermission,</CODE>
+</CODE><P>
+
+<CODE><CODE>System, </CODE>
+</CODE><P>
+
+<CODE><CODE>Version=1.0.</CODE>
+BuildVersion<CODE>, </CODE>
+</CODE><P>
+
+<CODE><CODE>Culture=neutral,</CODE>
+</CODE><P>
+
+<CODE><CODE>PublicKeyToken</CODE>
+=ECMAPubKeyToken<CODE>&quot;</CODE>
+</CODE><P>
+
+<CODE><CODE>version=&quot;1&quot; </CODE>
+</CODE><P>
+
+<CODE>( </CODE><P>
+
+<CODE><CODE>Unrestricted=&quot;true&quot;</CODE>
+</CODE><P>
+
+<CODE>) </CODE><P>
+
+<CODE>| </CODE><P>
+
+<CODE>&amp;gt; </CODE><P>
+
+<CODE>(<CODE>&lt;ConnectAccess&gt;</CODE>
+</CODE><P>
+
+<CODE>(<P>
+
+<CODE>&lt;ENDPOINT&gt;</CODE>
+HostName<CODE>#</CODE>
+PortNumber<CODE>#</CODE>
+TransportProtocol<CODE>&lt;/ENDPOINT&gt;</CODE>
+<P>
+
+)+<P>
+
+<CODE>&lt;/ConnectAccess&gt;</CODE>
+<P>
+
+)<P>
+
+|<P>
+
+<CODE>&gt;</CODE>
+<P>
+
+(<CODE>&lt;AcceptAccess&gt;</CODE>
+<P>
+
+(<P>
+
+<CODE>&lt;ENDPOINT&gt;</CODE>
+HostName<CODE>#</CODE>
+PortNumber<CODE>#</CODE>
+TransportProtocol<CODE>&lt;/ENDPOINT&gt;</CODE>
+<P>
+
+)+<P>
+
+<CODE>&lt;/AcceptAccess&gt;</CODE>
+<P>
+
+<CODE>&lt;/IPermission&gt;</CODE>
+<P>
+
+)<P>
+
+|<P>
+
+<CODE>/&gt;</CODE>
+<P>
+
+<CODE></CODE>
+<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+SocketPermission Constructors<P>
+
+<A HREF="#SocketPermission(System.Security.Permissions.PermissionState) Constructor" TARGET="contents">SocketPermission(System.Security.Permissions.PermissionState) Constructor</A><BR>
+<A HREF="#SocketPermission(System.Net.NetworkAccess, System.Net.TransportType, System.String, int) Constructor" TARGET="contents">SocketPermission(System.Net.NetworkAccess, System.Net.TransportType, System.String, int) Constructor</A><BR>
+<P>
+
+SocketPermission Methods<P>
+
+<A HREF="#SocketPermission.Copy Method" TARGET="contents">SocketPermission.Copy Method</A><BR>
+<A HREF="#SocketPermission.FromXml Method" TARGET="contents">SocketPermission.FromXml Method</A><BR>
+<A HREF="#SocketPermission.Intersect Method" TARGET="contents">SocketPermission.Intersect Method</A><BR>
+<A HREF="#SocketPermission.IsSubsetOf Method" TARGET="contents">SocketPermission.IsSubsetOf Method</A><BR>
+<A HREF="#SocketPermission.ToXml Method" TARGET="contents">SocketPermission.ToXml Method</A><BR>
+<A HREF="#SocketPermission.Union Method" TARGET="contents">SocketPermission.Union Method</A><BR>
+<P>
+
+SocketPermission Fields<P>
+
+<A HREF="#SocketPermission.AllPorts Field" TARGET="contents">SocketPermission.AllPorts Field</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="SocketPermission(System.Security.Permissions.PermissionState) Constructor"><H3>SocketPermission(System.Security.Permissions.PermissionState) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public SocketPermission(PermissionState state);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> class with the specified
+<A HREF="../../System/Security/Permissions/PermissionState.html" TARGET="contents">PermissionState</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>state</DT>
+<DD>A <A HREF="../../System/Security/Permissions/PermissionState.html" TARGET="contents">PermissionState</A> value.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This constructor creates either fully restricted (System.Security.Permissions.PermissionState.None) 
+      or System.Security.Permissions.PermissionState.Unrestricted access to
+      sockets.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SocketPermission.html" TARGET="contents">System.Net.SocketPermission Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SocketPermission(System.Net.NetworkAccess, System.Net.TransportType, System.String, int) Constructor"><H3>SocketPermission(System.Net.NetworkAccess, System.Net.TransportType, System.String, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public SocketPermission(NetworkAccess access, TransportType transport, string hostName, int portNumber);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>access</DT>
+<DD>A <A HREF="NetworkAccess.html" TARGET="contents">NetworkAccess</A> value indicating the type of access to secure.</DD>
+<DT>transport</DT>
+<DD>A <A HREF="TransportType.html" TARGET="contents">TransportType</A> value indicating the transport type to secure. Specify System.Net.TransportType.All to create a permission that secures all transport types.</DD>
+<DT>hostName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the host name for the transport address.</DD>
+<DT>portNumber</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the port number for the transport address. Specify System.Net.SocketPermission.AllPorts create a permission that secures all ports.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The <I>hostName</I> parameter is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+No exception is thrown if the specified <A HREF="TransportType.html" TARGET="contents">TransportType</A> or
+<A HREF="NetworkAccess.html" TARGET="contents">NetworkAccess</A> is
+   invalid.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SocketPermission.html" TARGET="contents">System.Net.SocketPermission Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SocketPermission.Copy Method"><H3>SocketPermission.Copy Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IPermission Copy();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a new <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> object containing the same values as the
+ current instance.
+ <P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> containing the same values as the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  The
+ object returned by this method represents the same level of access as the
+ current instance.<P>
+
+This method overrides System.Security.CodeAccessPermission.Copy and is implemented to
+ support the <A HREF="../../System/Security/IPermission.html" TARGET="contents">IPermission</A> interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SocketPermission.html" TARGET="contents">System.Net.SocketPermission Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SocketPermission.FromXml Method"><H3>SocketPermission.FromXml Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void FromXml(SecurityElement securityElement);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reconstructs the state of a <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> object using the specified XML encoding.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>securityElement</DT>
+<DD>A <A HREF="../../System/Security/SecurityElement.html" TARGET="contents">SecurityElement</A> instance containing the XML encoding used to reconstruct the state of a <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> object.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>securityElement </I>is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>securityElement </I>is not a <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> permission element.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The state of the current instance is changed to the state
+      encoded in <I>securityElement</I>.<P>
+
+[<I>Note</I>: For the XML schema for this class, see the
+      <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> class
+         page.<P>
+
+This method overrides System.Security.CodeAccessPermission.FromXml(System.Security.SecurityElement).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SocketPermission.html" TARGET="contents">System.Net.SocketPermission Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SocketPermission.Intersect Method"><H3>SocketPermission.Intersect Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IPermission Intersect(IPermission target);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> object that is the intersection of the current
+   instance and the specified object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>target</DT>
+<DD>A <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> instance to intersect with the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> instance that represents the intersection of the
+   current instance and <I>target</I>. If target is
+<CODE>null</CODE>
+, returns <CODE>null</CODE>
+. If the intersection is
+   empty, returns <CODE>null</CODE>
+. If the
+   current instance is unrestricted, returns a copy of <I>target</I>. If
+<I>target</I> is unrestricted, returns a copy of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>target</I> is not of type <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The intersection of two permissions is a permission that secures the
+         resources and operations secured by both permissions. Specifically, it
+         represents the minimum permission such that any demand that passes both
+         permissions will also pass their intersection.<P>
+
+This method overrides System.Security.CodeAccessPermission.Intersect(System.Security.IPermission) and is implemented to
+      support the <A HREF="../../System/Security/IPermission.html" TARGET="contents">IPermission</A> interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SocketPermission.html" TARGET="contents">System.Net.SocketPermission Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SocketPermission.IsSubsetOf Method"><H3>SocketPermission.IsSubsetOf Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool IsSubsetOf(IPermission target);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether the current instance is a subset of the specified
+      object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>target</DT>
+<DD>A <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> instance that is to be tested for the subset relationship.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the current instance is a subset of <I>target</I> ;
+   otherwise,<CODE> false</CODE>
+. If the current instance is unrestricted, and
+<I>target</I> is not, returns <CODE>false</CODE>
+. If <I>target</I> is 
+   unrestricted, returns <CODE>true</CODE>
+. If <I>target</I> is
+<CODE>null</CODE>
+ 
+and the current instance does not secure any resources and is not unrestricted, returns <CODE>true</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>target </I>is not <CODE>null</CODE>
+ and is not of type <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A>.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The subset relationship is <CODE>true</CODE>
+ if every resource secured by the current
+   instance is secured by <I>target</I>
+   .<P>
+
+[<I>Note</I>: This method overrides System.Security.CodeAccessPermission.IsSubsetOf(System.Security.IPermission) and is implemented to
+   support the <A HREF="../../System/Security/IPermission.html" TARGET="contents">IPermission</A> interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SocketPermission.html" TARGET="contents">System.Net.SocketPermission Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SocketPermission.ToXml Method"><H3>SocketPermission.ToXml Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override SecurityElement ToXml();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the XML encoding of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Security/SecurityElement.html" TARGET="contents">SecurityElement</A> containing the XML encoding of the state of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: For the XML schema for this class, see the <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> class
+ page.<P>
+
+This method overrides System.Security.CodeAccessPermission.ToXml .<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SocketPermission.html" TARGET="contents">System.Net.SocketPermission Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SocketPermission.Union Method"><H3>SocketPermission.Union Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IPermission Union(IPermission target);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> that is the union of the current instance and the
+ specified object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>target</DT>
+<DD>A <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> instance to combine with the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> instance that represents the union of the current
+ instance and <I>target</I>. If the current instance or <I>target </I>is
+ unrestricted, returns a <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> instance that is unrestricted.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>target </I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>target</I> is not of type <A HREF="SocketPermission.html" TARGET="contents">SocketPermission</A> .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The result of a call to System.Net.SocketPermission.Union(System.Security.IPermission) is a permission
+ that represents all of the access to socket connections represented by
+ the current instance as well as the access represented by <I>target</I>. Any
+ demand that passes either the current instance or <I>target </I>passes their
+ union.<P>
+
+This method overrides System.Security.CodeAccessPermission.Union(System.Security.IPermission) and is implemented to
+ support the <A HREF="../../System/Security/IPermission.html" TARGET="contents">IPermission</A> interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SocketPermission.html" TARGET="contents">System.Net.SocketPermission Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="SocketPermission.AllPorts Field"><H3>SocketPermission.AllPorts Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public const int AllPorts = -1;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Defines a constant value that represents all ports.
+ <P>
+
+
+ This field is read-only. The value of this field is -1.
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="SocketPermission.html" TARGET="contents">System.Net.SocketPermission Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

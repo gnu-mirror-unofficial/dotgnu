@@ -1,0 +1,234 @@
+<HTML>
+<HEAD>
+<TITLE>System.DivideByZeroException Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.DivideByZeroException Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class DivideByZeroException : ArithmeticException</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="Exception.html" TARGET="contents">Exception</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="SystemException.html" TARGET="contents">SystemException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="ArithmeticException.html" TARGET="contents">ArithmeticException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DivideByZeroException<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents the error that is caused by an attempt to divide a
+      number by zero.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The following IL instructions throw <A HREF="DivideByZeroException.html" TARGET="contents">DivideByZeroException</A>:<P>
+
+<UL>
+<LI>
+         div</LI>
+<LI>
+         div.un</LI>
+<LI>
+         rem</LI>
+<LI>rem.un</LI>
+</UL>
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates an error that causes
+      a <A HREF="DivideByZeroException.html" TARGET="contents">DivideByZeroException</A> exception.<P>
+
+<PRE>using System;
+public class DivideZeroTest {
+ public static void Main() {
+   int x = 0;
+   try { 
+     int y = 100/x;
+   }
+   catch (DivideByZeroException e) {
+     Console.WriteLine(&quot;Error: {0}&quot;,e);
+   }
+ }
+}
+   </PRE>
+The output is<P>
+
+<PRE>
+Error: System.DivideByZeroException: Attempted to divide by zero.
+   at DivideZeroTest.Main()
+ </PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+DivideByZeroException Constructors<P>
+
+<A HREF="#DivideByZeroException() Constructor" TARGET="contents">DivideByZeroException() Constructor</A><BR>
+<A HREF="#DivideByZeroException(System.String) Constructor" TARGET="contents">DivideByZeroException(System.String) Constructor</A><BR>
+<A HREF="#DivideByZeroException(System.String, System.Exception) Constructor" TARGET="contents">DivideByZeroException(System.String, System.Exception) Constructor</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="DivideByZeroException() Constructor"><H3>DivideByZeroException() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DivideByZeroException();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="DivideByZeroException.html" TARGET="contents">DivideByZeroException</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.DivideByZeroException.Message property of the new instance to a system-supplied
+   message that describes the error, such as &quot;Attempted to divide by zero.&quot; This
+   message takes into account the current system culture.<P>
+
+The System.DivideByZeroException.InnerException property is initialized to <CODE>null</CODE>
+ .<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DivideByZeroException.html" TARGET="contents">System.DivideByZeroException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DivideByZeroException(System.String) Constructor"><H3>DivideByZeroException(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DivideByZeroException(string message);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="DivideByZeroException.html" TARGET="contents">DivideByZeroException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.DivideByZeroException.Message property of the new instance using
+<I>message</I> . If <I>message</I> is 
+<CODE>null</CODE>
+, the System.DivideByZeroException.Message property is initialized to the 
+   system-supplied message provided by the constructor that takes no arguments. The System.DivideByZeroException.InnerException property is initialized to <CODE>null</CODE>
+ .<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DivideByZeroException.html" TARGET="contents">System.DivideByZeroException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DivideByZeroException(System.String, System.Exception) Constructor"><H3>DivideByZeroException(System.String, System.Exception) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DivideByZeroException(string message, Exception innerException);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="DivideByZeroException.html" TARGET="contents">DivideByZeroException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+<DT>innerException</DT>
+<DD>An instance of <A HREF="Exception.html" TARGET="contents">Exception</A> that is the cause of the current exception. If <I>innerException</I> is non-null, then the current exception was raised in a catch block handling <I>innerException</I> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.DivideByZeroException.Message property of the new instance using <I>message</I>, and
+   the System.DivideByZeroException.InnerException property using <I>innerException</I>. If <I>message</I> is
+<CODE>null</CODE>
+, the System.DivideByZeroException.Message property is initialized to the 
+   system-supplied message provided by the constructor that takes no arguments.<P>
+
+[<I>Note</I>:  For information on inner exceptions,
+   see System.Exception.InnerException.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DivideByZeroException.html" TARGET="contents">System.DivideByZeroException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

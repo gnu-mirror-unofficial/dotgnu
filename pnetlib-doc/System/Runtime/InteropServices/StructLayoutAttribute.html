@@ -1,0 +1,429 @@
+<HTML>
+<HEAD>
+<TITLE>System.Runtime.InteropServices.StructLayoutAttribute Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Runtime.InteropServices.StructLayoutAttribute Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class StructLayoutAttribute : Attribute</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../../System/Attribute.html" TARGET="contents">Attribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;StructLayoutAttribute<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+The <A HREF="StructLayoutAttribute.html" TARGET="contents">StructLayoutAttribute</A>
+allows the user to control the physical layout
+of the data members of a class or structure.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The target objects for this attribute are classes and structures. By default, the physical layout of the data members of a target object is automatically arranged.
+      When managed objects are passed as arguments to unmanaged code,
+      the system creates their unmanaged representations. These unmanaged representations can
+      be controlled with the <A HREF="StructLayoutAttribute.html" TARGET="contents">StructLayoutAttribute</A> .
+      Such control is necessary if the unmanaged code expects a specific layout, packing
+      size, or character set.<P>
+
+[<I>Note</I>: See the <A HREF="LayoutKind.html" TARGET="contents">LayoutKind</A>
+enumeration for a description of the possible layout schemes, and the <A HREF="FieldOffsetAttribute.html" TARGET="contents">FieldOffsetAttribute</A> for further information on the layout of exported objects.]<P>
+
+<P>
+
+Compilers are required to not preserve this type
+   in metadata as a custom attribute. Instead, compilers are required to emit it
+   directly in the file format, as described in Partition II of the CLI
+   Specification. Metadata consumers, such as the Reflection API, are required to
+   retrieve this data from the file format and return it as if it were a custom
+   attribute. <P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the use of the <A HREF="StructLayoutAttribute.html" TARGET="contents">StructLayoutAttribute</A>, and the <A HREF="FieldOffsetAttribute.html" TARGET="contents">FieldOffsetAttribute</A>.<P>
+
+[<I>Note</I>: The non-standard
+<CODE> PtInRect</CODE>
+ 
+function used in this example indicates whether the specified point is
+located inside the specified rectangle. In this example, the layout setting on the
+<CODE>Rect</CODE>
+ 
+structure can be
+set to System.Runtime.InteropServices.LayoutKind.Sequential
+with no bearing on the end
+result.]<P>
+
+<P>
+
+<PRE>using System;
+using System.Runtime.InteropServices;
+
+[StructLayout(LayoutKind.Sequential)]
+public struct Point {
+ public int x;
+ public int y;
+}
+
+[StructLayout(LayoutKind.Explicit)]
+public struct Rect {
+ [FieldOffset(0)] public int left;
+ [FieldOffset(4)] public int top;
+ [FieldOffset(8)] public int right;
+ [FieldOffset(12)] public int bottom;
+}
+
+
+class NativeCodeAPI {
+ [DllImport(&quot;User32.dll&quot;)]
+ public static extern bool PtInRect(ref Rect r, Point p);
+}
+
+public class StructLayoutTest {
+ public static void Main() {
+ Rect r;
+ Point p1, p2;
+ 
+ r.left = 0;
+ r.right = 100;
+ r.top = 0;
+ r.bottom = 100;
+ 
+ p1.x = 20;
+ p1.y = 30;
+ 
+ p2.x = 110;
+ p2.y = 5;
+
+ 
+ bool isInside1 = NativeCodeAPI.PtInRect(ref r, p1);
+ bool isInside2 = NativeCodeAPI.PtInRect(ref r, p2);
+ 
+ if(isInside1)
+ Console.WriteLine(&quot;The first point is inside the rectangle.&quot;);
+ else
+ Console.WriteLine(&quot;The first point is outside the rectangle.&quot;);
+ 
+ if(isInside2)
+ Console.WriteLine(&quot;The second point is inside the rectangle.&quot;);
+ else
+ Console.WriteLine(&quot;The second point is outside the rectangle.&quot;);
+
+ }
+}
+</PRE>
+The output is<P>
+
+<CODE>The first point is inside the rectangle.<P>
+
+The second point is outside the rectangle.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple=false, Inherited=false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+StructLayoutAttribute Constructors<P>
+
+<A HREF="#StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind) Constructor" TARGET="contents">StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind) Constructor</A><BR>
+<A HREF="#StructLayoutAttribute(short) Constructor" TARGET="contents">StructLayoutAttribute(short) Constructor</A><BR>
+<P>
+
+StructLayoutAttribute Fields<P>
+
+<A HREF="#StructLayoutAttribute.CharSet Field" TARGET="contents">StructLayoutAttribute.CharSet Field</A><BR>
+<A HREF="#StructLayoutAttribute.Pack Field" TARGET="contents">StructLayoutAttribute.Pack Field</A><BR>
+<A HREF="#StructLayoutAttribute.Size Field" TARGET="contents">StructLayoutAttribute.Size Field</A><BR>
+<P>
+
+StructLayoutAttribute Properties<P>
+
+<A HREF="#StructLayoutAttribute.Value Property" TARGET="contents">StructLayoutAttribute.Value Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind) Constructor"><H3>StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StructLayoutAttribute(LayoutKind layoutKind);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="StructLayoutAttribute.html" TARGET="contents">StructLayoutAttribute</A> class
+   with the specified <A HREF="LayoutKind.html" TARGET="contents">LayoutKind</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>layoutKind</DT>
+<DD>A <A HREF="LayoutKind.html" TARGET="contents">LayoutKind</A> value that specifies how the class or structure is arranged in memory.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ If <I>layoutKind</I> contains an invalid
+<A HREF="LayoutKind.html" TARGET="contents">LayoutKind</A> value, 
+   a runtime error occurs.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StructLayoutAttribute.html" TARGET="contents">System.Runtime.InteropServices.StructLayoutAttribute Class</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StructLayoutAttribute(short) Constructor"><H3>StructLayoutAttribute(short) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StructLayoutAttribute(short layoutKind);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the 
+   <A HREF="StructLayoutAttribute.html" TARGET="contents">StructLayoutAttribute</A> class 
+      with the specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>layoutKind</DT>
+<DD>A <A HREF="../../../System/Int16.html" TARGET="contents">Int16</A> set to a <A HREF="LayoutKind.html" TARGET="contents">LayoutKind</A> value that specifies how the class or structure is arranged in memory.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the <I>layoutKind</I>
+parameter does not represent a valid <A HREF="LayoutKind.html" TARGET="contents">LayoutKind</A>
+value, a
+runtime error occurs.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StructLayoutAttribute.html" TARGET="contents">System.Runtime.InteropServices.StructLayoutAttribute Class</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StructLayoutAttribute.CharSet Field"><H3>StructLayoutAttribute.CharSet Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public CharSet CharSet;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+A <A HREF="CharSet.html" TARGET="contents">CharSet</A> value that indicates the character set in which strings of an object are
+   marshaled.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: See the <A HREF="CharSet.html" TARGET="contents">CharSet</A>
+enumeration for a description of different character sets.]<P>
+
+<P>
+
+The default value of this field is
+System.Runtime.InteropServices.CharSet.Ansi.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StructLayoutAttribute.html" TARGET="contents">System.Runtime.InteropServices.StructLayoutAttribute Class</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StructLayoutAttribute.Pack Field"><H3>StructLayoutAttribute.Pack Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Pack;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> that indicates the packing alignment used with the
+System.Runtime.InteropServices.LayoutKind.Sequential layout. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Runtime.InteropServices.StructLayoutAttribute.Pack field determines memory
+   alignment of data fields of a target object.<P>
+
+Data fields of a target object exported to unmanaged
+   memory are
+   aligned on
+   a byte boundary that is a multiple of System.Runtime.InteropServices.StructLayoutAttribute.Pack bytes, or at
+   some natural alignment for that field type, whichever is smaller.<P>
+
+The value of System.Runtime.InteropServices.StructLayoutAttribute.Pack is
+required to be 0, 1, 2, 4, 8, 16, 32, 64, or 128. A value of zero indicates that
+the packing alignment is set to the default for the current platform.
+The default value is implementation-defined.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StructLayoutAttribute.html" TARGET="contents">System.Runtime.InteropServices.StructLayoutAttribute Class</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StructLayoutAttribute.Size Field"><H3>StructLayoutAttribute.Size Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Size;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> that indicates the size of the memory block to be allocated
+   for an instance of the type qualified by the current <A HREF="StructLayoutAttribute.html" TARGET="contents">StructLayoutAttribute</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.Runtime.InteropServices.StructLayoutAttribute.Size is required to
+   be zero, or greater than or equal to the calculated size of the target object,
+   based on the System.Runtime.InteropServices.StructLayoutAttribute.Pack field indicating the packing
+   alignment. A System.Runtime.InteropServices.StructLayoutAttribute.Size of zero
+   indicates that the size is calculated from the field types, their specified offsets, the packing size (default or
+   specified) and natural alignment on the target, runtime platform.<P>
+
+[<I>Note</I>: For additional
+   information on the System.Runtime.InteropServices.StructLayoutAttribute.Size
+   field, see Partition II of the CLI Specification.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StructLayoutAttribute.html" TARGET="contents">System.Runtime.InteropServices.StructLayoutAttribute Class</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StructLayoutAttribute.Value Property"><H3>StructLayoutAttribute.Value Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public LayoutKind Value { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the <A HREF="LayoutKind.html" TARGET="contents">LayoutKind</A> value that specifies how
+   the target object is arranged.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="LayoutKind.html" TARGET="contents">LayoutKind</A> value that specifies how
+   the target object is arranged.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StructLayoutAttribute.html" TARGET="contents">System.Runtime.InteropServices.StructLayoutAttribute Class</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

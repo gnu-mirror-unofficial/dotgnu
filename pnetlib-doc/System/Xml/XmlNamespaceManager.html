@@ -1,0 +1,767 @@
+<HTML>
+<HEAD>
+<TITLE>System.Xml.XmlNamespaceManager Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Xml.XmlNamespaceManager Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class XmlNamespaceManager : IEnumerable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;XmlNamespaceManager<P>
+
+This type implements <A HREF="../../System/Collections/IEnumerable.html" TARGET="contents">IEnumerable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System.Xml
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Resolves, adds, and removes namespaces in a collection and
+      provides scope management for these namespaces. This class is used by
+      the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
+      and <A HREF="XmlTextReader.html" TARGET="contents">XmlTextReader</A> classes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This class stores prefixes and namespaces
+      as unique <A HREF="../../System/String.html" TARGET="contents">String</A>
+      objects.<P>
+
+<A HREF="XmlNamespaceManager.html" TARGET="contents">XmlNamespaceManager</A> assumes all prefixes and
+   namespaces are
+   valid.<P>
+
+ If the prefix
+   and namespace already exist within the current scope, they will replace the existing prefix/namespace combination. The
+   same prefix and namespace combination can exist across different scopes.<P>
+
+The following prefix/namespace pairs are added by default
+   to the <A HREF="XmlNamespaceManager.html" TARGET="contents">XmlNamespaceManager</A>. They can be determined at any
+   scope.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Namespace </TH><TH>PrefixNamespace </TH></TR>
+<TR><TD>http://www.w3.org/2000/xmlns/
+         (the xmlns prefix namespace)</TD><TD> xmlnshttp://www.w3.org/2000/xmlns/
+         (the xmlns prefix namespace)</TD></TR>
+<TR><TD>http://www.w3.org/XML/1998/namespace (The XML namespace)</TD><TD> xmlhttp://www.w3.org/XML/1998/namespace (The XML namespace)</TD></TR>
+<TR><TD>System.String.Empty. The empty namespace can be reassigned a
+   different prefix. For example, <CODE>xmlns=&quot;&quot;</CODE> defines the default namespace to
+be the empty namespace.</TD><TD>System.String.EmptySystem.String.Empty. The empty namespace can be reassigned a
+   different prefix. For example, <CODE>xmlns=&quot;&quot;</CODE> defines the default namespace to
+be the empty namespace.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+XmlNamespaceManager Constructors<P>
+
+<A HREF="#XmlNamespaceManager Constructor" TARGET="contents">XmlNamespaceManager Constructor</A><BR>
+<P>
+
+XmlNamespaceManager Methods<P>
+
+<A HREF="#XmlNamespaceManager.AddNamespace Method" TARGET="contents">XmlNamespaceManager.AddNamespace Method</A><BR>
+<A HREF="#XmlNamespaceManager.GetEnumerator Method" TARGET="contents">XmlNamespaceManager.GetEnumerator Method</A><BR>
+<A HREF="#XmlNamespaceManager.HasNamespace Method" TARGET="contents">XmlNamespaceManager.HasNamespace Method</A><BR>
+<A HREF="#XmlNamespaceManager.LookupNamespace Method" TARGET="contents">XmlNamespaceManager.LookupNamespace Method</A><BR>
+<A HREF="#XmlNamespaceManager.LookupPrefix Method" TARGET="contents">XmlNamespaceManager.LookupPrefix Method</A><BR>
+<A HREF="#XmlNamespaceManager.PopScope Method" TARGET="contents">XmlNamespaceManager.PopScope Method</A><BR>
+<A HREF="#XmlNamespaceManager.PushScope Method" TARGET="contents">XmlNamespaceManager.PushScope Method</A><BR>
+<A HREF="#XmlNamespaceManager.RemoveNamespace Method" TARGET="contents">XmlNamespaceManager.RemoveNamespace Method</A><BR>
+<P>
+
+XmlNamespaceManager Properties<P>
+
+<A HREF="#XmlNamespaceManager.DefaultNamespace Property" TARGET="contents">XmlNamespaceManager.DefaultNamespace Property</A><BR>
+<A HREF="#XmlNamespaceManager.NameTable Property" TARGET="contents">XmlNamespaceManager.NameTable Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="XmlNamespaceManager Constructor"><H3>XmlNamespaceManager Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public XmlNamespaceManager(XmlNameTable nameTable);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of
+      the <A HREF="XmlNamespaceManager.html" TARGET="contents">XmlNamespaceManager</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>nameTable</DT>
+<DD>The <A HREF="XmlNameTable.html" TARGET="contents">XmlNameTable</A> to use.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>nameTable</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <I>nameTable</I>
+   is used to look up prefixes and namespaces.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlNamespaceManager.html" TARGET="contents">System.Xml.XmlNamespaceManager Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlNamespaceManager.AddNamespace Method"><H3>XmlNamespaceManager.AddNamespace Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void AddNamespace(string prefix, string uri);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds the given namespace to the collection of namespaces
+      maintained by the current instance in System.Xml.XmlNamespaceManager.NameTable.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>prefix</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the prefix to associate with the namespace being added. Use System.String.Empty to add a default namespace.</DD>
+<DT> uri</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the namespace to add.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>prefix</I> is &quot;xml&quot; or &quot;xmlns&quot;.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>prefix</I> is <CODE>null</CODE>
+, or <I>uri</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The same prefix and namespace combination can exist
+         across different scopes.<P>
+
+]<P>
+
+[<I>Behaviors</I>: 
+      
+      As described above.]<P>
+
+<P>
+
+[<I>Default</I>:  This
+      method assumes all prefixes and namespaces are valid but does not check
+   <I>prefix</I> and <I>uri</I> for
+      conformance to the W3C specification.<P>
+
+ If the specified prefix/namespace
+      combination already exists within the current scope,
+      their <A HREF="../../System/String.html" TARGET="contents">String</A> instances will be replaced
+      in System.Xml.XmlNamespaceManager.NameTable with the
+      new <A HREF="../../System/String.html" TARGET="contents">String</A>
+      instances of <I>prefix</I> and <I>uri</I>.<P>
+
+]<P>
+
+[<I>Overrides</I>:  Override this
+   method to check <I>prefix</I> and <I> uri</I> for conformance to the W3C specification. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlNamespaceManager.html" TARGET="contents">System.Xml.XmlNamespaceManager Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlNamespaceManager.GetEnumerator Method"><H3>XmlNamespaceManager.GetEnumerator Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual IEnumerator GetEnumerator();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Provides support for iteration over
+      the collection of namespaces maintained by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Collections/IEnumerator.html" TARGET="contents">IEnumerator</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above. ]<P>
+
+<P>
+
+[<I>Overrides</I>:   Override this
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlNamespaceManager.html" TARGET="contents">XmlNamespaceManager</A>
+      class.
+
+      ]<P>
+
+<P>
+
+[<I>Usage</I>:  Use this method to iterate through the collection of
+      namespaces in System.Xml.XmlNamespaceManager.NameTable.
+      ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlNamespaceManager.html" TARGET="contents">System.Xml.XmlNamespaceManager Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlNamespaceManager.HasNamespace Method"><H3>XmlNamespaceManager.HasNamespace Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool HasNamespace(string prefix);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a value indicating whether the supplied prefix has
+      a namespace defined for the current pushed scope.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>prefix</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the prefix of the namespace to find.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates there is a
+   namespace defined; otherwise, <CODE>false</CODE>
+. If <I>prefix</I> is <CODE>null</CODE>
+, returns <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above. ]<P>
+
+<P>
+
+[<I>Default</I>:  When
+      <I>prefix</I> is set to System.String.Empty, this method returns
+      <CODE>true</CODE>
+ to indicate a default empty namespace is defined in the current scope. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  Override this
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlNamespaceManager.html" TARGET="contents">XmlNamespaceManager</A>
+      class.
+      ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlNamespaceManager.html" TARGET="contents">System.Xml.XmlNamespaceManager Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlNamespaceManager.LookupNamespace Method"><H3>XmlNamespaceManager.LookupNamespace Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string LookupNamespace(string prefix);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the namespace URI associated with the specified
+      prefix.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>prefix</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the prefix whose namespace URI to resolve. To match the default namespace, pass System.String.Empty.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the namespace URI for <I>prefix</I>, or <CODE>null</CODE>
+
+if there is
+no mapped namespace.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above. ]<P>
+
+<P>
+
+[<I>Overrides</I>:   Override this
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlNamespaceManager.html" TARGET="contents">XmlNamespaceManager</A>
+      class.
+      ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlNamespaceManager.html" TARGET="contents">System.Xml.XmlNamespaceManager Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlNamespaceManager.LookupPrefix Method"><H3>XmlNamespaceManager.LookupPrefix Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string LookupPrefix(string uri);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the prefix associated with the given
+      namespace URI.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>uri</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the namespace to resolve for the prefix.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the
+   matching prefix. If there is no mapped prefix, this method returns
+System.String.Empty. If a <CODE>null</CODE>
+ 
+value is supplied, then
+<CODE>null</CODE>
+ is returned.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above.
+      ]<P>
+
+<P>
+
+[<I>Overrides</I>:  Override this
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlNamespaceManager.html" TARGET="contents">XmlNamespaceManager</A>
+      class.
+      ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlNamespaceManager.html" TARGET="contents">System.Xml.XmlNamespaceManager Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlNamespaceManager.PopScope Method"><H3>XmlNamespaceManager.PopScope Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool PopScope();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Pops a namespace scope off the stack.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates a namespace
+   scope was popped off the stack; <CODE>false</CODE>
+ indicates there were no namespaces
+   scopes to pop.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above. ]<P>
+
+<P>
+
+[<I>Default</I>:  This method
+      removes all the namespaces that were added to the collection (by calling
+      System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String))
+      since the last call to the System.Xml.XmlNamespaceManager.PopScope
+      
+      method. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  Override this
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlNamespaceManager.html" TARGET="contents">XmlNamespaceManager</A>
+      class.
+      ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlNamespaceManager.html" TARGET="contents">System.Xml.XmlNamespaceManager Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlNamespaceManager.PushScope Method"><H3>XmlNamespaceManager.PushScope Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void PushScope();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Pushes a namespace scope onto the stack.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above. ]<P>
+
+<P>
+
+[<I>Default</I>:  This method associates the pushed namespace scope
+      with all the namespaces added to the collection (by calling
+      System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)) since the last call to the
+      System.Xml.XmlNamespaceManager.PushScope
+   method.]<P>
+
+<P>
+
+[<I>Overrides</I>:   Override this
+   method to customize the behavior of this method in types derived from
+   the <A HREF="XmlNamespaceManager.html" TARGET="contents">XmlNamespaceManager</A>
+   class.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlNamespaceManager.html" TARGET="contents">System.Xml.XmlNamespaceManager Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlNamespaceManager.RemoveNamespace Method"><H3>XmlNamespaceManager.RemoveNamespace Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void RemoveNamespace(string prefix, string uri);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes the specified namespace associated with the
+      specified prefix from the namespace collection maintained by the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>prefix</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the prefix.</DD>
+<DT> uri</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the namespace to remove.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>prefix</I> is <CODE>null</CODE>
+, or <I>uri</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above. ]<P>
+
+<P>
+
+[<I>Default</I>:  The namespace
+      removed is from the current namespace scope. Namespaces outside the current
+      scope are ignored. If <I>prefix</I> or <I> uri</I> does not exist
+      in the collection, this method simply returns. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  Override this
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlNamespaceManager.html" TARGET="contents">XmlNamespaceManager</A>
+      class.
+      ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlNamespaceManager.html" TARGET="contents">System.Xml.XmlNamespaceManager Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlNamespaceManager.DefaultNamespace Property"><H3>XmlNamespaceManager.DefaultNamespace Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string DefaultNamespace { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the namespace URI for the default
+      namespace.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the
+   namespace URI for the default namespace, or System.String.Empty
+   if there is no default namespace.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Behaviors</I>:  As described
+      above. ]<P>
+
+<P>
+
+[<I>Default</I>:  This method is
+      equivalent to calling System.Xml.XmlNamespaceManager.LookupNamespace(System.String)
+      (System.String.Empty). ]<P>
+
+<P>
+
+[<I>Overrides</I>:  Override this
+      property to customize the behavior of this property in types derived from
+      the <A HREF="XmlNamespaceManager.html" TARGET="contents">XmlNamespaceManager</A>
+      class.
+      ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlNamespaceManager.html" TARGET="contents">System.Xml.XmlNamespaceManager Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlNamespaceManager.NameTable Property"><H3>XmlNamespaceManager.NameTable Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public XmlNameTable NameTable { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the name table used by the current instance to look up prefixes and namespace URIs.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ The <A HREF="XmlNameTable.html" TARGET="contents">XmlNameTable</A> used by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlNamespaceManager.html" TARGET="contents">System.Xml.XmlNamespaceManager Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

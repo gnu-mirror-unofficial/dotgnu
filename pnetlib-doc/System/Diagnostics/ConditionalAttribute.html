@@ -1,0 +1,240 @@
+<HTML>
+<HEAD>
+<TITLE>System.Diagnostics.ConditionalAttribute Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Diagnostics.ConditionalAttribute Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class ConditionalAttribute : Attribute</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/Attribute.html" TARGET="contents">Attribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;ConditionalAttribute<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Indicates to compilers that a method is callable if and only if a specified
+      pre-processing identifier has been defined on the method.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: A <A HREF="ConditionalAttribute.html" TARGET="contents">ConditionalAttribute</A>, which has an
+      associated condition System.Diagnostics.ConditionalAttribute.ConditionString, can be attached to the
+      definition of a method, creating a <I>conditional</I><I>method</I>
+   . Thereafter, when a compiler encounters
+   a call to that method, it may choose to ignore the call unless a compilation
+   variable is defined at the site of the call, with a value that matches
+   in a case-sensitive manner the System.Diagnostics.ConditionalAttribute.ConditionString supplied to the <A HREF="ConditionalAttribute.html" TARGET="contents">ConditionalAttribute</A>
+   
+   .<P>
+
+Note that compilers may provide several techniques to define such compilation variables, such
+   as:<P>
+
+<UL>
+<LI>compiler command-line switches (for
+         example, <CODE>/define:DEBUG</CODE> )<P>
+
+</LI>
+<LI>environment variables in the operating system shell
+            (for example, <CODE>SET
+            DEBUG=1</CODE>)<P>
+
+</LI>
+<LI>as pragmas in the source code (for example, <CODE>#define DEBUG</CODE>, to define the
+            compilation variable, or <CODE>#undef DEBUG</CODE> to
+         undefine it)<P>
+
+</LI>
+</UL>
+ CLS-Compliant compilers are permitted to ignore uses of the <A HREF="ConditionalAttribute.html" TARGET="contents">ConditionalAttribute</A>
+.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example demonstrates the use of
+   <A HREF="ConditionalAttribute.html" TARGET="contents">ConditionalAttribute</A> with a
+      particular compiler that supports the use of this
+      attribute. The System.Diagnostics.ConditionalAttribute.ConditionString property of the current
+      attribute is initialized as &quot;DEBUG&quot;.<P>
+
+<CODE><PRE>using System;
+using System.Diagnostics;
+
+public class MyClass { 
+
+  [ConditionalAttribute(&quot;DEBUG&quot;)] 
+  public static void Display() { 
+
+    Console.WriteLine(&quot;Compiled with DEBUG&quot;); 
+  }
+}
+
+public class TestCondition { 
+
+  public static void Main() { 
+
+    Console.WriteLine(&quot;How was this compiled?&quot;); 
+    MyClass.Display(); 
+    Console.WriteLine(&quot;&lt;eop&gt;&quot;); 
+  }
+}
+      </PRE>
+</CODE> When this code is compiled with the
+      compilation-variable DEBUG defined at the callsite, the
+      output when run is <P>
+
+<CODE>
+How was this compiled?<P>
+
+Compiled with DEBUG<P>
+
+&amp;lt;eop&gt;
+   <P>
+
+</CODE> When this code is
+      compiled without the compilation-variable DEBUG defined at the callsite, the
+      output when run is<P>
+
+<CODE>
+How was this compiled?<P>
+
+&amp;lt;eop&gt;
+   <P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>AttributeUsageAttribute(AttributeTargets.Method, AllowMultiple=true, Inherited=true)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Diagnostics.html" TARGET="members">System.Diagnostics Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ConditionalAttribute Constructors<P>
+
+<A HREF="#ConditionalAttribute Constructor" TARGET="contents">ConditionalAttribute Constructor</A><BR>
+<P>
+
+ConditionalAttribute Properties<P>
+
+<A HREF="#ConditionalAttribute.ConditionString Property" TARGET="contents">ConditionalAttribute.ConditionString Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ConditionalAttribute Constructor"><H3>ConditionalAttribute Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ConditionalAttribute(string conditionString);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="ConditionalAttribute.html" TARGET="contents">ConditionalAttribute</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>conditionString</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that contains the pre-processing identifier that makes callable the target method of the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.Diagnostics.ConditionalAttribute.ConditionString property of the current instance using 
+<I>conditionString</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ConditionalAttribute.html" TARGET="contents">System.Diagnostics.ConditionalAttribute Class</A>, <A HREF="Diagnostics.html" TARGET="members">System.Diagnostics Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ConditionalAttribute.ConditionString Property"><H3>ConditionalAttribute.ConditionString Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ConditionString { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the <A HREF="../../System/String.html" TARGET="contents">String</A> that contains
+   the pre-processing identifier that makes callable the target method of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A>
+that contains the pre-processing identifier that makes callable the target
+method of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ConditionalAttribute.html" TARGET="contents">System.Diagnostics.ConditionalAttribute Class</A>, <A HREF="Diagnostics.html" TARGET="members">System.Diagnostics Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,205 @@
+<HTML>
+<HEAD>
+<TITLE>System.Reflection.MethodInfo Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Reflection.MethodInfo Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class MethodInfo : MethodBase</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="MemberInfo.html" TARGET="contents">MemberInfo</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="MethodBase.html" TARGET="contents">MethodBase</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MethodInfo<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Provides access to method metadata.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+MethodInfo Constructors<P>
+
+<A HREF="#MethodInfo Constructor" TARGET="contents">MethodInfo Constructor</A><BR>
+<P>
+
+MethodInfo Methods<P>
+
+<A HREF="#MethodInfo.GetBaseDefinition Method" TARGET="contents">MethodInfo.GetBaseDefinition Method</A><BR>
+<P>
+
+MethodInfo Properties<P>
+
+<A HREF="#MethodInfo.ReturnType Property" TARGET="contents">MethodInfo.ReturnType Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="MethodInfo Constructor"><H3>MethodInfo Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected MethodInfo();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new instance of the <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MethodInfo.html" TARGET="contents">System.Reflection.MethodInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MethodInfo.GetBaseDefinition Method"><H3>MethodInfo.GetBaseDefinition Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract MethodInfo GetBaseDefinition();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a new <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A> instance that reflects the first definition
+   of the method reflected by the current instance in
+   the inheritance hierarchy of that method. <P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A> instance that reflects the first definition
+   of the method reflected by the
+   current instance in the inheritance hierarchy of that method. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: System.Reflection.MethodInfo.GetBaseDefinition proceeds along the inheritance
+      hierarchy of the method reflected by the current instance, returning a <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A>
+      instance that reflects the first definition in the hierarchy of that
+      method.<P>
+
+The method declaration to be reflected by the
+      new <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A>
+      instance
+      is determined as follows:<P>
+
+<UL>
+<LI>
+         
+         If the method reflected by the current instance
+         overrides a virtual definition in the base class, the virtual definition is
+         reflected.</LI>
+<LI>
+         
+         If the method reflected
+         
+         by the current instance is specified with the <CODE>new</CODE>
+ keyword, the
+         current instance is returned.</LI>
+<LI>
+         
+         If the method reflected by the current instance is
+         not defined in the type of the object on which System.Reflection.MethodInfo.GetBaseDefinition is called, the method definition of the furthest ancestor in
+         the class hierarchy is reflected.</LI>
+</UL>
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MethodInfo.html" TARGET="contents">System.Reflection.MethodInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MethodInfo.ReturnType Property"><H3>MethodInfo.ReturnType Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract Type ReturnType { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the type of the return value of the method reflected by the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ The <A HREF="../../System/Type.html" TARGET="contents">Type</A> of the return
+   value of the method reflected by the current instance. This property is equal to
+   the <A HREF="../../System/Type.html" TARGET="contents">Type</A>
+   object representing
+<A HREF="../../System/Void.html" TARGET="contents">Void</A> if the 
+   return value of the method is <CODE>void</CODE>
+
+   .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This property is
+      read-only.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MethodInfo.html" TARGET="contents">System.Reflection.MethodInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,1932 @@
+<HTML>
+<HEAD>
+<TITLE>System.Globalization.DateTimeFormatInfo Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Globalization.DateTimeFormatInfo Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class DateTimeFormatInfo : ICloneable, IFormatProvider</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;DateTimeFormatInfo<P>
+
+This type implements <A HREF="../../System/ICloneable.html" TARGET="contents">ICloneable</A> and <A HREF="../../System/IFormatProvider.html" TARGET="contents">IFormatProvider</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Defines culture-specific formats and patterns for
+   <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> values.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> values are formatted by the System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider) and
+System.DateTime.ToString methods according to standard or custom patterns stored 
+   in the properties of a <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance. The standard patterns can be
+   accessed and modified through the associated <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> properties.
+   [<I>Note</I>: The format patterns and properties of a
+      read-only <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance cannot be changed. To determine
+      whether a <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance is read-only, use the System.Globalization.DateTimeFormatInfo.IsReadOnly property.]<P>
+
+<P>
+
+Date and time format patterns are specified using
+      strings called <I>format specifiers</I>. A string is interpreted as standard
+      format specifier if it contains exactly one standard format specifier character.
+      If the string contains a single character and that character is not one of the
+      standard format specifiers, an exception is thrown. If the string contains two
+      or more characters, even if the extra characters are white spaces, the string is
+      interpreted as a custom format specifier. Format specifiers and format patterns
+      are case-sensitive; for example, &apos;g&apos; and &apos;G&apos; represent different
+      
+      patterns. <P>
+
+The following table shows the standard format specifiers and the associated
+      format pattern defined for the invariant culture. The exact pattern produced by
+      a format specifier is influenced by culture-specific date and/or time settings
+      on the current system; computers with different date and time settings might
+      display different patterns. The asterisk at the end of a format pattern
+      indicates that the preceding character may be repeated without changing the
+      meaning of the pattern. For example, the pattern &quot;HH*&quot; indicates that the
+      strings &quot;HH&quot;, &quot;HHH&quot;, &quot;HHHH&quot;, and &quot;HHHHH&quot; produce the same result when used with
+   System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider) and System.DateTime.ToString methods. <P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Format PatternDescription</TH><TH>Format SpecifierFormat PatternDescription</TH></TR>
+<TR><TD>MM/dd/yyyyThe full date in numeric format (System.Globalization.DateTimeFormatInfo.ShortDatePattern
+      ).</TD><TD> dMM/dd/yyyyThe full date in numeric format (System.Globalization.DateTimeFormatInfo.ShortDatePattern
+      ).</TD></TR>
+<TR><TD>dddd*, MMMM* dd, yyyyThe full date including the day of the week and the
+      name of the month (System.Globalization.DateTimeFormatInfo.LongDatePattern
+      ).</TD><TD> Ddddd*, MMMM* dd, yyyyThe full date including the day of the week and the
+      name of the month (System.Globalization.DateTimeFormatInfo.LongDatePattern
+      ).</TD></TR>
+<TR><TD>dddd*, MMMM* dd, yyyy HH*:mm*The full date and time, including the day of the week
+      and the name of the month (System.Globalization.DateTimeFormatInfo.LongDatePattern combined with System.Globalization.DateTimeFormatInfo.ShortTimePattern
+      ).</TD><TD> fdddd*, MMMM* dd, yyyy HH*:mm*The full date and time, including the day of the week
+      and the name of the month (System.Globalization.DateTimeFormatInfo.LongDatePattern combined with System.Globalization.DateTimeFormatInfo.ShortTimePattern
+      ).</TD></TR>
+<TR><TD>dddd*, MMMM* dd, yyyy HH*:mm*:ss*The full date and time, including the seconds
+      (System.Globalization.DateTimeFormatInfo.FullDateTimePattern equivalent to
+   System.Globalization.DateTimeFormatInfo.LongDatePattern combined with System.Globalization.DateTimeFormatInfo.LongTimePattern
+   ).</TD><TD> Fdddd*, MMMM* dd, yyyy HH*:mm*:ss*The full date and time, including the seconds
+      (System.Globalization.DateTimeFormatInfo.FullDateTimePattern equivalent to
+   System.Globalization.DateTimeFormatInfo.LongDatePattern combined with System.Globalization.DateTimeFormatInfo.LongTimePattern
+   ).</TD></TR>
+<TR><TD>MM/dd/yyyy HH*:mm*A
+      general date pattern including the short time form (System.Globalization.DateTimeFormatInfo.ShortDatePattern combined with
+   System.Globalization.DateTimeFormatInfo.ShortTimePattern
+   ).</TD><TD> gMM/dd/yyyy HH*:mm*A
+      general date pattern including the short time form (System.Globalization.DateTimeFormatInfo.ShortDatePattern combined with
+   System.Globalization.DateTimeFormatInfo.ShortTimePattern
+   ).</TD></TR>
+<TR><TD>MM/dd/yyyy HH*:mm*:ss*A
+      general date pattern including the long time form (System.Globalization.DateTimeFormatInfo.ShortDatePattern combined with System.Globalization.DateTimeFormatInfo.LongTimePattern
+      ).</TD><TD> GMM/dd/yyyy HH*:mm*:ss*A
+      general date pattern including the long time form (System.Globalization.DateTimeFormatInfo.ShortDatePattern combined with System.Globalization.DateTimeFormatInfo.LongTimePattern
+      ).</TD></TR>
+<TR><TD>MMMM* ddThe full name of the month and the date (System.Globalization.DateTimeFormatInfo.MonthDayPattern ).</TD><TD> m, MMMMM* ddThe full name of the month and the date (System.Globalization.DateTimeFormatInfo.MonthDayPattern ).</TD></TR>
+<TR><TD>HH*:mm*The time in short format (System.Globalization.DateTimeFormatInfo.ShortTimePattern ).</TD><TD> tHH*:mm*The time in short format (System.Globalization.DateTimeFormatInfo.ShortTimePattern ).</TD></TR>
+<TR><TD>HH*:mm*:ss*The time in long format (System.Globalization.DateTimeFormatInfo.LongTimePattern ).</TD><TD> THH*:mm*:ss*The time in long format (System.Globalization.DateTimeFormatInfo.LongTimePattern ).</TD></TR>
+<TR><TD>dddd*, MMMM* dd, yyyy HH*:mm*:ss*The
+      full date and time, including the seconds, in the Gregorian calendar (
+   System.Globalization.DateTimeFormatInfo.FullDateTimePattern
+   ).</TD><TD> Udddd*, MMMM* dd, yyyy HH*:mm*:ss*The
+      full date and time, including the seconds, in the Gregorian calendar (
+   System.Globalization.DateTimeFormatInfo.FullDateTimePattern
+   ).</TD></TR>
+<TR><TD>YYYY MMMM*The full name of the month and the year in four-digit
+      format (System.Globalization.DateTimeFormatInfo.YearMonthPattern
+      ). </TD><TD> y, YYYYY MMMM*The full name of the month and the year in four-digit
+      format (System.Globalization.DateTimeFormatInfo.YearMonthPattern
+      ). </TD></TR>
+</TABLE>
+
+The following table lists custom format specifiers that can be combined to
+construct custom patterns. If the custom pattern contains white space
+characters, characters enclosed in single or double quotation marks, or
+characters not defined in the following table, these characters are considered
+literals and are included in the output string unchanged.
+[<I>Note</I>:  See the <A HREF="../../System/String.html" TARGET="contents">String</A> class for the 
+list of white space characters.]<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>DescriptionExamples</TH><TH>Format PatternDescriptionExamples</TH></TR>
+<TR><TD>The
+         day of the month as a value in the range 1-31, inclusive. Single-digit days do
+         not have a leading zero.1<P>
+
+22<P>
+
+</TD><TD> dThe
+         day of the month as a value in the range 1-31, inclusive. Single-digit days do
+         not have a leading zero.1<P>
+
+22<P>
+
+</TD></TR>
+<TR><TD>The
+            day of the month as a value in the range 1-31, inclusive. Single-digit days have a leading zero.01<P>
+
+22<P>
+
+</TD><TD> ddThe
+            day of the month as a value in the range 1-31, inclusive. Single-digit days have a leading zero.01<P>
+
+22<P>
+
+</TD></TR>
+<TR><TD>The abbreviated name of the day of the week, as
+               defined in System.Globalization.DateTimeFormatInfo.AbbreviatedDayNames
+               .Mon</TD><TD> dddThe abbreviated name of the day of the week, as
+               defined in System.Globalization.DateTimeFormatInfo.AbbreviatedDayNames
+               .Mon</TD></TR>
+<TR><TD>The full name of the day of the week, as defined in
+            System.Globalization.DateTimeFormatInfo.DayNames .Monday</TD><TD> dddd*The full name of the day of the week, as defined in
+            System.Globalization.DateTimeFormatInfo.DayNames .Monday</TD></TR>
+<TR><TD>The
+               numeric month as a value in the range 1-12, inclusive. Single-digit months do not have a leading zero.2<P>
+
+11<P>
+
+</TD><TD> MThe
+               numeric month as a value in the range 1-12, inclusive. Single-digit months do not have a leading zero.2<P>
+
+11<P>
+
+</TD></TR>
+<TR><TD>The
+                  numeric month as a value in the range 1-12, inclusive. Single-digit months have a leading zero.02<P>
+
+11<P>
+
+</TD><TD> MMThe
+                  numeric month as a value in the range 1-12, inclusive. Single-digit months have a leading zero.02<P>
+
+11<P>
+
+</TD></TR>
+<TR><TD>The abbreviated name of the month, as defined in
+                  System.Globalization.DateTimeFormatInfo.AbbreviatedMonthNames
+                  .Feb</TD><TD> MMMThe abbreviated name of the month, as defined in
+                  System.Globalization.DateTimeFormatInfo.AbbreviatedMonthNames
+                  .Feb</TD></TR>
+<TR><TD>The full name of the month, as defined in System.Globalization.DateTimeFormatInfo.MonthNames .February</TD><TD> MMMM*The full name of the month, as defined in System.Globalization.DateTimeFormatInfo.MonthNames .February</TD></TR>
+<TR><TD>The year without the century (two-digit). If the value is less than
+               10, the year is displayed with no leading zero.0<P>
+
+3<P>
+
+</TD><TD> yThe year without the century (two-digit). If the value is less than
+               10, the year is displayed with no leading zero.0<P>
+
+3<P>
+
+</TD></TR>
+<TR><TD>The year without the century (two-digit). If the year without the
+                  century is less than 10, the year is displayed with a leading zero.00<P>
+
+03<P>
+
+</TD><TD> yyThe year without the century (two-digit). If the year without the
+                  century is less than 10, the year is displayed with a leading zero.00<P>
+
+03<P>
+
+</TD></TR>
+<TR><TD>The year including the century in four digits.2000<P>
+
+2003<P>
+
+</TD><TD> yyyyThe year including the century in four digits.2000<P>
+
+2003<P>
+
+</TD></TR>
+<TR><TD>The name of a period or era (such as &quot;A.D.&quot; or &quot;B.C.&quot;). This pattern
+                        is ignored if the date to be formatted does not have an associated period
+                        or era string.A.D.</TD><TD> g*The name of a period or era (such as &quot;A.D.&quot; or &quot;B.C.&quot;). This pattern
+                        is ignored if the date to be formatted does not have an associated period
+                        or era string.A.D.</TD></TR>
+<TR><TD>The hour
+                        within a 12-hour range as a value in the range 1-12, inclusive. Single-digit
+                        hours do not have a leading zero. [<I>Note</I>:  The value represents whole hours passed since either midnight
+                        (12) or noon (12). To distinguish between values occurring before and after noon, include the &quot;t&quot; or &quot;tt*&quot; custom
+                        format specifier.]<P>
+
+3<P>
+
+11<P>
+
+</TD><TD> hThe hour
+                        within a 12-hour range as a value in the range 1-12, inclusive. Single-digit
+                        hours do not have a leading zero. [<I>Note</I>:  The value represents whole hours passed since either midnight
+                        (12) or noon (12). To distinguish between values occurring before and after noon, include the &quot;t&quot; or &quot;tt*&quot; custom
+                        format specifier.]<P>
+
+3<P>
+
+11<P>
+
+</TD></TR>
+<TR><TD>The
+                           hour within a 12-hour range as a value in the range 1-12, inclusive.
+                           Single-digit hours have a leading zero. [<I>Note</I>:  The value represents whole hours passed since either midnight
+                           (12) or noon (12). To distinguish between values occurring before and after noon, include the &quot;t&quot; or &quot;tt*&quot; custom format
+                           specifier.]<P>
+
+03<P>
+
+11<P>
+
+</TD><TD> hh*The
+                           hour within a 12-hour range as a value in the range 1-12, inclusive.
+                           Single-digit hours have a leading zero. [<I>Note</I>:  The value represents whole hours passed since either midnight
+                           (12) or noon (12). To distinguish between values occurring before and after noon, include the &quot;t&quot; or &quot;tt*&quot; custom format
+                           specifier.]<P>
+
+03<P>
+
+11<P>
+
+</TD></TR>
+<TR><TD>The hour as a value in the range 0-23, inclusive.
+                              Single-digit hours do not have a leading zero. [<I>Note</I>:  The value represents whole hours passed since
+                              midnight.]<P>
+
+3<P>
+
+13<P>
+
+</TD><TD> HThe hour as a value in the range 0-23, inclusive.
+                              Single-digit hours do not have a leading zero. [<I>Note</I>:  The value represents whole hours passed since
+                              midnight.]<P>
+
+3<P>
+
+13<P>
+
+</TD></TR>
+<TR><TD>The hour as a value in the range 0 and 23, inclusive.
+                                 Single-digit hours have a leading zero. [<I>Note</I>:  The value represents whole hours passed since
+                                 midnight.]<P>
+
+03<P>
+
+13<P>
+
+</TD><TD> HH*The hour as a value in the range 0 and 23, inclusive.
+                                 Single-digit hours have a leading zero. [<I>Note</I>:  The value represents whole hours passed since
+                                 midnight.]<P>
+
+03<P>
+
+13<P>
+
+</TD></TR>
+<TR><TD>The minute
+                                    as a value in the range 0-59, inclusive. Single-digit minutes do not
+                                    have a leading zero. [<I>Note</I>:  The value
+                                    represents whole minutes passed since the last hour.]<P>
+
+5<P>
+
+15<P>
+
+</TD><TD> mThe minute
+                                    as a value in the range 0-59, inclusive. Single-digit minutes do not
+                                    have a leading zero. [<I>Note</I>:  The value
+                                    represents whole minutes passed since the last hour.]<P>
+
+5<P>
+
+15<P>
+
+</TD></TR>
+<TR><TD>The minute
+                                       as a value in the range 0-59, inclusive. Single-digit minutes have a
+                                       leading zero. [<I>Note</I>:  The value represents
+                                       whole minutes passed since the last hour.]<P>
+
+05<P>
+
+15<P>
+
+</TD><TD> mm*The minute
+                                       as a value in the range 0-59, inclusive. Single-digit minutes have a
+                                       leading zero. [<I>Note</I>:  The value represents
+                                       whole minutes passed since the last hour.]<P>
+
+05<P>
+
+15<P>
+
+</TD></TR>
+<TR><TD>The
+                                          second as a value in the range 0-59, inclusive. Single-digit seconds do
+                                          not have a leading zero. [<I>Note</I>:  The
+                                          value represents whole seconds passed since the last minute.]<P>
+
+1<P>
+
+30<P>
+
+</TD><TD> sThe
+                                          second as a value in the range 0-59, inclusive. Single-digit seconds do
+                                          not have a leading zero. [<I>Note</I>:  The
+                                          value represents whole seconds passed since the last minute.]<P>
+
+1<P>
+
+30<P>
+
+</TD></TR>
+<TR><TD>The
+                                             second as a value in the range 0-59, inclusive. Single-digit seconds have
+                                             a leading zero. [<I>Note</I>: The value represents
+                                             whole seconds passed since the last minute.]<P>
+
+01<P>
+
+30<P>
+
+</TD><TD> ss*The
+                                             second as a value in the range 0-59, inclusive. Single-digit seconds have
+                                             a leading zero. [<I>Note</I>: The value represents
+                                             whole seconds passed since the last minute.]<P>
+
+01<P>
+
+30<P>
+
+</TD></TR>
+<TR><TD> Displays fractional
+                                                seconds represented in one digit.1</TD><TD> f Displays fractional
+                                                seconds represented in one digit.1</TD></TR>
+<TR><TD> Displays fractional seconds represented in two digits.01</TD><TD> ff Displays fractional seconds represented in two digits.01</TD></TR>
+<TR><TD> Displays fractional seconds represented in three digits.001</TD><TD> fff Displays fractional seconds represented in three digits.001</TD></TR>
+<TR><TD> Displays fractional seconds represented in four digits.0001</TD><TD> ffff Displays fractional seconds represented in four digits.0001</TD></TR>
+<TR><TD> Displays fractional seconds represented in five digits.00001</TD><TD> fffff Displays fractional seconds represented in five digits.00001</TD></TR>
+<TR><TD> Displays fractional seconds represented in six digits.000001</TD><TD> ffffff Displays fractional seconds represented in six digits.000001</TD></TR>
+<TR><TD> Displays fractional seconds represented in seven digits.0000001</TD><TD> fffffff Displays fractional seconds represented in seven digits.0000001</TD></TR>
+<TR><TD>The
+                                                first character of the AM/PM designator defined in the <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> property System.Globalization.DateTimeFormatInfo.AMDesignator or System.Globalization.DateTimeFormatInfo.PMDesignator. [<I>Note</I>:  If the total number of hours passed since midnight is less
+                                                than 12, the A.M. designator is used; otherwise the P.M. designator is
+                                                used.]<P>
+
+A<P>
+
+P<P>
+
+</TD><TD> tThe
+                                                first character of the AM/PM designator defined in the <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> property System.Globalization.DateTimeFormatInfo.AMDesignator or System.Globalization.DateTimeFormatInfo.PMDesignator. [<I>Note</I>:  If the total number of hours passed since midnight is less
+                                                than 12, the A.M. designator is used; otherwise the P.M. designator is
+                                                used.]<P>
+
+A<P>
+
+P<P>
+
+</TD></TR>
+<TR><TD>The AM/PM designator defined in the <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> property System.Globalization.DateTimeFormatInfo.AMDesignator or System.Globalization.DateTimeFormatInfo.PMDesignator. [<I>Note</I>:  If the total number of hours passed since midnight is less
+                                                than 12, the A.M. designator is used; otherwise the P.M. designator is
+                                                used.]<P>
+
+AM<P>
+
+PM<P>
+
+</TD><TD> tt*The AM/PM designator defined in the <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> property System.Globalization.DateTimeFormatInfo.AMDesignator or System.Globalization.DateTimeFormatInfo.PMDesignator. [<I>Note</I>:  If the total number of hours passed since midnight is less
+                                                than 12, the A.M. designator is used; otherwise the P.M. designator is
+                                                used.]<P>
+
+AM<P>
+
+PM<P>
+
+</TD></TR>
+<TR><TD>The time zone offset (hour only) from the universal
+                                                   time coordinate (UTC) time (Greenwich Mean Time) as a value in the range
+                                                   -12 to +13, inclusive. Single-digit hours do not have a leading zero.
+                                                   [<I>Note</I>: The value always includes a leading sign (zero is &apos;+0&apos;), indicating hours ahead of UTC time (+) or hours behind UTC time
+                                                      (-). The offset takes Daylight Savings Time into account.]<P>
+
+-8</TD><TD> zThe time zone offset (hour only) from the universal
+                                                   time coordinate (UTC) time (Greenwich Mean Time) as a value in the range
+                                                   -12 to +13, inclusive. Single-digit hours do not have a leading zero.
+                                                   [<I>Note</I>: The value always includes a leading sign (zero is &apos;+0&apos;), indicating hours ahead of UTC time (+) or hours behind UTC time
+                                                      (-). The offset takes Daylight Savings Time into account.]<P>
+
+-8</TD></TR>
+<TR><TD>The time zone offset (hour only) from the UTC time
+                                                      (Greenwich Mean Time) as a value in the range -12 to +13, inclusive.
+                                                      Single-digit hours have a leading zero. [<I>Note</I>:  The value always includes a leading sign (zero is
+                                                      &apos;+0&apos;), indicating hours ahead of UTC time (+) or hours behind UTC time (-). The
+                                                      offset takes Daylight Savings Time into account.]<P>
+
+-08</TD><TD> zzThe time zone offset (hour only) from the UTC time
+                                                      (Greenwich Mean Time) as a value in the range -12 to +13, inclusive.
+                                                      Single-digit hours have a leading zero. [<I>Note</I>:  The value always includes a leading sign (zero is
+                                                      &apos;+0&apos;), indicating hours ahead of UTC time (+) or hours behind UTC time (-). The
+                                                      offset takes Daylight Savings Time into account.]<P>
+
+-08</TD></TR>
+<TR><TD> The full time zone offset (hour and minutes) from the
+                                                      UTC time (Greenwich Mean Time) as a value in the range -12:00 to +13:00,
+                                                      inclusive. Single-digit hours and minutes have leading zeros. [<I>Note</I>:  The value always includes a leading sign (zero is &apos;+0&apos;), indicating hours ahead of UTC time (+) or hours behind
+                                                      UTC time (-). The offset takes Daylight Savings Time
+                                                      into account.]<P>
+
+-08:00</TD><TD> zzz* The full time zone offset (hour and minutes) from the
+                                                      UTC time (Greenwich Mean Time) as a value in the range -12:00 to +13:00,
+                                                      inclusive. Single-digit hours and minutes have leading zeros. [<I>Note</I>:  The value always includes a leading sign (zero is &apos;+0&apos;), indicating hours ahead of UTC time (+) or hours behind
+                                                      UTC time (-). The offset takes Daylight Savings Time
+                                                      into account.]<P>
+
+-08:00</TD></TR>
+<TR><TD>The
+                                                      invariant culture time separator defined in System.Globalization.DateTimeFormatInfo.TimeSeparator
+                                                      .:</TD><TD> :The
+                                                      invariant culture time separator defined in System.Globalization.DateTimeFormatInfo.TimeSeparator
+                                                      .:</TD></TR>
+<TR><TD>The
+                                                      invariant culture date separator defined in the System.Globalization.DateTimeFormatInfo.DateSeparator
+                                                      ./</TD><TD> /The
+                                                      invariant culture date separator defined in the System.Globalization.DateTimeFormatInfo.DateSeparator
+                                                      ./</TD></TR>
+<TR><TD><I>c</I> represents a single custom format character.
+                                                Produces the custom format pattern associated with the format character
+                                             <I>c</I>. The %<I>c</I> specifier provides a mechanism for specifying
+                                                a single custom format character and having it recognized as a custom
+                                                specifier. This format is intended for characters that define both a
+                                                custom and a standard format. Note that a format string containing
+                                                exactly one such character will be interpreted as a standard format
+                                                specifier unless prefaced with the %. [<I>Note</I>: For example, for the invariant culture, &quot;%d&quot; produces the
+                                                single or double digit date, while &quot;d&quot; produces the date
+                                                in &quot;MM/dd/yyyy&quot; format. Without the %, a format string containing one
+                                                character would have to include leading or trailing white space
+                                                to be interpreted as a custom specifier because custom formats are required to have two
+                                                or more characters.]<P>
+
+&quot;%y&quot; produces a two digit year without a leading zero, and not the
+                                                &quot;MMMM, yyyy&quot; pattern.</TD><TD><I>%c</I><I>c</I> represents a single custom format character.
+                                                Produces the custom format pattern associated with the format character
+                                             <I>c</I>. The %<I>c</I> specifier provides a mechanism for specifying
+                                                a single custom format character and having it recognized as a custom
+                                                specifier. This format is intended for characters that define both a
+                                                custom and a standard format. Note that a format string containing
+                                                exactly one such character will be interpreted as a standard format
+                                                specifier unless prefaced with the %. [<I>Note</I>: For example, for the invariant culture, &quot;%d&quot; produces the
+                                                single or double digit date, while &quot;d&quot; produces the date
+                                                in &quot;MM/dd/yyyy&quot; format. Without the %, a format string containing one
+                                                character would have to include leading or trailing white space
+                                                to be interpreted as a custom specifier because custom formats are required to have two
+                                                or more characters.]<P>
+
+&quot;%y&quot; produces a two digit year without a leading zero, and not the
+                                                &quot;MMMM, yyyy&quot; pattern.</TD></TR>
+<TR><TD><I>c</I> represents any character predefined as part of
+                                          a format specifier. Prevents the character from being interpreted as a
+                                          format specifier (the character is treated as a literal). [<I>Note</I>:  In
+                                          programming languages where the backslash (&apos;\&apos;) character is used to
+                                          specify control sequences such as newline (\n), the backslash character is required to be
+                                          specified twice. For example, in C#, &quot;\d&quot; is coded as
+                                          &quot;\\d&quot;.]<P>
+
+&quot;\d&quot; produces the character &apos;d&apos;, and not the day of the
+                                          month.</TD><TD><I>\c</I><I>c</I> represents any character predefined as part of
+                                          a format specifier. Prevents the character from being interpreted as a
+                                          format specifier (the character is treated as a literal). [<I>Note</I>:  In
+                                          programming languages where the backslash (&apos;\&apos;) character is used to
+                                          specify control sequences such as newline (\n), the backslash character is required to be
+                                          specified twice. For example, in C#, &quot;\d&quot; is coded as
+                                          &quot;\\d&quot;.]<P>
+
+&quot;\d&quot; produces the character &apos;d&apos;, and not the day of the
+                                          month.</TD></TR>
+<TR><TD><I>xx</I> represents a string of characters of any length. The
+                                    characters are treated as literals.&quot;&apos;d&apos;&quot; produces the character &apos;d&apos;, and not the day of the
+                                    month.</TD><TD> &apos;<I>xx</I>&apos; or &quot;<I>xx</I>&quot;<I>xx</I> represents a string of characters of any length. The
+                                    characters are treated as literals.&quot;&apos;d&apos;&quot; produces the character &apos;d&apos;, and not the day of the
+                                    month.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+DateTimeFormatInfo Constructors<P>
+
+<A HREF="#DateTimeFormatInfo Constructor" TARGET="contents">DateTimeFormatInfo Constructor</A><BR>
+<P>
+
+DateTimeFormatInfo Methods<P>
+
+<A HREF="#DateTimeFormatInfo.Clone Method" TARGET="contents">DateTimeFormatInfo.Clone Method</A><BR>
+<A HREF="#DateTimeFormatInfo.GetAbbreviatedMonthName Method" TARGET="contents">DateTimeFormatInfo.GetAbbreviatedMonthName Method</A><BR>
+<A HREF="#DateTimeFormatInfo.GetEra Method" TARGET="contents">DateTimeFormatInfo.GetEra Method</A><BR>
+<A HREF="#DateTimeFormatInfo.GetEraName Method" TARGET="contents">DateTimeFormatInfo.GetEraName Method</A><BR>
+<A HREF="#DateTimeFormatInfo.GetFormat Method" TARGET="contents">DateTimeFormatInfo.GetFormat Method</A><BR>
+<A HREF="#DateTimeFormatInfo.GetMonthName Method" TARGET="contents">DateTimeFormatInfo.GetMonthName Method</A><BR>
+<A HREF="#DateTimeFormatInfo.ReadOnly Method" TARGET="contents">DateTimeFormatInfo.ReadOnly Method</A><BR>
+<P>
+
+DateTimeFormatInfo Properties<P>
+
+<A HREF="#DateTimeFormatInfo.AMDesignator Property" TARGET="contents">DateTimeFormatInfo.AMDesignator Property</A><BR>
+<A HREF="#DateTimeFormatInfo.AbbreviatedDayNames Property" TARGET="contents">DateTimeFormatInfo.AbbreviatedDayNames Property</A><BR>
+<A HREF="#DateTimeFormatInfo.AbbreviatedMonthNames Property" TARGET="contents">DateTimeFormatInfo.AbbreviatedMonthNames Property</A><BR>
+<A HREF="#DateTimeFormatInfo.CurrentInfo Property" TARGET="contents">DateTimeFormatInfo.CurrentInfo Property</A><BR>
+<A HREF="#DateTimeFormatInfo.DateSeparator Property" TARGET="contents">DateTimeFormatInfo.DateSeparator Property</A><BR>
+<A HREF="#DateTimeFormatInfo.DayNames Property" TARGET="contents">DateTimeFormatInfo.DayNames Property</A><BR>
+<A HREF="#DateTimeFormatInfo.FullDateTimePattern Property" TARGET="contents">DateTimeFormatInfo.FullDateTimePattern Property</A><BR>
+<A HREF="#DateTimeFormatInfo.InvariantInfo Property" TARGET="contents">DateTimeFormatInfo.InvariantInfo Property</A><BR>
+<A HREF="#DateTimeFormatInfo.IsReadOnly Property" TARGET="contents">DateTimeFormatInfo.IsReadOnly Property</A><BR>
+<A HREF="#DateTimeFormatInfo.LongDatePattern Property" TARGET="contents">DateTimeFormatInfo.LongDatePattern Property</A><BR>
+<A HREF="#DateTimeFormatInfo.LongTimePattern Property" TARGET="contents">DateTimeFormatInfo.LongTimePattern Property</A><BR>
+<A HREF="#DateTimeFormatInfo.MonthDayPattern Property" TARGET="contents">DateTimeFormatInfo.MonthDayPattern Property</A><BR>
+<A HREF="#DateTimeFormatInfo.MonthNames Property" TARGET="contents">DateTimeFormatInfo.MonthNames Property</A><BR>
+<A HREF="#DateTimeFormatInfo.PMDesignator Property" TARGET="contents">DateTimeFormatInfo.PMDesignator Property</A><BR>
+<A HREF="#DateTimeFormatInfo.ShortDatePattern Property" TARGET="contents">DateTimeFormatInfo.ShortDatePattern Property</A><BR>
+<A HREF="#DateTimeFormatInfo.ShortTimePattern Property" TARGET="contents">DateTimeFormatInfo.ShortTimePattern Property</A><BR>
+<A HREF="#DateTimeFormatInfo.TimeSeparator Property" TARGET="contents">DateTimeFormatInfo.TimeSeparator Property</A><BR>
+<A HREF="#DateTimeFormatInfo.YearMonthPattern Property" TARGET="contents">DateTimeFormatInfo.YearMonthPattern Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="DateTimeFormatInfo Constructor"><H3>DateTimeFormatInfo Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTimeFormatInfo();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> class that is culture-independent (invariant).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The new instance of <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> is not read-only, and its properties can be modified with user-defined patterns.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.Clone Method"><H3>DateTimeFormatInfo.Clone Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public object Clone();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Creates a copy of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance with property
+   values equal to the property values of the original <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Globalization.DateTimeFormatInfo.Clone method creates a new instance of the same type as the
+   current instance, and then copies the contents of each of the current instance&apos;s non-static fields.<P>
+
+The new instance is not read-only, and its properties can be modified with user-defined patterns.<P>
+
+[<I>Note</I>:  This method is
+   implemented to support the <A HREF="../../System/ICloneable.html" TARGET="contents">ICloneable</A> interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.GetAbbreviatedMonthName Method"><H3>DateTimeFormatInfo.GetAbbreviatedMonthName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string GetAbbreviatedMonthName(int month);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the abbreviated name of the specified month based
+      on the culture of the current thread.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>month</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> from 1 through 13 representing the month name to retrieve.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the abbreviated name of the month represented by
+<I>month</I>. For cultures with 12-month calendars, the empty string is
+   returned as the name of the 13th month.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>month</I> is less than 1 or greater than 13.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+For the default (culture-invariant) <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance, this method returns one of the
+   following strings:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Return Value</TH><TH><I>month</I>Return Value</TH></TR>
+<TR><TD>&quot;Jan&quot;</TD><TD> 1&quot;Jan&quot;</TD></TR>
+<TR><TD>&quot;Feb&quot;</TD><TD> 2&quot;Feb&quot;</TD></TR>
+<TR><TD>&quot;Mar&quot;</TD><TD> 3&quot;Mar&quot;</TD></TR>
+<TR><TD>&quot;Apr&quot;</TD><TD> 4&quot;Apr&quot;</TD></TR>
+<TR><TD>&quot;May&quot;</TD><TD> 5&quot;May&quot;</TD></TR>
+<TR><TD>&quot;Jun&quot;</TD><TD> 6&quot;Jun&quot;</TD></TR>
+<TR><TD>&quot;Jul&quot;</TD><TD> 7&quot;Jul&quot;</TD></TR>
+<TR><TD>&quot;Aug&quot;</TD><TD> 8&quot;Aug&quot;</TD></TR>
+<TR><TD>&quot;Sep&quot;</TD><TD> 9&quot;Sep&quot;</TD></TR>
+<TR><TD>&quot;Oct&quot;</TD><TD> 10&quot;Oct&quot;</TD></TR>
+<TR><TD>&quot;Nov&quot;</TD><TD> 11&quot;Nov&quot;</TD></TR>
+<TR><TD>&quot;Dec&quot;</TD><TD> 12&quot;Dec&quot;</TD></TR>
+<TR><TD>&quot;&quot;</TD><TD> 13&quot;&quot;</TD></TR>
+</TABLE>
+[<I>Note</I>:  This method supports calendars with 13 months.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.GetEra Method"><H3>DateTimeFormatInfo.GetEra Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int GetEra(string eraName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> representing the specified era.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>eraName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the era. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> representing the era. If <I>eraName</I> is invalid, returns -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>eraName</I> is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The value specified for <I>eraName</I> is case-insensitive.<P>
+
+[<I>Note</I>:  An era name is a
+   culturally specific name for a period of time marked by distinctive character or
+   reckoned from a fixed point or event. For example &quot;A.D.&quot; and &quot;B.C.&quot; are two eras of the Gregorian calendar.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.GetEraName Method"><H3>DateTimeFormatInfo.GetEraName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string GetEraName(int era);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the specified era.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>era</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> representing the era.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the era.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>era</I> does not represent a valid era in calendar for the current thread.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  An era name is a
+      culturally specific name for a period of time marked by distinctive character or
+      reckoned from a fixed point or event. For example &quot;A.D.&quot; and &quot;B.C.&quot; are two eras
+      of the Gregorian calendar.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.GetFormat Method"><H3>DateTimeFormatInfo.GetFormat Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public object GetFormat(Type formatType);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns an object of the specified type that provides <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> formatting services.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>formatType</DT>
+<DD>The <A HREF="../../System/Type.html" TARGET="contents">Type</A> of the formatting object to be returned.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A formatting object of the specified <A HREF="../../System/Type.html" TARGET="contents">Type</A>. If no formatting
+   object of the specified type is available, or <I>formatType</I> is a null reference, returns the formatting object
+   for the current culture.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is
+      implemented to support the <A HREF="../../System/IFormatProvider.html" TARGET="contents">IFormatProvider</A>
+      interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.GetMonthName Method"><H3>DateTimeFormatInfo.GetMonthName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string GetMonthName(int month);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the full name of the specified month based on the
+      culture of the current thread.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>month</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> from 1 through 13 representing the month name to retrieve.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the full name of the month represented by
+<I>month</I>. For cultures with 12-month calendars the empty string is
+   returned as the name of the 13th month.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>month</I> is less than 1 or greater than 13.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+For the default (culture invariant) <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance, this method returns one of the
+   following strings:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Return Value</TH><TH><I>month</I>Return Value</TH></TR>
+<TR><TD>&quot;January&quot;</TD><TD> 1&quot;January&quot;</TD></TR>
+<TR><TD>&quot;February&quot;</TD><TD> 2&quot;February&quot;</TD></TR>
+<TR><TD>&quot;March&quot;</TD><TD> 3&quot;March&quot;</TD></TR>
+<TR><TD>&quot;April&quot;</TD><TD> 4&quot;April&quot;</TD></TR>
+<TR><TD>&quot;May&quot;</TD><TD> 5&quot;May&quot;</TD></TR>
+<TR><TD>&quot;June&quot;</TD><TD> 6&quot;June&quot;</TD></TR>
+<TR><TD>&quot;July&quot;</TD><TD> 7&quot;July&quot;</TD></TR>
+<TR><TD>&quot;August&quot;</TD><TD> 8&quot;August&quot;</TD></TR>
+<TR><TD>&quot;September&quot;</TD><TD> 9&quot;September&quot;</TD></TR>
+<TR><TD>&quot;October&quot;</TD><TD> 10&quot;October&quot;</TD></TR>
+<TR><TD>&quot;November&quot;</TD><TD> 11&quot;November&quot;</TD></TR>
+<TR><TD>&quot;December&quot;</TD><TD> 12&quot;December&quot;</TD></TR>
+<TR><TD>&quot;&quot;</TD><TD> 13&quot;&quot;</TD></TR>
+</TABLE>
+[<I>Note</I>:  This method supports calendars with 13 months.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.ReadOnly Method"><H3>DateTimeFormatInfo.ReadOnly Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTimeFormatInfo ReadOnly(DateTimeFormatInfo dtfi);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a read-only copy of the specified instance of
+   <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>dtfi</DT>
+<DD>The <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> to copy.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A read-only instance of <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> that is a copy of <I>dtfi</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>dtfi</I> is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Use a read-only <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> copy to prevent modifications to the
+   specified instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.AMDesignator Property"><H3>DateTimeFormatInfo.AMDesignator Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string AMDesignator { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the <A HREF="../../System/String.html" TARGET="contents">String</A> culture-specific
+   designator for hours that are &quot;ante meridiem&quot; (before noon).<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> designator for hours that are before noon.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The value specified for a set operation is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The property value of the culture invariant System.Globalization.DateTimeFormatInfo.AMDesignator returns the <A HREF="../../System/String.html" TARGET="contents">String</A> &quot;AM&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.AbbreviatedDayNames Property"><H3>DateTimeFormatInfo.AbbreviatedDayNames Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string[] AbbreviatedDayNames { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets a one-dimensional array of type <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the
+culture-specific abbreviated names of the days of the week.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A one-dimensional array of type <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the culture-specific abbreviated names of the days of the week.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The value specified for a set operation is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The value specified for a set operation is not an array with exactly 7 elements.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The array specified in a set operation is required
+      to be one-dimensional and have exactly seven elements. The first element of the
+      array is the abbreviated day name for Sunday, and the last element is the name for Saturday.<P>
+
+ The property value of the culture invariant System.Globalization.DateTimeFormatInfo.AbbreviatedDayNames is a <A HREF="../../System/String.html" TARGET="contents">String</A> array that contains &quot;Sun&quot;, &quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot; and &quot;Sat&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.AbbreviatedMonthNames Property"><H3>DateTimeFormatInfo.AbbreviatedMonthNames Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string[] AbbreviatedMonthNames { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets a one-dimensional array of type <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the culture-specific abbreviated names of the months.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A one-dimensional array of type <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the abbreviated names of the months. For
+cultures with 12-month calendars the 13th element of the array is an empty string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The value specified for a set operation is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The value specified for a set operation is not an array with exactly 13 elements.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/Array.html" TARGET="contents">Array</A> specified in a set operation is required
+   to be one-dimensional and have exactly 13 elements.<P>
+
+ The property value of the culture invariant System.Globalization.DateTimeFormatInfo.AbbreviatedMonthNames is a <A HREF="../../System/String.html" TARGET="contents">String</A> array that contains
+&quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot; and &quot;&quot;.<P>
+
+[<I>Note</I>:  The array returned
+   by this property has 13 elements to support calendars with 13 months.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.CurrentInfo Property"><H3>DateTimeFormatInfo.CurrentInfo Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTimeFormatInfo CurrentInfo { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a read-only <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance that formats values based on the current culture.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance based on the
+   culture of the current thread.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.DateSeparator Property"><H3>DateTimeFormatInfo.DateSeparator Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string DateSeparator { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the culture-specific <A HREF="../../System/String.html" TARGET="contents">String</A> to use to separate the year, month, and day components of a date.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> to use to separate the year, month and day components of a date.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The value specified for a set operation is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The property value of the culture invariant System.Globalization.DateTimeFormatInfo.DateSeparator is &quot;/&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.DayNames Property"><H3>DateTimeFormatInfo.DayNames Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string[] DayNames { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets a one-dimensional array of type <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the culture-specific full names of the days of the week.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A one-dimensional array of type <A HREF="../../System/String.html" TARGET="contents">String</A> containing the full names of the days of the week.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The value specified for a set operation is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The value specified for a set operation is not an array with exactly 7 elements.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The array specified in a set operation is required
+      to be one-dimensional and have exactly seven elements. The first element of the
+      array is the abbreviated day name for Sunday, and the last element is the name for Saturday.<P>
+
+The property value of the culture invariant System.Globalization.DateTimeFormatInfo.DayNames is a <A HREF="../../System/String.html" TARGET="contents">String</A> array that contains &quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot; and &quot;Saturday&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.FullDateTimePattern Property"><H3>DateTimeFormatInfo.FullDateTimePattern Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string FullDateTimePattern { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the format pattern for a long date and long time value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the format pattern for a long date and long time value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The value specified for a set operation is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider) and System.DateTime.ToString methods associate the
+   format pattern returned by this property with the &apos;F&apos; format character.<P>
+
+The property value of the culture invariant System.Globalization.DateTimeFormatInfo.FullDateTimePattern is &quot;dddd, dd MMMM yyyy HH:mm:ss&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.InvariantInfo Property"><H3>DateTimeFormatInfo.InvariantInfo Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTimeFormatInfo InvariantInfo { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a culture invariant instance of <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> that is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A read-only <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.IsReadOnly Property"><H3>DateTimeFormatInfo.IsReadOnly Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool IsReadOnly { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> is read-only; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.LongDatePattern Property"><H3>DateTimeFormatInfo.LongDatePattern Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string LongDatePattern { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the format pattern for a long date value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the format pattern for a long date value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The value specified for a set operation is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider) and System.DateTime.ToString methods associate the format
+   pattern returned by this property with the &apos;D&apos; format character.<P>
+
+The property value of the culture invariant System.Globalization.DateTimeFormatInfo.LongDatePattern is &quot;dddd, dd MMMM yyyy&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.LongTimePattern Property"><H3>DateTimeFormatInfo.LongTimePattern Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string LongTimePattern { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the format pattern for a long time value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the format pattern for a long time value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The value specified for a set operation is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider) and System.DateTime.ToString methods associate the format
+   pattern returned by this property with the &apos;T&apos; format character.<P>
+
+The property value of the culture invariant System.Globalization.DateTimeFormatInfo.LongTimePattern is &quot;HH:mm:ss&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.MonthDayPattern Property"><H3>DateTimeFormatInfo.MonthDayPattern Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string MonthDayPattern { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the format pattern for a month and day value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the format pattern for a month and day value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The value specified for a set operation is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider) and System.DateTime.ToString methods associate the format
+   pattern returned by this property with the &apos;m&apos; and &apos;M&apos; format characters.<P>
+
+The property value of the culture invariant System.Globalization.DateTimeFormatInfo.MonthDayPattern is &quot;MMMM dd&quot;. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.MonthNames Property"><H3>DateTimeFormatInfo.MonthNames Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string[] MonthNames { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets a one-dimensional array of type <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the culture-specific full names of the months.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A one-dimensional array of type <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the full names of the months. For
+cultures with 12-month calendars the 13th element of the array is an empty string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The value specified for a set operation is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The value specified for a set operation is not an array with exactly 13 elements.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The array specified in a set operation is required
+      be one-dimensional and have exactly 13 elements.<P>
+
+ The property value of the culture invariant System.Globalization.DateTimeFormatInfo.MonthNames is a <A HREF="../../System/String.html" TARGET="contents">String</A> array that contains
+   &quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, &quot;July&quot;, &quot;August&quot;,
+   &quot;September&quot;, &quot;October&quot;, &quot;November&quot;, &quot;December&quot; and &quot;&quot;.<P>
+
+[<I>Note</I>:  The array
+   returned by this property has 13 elements to support calendars with 13 months.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.PMDesignator Property"><H3>DateTimeFormatInfo.PMDesignator Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string PMDesignator { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the culture-specific <A HREF="../../System/String.html" TARGET="contents">String</A> designator for hours that are &quot;post meridiem&quot; (after noon).<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> designator for hours that are after noon.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The value specified for a set operation is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The property value of the culture invariant System.Globalization.DateTimeFormatInfo.PMDesignator is &quot;PM&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.ShortDatePattern Property"><H3>DateTimeFormatInfo.ShortDatePattern Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ShortDatePattern { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the format pattern for a short date value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the format pattern for a short date value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The value specified for a set operation is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider) and System.DateTime.ToString methods associate the format
+   pattern returned by this property with the &apos;d&apos; format character.<P>
+
+The property value of the culture invariant System.Globalization.DateTimeFormatInfo.ShortDatePattern is &quot;MM/dd/yyyy&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.ShortTimePattern Property"><H3>DateTimeFormatInfo.ShortTimePattern Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ShortTimePattern { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the format pattern for a short time value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the format pattern for a short time value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The value specified for a set operation is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider) and System.DateTime.ToString methods associate the format
+   pattern returned by this property with the &apos;t&apos; format character.<P>
+
+The property value of the culture invariant System.Globalization.DateTimeFormatInfo.ShortTimePattern is &quot;HH:mm&quot;. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.TimeSeparator Property"><H3>DateTimeFormatInfo.TimeSeparator Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string TimeSeparator { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the culture-specific <A HREF="../../System/String.html" TARGET="contents">String</A> to use to separate the components of time values (hour, minutes, seconds).<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/String.html" TARGET="contents">String</A> to use to separate the components of time; that is, the hour, the minutes and the seconds.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The value specified for a set operation is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The property value of the culture invariant System.Globalization.DateTimeFormatInfo.TimeSeparator is &quot;:&quot;.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DateTimeFormatInfo.YearMonthPattern Property"><H3>DateTimeFormatInfo.YearMonthPattern Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string YearMonthPattern { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the format pattern for a year and month value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ The format pattern for a year and month value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The value specified for a set operation is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider) and System.DateTime.ToString
+methods associate the format pattern returned by this property with the
+&apos;y&apos; and &apos;Y&apos; format character.<P>
+
+The property value of the culture invariant System.Globalization.DateTimeFormatInfo.YearMonthPattern is &quot;yyyy MMMM&quot;. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DateTimeFormatInfo.html" TARGET="contents">System.Globalization.DateTimeFormatInfo Class</A>, <A HREF="Globalization.html" TARGET="members">System.Globalization Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

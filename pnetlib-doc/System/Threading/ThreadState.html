@@ -1,0 +1,299 @@
+<HTML>
+<HEAD>
+<TITLE>System.Threading.ThreadState Enum</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Threading.ThreadState Enum</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public enum ThreadState</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/ValueType.html" TARGET="contents">ValueType</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../System/Enum.html" TARGET="contents">Enum</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ThreadState<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Specifies the execution states of a <A HREF="Thread.html" TARGET="contents">Thread</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="ThreadState.html" TARGET="contents">ThreadState</A>
+defines the set of possible execution states for threads. Once a thread is
+created, it is in one or more of these states until it terminates. Not all
+combinations of <CODE>ThreadState</CODE>
+ values are valid; for example,
+a thread cannot be in both the System.Threading.ThreadState.Stopped and System.Threading.ThreadState.Unstarted
+states.<P>
+
+The following table shows the actions that cause a thread to
+   change state.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>ThreadState after Action</TH><TH>ActionThreadState after Action</TH></TR>
+<TR><TD>Unstarted</TD><TD> The
+      thread is createdUnstarted</TD></TR>
+<TR><TD>Running</TD><TD>System.Threading.Thread.Start is invoked on the threadRunning</TD></TR>
+<TR><TD>WaitSleepJoin</TD><TD> The thread calls System.Threading.Thread.Sleep(System.Int32)WaitSleepJoin</TD></TR>
+<TR><TD>WaitSleepJoin</TD><TD> The thread calls System.Threading.Monitor.Wait(System.Object,System.Int32,System.Boolean) to wait
+   on an objectWaitSleepJoin</TD></TR>
+<TR><TD>WaitSleepJoin</TD><TD> The thread calls System.Threading.Thread.Join to wait for
+   another thread to terminateWaitSleepJoin</TD></TR>
+<TR><TD>Stopped</TD><TD> The
+      <A HREF="ThreadStart.html" TARGET="contents">ThreadStart</A>
+   delegate methods finish executingStopped</TD></TR>
+<TR><TD>AbortRequested</TD><TD> Another thread requests
+      the thread to System.Threading.Thread.Abort(System.Object)AbortRequested</TD></TR>
+<TR><TD>Aborted</TD><TD> The thread accepts a System.Threading.Thread.Abort(System.Object) requestAborted</TD></TR>
+</TABLE>
+In addition to the states noted above, there is also the System.Threading.ThreadState.Background state, which indicates whether the thread is
+running in the background or foreground.<P>
+
+The current state of a thread can be retrieved from the System.Threading.Thread.ThreadState property,
+whose value is a combination of the <A HREF="ThreadState.html" TARGET="contents">ThreadState</A>
+values. Once a thread has reached the System.Threading.ThreadState.Stopped state, it cannot change to any other state. <P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>FlagsAttribute</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ThreadState Fields<P>
+
+<A HREF="#ThreadState.AbortRequested Field" TARGET="contents">ThreadState.AbortRequested Field</A><BR>
+<A HREF="#ThreadState.Aborted Field" TARGET="contents">ThreadState.Aborted Field</A><BR>
+<A HREF="#ThreadState.Background Field" TARGET="contents">ThreadState.Background Field</A><BR>
+<A HREF="#ThreadState.Running Field" TARGET="contents">ThreadState.Running Field</A><BR>
+<A HREF="#ThreadState.Stopped Field" TARGET="contents">ThreadState.Stopped Field</A><BR>
+<A HREF="#ThreadState.Unstarted Field" TARGET="contents">ThreadState.Unstarted Field</A><BR>
+<A HREF="#ThreadState.WaitSleepJoin Field" TARGET="contents">ThreadState.WaitSleepJoin Field</A><BR>
+<A HREF="#ThreadState.value__ Field" TARGET="contents">ThreadState.value__ Field</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ThreadState.AbortRequested Field"><H3>ThreadState.AbortRequested Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>AbortRequested = 0x80;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+The System.Threading.Thread.Abort(System.Object) method has been invoked on the thread, but the thread
+ has not yet received the pending <A HREF="ThreadAbortException.html" TARGET="contents">ThreadAbortException</A> that will attempt to terminate it.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ThreadState.html" TARGET="contents">System.Threading.ThreadState Enum</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ThreadState.Aborted Field"><H3>ThreadState.Aborted Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Aborted = 0x100;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+The thread represented by an instance of <A HREF="Thread.html" TARGET="contents">Thread</A> has terminated as a result of a call to System.Threading.Thread.Abort(System.Object). A thread in this
+   state is also in the System.Threading.ThreadState.Stopped state.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ThreadState.html" TARGET="contents">System.Threading.ThreadState Enum</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ThreadState.Background Field"><H3>ThreadState.Background Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Background = 0x4;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+The thread represented by an instance of <A HREF="Thread.html" TARGET="contents">Thread</A> is being
+ executed as a background thread, as opposed to a foreground thread. [<I>Note</I>: This state is controlled by setting the System.Threading.Thread.IsBackground
+ 
+ property.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ThreadState.html" TARGET="contents">System.Threading.ThreadState Enum</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ThreadState.Running Field"><H3>ThreadState.Running Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Running = 0x0;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+The thread represented by an instance of <A HREF="Thread.html" TARGET="contents">Thread</A> has been started and has not terminated.<P>
+
+To determine if a thread 
+   is running, check that its state does not include System.Threading.ThreadState.Unstarted and does not include System.Threading.ThreadState.Stopped.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ThreadState.html" TARGET="contents">System.Threading.ThreadState Enum</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ThreadState.Stopped Field"><H3>ThreadState.Stopped Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Stopped = 0x10;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+The thread represented by an instance of <A HREF="Thread.html" TARGET="contents">Thread</A>
+has terminated.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ThreadState.html" TARGET="contents">System.Threading.ThreadState Enum</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ThreadState.Unstarted Field"><H3>ThreadState.Unstarted Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Unstarted = 0x8;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+The System.Threading.Thread.Start method 
+has not been invoked on the thread.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ThreadState.html" TARGET="contents">System.Threading.ThreadState Enum</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ThreadState.WaitSleepJoin Field"><H3>ThreadState.WaitSleepJoin Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>WaitSleepJoin = 0x20;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+The thread represented by an instance of <A HREF="Thread.html" TARGET="contents">Thread</A> is
+ blocked as
+ a result of
+ a call to System.Threading.Monitor.Wait(System.Object,System.Int32,System.Boolean), System.Threading.Thread.Sleep(System.Int32), or System.Threading.Thread.Join.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ThreadState.html" TARGET="contents">System.Threading.ThreadState Enum</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ThreadState.value__ Field"><H3>ThreadState.value__ Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>value__;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ThreadState.html" TARGET="contents">System.Threading.ThreadState Enum</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

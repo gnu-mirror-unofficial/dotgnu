@@ -1,0 +1,1095 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.HttpWebResponse Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.HttpWebResponse Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class HttpWebResponse : WebResponse</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/MarshalByRefObject.html" TARGET="contents">MarshalByRefObject</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="WebResponse.html" TARGET="contents">WebResponse</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HttpWebResponse<P>
+
+This type implements <A HREF="../../System/IDisposable.html" TARGET="contents">IDisposable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Provides an HTTP-specific implementation of the
+   <A HREF="WebResponse.html" TARGET="contents">WebResponse</A>
+   class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The <A HREF="HttpWebResponse.html" TARGET="contents">HttpWebResponse</A> class contains support for the
+      properties and methods included in <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> with
+      additional
+      elements that
+      enable the user to interact directly with the Hypertext Transfer Protocol (HTTP).<P>
+
+Expected usage is that instances of this class are not created directly but
+      are obtained by calling
+   System.Net.HttpWebRequest.GetResponse . To obtain the response from the Internet resource as a
+   <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A>
+   , call the System.Net.HttpWebResponse.GetResponseStream method.
+   <P>
+
+Certain HTTP headers are protected such that the user
+   cannot set them directly in the header collection. Instead, these headers can be
+   set via the properties of the <A HREF="HttpWebRequest.html" TARGET="contents">HttpWebRequest</A> class or are set by the system. The following table
+   details these protected headers.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Set by</TH><TH>HeaderSet by</TH></TR>
+<TR><TD>System.Net.HttpWebRequest.Accept</TD><TD> AcceptSystem.Net.HttpWebRequest.Accept</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.Connection<P>
+
+System.Net.HttpWebRequest.KeepAlive<P>
+
+</TD><TD> ConnectionSystem.Net.HttpWebRequest.Connection<P>
+
+System.Net.HttpWebRequest.KeepAlive<P>
+
+</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.ContentLength</TD><TD> Content-LengthSystem.Net.HttpWebRequest.ContentLength</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.ContentType</TD><TD> Content-TypeSystem.Net.HttpWebRequest.ContentType</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.Expect</TD><TD> ExpectSystem.Net.HttpWebRequest.Expect</TD></TR>
+<TR><TD>Set to current date by the system.</TD><TD> DateSet to current date by the system.</TD></TR>
+<TR><TD>Set to current host by the system.</TD><TD> HostSet to current host by the system.</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.IfModifiedSince</TD><TD> if-Modified-sinceSystem.Net.HttpWebRequest.IfModifiedSince</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.AddRange(System.Int32,System.Int32)</TD><TD> RangeSystem.Net.HttpWebRequest.AddRange(System.Int32,System.Int32)</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.Referer</TD><TD> RefererSystem.Net.HttpWebRequest.Referer</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.TransferEncoding<P>
+
+System.Net.HttpWebRequest.SendChunked<P>
+
+</TD><TD> Transfer-EncodingSystem.Net.HttpWebRequest.TransferEncoding<P>
+
+System.Net.HttpWebRequest.SendChunked<P>
+
+</TD></TR>
+<TR><TD>System.Net.HttpWebRequest.UserAgent</TD><TD> User-AgentSystem.Net.HttpWebRequest.UserAgent</TD></TR>
+</TABLE>
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+HttpWebResponse Methods<P>
+
+<A HREF="#HttpWebResponse.Close Method" TARGET="contents">HttpWebResponse.Close Method</A><BR>
+<A HREF="#HttpWebResponse.Dispose Method" TARGET="contents">HttpWebResponse.Dispose Method</A><BR>
+<A HREF="#HttpWebResponse.GetHashCode Method" TARGET="contents">HttpWebResponse.GetHashCode Method</A><BR>
+<A HREF="#HttpWebResponse.GetResponseHeader Method" TARGET="contents">HttpWebResponse.GetResponseHeader Method</A><BR>
+<A HREF="#HttpWebResponse.GetResponseStream Method" TARGET="contents">HttpWebResponse.GetResponseStream Method</A><BR>
+<P>
+
+HttpWebResponse Properties<P>
+
+<A HREF="#HttpWebResponse.CharacterSet Property" TARGET="contents">HttpWebResponse.CharacterSet Property</A><BR>
+<A HREF="#HttpWebResponse.ContentEncoding Property" TARGET="contents">HttpWebResponse.ContentEncoding Property</A><BR>
+<A HREF="#HttpWebResponse.ContentLength Property" TARGET="contents">HttpWebResponse.ContentLength Property</A><BR>
+<A HREF="#HttpWebResponse.ContentType Property" TARGET="contents">HttpWebResponse.ContentType Property</A><BR>
+<A HREF="#HttpWebResponse.Headers Property" TARGET="contents">HttpWebResponse.Headers Property</A><BR>
+<A HREF="#HttpWebResponse.LastModified Property" TARGET="contents">HttpWebResponse.LastModified Property</A><BR>
+<A HREF="#HttpWebResponse.Method Property" TARGET="contents">HttpWebResponse.Method Property</A><BR>
+<A HREF="#HttpWebResponse.ProtocolVersion Property" TARGET="contents">HttpWebResponse.ProtocolVersion Property</A><BR>
+<A HREF="#HttpWebResponse.ResponseUri Property" TARGET="contents">HttpWebResponse.ResponseUri Property</A><BR>
+<A HREF="#HttpWebResponse.Server Property" TARGET="contents">HttpWebResponse.Server Property</A><BR>
+<A HREF="#HttpWebResponse.StatusCode Property" TARGET="contents">HttpWebResponse.StatusCode Property</A><BR>
+<A HREF="#HttpWebResponse.StatusDescription Property" TARGET="contents">HttpWebResponse.StatusDescription Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="HttpWebResponse.Close Method"><H3>HttpWebResponse.Close Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void Close();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Closes the response stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Net.HttpWebResponse.Close method closes the response stream and releases the connection to the Internet resource for reuse by other requests.<P>
+
+[<I>Note</I>: Call either the System.IO.Stream.Close or System.Net.HttpWebResponse.Close method to close the stream and release the connection for reuse. It is not necessary to call both System.IO.Stream.Close and System.Net.HttpWebResponse.Close , but 
+ doing so does not cause an error. Failure to close the stream may cause an
+ application to run out of connections. <P>
+
+This method overrides System.Net.WebResponse.Close.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebResponse.Dispose Method"><H3>HttpWebResponse.Dispose Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected virtual void Dispose(bool disposing);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Releases the unmanaged resources used by the current
+      instance and optionally releases the managed resources.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>disposing</DT>
+<DD><CODE>true</CODE>
+ to release both managed and unmanaged resources; <CODE>false</CODE>
+ to release only unmanaged resources.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: When <I>disposing</I> is <CODE>true</CODE>
+, 
+   this method releases all resources held by any managed objects that the current
+   instance references.]<P>
+
+<P>
+
+[<I>Overrides</I>: When
+   overriding System.Net.HttpWebResponse.Dispose(System.Boolean)(<A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>), be careful not to reference objects that have been
+   previously disposed in an earlier call to System.Net.HttpWebResponse.Dispose(System.Boolean) as
+System.Net.HttpWebResponse.Dispose(System.Boolean) may be called multiple times by 
+   other objects. . ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebResponse.GetHashCode Method"><H3>HttpWebResponse.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int GetHashCode();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Generates a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A>
+containing the hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The algorithm used to generate the hash code is
+      unspecified.<P>
+
+[<I>Note</I>: This method overrides System.Object.GetHashCode.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebResponse.GetResponseHeader Method"><H3>HttpWebResponse.GetResponseHeader Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string GetResponseHeader(string headerName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a specified header from the current response.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>headerName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the header value to return. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the value of the specified header.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebResponse.GetResponseStream Method"><H3>HttpWebResponse.GetResponseStream Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override Stream GetResponseStream();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> for reading the body of the response from the
+   server.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> containing the body of the response.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Net.HttpWebResponse.GetResponseStream
+method returns the data stream from the requested Internet
+resource.<P>
+
+[<I>Note</I>: 
+      Call either the System.IO.Stream.Close or System.Net.HttpWebResponse.Close method to close the stream and release the
+      connection for reuse. It is not necessary to call both System.IO.Stream.Close and System.Net.HttpWebResponse.Close , but doing so does
+      not cause an error. Failure to close the stream may cause an application
+      to run out of connections.
+      <P>
+
+This method overrides System.Net.WebResponse.GetResponseStream .<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebResponse.CharacterSet Property"><H3>HttpWebResponse.CharacterSet Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string CharacterSet { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the character set used for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> that
+   represents the character set used for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: For detailed
+      information about character sets, see Section 3.4 of RFC 2616.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebResponse.ContentEncoding Property"><H3>HttpWebResponse.ContentEncoding Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ContentEncoding { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the
+      method used to encode the body of the response.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> that describes the method used to encode the body of the response.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This property is read-only.<P>
+
+The System.Net.HttpWebResponse.ContentEncoding property contains the value of the
+<CODE>Content-Encoding</CODE>
+ 
+header returned with the response.<P>
+
+[<I>Note</I>: For detailed information about content encoding,
+   see Section 3.5 of RFC 2616.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebResponse.ContentLength Property"><H3>HttpWebResponse.ContentLength Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override long ContentLength { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the content length of the response data being received.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A>
+containing the number of bytes returned from the Internet resource. This
+value does not include header information.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The System.Net.HttpWebResponse.ContentLength property contains the value of the
+<CODE>Content-length</CODE>
+ header returned with the response. If the 
+<CODE>Content-length</CODE>
+ 
+header
+is not set in the response, System.Net.HttpWebResponse.ContentLength
+is set to the value -1.<P>
+
+[<I>Note</I>: This property
+   overrides System.Net.WebResponse.ContentLength
+   .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebResponse.ContentType Property"><H3>HttpWebResponse.ContentType Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ContentType { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the content type of the
+      response.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> that
+   represents the content type of the response data.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+ The System.Net.HttpWebResponse.ContentType property contains the value of the
+<CODE>Content-Type</CODE>
+ 
+header returned with the response.<P>
+
+[<I>Note</I>: This property
+   overrides System.Net.WebResponse.ContentType
+   .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebResponse.Headers Property"><H3>HttpWebResponse.Headers Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override WebHeaderCollection Headers { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the
+      headers associated with the current response from the server.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="WebHeaderCollection.html" TARGET="contents">WebHeaderCollection</A> containing the header information returned with the
+   response.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: The System.Net.HttpWebResponse.Headers property is a collection
+      of name/value pairs containing the HTTP header values returned
+      with the response. The following table lists common headers and
+      the properties that store their values.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Property</TH><TH>HeaderProperty</TH></TR>
+<TR><TD>System.Net.HttpWebResponse.ContentEncoding</TD><TD> Content-EncodingSystem.Net.HttpWebResponse.ContentEncoding</TD></TR>
+<TR><TD>System.Net.HttpWebResponse.ContentLength</TD><TD> Content-LengthSystem.Net.HttpWebResponse.ContentLength</TD></TR>
+<TR><TD>System.Net.HttpWebResponse.ContentType</TD><TD> Content-TypeSystem.Net.HttpWebResponse.ContentType</TD></TR>
+<TR><TD>System.Net.HttpWebResponse.LastModified</TD><TD> Last-ModifiedSystem.Net.HttpWebResponse.LastModified</TD></TR>
+<TR><TD>System.Net.HttpWebResponse.Server</TD><TD> ServerSystem.Net.HttpWebResponse.Server</TD></TR>
+</TABLE>
+This property overrides System.Net.WebResponse.Headers.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebResponse.LastModified Property"><H3>HttpWebResponse.LastModified Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DateTime LastModified { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the last
+      date and time that the contents of the response were modified.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A>
+value containing the date and time the contents of the response were
+modified.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This property is read-only.<P>
+
+The System.Net.HttpWebResponse.LastModified property contains the value of the
+<CODE>Last-Modified</CODE>
+ header
+   received with the response.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebResponse.Method Property"><H3>HttpWebResponse.Method Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Method { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the method used to return the response.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> that represents the HTTP method used to return the response.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: The System.Net.HttpWebRequest.Method property can be set to any of the
+      HTTP 1.1 protocol methods: GET, HEAD, POST, PUT, DELETE, TRACE, or OPTIONS. The
+      following table describes these methods.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>ItemDescription</TH></TR>
+<TR><TD>Retrieves in entity-body form the
+            information identified by the System.Net.HttpWebRequest.RequestUri property of the request
+            associated with the current instance.</TD><TD> GETRetrieves in entity-body form the
+            information identified by the System.Net.HttpWebRequest.RequestUri property of the request
+            associated with the current instance.</TD></TR>
+<TR><TD>Identical to GET except that the
+            message-body is not returned in the response.</TD><TD> HEADIdentical to GET except that the
+            message-body is not returned in the response.</TD></TR>
+<TR><TD>Requests that the origin server accept the
+            entity enclosed in the request as a new subordinate of the resource
+            identified the Request-URI in the Request-Line.</TD><TD> POSTRequests that the origin server accept the
+            entity enclosed in the request as a new subordinate of the resource
+            identified the Request-URI in the Request-Line.</TD></TR>
+<TR><TD>Requests that the enclosed entity be stored
+            under the supplied Request-URI.</TD><TD> PUTRequests that the enclosed entity be stored
+            under the supplied Request-URI.</TD></TR>
+<TR><TD>Requests that the origin server delete the
+            resource identified by the Request-URI.</TD><TD> DELETERequests that the origin server delete the
+            resource identified by the Request-URI.</TD></TR>
+<TR><TD>Invokes a remote, application-layer loopback
+            of the request message.</TD><TD> TRACEInvokes a remote, application-layer loopback
+            of the request message.</TD></TR>
+<TR><TD>Requests information about the communication
+            options available on the request/response chain identified by the
+            Request-URI. [<I>Note</I>: This allows the client
+            to determine the options and/or requirements associated with a resource,
+            or the capabilities of a server, without implying a resource action or
+            initiating a resource
+            retrieval.]<P>
+
+</TD><TD> OPTIONSRequests information about the communication
+            options available on the request/response chain identified by the
+            Request-URI. [<I>Note</I>: This allows the client
+            to determine the options and/or requirements associated with a resource,
+            or the capabilities of a server, without implying a resource action or
+            initiating a resource
+            retrieval.]<P>
+
+</TD></TR>
+</TABLE>
+For detailed information regarding these methods, see sections 9.2 to 9.8 of
+      RFC 2616.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebResponse.ProtocolVersion Property"><H3>HttpWebResponse.ProtocolVersion Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Version ProtocolVersion { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets
+      the version of the HTTP protocol used in the response.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Version.html" TARGET="contents">Version</A>
+that contains the HTTP protocol version of the response.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The System.Net.HttpWebResponse.ProtocolVersion property contains the <A HREF="HttpVersion.html" TARGET="contents">HttpVersion</A> number
+   of the response sent by the Internet resource.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebResponse.ResponseUri Property"><H3>HttpWebResponse.ResponseUri Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override Uri ResponseUri { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the <A HREF="../../System/Uri.html" TARGET="contents">Uri</A>
+of the Internet resource that actually responded to the request.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Uri.html" TARGET="contents">Uri</A>
+representing the resource that actually responded to the request.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: The System.Net.HttpWebResponse.ResponseUri property contains the URI of the Internet resource that
+      actually responded to the request. This URI may not be the same as the
+      originally requested URI if the request was redirected by the original
+      server.<P>
+
+This method overrides System.Net.WebResponse.ResponseUri
+.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebResponse.Server Property"><H3>HttpWebResponse.Server Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Server { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the name of the server that sent the response.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the server that sent the response.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This property is read-only.<P>
+
+ The System.Net.HttpWebResponse.Server
+property contains the value of the <CODE>Server</CODE>
+ header
+returned with the response.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebResponse.StatusCode Property"><H3>HttpWebResponse.StatusCode Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public HttpStatusCode StatusCode { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the status of the response.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="HttpStatusCode.html" TARGET="contents">HttpStatusCode</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The System.Net.HttpWebResponse.StatusCode value
+   indicates the status of the HTTP response. The expected values are defined in the <A HREF="HttpStatusCode.html" TARGET="contents">HttpStatusCode</A> enumeration.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="HttpWebResponse.StatusDescription Property"><H3>HttpWebResponse.StatusDescription Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string StatusDescription { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the status description returned with the response.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> that describes the status of the response.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebResponse.html" TARGET="contents">System.Net.HttpWebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

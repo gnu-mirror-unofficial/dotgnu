@@ -1,0 +1,322 @@
+<HTML>
+<HEAD>
+<TITLE>System.Reflection.ConstructorInfo Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Reflection.ConstructorInfo Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class ConstructorInfo : MethodBase</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="MemberInfo.html" TARGET="contents">MemberInfo</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="MethodBase.html" TARGET="contents">MethodBase</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ConstructorInfo<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides access to constructor metadata.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ConstructorInfo Constructors<P>
+
+<A HREF="#ConstructorInfo Constructor" TARGET="contents">ConstructorInfo Constructor</A><BR>
+<P>
+
+ConstructorInfo Methods<P>
+
+<A HREF="#ConstructorInfo.Invoke(System.Reflection.BindingFlags, System.Reflection.Binder, System.Object[], System.Globalization.CultureInfo) Method" TARGET="contents">ConstructorInfo.Invoke(System.Reflection.BindingFlags, System.Reflection.Binder, System.Object[], System.Globalization.CultureInfo) Method</A><BR>
+<A HREF="#ConstructorInfo.Invoke(System.Object[]) Method" TARGET="contents">ConstructorInfo.Invoke(System.Object[]) Method</A><BR>
+<P>
+
+ConstructorInfo Fields<P>
+
+<A HREF="#ConstructorInfo.ConstructorName Field" TARGET="contents">ConstructorInfo.ConstructorName Field</A><BR>
+<A HREF="#ConstructorInfo.TypeConstructorName Field" TARGET="contents">ConstructorInfo.TypeConstructorName Field</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ConstructorInfo Constructor"><H3>ConstructorInfo Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected ConstructorInfo();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new instance of the <A HREF="ConstructorInfo.html" TARGET="contents">ConstructorInfo</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ConstructorInfo.html" TARGET="contents">System.Reflection.ConstructorInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ConstructorInfo.Invoke(System.Reflection.BindingFlags, System.Reflection.Binder, System.Object[], System.Globalization.CultureInfo) Method"><H3>ConstructorInfo.Invoke(System.Reflection.BindingFlags, System.Reflection.Binder, System.Object[], System.Globalization.CultureInfo) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract object Invoke(BindingFlags invokeAttr, Binder binder, object[] parameters, CultureInfo culture);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Invokes the constructor reflected by the current
+      instance using the specified arguments, under the constraints of the specified <A HREF="Binder.html" TARGET="contents">Binder</A>
+      .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>invokeAttr</DT>
+<DD>A <A HREF="BindingFlags.html" TARGET="contents">BindingFlags</A> value that controls the binding process.</DD>
+<DT> binder</DT>
+<DD>A <A HREF="Binder.html" TARGET="contents">Binder</A> that defines a set of properties and enables the binding, coercion of argument types, and invocation of members using reflection. If <I>binder </I>is <CODE>null</CODE>
+, then the default binder is used.</DD>
+<DT> parameters</DT>
+<DD>An array of objects that match the number, order and type of the parameters for the constructor reflected by the current instance. If the constructor reflected by the current instance takes no parameters, specify either an array with zero elements or <CODE>null</CODE>
+ . [<I>Note</I>: Any object in this array that is not explicitly initialized with a value will contain the default value for that object type. For reference-type elements, this value is <CODE>null</CODE>
+. For value-type elements, this value is 0, 0.0, or <CODE>false</CODE>
+, depending on the specific element type.]<P>
+
+</DD>
+<DT> culture</DT>
+<DD>The only defined value for this parameter is <CODE>null</CODE>
+ .<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An instance of the class that declared the constructor reflected by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The types of the elements of <I>parameters</I> do not match the types of the parameters accepted by the constructor reflected by the current instance, under the constraints of <I>binder</I>.</TD></TR>
+<TR><TD><A HREF="../../System/MethodAccessException.html" TARGET="contents">MethodAccessException</A></TD><TD>The caller does not have the required permissions.</TD></TR>
+<TR><TD><A HREF="TargetInvocationException.html" TARGET="contents">TargetInvocationException</A></TD><TD>The constructor reflected by the current instance threw an exception.</TD></TR>
+<TR><TD><A HREF="TargetParameterCountException.html" TARGET="contents">TargetParameterCountException</A></TD><TD><I>parameters</I>.Length does not equal the number of parameters required by the contract of the constructor reflected by the current instance.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: Before calling
+      the constructor, this method ensures that the caller has access permission and
+      that the parameters are of the correct number, order and type.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ConstructorInfo.html" TARGET="contents">System.Reflection.ConstructorInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ConstructorInfo.Invoke(System.Object[]) Method"><H3>ConstructorInfo.Invoke(System.Object[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public object Invoke(object[] parameters);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Invokes the constructor reflected by the current instance using the specified
+      parameters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>parameters</DT>
+<DD>An array of objects that match the number, order and type of the parameters for the constructor reflected by the current instance. If the constructor reflected by the current instance takes no parameters, specify either an array with zero elements or <CODE>null</CODE>
+. [<I>Note</I>: Any object in this array that is not explicitly initialized with a value will contain the default value for that object type. For reference-type elements, this value is <CODE>null</CODE>
+. For value-type elements, this value is 0, 0.0, or <CODE>false</CODE>
+ , depending on the specific element type.]<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An
+      instance of the class that declared the constructor reflected by the
+      current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The types of the elements of <I>parameters</I> do not match the types of the parameters accepted by the constructor reflected by the current instance, under the constraints of <I>binder</I>.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/MethodAccessException.html" TARGET="contents">MethodAccessException</A></TD><TD>The caller does not have the required permissions.</TD></TR>
+<TR><TD><A HREF="TargetInvocationException.html" TARGET="contents">TargetInvocationException</A></TD><TD>The constructor reflected by the current instance threw an exception.</TD></TR>
+<TR><TD><A HREF="TargetParameterCountException.html" TARGET="contents">TargetParameterCountException</A></TD><TD><I>parameters</I>.Length does not equal the number of parameters required by the contract of the constructor reflected by the current instance.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ConstructorInfo.html" TARGET="contents">System.Reflection.ConstructorInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ConstructorInfo.ConstructorName Field"><H3>ConstructorInfo.ConstructorName Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly string ConstructorName;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ A string containing the name of an object constructor
+      as it is stored in metadata. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+This field is a <A HREF="../../System/String.html" TARGET="contents">String</A> that contains the value &quot;.ctor&quot;. An object
+   constructor will be named with this field if and only if it is not a type initializer.<P>
+
+[<I>Note</I>: For more information on type
+      initializers, see System.Reflection.ConstructorInfo.TypeConstructorName.<P>
+
+For more information on object constructors, see Partition II of the CLI
+      Specification.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ConstructorInfo.html" TARGET="contents">System.Reflection.ConstructorInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ConstructorInfo.TypeConstructorName Field"><H3>ConstructorInfo.TypeConstructorName Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly string TypeConstructorName;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ A string containing the name of a type initializer as it is stored in
+      metadata. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+This field is a <A HREF="../../System/String.html" TARGET="contents">String</A> that contains the value &quot;.cctor&quot;.<P>
+
+[<I>Note</I>:  A type initializer can be applied to all types. It
+      allows the type to perform any initialization required before any members
+      declared within the type are accessed. Type initializers accept no parameters
+      and always have a return type of void. A type constructor only has access to a
+      type&apos;s static fields and its usual purpose is to initialize those fields. A
+      type&apos;s constructor is guaranteed to run before any instance of the type is
+      created and before any static field or method of the type is referenced. <P>
+
+Many languages (including C#) automatically generate type constructors for
+      all implementer-defined types. However, some languages require that type
+      constructors be explicitly implemented.<P>
+
+For more information on type initializers, see Partition II of the CLI
+      Specification.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ConstructorInfo.html" TARGET="contents">System.Reflection.ConstructorInfo Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

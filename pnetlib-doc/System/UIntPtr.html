@@ -1,0 +1,632 @@
+<HTML>
+<HEAD>
+<TITLE>System.UIntPtr Structure</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.UIntPtr Structure</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public struct UIntPtr</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="ValueType.html" TARGET="contents">ValueType</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;UIntPtr<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+An implementation-specific type that is used to represent a pointer or a
+      handle.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="UIntPtr.html" TARGET="contents">UIntPtr</A> type is designed
+   to be an implementation-sized pointer. An instance of this type is expected to be
+   the size of a <CODE>native unsigned int</CODE>
+ for the current
+   implementation.<P>
+
+
+   For more information on the <CODE>native unsigned int</CODE>
+ type, see Partition II of
+   the CLI Specification.
+<P>
+
+[<I>Note</I>: <A HREF="UIntPtr.html" TARGET="contents">UIntPtr</A> instances
+   can also
+   be used to hold handles.<P>
+
+ The <A HREF="IntPtr.html" TARGET="contents">IntPtr</A> type is
+CLS-compliant while the <A HREF="UIntPtr.html" TARGET="contents">UIntPtr</A>
+type is not. The <A HREF="UIntPtr.html" TARGET="contents">UIntPtr</A> type is provided mostly to
+maintain architectural symmetry with the <A HREF="IntPtr.html" TARGET="contents">IntPtr</A>
+type.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+UIntPtr Constructors<P>
+
+<A HREF="#UIntPtr(uint) Constructor" TARGET="contents">UIntPtr(uint) Constructor</A><BR>
+<A HREF="#UIntPtr(ulong) Constructor" TARGET="contents">UIntPtr(ulong) Constructor</A><BR>
+<P>
+
+UIntPtr Methods<P>
+
+<A HREF="#UIntPtr.Equals Method" TARGET="contents">UIntPtr.Equals Method</A><BR>
+<A HREF="#UIntPtr.GetHashCode Method" TARGET="contents">UIntPtr.GetHashCode Method</A><BR>
+<A HREF="#UIntPtr.ToPointer Method" TARGET="contents">UIntPtr.ToPointer Method</A><BR>
+<A HREF="#UIntPtr.ToString Method" TARGET="contents">UIntPtr.ToString Method</A><BR>
+<A HREF="#UIntPtr.ToUInt32 Method" TARGET="contents">UIntPtr.ToUInt32 Method</A><BR>
+<A HREF="#UIntPtr.ToUInt64 Method" TARGET="contents">UIntPtr.ToUInt64 Method</A><BR>
+<A HREF="#UIntPtr.op_Equality Method" TARGET="contents">UIntPtr.op_Equality Method</A><BR>
+<A HREF="#UIntPtr.op_Inequality Method" TARGET="contents">UIntPtr.op_Inequality Method</A><BR>
+<P>
+
+UIntPtr Fields<P>
+
+<A HREF="#UIntPtr.Zero Field" TARGET="contents">UIntPtr.Zero Field</A><BR>
+<P>
+
+UIntPtr Properties<P>
+
+<A HREF="#UIntPtr.Size Property" TARGET="contents">UIntPtr.Size Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="UIntPtr(uint) Constructor"><H3>UIntPtr(uint) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public UIntPtr(uint value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs a new <A HREF="UIntPtr.html" TARGET="contents">UIntPtr</A> structure using the
+ specified <A HREF="UInt32.html" TARGET="contents">UInt32</A> containing a pointer
+ or a handle.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="UInt32.html" TARGET="contents">UInt32</A> containing a pointer or handle.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UIntPtr.html" TARGET="contents">System.UIntPtr Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="UIntPtr(ulong) Constructor"><H3>UIntPtr(ulong) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public UIntPtr(ulong value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs a new <A HREF="UIntPtr.html" TARGET="contents">UIntPtr</A> structure using the
+ specified <A HREF="UInt64.html" TARGET="contents">UInt64</A> containing a pointer
+ or a handle.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="UInt64.html" TARGET="contents">UInt64</A> containing a pointer or a handle.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The current platform is a 32-bit platform and the value of the current instance is greater than System.UInt32.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UIntPtr.html" TARGET="contents">System.UIntPtr Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="UIntPtr.Equals Method"><H3>UIntPtr.Equals Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool Equals(object obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance and the specified <A HREF="Object.html" TARGET="contents">Object</A> represent the
+ same type and value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> obj</DT>
+<DD>The <A HREF="Object.html" TARGET="contents">Object</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>obj</I> is a <A HREF="UIntPtr.html" TARGET="contents">UIntPtr</A> instance and has the same value as the 
+ current instance. If <I>obj</I> is a null reference or is not an instance of
+<A HREF="UIntPtr.html" TARGET="contents">UIntPtr</A> , 
+ returns <CODE>false</CODE>
+.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The method overrides System.Object.Equals(System.Object).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UIntPtr.html" TARGET="contents">System.UIntPtr Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="UIntPtr.GetHashCode Method"><H3>UIntPtr.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int GetHashCode();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Generates a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A>
+containing the hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The algorithm used to generate the
+ hash code is unspecified.]<P>
+
+<P>
+
+[<I>Note</I>: This method overrides System.Object.GetHashCode.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UIntPtr.html" TARGET="contents">System.UIntPtr Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="UIntPtr.ToPointer Method"><H3>UIntPtr.ToPointer Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>unsafe public void* ToPointer();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts the value of the current instance to a pointer to
+   <CODE>void</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A pointer to <CODE>void</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: A pointer to <CODE>void</CODE>
+
+points to memory containing data of an unspecified type.]<P>
+
+<P>
+
+This method is not CLS-compliant. For a CLS-compliant
+   alternative use System.IntPtr.ToPointer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UIntPtr.html" TARGET="contents">System.UIntPtr Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="UIntPtr.ToString Method"><H3>UIntPtr.ToString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A>
+representation of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  If System.UIntPtr.Size for the
+      current instance is 4, System.UIntPtr.ToString is
+      equivalent to System.UInt32.ToString();
+      otherwise, this method is equivalent toSystem.UInt64.ToString().<P>
+
+This method overrides System.Object.ToString.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UIntPtr.html" TARGET="contents">System.UIntPtr Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="UIntPtr.ToUInt32 Method"><H3>UIntPtr.ToUInt32 Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public uint ToUInt32();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts the value of the current instance to a <A HREF="UInt32.html" TARGET="contents">UInt32</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="UInt32.html" TARGET="contents">UInt32</A> containing the
+ same value as the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The current platform is not a 32-bit platform and the value of the current instance is greater than System.UInt32.MaxValue .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UIntPtr.html" TARGET="contents">System.UIntPtr Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="UIntPtr.ToUInt64 Method"><H3>UIntPtr.ToUInt64 Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ulong ToUInt64();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts the value of the current instance to a <A HREF="UInt64.html" TARGET="contents">UInt64</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="UInt64.html" TARGET="contents">UInt64</A> containing the 
+   same value as the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UIntPtr.html" TARGET="contents">System.UIntPtr Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="UIntPtr.op_Equality Method"><H3>UIntPtr.op_Equality Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator ==(UIntPtr value1, UIntPtr value2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the two specified instances of <A HREF="UIntPtr.html" TARGET="contents">UIntPtr</A> represent the same value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value1</DT>
+<DD>The first <A HREF="UIntPtr.html" TARGET="contents">UIntPtr</A> to compare for equality.</DD>
+<DT> value2</DT>
+<DD>The second <A HREF="UIntPtr.html" TARGET="contents">UIntPtr</A> to compare for equality.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>value1</I> represents the same value as 
+<I>value2</I>; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UIntPtr.html" TARGET="contents">System.UIntPtr Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="UIntPtr.op_Inequality Method"><H3>UIntPtr.op_Inequality Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator !=(UIntPtr value1, UIntPtr value2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether two specified instances of <A HREF="UIntPtr.html" TARGET="contents">UIntPtr</A> represent different values.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value1</DT>
+<DD>The first <A HREF="UIntPtr.html" TARGET="contents">UIntPtr</A> to compare for inequality.</DD>
+<DT> value2</DT>
+<DD>The second <A HREF="UIntPtr.html" TARGET="contents">UIntPtr</A> to compare for inequality.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>value1</I> represents a different value than 
+<I>value2</I>; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UIntPtr.html" TARGET="contents">System.UIntPtr Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="UIntPtr.Zero Field"><H3>UIntPtr.Zero Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly UIntPtr Zero;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Represents a pointer or handle that has been initialized as zero.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The value of this field is not <CODE>null</CODE>
+ , but is instead a
+      pointer which has been assigned the value zero. Use this field to efficiently
+      determine whether an instance of <A HREF="UIntPtr.html" TARGET="contents">UIntPtr</A> has been set to a value other than zero. For example, if
+   <I>uip</I> is a <A HREF="UIntPtr.html" TARGET="contents">UIntPtr</A> instance, using <I>uip != UIntPtr.Zero</I> is more
+      efficient than <I>uip != new UIntPtr(0)</I> to test if <I>uip</I> has been set
+      to a value other than zero. <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UIntPtr.html" TARGET="contents">System.UIntPtr Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="UIntPtr.Size Property"><H3>UIntPtr.Size Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int Size { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the size in bytes of a pointer or a handle for the current
+      implementation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the 
+   number of bytes of a pointer or handle for the current implementation. The value
+   of this property is equal to the number of bytes contained by the <CODE>native unsigned int</CODE>
+ type in the current implementation. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+For more information on the 
+   <CODE>native unsigned int</CODE>
+ type, see Partition II of the CLI
+      Specification.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UIntPtr.html" TARGET="contents">System.UIntPtr Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

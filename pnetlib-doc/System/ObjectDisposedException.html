@@ -1,0 +1,425 @@
+<HTML>
+<HEAD>
+<TITLE>System.ObjectDisposedException Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.ObjectDisposedException Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class ObjectDisposedException : InvalidOperationException</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="Exception.html" TARGET="contents">Exception</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="SystemException.html" TARGET="contents">SystemException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="InvalidOperationException.html" TARGET="contents">InvalidOperationException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ObjectDisposedException<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents the error that occurs when an operation is
+      performed on a disposed object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: For additional information about
+      disposing objects, see the <A HREF="IDisposable.html" TARGET="contents">IDisposable</A> interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates an error that causes the <A HREF="ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A>
+exception to be thrown.<P>
+
+<PRE>using System;
+using System.IO;
+
+public class ObjectDisposedExceptionTest {
+   public static void Main() {     
+      MemoryStream ms = new MemoryStream(16);
+      ms.Close();
+      try {
+         ms.ReadByte();
+      } 
+      catch (ObjectDisposedException e) {
+         Console.WriteLine(&quot;Caught: {0}&quot;, e.Message);
+      }
+   }
+}
+</PRE>
+The output is<P>
+
+<CODE>Caught: Cannot access a closed Stream.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ObjectDisposedException Constructors<P>
+
+<A HREF="#ObjectDisposedException(System.String) Constructor" TARGET="contents">ObjectDisposedException(System.String) Constructor</A><BR>
+<A HREF="#ObjectDisposedException(System.String, System.String) Constructor" TARGET="contents">ObjectDisposedException(System.String, System.String) Constructor</A><BR>
+<P>
+
+ObjectDisposedException Properties<P>
+
+<A HREF="#ObjectDisposedException.Message Property" TARGET="contents">ObjectDisposedException.Message Property</A><BR>
+<A HREF="#ObjectDisposedException.ObjectName Property" TARGET="contents">ObjectDisposedException.ObjectName Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ObjectDisposedException(System.String) Constructor"><H3>ObjectDisposedException(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ObjectDisposedException(string objectName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>objectName</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the name of the disposed object.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ObjectDisposedException.ObjectName property of the new instance
+   using <I>objectName. </I> The System.ObjectDisposedException.Message property is initialized to a system-supplied message that describes the
+   error<I> </I>and
+   includes <I>objectname</I> . This message takes into account the
+   current system culture. <P>
+
+The System.ObjectDisposedException.InnerException property of the new instance is
+initialized to <CODE>null</CODE>
+.<P>
+
+[<I>Note</I>: If <I>objectName</I> is
+<CODE>null</CODE>
+, the System.ObjectDisposedException.Message property 
+contains only an error message.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example displays the error message of a
+   <A HREF="ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A> instance created
+      using this constructor.<P>
+
+<PRE>using System;
+
+public class ExampleDisposableObject : IDisposable {
+ public static void Main() {
+ 
+ ExampleDisposableObject obj = new ExampleDisposableObject();
+ 
+ obj.Close();
+ 
+ try {
+ Console.WriteLine(obj);
+ } catch (ObjectDisposedException e) {
+ Console.WriteLine(&quot;Caught: {0}&quot;, e.Message);
+ }
+ }
+ 
+
+ public ExampleDisposableObject() {
+ isDisposed = false;
+ }
+ 
+ ~ExampleDisposableObject() {
+ Dispose(true);
+ }
+ 
+ public void Close() {
+ Dispose(true);
+ }
+ 
+ public void Dispose() {
+ Dispose(true);
+ }
+ 
+ public void Dispose(bool disposing) {
+ isDisposed = true;
+ }
+ 
+ public override String ToString() {
+ if(isDisposed)
+ throw new ObjectDisposedException(&quot;ExampleDisposableObject&quot;);
+ else
+ return &quot;This is an instance of ExampleDisposableObject.&quot;;
+ }
+ 
+ private bool isDisposed;
+}
+   </PRE>
+The output is<P>
+
+<CODE>Caught: Cannot access a disposed object named &quot;ExampleDisposableObject&quot;.<P>
+
+Object name: &quot;ExampleDisposableObject&quot;.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ObjectDisposedException.html" TARGET="contents">System.ObjectDisposedException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ObjectDisposedException(System.String, System.String) Constructor"><H3>ObjectDisposedException(System.String, System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ObjectDisposedException(string objectName, string message);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>objectName</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the name of the disposed object.</DD>
+<DT> message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ObjectDisposedException.Message property of the new instance
+   using <I>message</I>, and the System.ObjectDisposedException.ObjectName property using
+<I>objectName</I> . If <I>message</I> is 
+<CODE>null</CODE>
+, the System.ObjectDisposedException.Message property is initialized to the system-supplied message 
+   provided by the constructor that takes no arguments.<P>
+
+The System.ObjectDisposedException.InnerException property of the new instance is
+initialized to <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example throws a <A HREF="ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A> instance created using this
+   constructor.<P>
+
+<PRE>using System;
+
+public class ExampleDisposableObject : IDisposable {
+ public static void Main() {
+ 
+ ExampleDisposableObject obj = new ExampleDisposableObject();
+ 
+ obj.Close();
+ 
+ try {
+ Console.WriteLine(obj);
+ } catch (ObjectDisposedException e) {
+ Console.WriteLine(&quot;Caught: {0}&quot;, e.Message);
+ }
+ }
+ 
+
+ public ExampleDisposableObject() {
+ isDisposed = false;
+ }
+ 
+ ~ExampleDisposableObject() {
+ Dispose(true);
+ }
+ 
+ public void Close() {
+ Dispose(true);
+ }
+ 
+ public void Dispose() {
+ Dispose(true);
+ }
+ 
+ public void Dispose(bool disposing) {
+ isDisposed = true;
+ }
+ 
+ public override String ToString() {
+ if(isDisposed) {
+ string message = &quot;Oh-oh! This object has been disposed!&quot;;
+ string objectName = &quot;ExampleDisposableObject&quot;; 
+ throw new ObjectDisposedException(objectName, message);
+ }
+ else
+ return &quot;Hello, World!&quot;;
+ }
+ 
+ private bool isDisposed;
+}
+</PRE>
+The output is<P>
+
+<CODE>Caught: Oh-oh! This object has been disposed!<P>
+
+Object name: &quot;ExampleDisposableObject&quot;.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ObjectDisposedException.html" TARGET="contents">System.ObjectDisposedException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ObjectDisposedException.Message Property"><H3>ObjectDisposedException.Message Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string Message { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the message that describes the error.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> that describes
+   the error. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the System.ObjectDisposedException.ObjectName property is not
+<CODE>null</CODE>
+ 
+, the message includes the name of the object. <P>
+
+This property is read-only.<P>
+
+[<I>Note</I>: This property overrides System.Exception.Message.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ObjectDisposedException.html" TARGET="contents">System.ObjectDisposedException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ObjectDisposedException.ObjectName Property"><H3>ObjectDisposedException.ObjectName Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ObjectName { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the name of the disposed object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the name of the disposed object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: If this property is not <CODE>null</CODE>
+ or System.String.Empty , the value of this property is included in the
+   string returned by the System.ObjectDisposedException.Message
+   property. ]<P>
+
+<P>
+
+ This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ObjectDisposedException.html" TARGET="contents">System.ObjectDisposedException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

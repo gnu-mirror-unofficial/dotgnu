@@ -1,0 +1,1308 @@
+<HTML>
+<HEAD>
+<TITLE>System.Object Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Object Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class Object</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides support for classes. This class is the root of the object hierarchy.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Classes derived from <A HREF="Object.html" TARGET="contents">Object</A> may override the following methods of
+ the <A HREF="Object.html" TARGET="contents">Object</A> class:<P>
+
+<UL>
+<LI>System.Object.Equals(System.Object) - Enables 
+ comparisons between objects.</LI>
+<LI>System.Object.Finalize - 
+ Performs clean up operations before an object is automatically reclaimed.</LI>
+<LI>System.Object.GetHashCode - Generates a number corresponding to the value 
+ of the object (to support the use of a hashtable).</LI>
+<LI>System.Object.ToString - Manufactures a human-readable text string that
+ describes an instance of the class.</LI>
+</UL>
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Object Constructors<P>
+
+<A HREF="#Object Constructor" TARGET="contents">Object Constructor</A><BR>
+<P>
+
+Object Methods<P>
+
+<A HREF="#Object.Equals(System.Object) Method" TARGET="contents">Object.Equals(System.Object) Method</A><BR>
+<A HREF="#Object.Equals(System.Object, System.Object) Method" TARGET="contents">Object.Equals(System.Object, System.Object) Method</A><BR>
+<A HREF="#Object.Finalize Method" TARGET="contents">Object.Finalize Method</A><BR>
+<A HREF="#Object.GetHashCode Method" TARGET="contents">Object.GetHashCode Method</A><BR>
+<A HREF="#Object.GetType Method" TARGET="contents">Object.GetType Method</A><BR>
+<A HREF="#Object.MemberwiseClone Method" TARGET="contents">Object.MemberwiseClone Method</A><BR>
+<A HREF="#Object.ReferenceEquals Method" TARGET="contents">Object.ReferenceEquals Method</A><BR>
+<A HREF="#Object.ToString Method" TARGET="contents">Object.ToString Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Object Constructor"><H3>Object Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Object();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new instance of the <A HREF="Object.html" TARGET="contents">Object</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Usage</I>: This constructor is 
+      called by constructors in derived classes, but it can also be used to directly
+      create an instance of the <CODE> Object</CODE>
+
+      class. This might be useful, for example, if you need to obtain a reference to
+      an object so that you can synchronize on it, as might be the case when using the
+      C# <CODE>lock</CODE>
+ statement.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">System.Object Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Object.Equals(System.Object) Method"><H3>Object.Equals(System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool Equals(object obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the specified <A HREF="Object.html" TARGET="contents">Object</A> is equal to the
+   current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>obj</DT>
+<DD>The <A HREF="Object.html" TARGET="contents">Object</A> to compare with the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>obj</I> is equal to the
+   current instance; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: The statements listed below are required to be true for all
+         implementations of the System.Object.Equals(System.Object)
+         method. In the list, x, y, and z represent non-null object references. <P>
+
+<UL>
+<LI>
+            x.Equals(x) returns <CODE>true</CODE>
+.</LI>
+<LI>
+            x.Equals(y) returns the same value as y.Equals(x).</LI>
+<LI>
+            (x.Equals(y) &amp;&amp; y.Equals(z)) returns
+            <CODE>true</CODE>
+ if and only if x.Equals(z) returns
+            <CODE>true</CODE>
+.</LI>
+<LI>
+            Successive invocations of x.Equals(y) return the same
+            value as long as the objects referenced by x and y are not modified.</LI>
+<LI>
+            x.Equals(<CODE>null</CODE>
+) returns
+            <CODE>false</CODE>
+
+         
+         .</LI>
+</UL>
+See System.Object.GetHashCode for additional required behaviors pertaining to the
+System.Object.Equals(System.Object) 
+method.<P>
+
+[<I>Note</I>: Implementations of System.Object.Equals(System.Object) should
+not
+throw exceptions.]<P>
+
+<P>
+
+]<P>
+
+[<I>Default</I>: The System.Object.Equals(System.Object) method
+   tests for <I>referential equality</I> , which means that
+System.Object.Equals(System.Object) returns 
+<CODE>true</CODE>
+ if the specified instance of <CODE>Object</CODE>
+ and 
+   the current instance are the same instance; otherwise, it returns
+<CODE>false</CODE>
+ 
+. <P>
+
+[<I>Note</I>: An implementation of the System.Object.Equals(System.Object) method is shown in the following C#
+   code:<P>
+
+<CODE>public virtual bool Equals(Object obj) {<P>
+
+</CODE><CODE>return this == obj;<P>
+
+</CODE><CODE>} <P>
+
+</CODE>]<P>
+
+]<P>
+
+[<I>Overrides</I>: For some kinds of objects, it is desirable to have System.Object.Equals(System.Object) test for <I>value    equality</I> instead of
+   referential equality. Such implementations of <CODE>Equals</CODE>
+ return true if the two objects have the
+   same &quot;value&quot;, even if they are not the same instance. The definition of what
+   constitutes an object&apos;s &quot;value&quot; is up to the implementer of the type, but it is
+   typically some or all of the data stored in the instance variables of the
+   object. For example, the value of a <A HREF="String.html" TARGET="contents">String</A> is based on the characters of the
+   string; the <CODE>Equals</CODE>
+
+   method of the <A HREF="String.html" TARGET="contents">String</A> class returns
+<CODE>true</CODE>
+ for any two string instances that
+   contain exactly the same characters in the same order. <P>
+
+When the <CODE>Equals</CODE>
+
+method of a base class provides value equality, an override of
+<CODE>Equals</CODE>
+ in a class 
+derived from that base class should invoke the inherited implementation of
+<CODE>Equals</CODE>
+ . <P>
+
+It is recommended (but not required) that types overriding
+System.Object.Equals(System.Object) also 
+   override System.Object.GetHashCode. Hashtables cannot be relied on to work correctly if
+   this recommendation is not followed. <P>
+
+If your programming language supports operator
+   overloading, and if you choose to overload the equality operator for a given
+   type, that type should override the <CODE>Equals</CODE>
+ method. Such
+   implementations of the <CODE>Equals</CODE>
+ method should return the same
+   results as the equality operator. Following this guideline will help ensure that
+   class library code using <CODE>Equals</CODE>
+ (such as <A HREF="../System/Collections/ArrayList.html" TARGET="contents">ArrayList</A> and <A HREF="../System/Collections/Hashtable.html" TARGET="contents">Hashtable</A>
+   
+   ) behaves
+   in a manner that is consistent with the way the equality operator is used by
+   application code.<P>
+
+If you are implementing a value type, you should follow these guidelines:<P>
+
+<UL>
+<LI>
+      Consider overriding <CODE>Equals</CODE>
+ to gain
+      increased performance over that provided by the default implementation of
+      <CODE>Equals</CODE>
+ on <A HREF="ValueType.html" TARGET="contents">ValueType</A>.</LI>
+<LI>
+      If you override <CODE>Equals</CODE>
+
+      
+      and the language supports operator overloading, you
+      should overload the equality operator for your value type.</LI>
+</UL>
+For reference types, the guidelines are as follows:<P>
+
+<UL>
+<LI>
+      Consider overriding <CODE>Equals</CODE>
+ on a
+      reference type if the semantics of the type are based on the fact that the
+      type represents some value(s). For example, reference types such as Point and
+      BigNumber should override <CODE>Equals</CODE>
+.</LI>
+<LI>
+      Most reference types should not overload the equality
+      operator, even if they override <CODE>Equals</CODE>
+
+      
+      . However, if you are implementing a reference type that
+      is intended to have value semantics, such as a complex number type, you should
+      override the equality operator.</LI>
+</UL>
+If you implement <A HREF="IComparable.html" TARGET="contents">IComparable</A> on a given type, you should override
+<CODE>Equals</CODE>
+ on that
+type.<P>
+
+]<P>
+
+[<I>Usage</I>: The System.Object.Equals(System.Object) method is called by methods in collections
+classes that perform search operations, including the System.Array.IndexOf(System.Array,System.Object) method and
+the System.Collections.ArrayList.Contains(System.Object)
+method.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<CODE>Example 1:</CODE>
+<P>
+
+ The following example contains two calls to the default
+   implementation of System.Object.Equals(System.Object) .<P>
+
+<PRE>using System;
+class MyClass {
+   static void Main() {
+      Object obj1 = new Object();
+      Object obj2 = new Object();
+      Console.WriteLine(obj1.Equals(obj2));
+      obj1 = obj2; 
+      Console.WriteLine(obj1.Equals(obj2)); 
+   }
+}
+</PRE>
+The output is<P>
+
+<CODE>False<P>
+
+True<P>
+
+</CODE><CODE>Example 2:</CODE>
+<P>
+
+ The following example shows a <CODE>Point</CODE>
+ class that overrides
+the System.Object.Equals(System.Object) method to
+provide value equality and a class <CODE>Point3D</CODE>
+, which is derived
+from <CODE>Point</CODE>
+
+. Because Point&apos;s override of
+System.Object.Equals(System.Object) is the first 
+in the inheritance chain to introduce value equality, the
+<CODE>Equals</CODE>
+ method of 
+the base class (which is inherited from <A HREF="Object.html" TARGET="contents">Object</A> and checks for referential
+equality) is not invoked. However, <CODE>Point3D.Equals</CODE>
+ invokes
+<CODE>Point.Equals</CODE>
+ because <CODE>Point</CODE>
+ implements
+<CODE>Equals</CODE>
+ 
+in a manner that provides value equality.<P>
+
+<PRE>using System;
+public class Point: object {
+ int x, y;
+ public override bool Equals(Object obj) {
+ //Check for null and compare run-time types.
+ if (obj == null || GetType() != obj.GetType()) return false;
+ Point p = (Point)obj;
+ return (x == p.x) &amp;&amp; (y == p.y);
+ }
+ public override int GetHashCode() {
+ return x ^ y;
+ }
+}
+
+class Point3D: Point {
+ int z;
+ public override bool Equals(Object obj) {
+ return base.Equals(obj) &amp;&amp; z == ((Point3D)obj).z;
+ }
+ public override int GetHashCode() {
+ return base.GetHashCode() ^ z;
+ }
+}
+</PRE>
+ The <CODE>Point.Equals</CODE>
+ method checks that the <I>obj</I>
+argument is non-null and that it references an instance of the same type as this
+object. If either of those checks fail, the method returns false. The
+System.Object.Equals(System.Object) method uses 
+System.Object.GetType to determine whether 
+the run-time types of the two objects are identical. (Note that
+<CODE>typeof</CODE>
+ is not used here because it returns the static type.) If 
+instead the method had used a check of the form <CODE><I>obj</I> is Point</CODE> , the check would
+return true in cases where <I>obj</I> is an instance of a subclass of
+<CODE>Point</CODE>
+ ,
+even though <I>obj</I> and the current instance are not of the same runtime
+type. Having verified that both objects are of the same type, the method casts
+<I>obj</I> 
+to type <CODE>Point</CODE>
+
+and returns the result of comparing the instance variables of the two objects.<P>
+
+ In <CODE>Point3D.Equals</CODE>
+ , the inherited
+<CODE>Equals</CODE>
+ method is 
+invoked before anything else is done; the inherited <CODE>Equals</CODE>
+ method checks to see that <I>obj </I>is non-null, that <I>obj</I> is an instance of the same class as this
+object, and that the inherited instance variables match. Only when the inherited
+<CODE>Equals</CODE>
+ returns true does the method compare the 
+instance variables introduced in the subclass. Specifically, the cast to
+<CODE>Point3D</CODE>
+ 
+is not executed unless <I>obj</I>
+has been determined to be of type <CODE>Point3D</CODE>
+ or a subclass of
+<CODE>Point3D</CODE>
+
+.<P>
+
+<CODE>Example 3:</CODE>
+<P>
+
+ In the previous example, operator == (the equality
+   operator) is used to compare the individual instance variables. In some cases,
+   it is appropriate to use the System.Object.Equals(System.Object) method to
+   compare instance variables in an <CODE>Equals</CODE>
+
+   implementation, as shown in the following example:<P>
+
+<PRE>using System;
+class Rectangle {
+ Point a, b;
+ public override bool Equals(Object obj) {
+ if (obj == null || GetType() != obj.GetType()) return false;
+ Rectangle r = (Rectangle)obj;
+ //Use Equals to compare instance variables
+ return a.Equals(r.a) &amp;&amp; b.Equals(r.b);
+ }
+ public override int GetHashCode() {
+ return a.GetHashCode() ^ b.GetHashCode();
+ }
+}
+</PRE>
+<CODE>Example 4:</CODE>
+<P>
+
+In some languages, such as C#, operator overloading is
+   supported. When a type overloads operator ==, it should also override the
+System.Object.Equals(System.Object) method to 
+   provide the same functionality. This is typically accomplished by writing the
+<CODE>Equals</CODE>
+ 
+method
+in terms of the overloaded operator ==. For example:<P>
+
+<PRE>using System;
+public struct Complex {
+ double re, im;
+ public override bool Equals(Object obj) {
+ return obj is Complex &amp;&amp; this == (Complex)obj;
+ }
+ public override int GetHashCode() {
+ return re.GetHashCode() ^ im.GetHashCode();
+ }
+ public static bool operator ==(Complex x, Complex y) {
+ return x.re == y.re &amp;&amp; x.im == y.im;
+ }
+ public static bool operator !=(Complex x, Complex y) {
+ return !(x == y);
+ }
+}
+</PRE>
+Because Complex is a C# struct (a value type), it is
+   known that there will be no subclasses of <CODE>Complex</CODE>
+
+   . Therefore, the
+System.Object.Equals(System.Object) method need 
+   not compare the GetType() results for each object, but can instead use the
+<CODE>is</CODE>
+ operator to check the type of the <I>obj</I> 
+parameter.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">System.Object Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Object.Equals(System.Object, System.Object) Method"><H3>Object.Equals(System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool Equals(object objA, object objB);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether two object references are equal.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>objA</DT>
+<DD>First object to compare.</DD>
+<DT>objB</DT>
+<DD>Second object to compare.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if one or more of the following statements is
+   true:<P>
+
+<UL>
+<LI><I>objA</I> and <I>objB</I> refer to the same object,</LI>
+<LI><I>objA</I> and <I>objB</I> are both null references,</LI>
+<LI><I>objA</I> is not 
+   <CODE>null</CODE>
+ and
+   <I>objA</I>.Equals(<I>objB</I> ) returns true;</LI>
+</UL>
+otherwise returns <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This static method checks for null references before it
+      calls <I>objA</I>.Equals(<I>objB</I> ) and
+      returns false if either <I>objA</I> or <I>objB</I> is null. If the Equals(object
+   <I>obj</I>) implementation throws an exception, this method throws an
+      exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.Object.Equals(System.Object) method.<P>
+
+<PRE>using System;
+
+public class MyClass {
+   public static void Main() {
+   string s1 = &quot;Tom&quot;;
+   string s2 = &quot;Carol&quot;;
+   Console.WriteLine(&quot;Object.Equals(\&quot;{0}\&quot;, \&quot;{1}\&quot;) =&gt; {2}&quot;, 
+      s1, s2, Object.Equals(s1, s2));
+
+   s1 = &quot;Tom&quot;;
+   s2 = &quot;Tom&quot;;
+   Console.WriteLine(&quot;Object.Equals(\&quot;{0}\&quot;, \&quot;{1}\&quot;) =&gt; {2}&quot;, 
+      s1, s2, Object.Equals(s1, s2));
+
+   s1 = null;
+   s2 = &quot;Tom&quot;;
+   Console.WriteLine(&quot;Object.Equals(null, \&quot;{1}\&quot;) =&gt; {2}&quot;,
+       s1, s2, Object.Equals(s1, s2));
+
+   s1 = &quot;Carol&quot;;
+   s2 = null;
+   Console.WriteLine(&quot;Object.Equals(\&quot;{0}\&quot;, null) =&gt; {2}&quot;, 
+       s1, s2, Object.Equals(s1, s2));
+
+   s1 = null;
+   s2 = null;
+   Console.WriteLine(&quot;Object.Equals(null, null) =&gt; {2}&quot;, 
+       s1, s2, Object.Equals(s1, s2));
+   }
+}
+   </PRE>
+The output is<P>
+
+<CODE>Object.Equals(&quot;Tom&quot;, &quot;Carol&quot;) =&gt; False<P>
+
+Object.Equals(&quot;Tom&quot;, &quot;Tom&quot;) =&gt; True<P>
+
+Object.Equals(null, &quot;Tom&quot;) =&gt; False<P>
+
+Object.Equals(&quot;Carol&quot;, null) =&gt; False<P>
+
+Object.Equals(null, null) =&gt; True<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">System.Object Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Object.Finalize Method"><H3>Object.Finalize Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>~Object();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Allows a <A HREF="Object.html" TARGET="contents">Object</A> to perform cleanup operations before the memory
+   allocated for the <A HREF="Object.html" TARGET="contents">Object</A> is automatically reclaimed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: During execution, System.Object.Finalize is automatically called after an object
+      becomes inaccessible, unless the object has been exempted from finalization by a
+      call to System.GC.SuppressFinalize(System.Object). During shutdown of an application domain, System.Object.Finalize is
+      automatically called on objects that are not exempt from finalization, even
+      those that are still accessible. System.Object.Finalize is automatically called only once on a
+      given instance, unless the object is re-registered using a mechanism such as
+   System.GC.ReRegisterForFinalize(System.Object) and System.GC.SuppressFinalize(System.Object) has not been subsequently called.<P>
+
+Conforming implementations of the CLI are required to make every
+         effort to ensure that for every object that has not been exempted from
+         finalization, the System.Object.Finalize method is called after the object becomes inaccessible.
+         However, there may be some circumstances under which <CODE>Finalize</CODE>
+ is not
+         called. Conforming CLI implementations are required to explicitly specify the conditions
+         under which <CODE>Finalize</CODE>
+ is not guaranteed to be called. [<I>Note</I>: For example, <CODE>Finalize</CODE>
+ might not be guaranteed to be called in
+         the event of equipment failure, power failure, or other catastrophic system failures.]<P>
+
+<P>
+
+In addition to System.GC.ReRegisterForFinalize(System.Object)
+   and System.GC.SuppressFinalize(System.Object), conforming implementations of the CLI are allowed to
+   provide other mechanisms that affect the behavior of System.Object.Finalize . Any mechanisms provided are required to be specified by the CLI implementation.<P>
+
+The order in which the <CODE>Finalize</CODE>
+ methods
+of two objects are run is unspecified, even if one object refers to the other.<P>
+
+The thread on which <CODE>Finalize</CODE>
+ is run is unspecified.<P>
+
+Every implementation of System.Object.Finalize in a
+derived type is required to call its base type&apos;s implementation of <CODE>Finalize</CODE>
+
+. This is the only case in which application code calls System.Object.Finalize .<P>
+
+]<P>
+
+[<I>Default</I>: The System.Object.Finalize
+implementation does nothing.<P>
+
+]<P>
+
+[<I>Overrides</I>: A type should implement <CODE>Finalize</CODE>
+ when it uses unmanaged resources such as
+   file handles or database connections that must be released when the managed
+   object that uses them is reclaimed. Because <CODE>Finalize</CODE>
+ methods
+   may be invoked in any order (including from multiple threads), synchronization
+   may be necessary if the <CODE>Finalize</CODE>
+ method may interact with other
+   objects, whether accessible or not. Furthermore, since the order in which
+<CODE>Finalize</CODE>
+ is called is unspecified, implementers of 
+<CODE>Finalize</CODE>
+ (or of destructors implemented through 
+   overriding Finalize) must take care to correctly handle references to
+   other objects, as their <CODE>Finalize</CODE>
+
+   
+   
+   method may already have been invoked. In
+   general, referenced objects should not be considered valid during
+   finalization.<P>
+
+See the <A HREF="IDisposable.html" TARGET="contents">IDisposable</A> interface for an alternate means of disposing of
+resources.<P>
+
+]<P>
+
+[<I>Usage</I>: For C# developers: Destructors are the C# mechanism for
+   performing cleanup operations. Destructors provide appropriate safeguards, such
+   as automatically calling the base type&apos;s destructor. In C# code, System.Object.Finalize cannot be
+   called or overridden.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">System.Object Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Object.GetHashCode Method"><H3>Object.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual int GetHashCode();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Generates a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.Object.GetHashCode serves as a hash function for a specific
+   type. [<I>Note</I>:  A hash function is used to
+   quickly generate a number (a hash code) corresponding to the value of an object.
+   Hash functions are used with <CODE>hashtables</CODE>
+. A good hash function
+   algorithm rarely generates hash codes that collide. For more information about
+   hash functions, see <I>The Art of Computer Programming</I>
+   
+   , Vol. 3, by Donald E. Knuth.]<P>
+
+<P>
+
+[<I>Behaviors</I>: All implementations of System.Object.GetHashCode are required to ensure that for any two object references x
+   and y, if x.Equals(y) ==
+   true, then x.GetHashCode() ==
+   y.GetHashCode().<P>
+
+Hash codes generated by System.Object.GetHashCode
+need not be unique.<P>
+
+Implementations of System.Object.GetHashCode
+are not permitted to throw exceptions.<P>
+
+]<P>
+
+[<I>Default</I>: The System.Object.GetHashCode implementation attempts to produce a
+unique hash code for every object, but the hash codes generated by this method
+are not guaranteed to be unique. Therefore, System.Object.GetHashCode may generate the same hash code for two different instances.]<P>
+
+<P>
+
+[<I>Overrides</I>: It is recommended (but not required) that types
+   overriding System.Object.GetHashCode also override System.Object.Equals(System.Object) . Hashtables cannot be relied on to work correctly if this recommendation is not followed.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to obtain
+   the hash code of an object. Hash codes should not be persisted (i.e. in a database or file) as they are allowed to change from run to run.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<CODE>Example 1</CODE>
+<P>
+
+In some cases, System.Object.GetHashCode is implemented to simply return an integer value.
+The following example illustrates an implementation of System.Int32.GetHashCode
+, which
+returns an integer value:<P>
+
+<PRE>using System;
+public struct Int32 {
+ int value;
+ //other methods...
+
+ public override int GetHashCode() {
+ return value;
+ }
+}
+</PRE>
+<CODE>Example 2</CODE>
+<P>
+
+Frequently, a type has multiple data members that can participate in
+   generating the hash code. One way to generate a hash code is to combine these
+   fields using an xor (exclusive or) operation, as shown in the following
+   example:<P>
+
+<PRE>using System;
+public struct Point {
+ int x;
+ int y; 
+ //other methods
+ 
+ public override int GetHashCode() {
+ return x ^ y;
+ }
+}
+</PRE>
+<CODE>Example 3</CODE>
+<P>
+
+The following example illustrates another case where the type&apos;s fields are
+   combined using xor (exclusive or) to generate the hash code. Notice that in this
+   example, the fields represent user-defined types, each of which implements
+System.Object.GetHashCode (and should implement System.Object.Equals(System.Object) as well):<P>
+
+<PRE>using System;
+public class SomeType {
+ public override int GetHashCode() {
+ return 0;
+ }
+}
+
+public class AnotherType {
+ public override int GetHashCode() {
+ return 1;
+ }
+}
+
+public class LastType {
+ public override int GetHashCode() {
+ return 2;
+ }
+}
+public class MyClass {
+ SomeType a = new SomeType();
+ AnotherType b = new AnotherType();
+ LastType c = new LastType();
+
+ public override int GetHashCode () {
+ return a.GetHashCode() ^ b.GetHashCode() ^ c.GetHashCode();
+ }
+}
+</PRE>
+Avoid implementing System.Object.GetHashCode in a manner that results in circular references. In
+other words, if AClass.GetHashCode calls BClass.GetHashCode, it should not be
+the case that BClass.GetHashCode calls AClass.GetHashCode. <P>
+
+<CODE>Example 4</CODE>
+<P>
+
+In some cases, the data member of the class in which you are implementing
+System.Object.GetHashCode is bigger than a <A HREF="Int32.html" TARGET="contents">Int32</A>. In such cases, you could combine the 
+   high order bits of the value with the low order bits using an XOR operation, as
+   shown in the following example:<P>
+
+<PRE>using System;
+public struct Int64 {
+ long value;
+ //other methods...
+
+ public override int GetHashCode() {
+ return ((int)value ^ (int)(value &gt;&gt; 32));
+ }
+}
+</PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">System.Object Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Object.GetType Method"><H3>Object.GetType Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Type GetType();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the type of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The instance of <A HREF="Type.html" TARGET="contents">Type</A> that represents the run-time type (the exact type) of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+For two objects x and y that have identical run-time 
+      types, System.Object.ReferenceEquals(System.Object,System.Object)(x.GetType(),y.GetType()) returns
+   <CODE>true</CODE>
+ 
+   .<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the fact that System.Object.GetType
+returns the run-time type of the current instance:<P>
+
+<PRE>using System;
+public class MyBaseClass: Object {
+}
+public class MyDerivedClass: MyBaseClass {
+}
+public class Test {
+   public static void Main() {
+   MyBaseClass myBase = new MyBaseClass();
+   MyDerivedClass myDerived = new MyDerivedClass();
+
+   object o = myDerived;
+   MyBaseClass b = myDerived;
+
+   Console.WriteLine(&quot;mybase: Type is {0}&quot;, myBase.GetType());
+   Console.WriteLine(&quot;myDerived: Type is {0}&quot;, myDerived.GetType());
+   Console.WriteLine(&quot;object o = myDerived: Type is {0}&quot;, o.GetType());
+   Console.WriteLine(&quot;MyBaseClass b = myDerived: Type is {0}&quot;, b.GetType());
+   }
+}
+</PRE>
+ The output is<P>
+
+<CODE>mybase: Type is MyBaseClass<P>
+
+myDerived: Type is MyDerivedClass<P>
+
+object o = myDerived: Type is MyDerivedClass<P>
+
+MyBaseClass b = myDerived: Type is MyDerivedClass <P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">System.Object Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Object.MemberwiseClone Method"><H3>Object.MemberwiseClone Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected object MemberwiseClone();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Creates a shallow copy of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A shallow copy of the current instance. The run-time
+      type (the exact type) of the returned object is the same as the run-time type of
+      the object that was copied.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.Object.MemberwiseClone creates a new instance of the same type
+   as the current instance and then copies each of the object&apos;s non-static fields
+   in a manner that depends on whether the field is a value type or a reference
+   type. If the field is a value type, a bit-by-bit copy of all the field&apos;s bits is
+   performed. If the field is a reference type, only the reference is copied. The algorithm for performing a shallow copy is as follows (in pseudo-code):<P>
+
+<CODE>for each instance field f in this instance<P>
+
+ if (f is a value type)<P>
+
+ bitwise copy the field<P>
+
+ if (f is a reference type)<P>
+
+ copy the reference<P>
+
+end for loop<P>
+
+</CODE>[<I>Note</I>: This mechanism is
+   referred to as a shallow copy because it copies rather than clones the non-static fields.]<P>
+
+<P>
+
+Because System.Object.MemberwiseClone implements the above algorithm, for any object, a, the following statements are required to be true:<P>
+
+<UL>
+<LI>
+      
+      a.MemberwiseClone() is not identical to a.</LI>
+<LI>
+      
+      a.MemberwiseClone().GetType() is identical to a.GetType().</LI>
+</UL>
+System.Object.MemberwiseClone does not call any of the type&apos;s constructors.<P>
+
+[<I>Note</I>: If System.Object.Equals(System.Object) has been
+overridden, a.MemberwiseClone().Equals(a) might return
+<CODE> false</CODE>
+ .]<P>
+
+<P>
+
+[<I>Usage</I>: For an alternate copying mechanism, see <A HREF="ICloneable.html" TARGET="contents">ICloneable</A> .<P>
+
+System.Object.MemberwiseClone is protected (rather than public) to
+   ensure that from verifiable code it is only possible to clone objects of the
+   same class as the one performing the operation (or one of its subclasses).
+   Although cloning an object does not directly open security holes, it does allow
+   an object to be created without running any of its constructors. Since these
+   constructors may establish important invariants, objects created by cloning may
+   not have these invariants established, and this may lead to incorrect program
+   behavior. For example, a constructor might add the new object to a linked list
+   of all objects of this class, and cloning the object would not add the new
+   object to that list -- thus operations that relied on the list to locate all
+   instances would fail to notice the cloned object. By making the method
+   protected, only objects of the same class (or a subclass) can produce a clone
+   and implementers of those classes are (presumably) aware of the appropriate
+   invariants and can arrange for them to be true without necessarily calling a constructor.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example shows a class called
+   <CODE>MyClass</CODE>
+ as well as a representation of the instance of
+   <CODE>MyClass</CODE>
+
+   returned by System.Object.MemberwiseClone
+   .<P>
+
+<PRE>using System;
+class MyBaseClass {
+   public static string CompanyName = &quot;My Company&quot;;
+   public int age;
+   public string name;
+}
+
+class MyDerivedClass: MyBaseClass {
+
+   static void Main() {
+   
+   //Create an instance of MyDerivedClass
+   //and assign values to its fields.
+   MyDerivedClass m1 = new MyDerivedClass();
+   m1.age = 42;
+   m1.name = &quot;Sam&quot;;
+
+   //Do a shallow copy of m1
+   //and assign it to m2.
+   MyDerivedClass m2 = (MyDerivedClass) m1.MemberwiseClone();
+   }
+}
+</PRE>
+A graphical representation of m1 and m2 might look like this<P>
+
+<PRE>
++---------------+
+
+|     42        |                           m1 
+
++---------------+
+
+|     +---------|-----------------&gt; &quot;Sam&quot; 
+
++---------------+                    /|\ 
+
+                                      | 
+
++---------------+                     | 
+
+|     42        |                     |      m2 
+
++---------------+                     | 
+
+|      +--------|---------------------| 
+
++---------------+
+</PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">System.Object Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Object.ReferenceEquals Method"><H3>Object.ReferenceEquals Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool ReferenceEquals(object objA, object objB);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether two object references are identical.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>objA</DT>
+<DD>First object to compare.</DD>
+<DT>objB</DT>
+<DD>Second object to compare.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>True</CODE>
+ if <I>a</I> and <I>b</I> refer
+   to the same object or are both null references; otherwise,
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This static method provides a way to compare two objects 
+      for reference equality. It does not call any user-defined code, including
+      overrides of System.Object.Equals(System.Object)
+      .<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<PRE>using System;
+class MyClass {
+   static void Main() {
+   object o = null;
+   object p = null;
+   object q = new Object();
+   Console.WriteLine(Object.ReferenceEquals(o, p));
+   p = q;
+   Console.WriteLine(Object.ReferenceEquals(p, q));
+   Console.WriteLine(Object.ReferenceEquals(o, p));
+   }
+}
+   </PRE>
+The output is<P>
+
+<CODE>True<P>
+
+True<P>
+
+False<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">System.Object Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Object.ToString Method"><H3>Object.ToString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Creates and returns a <A HREF="String.html" TARGET="contents">String</A> representation of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> representation of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: System.Object.ToString returns a string whose content is intended to be
+      understood by humans. Where the object contains culture-sensitive data, the
+      string representation returned by System.Object.ToString takes into account the current
+      system culture. For example, for an instance of the <A HREF="Double.html" TARGET="contents">Double</A> class whose value
+      is zero, the implementation of System.Double.ToString might return &quot;0.00&quot; or &quot;0,00&quot; depending on the
+      current UI culture. [<I>Note</I>:  Although there are no exact requirements
+      for the format of the returned string, it should as much as possible
+      reflect the value of the object as perceived by the user.]<P>
+
+]<P>
+
+<P>
+
+[<I>Default</I>: System.Object.ToString is equivalent to calling System.Object.GetType to obtain
+   the <A HREF="Type.html" TARGET="contents">Type</A> object
+   for the current instance and then returning the result of calling the System.Object.ToString
+   implementation
+   for that type. [<I>Note</I>:  The value returned includes the full name of the type.]<P>
+
+]<P>
+
+<P>
+
+[<I>Overrides</I>:  It is recommended, but not required, that System.Object.ToString be
+   overridden in a derived class to return values that are meaningful for that
+   type. For example, the base data types, such as <A HREF="Int32.html" TARGET="contents">Int32</A>, implement System.Object.ToString so that
+   it returns the string form of the value the object represents.<P>
+
+ Subclasses that require more control over the formatting
+   of strings than System.Object.ToString provides should implement <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>, whose
+System.Object.ToString method 
+   uses the culture of the current thread.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example outputs the textual description of
+      the value of an object of type <A HREF="Object.html" TARGET="contents">Object</A> to the console.<P>
+
+<PRE>using System;
+
+class MyClass {
+   static void Main() {
+      object o = new object();
+      Console.WriteLine (o.ToString());
+   }
+}
+      </PRE>
+The output is<P>
+
+<CODE>System.Object</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">System.Object Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

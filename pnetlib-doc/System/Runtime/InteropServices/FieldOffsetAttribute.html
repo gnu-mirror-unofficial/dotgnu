@@ -1,0 +1,194 @@
+<HTML>
+<HEAD>
+<TITLE>System.Runtime.InteropServices.FieldOffsetAttribute Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Runtime.InteropServices.FieldOffsetAttribute Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class FieldOffsetAttribute : Attribute</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../../System/Attribute.html" TARGET="contents">Attribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;FieldOffsetAttribute<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Indicates the physical position of a field within the unmanaged representation of a class or structure.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The target objects for this attribute are non-static
+      fields of classes and structures qualified with the <A HREF="StructLayoutAttribute.html" TARGET="contents">StructLayoutAttribute</A> set to System.Runtime.InteropServices.LayoutKind.Explicit .
+      All non-static fields within an object with an explicit layout are required to
+      have this attribute. No static or constant fields within an object with explicit
+      layout are allowed
+      to have this attribute. <P>
+
+ The physical layout of the data members of a class
+      or structure is automatically arranged in managed memory. When a managed
+      object is passed as an argument to unmanaged code, the system
+      creates its unmanaged representation. <A HREF="StructLayoutAttribute.html" TARGET="contents">StructLayoutAttribute</A>
+      provides explicit control over this unmanaged representation. <A HREF="FieldOffsetAttribute.html" TARGET="contents">FieldOffsetAttribute</A>
+      indicates the offset of a target data member within the
+      unmanaged representation of
+      a class
+      or structure.<P>
+
+ If <A HREF="FieldOffsetAttribute.html" TARGET="contents">FieldOffsetAttribute</A>
+instances on target fields of an exported
+object are set to overlap each other, one field is overwritten by another
+field. For example, if an integer field has the <A HREF="FieldOffsetAttribute.html" TARGET="contents">FieldOffsetAttribute</A>
+set to 4, and another integer
+field has the <A HREF="FieldOffsetAttribute.html" TARGET="contents">FieldOffsetAttribute</A>
+set to 6, the last two bytes of the unmanaged representation of
+the first integer overlap the first two bytes of the second integer. In such a situation writing
+to one of the fields might corrupt the data in the other.<P>
+
+[<I>Note</I>: See the <A HREF="StructLayoutAttribute.html" TARGET="contents">StructLayoutAttribute</A> class overview for
+an example that uses <A HREF="FieldOffsetAttribute.html" TARGET="contents">FieldOffsetAttribute</A>.]<P>
+
+<P>
+
+Compilers are required to not preserve this type
+   in metadata as a custom attribute. Instead, compilers are required to emit it
+   directly in the file format, as described in Partition II of the CLI
+   Specification. Metadata consumers, such as the Reflection API, are required to
+   retrieve this data from the file format and return it as if it were a custom
+   attribute. <P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>AttributeUsageAttribute(AttributeTargets.Field, AllowMultiple=false, Inherited=false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+FieldOffsetAttribute Constructors<P>
+
+<A HREF="#FieldOffsetAttribute Constructor" TARGET="contents">FieldOffsetAttribute Constructor</A><BR>
+<P>
+
+FieldOffsetAttribute Properties<P>
+
+<A HREF="#FieldOffsetAttribute.Value Property" TARGET="contents">FieldOffsetAttribute.Value Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="FieldOffsetAttribute Constructor"><H3>FieldOffsetAttribute Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public FieldOffsetAttribute(int offset);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="FieldOffsetAttribute.html" TARGET="contents">FieldOffsetAttribute</A> 
+class with the specified field offset in the class or structure.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>offset</DT>
+<DD>A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> that specifies the offset in bytes from the beginning of the structure to the beginning of the field.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ If <I>offset</I> is
+   negative, its value is interpreted as an unsigned <A HREF="../../../System/Int64.html" TARGET="contents">Int64</A> value, and
+   the system behavior is implementation-defined.<P>
+
+ 
+   The System.Runtime.InteropServices.FieldOffsetAttribute.Value property of
+   the new instance is initialized to <I>offset</I>
+   .<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FieldOffsetAttribute.html" TARGET="contents">System.Runtime.InteropServices.FieldOffsetAttribute Class</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FieldOffsetAttribute.Value Property"><H3>FieldOffsetAttribute.Value Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Value { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the offset from the beginning of the exported data object to the beginning of the
+      target field.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the offset from the beginning of the exported data
+   object to the beginning of the target field.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FieldOffsetAttribute.html" TARGET="contents">System.Runtime.InteropServices.FieldOffsetAttribute Class</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

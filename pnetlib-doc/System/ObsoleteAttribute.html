@@ -1,0 +1,339 @@
+<HTML>
+<HEAD>
+<TITLE>System.ObsoleteAttribute Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.ObsoleteAttribute Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class ObsoleteAttribute : Attribute</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="Attribute.html" TARGET="contents">Attribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;ObsoleteAttribute<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Indicates that the target of the current attribute will be
+      removed in future versions of the assembly in which the target
+      is contained.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  Marking an
+         item as obsolete provides consumers of that item the information that the item
+         will be not be available in future versions of the assembly in
+         which it is contained. A <A HREF="ObsoleteAttribute.html" TARGET="contents">ObsoleteAttribute</A> has a System.ObsoleteAttribute.Message property that can be used to suggest alternative ways of
+         obtaining the functionality provided by the item, i.e. a workaround. This class also has a System.ObsoleteAttribute.IsError property that designates whether a
+         compiler will treat usage of the obsolete item as an error. If this property
+         is <CODE>false</CODE>
+, the compiler will issue a warning if
+         the obsolete item is used and the compiler
+         supports the generation of such warnings.<P>
+
+This attribute can be applied to any valid attribute target
+         except assemblies, parameters, and return values. For a complete list
+         of valid attribute targets, see <A HREF="AttributeTargets.html" TARGET="contents">AttributeTargets</A> .<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the usage of <A HREF="ObsoleteAttribute.html" TARGET="contents">ObsoleteAttribute</A> to
+   generate a compile-time warning.<P>
+
+<PRE>
+   
+using System;
+
+public class ObsoleteAttributeExample {
+
+  [ObsoleteAttribute(&quot;OldMethod is being removed: use NewMethod in future versions.&quot;)]
+  public static void OldMethod() {
+
+    //Execute some code here
+  }
+
+  public static void Main() { 
+
+    OldMethod();
+  }
+}
+</PRE>
+An example compile-time result is<P>
+
+<CODE>ObsoleteAttributeExample.cs(8,4):
+   warning CS0618: &apos;ObsoleteAttributeExample.OldMethod()&apos; is obsolete: &apos;OldMethod is
+   being removed: use NewMethod in future versions.&apos;</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Enum | AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Event | AttributeTargets.Interface | AttributeTargets.Delegate, AllowMultiple=false, Inherited=false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ObsoleteAttribute Constructors<P>
+
+<A HREF="#ObsoleteAttribute() Constructor" TARGET="contents">ObsoleteAttribute() Constructor</A><BR>
+<A HREF="#ObsoleteAttribute(System.String) Constructor" TARGET="contents">ObsoleteAttribute(System.String) Constructor</A><BR>
+<A HREF="#ObsoleteAttribute(System.String, bool) Constructor" TARGET="contents">ObsoleteAttribute(System.String, bool) Constructor</A><BR>
+<P>
+
+ObsoleteAttribute Properties<P>
+
+<A HREF="#ObsoleteAttribute.IsError Property" TARGET="contents">ObsoleteAttribute.IsError Property</A><BR>
+<A HREF="#ObsoleteAttribute.Message Property" TARGET="contents">ObsoleteAttribute.Message Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ObsoleteAttribute() Constructor"><H3>ObsoleteAttribute() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ObsoleteAttribute();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="ObsoleteAttribute.html" TARGET="contents">ObsoleteAttribute</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor is equivalent to <A HREF="ObsoleteAttribute.html" TARGET="contents">ObsoleteAttribute</A>(<CODE>null</CODE>
+, <CODE>false</CODE>
+ 
+). The compiler does not
+treat an item with this attribute as an error.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ObsoleteAttribute.html" TARGET="contents">System.ObsoleteAttribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ObsoleteAttribute(System.String) Constructor"><H3>ObsoleteAttribute(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ObsoleteAttribute(string message);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="ObsoleteAttribute.html" TARGET="contents">ObsoleteAttribute</A> class with the specified
+<A HREF="String.html" TARGET="contents">String</A> 
+that
+contains suggested workarounds.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>The <A HREF="String.html" TARGET="contents">String</A> that contains suggested workarounds.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor is equivalent to <A HREF="ObsoleteAttribute.html" TARGET="contents">ObsoleteAttribute</A> (<I>message</I> , <CODE>false</CODE>
+ ). The compiler does
+   not treat an item with this attribute as an error.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ObsoleteAttribute.html" TARGET="contents">System.ObsoleteAttribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ObsoleteAttribute(System.String, bool) Constructor"><H3>ObsoleteAttribute(System.String, bool) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ObsoleteAttribute(string message, bool error);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="ObsoleteAttribute.html" TARGET="contents">ObsoleteAttribute</A> class with a <A HREF="String.html" TARGET="contents">String</A> that contains
+   suggested workarounds and a <A HREF="Boolean.html" TARGET="contents">Boolean</A> that indicates whether the compiler
+   treats usage of the target of the current instance as an error.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that contains suggested workarounds.</DD>
+<DT>error</DT>
+<DD>A <A HREF="Boolean.html" TARGET="contents">Boolean</A> that indicates whether the compiler treats usage of the target of the current instance as an error.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Respectively, the System.ObsoleteAttribute.Message property and the System.ObsoleteAttribute.IsError property of the new instance are initialized as
+<I>message</I> and <I>error</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ObsoleteAttribute.html" TARGET="contents">System.ObsoleteAttribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ObsoleteAttribute.IsError Property"><H3>ObsoleteAttribute.IsError Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool IsError { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="Boolean.html" TARGET="contents">Boolean</A> that indicates 
+ whether the compiler treats usage of the target of the current
+ instance as an error.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the 
+ compiler treats usage of the target
+ of the current instance
+ as an error; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The default value of this property is <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ObsoleteAttribute.html" TARGET="contents">System.ObsoleteAttribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ObsoleteAttribute.Message Property"><H3>ObsoleteAttribute.Message Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Message { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="String.html" TARGET="contents">String</A> that contains
+   suggested workarounds for the target of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> that contains
+   suggested workarounds
+   for the target of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The current instance contains a suggested workaround message if and only if
+      such a message was specified when the current instance was constructed. If
+      no workaround was specified for the current instance, the value of
+      this property is <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ObsoleteAttribute.html" TARGET="contents">System.ObsoleteAttribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

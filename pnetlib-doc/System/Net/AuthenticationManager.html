@@ -1,0 +1,483 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.AuthenticationManager Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.AuthenticationManager Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class AuthenticationManager</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;AuthenticationManager<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Manages the authentication modules called during the client authentication
+      process.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="AuthenticationManager.html" TARGET="contents">AuthenticationManager</A> class manages
+   authentication modules that are responsible for client authentication.
+[<I>Note</I>: The <A HREF="AuthenticationManager.html" TARGET="contents">AuthenticationManager</A> is called by <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> instances to provide information 
+   that is sent to servers to authenticate the client. The authentication process
+   may consist of requests to an authentication server separate from the resource
+   server, as well as any other activities required to properly authenticate a
+   client.]<P>
+
+<P>
+
+The <A HREF="AuthenticationManager.html" TARGET="contents">AuthenticationManager</A>
+queries registered authentication modules by calling the System.Net.IAuthenticationModule.Authenticate(System.String,System.Net.WebRequest,System.Net.ICredentials) method for each module. The
+first authentication module that returns a <A HREF="Authorization.html" TARGET="contents">Authorization</A> instance is used to authenticate the request. An authentication module, which can be any object that
+implements the <A HREF="IAuthenticationModule.html" TARGET="contents">IAuthenticationModule</A> interface, is registered using the System.Net.AuthenticationManager.Register(System.Net.IAuthenticationModule)
+method. Authentication modules are called in the order in which they are registered.<P>
+
+Applications typically do not access this type directly;
+   it provides authentication services for the <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> type.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+AuthenticationManager Methods<P>
+
+<A HREF="#AuthenticationManager.Authenticate Method" TARGET="contents">AuthenticationManager.Authenticate Method</A><BR>
+<A HREF="#AuthenticationManager.PreAuthenticate Method" TARGET="contents">AuthenticationManager.PreAuthenticate Method</A><BR>
+<A HREF="#AuthenticationManager.Register Method" TARGET="contents">AuthenticationManager.Register Method</A><BR>
+<A HREF="#AuthenticationManager.Unregister(System.Net.IAuthenticationModule) Method" TARGET="contents">AuthenticationManager.Unregister(System.Net.IAuthenticationModule) Method</A><BR>
+<A HREF="#AuthenticationManager.Unregister(System.String) Method" TARGET="contents">AuthenticationManager.Unregister(System.String) Method</A><BR>
+<P>
+
+AuthenticationManager Properties<P>
+
+<A HREF="#AuthenticationManager.RegisteredModules Property" TARGET="contents">AuthenticationManager.RegisteredModules Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="AuthenticationManager.Authenticate Method"><H3>AuthenticationManager.Authenticate Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Authorization Authenticate(string challenge, WebRequest request, ICredentials credentials);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Calls registered authentication modules to find a module that
+      responds to the specified authentication challenge.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>challenge</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the challenge returned by an Internet host. The content of this string is determined by the authentication protocol(s) used by the server that issued the challenge.</DD>
+<DT>request</DT>
+<DD>The <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> that received <I>challenge</I> .</DD>
+<DT>credentials</DT>
+<DD>The <A HREF="ICredentials.html" TARGET="contents">ICredentials</A> associated with <I>request</I>. [<I>Note</I>: The System.Net.WebRequest.Credentials property of <I>request</I> is used to supply this argument.]<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Authorization.html" TARGET="contents">Authorization</A> instance containing the response from the
+   authentication module, or <CODE>null</CODE>
+ if no authentication module
+   responded to the challenge.<P>
+
+ Applications do not call this method; it is called by
+<A HREF="WebRequest.html" TARGET="contents">WebRequest</A> 
+instances.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>challenge </I>, <I>request </I>, or <I>credentials </I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Net.AuthenticationManager.Authenticate(System.String,System.Net.WebRequest,System.Net.ICredentials) method invokes the System.Net.IAuthenticationModule.Authenticate(System.String,System.Net.WebRequest,System.Net.ICredentials) method of each
+   registered authentication module until one of the modules returns a <A HREF="Authorization.html" TARGET="contents">Authorization</A>
+   instance. Authentication modules are called in the order in which they were registered via
+   the System.Net.AuthenticationManager.Register(System.Net.IAuthenticationModule)
+   method.<P>
+
+[<I>Note</I>: The System.Net.Authorization.Message property of the object returned by
+this method contains the
+client&apos;s response to the server challenge contained in <I>challenge</I>
+. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AuthenticationManager.html" TARGET="contents">System.Net.AuthenticationManager Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AuthenticationManager.PreAuthenticate Method"><H3>AuthenticationManager.PreAuthenticate Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Authorization PreAuthenticate(WebRequest request, ICredentials credentials);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Attempts to obtain a <A HREF="Authorization.html" TARGET="contents">Authorization</A>
+instance used to initiate client authentication.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>request</DT>
+<DD>A <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> containing a request for access to a resource.</DD>
+<DT>credentials</DT>
+<DD>The <A HREF="ICredentials.html" TARGET="contents">ICredentials</A> associated with <I>request</I> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Authorization.html" TARGET="contents">Authorization</A> instance if an authentication module can provide
+   authentication information to be sent with <I>request</I> ;
+   otherwise, <CODE>null</CODE>
+. If <I>credentials</I>
+   is <CODE>null</CODE>
+, this method returns <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>request </I>is <CODE>null.</CODE>
+<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Net.AuthenticationManager.PreAuthenticate(System.Net.WebRequest,System.Net.ICredentials) method invokes the System.Net.IAuthenticationModule.PreAuthenticate(System.Net.WebRequest,System.Net.ICredentials) method of each registered
+   authentication module until one of the modules returns a <A HREF="Authorization.html" TARGET="contents">Authorization</A>
+   instance. Authentication modules are called in the order in which they were
+   registered via the System.Net.AuthenticationManager.Register(System.Net.IAuthenticationModule) method.<P>
+
+[<I>Note</I>: The <A HREF="Authorization.html" TARGET="contents">Authorization</A> instance contains the
+information that will be
+sent by a client to initiate authentication instead of waiting for the server to
+request it. Authentication modules that support preauthentication allow clients
+to improve server efficiency by avoiding extra round trips caused by
+authentication challenges.]<P>
+
+<P>
+
+[<I>Note</I>: If an authorization module supports preauthentication
+   of requests, its System.Net.IAuthenticationModule.CanPreAuthenticate
+   property returns <CODE>true</CODE>
+. Note that
+   preauthentication requires that an authentication of the client has already
+   occurred. The information obtained from the initial authentication is used to
+   provide the System.Net.Authorization.Message that is
+   sent to the server as an authentication header in
+<I>request</I> .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AuthenticationManager.html" TARGET="contents">System.Net.AuthenticationManager Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AuthenticationManager.Register Method"><H3>AuthenticationManager.Register Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Register(IAuthenticationModule authenticationModule);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Adds an authentication module to the list of registered
+      authentication modules managed by the authentication manager.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>authenticationModule</DT>
+<DD>The <A HREF="IAuthenticationModule.html" TARGET="contents">IAuthenticationModule</A> to register.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>authenticationModule </I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Net.AuthenticationManager.Register(System.Net.IAuthenticationModule) method adds an authentication
+   module to the end of the list of modules managed by the authentication manager.
+   Each registered module is required to have a
+   unique System.Net.IAuthenticationModule.AuthenticationType. If a module with the same
+System.Net.IAuthenticationModule.AuthenticationType is already registered, this method removes the 
+   registered module, and adds <I>authenticationModule</I> to the end of the
+   list. [<I>Note</I>: Authentication
+   modules are called in
+   the order in which they were added to the list.]<P>
+
+<P>
+
+[<I>Note</I>: To remove a module,
+   call one of the System.Net.AuthenticationManager.Unregister(System.Net.IAuthenticationModule)
+   
+   methods.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AuthenticationManager.html" TARGET="contents">System.Net.AuthenticationManager Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AuthenticationManager.Unregister(System.Net.IAuthenticationModule) Method"><H3>AuthenticationManager.Unregister(System.Net.IAuthenticationModule) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Unregister(IAuthenticationModule authenticationModule);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Removes the specified authentication module from the list of registered modules.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>authenticationModule</DT>
+<DD>The <A HREF="IAuthenticationModule.html" TARGET="contents">IAuthenticationModule</A> module to remove.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>authenticationModule </I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD><I>authenticationModule </I>is not a registered authentication module.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: To add an authentication module to
+      the list of registered modules, call the System.Net.AuthenticationManager.Register(System.Net.IAuthenticationModule)
+      method.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AuthenticationManager.html" TARGET="contents">System.Net.AuthenticationManager Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AuthenticationManager.Unregister(System.String) Method"><H3>AuthenticationManager.Unregister(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Unregister(string authenticationScheme);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes the authentication module with the specified
+      authentication type from the list of registered modules.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>authenticationScheme</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the authentication type of the module to remove.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>authenticationScheme </I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>There is no registered module with the <I>authenticationScheme </I> authentication type.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>authenticationScheme</I> is required to match
+   the value returned by the System.Net.IAuthenticationModule.AuthenticationType property of a registered authentication module.<P>
+
+[<I>Note</I>: To add an authentication module to
+   the list of registered modules, call the System.Net.AuthenticationManager.Register(System.Net.IAuthenticationModule)
+   method.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AuthenticationManager.html" TARGET="contents">System.Net.AuthenticationManager Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AuthenticationManager.RegisteredModules Property"><H3>AuthenticationManager.RegisteredModules Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static IEnumerator RegisteredModules { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a list of registered authentication modules.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Collections/IEnumerator.html" TARGET="contents">IEnumerator</A> that
+   provides access to the list of registered
+   authentication modules.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: The System.Net.AuthenticationManager.Register(System.Net.IAuthenticationModule) method adds modules to the
+   list of registered authentication modules, and the System.Net.AuthenticationManager.Unregister(System.Net.IAuthenticationModule) method removes modules from
+   it.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AuthenticationManager.html" TARGET="contents">System.Net.AuthenticationManager Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

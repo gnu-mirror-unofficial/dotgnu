@@ -1,0 +1,1381 @@
+<HTML>
+<HEAD>
+<TITLE>System.IO.Stream Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.IO.Stream Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class Stream : MarshalByRefObject, IDisposable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/MarshalByRefObject.html" TARGET="contents">MarshalByRefObject</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;Stream<P>
+
+This type implements <A HREF="../../System/IDisposable.html" TARGET="contents">IDisposable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Abstract base class for all stream implementations.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Streams involve three fundamental operations: <P>
+
+<UL>
+<LI>
+         
+         You can read from streams. Reading is the transfer of
+         data from a stream into a data structure, such as an array of bytes.</LI>
+<LI>
+         
+         You can write to streams. Writing is the transfer of
+         data from a data structure into a stream.</LI>
+<LI>
+         
+         Streams can support seeking. Seeking is the querying and modifying of the
+         current position within a stream. Seek capability depends on the kind of
+         backing store a stream has. For example, network streams have no unified
+         concept of a current position, and therefore typically do not support seeking.</LI>
+</UL>
+All classes that represent streams inherit from the
+<A HREF="Stream.html" TARGET="contents">Stream</A> class.
+   The <A HREF="Stream.html" TARGET="contents">Stream</A>
+   class and its subclasses provide a generic view of
+   data sources and repositories, isolating the programmer from
+   the specific details of the operating system and underlying devices.<P>
+
+Subclasses are required to provide implementations only 
+   for the synchronous read and write methods. The asynchronous read and write
+   methods are implemented via the synchronous ones. [<I>Note</I>:  The <A HREF="Stream.html" TARGET="contents">Stream</A> synchronous read and write methods
+   are System.IO.Stream.Read(System.Byte[],System.Int32,System.Int32) and System.IO.Stream.Write(System.Byte[],System.Int32,System.Int32). The asynchronous read and write methods are
+System.IO.Stream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object), System.IO.Stream.EndRead(System.IAsyncResult), System.IO.Stream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object), 
+   and System.IO.Stream.EndWrite(System.IAsyncResult).]<P>
+
+<P>
+
+Depending on the underlying data source or repository, streams might support
+   only some of these capabilities. An application can query a stream for its
+   capabilities by using the System.IO.Stream.CanRead, System.IO.Stream.CanWrite, and System.IO.Stream.CanSeek
+   properties.<P>
+
+The System.IO.Stream.Read(System.Byte[],System.Int32,System.Int32) and System.IO.Stream.Write(System.Byte[],System.Int32,System.Int32) methods read and write data
+in a variety of formats. For streams that support seeking, the System.IO.Stream.Seek(System.Int64,System.IO.SeekOrigin) and
+System.IO.Stream.SetLength(System.Int64) methods, and the System.IO.Stream.Position and
+System.IO.Stream.Length properties can be used to query and modify the
+current position and length of a stream.<P>
+
+Some stream implementations perform local buffering of the underlying data to
+   improve performance. For such streams, the System.IO.Stream.Flush method can be used to clear
+   any internal buffers and ensure that all data has been written to the underlying
+   data source or repository.<P>
+
+Calling System.IO.Stream.Close on a <A HREF="Stream.html" TARGET="contents">Stream</A> flushes any
+buffered data, essentially calling System.IO.Stream.Flush for you. System.IO.Stream.Close also releases operating system resources such as file handles, network
+connections, or memory used for any internal buffering.
+The System.IO.BufferedStream class provides the capability of wrapping a buffered
+stream around another stream in order to improve read and write performance.<P>
+
+If you need a <A HREF="Stream.html" TARGET="contents">Stream</A> with no backing store (i.e., a bit bucket), use
+System.IO.Stream.Null 
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Stream Constructors<P>
+
+<A HREF="#Stream Constructor" TARGET="contents">Stream Constructor</A><BR>
+<P>
+
+Stream Methods<P>
+
+<A HREF="#Stream.BeginRead Method" TARGET="contents">Stream.BeginRead Method</A><BR>
+<A HREF="#Stream.BeginWrite Method" TARGET="contents">Stream.BeginWrite Method</A><BR>
+<A HREF="#Stream.Close Method" TARGET="contents">Stream.Close Method</A><BR>
+<A HREF="#Stream.CreateWaitHandle Method" TARGET="contents">Stream.CreateWaitHandle Method</A><BR>
+<A HREF="#Stream.EndRead Method" TARGET="contents">Stream.EndRead Method</A><BR>
+<A HREF="#Stream.EndWrite Method" TARGET="contents">Stream.EndWrite Method</A><BR>
+<A HREF="#Stream.Flush Method" TARGET="contents">Stream.Flush Method</A><BR>
+<A HREF="#Stream.Read Method" TARGET="contents">Stream.Read Method</A><BR>
+<A HREF="#Stream.ReadByte Method" TARGET="contents">Stream.ReadByte Method</A><BR>
+<A HREF="#Stream.Seek Method" TARGET="contents">Stream.Seek Method</A><BR>
+<A HREF="#Stream.SetLength Method" TARGET="contents">Stream.SetLength Method</A><BR>
+<A HREF="#Stream.System.IDisposable.Dispose Method" TARGET="contents">Stream.System.IDisposable.Dispose Method</A><BR>
+<A HREF="#Stream.Write Method" TARGET="contents">Stream.Write Method</A><BR>
+<A HREF="#Stream.WriteByte Method" TARGET="contents">Stream.WriteByte Method</A><BR>
+<P>
+
+Stream Fields<P>
+
+<A HREF="#Stream.Null Field" TARGET="contents">Stream.Null Field</A><BR>
+<P>
+
+Stream Properties<P>
+
+<A HREF="#Stream.CanRead Property" TARGET="contents">Stream.CanRead Property</A><BR>
+<A HREF="#Stream.CanSeek Property" TARGET="contents">Stream.CanSeek Property</A><BR>
+<A HREF="#Stream.CanWrite Property" TARGET="contents">Stream.CanWrite Property</A><BR>
+<A HREF="#Stream.Length Property" TARGET="contents">Stream.Length Property</A><BR>
+<A HREF="#Stream.Position Property" TARGET="contents">Stream.Position Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Stream Constructor"><H3>Stream Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected Stream();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new instance of the <A HREF="Stream.html" TARGET="contents">Stream</A> class.
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.BeginRead Method"><H3>Stream.BeginRead Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, object state);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Begins an asynchronous read operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array to read the data into.</DD>
+<DT>offset</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the byte offset in <I>buffer</I> at which to begin writing data read from the stream.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the maximum number of bytes to read from the stream.</DD>
+<DT>callback</DT>
+<DD>A <A HREF="../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate to be called when the read is complete, or <CODE>null</CODE>
+.</DD>
+<DT>state</DT>
+<DD>An application-defined object, or <CODE>null</CODE>
+.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> that contains
+   information about the asynchronous read operation, which could still
+   be pending.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current <A HREF="Stream.html" TARGET="contents">Stream</A> does not support reading.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method starts an asynchronous read operation. To
+      determine how many bytes were read and release resources allocated by this
+      method, call the System.IO.Stream.EndRead(System.IAsyncResult) method and specify the <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object
+      returned by this method. [<I>Note</I>:  The System.IO.Stream.EndRead(System.IAsyncResult) method
+      should be called exactly once for each call to System.IO.Stream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object).]<P>
+
+<P>
+
+If the
+   <I>callback</I> parameter is not <CODE>null</CODE>
+, the method referenced by <I>callback</I> is invoked when the asynchronous operation
+      completes. The <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A>
+      object returned by this method
+      is passed as the argument to the method referenced by <I>callback</I>.<P>
+
+ The current position in the stream is updated when the
+      asynchronous read or write is issued, not
+      when the I/O operation completes.<P>
+
+ Multiple simultaneous asynchronous requests render the request completion order uncertain.<P>
+
+The <I>state</I> parameter can be any object that the caller wishes to have
+   available for the duration of the asynchronous operation. This object is
+   available via the System.IAsyncResult.AsyncState property of the object returned by this
+   method. <P>
+
+[<I>Note</I>:  Use the System.IO.Stream.CanRead
+property to determine whether the current instance supports
+reading.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.BeginWrite Method"><H3>Stream.BeginWrite Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, object state);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Begins an asynchronous write operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array to be written to the current stream.</DD>
+<DT>offset</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the byte offset in <I>buffer</I> at which to begin copying bytes to the current stream.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the maximum number of bytes to be written to the current stream.</DD>
+<DT>callback</DT>
+<DD>A <A HREF="../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate to be called when the write is complete, or <CODE>null</CODE>
+.</DD>
+<DT>state</DT>
+<DD>An application-defined object, or <CODE>null</CODE>
+.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A>
+that represents the asynchronous write, which could still be pending.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current <A HREF="Stream.html" TARGET="contents">Stream</A> does not support writing.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Pass the <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> returned by this method to System.IO.Stream.EndWrite(System.IAsyncResult) to ensure that the write completes and frees
+   resources appropriately. If an error occurs during an asynchronous
+   write, an exception will not be thrown until System.IO.Stream.EndWrite(System.IAsyncResult) is
+   called with the <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> returned by this method. [<I>Note</I>:  If a failure is detected from the underlying OS (such as if a floppy
+   is ejected in the middle of the operation), the results of the write operation are undefined.]<P>
+
+<P>
+
+If the <I>callback</I> parameter is not <CODE>null</CODE>
+, the method
+referenced by <I>callback</I> is invoked when the asynchronous operation
+completes. The <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object returned by this method is passed as the argument
+to the method referenced by <I>callback</I>.<P>
+
+The <I>state</I> parameter can be any object that the caller wishes to have
+available for the duration of the asynchronous operation. This object is
+available via the System.IAsyncResult.AsyncState property of the object returned by this
+method. <P>
+
+ If a stream is writable, writing at the end of
+   it expands the stream.<P>
+
+The current position in the stream is updated when you issue the asynchronous
+   read or write, not when the I/O operation completes. Multiple simultaneous
+   asynchronous requests render the request completion order
+   uncertain.<P>
+
+[<I>Note</I>: <I>buffer</I> should generally be greater than 64
+   KB.<P>
+
+Use the System.IO.Stream.CanWrite property to
+determine whether the current instance supports writing.<P>
+
+]<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.Close Method"><H3>Stream.Close Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Close();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Closes the current stream
+      and releases any resources associated with the current stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ Following a call to this method, other operations
+      on the stream might throw exceptions. If the stream is already closed, a call
+      to System.IO.Stream.Close throws no exceptions.<P>
+
+[<I>Note</I>: If this method
+      
+      is called while an asynchronous read or write is pending for a stream, the
+      behavior of the stream is undefined.
+   ]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.CreateWaitHandle Method"><H3>Stream.CreateWaitHandle Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected virtual WaitHandle CreateWaitHandle();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Allocates a <A HREF="../../System/Threading/WaitHandle.html" TARGET="contents">WaitHandle</A> object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A reference to the allocated <A HREF="../../System/Threading/WaitHandle.html" TARGET="contents">WaitHandle</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ When called for the first time this method
+      creates a <A HREF="../../System/Threading/WaitHandle.html" TARGET="contents">WaitHandle</A> object and returns it. On subsequent
+      calls, the System.IO.Stream.CreateWaitHandle method returns a reference to the same wait
+      handle.<P>
+
+[<I>Note</I>: System.IO.Stream.CreateWaitHandle is useful if you implement the
+      asynchronous methods and require a way of blocking in System.IO.Stream.EndRead(System.IAsyncResult) or
+   System.IO.Stream.EndWrite(System.IAsyncResult) until the asynchronous operation is
+      complete.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.EndRead Method"><H3>Stream.EndRead Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual int EndRead(IAsyncResult asyncResult);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Ends a pending asynchronous read request.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>asyncResult</DT>
+<DD>The <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object that references the pending asynchronous read request.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that indicates the number of bytes read from the stream, 
+   between 0 and the number of bytes specified via the System.IO.Stream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)<I>count</I> 
+parameter. Streams only return
+0 at the end of the stream, otherwise, they block until at
+least 1 byte is available.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>asyncResult</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>asyncResult </I>did not originate from a System.IO.Stream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object) method on the current stream.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.IO.Stream.EndRead(System.IAsyncResult) blocks until the I/O operation has completed.<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.EndWrite Method"><H3>Stream.EndWrite Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void EndWrite(IAsyncResult asyncResult);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Ends an asynchronous write operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>asyncResult</DT>
+<DD>A <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> that references the outstanding asynchronous I/O request.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The <I>asyncResult</I> parameter is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>asyncResult </I>did not originate from a System.IO.Stream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object) method on the current stream.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.IO.Stream.EndWrite(System.IAsyncResult) is required to be called exactly once for every System.IO.Stream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object). System.IO.Stream.EndWrite(System.IAsyncResult) blocks until the write I/O operation has completed.<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.Flush Method"><H3>Stream.Flush Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract void Flush();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Flushes the internal buffer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurs, such as the file being already closed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Implementers should use this method to move any information from an underlying buffer
+      to its destination. The System.IO.Stream.Flush method should clear the buffer, but the stream
+      should not be closed. Depending upon the state of the object, the current
+      position within the stream might need to be modified (for example, if the
+      underlying stream supports seeking). For additional information see System.IO.Stream.CanSeek
+      .]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override System.IO.Stream.Flush on
+   streams that implement a buffer.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.Read Method"><H3>Stream.Read Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract int Read(byte[] buffer, int offset, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Reads a sequence of bytes from the current stream and advances the position
+      within the stream by the number of bytes read.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array. When this method returns, the elements between <I>offset</I> and <I>(offset + count)</I> are replaced by the bytes read from the current source.</DD>
+<DT>offset</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the zero based byte offset in <I>buffer </I> at which to begin storing the data read from the current stream.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the maximum number of bytes to be read from the current stream.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the total number of bytes read into the
+   buffer, or zero if the end of the stream has been
+   reached before any data can be read.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>(<I>offset</I> + <I>count</I> ) is greater than the length of <I>buffer</I>.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset</I> or <I>count</I> is less than zero.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current stream does not support reading.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Use the System.IO.Stream.CanRead
+property to determine whether the current instance supports
+reading.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.ReadByte Method"><H3>Stream.ReadByte Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual int ReadByte();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Reads a byte from the stream and advances the position
+      within the stream by one byte.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The unsigned byte cast to a <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> , or -1 if at the end
+   of the stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The stream is closed.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The stream does not support reading.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Note</I>: Use the System.IO.Stream.CanRead property to determine whether
+   the current instance supports reading.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.Seek Method"><H3>Stream.Seek Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract long Seek(long offset, SeekOrigin origin);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sets the position within the current stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>offset</DT>
+<DD>A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> that specifies the byte offset relative to origin.</DD>
+<DT>origin</DT>
+<DD>A <A HREF="SeekOrigin.html" TARGET="contents">SeekOrigin</A> value indicating the reference point used to obtain the new position.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> that specifies the new position within the current stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The stream does not support seeking, such as if the stream is constructed from a pipe or console output.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current <A HREF="Stream.html" TARGET="contents">Stream</A> is closed.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error has occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Use the System.IO.Stream.CanSeek property to determine whether
+   the current instance supports seeking.]<P>
+
+<P>
+
+[<I>Behaviors</I>: If <I>offset </I>is negative,
+the new position is required to precede the position specified by <I>origin </I>by the number of bytes specified by <I>offset</I>. If <I>offset </I>is zero,
+the new position is required to be the position specified by <I>origin</I>. If
+<I>offset </I>is positive, the new position is required to follow the position 
+specified by <I>origin </I>by the number of bytes specified by <I>offset</I>.]<P>
+
+<P>
+
+[<I>Overrides</I>: If you intend to use a file as a backing store for a stream implementation,
+      you are required to override System.IO.Stream.Seek(System.Int64,System.IO.SeekOrigin) to set the System.IO.Stream.Position property one byte beyond the
+      end of the stream. Opening a new file and then writing to it requires that
+      the position be set to one byte beyond the end of the stream. The position
+      cannot be set to more than one byte beyond the end of the stream. <P>
+
+Classes derived from <A HREF="Stream.html" TARGET="contents">Stream</A> that
+   support seeking are required to override this method. <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.SetLength Method"><H3>Stream.SetLength Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract void SetLength(long value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sets the length of the current stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> that specifies the desired length of the current stream in bytes.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The stream does not support both writing and seeking, such as if the stream is constructed from a pipe or console output.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current <A HREF="Stream.html" TARGET="contents">Stream</A> is closed.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Use the System.IO.Stream.CanWrite
+property to determine whether the current instance supports writing, and the
+System.IO.Stream.CanSeek property
+to determine whether seeking is supported. ]<P>
+
+<P>
+
+[<I>Behaviors</I>: If the specified value is less than
+   the current length of the stream, the stream is truncated. If the specified
+   value is larger than the current length of the stream, the stream is expanded.
+   If the stream is expanded, the contents of the stream between the old and the
+   new length are initialized to zeros.]<P>
+
+<P>
+
+[<I>Default</I>: There is no default
+   implementation.]<P>
+
+<P>
+
+[<I>Overrides</I>: Classes derived from <A HREF="Stream.html" TARGET="contents">Stream</A> are required to
+support both writing and seeking for System.IO.Stream.SetLength(System.Int64)
+to work.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.System.IDisposable.Dispose Method"><H3>Stream.System.IDisposable.Dispose Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>void IDisposable.Dispose();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="../../System/IDisposable.html" TARGET="contents">IDisposable</A> interface. [Note: For more information, see System.IDisposable.Dispose.]
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.Write Method"><H3>Stream.Write Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract void Write(byte[] buffer, int offset, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a
+      sequence of bytes to the current stream and advances the current position within
+      the current stream by the number of bytes written.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array containing the data to write.</DD>
+<DT>offset</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the zero based byte offset in <I>buffer </I> at which to begin copying bytes to the current stream.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number of bytes to be written to the current stream.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>(<I>offset</I> + <I>count</I> ) is greater than the length of <I>buffer</I>.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset </I>or <I>count</I> is negative.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The stream does not support writing.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Use the System.IO.Stream.CanWrite property to determine whether
+   the current instance supports writing.]<P>
+
+<P>
+
+[<I>Behaviors</I>: If the write operation is
+   successful, the position within the stream advances by the number of bytes
+   written. If an exception occurs, the position within the stream remains
+   unchanged.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.WriteByte Method"><H3>Stream.WriteByte Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteByte(byte value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> to the current position in the stream and advances the position within the stream by one byte.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> to write to the stream.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The stream is closed.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The stream does not support writing.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Use the System.IO.Stream.CanWrite property to determine whether
+   the current instance supports writing.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.Null Field"><H3>Stream.Null Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly Stream Null;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="Stream.html" TARGET="contents">Stream</A> with no backing store.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: System.IO.Stream.Null is used to redirect output to a stream
+   that does not consume any operating system resources. When the methods of <A HREF="Stream.html" TARGET="contents">Stream</A> that provide writing are invoked on System.IO.Stream.Null
+   , they simply return, and no data is written. System.IO.Stream.Null also implements a System.IO.Stream.Read(System.Byte[],System.Int32,System.Int32) method that returns zero without reading data.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.CanRead Property"><H3>Stream.CanRead Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool CanRead { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current stream supports reading.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the stream supports reading;
+   otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If a class derived from <A HREF="Stream.html" TARGET="contents">Stream</A> does not support reading, the following methods
+   throw a <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A> : System.IO.Stream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object) ,
+System.IO.Stream.Read(System.Byte[],System.Int32,System.Int32) and System.IO.Stream.ReadByte .<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.CanSeek Property"><H3>Stream.CanSeek Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool CanSeek { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current stream supports seeking.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the stream supports seeking;
+   otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If a class derived from <A HREF="Stream.html" TARGET="contents">Stream</A> does not support seeking, the following methods throw a <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>: System.IO.Stream.Length,
+System.IO.Stream.SetLength(System.Int64),
+System.IO.Stream.Position, or System.IO.Stream.Seek(System.Int64,System.IO.SeekOrigin).<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.CanWrite Property"><H3>Stream.CanWrite Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract bool CanWrite { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current stream supports writing.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the stream supports writing;
+   otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If a class derived from <A HREF="Stream.html" TARGET="contents">Stream</A> does not support writing, the following methods
+   throw a <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>: System.IO.Stream.Write(System.Byte[],System.Int32,System.Int32), System.IO.Stream.WriteByte(System.Byte), and System.IO.Stream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object).<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.Length Property"><H3>Stream.Length Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract long Length { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the length in bytes of the stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> value representing the length of the stream in
+   bytes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The stream does not support seeking.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Use the System.IO.Stream.CanSeek
+property to determine whether the current instance supports
+seeking.]<P>
+
+<P>
+
+[<I>Behaviors</I>: This property is
+   read-only.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Stream.Position Property"><H3>Stream.Position Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract long Position { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the position within the current stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> that specifies the current position within the stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error has occurred, such as the stream being closed.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The stream does not support seeking.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The stream is required to support seeking to get or set the
+      position. [<I>Note</I>: Use the System.IO.Stream.CanSeek
+      property to determine whether the current instance supports seeking.]<P>
+
+<P>
+
+Classes that derive from <A HREF="Stream.html" TARGET="contents">Stream</A> are required to provide an implementation of
+   this property. <P>
+
+[<I>Note</I>: If you intend to use a file as a backing store for a stream implementation,
+      opening a new file and then writing to it requires that the position be set to
+      just beyond the last byte so you can append to the file. The position cannot be
+      set more than one byte beyond the end of the stream. <P>
+
+]<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Stream.html" TARGET="contents">System.IO.Stream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

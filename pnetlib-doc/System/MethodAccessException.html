@@ -1,0 +1,287 @@
+<HTML>
+<HEAD>
+<TITLE>System.MethodAccessException Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.MethodAccessException Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class MethodAccessException : MemberAccessException</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="Exception.html" TARGET="contents">Exception</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="SystemException.html" TARGET="contents">SystemException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="MemberAccessException.html" TARGET="contents">MemberAccessException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MethodAccessException<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Represents the error that occurs when there is an
+      attempt to access a method outside the scope in which access is permitted.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This exception is
+      thrown when the access level of a method in a class library is changed, and one
+      or more assemblies referencing the library have not been recompiled. This exception is also thrown when an attempt to invoke a
+      method via reflection fails because the caller does not have the required
+      permissions.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates a scenario under
+      which <A HREF="MethodAccessException.html" TARGET="contents">MethodAccessException</A>
+      is thrown.<P>
+
+The following code contains a class with a public method (MyMethod). This
+      class is compiled into a class library.<P>
+
+<PRE>using System;
+namespace TestNameSpace 
+{
+ public class Class1
+ {
+   public Class1()
+   {
+     Console.WriteLine (&quot;Constructing with public method.&quot;);
+   }
+   public void MyMethod () 
+   {
+     Console.WriteLine (&quot;Calling MyMethod.&quot;);
+   }
+ }
+}
+      </PRE>
+The following code references the class library above, and accesses
+      TestNameSpace.Class1.MyMethod. This code is compiled into an application.<P>
+
+<PRE>using System;
+using TestNameSpace;
+class AppTest
+{
+ public static void Main()
+ {
+   Class1 test = new Class1();
+   test.MyMethod();
+ }
+}
+      </PRE>
+The output of the application is<P>
+
+<CODE>Constructing with public method.<P>
+
+Calling MyMethod.<P>
+
+</CODE>The code for the class library is changed and recompiled so that TestNameSpace.Class1.MyMethod is no longer public. The following code changes
+      MyMethod from public to private. <P>
+
+<PRE>using System;
+namespace TestNameSpace 
+{
+ public class Class1
+ {
+   public Class1()
+   {
+     Console.WriteLine (&quot;Constructing with private method.&quot;);
+   }
+   private void MyMethod () 
+   {
+     Console.WriteLine (&quot;Calling MyMethod.&quot;);
+   }
+ }
+}
+      </PRE>
+When the application is executed again without being recompiled, the output
+      is<P>
+
+<CODE>Unhandled Exception: System.MethodAccessException:
+         TestNameSpace.Class1.MyMethod()<P>
+
+ at AppTest.Main()<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+MethodAccessException Constructors<P>
+
+<A HREF="#MethodAccessException() Constructor" TARGET="contents">MethodAccessException() Constructor</A><BR>
+<A HREF="#MethodAccessException(System.String) Constructor" TARGET="contents">MethodAccessException(System.String) Constructor</A><BR>
+<A HREF="#MethodAccessException(System.String, System.Exception) Constructor" TARGET="contents">MethodAccessException(System.String, System.Exception) Constructor</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="MethodAccessException() Constructor"><H3>MethodAccessException() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MethodAccessException();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the
+   <A HREF="MethodAccessException.html" TARGET="contents">MethodAccessException</A>
+   class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.MethodAccessException.Message
+property of the new instance to a system-supplied message that describes the
+error, such as &quot;Attempt to access the method failed.&quot; This message takes into
+account the current system culture.<P>
+
+The System.MethodAccessException.InnerException property of the new instance is
+initialized to <CODE>null</CODE>
+ .<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MethodAccessException.html" TARGET="contents">System.MethodAccessException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MethodAccessException(System.String) Constructor"><H3>MethodAccessException(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MethodAccessException(string message);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="MethodAccessException.html" TARGET="contents">MethodAccessException</A> class with
+   a specified error message.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.MethodAccessException.Message
+property of the new instance using <I>message</I>. If <I>message</I> is
+<CODE>null</CODE>
+, the System.MethodAccessException.Message property is initialized to the 
+system-supplied message provided by the constructor that takes no
+arguments. <P>
+
+ The System.MethodAccessException.InnerException property of the
+new instance is initialized to <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MethodAccessException.html" TARGET="contents">System.MethodAccessException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MethodAccessException(System.String, System.Exception) Constructor"><H3>MethodAccessException(System.String, System.Exception) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MethodAccessException(string message, Exception inner);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="MethodAccessException.html" TARGET="contents">MethodAccessException</A> class with a specified error
+   message and a reference to the inner exception that is the cause of the current
+   exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+<DT>inner</DT>
+<DD>An instance of <A HREF="Exception.html" TARGET="contents">Exception</A> that is the cause of the current exception. If <I>inner</I> is not a <CODE>null</CODE>
+ reference, the current exception was raised in a catch block handling <I>inner</I> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.MethodAccessException.Message property of the new instance
+   using <I>message</I> and the System.MethodAccessException.InnerException property using
+<I>inner</I>. If <I>message</I> is <CODE>null</CODE>
+, 
+   the System.MethodAccessException.Message property is initialized to the system-supplied message
+   provided by the constructor that takes no arguments.<P>
+
+[<I>Note</I>: For more information on inner
+   exceptions, see System.Exception.InnerException.]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MethodAccessException.html" TARGET="contents">System.MethodAccessException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

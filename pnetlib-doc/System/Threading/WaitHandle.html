@@ -1,0 +1,499 @@
+<HTML>
+<HEAD>
+<TITLE>System.Threading.WaitHandle Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Threading.WaitHandle Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class WaitHandle : MarshalByRefObject, IDisposable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/MarshalByRefObject.html" TARGET="contents">MarshalByRefObject</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;WaitHandle<P>
+
+This type implements <A HREF="../../System/IDisposable.html" TARGET="contents">IDisposable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Encapsulates operating-system 
+ specific objects that wait for exclusive access
+ to shared resources.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  This class is typically used as a base class for
+ synchronization objects. Classes derived from <A HREF="WaitHandle.html" TARGET="contents">WaitHandle</A> define a signaling mechanism to indicate
+ taking or releasing exclusive access to a shared
+ resource, but use the inherited <A HREF="WaitHandle.html" TARGET="contents">WaitHandle</A>
+ 
+ methods to block while waiting for access to shared
+ resources.
+ <P>
+
+ The static methods of this class are used to block a
+ <A HREF="Thread.html" TARGET="contents">Thread</A>
+ until one or more synchronization objects receive a
+ signal.
+ <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+WaitHandle Constructors<P>
+
+<A HREF="#WaitHandle Constructor" TARGET="contents">WaitHandle Constructor</A><BR>
+<P>
+
+WaitHandle Methods<P>
+
+<A HREF="#WaitHandle.Close Method" TARGET="contents">WaitHandle.Close Method</A><BR>
+<A HREF="#WaitHandle.Dispose Method" TARGET="contents">WaitHandle.Dispose Method</A><BR>
+<A HREF="#WaitHandle.Finalize Method" TARGET="contents">WaitHandle.Finalize Method</A><BR>
+<A HREF="#WaitHandle.System.IDisposable.Dispose Method" TARGET="contents">WaitHandle.System.IDisposable.Dispose Method</A><BR>
+<A HREF="#WaitHandle.WaitAll Method" TARGET="contents">WaitHandle.WaitAll Method</A><BR>
+<A HREF="#WaitHandle.WaitAny Method" TARGET="contents">WaitHandle.WaitAny Method</A><BR>
+<A HREF="#WaitHandle.WaitOne Method" TARGET="contents">WaitHandle.WaitOne Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="WaitHandle Constructor"><H3>WaitHandle Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public WaitHandle();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="WaitHandle.html" TARGET="contents">WaitHandle</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WaitHandle.html" TARGET="contents">System.Threading.WaitHandle Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WaitHandle.Close Method"><H3>WaitHandle.Close Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Close();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Releases all resources held by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is the public version of the System.IDisposable.Dispose method implemented to 
+ support the <A HREF="../../System/IDisposable.html" TARGET="contents">IDisposable</A> interface.<P>
+
+[<I>Behaviors</I>: 
+ This method releases any unmanaged resources held by the current instance. This method can, but is not required to,
+ suppress finalization during garbage collection by calling the System.GC.SuppressFinalize(System.Object) method. ]<P>
+
+<P>
+
+[<I>Default</I>:  As described above.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this property to release resources allocated in subclasses.
+]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to
+ release all resources held by an instance of <CODE> WaitHandle</CODE>
+. Once this method is called, references
+ to the current instance cause undefined behavior. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WaitHandle.html" TARGET="contents">System.Threading.WaitHandle Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WaitHandle.Dispose Method"><H3>WaitHandle.Dispose Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected virtual void Dispose(bool explicitDisposing);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Releases the unmanaged resources used by the <A HREF="WaitHandle.html" TARGET="contents">WaitHandle</A> and
+   optionally releases the managed resources.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>explicitDisposing</DT>
+<DD><CODE>true</CODE>
+ to release both managed and unmanaged resources; <CODE>false</CODE>
+ to release only unmanaged resources.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This method
+      releases all unmanaged resources held by the current instance. When the <I>explicitDisposing</I> parameter is <CODE>true</CODE>
+, this method releases all resources held by
+      any managed objects referenced by the current
+      instance. This method invokes the <CODE>Dispose()</CODE>
+ method of each referenced
+      object.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this method to dispose of resources allocated by
+      types derived from <A HREF="WaitHandle.html" TARGET="contents">WaitHandle</A>. When overriding
+      <CODE>Dispose</CODE>
+(<A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>), be careful not to
+      reference objects that have been previously disposed in an earlier call to
+      <CODE>Dispose</CODE>
+ or <CODE>Close</CODE>
+ . <CODE>Dispose</CODE>
+ can be called multiple
+      times by other objects. ]<P>
+
+<P>
+
+[<I>Usage</I>: This method is called by the public System.Threading.WaitHandle.Dispose(System.Boolean) method and the System.Object.Finalize method.
+<CODE>Dispose()</CODE>
+ invokes this method with the 
+<I>explicitDisposing</I> parameter 
+set to <CODE>true</CODE>
+. System.Object.Finalize invokes <CODE>Dispose</CODE>
+ with
+<I>explicitDisposing</I> set to <CODE>false</CODE>
+ 
+.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WaitHandle.html" TARGET="contents">System.Threading.WaitHandle Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WaitHandle.Finalize Method"><H3>WaitHandle.Finalize Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>~WaitHandle();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Releases the resources held by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  Application code does not call this method; it
+         is automatically invoked during garbage collection unless finalization by the
+         garbage collector has been disabled. For more information, see System.GC.SuppressFinalize(System.Object),
+         and System.Object.Finalize.<P>
+
+ This method overrides System.Object.Finalize.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WaitHandle.html" TARGET="contents">System.Threading.WaitHandle Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WaitHandle.System.IDisposable.Dispose Method"><H3>WaitHandle.System.IDisposable.Dispose Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>void IDisposable.Dispose();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="../../System/IDisposable.html" TARGET="contents">IDisposable</A> interface. [Note: For more information, see System.IDisposable.Dispose.]
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WaitHandle.html" TARGET="contents">System.Threading.WaitHandle Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WaitHandle.WaitAll Method"><H3>WaitHandle.WaitAll Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool WaitAll(WaitHandle[] waitHandles);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Waits for all of the
+      elements in the specified array to receive a signal.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>waitHandles</DT>
+<DD>A <A HREF="WaitHandle.html" TARGET="contents">WaitHandle</A> array containing the objects for which the current instance will wait. This array cannot contain multiple references to the same object (duplicates).</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+Returns <CODE>true</CODE>
+ when
+   every element in <I>waitHandles</I> has received a
+   signal. If the current
+   thread receives a request to abort before the signals are received, this method
+   returns <CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>waitHandles </I>is <CODE>null</CODE>
+ or one or more elements in the <I>waitHandles </I> array is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/DuplicateWaitObjectException.html" TARGET="contents">DuplicateWaitObjectException</A></TD><TD><I>waitHandles </I>contains elements that are duplicates.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The number of objects in <I>waitHandles </I>is greater than the system permits.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The maximum number of objects specified in the
+   <I>waitHandles</I> array is system defined.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WaitHandle.html" TARGET="contents">System.Threading.WaitHandle Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WaitHandle.WaitAny Method"><H3>WaitHandle.WaitAny Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int WaitAny(WaitHandle[] waitHandles);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Waits for any of the
+      elements in the specified array to receive a signal.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>waitHandles</DT>
+<DD>A <A HREF="WaitHandle.html" TARGET="contents">WaitHandle</A> array containing the objects for which the current instance will wait. This array cannot contain multiple references to the same object (duplicates).</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> set to the index of
+   the element in <I>waitHandles</I> that received a signal.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>waitHandles </I>is <CODE>null</CODE>
+ or one or more elements in the <I>waitHandles </I> array is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/DuplicateWaitObjectException.html" TARGET="contents">DuplicateWaitObjectException</A></TD><TD><I>waitHandles </I>contains elements that are duplicates.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The number of objects in <I>waitHandles </I>is greater than the system permits.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The maximum number of objects specified in the
+   <I>waitHandles</I> array is system defined.<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WaitHandle.html" TARGET="contents">System.Threading.WaitHandle Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WaitHandle.WaitOne Method"><H3>WaitHandle.WaitOne Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool WaitOne();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Blocks the current thread until the current instance receives a signal.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+Returns <CODE>true</CODE>
+
+when the
+current instance receives a signal.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has already been disposed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: The caller
+      of this method blocks indefinitely until a signal is received by the current
+      instance. ]<P>
+
+<P>
+
+[<I>Overrides</I>: Override
+      this method to customize the behavior of types derived from <A HREF="WaitHandle.html" TARGET="contents">WaitHandle</A> .]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to
+      block until a <CODE> WaitHandle</CODE>
+
+      receives a signal from another thread, such as is
+      generated when an asynchronous operation completes. For more information, see
+      the <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WaitHandle.html" TARGET="contents">System.Threading.WaitHandle Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,324 @@
+<HTML>
+<HEAD>
+<TITLE>System.AttributeUsageAttribute Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.AttributeUsageAttribute Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class AttributeUsageAttribute : Attribute</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="Attribute.html" TARGET="contents">Attribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;AttributeUsageAttribute<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Specifies the behavior of
+      a custom attribute when that attribute is defined.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  Custom attributes
+      may be applied to various application (&quot;target&quot;) elements, such as classes,
+      parameters, and structures (see <A HREF="AttributeTargets.html" TARGET="contents">AttributeTargets</A> for the full list). The <A HREF="AttributeUsageAttribute.html" TARGET="contents">AttributeUsageAttribute</A>
+      class contains three properties that govern custom attribute behavior: the kinds
+      of application elements the attribute may be associated with; whether the
+      attribute may or may not be inherited by derived elements; and whether multiple
+      instances of the attribute may or may not be allowed on the
+      same target element. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>AttributeUsageAttribute(AttributeTargets.Class, AllowMultiple=false, Inherited=true)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+AttributeUsageAttribute Constructors<P>
+
+<A HREF="#AttributeUsageAttribute Constructor" TARGET="contents">AttributeUsageAttribute Constructor</A><BR>
+<P>
+
+AttributeUsageAttribute Properties<P>
+
+<A HREF="#AttributeUsageAttribute.AllowMultiple Property" TARGET="contents">AttributeUsageAttribute.AllowMultiple Property</A><BR>
+<A HREF="#AttributeUsageAttribute.Inherited Property" TARGET="contents">AttributeUsageAttribute.Inherited Property</A><BR>
+<A HREF="#AttributeUsageAttribute.ValidOn Property" TARGET="contents">AttributeUsageAttribute.ValidOn Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="AttributeUsageAttribute Constructor"><H3>AttributeUsageAttribute Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public AttributeUsageAttribute(AttributeTargets validOn);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="AttributeUsageAttribute.html" TARGET="contents">AttributeUsageAttribute</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>validOn</DT>
+<DD>The set of application elements to which the attribute will be applied. When indicating multiple application elements, <I>validOn</I> is a bitwise OR combination of <A HREF="AttributeTargets.html" TARGET="contents">AttributeTargets</A> enumeration values.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The new instance will be constructed with the specified
+      value of <I>validOn</I> and the properties System.AttributeUsageAttribute.AllowMultiple and System.AttributeUsageAttribute.Inherited set to their default values (<CODE>false</CODE>
+ and
+   <CODE>true</CODE>
+
+   respectively).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeUsageAttribute.html" TARGET="contents">System.AttributeUsageAttribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeUsageAttribute.AllowMultiple Property"><H3>AttributeUsageAttribute.AllowMultiple Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool AllowMultiple { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets a value indicating whether more than one instance of a specified attribute is permitted to be applied
+      to any given program element.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates more than one instance of the
+   attribute is permitted to be applied; otherwise, <CODE>false</CODE>
+. The
+   default is <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  It is expected that compilers will
+      validate this property; this property is not validated during execution.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<CODE>Example #1:</CODE>
+<P>
+
+ The following example demonstrates the use of System.AttributeUsageAttribute.AllowMultiple. If
+<CODE>AllowMultiple</CODE>
+ for an attribute is set to <CODE>true</CODE>
+, more
+than one of those attributes may be assigned to any given program element.<P>
+
+<PRE>using System;
+
+[AttributeUsageAttribute( AttributeTargets.Class |
+                          AttributeTargets.Struct,
+                          AllowMultiple = true )]
+public class Author : Attribute {
+
+  public Author(string name) { this.name = name; }
+  public string name;
+}
+
+[Author( &quot;John Doe&quot; )]
+[Author( &quot;John Q Public&quot; )]
+class JohnsClass {
+
+  public static void Main() {}
+}
+</PRE>
+<CODE>Example #2:</CODE>
+<P>
+
+ The following example demonstrates an error that is expected to be
+   caught by compilers: the sample attempts to assign multiple instances of
+   an attribute for which <CODE>AllowMultiple</CODE>
+
+   was set to <CODE>false</CODE>
+.<P>
+
+<PRE>using System;
+
+[AttributeUsageAttribute( AttributeTargets.Class |
+                          AttributeTargets.Struct,
+                          AllowMultiple = false )]
+public class Author : Attribute {
+
+  public Author(string name) { this.name = name; }
+  public string name;
+}
+
+[Author( &quot;John Doe&quot; )]
+[Author( &quot;John Q Public&quot; )]
+class JohnsClass {
+
+  public static void Main() {}
+}
+</PRE>
+This should throw an error similar to:<P>
+
+error CS0579: Duplicate &apos;Author&apos; attribute<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeUsageAttribute.html" TARGET="contents">System.AttributeUsageAttribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeUsageAttribute.Inherited Property"><H3>AttributeUsageAttribute.Inherited Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool Inherited { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether the attribute can be inherited by
+   subclasses of the class to which the attribute is applied.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ indicates the attribute is inherited by subclasses;
+   otherwise, <CODE>false</CODE>
+. The default is <CODE>true</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Information on an inherited attribute will be included in the metadata for
+      the class on which it is applied, but will not be included in the metadata for
+      classes that derive from it. A metadata consumer (such as reflection) is
+      required therefore to traverse up the inheritance chain of a class if that
+      consumer is interested in <A HREF="Attribute.html" TARGET="contents">Attribute</A> data that is marked inherited, but applied to an
+      ancestor class. There is nothing for the compiler to validate at compile
+      time.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeUsageAttribute.html" TARGET="contents">System.AttributeUsageAttribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="AttributeUsageAttribute.ValidOn Property"><H3>AttributeUsageAttribute.ValidOn Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public AttributeTargets ValidOn { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the set of values sent to the <A HREF="AttributeUsageAttribute.html" TARGET="contents">AttributeUsageAttribute</A> constructor that indicate to which targets the custom attribute may be applied.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ One or more of the <A HREF="AttributeTargets.html" TARGET="contents">AttributeTargets</A> 
+values sent to the constructor, combined by a bitwise OR operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="AttributeUsageAttribute.html" TARGET="contents">System.AttributeUsageAttribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

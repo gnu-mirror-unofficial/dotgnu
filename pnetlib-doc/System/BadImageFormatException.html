@@ -1,0 +1,508 @@
+<HTML>
+<HEAD>
+<TITLE>System.BadImageFormatException Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.BadImageFormatException Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class BadImageFormatException : SystemException</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="Exception.html" TARGET="contents">Exception</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="SystemException.html" TARGET="contents">SystemException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BadImageFormatException<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Represents the error that occurs when an attempt is made
+      to load a <A HREF="../System/Reflection/Assembly.html" TARGET="contents">Assembly</A>
+      from a file with an invalid file image.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This exception is thrown when the file image of an
+      executable program is invalid. For example, this exception is thrown when
+      unmanaged code is passed to System.Reflection.Assembly.Load(System.String)
+      for loading.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates an attempt to load an unmanaged executable, which causes
+      the system to throw a <A HREF="BadImageFormatException.html" TARGET="contents">BadImageFormatException</A> exception. [<I>Note</I>: The name of the unmanaged executable
+      is &quot;calc&quot;.]<P>
+
+<P>
+
+<PRE>using System;
+using System.Reflection;
+
+public class BadImageExample {
+  public static void Main() {
+    try {
+      Assembly a = Assembly.Load(&quot;calc&quot;);
+    } 
+    catch (BadImageFormatException e) {
+      Console.WriteLine(&quot;Caught: {0}&quot;, e.Message);
+    }
+  } 
+}
+   </PRE>
+The output is<P>
+
+<CODE>Caught: The format of the file &apos;calc&apos; is invalid.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+BadImageFormatException Constructors<P>
+
+<A HREF="#BadImageFormatException() Constructor" TARGET="contents">BadImageFormatException() Constructor</A><BR>
+<A HREF="#BadImageFormatException(System.String) Constructor" TARGET="contents">BadImageFormatException(System.String) Constructor</A><BR>
+<A HREF="#BadImageFormatException(System.String, System.Exception) Constructor" TARGET="contents">BadImageFormatException(System.String, System.Exception) Constructor</A><BR>
+<A HREF="#BadImageFormatException(System.String, System.String) Constructor" TARGET="contents">BadImageFormatException(System.String, System.String) Constructor</A><BR>
+<A HREF="#BadImageFormatException(System.String, System.String, System.Exception) Constructor" TARGET="contents">BadImageFormatException(System.String, System.String, System.Exception) Constructor</A><BR>
+<P>
+
+BadImageFormatException Methods<P>
+
+<A HREF="#BadImageFormatException.ToString Method" TARGET="contents">BadImageFormatException.ToString Method</A><BR>
+<P>
+
+BadImageFormatException Properties<P>
+
+<A HREF="#BadImageFormatException.FileName Property" TARGET="contents">BadImageFormatException.FileName Property</A><BR>
+<A HREF="#BadImageFormatException.Message Property" TARGET="contents">BadImageFormatException.Message Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="BadImageFormatException() Constructor"><H3>BadImageFormatException() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public BadImageFormatException();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="BadImageFormatException.html" TARGET="contents">BadImageFormatException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.BadImageFormatException.Message property of
+   the new instance to a system-supplied message that describes the error, such
+   as &quot;Format of the executable or library is invalid.&quot; This message takes into
+   account the current system culture.<P>
+
+The System.BadImageFormatException.InnerException and the System.BadImageFormatException.FileName properties of the new instance are
+initialized to <CODE>null</CODE>
+ .<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="BadImageFormatException.html" TARGET="contents">System.BadImageFormatException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="BadImageFormatException(System.String) Constructor"><H3>BadImageFormatException(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public BadImageFormatException(string message);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="BadImageFormatException.html" TARGET="contents">BadImageFormatException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.BadImageFormatException.Message property of the new instance
+   using <I>message</I>. If <I>message</I> is
+<CODE>null</CODE>
+, the System.BadImageFormatException.Message property is initialized to the system-supplied message 
+   provided by the constructor that takes no arguments.<P>
+
+ The System.BadImageFormatException.InnerException and the System.BadImageFormatException.FileName properties of the new instance are initialized to
+<CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="BadImageFormatException.html" TARGET="contents">System.BadImageFormatException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="BadImageFormatException(System.String, System.Exception) Constructor"><H3>BadImageFormatException(System.String, System.Exception) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public BadImageFormatException(string message, Exception inner);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="BadImageFormatException.html" TARGET="contents">BadImageFormatException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+<DT>inner</DT>
+<DD>An instance of <A HREF="Exception.html" TARGET="contents">Exception</A> that is the cause of the current exception. If <I>inner</I> is non-null, then the current exception was raised in a catch block handling <I>inner</I> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.BadImageFormatException.Message property of
+   the new instance using <I>message</I> and the System.BadImageFormatException.InnerException property using
+<I>inner</I>. If <I>message</I> is <CODE>null</CODE>
+, 
+   the System.BadImageFormatException.Message property is initialized to the system-supplied message
+   provided by the constructor that takes no arguments.<P>
+
+The System.BadImageFormatException.FileName property of the new instance is initialized to <CODE>null</CODE>
+.<P>
+
+[<I>Note</I>: For more information on inner
+   exceptions, see System.Exception.InnerException.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="BadImageFormatException.html" TARGET="contents">System.BadImageFormatException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="BadImageFormatException(System.String, System.String) Constructor"><H3>BadImageFormatException(System.String, System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public BadImageFormatException(string message, string fileName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="BadImageFormatException.html" TARGET="contents">BadImageFormatException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+<DT>fileName</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the name of the file with the invalid image.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.BadImageFormatException.Message property of the new instance
+   using <I>message</I> and the System.BadImageFormatException.FileName property using
+<I>fileName</I> . If <I>message</I> is 
+<CODE>null</CODE>
+, the System.BadImageFormatException.Message property is initialized to the system-supplied message 
+   provided by the constructor that takes no arguments. <P>
+
+ The System.BadImageFormatException.InnerException property of the
+new instance is initialized to <CODE>null</CODE>
+
+.<P>
+
+If the <I>fileName</I> parameter is <CODE>null</CODE>
+, the System.BadImageFormatException.FileName property is set
+to <CODE>null</CODE>
+, the System.BadImageFormatException.Message property does not contain the name of the file, and the System.BadImageFormatException.ToString
+method does not return the name of the file with the invalid
+image.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="BadImageFormatException.html" TARGET="contents">System.BadImageFormatException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="BadImageFormatException(System.String, System.String, System.Exception) Constructor"><H3>BadImageFormatException(System.String, System.String, System.Exception) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public BadImageFormatException(string message, string fileName, Exception inner);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="BadImageFormatException.html" TARGET="contents">BadImageFormatException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+<DT> fileName</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the name of the file with the invalid image.</DD>
+<DT> inner</DT>
+<DD>An instance of <A HREF="Exception.html" TARGET="contents">Exception</A> that is the cause of the current exception. If <I>inner</I> is non-null, then the current exception was raised in a catch block handling <I>inner</I> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.BadImageFormatException.Message property of
+   the new instance using <I>message</I>, the System.BadImageFormatException.InnerException property
+   using <I>inner</I>, and the System.BadImageFormatException.FileName property using <I>fileName</I>. If <I>message</I> is <CODE>null</CODE>
+,
+   the System.BadImageFormatException.Message property is initialized to the system-supplied message
+   provided by the constructor that takes no arguments.<P>
+
+[<I>Note</I>: If the <I>fileName</I> parameter is <CODE>null</CODE>
+, the System.BadImageFormatException.FileName property is set to
+<CODE>null</CODE>
+, the System.BadImageFormatException.Message property does not contain the 
+   name of the file, and the System.BadImageFormatException.ToString method does not return the name
+   of the file with the invalid image.<P>
+
+For more information on inner
+   exceptions, see System.Exception.InnerException.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="BadImageFormatException.html" TARGET="contents">System.BadImageFormatException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="BadImageFormatException.ToString Method"><H3>BadImageFormatException.ToString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A>
+representation of the current exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The string representation returned by this method 
+      includes the name of the exception, the value of the System.BadImageFormatException.Message
+      property, the result of calling <CODE>ToString </CODE>
+on the inner exception, the value of the
+   System.BadImageFormatException.FileName 
+   property, and the result of calling System.Environment.StackTrace.
+   If any of these members is <CODE>null</CODE>
+, its value is not included in
+   the returned string.
+   <P>
+
+[<I>Note</I>: This method overrides System.Exception.ToString
+.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="BadImageFormatException.html" TARGET="contents">System.BadImageFormatException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="BadImageFormatException.FileName Property"><H3>BadImageFormatException.FileName Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string FileName { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the name of the file with the invalid image.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the
+   name of the file with the invalid image, or <CODE>null</CODE>
+ if no file
+   name was passed to the constructor for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="BadImageFormatException.html" TARGET="contents">System.BadImageFormatException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="BadImageFormatException.Message Property"><H3>BadImageFormatException.Message Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string Message { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="String.html" TARGET="contents">String</A> that describes the error that caused the current exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the
+   error description.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If no message was supplied to the constructor for the 
+      current exception, this property returns a system-supplied error message.
+      If the System.BadImageFormatException.FileName property is not <CODE>null</CODE>
+ ,
+      the message includes the file name.<P>
+
+ This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="BadImageFormatException.html" TARGET="contents">System.BadImageFormatException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

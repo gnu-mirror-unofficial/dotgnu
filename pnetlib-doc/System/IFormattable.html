@@ -1,0 +1,974 @@
+<HTML>
+<HEAD>
+<TITLE>System.IFormattable Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.IFormattable Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public interface IFormattable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented by classes that construct customizable string representations of
+      objects.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>
+contains the System.IFormattable.ToString(System.String,System.IFormatProvider) method. The consumer of an object calls
+this method to obtain a formatted string representation of the value of the
+object.]<P>
+
+A <I>format</I> is a string that describes the appearance of an object when
+it is converted to a string. Either standard or custom formats can be used. A
+standard format takes the form <I>Axx</I>, where <I>A</I> is a single
+alphabetic character called the <I>format specifier</I>
+, and <I>xx</I> is an integer between zero and 99 inclusive, called the <I>precision specifier</I>. The format specifier controls the type
+of formatting applied to the value being represented as a string. The
+<I>precision specifier</I> controls the number 
+of significant digits or decimal places in the string, if applicable. [<I>Note</I>:  For the list of standard format specifiers, see the
+table below. Note that a given data type, such as <A HREF="Int32.html" TARGET="contents">Int32</A>
+, might not support one
+or more of the standard format specifiers.]<P>
+
+<P>
+
+[<I>Note</I>:  When a format includes symbols that vary by culture, such as the currency
+   symbol included by the &quot;C&quot; and &quot;c&quot; formats, a formatting object supplies the
+   actual characters used in the string representation. A method may include a
+   parameter to pass a <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> object that supplies a
+   formatting object, or the method may use the default formatting object, which
+   contains the symbol definitions for the current culture. The current culture
+   typically uses the same set of symbols used system-wide by default. In the Base
+   Class Library, the formatting object for system-supplied numeric types is a
+<A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> instance. For <A HREF="DateTime.html" TARGET="contents">DateTime</A> instances, a 
+<A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> is
+   used.]<P>
+
+<P>
+
+The following table describes the standard format specifiers and associated formatting
+   object members that are used with numeric data types in the Base Class
+   Library.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Format SpecifierDescription</TH></TR>
+<TR><TD><CODE>Currency Format</CODE>
+: Used for strings containing a monetary value. The System.Globalization.NumberFormatInfo.CurrencySymbol, System.Globalization.NumberFormatInfo.CurrencyGroupSizes, System.Globalization.NumberFormatInfo.CurrencyGroupSeparator, and System.Globalization.NumberFormatInfo.CurrencyDecimalSeparator members of a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A>
+supply the currency symbol, size and separator for digit groupings, and
+decimal separator, respectively.<P>
+
+System.Globalization.NumberFormatInfo.CurrencyNegativePattern and System.Globalization.NumberFormatInfo.CurrencyPositivePattern determine the symbols used to represent negative
+and positive values. For example, a negative value may be prefixed with a
+minus sign, or enclosed in parentheses. <P>
+
+If the precision specifier is omitted, System.Globalization.NumberFormatInfo.CurrencyDecimalDigits determines the number of decimal places in the
+string. Results are rounded to the nearest representable value when
+necessary.<P>
+
+</TD><TD><CODE>C</CODE>
+<P>
+
+<CODE>c</CODE>
+<P>
+
+<CODE>Currency Format</CODE>
+: Used for strings containing a monetary value. The System.Globalization.NumberFormatInfo.CurrencySymbol, System.Globalization.NumberFormatInfo.CurrencyGroupSizes, System.Globalization.NumberFormatInfo.CurrencyGroupSeparator, and System.Globalization.NumberFormatInfo.CurrencyDecimalSeparator members of a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A>
+supply the currency symbol, size and separator for digit groupings, and
+decimal separator, respectively.<P>
+
+System.Globalization.NumberFormatInfo.CurrencyNegativePattern and System.Globalization.NumberFormatInfo.CurrencyPositivePattern determine the symbols used to represent negative
+and positive values. For example, a negative value may be prefixed with a
+minus sign, or enclosed in parentheses. <P>
+
+If the precision specifier is omitted, System.Globalization.NumberFormatInfo.CurrencyDecimalDigits determines the number of decimal places in the
+string. Results are rounded to the nearest representable value when
+necessary.<P>
+
+</TD></TR>
+<TR><TD><CODE>Decimal Format</CODE>
+: (This format is valid only
+when specified with integral data types.) Used for strings containing
+integer values. Negative numbers are prefixed with the negative number
+symbol specified by the System.Globalization.NumberFormatInfo.NegativeSign
+property.<P>
+
+The precision specifier determines the
+   minimum number of digits that appear in the string. If the specified
+   precision requires more digits than the value contains, the string is
+   left-padded with zeros. If the precision specifier specifies fewer digits
+   than are in the value, the precision specifier is
+   ignored.<P>
+
+</TD><TD><CODE>D</CODE>
+<P>
+
+<CODE>d</CODE>
+<P>
+
+<CODE>Decimal Format</CODE>
+: (This format is valid only
+when specified with integral data types.) Used for strings containing
+integer values. Negative numbers are prefixed with the negative number
+symbol specified by the System.Globalization.NumberFormatInfo.NegativeSign
+property.<P>
+
+The precision specifier determines the
+   minimum number of digits that appear in the string. If the specified
+   precision requires more digits than the value contains, the string is
+   left-padded with zeros. If the precision specifier specifies fewer digits
+   than are in the value, the precision specifier is
+   ignored.<P>
+
+</TD></TR>
+<TR><TD><CODE>Scientific (Engineering) Format</CODE>
+: Used for strings in
+one of the following forms: <P>
+
+[-]<I>m.ddddddE+xxx</I><P>
+
+[-]<I>m.ddddddE-xxx</I><P>
+
+[-]<I>m.dddddd</I>e<I>+xxx</I><P>
+
+[-]<I>m.dddddd</I>e<I>-xxx</I><P>
+
+The negative number symbol (&apos;-&apos;) appears only if
+   the value is negative, and is supplied by the System.Globalization.NumberFormatInfo.NegativeSign property.
+   <P>
+
+Exactly one non-zero decimal digit <I>(m)</I> precedes the decimal separator (&apos;.&apos;), which
+is supplied by the System.Globalization.NumberFormatInfo.NumberDecimalSeparator
+property.<P>
+
+ The precision specifier determines the number of decimal places
+   (<I>dddddd</I>
+   ) in the string. If the precision specifier
+   is omitted, six decimal places are included in the
+   string.<P>
+
+ The exponent
+<I>(+/-xxx</I>) 
+   consists of either a positive or negative number symbol followed by a
+   minimum of three digits (<I>xxx</I>). The exponent is
+   left-padded with zeros, if necessary. The case of the format specifier
+   (&apos;E&apos; or &apos;e&apos;) determines the case used for the exponent prefix (E or e) in
+   the string. Results are rounded to the nearest representable value when
+   necessary. The positive number symbol is supplied by the System.Globalization.NumberFormatInfo.PositiveSign
+   
+   property.<P>
+
+</TD><TD><CODE>E</CODE>
+<P>
+
+<CODE>e</CODE>
+<P>
+
+<CODE>Scientific (Engineering) Format</CODE>
+: Used for strings in
+one of the following forms: <P>
+
+[-]<I>m.ddddddE+xxx</I><P>
+
+[-]<I>m.ddddddE-xxx</I><P>
+
+[-]<I>m.dddddd</I>e<I>+xxx</I><P>
+
+[-]<I>m.dddddd</I>e<I>-xxx</I><P>
+
+The negative number symbol (&apos;-&apos;) appears only if
+   the value is negative, and is supplied by the System.Globalization.NumberFormatInfo.NegativeSign property.
+   <P>
+
+Exactly one non-zero decimal digit <I>(m)</I> precedes the decimal separator (&apos;.&apos;), which
+is supplied by the System.Globalization.NumberFormatInfo.NumberDecimalSeparator
+property.<P>
+
+ The precision specifier determines the number of decimal places
+   (<I>dddddd</I>
+   ) in the string. If the precision specifier
+   is omitted, six decimal places are included in the
+   string.<P>
+
+ The exponent
+<I>(+/-xxx</I>) 
+   consists of either a positive or negative number symbol followed by a
+   minimum of three digits (<I>xxx</I>). The exponent is
+   left-padded with zeros, if necessary. The case of the format specifier
+   (&apos;E&apos; or &apos;e&apos;) determines the case used for the exponent prefix (E or e) in
+   the string. Results are rounded to the nearest representable value when
+   necessary. The positive number symbol is supplied by the System.Globalization.NumberFormatInfo.PositiveSign
+   
+   property.<P>
+
+</TD></TR>
+<TR><TD><CODE>Fixed-Point Format</CODE>
+: Used for strings in the following
+form: <P>
+
+&quot;[-]<I>m.dd...d</I>&quot; <P>
+
+At least one non-zero decimal digit (<I>m</I>) precedes the decimal separator (&apos;.&apos;), which is
+supplied by the System.Globalization.NumberFormatInfo.NumberDecimalSeparator
+property.<P>
+
+ A
+   negative number symbol sign (&apos;-&apos;) precedes <I>m</I> only if the value is negative. This symbol is
+   supplied by the System.Globalization.NumberFormatInfo.NegativeSign
+   property. <P>
+
+ The precision specifier determines the number of decimal places
+   (<I>dd...d</I>) in the string. If the precision specifier is omitted,
+System.Globalization.NumberFormatInfo.NumberDecimalDigits determines the number of decimal 
+   places in the string. Results are rounded to the nearest representable
+   value when necessary.<P>
+
+</TD><TD><CODE>F</CODE>
+<P>
+
+<CODE>f</CODE>
+<P>
+
+<CODE>Fixed-Point Format</CODE>
+: Used for strings in the following
+form: <P>
+
+&quot;[-]<I>m.dd...d</I>&quot; <P>
+
+At least one non-zero decimal digit (<I>m</I>) precedes the decimal separator (&apos;.&apos;), which is
+supplied by the System.Globalization.NumberFormatInfo.NumberDecimalSeparator
+property.<P>
+
+ A
+   negative number symbol sign (&apos;-&apos;) precedes <I>m</I> only if the value is negative. This symbol is
+   supplied by the System.Globalization.NumberFormatInfo.NegativeSign
+   property. <P>
+
+ The precision specifier determines the number of decimal places
+   (<I>dd...d</I>) in the string. If the precision specifier is omitted,
+System.Globalization.NumberFormatInfo.NumberDecimalDigits determines the number of decimal 
+   places in the string. Results are rounded to the nearest representable
+   value when necessary.<P>
+
+</TD></TR>
+<TR><TD><CODE>General Format</CODE>
+: The string is formatted in either fixed-point format (&apos;F&apos; or &apos;f&apos;) or scientific format (&apos;E&apos; or &apos;e&apos;). <P>
+
+ For integral types: <P>
+
+ Values are formatted using fixed-point format if
+<I>exponent</I> &lt; precision specifier, where <I>exponent </I> is the exponent of the value in scientific format. For all other values, scientific format is used.<P>
+
+ If the precision specifier is omitted, a default
+   precision equal to the field width required
+   to display the
+   maximum value for the data
+   type is used, which results in the value being formatted in
+   fixed-point format. The default precisions for integral types are as
+   follows: <P>
+
+<A HREF="Int16.html" TARGET="contents">Int16</A>, <A HREF="UInt16.html" TARGET="contents">UInt16</A> - 5<P>
+
+<A HREF="Int32.html" TARGET="contents">Int32</A>,
+<A HREF="UInt32.html" TARGET="contents">UInt32</A>- 10<P>
+
+<A HREF="Int64.html" TARGET="contents">Int64</A>,
+<A HREF="UInt64.html" TARGET="contents">UInt64</A> - 
+19<P>
+
+For Single, Decimal and Double
+   types:<P>
+
+Values are formatted using fixed-point format
+   if <I>exponent</I>
+   &gt;= -4 and <I>exponent</I> &lt; precision specifier, where <I>exponent</I> is
+   the exponent of the value in scientific format. For all other values,
+   scientific format is used. Results
+   are rounded to the nearest representable value when necessary.<P>
+
+If
+   the precision specifier is omitted, the following default precisions are
+   used:<P>
+
+<A HREF="Single.html" TARGET="contents">Single</A>
+: 7<P>
+
+<A HREF="Double.html" TARGET="contents">Double</A>
+: 15<P>
+
+<A HREF="Decimal.html" TARGET="contents">Decimal</A>
+: 29<P>
+
+For
+   all types:<P>
+
+- The
+   number of digits that appear in the result (not including the exponent)
+   will not exceed the value of the precision specifier; values are rounded
+   as necessary.<P>
+
+- The
+   decimal point and any trailing zeros after the decimal point are removed
+   whenever possible.<P>
+
+- The
+   case of the format specifier (&apos;G&apos; or &apos;g&apos;) determines whether &apos;E&apos; or &apos;e&apos;
+   prefixes the scientific format exponent.<P>
+
+</TD><TD><CODE>G</CODE>
+<P>
+
+<CODE>g</CODE>
+<P>
+
+<CODE>General Format</CODE>
+: The string is formatted in either fixed-point format (&apos;F&apos; or &apos;f&apos;) or scientific format (&apos;E&apos; or &apos;e&apos;). <P>
+
+ For integral types: <P>
+
+ Values are formatted using fixed-point format if
+<I>exponent</I> &lt; precision specifier, where <I>exponent </I> is the exponent of the value in scientific format. For all other values, scientific format is used.<P>
+
+ If the precision specifier is omitted, a default
+   precision equal to the field width required
+   to display the
+   maximum value for the data
+   type is used, which results in the value being formatted in
+   fixed-point format. The default precisions for integral types are as
+   follows: <P>
+
+<A HREF="Int16.html" TARGET="contents">Int16</A>, <A HREF="UInt16.html" TARGET="contents">UInt16</A> - 5<P>
+
+<A HREF="Int32.html" TARGET="contents">Int32</A>,
+<A HREF="UInt32.html" TARGET="contents">UInt32</A>- 10<P>
+
+<A HREF="Int64.html" TARGET="contents">Int64</A>,
+<A HREF="UInt64.html" TARGET="contents">UInt64</A> - 
+19<P>
+
+For Single, Decimal and Double
+   types:<P>
+
+Values are formatted using fixed-point format
+   if <I>exponent</I>
+   &gt;= -4 and <I>exponent</I> &lt; precision specifier, where <I>exponent</I> is
+   the exponent of the value in scientific format. For all other values,
+   scientific format is used. Results
+   are rounded to the nearest representable value when necessary.<P>
+
+If
+   the precision specifier is omitted, the following default precisions are
+   used:<P>
+
+<A HREF="Single.html" TARGET="contents">Single</A>
+: 7<P>
+
+<A HREF="Double.html" TARGET="contents">Double</A>
+: 15<P>
+
+<A HREF="Decimal.html" TARGET="contents">Decimal</A>
+: 29<P>
+
+For
+   all types:<P>
+
+- The
+   number of digits that appear in the result (not including the exponent)
+   will not exceed the value of the precision specifier; values are rounded
+   as necessary.<P>
+
+- The
+   decimal point and any trailing zeros after the decimal point are removed
+   whenever possible.<P>
+
+- The
+   case of the format specifier (&apos;G&apos; or &apos;g&apos;) determines whether &apos;E&apos; or &apos;e&apos;
+   prefixes the scientific format exponent.<P>
+
+</TD></TR>
+<TR><TD><CODE>Number Format</CODE>
+: Used for strings in the following form: <P>
+
+[-]<I>d,ddd,ddd.dd...d</I><P>
+
+ The representation of negative values is
+   determined by the System.Globalization.NumberFormatInfo.NumberNegativePatternproperty. If the pattern includes a negative number
+   symbol (&apos;-&apos;), this symbol is supplied by the System.Globalization.NumberFormatInfo.NegativeSign
+   property.<P>
+
+At least one non-zero decimal digit (<I>d</I>) precedes
+the decimal separator (&apos;.&apos;), which is supplied by the System.Globalization.NumberFormatInfo.NumberDecimalSeparator property. Digits between the decimal
+point and the most significant digit in the value are grouped using the
+group size specified by the System.Globalization.NumberFormatInfo.NumberGroupSizes property. The group separator (&apos;,&apos;)
+is inserted between each digit group, and is supplied by the System.Globalization.NumberFormatInfo.NumberGroupSeparator
+property.<P>
+
+The precision specifier determines the number of
+   decimal places (<I>dd...d</I>). If the precision specifier is omitted,
+System.Globalization.NumberFormatInfo.NumberDecimalDigits determines the number of decimal places in the
+   string. Results are rounded to the nearest representable value when
+   necessary.<P>
+
+</TD><TD><CODE>N</CODE>
+<P>
+
+<CODE>n</CODE>
+<P>
+
+<CODE>Number Format</CODE>
+: Used for strings in the following form: <P>
+
+[-]<I>d,ddd,ddd.dd...d</I><P>
+
+ The representation of negative values is
+   determined by the System.Globalization.NumberFormatInfo.NumberNegativePatternproperty. If the pattern includes a negative number
+   symbol (&apos;-&apos;), this symbol is supplied by the System.Globalization.NumberFormatInfo.NegativeSign
+   property.<P>
+
+At least one non-zero decimal digit (<I>d</I>) precedes
+the decimal separator (&apos;.&apos;), which is supplied by the System.Globalization.NumberFormatInfo.NumberDecimalSeparator property. Digits between the decimal
+point and the most significant digit in the value are grouped using the
+group size specified by the System.Globalization.NumberFormatInfo.NumberGroupSizes property. The group separator (&apos;,&apos;)
+is inserted between each digit group, and is supplied by the System.Globalization.NumberFormatInfo.NumberGroupSeparator
+property.<P>
+
+The precision specifier determines the number of
+   decimal places (<I>dd...d</I>). If the precision specifier is omitted,
+System.Globalization.NumberFormatInfo.NumberDecimalDigits determines the number of decimal places in the
+   string. Results are rounded to the nearest representable value when
+   necessary.<P>
+
+</TD></TR>
+<TR><TD><CODE>Percent Format:</CODE>
+ Used for strings containing a
+percentage. The System.Globalization.NumberFormatInfo.PercentSymbol, System.Globalization.NumberFormatInfo.PercentGroupSizes, System.Globalization.NumberFormatInfo.PercentGroupSeparator, and System.Globalization.NumberFormatInfo.PercentDecimalSeparator members of a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A>
+supply the percent symbol, size and separator for digit groupings, and
+decimal separator, respectively.<P>
+
+System.Globalization.NumberFormatInfo.PercentNegativePattern and System.Globalization.NumberFormatInfo.PercentPositivePattern determine the symbols used to represent negative
+and positive values. For example, a negative value may be prefixed with a
+minus sign, or enclosed in parentheses. <P>
+
+If no precision is specified, the number of decimal places in the
+   result is determined by System.Globalization.NumberFormatInfo.PercentDecimalDigits. Results are rounded to the nearest representable
+   value when necessary.<P>
+
+The result is scaled by 100 (.99 becomes 99%).<P>
+
+</TD><TD><CODE>P</CODE>
+<P>
+
+<CODE>p</CODE>
+<P>
+
+<CODE>Percent Format:</CODE>
+ Used for strings containing a
+percentage. The System.Globalization.NumberFormatInfo.PercentSymbol, System.Globalization.NumberFormatInfo.PercentGroupSizes, System.Globalization.NumberFormatInfo.PercentGroupSeparator, and System.Globalization.NumberFormatInfo.PercentDecimalSeparator members of a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A>
+supply the percent symbol, size and separator for digit groupings, and
+decimal separator, respectively.<P>
+
+System.Globalization.NumberFormatInfo.PercentNegativePattern and System.Globalization.NumberFormatInfo.PercentPositivePattern determine the symbols used to represent negative
+and positive values. For example, a negative value may be prefixed with a
+minus sign, or enclosed in parentheses. <P>
+
+If no precision is specified, the number of decimal places in the
+   result is determined by System.Globalization.NumberFormatInfo.PercentDecimalDigits. Results are rounded to the nearest representable
+   value when necessary.<P>
+
+The result is scaled by 100 (.99 becomes 99%).<P>
+
+</TD></TR>
+<TR><TD><CODE>Round trip Format</CODE>
+: (This format is valid only when
+specified with <A HREF="Double.html" TARGET="contents">Double</A> or <A HREF="Single.html" TARGET="contents">Single</A>.) Used to ensure that the precision of the string
+representation of a floating-point value is such that parsing the string
+does not result in a loss of precision when compared to the original
+value. If the maximum precision of the data type (7 for <A HREF="Single.html" TARGET="contents">Single</A>, and 15 for
+<A HREF="Double.html" TARGET="contents">Double</A>) would result in a loss of precision, the precision 
+is increased by
+two decimal places. If a precision specifier is supplied with this format specifier,
+it is ignored. This format is otherwise identical to the fixed-point
+format.</TD><TD><CODE>R</CODE>
+<P>
+
+<CODE>r</CODE>
+<P>
+
+<CODE>Round trip Format</CODE>
+: (This format is valid only when
+specified with <A HREF="Double.html" TARGET="contents">Double</A> or <A HREF="Single.html" TARGET="contents">Single</A>.) Used to ensure that the precision of the string
+representation of a floating-point value is such that parsing the string
+does not result in a loss of precision when compared to the original
+value. If the maximum precision of the data type (7 for <A HREF="Single.html" TARGET="contents">Single</A>, and 15 for
+<A HREF="Double.html" TARGET="contents">Double</A>) would result in a loss of precision, the precision 
+is increased by
+two decimal places. If a precision specifier is supplied with this format specifier,
+it is ignored. This format is otherwise identical to the fixed-point
+format.</TD></TR>
+<TR><TD><CODE>Hexadecimal Format</CODE>
+: (This format is valid only when
+specified with integral data types.) Used for string representations of numbers in Base
+16. The precision determines the minimum number of digits in
+the string. If the precision specifies more digits than the number contains,
+the number is left-padded with zeros. The case of the format specifier
+(&apos;X&apos; or &apos;x&apos;) determines whether upper case or lower case
+letters are used in the hexadecimal representation.</TD><TD><CODE>X</CODE>
+<P>
+
+<CODE>x</CODE>
+<P>
+
+<CODE>Hexadecimal Format</CODE>
+: (This format is valid only when
+specified with integral data types.) Used for string representations of numbers in Base
+16. The precision determines the minimum number of digits in
+the string. If the precision specifies more digits than the number contains,
+the number is left-padded with zeros. The case of the format specifier
+(&apos;X&apos; or &apos;x&apos;) determines whether upper case or lower case
+letters are used in the hexadecimal representation.</TD></TR>
+</TABLE>
+If the numerical value is a <A HREF="Single.html" TARGET="contents">Single</A> or <A HREF="Double.html" TARGET="contents">Double</A> with a value of
+<CODE>NaN</CODE>
+,
+<CODE>PositiveInfinity</CODE>
+, or <CODE>NegativeInfinity</CODE>
+, the format 
+specifier is ignored, and one of the following is returned: System.Globalization.NumberFormatInfo.NaNSymbol, System.Globalization.NumberFormatInfo.PositiveInfinitySymbol, or System.Globalization.NumberFormatInfo.NegativeInfinitySymbol.<P>
+
+A custom format is any string specified as a format that
+   is not in the form of a standard format string (Axx) described above. The
+   following table describes the characters that are used in constructing custom
+   formats.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Format SpecifierDescription</TH></TR>
+<TR><TD><CODE>Zero placeholder:</CODE>
+
+   If
+   the value being formatted has a digit in the position where a &apos;0&apos; appears in the custom format, then that digit is copied to the output string;
+   otherwise a zero is stored in that position in the output string. The
+   position of the leftmost &apos;0&apos; before the decimal separator and the
+   rightmost &apos;0&apos; after the decimal separator determine the range of digits
+   that are always present in the output string.<P>
+
+
+   
+   The number of Zero and/or Digit placeholders after
+   the decimal separator determines the number of digits that appear after
+   the decimal separator. Values are rounded as necessary.<P>
+
+</TD><TD> 0 (zero)<CODE>Zero placeholder:</CODE>
+
+   If
+   the value being formatted has a digit in the position where a &apos;0&apos; appears in the custom format, then that digit is copied to the output string;
+   otherwise a zero is stored in that position in the output string. The
+   position of the leftmost &apos;0&apos; before the decimal separator and the
+   rightmost &apos;0&apos; after the decimal separator determine the range of digits
+   that are always present in the output string.<P>
+
+
+   
+   The number of Zero and/or Digit placeholders after
+   the decimal separator determines the number of digits that appear after
+   the decimal separator. Values are rounded as necessary.<P>
+
+</TD></TR>
+<TR><TD><CODE>Digit placeholder:</CODE>
+
+If the value being formatted has a digit in
+the position where a &apos;#&apos; appears in the custom format, then that digit
+is copied to the output string; otherwise, nothing is stored in that
+position in the output string. Note that this specifier never stores the
+&apos;0&apos; character if it is not a significant digit, even if &apos;0&apos; is the only
+digit in the string. (It does display the &apos;0&apos; character in the output string
+if it is a significant digit.)<P>
+
+
+   
+   
+   The number of Zero and/or Digit
+   placeholders after the decimal separator determines the number of digits that appear after the decimal
+   separator. Values are rounded as necessary.<P>
+
+</TD><TD> # <CODE>Digit placeholder:</CODE>
+
+If the value being formatted has a digit in
+the position where a &apos;#&apos; appears in the custom format, then that digit
+is copied to the output string; otherwise, nothing is stored in that
+position in the output string. Note that this specifier never stores the
+&apos;0&apos; character if it is not a significant digit, even if &apos;0&apos; is the only
+digit in the string. (It does display the &apos;0&apos; character in the output string
+if it is a significant digit.)<P>
+
+
+   
+   
+   The number of Zero and/or Digit
+   placeholders after the decimal separator determines the number of digits that appear after the decimal
+   separator. Values are rounded as necessary.<P>
+
+</TD></TR>
+<TR><TD><CODE>Decimal separator:</CODE>
+
+The left most &apos;.&apos;
+character in the format string determines the location of the
+decimal separator in the formatted value; any additional &apos;.&apos; characters are
+ignored. The System.Globalization.NumberFormatInfo.NumberDecimalSeparator property determines
+the symbol used as the decimal
+separator.</TD><TD> . (period)<CODE>Decimal separator:</CODE>
+
+The left most &apos;.&apos;
+character in the format string determines the location of the
+decimal separator in the formatted value; any additional &apos;.&apos; characters are
+ignored. The System.Globalization.NumberFormatInfo.NumberDecimalSeparator property determines
+the symbol used as the decimal
+separator.</TD></TR>
+<TR><TD><CODE>Group separator and number scaling:</CODE>
+
+The &apos;,&apos; character serves two purposes. First,
+if the custom format contains this character between two Zero or Digit placeholders (0 or #)
+and to the left of the decimal separator if one is present,
+then the output will have group separators inserted between each group of digits
+to the left of the decimal separator. The System.Globalization.NumberFormatInfo.NumberGroupSeparator
+and System.Globalization.NumberFormatInfo.NumberGroupSizes
+properties determine the symbol used as the group separator and
+the number of digits in each group, respectively.<P>
+
+If
+   the format
+   string contains one or more &apos;,&apos; characters immediately to the left of
+   the decimal separator, then the number will be scaled. The scale factor is
+   determined by the number of group separator characters immediately to the
+   left of the decimal separator. If there are x characters, then the value is
+   divided by 1000<SUP>X</SUP> before it is formatted. For example, the format string &apos;0,,&apos;
+will divide a value by one million. Note that the presence of the &apos;,&apos;
+character to indicate scaling does not insert group separators in the
+output string. Thus, to scale a number by 1 million and insert group
+separators, use a custom format similar to &quot;#,##0,,&quot;.<P>
+
+</TD><TD> , (comma)<CODE>Group separator and number scaling:</CODE>
+
+The &apos;,&apos; character serves two purposes. First,
+if the custom format contains this character between two Zero or Digit placeholders (0 or #)
+and to the left of the decimal separator if one is present,
+then the output will have group separators inserted between each group of digits
+to the left of the decimal separator. The System.Globalization.NumberFormatInfo.NumberGroupSeparator
+and System.Globalization.NumberFormatInfo.NumberGroupSizes
+properties determine the symbol used as the group separator and
+the number of digits in each group, respectively.<P>
+
+If
+   the format
+   string contains one or more &apos;,&apos; characters immediately to the left of
+   the decimal separator, then the number will be scaled. The scale factor is
+   determined by the number of group separator characters immediately to the
+   left of the decimal separator. If there are x characters, then the value is
+   divided by 1000<SUP>X</SUP> before it is formatted. For example, the format string &apos;0,,&apos;
+will divide a value by one million. Note that the presence of the &apos;,&apos;
+character to indicate scaling does not insert group separators in the
+output string. Thus, to scale a number by 1 million and insert group
+separators, use a custom format similar to &quot;#,##0,,&quot;.<P>
+
+</TD></TR>
+<TR><TD><CODE>Percentage placeholder:</CODE>
+
+The presence of a &apos;%&apos; character
+in a custom format causes a number to be multiplied by 100
+before it is formatted. The percent symbol is inserted in the output string
+at the location where the &apos;%&apos; appears in the format string. The System.Globalization.NumberFormatInfo.PercentSymbol property determines
+the percent
+symbol.</TD><TD> %
+      (percent) <CODE>Percentage placeholder:</CODE>
+
+The presence of a &apos;%&apos; character
+in a custom format causes a number to be multiplied by 100
+before it is formatted. The percent symbol is inserted in the output string
+at the location where the &apos;%&apos; appears in the format string. The System.Globalization.NumberFormatInfo.PercentSymbol property determines
+the percent
+symbol.</TD></TR>
+<TR><TD><CODE>Engineering format:</CODE>
+ If any of the strings &apos;E&apos;, &apos;E+&apos;, &apos;E-&apos;, &apos;e&apos;, &apos;e+&apos;, or &apos;e-&apos; are present
+   in a custom format and is followed immediately by at least one &apos;0&apos;
+   character, then the value is formatted using scientific notation. The number
+   of &apos;0&apos; characters following the exponent prefix (E or e) determines the
+   minimum number of digits in the exponent. The &apos;E+&apos; and &apos;e+&apos; formats indicate
+   that a positive or negative number symbol always precedes the
+   exponent. The &apos;E&apos;, &apos;E-&apos;, &apos;e&apos;, or &apos;e-&apos; formats indicate that a negative number symbol
+   precedes negative exponents; no symbol is precedes positive exponents. The
+   positive number symbol is supplied by the System.Globalization.NumberFormatInfo.PositiveSign property. The negative number symbol
+   is supplied by the System.Globalization.NumberFormatInfo.NegativeSign
+   
+   property.</TD><TD>E0<P>
+
+E+0<P>
+
+E-0<P>
+
+e0<P>
+
+e+0<P>
+
+e-0<P>
+
+<CODE>Engineering format:</CODE>
+ If any of the strings &apos;E&apos;, &apos;E+&apos;, &apos;E-&apos;, &apos;e&apos;, &apos;e+&apos;, or &apos;e-&apos; are present
+   in a custom format and is followed immediately by at least one &apos;0&apos;
+   character, then the value is formatted using scientific notation. The number
+   of &apos;0&apos; characters following the exponent prefix (E or e) determines the
+   minimum number of digits in the exponent. The &apos;E+&apos; and &apos;e+&apos; formats indicate
+   that a positive or negative number symbol always precedes the
+   exponent. The &apos;E&apos;, &apos;E-&apos;, &apos;e&apos;, or &apos;e-&apos; formats indicate that a negative number symbol
+   precedes negative exponents; no symbol is precedes positive exponents. The
+   positive number symbol is supplied by the System.Globalization.NumberFormatInfo.PositiveSign property. The negative number symbol
+   is supplied by the System.Globalization.NumberFormatInfo.NegativeSign
+   
+   property.</TD></TR>
+<TR><TD><CODE>Escape character:</CODE>
+ In some languages, such as C#, the
+   backslash character causes the next character in the custom format to be interpreted
+   as an escape sequence. It is used with C language
+   formatting sequences, such as &quot;\n&quot; (newline). In some languages, the escape character
+   itself is required to be preceded by an escape character
+   when used as a literal. Otherwise, the compiler interprets the character as
+   an escape sequence. This escape character is not required to be
+   supported in all programming languages.</TD><TD> \
+      (backslash) <CODE>Escape character:</CODE>
+ In some languages, such as C#, the
+   backslash character causes the next character in the custom format to be interpreted
+   as an escape sequence. It is used with C language
+   formatting sequences, such as &quot;\n&quot; (newline). In some languages, the escape character
+   itself is required to be preceded by an escape character
+   when used as a literal. Otherwise, the compiler interprets the character as
+   an escape sequence. This escape character is not required to be
+   supported in all programming languages.</TD></TR>
+<TR><TD><CODE>Literal string:</CODE>
+ Characters enclosed in single or double quotes are
+   copied to the output string literally, and do not affect formatting.</TD><TD>&apos;ABC&apos;<P>
+
+&quot;ABC&quot;<P>
+
+<CODE>Literal string:</CODE>
+ Characters enclosed in single or double quotes are
+   copied to the output string literally, and do not affect formatting.</TD></TR>
+<TR><TD><CODE>Section separator:</CODE>
+ The &apos;;&apos; character is used to separate sections for
+   positive, negative, and zero numbers in the format string. (This feature
+   is described in detail below.)</TD><TD> ; (semicolon)<CODE>Section separator:</CODE>
+ The &apos;;&apos; character is used to separate sections for
+   positive, negative, and zero numbers in the format string. (This feature
+   is described in detail below.)</TD></TR>
+<TR><TD><CODE>All other characters:</CODE>
+ All other characters are stored in the output
+   string as literals in the position in which they
+   appear.</TD><TD> Other<CODE>All other characters:</CODE>
+ All other characters are stored in the output
+   string as literals in the position in which they
+   appear.</TD></TR>
+</TABLE>
+Note that for fixed-point format strings (strings not containing an &apos;E0&apos;,
+   E+0&apos;, &apos;E-0&apos;, &apos;e0&apos;, &apos;e+0&apos;, or &apos;e-0&apos;), numbers are rounded to as many decimal
+   places as there are Zero or Digit placeholders to the right of the decimal
+   separator. If the custom format does not contain a decimal separator, the number is
+   rounded to the nearest integer. If the number has more digits than there are
+   Zero or Digit placeholders to the left of the decimal separator, the extra
+   digits are copied to the output string immediately before the first Zero or
+   Digit placeholder.<P>
+
+ A custom format can contain
+   up to three sections separated by section separator characters, to specify different formatting for
+   positive, negative, and zero values. The sections are interpreted as follows:<P>
+
+<UL>
+<LI><CODE>One section:</CODE>
+ The
+   custom format applies to all values (positive, negative and zero). Negative
+   values include a negative sign.</LI>
+<LI><CODE>Two sections:</CODE>
+ The
+   first section applies to positive values and zeros, and the second section
+   applies to negative values. If the value to be formatted is negative, but
+   becomes zero after rounding according to the format in the second section,
+   then the resulting zero is formatted according to the first section. Negative
+   values do not include a negative sign to allow full control over
+   representations of negative values. For example, a negative can be represented
+   in parenthesis using a custom format similar to &quot;####.####;(####.####)&quot;.</LI>
+<LI><CODE>Three sections:</CODE>
+
+The first section applies to positive values, the second section
+applies to negative values, and the third section applies to zeros. The
+second section can be empty (nothing appears between the semicolons), in which case the
+first section applies to all nonzero values, and negative values include a
+negative sign. If the number to be formatted is nonzero, but becomes zero
+after rounding according to the format in the first or second section, then
+the resulting zero is formatted according to the third section.</LI>
+</UL>
+The <A HREF="Enum.html" TARGET="contents">Enum</A> and <A HREF="DateTime.html" TARGET="contents">DateTime</A> types also support using format specifiers to format
+string representations of values. The meaning of a specific format specifier
+varies according to the kind of data (numeric, date/time, enumeration) being
+formatted. See <A HREF="Enum.html" TARGET="contents">Enum</A> and <A HREF="../System/Globalization/DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> for a comprehensive list
+of the format specifiers supported by each type.
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IFormattable Methods<P>
+
+<A HREF="#IFormattable.ToString Method" TARGET="contents">IFormattable.ToString Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IFormattable.ToString Method"><H3>IFormattable.ToString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>string ToString(string format, IFormatProvider formatProvider);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format of the returned string. If <I>format</I> is a null reference or the empty string, the default format defined for the type of the current instance is used.<P>
+
+</DD>
+<DT>formatProvider</DT>
+<DD>A <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that supplies a formatting object containing culture-specific formatting information, or <CODE>null</CODE>
+ .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the value of the current instance formatted
+   in accordance with <I>format</I> and <I>formatProvider</I> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD>The specified <I>format</I> is invalid or cannot be used with the type of the current instance.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: Conforming implementations do not throw an exception when <I>format</I>
+   and/or <I>formatProvider</I> are null references. If <I>formatProvider</I> is a null reference, the string is
+   constructed using a system-supplied formatting object containing information for
+   the current system culture. If <I>format</I> is <CODE>null</CODE>
+, the
+   string is constructed using a system-supplied default format appropriate for the
+   type of the current instance.<P>
+
+If the object returned by <I>formatProvider</I>
+supplies a culture-specific representation of symbols or patterns included in
+<I>format</I>, the returned string is required to use the information supplied 
+by <I>formatProvider</I>
+. <P>
+
+]<P>
+
+[<I>Overrides</I>: Implement to allow consumers of a class to use format strings and formatting
+   objects to control the way in which the class is represented as a string.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates using the System.IFormattable.ToString(System.String,System.IFormatProvider)
+method to display values in a variety of formats. The current system culture is
+U.S. English, which provides the default values for the <I>formatProvider</I>
+parameter of System.IFormattable.ToString(System.String,System.IFormatProvider).<P>
+
+<PRE>using System;
+class FormattableExample {
+    public static void Main() {
+    double d = 123.12345678901234;
+    string[] formats = {&quot;C&quot;,&quot;E&quot;,&quot;e&quot;,&quot;F&quot;,&quot;G&quot;,&quot;N&quot;,&quot;P&quot;,&quot;R&quot;};
+    for (int i = 0; i&lt; formats.Length;i++) 
+        Console.WriteLine(&quot;{0:R} as {1}:  {2}&quot;,d,formats[i],d.ToString(formats[i],null));
+
+    string[]intFormats = {&quot;D&quot;,&quot;x&quot;,&quot;X&quot;};
+    int val = 255;
+    for (int i = 0; i&lt; intFormats.Length;i++) 
+        Console.WriteLine(&quot;{0} as {1}:  {2}&quot;,val,intFormats[i],val.ToString(intFormats[i],null));
+
+    }
+}
+</PRE>
+The output is<P>
+
+<CODE>123.12345678901234 as C: $123.12<P>
+
+123.12345678901234 as E: 1.231235E+002<P>
+
+123.12345678901234 as e: 1.231235e+002<P>
+
+123.12345678901234 as F: 123.12<P>
+
+123.12345678901234 as G: 123.123456789012<P>
+
+123.12345678901234 as N: 123.12<P>
+
+123.12345678901234 as P: 12,312.35 %<P>
+
+123.12345678901234 as R: 123.12345678901234<P>
+
+255 as D: 255<P>
+
+255 as x: ff<P>
+
+255 as X: FF<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IFormattable.html" TARGET="contents">System.IFormattable Interface</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

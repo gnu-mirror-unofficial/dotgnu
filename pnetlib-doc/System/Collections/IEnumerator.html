@@ -1,0 +1,308 @@
+<HTML>
+<HEAD>
+<TITLE>System.Collections.IEnumerator Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Collections.IEnumerator Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public interface IEnumerator</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Implemented by classes that support a simple iteration over a collection.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <A HREF="IEnumerator.html" TARGET="contents">IEnumerator</A> contains the System.Collections.IEnumerator.MoveNext and System.Collections.IEnumerator.Reset methods and the System.Collections.IEnumerator.Current property. The consumer of an
+      object should call these methods or use this property when iterating over or
+      reading the elements of a collection.<P>
+
+When an enumerator is instantiated or a call is made to
+   System.Collections.IEnumerator.Reset, the enumerator is positioned immediately
+      before the first element of the collection and a snapshot of the collection is
+      taken. When the enumerator is in this position, a
+      call to System.Collections.IEnumerator.MoveNext is necessary before
+      reading System.Collections.IEnumerator.Current
+      from the collection. If changes are made to the collection, such as adding,
+      modifying or deleting elements, the snapshot gets out of sync and the enumerator
+      throws a <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>. Two enumerators instantiated from the same collection
+      at the same time can have different snapshots of the collection.<P>
+
+ Enumerators are intended to
+      be used only to read data in the collection.<P>
+
+An enumerator does not have exclusive access to the collection for which it was instantiated.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IEnumerator Methods<P>
+
+<A HREF="#IEnumerator.MoveNext Method" TARGET="contents">IEnumerator.MoveNext Method</A><BR>
+<A HREF="#IEnumerator.Reset Method" TARGET="contents">IEnumerator.Reset Method</A><BR>
+<P>
+
+IEnumerator Properties<P>
+
+<A HREF="#IEnumerator.Current Property" TARGET="contents">IEnumerator.Current Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IEnumerator.MoveNext Method"><H3>IEnumerator.MoveNext Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool MoveNext();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Advances the current instance to the next element of the collection.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the current instance was successfully advanced to the next element;
+<CODE>false</CODE>
+ if the current instance has passed the end of the collection.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The collection was modified after the current instance was instantiated.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: When the current
+      instance is constructed or after System.Collections.IEnumerator.Reset is
+      called, the current instance
+      is positioned immediately before the first element of the collection. Use System.Collections.IEnumerator.MoveNext to position it over the first
+      element of the collection.]<P>
+
+<P>
+
+[<I>Behaviors</I>: A call to
+   System.Collections.IEnumerator.MoveNext is required to position the
+      current instance over the next element in the collection and return
+   <CODE>true</CODE>
+ if the current instance was not
+      positioned beyond the last element of the collection when System.Collections.IEnumerator.MoveNext was
+      called.
+      If the current instance is already positioned immediately after the last
+      element of the collection, a call to System.Collections.IEnumerator.MoveNext is required to
+      return <CODE>false</CODE>
+, and the current instance
+      is required to remain in the same
+      position. If elements are added, removed, or repositioned in the
+      collection after the current instance was instantiated, it is required that a call
+      to System.Collections.IEnumerator.MoveNext
+      throw <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>.]<P>
+
+<P>
+
+[<I>Usage</I>: Use the System.Collections.IEnumerator.MoveNext method to check if the current
+instance is positioned immediately after the last element of the collection, and
+to position it over the next element if it is not already past the last element
+of the collection. This allows the use of a conditional loop to iterate over the
+entire collection.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IEnumerator.html" TARGET="contents">System.Collections.IEnumerator Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IEnumerator.Reset Method"><H3>IEnumerator.Reset Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>void Reset();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Positions the enumerator immediately before
+      the first element in the collection.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The collection was modified after the enumerator was instantiated.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: When the current instance is constructed
+      or after System.Collections.IEnumerator.Reset is called, the current instance
+      is positioned immediately before the first element of the collection, use System.Collections.IEnumerator.MoveNext to position the current instance
+      over the first element of the collection. ]<P>
+
+<P>
+
+[<I>Behaviors</I>: A call to
+      System.Collections.IEnumerator.Reset is required to position
+      the current instance immediately before the first element of the collection.
+      If elements are added, removed, or repositioned in the collection
+      after the current instance was instantiated, it is required that
+      a call to System.Collections.IEnumerator.Reset throw a <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: A call to System.Collections.IEnumerator.Reset can involve taking a new snapshot of the
+collection or simply moving to the beginning of the collection. The preferred
+implementation is to simply move the current instance to
+the beginning of the collection, before the first
+element. This invalidates the current instance
+if the collection has been modified since the current instance was
+constructed, which is consistent with System.Collections.IEnumerator.MoveNext and System.Collections.IEnumerator.Current.]<P>
+
+<P>
+
+[<I>Usage</I>: Use the System.Collections.IEnumerator.MoveNext method to check if the current
+instance is positioned immediately past the last element of the collection, and
+to position it over the next element if it is not already past the last element
+of the collection.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IEnumerator.html" TARGET="contents">System.Collections.IEnumerator Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IEnumerator.Current Property"><H3>IEnumerator.Current Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>object Current { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the element in the collection over which the current instance is positioned.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ The element in the collection over which the current instance is positioned.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD> The current instance is positioned before the first element or after the last element of the collection.<P>
+
+The collection was modified after the current instance was instantiated.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: When the current instance is constructed
+      or after System.Collections.IEnumerator.Reset is called, use System.Collections.IEnumerator.MoveNext to position the current instance
+      over the first element of the collection. ]<P>
+
+<P>
+
+[<I>Behaviors</I>: It is required that System.Collections.IEnumerator.Current return the element in the collection over which the current
+      instance is positioned unless it is positioned before the first or after
+      the last element of the collection. If the current instance is
+      positioned before the first element or after the last element of the
+      collection, or elements were added, removed, or repositioned in the collection after the current
+      instance was instantiated, System.Collections.IEnumerator.Current is required to throw <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>.<P>
+
+It is also required that System.Collections.IEnumerator.Current not change the position of
+   the current instance: consecutive calls to System.Collections.IEnumerator.Current are required to return the same object until
+   either System.Collections.IEnumerator.MoveNext or System.Collections.IEnumerator.Reset is called.<P>
+
+This property is read-only.<P>
+
+]<P>
+
+[<I>Usage</I>: Use System.Collections.IEnumerator.Current to get the element in
+the collection over which the current instance is positioned, provided that the current
+instance is not positioned before the first element
+or after the last element of the collection.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IEnumerator.html" TARGET="contents">System.Collections.IEnumerator Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

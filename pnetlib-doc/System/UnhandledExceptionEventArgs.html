@@ -1,0 +1,204 @@
+<HTML>
+<HEAD>
+<TITLE>System.UnhandledExceptionEventArgs Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.UnhandledExceptionEventArgs Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class UnhandledExceptionEventArgs : EventArgs</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="EventArgs.html" TARGET="contents">EventArgs</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;UnhandledExceptionEventArgs<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Provides data for the event that is raised when an exception is not caught by the program code executing in an application
+      domain.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="UnhandledExceptionEventArgs.html" TARGET="contents">UnhandledExceptionEventArgs</A> provides access to the
+   uncaught <A HREF="Exception.html" TARGET="contents">Exception</A> and a property indicating whether the system will terminate the current
+   process. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+UnhandledExceptionEventArgs Constructors<P>
+
+<A HREF="#UnhandledExceptionEventArgs Constructor" TARGET="contents">UnhandledExceptionEventArgs Constructor</A><BR>
+<P>
+
+UnhandledExceptionEventArgs Properties<P>
+
+<A HREF="#UnhandledExceptionEventArgs.ExceptionObject Property" TARGET="contents">UnhandledExceptionEventArgs.ExceptionObject Property</A><BR>
+<A HREF="#UnhandledExceptionEventArgs.IsTerminating Property" TARGET="contents">UnhandledExceptionEventArgs.IsTerminating Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="UnhandledExceptionEventArgs Constructor"><H3>UnhandledExceptionEventArgs Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public UnhandledExceptionEventArgs(object exception, bool isTerminating);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="UnhandledExceptionEventArgs.html" TARGET="contents">UnhandledExceptionEventArgs</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>exception</DT>
+<DD>The exception that was not caught.</DD>
+<DT>isTerminating</DT>
+<DD><CODE>true</CODE>
+ if the system will terminate the current process; otherwise, <CODE>false</CODE>
+.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.UnhandledExceptionEventArgs.ExceptionObject property using <I>exception</I>, and the System.UnhandledExceptionEventArgs.IsTerminating property using <I>isTerminating</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UnhandledExceptionEventArgs.html" TARGET="contents">System.UnhandledExceptionEventArgs Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="UnhandledExceptionEventArgs.ExceptionObject Property"><H3>UnhandledExceptionEventArgs.ExceptionObject Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public object ExceptionObject { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the uncaught exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Object.html" TARGET="contents">Object</A>, typically a <A HREF="Exception.html" TARGET="contents">Exception</A>, that is the cause of the current event.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UnhandledExceptionEventArgs.html" TARGET="contents">System.UnhandledExceptionEventArgs Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="UnhandledExceptionEventArgs.IsTerminating Property"><H3>UnhandledExceptionEventArgs.IsTerminating Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool IsTerminating { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="Boolean.html" TARGET="contents">Boolean</A> value indicating whether the system is terminating the current process.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the
+   system will end the current process as a result
+   of the
+   current unhandled exception; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: This property returns
+   <CODE>true</CODE>
+
+   when an exception is received in, but not handled by, an application&apos;s
+   main thread. This property also returns <CODE>true</CODE>
+
+   if an unmanaged thread is executing managed code and receives an unhandled
+   exception. System.UnhandledExceptionEventArgs.IsTerminating
+   returns <CODE>false</CODE>
+ for managed threads created
+   by an application, and for unhandled exceptions thrown
+   during object finalization.]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UnhandledExceptionEventArgs.html" TARGET="contents">System.UnhandledExceptionEventArgs Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,1620 @@
+<HTML>
+<HEAD>
+<TITLE>System.IO.File Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.IO.File Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class File</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;File<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides information and performs operations on
+      files
+      .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Implementations of this class are required to
+      preserve the case of path strings. Implementations are required to be case
+      sensitive if and only if the platform is case-sensitive. <P>
+
+The following table describes the enumerations that are
+      used to customize the behavior of various <A HREF="File.html" TARGET="contents">File</A> methods.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>EnumerationDescription</TH></TR>
+<TR><TD>Specifies read and write access to a
+         file.</TD><TD><A HREF="FileAccess.html" TARGET="contents">FileAccess</A>Specifies read and write access to a
+         file.</TD></TR>
+<TR><TD>Specifies the level of access permitted for a file that is already in
+      use.</TD><TD><A HREF="FileShare.html" TARGET="contents">FileShare</A>Specifies the level of access permitted for a file that is already in
+      use.</TD></TR>
+<TR><TD>Specifies whether the contents of an existing file are preserved or
+   overwritten, and whether requests to create an existing file cause an
+   exception.</TD><TD><A HREF="FileMode.html" TARGET="contents">FileMode</A>Specifies whether the contents of an existing file are preserved or
+   overwritten, and whether requests to create an existing file cause an
+   exception.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+File Methods<P>
+
+<A HREF="#File.AppendText Method" TARGET="contents">File.AppendText Method</A><BR>
+<A HREF="#File.Copy(System.String, System.String) Method" TARGET="contents">File.Copy(System.String, System.String) Method</A><BR>
+<A HREF="#File.Copy(System.String, System.String, bool) Method" TARGET="contents">File.Copy(System.String, System.String, bool) Method</A><BR>
+<A HREF="#File.Create(System.String) Method" TARGET="contents">File.Create(System.String) Method</A><BR>
+<A HREF="#File.Create(System.String, int) Method" TARGET="contents">File.Create(System.String, int) Method</A><BR>
+<A HREF="#File.CreateText Method" TARGET="contents">File.CreateText Method</A><BR>
+<A HREF="#File.Delete Method" TARGET="contents">File.Delete Method</A><BR>
+<A HREF="#File.Exists Method" TARGET="contents">File.Exists Method</A><BR>
+<A HREF="#File.GetCreationTime Method" TARGET="contents">File.GetCreationTime Method</A><BR>
+<A HREF="#File.GetLastAccessTime Method" TARGET="contents">File.GetLastAccessTime Method</A><BR>
+<A HREF="#File.GetLastWriteTime Method" TARGET="contents">File.GetLastWriteTime Method</A><BR>
+<A HREF="#File.Move Method" TARGET="contents">File.Move Method</A><BR>
+<A HREF="#File.Open(System.String, System.IO.FileMode) Method" TARGET="contents">File.Open(System.String, System.IO.FileMode) Method</A><BR>
+<A HREF="#File.Open(System.String, System.IO.FileMode, System.IO.FileAccess) Method" TARGET="contents">File.Open(System.String, System.IO.FileMode, System.IO.FileAccess) Method</A><BR>
+<A HREF="#File.Open(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare) Method" TARGET="contents">File.Open(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare) Method</A><BR>
+<A HREF="#File.OpenRead Method" TARGET="contents">File.OpenRead Method</A><BR>
+<A HREF="#File.OpenText Method" TARGET="contents">File.OpenText Method</A><BR>
+<A HREF="#File.OpenWrite Method" TARGET="contents">File.OpenWrite Method</A><BR>
+<A HREF="#File.SetCreationTime Method" TARGET="contents">File.SetCreationTime Method</A><BR>
+<A HREF="#File.SetLastAccessTime Method" TARGET="contents">File.SetLastAccessTime Method</A><BR>
+<A HREF="#File.SetLastWriteTime Method" TARGET="contents">File.SetLastWriteTime Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="File.AppendText Method"><H3>File.AppendText Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static StreamWriter AppendText(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Appends UTF-8 encoded text to an existing file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file to append to.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> that appends UTF-8 encoded text to the
+   specified file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more invalid characters.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> (<I>path</I>, <CODE>true</CODE>
+
+). If the file specified by <I>path</I> does not exist, it is created. If the file does
+exist, writes to the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> append
+text to the
+file. Additional threads are permitted to read the file while it is
+open.<P>
+
+The <I>path</I> argument is permitted
+to specify relative or absolute path information. Relative path information is
+interpreted as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.Copy(System.String, System.String) Method"><H3>File.Copy(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Copy(string sourceFileName, string destFileName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Copies the specified file to a new location.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>sourceFileName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file to copy.</DD>
+<DT>destFileName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the destination file. Cannot specify a directory or an existing file.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>destFileName</I> exists.<P>
+
+-or-<P>
+
+ An I/O error occurred.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>sourceFileName </I>or <I>destFileName </I>is <CODE>null</CODE>
+. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>sourceFileName </I>or <I>destFileName </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters. <P>
+
+-or-<P>
+
+<I>sourceFileName </I>or <I>destFileName</I> specifies a directory.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>Directory information in <I>sourceFileName</I> or <I>destFileName</I> was not found.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>sourceFileName </I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length or the absolute path information for <I>sourceFileName</I> or <I>destFileName</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to System.IO.File.Copy(System.String,System.String)
+(<I>sourceFileName</I>, <I>destFileName</I>, <CODE>false</CODE>
+).<P>
+
+The <I>sourceFileName </I>and <I>destFileName</I> arguments are permitted to specify
+relative or absolute path information. Relative path information is interpreted
+as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.Copy(System.String, System.String, bool) Method"><H3>File.Copy(System.String, System.String, bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Copy(string sourceFileName, string destFileName, bool overwrite);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Copies the specified file to a new location.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>sourceFileName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file to copy.</DD>
+<DT>destFileName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the destination file. Cannot specify the name of a directory.</DD>
+<DT>overwrite</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value. Specify <CODE>true</CODE>
+ if the destination file can be overwritten; otherwise <CODE>false</CODE>
+.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>destFileName</I> is read-only (write-protected), or <I>destFileName</I> exists and <I>overwrite</I> is <CODE>false</CODE>
+ .<P>
+
+-or-<P>
+
+ An I/O error occurred.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>sourceFileName </I>or <I>destFileName </I>is <CODE>null</CODE>
+. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>sourceFileName</I> or <I>destFileName</I> is a zero-length string, contains only white space, or contains one or more invalid characters.<P>
+
+-or-<P>
+
+<I>sourceFileName</I> or <I>destFileName</I> specifies a directory.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>Directory information in <I>destFileName</I> or <I>sourceFileName</I> was not found.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>sourceFileName </I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length or the absolute path information for <I>sourceFileName</I> or <I>destFileName</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>sourceFileName </I>and <I>destFileName</I> arguments are
+   permitted to specify relative or absolute path information. Relative path
+   information is interpreted as relative to the current working directory.
+   [<I>Note</I>: To obtain the current working directory,
+      see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.Create(System.String) Method"><H3>File.Create(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static FileStream Create(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Creates or overwrites the specified file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="FileStream.html" TARGET="contents">FileStream</A> that provides read/write access to the specified file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while creating the file.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a file that is read-only (write-protected).</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is equivalent to System.IO.File.Create(System.String) (<I>path</I>, System.IO.FileStream.DefaultBufferSize
+).<P>
+
+If the specified file does not exist, it is created; if it does exist and it is not read-only, the
+   contents are overwritten.<P>
+
+The <I>path</I>
+argument is permitted to specify relative or absolute path
+information. Relative path information is interpreted as relative to the current
+working directory. [<I>Note</I>: To obtain the current
+working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.Create(System.String, int) Method"><H3>File.Create(System.String, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static FileStream Create(string path, int bufferSize);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Creates or overwrites the specified file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file.</DD>
+<DT> bufferSize</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes buffered for reads and writes to the file.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="FileStream.html" TARGET="contents">FileStream</A> that provides read/write access to the specified file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while creating the file.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a file that is read-only (write-protected).</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is equivalent to <A HREF="FileStream.html" TARGET="contents">FileStream</A> (<I>path</I>, System.IO.FileMode.Create, System.IO.FileAccess.ReadWrite,
+System.IO.FileShare.None
+, <I>bufferSize</I>).<P>
+
+ If the specified file does not exist, it is created; if it does exist and it is
+   not read-only, the contents are
+   overwritten.<P>
+
+The <I>path</I>
+argument is permitted to specify relative or absolute path
+information. Relative path information is interpreted as relative to the current
+working directory. [<I>Note</I>: To obtain the current
+working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.CreateText Method"><H3>File.CreateText Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static StreamWriter CreateText(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Creates or opens a new file for writing UTF-8 encoded text.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>The file to be opened for writing.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> that writes to the specified file using UTF-8 encoding.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> (<I>path</I>, <CODE>false</CODE>
+
+). If the file specified by <I>path</I>
+does not exist, it is created. If
+the file does exist, its contents are overwritten. Additional threads are permitted
+to read the file while it is open. <P>
+
+The <I>path</I>
+argument is permitted to specify relative or absolute path
+information. Relative path information is interpreted as relative to the current
+working directory. To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.Delete Method"><H3>File.Delete Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Delete(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Deletes the specified file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file to be deleted.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The specified file is in use.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> identifies a directory.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>path</I>
+argument is permitted to specify relative or absolute path
+information. Relative path information is interpreted as relative to the current
+working directory. [<I>Note</I>: To obtain the current
+working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.Exists Method"><H3>File.Exists Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool Exists(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> indicating whether the specified file exists.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file to check.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the caller
+   has the required permissions and <I>path</I> contains the name of an existing file; otherwise, <CODE>false</CODE>
+. If <I>path</I> is <CODE>null</CODE>
+ or a
+   zero-length string, returns <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the caller does not have sufficient permissions to
+      read the specified file, no exception is thrown and the method returns <CODE>false</CODE>
+ regardless of the existence of <I>path</I>.<P>
+
+The <I>path </I> argument is permitted to specify
+   relative or absolute path information. Relative path information is interpreted
+   as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.GetCreationTime Method"><H3>File.GetCreationTime Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime GetCreationTime(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the creation date and time of the specified file or directory.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file or directory for which to obtain creation date and time information.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> structure set
+   to the creation date and time for the specified file or directory. This value is expressed in local time.<P>
+
+Platforms that do not
+   support this feature return System.DateTime.MinValue.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>path</I> argument is permitted to specify
+   relative or absolute path information. Relative path information is interpreted
+   as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.GetLastAccessTime Method"><H3>File.GetLastAccessTime Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime GetLastAccessTime(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the date and time the specified file or directory was last accessed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file or directory for which to obtain access date and time information.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> structure set to
+   the date and time the specified file or directory was last accessed. This value is expressed in local time.<P>
+
+Platforms that do not
+   support this feature return System.DateTime.MinValue.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>path</I> argument is permitted to specify
+   relative or absolute path information. Relative path information is interpreted
+   as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.GetLastWriteTime Method"><H3>File.GetLastWriteTime Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static DateTime GetLastWriteTime(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the date and time the specified file or directory was last written to.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file for which to obtain write date and time information.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> structure set to
+   the date and time the specified file or directory was last written to. This value is expressed in local time.<P>
+
+Platforms that do not
+   support this feature return System.DateTime.MinValue.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>path</I> argument is permitted to specify
+   relative or absolute path information. Relative path information is interpreted
+   as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.Move Method"><H3>File.Move Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Move(string sourceFileName, string destFileName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Moves the specified file to a new location.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>sourceFileName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file to move.</DD>
+<DT>destFileName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the new location for the file.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The destination file is read-only or <I>destFileName</I> is a directory.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>sourceFileName </I>or <I>destFileName </I>is <CODE>null</CODE>
+. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>sourceFileName </I>or <I>destFileName </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters. <P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information in <I>sourceFileName</I> or <I>destFileName</I> was not found.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>sourceFileName </I>was not found or specifies a directory.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length or absolute path information for <I>sourceFileName</I> or <I>destFileName</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method does not throw an exception if the source and destination are the same.<P>
+
+The <I>sourceFileName </I>and <I>destFileName</I> arguments are
+   permitted to specify relative or absolute path information. Relative path
+   information is interpreted as relative to the current working directory.
+   [<I>Note</I>: To obtain the current working directory,
+      see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.Open(System.String, System.IO.FileMode) Method"><H3>File.Open(System.String, System.IO.FileMode) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static FileStream Open(string path, FileMode mode);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Opens a <A HREF="FileStream.html" TARGET="contents">FileStream</A> on the specified file
+   with read/write access.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file to open.</DD>
+<DT> mode</DT>
+<DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> value that specifies whether a file is created if one does not exist, and determines whether the contents of existing files are retained or overwritten.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="FileStream.html" TARGET="contents">FileStream</A> that provides read/write access to the specified file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.<P>
+
+</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>mode</I> specified an invalid value.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while opening the file.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a read-only file (this method attempts to open the file with read/write access).<P>
+
+-or-<P>
+
+ This operation is not supported on the current platform.<P>
+
+-or-<P>
+
+<I>path</I> specified a directory.<P>
+
+</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is equivalent to <A HREF="FileStream.html" TARGET="contents">FileStream</A> (<I>path</I>,
+<I>mode</I>, System.IO.FileAccess.ReadWrite, 
+System.IO.FileShare.None 
+).<P>
+
+The <I>path </I> argument is permitted to specify
+relative or absolute path information. Relative path information is interpreted
+as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.Open(System.String, System.IO.FileMode, System.IO.FileAccess) Method"><H3>File.Open(System.String, System.IO.FileMode, System.IO.FileAccess) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static FileStream Open(string path, FileMode mode, FileAccess access);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Opens a <A HREF="FileStream.html" TARGET="contents">FileStream</A> on
+   the specified file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file to open.</DD>
+<DT> mode</DT>
+<DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> value that specifies whether a file is created if one does not exist, and determines whether the contents of existing files are retained or overwritten.</DD>
+<DT> access</DT>
+<DD>A <A HREF="FileAccess.html" TARGET="contents">FileAccess</A> value that specifies the operations that can be performed on the file.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="FileStream.html" TARGET="contents">FileStream</A>
+that provides access to the specified file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.<P>
+
+-or-<P>
+
+<I>access</I> specified <CODE>Read</CODE>
+ and <I>mode</I> specified <CODE>Create</CODE>
+, <CODE>CreateNew</CODE>
+, <CODE>Truncate</CODE>
+ or <CODE>Append</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>mode</I> or <I>access</I> specified an invalid value.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while opening the file.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a read-only file and <I>access</I> is not <CODE>Read</CODE>
+, or <I>path</I> specified a directory.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is equivalent to <A HREF="FileStream.html" TARGET="contents">FileStream</A> (<I>path</I>,
+<I>mode</I>, <I>access</I>, System.IO.FileShare.None ).<P>
+
+The <I>path </I> argument is permitted to specify
+relative or absolute path information. Relative path information is interpreted
+as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.Open(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare) Method"><H3>File.Open(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static FileStream Open(string path, FileMode mode, FileAccess access, FileShare share);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Opens a <A HREF="FileStream.html" TARGET="contents">FileStream</A> on the specified file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file to open.</DD>
+<DT> mode</DT>
+<DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> value that specifies whether a file is created if one does not exist, and determines whether the contents of existing files are retained or overwritten.</DD>
+<DT> access</DT>
+<DD>A <A HREF="FileAccess.html" TARGET="contents">FileAccess</A> value that specifies the operations that can be performed on the file.</DD>
+<DT> share</DT>
+<DD>A <A HREF="FileShare.html" TARGET="contents">FileShare</A> value specifying the type of access other threads have to the file.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="FileStream.html" TARGET="contents">FileStream</A>
+that provides access to the specified file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.<P>
+
+-or-<P>
+
+<I>access</I> specified <CODE>Read</CODE>
+ and <I>mode</I> specified <CODE>Create</CODE>
+, <CODE>CreateNew</CODE>
+, <CODE>Truncate</CODE>
+ or <CODE>Append</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>mode</I>, <I>access</I>, or <I>share</I> specified an invalid value.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while opening the file.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a read-only file and <I>access</I> is not <CODE>Read</CODE>
+, or <I>path</I> specified a directory.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is equivalent to <A HREF="FileStream.html" TARGET="contents">FileStream</A> (<I>path</I>,
+<I>mode</I>, <I>access</I>, <I>share</I>).<P>
+
+The <I>path </I> argument is permitted to specify
+relative or absolute path information. Relative path information is interpreted
+as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.OpenRead Method"><H3>File.OpenRead Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static FileStream OpenRead(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Opens an
+      existing file for reading.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file to be opened for reading.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A read-only <A HREF="FileStream.html" TARGET="contents">FileStream</A> containing the contents of the specified file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path </I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a read-only (write-protected) file or a directory.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to <A HREF="FileStream.html" TARGET="contents">FileStream</A> (<I>path</I>, System.IO.FileMode.Open, System.IO.FileAccess.Read,
+System.IO.FileShare.Read ).<P>
+
+The <I>path </I> argument is permitted to specify
+relative or absolute path information. Relative path information is interpreted
+as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.OpenText Method"><H3>File.OpenText Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static StreamReader OpenText(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Opens an existing UTF-8 encoded text file
+      for reading.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file to be opened for reading.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> containing the contents of the
+   specified file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is equivalent to <A HREF="StreamReader.html" TARGET="contents">StreamReader</A>
+(<I>path</I>). <P>
+
+The <I>path </I> argument is permitted to specify
+relative or absolute path information. Relative path information is interpreted
+as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.OpenWrite Method"><H3>File.OpenWrite Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static FileStream OpenWrite(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Opens an
+      existing file for writing.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file to be opened for writing.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A writable <A HREF="FileStream.html" TARGET="contents">FileStream</A> that writes to the file specified by
+<I>path</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a read-only file or a directory.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to <A HREF="FileStream.html" TARGET="contents">FileStream</A> (<I>path</I>, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.Write,
+System.IO.FileShare.None ).<P>
+
+The <I>path </I> argument is permitted to specify
+relative or absolute path information. Relative path information is interpreted
+as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.SetCreationTime Method"><H3>File.SetCreationTime Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void SetCreationTime(string path, DateTime creationTime);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sets the creation date and time for the specified file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file for which to set the creation date and time information.</DD>
+<DT> creationTime</DT>
+<DD>A <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> containing the value to set for the creation date and time of <I>path</I>. This value is expressed in local time.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>creationTime </I> specifies a value outside the range of date/times permitted for this operation.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while performing the operation.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>path</I> argument is permitted to specify
+   relative or absolute path information. Relative path information is interpreted
+   as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+On platforms that do not support
+   this feature, this method has no effect. If this feature is supported, the range of dates that
+   is valid for this operation
+   is implementation-specific. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.SetLastAccessTime Method"><H3>File.SetLastAccessTime Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void SetLastAccessTime(string path, DateTime lastAccessTime);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sets the date and time the specified file was last accessed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file for which to set the access date and time information.</DD>
+<DT>lastAccessTime</DT>
+<DD>A <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> containing the value to set for the access date and time of <I>path</I>. This value is expressed in local time.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>path</I> argument is permitted to specify
+   relative or absolute path information. Relative path information is interpreted
+   as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+On platforms that do not
+   support this feature, this method has no effect. If this feature is
+   supported, the range of dates that is valid for this operation
+   is implementation-specific. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="File.SetLastWriteTime Method"><H3>File.SetLastWriteTime Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void SetLastWriteTime(string path, DateTime lastWriteTime);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sets the date and time a file was last written to.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file for which to set the date and time information.</DD>
+<DT>lastWriteTime</DT>
+<DD>A <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> containing the value to set for the last write date and time of <I>path</I>. This value is expressed in local time.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>path</I> argument is permitted to specify
+   relative or absolute path information. Relative path information is interpreted
+   as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+On platforms that do not
+   support this feature, this method has no effect. If this feature is
+   supported, the range of dates that is valid for this operation
+   is implementation-specific. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="File.html" TARGET="contents">System.IO.File Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

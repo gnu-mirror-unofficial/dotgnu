@@ -1,0 +1,2175 @@
+<HTML>
+<HEAD>
+<TITLE>System.Text.Encoding Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Text.Encoding Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class Encoding</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Encoding<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents a character
+      encoding.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ Characters are abstract entities that can be represented using
+      many different character schemes or codepages. For example, Unicode UTF-16 encoding
+      represents, or encodes, characters as sequences of 16-bit integers while
+      Unicode UTF-8 represents the same characters as sequences of 8-bit bytes.<P>
+
+The BCL includes the following types derived
+      from <A HREF="Encoding.html" TARGET="contents">Encoding</A>:<P>
+
+<UL>
+<LI><A HREF="ASCIIEncoding.html" TARGET="contents">ASCIIEncoding</A> - encodes Unicode characters as
+         7-bit ASCII characters. This encoding only supports code points between U+0000
+         and U+007F inclusive.<P>
+
+</LI>
+<LI><A HREF="UnicodeEncoding.html" TARGET="contents">UnicodeEncoding</A> - encodes each
+         Unicode character as two consecutive bytes. Both little-endian and big-endian byte
+         orders are supported.<P>
+
+</LI>
+<LI><A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A> - encodes Unicode characters using
+         the UTF-8 (UCS Transformation Format, 8-bit form) encoding. This encoding
+         supports all Unicode character values.<P>
+
+</LI>
+</UL>
+ An application can use the
+   properties of this class such as System.Text.Encoding.ASCII, System.Text.Encoding.Default, System.Text.Encoding.Unicode,
+   and System.Text.Encoding.UTF8 to obtain encodings. Applications can
+   initialize new instances of <A HREF="Encoding.html" TARGET="contents">Encoding</A> objects through the
+<A HREF="ASCIIEncoding.html" TARGET="contents">ASCIIEncoding</A>, <A HREF="UnicodeEncoding.html" TARGET="contents">UnicodeEncoding</A>, and <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A> 
+classes.<P>
+
+Through an encoding, the System.Text.Encoding.GetBytes(System.Char[]) method is used to convert
+arrays of Unicode characters to arrays of bytes, and the System.Text.Encoding.GetChars(System.Byte[]) method is used to convert arrays of bytes
+to arrays of Unicode characters. The System.Text.Encoding.GetBytes(System.Char[]) and System.Text.Encoding.GetChars(System.Byte[]) methods maintain no state between
+conversions. When the data to be converted is only available in sequential
+blocks (such as data read from a stream) or when the amount of data is so large
+that it needs to be divided into smaller blocks, an application can choose to
+use a <A HREF="Decoder.html" TARGET="contents">Decoder</A> or a
+<A HREF="Encoder.html" TARGET="contents">Encoder</A> to perform 
+the conversion. Decoders and encoders allow sequential blocks of data to be
+converted and they maintain the state required to support conversions of data
+that spans adjacent blocks. Decoders and encoders are obtained using
+the System.Text.Encoding.GetDecoder and System.Text.Encoding.GetEncoder methods.<P>
+
+The core System.Text.Encoding.GetBytes(System.Char[]) and System.Text.Encoding.GetChars(System.Byte[]) methods require the caller to provide the 
+destination buffer and ensure that the buffer is large enough to hold the entire
+result of the conversion. When using these methods, either directly on a
+<A HREF="Encoding.html" TARGET="contents">Encoding</A> object or on an associated <A HREF="Decoder.html" TARGET="contents">Decoder</A> or 
+<A HREF="Encoder.html" TARGET="contents">Encoder</A>, an
+application can use one of two methods to allocate destination buffers.<P>
+
+<OL>
+<LI>The System.Text.Encoding.GetByteCount(System.Char[]) and System.Text.Encoding.GetCharCount(System.Byte[]) methods can be used to
+      compute the exact size of the result of a particular conversion, and an
+      appropriately sized buffer for that conversion can then be allocated.<P>
+
+</LI>
+<LI>The System.Text.Encoding.GetMaxByteCount(System.Int32) and System.Text.Encoding.GetMaxCharCount(System.Int32) methods can 
+      be used to compute the maximum possible size of a conversion of a given
+      number of characters or bytes, regardless of the actual character or byte values, and a
+      buffer of that size can then be reused for multiple conversions. <P>
+
+</LI>
+</OL>
+The first method generally uses less memory, whereas the second method
+   generally executes faster. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Encoding Constructors<P>
+
+<A HREF="#Encoding Constructor" TARGET="contents">Encoding Constructor</A><BR>
+<P>
+
+Encoding Methods<P>
+
+<A HREF="#Encoding.Convert(System.Text.Encoding, System.Text.Encoding, byte[]) Method" TARGET="contents">Encoding.Convert(System.Text.Encoding, System.Text.Encoding, byte[]) Method</A><BR>
+<A HREF="#Encoding.Convert(System.Text.Encoding, System.Text.Encoding, byte[], int, int) Method" TARGET="contents">Encoding.Convert(System.Text.Encoding, System.Text.Encoding, byte[], int, int) Method</A><BR>
+<A HREF="#Encoding.Equals Method" TARGET="contents">Encoding.Equals Method</A><BR>
+<A HREF="#Encoding.GetByteCount(char[], int, int) Method" TARGET="contents">Encoding.GetByteCount(char[], int, int) Method</A><BR>
+<A HREF="#Encoding.GetByteCount(System.String) Method" TARGET="contents">Encoding.GetByteCount(System.String) Method</A><BR>
+<A HREF="#Encoding.GetByteCount(char[]) Method" TARGET="contents">Encoding.GetByteCount(char[]) Method</A><BR>
+<A HREF="#Encoding.GetBytes(System.String, int, int, byte[], int) Method" TARGET="contents">Encoding.GetBytes(System.String, int, int, byte[], int) Method</A><BR>
+<A HREF="#Encoding.GetBytes(System.String) Method" TARGET="contents">Encoding.GetBytes(System.String) Method</A><BR>
+<A HREF="#Encoding.GetBytes(char[], int, int, byte[], int) Method" TARGET="contents">Encoding.GetBytes(char[], int, int, byte[], int) Method</A><BR>
+<A HREF="#Encoding.GetBytes(char[], int, int) Method" TARGET="contents">Encoding.GetBytes(char[], int, int) Method</A><BR>
+<A HREF="#Encoding.GetBytes(char[]) Method" TARGET="contents">Encoding.GetBytes(char[]) Method</A><BR>
+<A HREF="#Encoding.GetCharCount(byte[], int, int) Method" TARGET="contents">Encoding.GetCharCount(byte[], int, int) Method</A><BR>
+<A HREF="#Encoding.GetCharCount(byte[]) Method" TARGET="contents">Encoding.GetCharCount(byte[]) Method</A><BR>
+<A HREF="#Encoding.GetChars(byte[], int, int, char[], int) Method" TARGET="contents">Encoding.GetChars(byte[], int, int, char[], int) Method</A><BR>
+<A HREF="#Encoding.GetChars(byte[], int, int) Method" TARGET="contents">Encoding.GetChars(byte[], int, int) Method</A><BR>
+<A HREF="#Encoding.GetChars(byte[]) Method" TARGET="contents">Encoding.GetChars(byte[]) Method</A><BR>
+<A HREF="#Encoding.GetDecoder Method" TARGET="contents">Encoding.GetDecoder Method</A><BR>
+<A HREF="#Encoding.GetEncoder Method" TARGET="contents">Encoding.GetEncoder Method</A><BR>
+<A HREF="#Encoding.GetHashCode Method" TARGET="contents">Encoding.GetHashCode Method</A><BR>
+<A HREF="#Encoding.GetMaxByteCount Method" TARGET="contents">Encoding.GetMaxByteCount Method</A><BR>
+<A HREF="#Encoding.GetMaxCharCount Method" TARGET="contents">Encoding.GetMaxCharCount Method</A><BR>
+<A HREF="#Encoding.GetPreamble Method" TARGET="contents">Encoding.GetPreamble Method</A><BR>
+<A HREF="#Encoding.GetString(byte[], int, int) Method" TARGET="contents">Encoding.GetString(byte[], int, int) Method</A><BR>
+<A HREF="#Encoding.GetString(byte[]) Method" TARGET="contents">Encoding.GetString(byte[]) Method</A><BR>
+<P>
+
+Encoding Properties<P>
+
+<A HREF="#Encoding.ASCII Property" TARGET="contents">Encoding.ASCII Property</A><BR>
+<A HREF="#Encoding.BigEndianUnicode Property" TARGET="contents">Encoding.BigEndianUnicode Property</A><BR>
+<A HREF="#Encoding.Default Property" TARGET="contents">Encoding.Default Property</A><BR>
+<A HREF="#Encoding.UTF8 Property" TARGET="contents">Encoding.UTF8 Property</A><BR>
+<A HREF="#Encoding.Unicode Property" TARGET="contents">Encoding.Unicode Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Encoding Constructor"><H3>Encoding Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected Encoding();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs a new instance of the <A HREF="Encoding.html" TARGET="contents">Encoding</A> class.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.Convert(System.Text.Encoding, System.Text.Encoding, byte[]) Method"><H3>Encoding.Convert(System.Text.Encoding, System.Text.Encoding, byte[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static byte[] Convert(Encoding srcEncoding, Encoding dstEncoding, byte[] bytes);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts the specified <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array from one specified encoding to another specified encoding.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>srcEncoding</DT>
+<DD>The <A HREF="Encoding.html" TARGET="contents">Encoding</A> that <I>bytes</I> is in. </DD>
+<DT>dstEncoding</DT>
+<DD>The <A HREF="Encoding.html" TARGET="contents">Encoding</A> desired for the returned <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array. </DD>
+<DT>bytes</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array containing the values to convert. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array containing the result
+   of the conversion.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>srcEncoding</I>, <I>dstEncoding</I> or <I>bytes</I> is <CODE>null</CODE>
+. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.Convert(System.Text.Encoding, System.Text.Encoding, byte[], int, int) Method"><H3>Encoding.Convert(System.Text.Encoding, System.Text.Encoding, byte[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static byte[] Convert(Encoding srcEncoding, Encoding dstEncoding, byte[] bytes, int index, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts the specified range of the specified <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array from one specified encoding to another specified
+   encoding.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>srcEncoding</DT>
+<DD>The <A HREF="Encoding.html" TARGET="contents">Encoding</A> that <I>bytes</I> is in. </DD>
+<DT>dstEncoding</DT>
+<DD>The <A HREF="Encoding.html" TARGET="contents">Encoding</A> desired for the returned <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array. </DD>
+<DT>bytes</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array containing the values to convert. </DD>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the first index of <I>bytes</I> from which to convert. </DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes to convert. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array
+   containing the result of the conversion. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>srcEncoding</I>, <I>dstEncoding </I>, or <I>bytes</I> is <CODE>null</CODE>
+. <P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> and <I>count</I> do not denote a valid range in <I>bytes</I> . </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.Equals Method"><H3>Encoding.Equals Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool Equals(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance and the specified
+   <A HREF="../../System/Object.html" TARGET="contents">Object</A> represent the same
+      type and value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>obj</I> represents the same type and value as
+   the current instance. If <I>obj</I> is a null reference or is not an
+   instance of <A HREF="Encoding.html" TARGET="contents">Encoding</A>, returns <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method overrides System.Object.Equals(System.Object).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetByteCount(char[], int, int) Method"><H3>Encoding.GetByteCount(char[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract int GetByteCount(char[] chars, int index, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the number of bytes required to encode the specified range of
+      characters in the specified Unicode character array. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>chars</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> array to encode. </DD>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the first index of <I>chars</I> to encode. </DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of characters to encode. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes required to encode the range
+   in <I>chars</I> from <I>index</I> to <I>index</I> +
+<I>count</I>.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>chars </I>is <CODE>null</CODE>
+ . </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The number of bytes required to encode the specified elements in <I>chars</I> is greater than System.Int32.MaxValue. <P>
+
+-or- <P>
+
+<I>index</I> or <I>count</I> is less than zero. <P>
+
+ -or- <P>
+
+<I>index</I> and <I>count</I> do not specify a valid range in <I>chars</I> (i.e. (<I>index</I> + <I>count</I>) &gt; <I>chars</I>.Length).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: 
+      As described above.
+   ]<P>
+
+<P>
+
+[<I>Overrides</I>:  This
+      method is overridden by types derived from <A HREF="Encoding.html" TARGET="contents">Encoding</A> to return the
+      appropriate number of bytes for the particular encoding.
+   ]<P>
+
+<P>
+
+[<I>Usage</I>: System.Text.Encoding.GetByteCount(System.Char[]) can be used to determine the exact
+      the number of bytes that will be produced from encoding a given range of
+      characters. An appropriately sized buffer for that conversion can
+      then be allocated.
+      <P>
+
+ Alternatively, System.Text.Encoding.GetMaxByteCount(System.Int32) can be used to determine the maximum number of bytes that will
+   be produced from converting a given number of characters, regardless of the actual character
+   values. A buffer of that size can then be reused
+   for multiple conversions.<P>
+
+System.Text.Encoding.GetByteCount(System.Char[])
+generally uses less memory and System.Text.Encoding.GetMaxByteCount(System.Int32)
+generally executes faster.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetByteCount(System.String) Method"><H3>Encoding.GetByteCount(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual int GetByteCount(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the number of bytes required to encode the specified <A HREF="../../System/String.html" TARGET="contents">String</A>. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to decode.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes needed to encode <I>s</I>. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s </I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Overrides</I>: This
+      method is overridden by types derived from <A HREF="Encoding.html" TARGET="contents">Encoding</A> to return the
+      appropriate number of bytes for the particular encoding.
+   ]<P>
+
+<P>
+
+[<I>Usage</I>: System.Text.Encoding.GetByteCount(System.Char[]) can
+      be used to determine the exact number of bytes that will be produced from
+      encoding the given <A HREF="../../System/String.html" TARGET="contents">String</A>
+      . An appropriately sized buffer for that conversion can then be
+      allocated. <P>
+
+ Alternatively, System.Text.Encoding.GetMaxByteCount(System.Int32) can be used to determine the maximum number of bytes that will
+   be produced from converting a given number of characters, regardless of the actual character
+   values. A buffer of that size can then be reused for multiple conversions. <P>
+
+System.Text.Encoding.GetByteCount(System.Char[]) generally uses less memory and
+System.Text.Encoding.GetMaxByteCount(System.Int32) generally executes faster. <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetByteCount(char[]) Method"><H3>Encoding.GetByteCount(char[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual int GetByteCount(char[] chars);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the number of bytes required to encode the
+      specified <A HREF="../../System/Char.html" TARGET="contents">Char</A>
+      array.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>chars</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> array to encode. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes needed to encode
+<I>chars</I>.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>chars </I>is <CODE>null</CODE>
+. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Overrides</I>: This
+      method is overridden by types derived from <A HREF="Encoding.html" TARGET="contents">Encoding</A> to return the
+      appropriate number of bytes for the particular encoding.
+   ]<P>
+
+<P>
+
+[<I>Usage</I>: System.Text.Encoding.GetByteCount(System.Char[]) can be used to determine the
+      exact number of bytes that will be produced from encoding the given array of
+      characters. An appropriately sized buffer for that conversion can then be
+      allocated. <P>
+
+ Alternatively, System.Text.Encoding.GetMaxByteCount(System.Int32) can be used to determine the maximum number of bytes that will
+   be produced from converting a given number of characters, regardless of the actual character
+   values. A buffer of that size can then be reused for multiple conversions. <P>
+
+System.Text.Encoding.GetByteCount(System.Char[]) generally uses less memory and
+System.Text.Encoding.GetMaxByteCount(System.Int32) generally executes faster. <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetBytes(System.String, int, int, byte[], int) Method"><H3>Encoding.GetBytes(System.String, int, int, byte[], int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual int GetBytes(string s, int charIndex, int charCount, byte[] bytes, int byteIndex);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Encodes the specified range of the
+      specified <A HREF="../../System/String.html" TARGET="contents">String</A> into the specified range of the specified <A HREF="../../System/Byte.html" TARGET="contents">Byte</A>
+      array.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> s</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> to encode.</DD>
+<DT> charIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the first index of <I>s</I> from which to encode.</DD>
+<DT>charCount</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of characters of <I>s</I> to encode.</DD>
+<DT> bytes</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array to encode into.</DD>
+<DT> byteIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the first index of <I>bytes</I> to encode into.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes encoded into <I>bytes</I>. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>bytes</I> does not contain sufficient space to store the encoded characters.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s </I>is <CODE>null</CODE>
+. <P>
+
+-or- <P>
+
+<I>bytes </I>is <CODE>null</CODE>
+. <P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>charIndex</I> &lt; 0. <P>
+
+ -or- <P>
+
+<I>charCount </I> &lt; 0. <P>
+
+ -or- <P>
+
+<I>byteIndex </I> &lt; 0. <P>
+
+ -or- <P>
+
+(<I>s</I>.Length - <I>charIndex</I>) &lt; <I>charCount</I>.<P>
+
+-or-<P>
+
+<I>byteIndex</I> &gt; <I>bytes</I>.Length.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Overrides</I>: This
+      method is overridden by types derived from <A HREF="Encoding.html" TARGET="contents">Encoding</A>
+      to perform the encoding.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetBytes(System.String) Method"><H3>Encoding.GetBytes(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual byte[] GetBytes(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Encodes the specified <A HREF="../../System/String.html" TARGET="contents">String</A>.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to encode. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array
+   containing the encoded representation of <I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is <CODE>null</CODE>
+. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Overrides</I>: This 
+      method is overridden by types derived from <A HREF="Encoding.html" TARGET="contents">Encoding</A>
+      to perform the encoding.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetBytes(char[], int, int, byte[], int) Method"><H3>Encoding.GetBytes(char[], int, int, byte[], int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract int GetBytes(char[] chars, int charIndex, int charCount, byte[] bytes, int byteIndex);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Encodes the specified range of the
+      specified <A HREF="../../System/Char.html" TARGET="contents">Char</A> array into the specified range of the
+      specified <A HREF="../../System/Byte.html" TARGET="contents">Byte</A>
+      array.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>chars</DT>
+<DD>A <A HREF="../../System/Char.html" TARGET="contents">Char</A> array to encode. </DD>
+<DT>charIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the first index of <I>chars</I> to encode. </DD>
+<DT>charCount</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of characters to encode. </DD>
+<DT>bytes</DT>
+<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array to encode into. </DD>
+<DT>byteIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the first index of <I>bytes</I> to encode into. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The number of bytes encoded into <I>bytes</I> .
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>bytes</I> does not contain sufficient space to store the encoded characters.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>chars </I>is <CODE>null</CODE>
+. <P>
+
+-or- <P>
+
+<I>bytes </I>is <CODE>null</CODE>
+. <P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>charIndex</I> &lt; 0. <P>
+
+ -or- <P>
+
+<I>charCount </I> &lt; 0. <P>
+
+ -or- <P>
+
+<I>byteIndex </I> &lt; 0. <P>
+
+ -or- <P>
+
+(<I>chars</I>.Length - <I>charIndex</I>) &lt; <I>charCount</I>.<P>
+
+-or-<P>
+
+<I>byteIndex</I> &gt; <I>bytes</I>.Length.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Overrides</I>: This
+   method is overridden by types derived from <A HREF="Encoding.html" TARGET="contents">Encoding</A>
+   to perform the encoding.
+]<P>
+
+<P>
+
+[<I>Usage</I>: System.Text.Encoding.GetByteCount(System.Char[]) can be used to determine the exact number of bytes
+   that will be produced for a given range of characters. Alternatively, System.Text.Encoding.GetMaxByteCount(System.Int32) can be used to
+   determine the maximum number of bytes that will be produced for a given number
+   of characters, regardless of the actual character values.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetBytes(char[], int, int) Method"><H3>Encoding.GetBytes(char[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual byte[] GetBytes(char[] chars, int index, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Encodes the specified range of the
+      specified <A HREF="../../System/Char.html" TARGET="contents">Char</A>
+      array.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>chars</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> array to encode. </DD>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the first index of <I>chars</I> to encode. </DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of characters to encode. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array containing
+   the encoded representation of the range in <I>chars</I>
+   from <I>index</I> to <I>index</I> + <I>count</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>chars</I> is <CODE>null</CODE>
+. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> and <I>count</I> do not denote a valid range in <I>chars</I>. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method is overridden by 
+      types derived from <A HREF="Encoding.html" TARGET="contents">Encoding</A> to perform the encoding. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetBytes(char[]) Method"><H3>Encoding.GetBytes(char[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual byte[] GetBytes(char[] chars);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Encodes the specified <A HREF="../../System/Char.html" TARGET="contents">Char</A>
+array.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>chars</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> array to encode. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array containing
+   the encoded representation of <I>chars</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>chars</I> is <CODE>null</CODE>
+. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method is overridden by 
+      types derived from <A HREF="Encoding.html" TARGET="contents">Encoding</A> to perform the encoding.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetCharCount(byte[], int, int) Method"><H3>Encoding.GetCharCount(byte[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract int GetCharCount(byte[] bytes, int index, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines the exact number of characters that will be produced by decoding
+      the specified range of the specified <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>bytes</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array to decode. </DD>
+<DT>index</DT>
+<DD>The first index in <I>bytes</I> to decode. </DD>
+<DT>count</DT>
+<DD>The number of bytes to decode. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of characters the next call to System.Text.Decoder.GetChars(System.Byte[],System.Int32,System.Int32,System.Char[],System.Int32) will produce if presented with the 
+   specified range of <I>bytes</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>bytes</I> is <CODE>null</CODE>
+. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index </I>and <I>count </I>do not specify a valid range in <I>bytes</I> (i.e. (<I>index</I> + <I>count</I>) &gt; <I>bytes</I>.Length).</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Overrides</I>: This
+   method is overridden by types derived from <A HREF="Encoding.html" TARGET="contents">Encoding</A> to return the appropriate number of bytes for
+   the particular encoding.]<P>
+
+<P>
+
+[<I>Usage</I>:  Use System.Text.Encoding.GetCharCount(System.Byte[]) to determine the exact number
+   of characters that will be produced from converting a given range of bytes. An
+   appropriately sized buffer for that conversion can
+   then be
+   allocated.
+   <P>
+
+ Alternatively, use System.Text.Encoding.GetMaxCharCount(System.Int32) to determine the maximum number of 
+characters that will be produced for
+a given number of bytes, regardless of the actual byte values. A buffer of that size
+can then be reused
+for multiple
+conversions.<P>
+
+System.Text.Encoding.GetCharCount(System.Byte[]) generally uses less memory and System.Text.Encoding.GetMaxCharCount(System.Int32)
+generally executes
+faster.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetCharCount(byte[]) Method"><H3>Encoding.GetCharCount(byte[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual int GetCharCount(byte[] bytes);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines the exact number of characters that will
+      be produced by decoding the specified <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>bytes</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array to decode. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of characters produced by decoding
+<I>bytes</I>.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>bytes</I> is <CODE>null</CODE>
+. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Overrides</I>: This
+      method is overridden by types derived from <A HREF="Encoding.html" TARGET="contents">Encoding</A> to return the appropriate number of bytes for
+      the particular encoding.]<P>
+
+<P>
+
+[<I>Usage</I>: Use System.Text.Encoding.GetCharCount(System.Byte[]) to determine the exact number
+      of characters that will be produced from converting a given byte array. An
+      appropriately sized buffer for that conversion can then be allocated. <P>
+
+Alternatively, use System.Text.Encoding.GetMaxCharCount(System.Int32) to determine the maximum number of 
+   characters that will be produced for
+   a given number of bytes, regardless of the actual byte values. A buffer of that
+   size can then be reused for multiple conversions. <P>
+
+System.Text.Encoding.GetCharCount(System.Byte[]) generally uses less memory and System.Text.Encoding.GetMaxCharCount(System.Int32) generally executes faster.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetChars(byte[], int, int, char[], int) Method"><H3>Encoding.GetChars(byte[], int, int, char[], int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Decodes the specified range of the specified <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array into the specified range of the specified <A HREF="../../System/Char.html" TARGET="contents">Char</A> array. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>bytes</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array to decode. </DD>
+<DT>byteIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the first index of <I>bytes</I> to decode. </DD>
+<DT>byteCount</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes to decode. </DD>
+<DT>chars</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> array to decode into. </DD>
+<DT>charIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the first index of <I>chars</I> to decode into. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The number of characters stored in <I>chars</I>.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>chars</I> does not contain sufficient space to store the decoded characters.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>bytes </I>is <CODE>null</CODE>
+ . <P>
+
+-or- <P>
+
+<I>chars </I>is <CODE>null</CODE>
+ . <P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>byteIndex</I> &lt; 0. <P>
+
+ -or- <P>
+
+<I>byteCount </I> &lt; 0. <P>
+
+ -or- <P>
+
+<I>charIndex </I> &lt; 0. <P>
+
+ -or- <P>
+
+<I>byteIndex</I> and <I>byteCount</I> do not specify a valid range in <I>bytes</I> (i.e. (<I>byteIndex </I>+ <I>byteCount </I> ) &gt; <I>bytes</I>.Length). <P>
+
+-or- <P>
+
+<I>charIndex</I> &gt; <I>chars</I>.Length.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This method requires the caller to provide the destination
+         buffer and ensure that the buffer is large enough to hold the entire result of
+         the conversion.<P>
+
+]<P>
+
+[<I>Overrides</I>: This
+      method is overridden by types derived from <A HREF="Encoding.html" TARGET="contents">Encoding</A> to perform the particular decoding.]<P>
+
+<P>
+
+[<I>Usage</I>: When using this method directly on a <A HREF="Encoding.html" TARGET="contents">Encoding</A> object or on an associated <A HREF="Decoder.html" TARGET="contents">Decoder</A> or <A HREF="Encoder.html" TARGET="contents">Encoder</A>, use
+System.Text.Encoding.GetCharCount(System.Byte[]) or System.Text.Encoding.GetMaxCharCount(System.Int32) to allocate destination 
+   buffers.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetChars(byte[], int, int) Method"><H3>Encoding.GetChars(byte[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual char[] GetChars(byte[] bytes, int index, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Decodes the specified range of the
+      specified <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>bytes</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array to decode. </DD>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the first index of <I>bytes </I> to decode. </DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes to decode. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Char.html" TARGET="contents">Char</A> array containing the
+   decoded representation of the range in <I>bytes </I>between <I>index </I>to
+<I>index </I>+ <I>count</I>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>bytes </I>is <CODE>null</CODE>
+ . </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index </I>and <I>count </I>do not denote a valid range in the byte array. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetChars(byte[]) Method"><H3>Encoding.GetChars(byte[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual char[] GetChars(byte[] bytes);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Decodes a <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array.
+ <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>bytes</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array to decode. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Char.html" TARGET="contents">Char</A> array produced by
+ decoding <I>bytes</I>
+ 
+ .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>bytes</I> is <CODE>null</CODE>
+. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetDecoder Method"><H3>Encoding.GetDecoder Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual Decoder GetDecoder();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Decoder.html" TARGET="contents">Decoder</A> for the current instance.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Decoder.html" TARGET="contents">Decoder</A> for
+   the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: The default implementation returns a <A HREF="Decoder.html" TARGET="contents">Decoder</A> that
+   forwards calls made to the System.Text.Encoding.GetCharCount(System.Byte[]) and System.Text.Encoding.GetChars(System.Byte[]) methods to the corresponding methods of the
+   current instance.
+]<P>
+
+<P>
+
+[<I>Overrides</I>: Encoding that requires
+   state to be maintained between successive conversions should override this
+   method and return an instance of an appropriate <A HREF="Decoder.html" TARGET="contents">Decoder</A> implementation.]<P>
+
+<P>
+
+[<I>Usage</I>: 
+   
+   Unlike the System.Text.Encoding.GetChars(System.Byte[]) methods, a <A HREF="Decoder.html" TARGET="contents">Decoder</A> can convert partial
+   sequences of bytes into partial sequences of characters by maintaining the
+   appropriate state between the conversions.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetEncoder Method"><H3>Encoding.GetEncoder Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual Encoder GetEncoder();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="Encoder.html" TARGET="contents">Encoder</A>
+for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Encoder.html" TARGET="contents">Encoder</A> for
+   the current
+   encoding.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Default</I>: The default implementation returns a <A HREF="Encoder.html" TARGET="contents">Encoder</A> that 
+forwards calls made to the System.Text.Encoding.GetByteCount(System.Char[]) and System.Text.Encoding.GetBytes(System.Char[]) methods to the
+corresponding methods of the
+current instance.]<P>
+
+<P>
+
+[<I>Overrides</I>: Types derived from <A HREF="Encoding.html" TARGET="contents">Encoding</A> override this method to
+return an instance of an appropriate <A HREF="Encoder.html" TARGET="contents">Encoder</A> .]<P>
+
+<P>
+
+[<I>Usage</I>: 
+   
+   Unlike the System.Text.Encoding.GetBytes(System.Char[]) method, a <A HREF="Encoder.html" TARGET="contents">Encoder</A> can convert partial
+   sequences of characters into partial sequences of bytes by maintaining the
+   appropriate state between the conversions.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetHashCode Method"><H3>Encoding.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int GetHashCode();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Generates a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The algorithm used to
+      generate the hash code is unspecified.<P>
+
+[<I>Note</I>: This method overrides System.Object.GetHashCode.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetMaxByteCount Method"><H3>Encoding.GetMaxByteCount Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract int GetMaxByteCount(int charCount);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the maximum number of bytes required to encode the specified number of characters, regardless of
+      the actual character values.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>charCount</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of characters to encode. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the maximum number of bytes required to encode
+<I>charCount</I>
+characters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: 
+      As described above.
+   ]<P>
+
+<P>
+
+[<I>Overrides</I>: This
+      method is overridden by types derived from <A HREF="Encoding.html" TARGET="contents">Encoding</A> to return the appropriate number of bytes for
+      the particular encoding.]<P>
+
+<P>
+
+[<I>Usage</I>: System.Text.Encoding.GetMaxByteCount(System.Int32) can be used to determine the
+      minimum buffer size for byte arrays passed to the System.Text.Encoding.GetBytes(System.Char[]) of the
+      current encoding. Using this minimum buffer size ensures that no buffer overflow
+      exceptions occur.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetMaxCharCount Method"><H3>Encoding.GetMaxCharCount Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract int GetMaxCharCount(int byteCount);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the maximum number of characters produced by decoding the specified number of bytes,
+      regardless of the actual byte values.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>byteCount</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes to decode. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the maximum number of characters that would be produced
+   by decoding <I>byteCount</I>
+   bytes.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Overrides</I>: This
+      method is overridden by types derived from <A HREF="Encoding.html" TARGET="contents">Encoding</A> to return the appropriate number of bytes for
+      the particular encoding.]<P>
+
+<P>
+
+[<I>Usage</I>: System.Text.Encoding.GetMaxCharCount(System.Int32) can be used to determine the minimum
+      buffer size for byte arrays passed to the System.Text.Encoding.GetChars(System.Byte[]) of the current encoding.
+      Using this minimum buffer size ensures that no buffer overflow exceptions will
+      occur.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetPreamble Method"><H3>Encoding.GetPreamble Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual byte[] GetPreamble();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the bytes used at the beginning of a <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> to determine
+   which <A HREF="Encoding.html" TARGET="contents">Encoding</A>
+   the stream was created with. <P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A>
+array that identifies the encoding used on a stream. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The preamble can be the Unicode
+      byte order mark (U+FEFF written in the appropriate encoding) or any other type
+      of identifying marks. This method can return an empty array.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: The default
+      implementation returns an empty <A HREF="../../System/Byte.html" TARGET="contents">Byte</A>
+      array.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this 
+      method to return a <A HREF="../../System/Byte.html" TARGET="contents">Byte</A>
+      array containing the preamble appropriate for the
+      type derived from <A HREF="Encoding.html" TARGET="contents">Encoding</A>
+      .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetString(byte[], int, int) Method"><H3>Encoding.GetString(byte[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string GetString(byte[] bytes, int index, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Decodes the specified range of the specified <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>bytes</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array to decode. </DD>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the starting index of <I>bytes</I> to decode. </DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes to decode. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the decoded representation of the range
+   of <I>bytes</I> from <I>index</I> to <I>index</I> + <I>count</I>.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>bytes </I> is <CODE>null</CODE>
+. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index </I>and <I>count </I>do not denote a valid range in <I>bytes</I>. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Overrides</I>: This method is overridden by
+      particular character encodings.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.GetString(byte[]) Method"><H3>Encoding.GetString(byte[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string GetString(byte[] bytes);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Decodes the specified <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>bytes</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array to decode. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the decoded representation of <I>bytes</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>bytes</I> is <CODE>null</CODE>
+. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Overrides</I>: This method is overridden by
+      particular character encodings.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.ASCII Property"><H3>Encoding.ASCII Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Encoding ASCII { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets an encoding for the ASCII (7-bit) character set.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: ASCII characters can represent Unicode characters from U+0000 to U+007f, 
+         inclusive.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.BigEndianUnicode Property"><H3>Encoding.BigEndianUnicode Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Encoding BigEndianUnicode { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets an encoding for the Unicode format in big-endian
+      byte order.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Encoding.html" TARGET="contents">Encoding</A> for the Unicode format in big-endian byte order. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: Unicode characters can be stored in two different byte orders, big-endian and little-endian. On little-endian platforms such as those
+         implemented on Intel processors, it is generally more efficient to
+         store Unicode characters in little-endian byte order. However, many other
+         platforms can store Unicode characters in big-endian byte order. Unicode files
+         can be distinguished by the presence of the byte order mark (U+FEFF), which will
+         be written as either 0xfe 0xff or 0xff 0xfe. <P>
+
+ This encoding automatically detects a byte order mark and, if necessary,
+         switches byte orders.
+         <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.Default Property"><H3>Encoding.Default Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Encoding Default { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets an encoding for the ANSI code page of the current system.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Encoding.html" TARGET="contents">Encoding</A> for the ANSI code page of the current system.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.UTF8 Property"><H3>Encoding.UTF8 Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Encoding UTF8 { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets an encoding for the UTF-8 format.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Encoding.html" TARGET="contents">Encoding</A> for the UTF-8 format.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: For detailed information regarding UTF-8 encoding, see <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A>.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Encoding.Unicode Property"><H3>Encoding.Unicode Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Encoding Unicode { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets an encoding for the Unicode format in little-endian
+      byte order.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Encoding.html" TARGET="contents">Encoding</A> for the Unicode format in little-endian byte
+   order. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: Unicode characters can be stored in two different byte orders, big-endian and little-endian. On little-endian platforms such as those
+         implemented on Intel processors, it is generally more efficient to
+         store Unicode characters in little-endian byte order. However, many other
+         platforms can store Unicode characters in big-endian byte order. Unicode files
+         can be distinguished by the presence of the byte order mark (U+FEFF), which will
+         be written as either 0xfe 0xff or 0xff 0xfe. <P>
+
+ This encoding automatically detects a byte order mark and, if
+         necessary, switches byte orders.
+         <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Encoding.html" TARGET="contents">System.Text.Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

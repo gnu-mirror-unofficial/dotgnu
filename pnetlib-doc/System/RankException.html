@@ -1,0 +1,225 @@
+<HTML>
+<HEAD>
+<TITLE>System.RankException Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.RankException Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class RankException : SystemException</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="Exception.html" TARGET="contents">Exception</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="SystemException.html" TARGET="contents">SystemException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RankException<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents the error that occurs when an array with an
+      incorrect number of dimensions is passed to a method.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates an error that causes 
+      a <A HREF="RankException.html" TARGET="contents">RankException</A>
+      exception.<P>
+
+<PRE>using System;
+public class RankExample {
+   public static void Main() {
+      int[] oneDAry = new int[5];
+      int[,] twoDAry = new int[2,3];
+      for (int i = 0; i &lt; 2; i++ ) {
+         oneDAry.SetValue( i, i );
+      }
+      try {
+         Array.Copy( oneDAry, twoDAry, 2);
+      }
+      catch ( RankException e ) {
+         Console.WriteLine( &quot;Error caught: {0}&quot;, e );
+      }
+   }
+}
+   </PRE>
+The output is<P>
+
+<PRE>
+Error caught: System.RankException: The specified arrays must have the same number of dimensions.
+   at System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length)
+   at System.Array.Copy(Array sourceArray, Array destinationArray, Int32 length)
+   at RankExample.Main()
+ </PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+RankException Constructors<P>
+
+<A HREF="#RankException() Constructor" TARGET="contents">RankException() Constructor</A><BR>
+<A HREF="#RankException(System.String) Constructor" TARGET="contents">RankException(System.String) Constructor</A><BR>
+<A HREF="#RankException(System.String, System.Exception) Constructor" TARGET="contents">RankException(System.String, System.Exception) Constructor</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="RankException() Constructor"><H3>RankException() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public RankException();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="RankException.html" TARGET="contents">RankException</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.RankException.Message property of the new instance to a
+   system-supplied message that describes the error, such as &quot;The two arrays must
+   have the same number of dimensions.&quot; This message takes into account the current
+   system culture.<P>
+
+The System.RankException.InnerException property is initialized to <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="RankException.html" TARGET="contents">System.RankException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="RankException(System.String) Constructor"><H3>RankException(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public RankException(string message);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="RankException.html" TARGET="contents">RankException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.RankException.Message property of the new instance using
+<I>message</I>. If <I>message</I> is <CODE>null</CODE>
+, 
+   the System.RankException.Message property is initialized to the system-supplied message
+   provided by the constructor that takes no arguments. The System.RankException.InnerException property is initialized to <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="RankException.html" TARGET="contents">System.RankException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="RankException(System.String, System.Exception) Constructor"><H3>RankException(System.String, System.Exception) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public RankException(string message, Exception innerException);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="RankException.html" TARGET="contents">RankException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+<DT>innerException</DT>
+<DD>An instance of <A HREF="Exception.html" TARGET="contents">Exception</A> that is the cause of the current Exception. If <I>innerException</I> is non-null, then the current Exception was raised in a catch block handling <I>innerException</I> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.RankException.Message
+property of the new instance using <I>message</I>, and the System.RankException.InnerException property using <I>innerException</I>. If <I>message</I> is
+<CODE>null</CODE>
+, the System.RankException.Message property is initialized to the 
+system-supplied message provided by the constructor that takes no
+arguments. <P>
+
+[<I>Note</I>: For information on
+   inner exceptions, see System.Exception.InnerException
+   .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="RankException.html" TARGET="contents">System.RankException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

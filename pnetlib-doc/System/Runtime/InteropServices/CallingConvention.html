@@ -1,0 +1,249 @@
+<HTML>
+<HEAD>
+<TITLE>System.Runtime.InteropServices.CallingConvention Enum</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Runtime.InteropServices.CallingConvention Enum</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public enum CallingConvention</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../../System/ValueType.html" TARGET="contents">ValueType</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../../System/Enum.html" TARGET="contents">Enum</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CallingConvention<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Indicates the calling convention used by a method located in an unmanaged shared library.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The values of this enumeration are used to specify the calling conventions required
+ to call unmanaged methods implemented in shared libraries.<P>
+
+[<I>Note</I>: Implementers
+ should map the semantics of specified calling conventions onto the calling conventions
+ of the host OS.]<P>
+
+<P>
+
+[<I>Note</I>: For additional information on shared
+ libraries and an example of the use of the <A HREF="CallingConvention.html" TARGET="contents">CallingConvention</A> enumeration, see the <A HREF="DllImportAttribute.html" TARGET="contents">DllImportAttribute</A> class overview.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+CallingConvention Fields<P>
+
+<A HREF="#CallingConvention.Cdecl Field" TARGET="contents">CallingConvention.Cdecl Field</A><BR>
+<A HREF="#CallingConvention.FastCall Field" TARGET="contents">CallingConvention.FastCall Field</A><BR>
+<A HREF="#CallingConvention.StdCall Field" TARGET="contents">CallingConvention.StdCall Field</A><BR>
+<A HREF="#CallingConvention.ThisCall Field" TARGET="contents">CallingConvention.ThisCall Field</A><BR>
+<A HREF="#CallingConvention.value__ Field" TARGET="contents">CallingConvention.value__ Field</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="CallingConvention.Cdecl Field"><H3>CallingConvention.Cdecl Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>Cdecl = 2;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Indicates that the <CODE>cdecl </CODE>
+
+calling convention is appropriate for a method call.<P>
+
+For example, on a Windows platform the System.Runtime.InteropServices.CallingConvention.Cdecl convention produces the
+following behavior:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Behavior</TH><TH>ElementBehavior</TH></TR>
+<TR><TD>Right to left.</TD><TD> Argument-passing orderRight to left.</TD></TR>
+<TR><TD>Calling function pops the arguments from the
+         stack.</TD><TD> Stack-maintenance responsibilityCalling function pops the arguments from the
+         stack.</TD></TR>
+</TABLE>
+[<I>Note</I>: This is the default calling
+   convention for functions compiled with 32-bit C and C++ language compilers.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CallingConvention.html" TARGET="contents">System.Runtime.InteropServices.CallingConvention Enum</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="CallingConvention.FastCall Field"><H3>CallingConvention.FastCall Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>FastCall = 5;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Indicates that the <CODE>fastcall </CODE>
+
+calling convention is appropriate for a method
+call. <P>
+
+[<I>Note</I>: On a Windows platform this convention
+   indicates that arguments to functions are to be passed in registers whenever
+   possible.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CallingConvention.html" TARGET="contents">System.Runtime.InteropServices.CallingConvention Enum</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="CallingConvention.StdCall Field"><H3>CallingConvention.StdCall Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>StdCall = 3;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Indicates that the <CODE>stdcall </CODE>
+
+calling convention is appropriate for a
+method.<P>
+
+For example, on a Windows platform the System.Runtime.InteropServices.CallingConvention.StdCall convention produces the
+following behavior:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Behavior</TH><TH>ElementBehavior</TH></TR>
+<TR><TD>Right to left.</TD><TD> Argument-passing orderRight to left.</TD></TR>
+<TR><TD>Called function pops its own arguments from the
+ stack.</TD><TD> Stack-maintenance responsibilityCalled function pops its own arguments from the
+ stack.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CallingConvention.html" TARGET="contents">System.Runtime.InteropServices.CallingConvention Enum</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="CallingConvention.ThisCall Field"><H3>CallingConvention.ThisCall Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>ThisCall = 4;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Indicates that the <CODE>thiscall</CODE>
+ calling convention is appropriate for a
+   method. This convention is similar to the System.Runtime.InteropServices.CallingConvention.Cdecl calling convention,
+   except that the last element that the caller pushes the stack is the
+<CODE>this</CODE>
+ 
+pointer.<P>
+
+For example, on a Windows platform the System.Runtime.InteropServices.CallingConvention.ThisCall convention
+produces the following behavior:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Behavior</TH><TH>ElementBehavior</TH></TR>
+<TR><TD>Right to left.</TD><TD> Argument-passing orderRight to left.</TD></TR>
+<TR><TD>Calling function pops the arguments from the
+         stack.</TD><TD> Stack-maintenance responsibilityCalling function pops the arguments from the
+         stack.</TD></TR>
+<TR><TD>Pushed last onto the stack.</TD><TD><CODE>this</CODE>
+ pointerPushed last onto the stack.</TD></TR>
+</TABLE>
+[<I>Note</I>: The <CODE>thiscall</CODE>
+ calling convention is the default
+calling convention used by C++ member functions that are not called with
+a variable number of arguments.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CallingConvention.html" TARGET="contents">System.Runtime.InteropServices.CallingConvention Enum</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="CallingConvention.value__ Field"><H3>CallingConvention.value__ Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>value__;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CallingConvention.html" TARGET="contents">System.Runtime.InteropServices.CallingConvention Enum</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,1627 @@
+<HTML>
+<HEAD>
+<TITLE>System.IO.MemoryStream Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.IO.MemoryStream Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class MemoryStream : Stream</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/MarshalByRefObject.html" TARGET="contents">MarshalByRefObject</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="Stream.html" TARGET="contents">Stream</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemoryStream<P>
+
+This type implements <A HREF="../../System/IDisposable.html" TARGET="contents">IDisposable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides support for creating and using a stream whose backing store is memory.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> class creates streams that have memory as a backing
+   store instead of a disk or a network connection. <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A>
+   encapsulates data stored as an unsigned byte array. The encapsulated data is directly accessible
+   in memory. Memory streams can reduce the need for temporary buffers and files
+   in an application.<P>
+
+The <I>current position</I> of
+a stream is the position at which the next read or write operation takes
+place. The current position can be retrieved or set through the System.IO.MemoryStream.Seek(System.Int64,System.IO.SeekOrigin)
+method. When a new instance of <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A>
+is created, the
+current position is set to zero.<P>
+
+[<I>Note</I>: Memory streams created
+   with an unsigned byte array provide a non-resizable stream view
+   of the data. When using a byte array, you can neither
+   append to nor shrink the stream, although you might be able to modify the existing
+   contents depending on the parameters passed into the constructor.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+MemoryStream Constructors<P>
+
+<A HREF="#MemoryStream() Constructor" TARGET="contents">MemoryStream() Constructor</A><BR>
+<A HREF="#MemoryStream(int) Constructor" TARGET="contents">MemoryStream(int) Constructor</A><BR>
+<A HREF="#MemoryStream(byte[]) Constructor" TARGET="contents">MemoryStream(byte[]) Constructor</A><BR>
+<A HREF="#MemoryStream(byte[], bool) Constructor" TARGET="contents">MemoryStream(byte[], bool) Constructor</A><BR>
+<A HREF="#MemoryStream(byte[], int, int) Constructor" TARGET="contents">MemoryStream(byte[], int, int) Constructor</A><BR>
+<A HREF="#MemoryStream(byte[], int, int, bool) Constructor" TARGET="contents">MemoryStream(byte[], int, int, bool) Constructor</A><BR>
+<A HREF="#MemoryStream(byte[], int, int, bool, bool) Constructor" TARGET="contents">MemoryStream(byte[], int, int, bool, bool) Constructor</A><BR>
+<P>
+
+MemoryStream Methods<P>
+
+<A HREF="#MemoryStream.Close Method" TARGET="contents">MemoryStream.Close Method</A><BR>
+<A HREF="#MemoryStream.Flush Method" TARGET="contents">MemoryStream.Flush Method</A><BR>
+<A HREF="#MemoryStream.GetBuffer Method" TARGET="contents">MemoryStream.GetBuffer Method</A><BR>
+<A HREF="#MemoryStream.Read Method" TARGET="contents">MemoryStream.Read Method</A><BR>
+<A HREF="#MemoryStream.ReadByte Method" TARGET="contents">MemoryStream.ReadByte Method</A><BR>
+<A HREF="#MemoryStream.Seek Method" TARGET="contents">MemoryStream.Seek Method</A><BR>
+<A HREF="#MemoryStream.SetLength Method" TARGET="contents">MemoryStream.SetLength Method</A><BR>
+<A HREF="#MemoryStream.ToArray Method" TARGET="contents">MemoryStream.ToArray Method</A><BR>
+<A HREF="#MemoryStream.Write Method" TARGET="contents">MemoryStream.Write Method</A><BR>
+<A HREF="#MemoryStream.WriteByte Method" TARGET="contents">MemoryStream.WriteByte Method</A><BR>
+<A HREF="#MemoryStream.WriteTo Method" TARGET="contents">MemoryStream.WriteTo Method</A><BR>
+<P>
+
+MemoryStream Properties<P>
+
+<A HREF="#MemoryStream.CanRead Property" TARGET="contents">MemoryStream.CanRead Property</A><BR>
+<A HREF="#MemoryStream.CanSeek Property" TARGET="contents">MemoryStream.CanSeek Property</A><BR>
+<A HREF="#MemoryStream.CanWrite Property" TARGET="contents">MemoryStream.CanWrite Property</A><BR>
+<A HREF="#MemoryStream.Capacity Property" TARGET="contents">MemoryStream.Capacity Property</A><BR>
+<A HREF="#MemoryStream.Length Property" TARGET="contents">MemoryStream.Length Property</A><BR>
+<A HREF="#MemoryStream.Position Property" TARGET="contents">MemoryStream.Position Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="MemoryStream() Constructor"><H3>MemoryStream() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MemoryStream();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new resizable instance of the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.IO.Stream.CanRead, System.IO.Stream.CanSeek, and System.IO.Stream.CanWrite properties of the
+   new instance of the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> class are set to <CODE>true</CODE>
+.<P>
+
+The capacity of the new stream instance can be increased
+   by using the System.IO.MemoryStream.SetLength(System.Int64) method or by
+   setting the System.IO.MemoryStream.Capacity property.<P>
+
+The new stream exposes the underlying byte buffer, which
+   can be accessed through the System.IO.MemoryStream.GetBuffer
+   method.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream(int) Constructor"><H3>MemoryStream(int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MemoryStream(int capacity);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new resizable instance of the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>capacity</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the initial size of the internal <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>capacity</I> is negative.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.IO.Stream.CanRead, System.IO.Stream.CanSeek, and System.IO.Stream.CanWrite
+properties of the new instance of the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> class are set to
+<CODE>true</CODE>
+.<P>
+
+The System.IO.MemoryStream.Capacity of 
+the new stream instance is set to <I>capacity</I> can be increased
+by using the System.IO.MemoryStream.SetLength(System.Int64) method or by
+setting the System.IO.MemoryStream.Capacity property. Write operations at the end of
+the new instance of the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> class expand the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A>.<P>
+
+The new stream exposes the underlying byte buffer,
+   which can be accessed through the System.IO.MemoryStream.GetBuffer
+   method.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream(byte[]) Constructor"><H3>MemoryStream(byte[]) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MemoryStream(byte[] buffer);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new non-resizable instance of the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array from which to create the new stream.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The <I>buffer</I> parameter is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.IO.Stream.CanRead, System.IO.Stream.CanSeek, and System.IO.Stream.CanWrite
+properties of the new instance of the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> class are set to
+<CODE>true</CODE>
+. System.IO.MemoryStream.Capacity is set to the length of the specified 
+<A HREF="../../System/Byte.html" TARGET="contents">Byte</A> 
+array.<P>
+
+[<I>Note</I>: The new stream instance can be written to, but
+   the System.IO.MemoryStream.Capacity of
+   the underlying <A HREF="../../System/Byte.html" TARGET="contents">Byte</A>
+   array cannot be changed. The length of the stream cannot be set
+   to a value greater than System.IO.MemoryStream.Capacity
+   , but the
+   stream can be truncated (see System.IO.MemoryStream.SetLength(System.Int64)).]<P>
+
+<P>
+
+The new stream does not expose the underlying byte buffer, and calls to the
+System.IO.MemoryStream.GetBuffer method throw <A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream(byte[], bool) Constructor"><H3>MemoryStream(byte[], bool) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MemoryStream(byte[] buffer, bool writable);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new non-resizable instance of the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array from which to create the new stream.</DD>
+<DT>writable</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> that specifies whether the new stream instance supports writing.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.IO.Stream.CanRead and System.IO.Stream.CanSeek properties of the new
+   instance of the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> class are set to <CODE>true</CODE>
+. The System.IO.MemoryStream.Capacity property is set to the length of the specified
+<A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array. The System.IO.Stream.CanWrite property is set to 
+<I>writable</I> 
+.<P>
+
+[<I>Note</I>: The new stream instance can be written to, but the
+System.IO.MemoryStream.Capacity of the underlying <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> 
+array cannot be changed. The length of the stream cannot be set
+to a value larger than System.IO.MemoryStream.Capacity, but the stream can be truncated
+(see System.IO.MemoryStream.SetLength(System.Int64)).]<P>
+
+<P>
+
+The new stream does not expose the underlying <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> buffer, and calls to the System.IO.MemoryStream.GetBuffer
+method throw <A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream(byte[], int, int) Constructor"><H3>MemoryStream(byte[], int, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MemoryStream(byte[] buffer, int index, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new non-resizable instance of the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array from which to create the new stream.</DD>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index into <I>buffer</I> at which the stream begins.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the length of the stream in bytes.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> or <I>count</I> is less than zero.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>(<I>index</I> + <I>count</I> ) is greater than the length of <I>buffer</I>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.IO.Stream.CanRead, System.IO.Stream.CanSeek, and System.IO.Stream.CanWrite properties of the
+   new <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> instance are set to <CODE>true</CODE>
+. The System.IO.MemoryStream.Capacity property
+   is set to <I>count</I>
+   .<P>
+
+[<I>Note</I>: The new stream instance can be written to, but the
+System.IO.MemoryStream.Capacity of the underlying <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> 
+array cannot be changed. The length of the stream cannot be set
+to a value larger than System.IO.MemoryStream.Capacity, but the stream can be truncated
+(see System.IO.MemoryStream.SetLength(System.Int64)).]<P>
+
+<P>
+
+The new stream does not expose the underlying <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> 
+buffer, and calls to the System.IO.MemoryStream.GetBuffer method throw <A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream(byte[], int, int, bool) Constructor"><H3>MemoryStream(byte[], int, int, bool) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MemoryStream(byte[] buffer, int index, int count, bool writable);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new non-resizable instance of the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array from which to create the new stream.</DD>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index in <I>buffer</I> at which the stream begins.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the length of the stream in bytes.</DD>
+<DT>writable</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> that specifies whether the new stream instance supports writing.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> or <I>count</I> are negative.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>(<I>index</I> + <I>count</I> ) is greater than the length of <I>buffer</I>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.IO.MemoryStream.CanRead and System.IO.MemoryStream.CanSeek properties
+   of the new <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> are
+   set to <CODE>true</CODE>
+. The System.IO.MemoryStream.Capacity property is set to <I>count</I>. The System.IO.Stream.CanWrite property is set to
+<I>writable</I>.<P>
+
+[<I>Note</I>: The new stream instance can be written to, but the
+System.IO.MemoryStream.Capacity of the 
+   underlying byte array cannot be changed. The length of the stream cannot be set
+   to a value larger than System.IO.MemoryStream.Capacity, but the stream can be truncated
+   (see System.IO.MemoryStream.SetLength(System.Int64)).]<P>
+
+<P>
+
+The new stream does not expose the underlying byte
+   buffer, and calls to the System.IO.MemoryStream.GetBuffer method throw <A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream(byte[], int, int, bool, bool) Constructor"><H3>MemoryStream(byte[], int, int, bool, bool) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MemoryStream(byte[] buffer, int index, int count, bool writable, bool publiclyVisible);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array from which to create the new stream.</DD>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index into <I>buffer</I> at which the stream begins.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the length of the stream in bytes.</DD>
+<DT>writable</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> that specifies whether the new stream instance supports writing.</DD>
+<DT>publiclyVisible</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> that specifies whether <I>buffer</I> is exposed via the System.IO.MemoryStream.GetBuffer, which returns the <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array from which the stream was created. Specify <CODE>true</CODE>
+ to expose <I>buffer</I>; otherwise, specify <CODE>false</CODE>
+.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> or <I>count</I> is negative.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>(<I>index</I> + <I>count</I> ) is greater than the length of <I>buffer</I>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.IO.MemoryStream.CanRead and System.IO.MemoryStream.CanSeek properties of
+   the new <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> instance are
+   set to <CODE>true</CODE>
+. The System.IO.MemoryStream.Capacity property is set to <I>count</I>. The System.IO.Stream.CanWrite property is set to
+<I>writable</I>.<P>
+
+[<I>Note</I>: The new stream instance can be written to, but the
+System.IO.MemoryStream.Capacity of the underlying <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> 
+array cannot be changed. The length of the stream cannot be set
+to a value larger than System.IO.MemoryStream.Capacity, but the stream can be truncated
+(see System.IO.MemoryStream.SetLength(System.Int64)).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.Close Method"><H3>MemoryStream.Close Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void Close();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Closes the current <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The stream will not support reading or writing after
+      this method is invoked. Following a call to System.IO.MemoryStream.Close
+      , operations on the
+      stream can raise an exception. <P>
+
+ The buffer of a closed <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> is still available, and the System.IO.MemoryStream.ToArray
+and System.IO.MemoryStream.GetBuffer methods can
+be called successfully. <P>
+
+[<I>Note</I>:  This method overrides System.IO.Stream.Close
+.]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.Flush Method"><H3>MemoryStream.Flush Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void Flush();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Overrides System.IO.Stream.Flush
+so that no action is performed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Since any data written to a <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> is written into RAM, this 
+   method is redundant.<P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.Flush.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.GetBuffer Method"><H3>MemoryStream.GetBuffer Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual byte[] GetBuffer();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the
+      array of unsigned bytes from which this stream was created.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array from which the current stream was created, or the
+   underlying array if a <A HREF="../../System/Byte.html" TARGET="contents">Byte</A>
+   array was not provided to the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A>
+   constructor during construction of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The current instance was not created with a publicly visible buffer.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+To create a <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> instance with a publicly visible buffer use the default constructor, or
+<A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A>( 
+<A HREF="../../System/Byte.html" TARGET="contents">Byte</A> [], <A HREF="../../System/Int32.html" TARGET="contents">Int32</A>, <A HREF="../../System/Int32.html" TARGET="contents">Int32</A>, <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>, <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>) or <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A>(<A HREF="../../System/Int32.html" TARGET="contents">Int32</A> 
+) constructor. <P>
+
+ If the current stream is resizable, multiple calls to
+   this method do not return the same array if the underlying <A HREF="../../System/Byte.html" TARGET="contents">Byte</A>
+   array is
+   resized between calls. For additional information, see System.IO.MemoryStream.Capacity
+   . <P>
+
+[<I>Note</I>: This method works when the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> is closed.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates that two calls to the System.IO.MemoryStream.GetBuffer
+method on a resizable stream do not return the same array if the underlying byte array is
+reallocated.<P>
+
+<PRE>using System;
+using System.IO;
+
+public class MemoryStreamTest {
+   public static void Main() {
+
+      MemoryStream ms = new MemoryStream(10);
+
+      byte[] a = ms.GetBuffer();
+      byte[] b = ms.GetBuffer();
+
+      //Force reallocation of the underlying byte array.
+      ms.Capacity = 10240;    
+      byte[] c = ms.GetBuffer();
+
+
+      if(Object.ReferenceEquals(a, b))
+         Console.WriteLine(&quot;a and b represent the same instance.&quot;);
+      else
+         Console.WriteLine(&quot;a and b represent the different instances.&quot;);
+
+      if(Object.ReferenceEquals(a, c))
+         Console.WriteLine(&quot;a and c represent the same instance.&quot;);
+      else
+         Console.WriteLine(&quot;a and c represent the different instances.&quot;);
+
+   }
+}
+</PRE>
+The output is<P>
+
+<CODE>a and b represent the same instance.<P>
+
+a and c represent the different instances.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.Read Method"><H3>MemoryStream.Read Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int Read(byte[] buffer, int offset, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reads a block of bytes from the current stream at the current position, and
+      writes the data to the specified byte array.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array. When this method returns, contains the specified byte array with the values between <I>offset </I>and <I>(offset + count - 1)</I> replaced by the characters read from the current stream.</DD>
+<DT>offset</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the byte offset in <I>buffer</I> at which to begin writing.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the maximum number of bytes to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the total number of bytes
+   read into the buffer, or zero if the end of the stream is
+   reached before any bytes are read.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset</I> or <I>count</I> is negative.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>(<I>offset </I> + <I>count</I> ) is larger than the length of <I>buffer</I>.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD> The current stream is closed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the read operation is successful, the current position within the
+      stream advances by the number of bytes read. If an exception occurs, the current position within
+      the stream remains unchanged.<P>
+
+[<I>Note</I>: If the byte array specified in the <I>buffer</I> parameter is the underlying buffer returned by the
+   System.IO.MemoryStream.GetBuffer method, the array contents are overwritten, and no
+      exception is thrown. <P>
+
+This method overrides System.IO.Stream.Read(System.Byte[],System.Int32,System.Int32).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the result of reading from a <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> into its
+   underlying byte array.<P>
+
+<PRE>using System;
+using System.IO;
+
+public class MemoryStreamTest {
+   public static void Main() {
+
+      byte[] values = new byte [] {0,1,2,3,4,5,6,7,8,9};
+
+      foreach (byte b in values) {
+         Console.Write(b);
+      }
+
+      Console.WriteLine();
+
+      MemoryStream ms = new MemoryStream (values);
+
+      ms.Read(values, 1, 5);
+
+      foreach (byte b in values) {
+         Console.Write(b);
+      }
+   }
+}
+</PRE>
+The output is<P>
+
+<CODE>0123456789 <P>
+
+0012346789<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.ReadByte Method"><H3>MemoryStream.ReadByte Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int ReadByte();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Reads a byte from the current stream at the current position.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The byte cast to a <A HREF="../../System/Int32.html" TARGET="contents">Int32</A>, or -1 if the end of the stream has been reached.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD> The current stream is closed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the read operation is successful, the current position
+      within the stream is advanced by one byte. If an exception occurs, the
+      current position within the stream is unchanged.<P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.ReadByte.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.Seek Method"><H3>MemoryStream.Seek Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override long Seek(long offset, SeekOrigin loc);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Sets the current position within the current stream to
+      the specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>offset</DT>
+<DD>A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> that specifies the new position within the stream. This is relative to the <I>loc </I> parameter, and may be positive or negative.</DD>
+<DT>loc</DT>
+<DD> A <A HREF="SeekOrigin.html" TARGET="contents">SeekOrigin</A> value that specifies the seek reference point.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> containing the new position within the stream, calculated by
+   combining the seek reference point and the offset.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>Seeking is attempted before the beginning or more than one byte beyond the end of the stream.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset</I> is greater than the maximum length of the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A>.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>loc</I> is not a valid <A HREF="SeekOrigin.html" TARGET="contents">SeekOrigin</A> value.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD> The current stream is closed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The position cannot be set to more than one byte beyond the end of the stream.<P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.Seek(System.Int64,System.IO.SeekOrigin).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.SetLength Method"><H3>MemoryStream.SetLength Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void SetLength(long value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sets the length of the current stream to the specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> that specifies the value at which to set the length.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current stream is not resizable and <I>value</I> is greater than the current System.IO.MemoryStream.Capacity.<P>
+
+-or-<P>
+
+The current stream does not support writing.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>value</I> is negative or is greater than the maximum length of the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A>, where the maximum length is (System.Int32.MaxValue - origin), and origin is the index into the underlying buffer at which the stream starts.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ If the specified value is less than the current length of the
+      stream, the stream is truncated. If after the truncation the current position within the
+      stream is past the end of the stream, the System.IO.MemoryStream.ReadByte
+      method returns -1, the System.IO.MemoryStream.Read(System.Byte[],System.Int32,System.Int32) method reads zero bytes into the provided byte
+      array, and System.IO.MemoryStream.Write(System.Byte[],System.Int32,System.Int32) and System.IO.MemoryStream.WriteByte(System.Byte) methods
+      
+      append specified bytes at the end of the stream, increasing its length.<P>
+
+If the specified value is larger than the current
+      capacity and the stream is resizable, the capacity is increased, and the current position
+      within the stream is unchanged. If the length is increased, the contents
+      of the stream between the old and the new length are initialized to zeros. <P>
+
+[<I>Note</I>: A <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> instance must support writing for this method to
+      work. Use the System.IO.MemoryStream.CanWrite property to determine whether the
+      current instance supports writing. For additional information, see System.IO.Stream.CanWrite .<P>
+
+This method overrides System.IO.Stream.SetLength(System.Int64).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.ToArray Method"><H3>MemoryStream.ToArray Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual byte[] ToArray();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the entire stream contents to a <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array,
+   regardless of the current position within the stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A new <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method returns a copy of the contents of
+      the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> as a byte array. If the
+      current instance was constructed on a provided byte array, a copy of the section
+      of the array to which the current instance has access is returned. [<I>Note</I>: For
+      additional information, see the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> (<A HREF="../../System/Byte.html" TARGET="contents">Byte</A>[], <A HREF="../../System/Int32.html" TARGET="contents">Int32</A>, <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> )
+      constructor.]<P>
+
+<P>
+
+[<I>Note</I>: This method
+      works when the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> is
+      closed.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.Write Method"><H3>MemoryStream.Write Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void Write(byte[] buffer, int offset, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a block of bytes
+      to the current stream at the current position using data read from buffer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array to write data from.</DD>
+<DT>offset</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the zero based byte offset into <I>buffer</I> at which to begin writing from.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the maximum number of bytes to write from <I>buffer</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current stream does not support writing.<P>
+
+-or-<P>
+
+The current position is closer than <I>count </I>bytes to the end of the stream, and the capacity cannot be modified.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>(<I>offset </I>+ <I>count</I> ) is greater than the length of <I>buffer</I>. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset</I> or <I>count</I> are negative.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current stream is closed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ If the write operation is
+      successful, the current position within the stream is advanced by the number of
+      bytes written. If an exception occurs, the current position within the stream
+      is unchanged.<P>
+
+Write operations at the end of a resizable <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> expand
+   the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A>.<P>
+
+[<I>Note</I>: Use the System.IO.MemoryStream.CanWrite method to determine whether the current stream supports writing.]<P>
+
+<P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.Write(System.Byte[],System.Int32,System.Int32).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.WriteByte Method"><H3>MemoryStream.WriteByte Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void WriteByte(byte value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> to the current stream at the current position.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current stream is closed.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current stream does not support writing.<P>
+
+-or-<P>
+
+The current position is at the end of the stream, and the stream&apos;s capacity cannot be modified.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Write operations at the end of a resizable <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A>
+expand the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A>. If the write operation is
+successful, the current position within the stream is advanced by one byte. If an
+exception occurs, the position is unchanged.<P>
+
+[<I>Note</I>: Use the System.IO.MemoryStream.CanWrite method to determine 
+whether the current stream supports writing.]<P>
+
+<P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.WriteByte(System.Byte).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.WriteTo Method"><H3>MemoryStream.WriteTo Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void WriteTo(Stream stream);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes the entire contents of the current <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> instance to a specified stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>stream</DT>
+<DD>The <A HREF="Stream.html" TARGET="contents">Stream</A> to write the current memory stream to.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>stream</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current or target stream is closed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: When the current stream is open, this
+      method is equivalent to calling System.IO.Stream.Write(System.Byte[],System.Int32,System.Int32) on the underlying buffer of this
+      stream.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.CanRead Property"><H3>MemoryStream.CanRead Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool CanRead { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current stream supports reading.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the current 
+   stream supports reading; otherwise <CODE>false</CODE>
+
+   .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.CanSeek Property"><H3>MemoryStream.CanSeek Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool CanSeek { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current stream
+   supports seeking.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the stream 
+   supports seeking; otherwise <CODE>false</CODE>
+
+   .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.CanWrite Property"><H3>MemoryStream.CanWrite Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool CanWrite { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current stream
+   supports writing.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the stream supports writing;
+   otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.Capacity Property"><H3>MemoryStream.Capacity Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual int Capacity { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the number of bytes allocated for the current
+      stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the
+   number of bytes allocated for the current stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value specified for a set operation is negative or less than the current length of the stream.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>A set operation was attempted on a stream that is closed or whose capacity cannot be modified.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.IO.MemoryStream.Capacity is
+   the buffer length for system-provided byte arrays. If the current stream is
+   created with a specified <A HREF="../../System/Byte.html" TARGET="contents">Byte</A>
+   array, System.IO.MemoryStream.Capacity indicates the length of the portion of
+   the provided array to which the current stream has access. [<I>Note</I>: For additional information, see the <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> (<A HREF="../../System/Byte.html" TARGET="contents">Byte</A>[], <A HREF="../../System/Int32.html" TARGET="contents">Int32</A>, <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> ) constructor. ]<P>
+
+<P>
+
+System.IO.MemoryStream.Capacity
+cannot be set to a value less than the current length of the stream, but can be
+set to less than the current capacity. If the capacity specified is less than
+the current capacity, the size of the buffer used
+to hold the stream may be reduced, but need not be.<P>
+
+[<I>Note</I>: If the value specified for a set operation is less than the default value,
+   for performance reasons the property is set to the default. The default
+   value of the System.IO.MemoryStream.Capacity property is
+   unspecified.
+]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.Length Property"><H3>MemoryStream.Length Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override long Length { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the length of the stream in bytes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> containing the length of the stream in bytes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current stream is closed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: This property 
+      overrides System.IO.Stream.Length.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="MemoryStream.Position Property"><H3>MemoryStream.Position Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override long Position { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the current position within the stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> containing the current position within the stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value specified for a set operation is negative or greater than one byte beyond the length of the current stream.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current stream is closed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The position cannot be set more
+      than one byte beyond the end of the stream.<P>
+
+[<I>Note</I>: This property overrides System.IO.Stream.Position.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MemoryStream.html" TARGET="contents">System.IO.MemoryStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,1888 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.WebRequest Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.WebRequest Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class WebRequest : MarshalByRefObject</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/MarshalByRefObject.html" TARGET="contents">MarshalByRefObject</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;WebRequest<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Makes a request to a Uniform Resource Identifier
+      (URI).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">WebRequest</A> is an abstract
+   class that models
+   the request side of transactions used for accessing data from the
+   Internet.<P>
+
+ Classes that derive from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> are required to override the following members
+of the <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> class in a
+protocol-specific manner: <P>
+
+<UL>
+<LI>System.Net.WebRequest.Method 
+   -- Gets or sets the protocol method to use in the current instance.</LI>
+<LI>System.Net.WebRequest.RequestUri --
+      Gets the <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> of the resource associated with the current instance.</LI>
+<LI>System.Net.WebRequest.Headers 
+   -- Gets or sets the collection of header name/value pairs associated with the
+   request.</LI>
+<LI>System.Net.WebRequest.ContentLength -- Gets or sets the content length of 
+      the request data being sent.</LI>
+<LI>System.Net.WebRequest.ContentType -- Gets or sets the content type of the 
+      request data being sent.</LI>
+<LI>System.Net.WebRequest.Credentials -- Gets or sets the credentials used 
+      for authenticating the client using the current instance.</LI>
+<LI>System.Net.WebRequest.PreAuthenticate -- Gets or 
+      sets a value that indicates whether to send authentication information with a
+      request for resources.</LI>
+<LI>System.Net.WebRequest.GetRequestStream -- Returns a <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> for writing data to a 
+      resource.</LI>
+<LI>System.Net.WebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object) -- Begins 
+      an asynchronous request for a stream in which to write data to be sent in the
+      current request.</LI>
+<LI>System.Net.WebRequest.EndGetRequestStream(System.IAsyncResult) -- Returns
+      a <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> for writing data to the
+      resource accessed by the current instance.</LI>
+<LI>System.Net.WebRequest.GetResponse -- Returns a response to a request.</LI>
+<LI>System.Net.WebRequest.BeginGetResponse(System.AsyncCallback,System.Object) -- Begins 
+      an asynchronous request for a resource.</LI>
+<LI>System.Net.WebRequest.EndGetResponse(System.IAsyncResult) -- Returns a <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> that
+      contains a response to a specified pending request.</LI>
+</UL>
+In addition, derived classes are required to
+   support the <A HREF="IWebRequestCreate.html" TARGET="contents">IWebRequestCreate</A> interface.<P>
+
+[<I>Note</I>:  An application
+      that uses the request/response model can request data be
+      sent from the Internet in a protocol-agnostic manner, in which the application works with
+      instances of the <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> class while classes that derive from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> and
+      
+      implement
+      specific protocols perform the details of
+      the request.<P>
+
+ Requests are sent from an application to a particular Uniform Resource Identifier (URI), such as
+      a Web page on a server. Using the URI, the System.Net.WebRequest.Create(System.Uri,System.Boolean) method creates an instance of a type
+      derived from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> to handle the request. The type is selected from the
+      set of registered types. Types may be registered to handle a specific
+      protocol, such as HTTP or FTP, or to handle a request to a specific server or
+      path on a server. [<I>Note</I>: For information on registering types, see System.Net.WebRequest.RegisterPrefix(System.String,System.Net.IWebRequestCreate).]<P>
+
+<P>
+
+The <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> class throws a <A HREF="WebException.html" TARGET="contents">WebException</A> exception when an error occurs
+   while accessing a resource. <P>
+
+ Use the System.Net.WebRequest.Create(System.Uri,System.Boolean) method to initialize a new instance of a
+class that derives from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A>
+. Do not use the <A HREF="WebRequest.html" TARGET="contents">WebRequest</A>
+constructor.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example demonstrates using System.Net.WebRequest.Create(System.Uri,System.Boolean) to create an instance of
+<A HREF="HttpWebRequest.html" TARGET="contents">HttpWebRequest</A> 
+.<P>
+
+<PRE>using System;
+using System.Net;
+
+public class WebRequestExample {
+
+  public static void Main() {
+
+    // Initialize the WebRequest.
+    WebRequest myRequest =
+      WebRequest.Create(&quot;http://www.contoso.com&quot;);
+
+    // Print the type of the request.
+    Console.WriteLine(myRequest);
+  }
+}
+</PRE>
+The output is<P>
+
+System.Net.HttpWebRequest<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+WebRequest Constructors<P>
+
+<A HREF="#WebRequest Constructor" TARGET="contents">WebRequest Constructor</A><BR>
+<P>
+
+WebRequest Methods<P>
+
+<A HREF="#WebRequest.Abort Method" TARGET="contents">WebRequest.Abort Method</A><BR>
+<A HREF="#WebRequest.BeginGetRequestStream Method" TARGET="contents">WebRequest.BeginGetRequestStream Method</A><BR>
+<A HREF="#WebRequest.BeginGetResponse Method" TARGET="contents">WebRequest.BeginGetResponse Method</A><BR>
+<A HREF="#WebRequest.Create(System.String) Method" TARGET="contents">WebRequest.Create(System.String) Method</A><BR>
+<A HREF="#WebRequest.Create(System.Uri) Method" TARGET="contents">WebRequest.Create(System.Uri) Method</A><BR>
+<A HREF="#WebRequest.CreateDefault Method" TARGET="contents">WebRequest.CreateDefault Method</A><BR>
+<A HREF="#WebRequest.EndGetRequestStream Method" TARGET="contents">WebRequest.EndGetRequestStream Method</A><BR>
+<A HREF="#WebRequest.EndGetResponse Method" TARGET="contents">WebRequest.EndGetResponse Method</A><BR>
+<A HREF="#WebRequest.GetRequestStream Method" TARGET="contents">WebRequest.GetRequestStream Method</A><BR>
+<A HREF="#WebRequest.GetResponse Method" TARGET="contents">WebRequest.GetResponse Method</A><BR>
+<A HREF="#WebRequest.RegisterPrefix Method" TARGET="contents">WebRequest.RegisterPrefix Method</A><BR>
+<P>
+
+WebRequest Properties<P>
+
+<A HREF="#WebRequest.ConnectionGroupName Property" TARGET="contents">WebRequest.ConnectionGroupName Property</A><BR>
+<A HREF="#WebRequest.ContentLength Property" TARGET="contents">WebRequest.ContentLength Property</A><BR>
+<A HREF="#WebRequest.ContentType Property" TARGET="contents">WebRequest.ContentType Property</A><BR>
+<A HREF="#WebRequest.Credentials Property" TARGET="contents">WebRequest.Credentials Property</A><BR>
+<A HREF="#WebRequest.Headers Property" TARGET="contents">WebRequest.Headers Property</A><BR>
+<A HREF="#WebRequest.Method Property" TARGET="contents">WebRequest.Method Property</A><BR>
+<A HREF="#WebRequest.PreAuthenticate Property" TARGET="contents">WebRequest.PreAuthenticate Property</A><BR>
+<A HREF="#WebRequest.Proxy Property" TARGET="contents">WebRequest.Proxy Property</A><BR>
+<A HREF="#WebRequest.RequestUri Property" TARGET="contents">WebRequest.RequestUri Property</A><BR>
+<A HREF="#WebRequest.Timeout Property" TARGET="contents">WebRequest.Timeout Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="WebRequest Constructor"><H3>WebRequest Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected WebRequest();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs a new instance of the <A HREF="WebRequest.html" TARGET="contents">WebRequest</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor is called only by classes that derive from
+ <A HREF="WebRequest.html" TARGET="contents">WebRequest</A>.<P>
+
+[<I>Note</I>: Use the System.Net.WebRequest.Create(System.Uri,System.Boolean) method to initialize a new instance of a class that derives from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> . Do not use
+ this constructor.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.Abort Method"><H3>WebRequest.Abort Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Abort();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Attempts to cancel an asynchronous request made by the current instance to access a resource.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This method is not overridden in the derived class.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Default</I>: The <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> class is 
+   abstract and does not provide an implementation for this method. This method
+   throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This 
+   method must be overridden by classes that inherit from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> to provide this
+   functionality. ]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to cancel an asynchronous operation started with the
+System.Net.WebRequest.BeginGetResponse(System.AsyncCallback,System.Object) method.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.BeginGetRequestStream Method"><H3>WebRequest.BeginGetRequestStream Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual IAsyncResult BeginGetRequestStream(AsyncCallback callback, object state);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Begins an asynchronous request for a stream in which to write data to be sent
+      in the current request.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>callback</DT>
+<DD>A <A HREF="../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate to be called when the stream is available. Can be <CODE>null</CODE>
+ .</DD>
+<DT>state</DT>
+<DD>A <A HREF="../../System/Object.html" TARGET="contents">Object</A> containing state information for the asynchronous request.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object that contains information about the asynchronous operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This method is not overridden in the derived class.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>state</I> parameter can be any object that the 
+   caller wishes to have available for the duration of the asynchronous operation.
+   This object is available via the System.IAsyncResult.AsyncState property of the object returned by this
+   method.<P>
+
+[<I>Behaviors</I>: This method starts an asynchronous operation to obtain a stream 
+      used to write data to be sent in the current request. To get the request
+      stream, call the System.Net.WebRequest.EndGetRequestStream(System.IAsyncResult) method and specify the <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object
+      returned by this method.<P>
+
+If the <I>callback</I> parameter is not 
+<CODE>null</CODE>
+ , the 
+   method referenced by <I>callback</I> is invoked when the asynchronous
+   operation completes. The <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object returned by this method is passed as the argument
+   to the method referenced by <I>callback</I>.<P>
+
+]<P>
+
+[<I>Default</I>: The <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> class is 
+abstract and does not provide an implementation for this method. This method
+throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This method must be overridden by classes that inherit from
+<A HREF="WebRequest.html" TARGET="contents">WebRequest</A> to provide this 
+   functionality. ]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to 
+   start an asynchronous request for a stream used to send data to a resource. The
+<I>callback</I> delegate
+   can call
+   the System.Net.WebRequest.EndGetRequestStream(System.IAsyncResult) method to
+   obtain the request stream. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.BeginGetResponse Method"><H3>WebRequest.BeginGetResponse Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual IAsyncResult BeginGetResponse(AsyncCallback callback, object state);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Begins sending the current request asynchronously.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>callback</DT>
+<DD>A <A HREF="../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate to be called when the response from the server is available.</DD>
+<DT>state</DT>
+<DD>A <A HREF="../../System/Object.html" TARGET="contents">Object</A> containing state information for the asynchronous request.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object that contains information about the asynchronous operation. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This method is not overridden in the derived class.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>state</I> parameter can be any object that the caller wishes to have 
+   available for the duration of the asynchronous operation. This object is
+   available via the System.IAsyncResult.AsyncState property of the object returned by this
+   method.<P>
+
+[<I>Behaviors</I>: This method starts an asynchronous operation to send the current request and 
+      receive the response from the server that processed the
+      request. To get the response, call the System.Net.WebRequest.EndGetResponse(System.IAsyncResult) method and specify the <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object
+      returned by this method.<P>
+
+If the <I>callback</I> parameter is not <CODE>null</CODE>
+ , the method 
+   referenced by <I>callback</I> is invoked when the asynchronous operation
+   completes. The <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object returned by this method is passed as the argument
+   to the method referenced by <I>callback</I>.<P>
+
+]<P>
+
+[<I>Default</I>: The <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> class is abstract and does not 
+provide an implementation for this method. This method throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This method must be overridden by 
+   classes that inherit from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> to provide this functionality.
+]<P>
+
+<P>
+
+[<I>Usage</I>: The System.Net.WebRequest.BeginGetResponse(System.AsyncCallback,System.Object) method starts an asynchronous request for 
+a response. The callback delegate
+can call the System.Net.WebRequest.EndGetResponse(System.IAsyncResult) method to return the <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> received from the resource.]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.Create(System.String) Method"><H3>WebRequest.Create(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static WebRequest Create(string requestUriString);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs a new instance of a class derived from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A>. The new instance is of the
+   type registered for the scheme
+   of the specified URI.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>requestUriString</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that contains a URI.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new instance of a class that derived from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> and is registered to handle the
+   scheme of <I>requestUriString</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>requestUriString </I>is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The request scheme specified in <I>requestUri </I> is not registered.</TD></TR>
+<TR><TD><A HREF="../../System/UriFormatException.html" TARGET="contents">UriFormatException</A></TD><TD>The URI specified in <I>requestUriString</I> is not a valid URI.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have permission to connect to the requested URI or a URI that the request is redirected to.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method
+         returns a new instance of a class that derived from
+      <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> . The <A HREF="../../System/Type.html" TARGET="contents">Type</A> of this new instance
+         is determined at run time by the scheme of the URI in
+      <I>requestUriString</I>. For example,
+         when a URI beginning with <CODE>http://</CODE> is passed in
+   <I>requestUriString</I>, a <A HREF="HttpWebRequest.html" TARGET="contents">HttpWebRequest</A> instance is returned.<P>
+
+ Classes that derive from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> that are
+   created to handle other requests are registered
+   with the System.Net.WebRequest.RegisterPrefix(System.String,System.Net.IWebRequestCreate)
+   method.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.Create(System.Uri) Method"><H3>WebRequest.Create(System.Uri) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static WebRequest Create(Uri requestUri);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+
+   Constructs a new instance of a class derived from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A>.
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>requestUri</DT>
+<DD>A <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> containing the URI of the requested resource.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A new instance of a class derived from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> that is registered to handle the closest registered
+   match for <I>requestUri</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>requestUri </I>is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The request scheme specified in <I>requestUri </I> is not registered.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have permission to connect to the requested URI or a URI that the request is redirected to.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+To 
+      determine the closest match, this method checks the registered URIs for the
+      longest URI prefix that matches <I>requestUri</I>. <P>
+
+[<I>Note</I>: For an example that demonstrates this method, see System.Net.WebRequest.CreateDefault(System.Uri).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.CreateDefault Method"><H3>WebRequest.CreateDefault Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static WebRequest CreateDefault(Uri requestUri);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs a new instance of a class derived from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A>. The new instance is of
+   the type registered for the scheme of the specified URI.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>requestUri</DT>
+<DD>A <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> containing the URI of the requested resource.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A new instance of the type derived from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> that is registered for the scheme of the specified <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>requestUri</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The request scheme specified in <I>requestUri </I> is not registered.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have permission to connect to the requested URI or a URI that the request is redirected to.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: When this method is
+      invoked, only the scheme portion of <I>requestUri </I>is checked against the
+      list of URIs registered for the current instance. Conversely, when System.Net.WebRequest.Create(System.Uri,System.Boolean)
+      is invoked, the entire URI is checked against the
+      list of registered URIs.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+This example demonstrates the use of the System.Net.WebRequest.Create(System.Uri,System.Boolean) and System.Net.WebRequest.CreateDefault(System.Uri) methods.<P>
+
+<PRE>using System;
+using System.Net;
+
+public class ContosoTextRequest : WebRequest, IWebRequestCreate
+{
+   public new WebRequest Create(Uri uri)
+   {
+      return new ContosoTextRequest();
+   }
+}
+
+public class CreateDefaultExample
+{
+   public static void Main()
+   {
+      ContosoTextRequest contoso = new ContosoTextRequest();
+      Uri contosoUri = new Uri(&quot;http://www.contoso.com/text&quot;);
+      WebRequest.RegisterPrefix(&quot;http://www.contoso.com/text&quot;, contoso);
+
+      WebRequest httpContoso = WebRequest.CreateDefault(contosoUri);
+      Console.WriteLine(&quot;CreateDefault --&gt; {0}&quot;, httpContoso);
+
+      WebRequest textContoso = WebRequest.Create(contosoUri);
+      Console.WriteLine(&quot;Create --&gt; {0}&quot;, textContoso);
+   }
+}
+</PRE>
+The output is<P>
+
+<CODE>CreateDefault --&gt; System.Net.HttpWebRequest<P>
+
+Create --&gt;
+      ContosoTextRequest<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.EndGetRequestStream Method"><H3>WebRequest.EndGetRequestStream Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual Stream EndGetRequestStream(IAsyncResult asyncResult);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> for writing data to the resource identified by the
+System.Net.WebRequest.RequestUri property of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>asyncResult</DT>
+<DD>A <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object that references a request for a <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> started with System.Net.WebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object) .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> to write data
+   to.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This method is not overridden in the derived class.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>asyncResult</I> was not returned by a call to System.Net.WebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object).</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>asyncResult</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD> This method was called previously using <I>asyncResult.</I><P>
+
+-or-<P>
+
+No stream is available.<P>
+
+</TD></TR>
+<TR><TD><A HREF="WebException.html" TARGET="contents">WebException</A></TD><TD>An error occurred while processing the request.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method completes an asynchronous
+      request for a stream that was started by the System.Net.WebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object) method.<P>
+
+[<I>Behaviors</I>: As described above.
+   ]<P>
+
+<P>
+
+[<I>Default</I>: The <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> class is
+   abstract and does not provide an implementation for this method. This method
+   throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This
+   method must be overridden by classes that inherit from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> to provide this
+   functionality. ]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to complete an asynchronous request for a stream that was started with the System.Net.WebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object) method.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.EndGetResponse Method"><H3>WebRequest.EndGetResponse Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual WebResponse EndGetResponse(IAsyncResult asyncResult);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> that contains a response to a specified
+   pending request.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>asyncResult</DT>
+<DD>A <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object that references a pending request that was started with System.Net.WebRequest.BeginGetResponse(System.AsyncCallback,System.Object).</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> that contains a response to the request
+   referenced by <I>asyncResult</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This method is not overridden in the derived class.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>asyncResult</I> was not returned by a call to System.Net.WebRequest.BeginGetResponse(System.AsyncCallback,System.Object).</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>asyncResult</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The System.Net.WebRequest.ContentLength property of the current instance is greater than zero but no data has been written to the request stream.<P>
+
+-or-<P>
+
+This method was called previously using <I>asyncResult.</I><P>
+
+</TD></TR>
+<TR><TD><A HREF="WebException.html" TARGET="contents">WebException</A></TD><TD>An error occurred while processing the request.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: The <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> class is
+   abstract and does not provide an implementation for this method. This method
+   throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This
+   method must be overridden by classes that inherit from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> to provide this
+   functionality. ]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to complete an asynchronous request
+   for an Internet resource that was started with the System.Net.WebRequest.BeginGetResponse(System.AsyncCallback,System.Object) method.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.GetRequestStream Method"><H3>WebRequest.GetRequestStream Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual Stream GetRequestStream();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> for writing data to a
+   resource.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> for writing data to
+   a resource.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This method is not overridden in the derived class.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Default</I>: The <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> class is abstract and does not 
+   provide an implementation for this method. This method throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This method is required to be 
+   overridden by classes that inherit from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A>.]<P>
+
+<P>
+
+[<I>Usage</I>:  Use this method to initiate a request to send
+      data to a resource and obtain a <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> instance for sending data to
+      that resource. <P>
+
+The System.Net.WebRequest.GetRequestStream method provides synchronous access to the <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A>. For
+   asynchronous access, use the System.Net.WebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object) and System.Net.WebRequest.EndGetRequestStream(System.IAsyncResult) methods.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.GetResponse Method"><H3>WebRequest.GetResponse Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual WebResponse GetResponse();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a
+      response to a request.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> containing the response to the request.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This method is not overridden in the derived class.</TD></TR>
+<TR><TD><A HREF="WebException.html" TARGET="contents">WebException</A></TD><TD> The request timed out.<P>
+
+-or-<P>
+
+An error occurred while processing the request.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  This method returns an instance of a type
+         derived from <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> that is registered for the System.Net.WebRequest.RequestUri property of the current instance. This new
+         instance is required to contain a response from the resource to the current request. <P>
+
+If the timeout period for the request expires, or an
+         error occurs while processing the request, this method is required to throw a
+      <A HREF="WebException.html" TARGET="contents">WebException</A> exception.<P>
+
+]<P>
+
+[<I>Default</I>: The <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> class is
+   abstract and does not provide an implementation for this method. This method
+   throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This
+   method must be overridden by classes that inherit from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> to provide this
+   functionality. ]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method for synchronous access to a resource.
+   For asynchronous access, use the System.Net.WebRequest.BeginGetResponse(System.AsyncCallback,System.Object) and System.Net.WebRequest.EndGetResponse(System.IAsyncResult) methods.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.RegisterPrefix Method"><H3>WebRequest.RegisterPrefix Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool RegisterPrefix(string prefix, IWebRequestCreate creator);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Registers a type derived from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A>, and associates the
+   type with the specified URI.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>prefix</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the URI that the derived type services. Can specify a scheme or a complete URI.</DD>
+<DT>creator</DT>
+<DD>An instance of a type that implements the <A HREF="IWebRequestCreate.html" TARGET="contents">IWebRequestCreate</A> interface.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+ if registration is successful;
+<CODE>false</CODE>
+, if 
+<I>prefix</I> 
+is already registered.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>prefix</I> is <CODE>null</CODE>
+ or 
+				<I>creator</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">HttpWebRequest</A> is registered
+   to service requests for HTTP and HTTPS schemes. Attempts to register a different
+   type for these schemes will
+   fail.<P>
+
+[<I>Note</I>: This method registers types that derive from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> 
+to service requests. These derived types are
+typically registered to handle a specific protocol, such HTTP or FTP, but can be
+registered to handle a request to a specific server or path on a server.
+Therefore, <I>prefix</I>
+can be either a scheme or a complete
+URI.<P>
+
+The <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> class calls the System.Net.IWebRequestCreate.Create(System.Uri) 
+method to create additional instances of the same type as
+<I>creator</I>.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates how to register a new
+      scheme.<P>
+
+<PRE>using System;
+using System.Net;
+
+public class ftpWebRequest : WebRequest {
+   //implement ftp-specific protocol methods and properties
+}
+
+public class ftpCreator : IWebRequestCreate 
+{
+   public WebRequest Create(Uri uri) 
+   {
+      return new ftpWebRequest(); 
+   }
+}
+
+public class RegisterPrefixExample
+{
+
+   public static void Main() 
+   {
+ 
+      ftpCreator creator = new ftpCreator();
+      WebRequest.RegisterPrefix(&quot;ftp://&quot;, creator);
+      WebRequest wr = WebRequest.Create(&quot;ftp://testFile&quot;);
+      Console.WriteLine(wr);
+   }
+}
+   </PRE>
+The output is<P>
+
+ftpWebRequest<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.ConnectionGroupName Property"><H3>WebRequest.ConnectionGroupName Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string ConnectionGroupName { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the name of the connection group for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> that contains the name of the connection group for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This property is not implemented in the derived class.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property associates specific requests within an 
+      application with a <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A>
+      .<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Default</I>: This property throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This property is required to be
+   overridden by classes that inherit from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A>. The System.Net.WebRequest.ConnectionGroupName property
+   typically associates a group of requests that share a set of credentials with a
+   connection to an Internet resource to avoid potential security failures.
+]<P>
+
+<P>
+
+[<I>Usage</I>: ]<P>
+
+Use this property to get or set the name of the connection group for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.ContentLength Property"><H3>WebRequest.ContentLength Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual long ContentLength { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or
+      sets the
+      content
+      length of the request data being sent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> containing the number of bytes of request data being sent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This property is not implemented in the derived class. </TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>Data has already been written to the request stream. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>This property is being set to a value less than zero. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This property
+      is required to throw a <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A> exception if data has already been
+      written to the request stream, and a <A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A> exception if the property is being set to a value less than zero.]<P>
+
+<P>
+
+[<I>Default</I>: This property throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This property is required to be
+   overridden by classes that inherit from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A>.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this property to get the number of bytes sent to the resource.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.ContentType Property"><H3>WebRequest.ContentType Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string ContentType { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets
+      or
+      sets
+      the content type of the request data being sent.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> that represents the content type of the request data.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This property is not implemented in the derived class. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Net.WebRequest.ContentType
+property contains the media type of the request.<P>
+
+[<I>Note</I>: This
+   is typically the MIME encoding of the content.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Default</I>: This property throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This property is required to be
+   overridden by classes that inherit from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A>.]<P>
+
+<P>
+
+[<I>Usage</I>: Use
+   this property to get the media type of request.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.Credentials Property"><H3>WebRequest.Credentials Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual ICredentials Credentials { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the credentials used for
+      authenticating the client using the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="ICredentials.html" TARGET="contents">ICredentials</A> object containing the authentication credentials
+   associated with the request. The default is <CODE>null</CODE>
+ .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This property is not implemented in the derived class. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Default</I>: This
+      property throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This
+      property is required to be overridden by classes that inherit from
+   <A HREF="WebRequest.html" TARGET="contents">WebRequest</A>.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this property
+      to store or access the user, password, and domain information of the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.Headers Property"><H3>WebRequest.Headers Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual WebHeaderCollection Headers { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets
+ or
+ sets the collection of header name/value pairs associated with the
+ request.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="WebHeaderCollection.html" TARGET="contents">WebHeaderCollection</A> containing the header name/value pairs associated
+ with the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This property is not implemented in the derived class. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property contains a <A HREF="WebHeaderCollection.html" TARGET="contents">WebHeaderCollection</A> instance containing
+ the header information to send to resources. <P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Default</I>: This property
+ throws a <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>
+ exception.]<P>
+
+<P>
+
+[<I>Overrides</I>: This property must be overridden by classes that inherit from
+<A HREF="WebRequest.html" TARGET="contents">WebRequest</A>.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this property 
+ to determine the header information of a request.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.Method Property"><H3>WebRequest.Method Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string Method { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets
+      or sets the protocol method to use in the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the protocol method to use in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This property is not implemented in the derived class. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: The default value of this property is required to
+      be a protocol method that does not require protocol-specific properties
+      to be set. For the HTTP protocol, this
+      value is GET.]<P>
+
+<P>
+
+[<I>Default</I>: This property throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This property must be overridden by 
+   classes that inherit from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> to provide this functionality. ]<P>
+
+<P>
+
+[<I>Usage</I>: Use this property
+   to set the protocol-specific method that will be used to make a request.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.PreAuthenticate Property"><H3>WebRequest.PreAuthenticate Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool PreAuthenticate { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that determines whether to send authentication information with the current request instead of waiting
+   for an authentication challenge
+   from the requested resource.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if
+   authentication information will be
+   sent with the current request without waiting for an authentication challenge
+   from
+   the requested resource;
+   otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This property is not implemented in the derived class. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: If System.Net.WebRequest.PreAuthenticate is <CODE>true</CODE>
+ , the current instance sends authentication
+   credentials without waiting to be challenged by the server specified by the
+System.Net.WebRequest.RequestUri 
+property of the current instance. When
+this property is <CODE>false</CODE>
+ , the
+current instance waits for
+a challenge from the server before sending credentials.]<P>
+
+<P>
+
+[<I>Default</I>: This
+   property throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This property must be overridden by 
+   classes that inherit from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> to provide this functionality. ]<P>
+
+<P>
+
+[<I>Usage</I>: Use this
+   property to ensure that authentication information is sent with every
+   request. Setting this property to <CODE>true </CODE>
+ allows clients to improve
+   server efficiency by avoiding extra round trips caused by authentication challenges.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.Proxy Property"><H3>WebRequest.Proxy Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual IWebProxy Proxy { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the
+      network proxy to use to access resources.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="IWebProxy.html" TARGET="contents">IWebProxy</A> to use to access resources.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This property is not implemented in the derived class. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Net.WebRequest.Proxy property identifies the network proxy
+   that the request uses to access resources. The request is made through the
+   proxy server rather than directly to the server hosting the resource.<P>
+
+[<I>Behaviors</I>: If the System.Net.WebRequest.Proxy
+property of the current instance has not been set, the value of this property is
+required to be <CODE>null</CODE>
+
+.<P>
+
+If the property is being set to <CODE>null</CODE>
+, it is required to
+throw a <A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A> exception.<P>
+
+]<P>
+
+[<I>Default</I>: This
+   property throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This property must be overridden by 
+   classes that inherit from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> to provide this functionality. ]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to
+   obtain a <A HREF="IWebProxy.html" TARGET="contents">IWebProxy</A> instance that represents the proxy server used by the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.RequestUri Property"><H3>WebRequest.RequestUri Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual Uri RequestUri { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the <A HREF="../../System/Uri.html" TARGET="contents">Uri</A>
+of the resource associated with the
+current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> containing the URI 
+   of
+   the resource associated with the current instance<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This property is not implemented in the derived class. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Behaviors</I>: System.Net.WebRequest.RequestUri is required to 
+   contain the URI passed to
+   the System.Net.WebRequest.Create(System.Uri,System.Boolean)
+   methods. If the protocol implemented
+   by a derived class supports redirection, the derived class is required
+   to provide a property to contain the URI that actually services the request.]<P>
+
+<P>
+
+[<I>Default</I>: This property
+   throws a <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>
+   exception.]<P>
+
+<P>
+
+[<I>Overrides</I>: This property 
+   must be overridden by classes that inherit from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> to
+   provide this functionality. ]<P>
+
+]<P>
+
+[<I>Usage</I>: Use this property 
+   to determine the URI that the request was addressed to. For information about
+   the URI that actually serviced the request, see System.Net.WebResponse.ResponseUri
+   . ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebRequest.Timeout Property"><H3>WebRequest.Timeout Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual int Timeout { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the length of time before requests for resources time out.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the length of time, in milliseconds, before the current request
+   will time out, or System.Threading.Timeout.Infinite to indicate that the request does not time out.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This property is not implemented in the derived class. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: Classes that
+      derive from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> are required to indicate a timeout by throwing a <A HREF="WebException.html" TARGET="contents">WebException</A> with
+      the System.Net.WebException.Status field set to System.Net.WebExceptionStatus.Timeout if a request times out.]<P>
+
+<P>
+
+[<I>Default</I>: This
+      property throws a <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>
+      exception.]<P>
+
+<P>
+
+[<I>Overrides</I>: This property 
+      must be overridden by classes that inherit from <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> to
+      provide this functionality. ]<P>
+
+<P>
+
+[<I>Usage</I>: Use this property to set the timeout period for requests for resources.<P>
+
+The System.Net.WebRequest.Timeout property affects only synchronous
+      requests made with the System.Net.WebRequest.GetResponse method. To time out asynchronous
+      requests, use the System.Net.WebRequest.Abort method.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebRequest.html" TARGET="contents">System.Net.WebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

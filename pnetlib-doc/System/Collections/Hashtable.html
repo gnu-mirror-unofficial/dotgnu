@@ -1,0 +1,1919 @@
+<HTML>
+<HEAD>
+<TITLE>System.Collections.Hashtable Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Collections.Hashtable Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class Hashtable : ICloneable, ICollection, IDictionary, IEnumerable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Hashtable<P>
+
+This type implements <A HREF="IDictionary.html" TARGET="contents">IDictionary</A>, <A HREF="ICollection.html" TARGET="contents">ICollection</A>, <A HREF="IEnumerable.html" TARGET="contents">IEnumerable</A>, and <A HREF="../../System/ICloneable.html" TARGET="contents">ICloneable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents a hash table.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> represents a
+   dictionary with a constant lookup time that contains entries of associated keys
+   and values. The type of each entry in a <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> is <A HREF="DictionaryEntry.html" TARGET="contents">DictionaryEntry</A>. A statement that exposes each element in the
+   collection is required to iterate over this type. [<I>Note</I>: See
+   example.]<P>
+
+<P>
+
+Objects used as keys in a <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> is required
+to either implement both System.Object.GetHashCode and System.Object.Equals(System.Object) or neither. Furthermore, for a particular key, these methods are required to produce the same results when called with
+the same parameters while that key exists in a particular <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> . Keys cannot be mutated while they are
+used in the table.<P>
+
+ Every key in a <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> is required to be unique compared to every other key
+in the table. An object that implements <A HREF="IComparer.html" TARGET="contents">IComparer</A> can determine whether two keys are unequal.
+The default comparer for a key is the key&apos;s implementation of
+System.Object.Equals(System.Object).<P>
+
+Each value in a <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> is required to provide its own hash function, which
+can be accessed by calling System.Collections.Hashtable.GetHash(System.Object). Alternatively, if an object that implements
+<A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> is 
+passed to a <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> constructor, the custom hash
+function provided by that object is used for every value in the table.<P>
+
+[<I>Note</I>:  The default capacity (i.e. the default number of entries that can be contained) of a <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> is
+   zero.<P>
+
+ When an entry is added to the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>, the entry is placed
+into a bucket based on the hash code obtained from the <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> implementation of the table, or
+the System.Object.GetHashCode if no
+specific <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A>
+was provided. Subsequent lookups of
+the key use the hash code of the key to search in only one particular bucket,
+substantially reducing the number of key comparisons required to find an entry.<P>
+
+As entries are added to a <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>, and the maximum capacity of the table is
+reached, the number of buckets in the table is automatically increased to the
+smallest prime number that is larger than twice the current number of
+buckets.<P>
+
+A <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> can
+safely support
+one writer and multiple readers concurrently. To support multiple writers,
+all operations
+are required to be done through the wrapper returned by the System.Collections.Hashtable.Synchronized(System.Collections.Hashtable) method.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example shows
+      how to iterate over the elements of a <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>.<P>
+
+<CODE>[C#]<P>
+
+foreach (DictionaryEntry myEntry in
+         myHashtable)<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>DefaultMemberAttribute(&quot;Item&quot;)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Hashtable Constructors<P>
+
+<A HREF="#Hashtable() Constructor" TARGET="contents">Hashtable() Constructor</A><BR>
+<A HREF="#Hashtable(int) Constructor" TARGET="contents">Hashtable(int) Constructor</A><BR>
+<A HREF="#Hashtable(System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor" TARGET="contents">Hashtable(System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</A><BR>
+<A HREF="#Hashtable(int, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor" TARGET="contents">Hashtable(int, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</A><BR>
+<A HREF="#Hashtable(System.Collections.IDictionary) Constructor" TARGET="contents">Hashtable(System.Collections.IDictionary) Constructor</A><BR>
+<A HREF="#Hashtable(System.Collections.IDictionary, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor" TARGET="contents">Hashtable(System.Collections.IDictionary, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</A><BR>
+<P>
+
+Hashtable Methods<P>
+
+<A HREF="#Hashtable.Add Method" TARGET="contents">Hashtable.Add Method</A><BR>
+<A HREF="#Hashtable.Clear Method" TARGET="contents">Hashtable.Clear Method</A><BR>
+<A HREF="#Hashtable.Clone Method" TARGET="contents">Hashtable.Clone Method</A><BR>
+<A HREF="#Hashtable.Contains Method" TARGET="contents">Hashtable.Contains Method</A><BR>
+<A HREF="#Hashtable.ContainsKey Method" TARGET="contents">Hashtable.ContainsKey Method</A><BR>
+<A HREF="#Hashtable.ContainsValue Method" TARGET="contents">Hashtable.ContainsValue Method</A><BR>
+<A HREF="#Hashtable.CopyTo Method" TARGET="contents">Hashtable.CopyTo Method</A><BR>
+<A HREF="#Hashtable.GetEnumerator Method" TARGET="contents">Hashtable.GetEnumerator Method</A><BR>
+<A HREF="#Hashtable.GetHash Method" TARGET="contents">Hashtable.GetHash Method</A><BR>
+<A HREF="#Hashtable.KeyEquals Method" TARGET="contents">Hashtable.KeyEquals Method</A><BR>
+<A HREF="#Hashtable.Remove Method" TARGET="contents">Hashtable.Remove Method</A><BR>
+<A HREF="#Hashtable.Synchronized Method" TARGET="contents">Hashtable.Synchronized Method</A><BR>
+<A HREF="#Hashtable.System.Collections.IEnumerable.GetEnumerator Method" TARGET="contents">Hashtable.System.Collections.IEnumerable.GetEnumerator Method</A><BR>
+<P>
+
+Hashtable Properties<P>
+
+<A HREF="#Hashtable.Count() Property" TARGET="contents">Hashtable.Count() Property</A><BR>
+<A HREF="#Hashtable.Count() Property" TARGET="contents">Hashtable.Count() Property</A><BR>
+<A HREF="#Hashtable.IsFixedSize() Property" TARGET="contents">Hashtable.IsFixedSize() Property</A><BR>
+<A HREF="#Hashtable.IsFixedSize() Property" TARGET="contents">Hashtable.IsFixedSize() Property</A><BR>
+<A HREF="#Hashtable.IsReadOnly() Property" TARGET="contents">Hashtable.IsReadOnly() Property</A><BR>
+<A HREF="#Hashtable.IsReadOnly() Property" TARGET="contents">Hashtable.IsReadOnly() Property</A><BR>
+<A HREF="#Hashtable.IsSynchronized() Property" TARGET="contents">Hashtable.IsSynchronized() Property</A><BR>
+<A HREF="#Hashtable.IsSynchronized() Property" TARGET="contents">Hashtable.IsSynchronized() Property</A><BR>
+<A HREF="#Hashtable.Item Property" TARGET="contents">Hashtable.Item Property</A><BR>
+<A HREF="#Hashtable.Keys() Property" TARGET="contents">Hashtable.Keys() Property</A><BR>
+<A HREF="#Hashtable.Keys() Property" TARGET="contents">Hashtable.Keys() Property</A><BR>
+<A HREF="#Hashtable.SyncRoot() Property" TARGET="contents">Hashtable.SyncRoot() Property</A><BR>
+<A HREF="#Hashtable.SyncRoot() Property" TARGET="contents">Hashtable.SyncRoot() Property</A><BR>
+<A HREF="#Hashtable.Values() Property" TARGET="contents">Hashtable.Values() Property</A><BR>
+<A HREF="#Hashtable.Values() Property" TARGET="contents">Hashtable.Values() Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Hashtable() Constructor"><H3>Hashtable() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Hashtable();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The new instance is initialized with the default
+ capacity, <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A>, and <A HREF="IComparer.html" TARGET="contents">IComparer</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable(int) Constructor"><H3>Hashtable(int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Hashtable(int capacity);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>
+class with the specified initial capacity.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>capacity</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number of entries that the new <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> instance can initially contain. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>capacity</I> &lt; 0. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The new instance is initialized with the default <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> and <A HREF="IComparer.html" TARGET="contents">IComparer</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable(System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor"><H3>Hashtable(System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Hashtable(IHashCodeProvider hcp, IComparer comparer);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> class with the specified <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> and the specified <A HREF="IComparer.html" TARGET="contents">IComparer</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>hcp</DT>
+<DD>The <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> that supplies the hash codes for all keys in the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>; or, <CODE>null</CODE>
+ to use the default hash code provider.<P>
+
+</DD>
+<DT>comparer</DT>
+<DD>The <A HREF="IComparer.html" TARGET="contents">IComparer</A> to use to determine whether two keys are equal; or, <CODE>null</CODE>
+ to use the default comparer.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The new instance is initialized with the default capacity.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable(int, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor"><H3>Hashtable(int, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Hashtable(int capacity, IHashCodeProvider hcp, IComparer comparer);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> class with the specified initial capacity, the specified
+<A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A>, and the specified <A HREF="IComparer.html" TARGET="contents">IComparer</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>capacity</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number of entries that the new <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> instance can initially contain. </DD>
+<DT>hcp</DT>
+<DD>The <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> that supplies the hash codes for all keys in the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>; or, <CODE>null</CODE>
+ to use the default hash code provider.<P>
+
+</DD>
+<DT>comparer</DT>
+<DD>The <A HREF="IComparer.html" TARGET="contents">IComparer</A> to use to determine whether two keys are equal, or <CODE>null</CODE>
+ to use the default comparer.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable(System.Collections.IDictionary) Constructor"><H3>Hashtable(System.Collections.IDictionary) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Hashtable(IDictionary d);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> class using
+   the values of the specified <A HREF="IDictionary.html" TARGET="contents">IDictionary</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d</DT>
+<DD>The <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> used to initialize the elements of the new instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>d</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The initial capacity of the new instance is set to the
+      number of entries in <I>d</I>. The new instance is initialized with the default
+   <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> and <A HREF="IComparer.html" TARGET="contents">IComparer</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable(System.Collections.IDictionary, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor"><H3>Hashtable(System.Collections.IDictionary, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Hashtable(IDictionary d, IHashCodeProvider hcp, IComparer comparer);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> class
+   using the values of the specified <A HREF="IDictionary.html" TARGET="contents">IDictionary</A>, the specified <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A>, and the specified <A HREF="IComparer.html" TARGET="contents">IComparer</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d</DT>
+<DD>The <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> used to initialize the elements of the new instance.</DD>
+<DT>hcp</DT>
+<DD>The <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> that supplies the hash codes for all keys in the new instance; or, <CODE>null</CODE>
+ to use the default hash code provider.<P>
+
+</DD>
+<DT>comparer</DT>
+<DD>The <A HREF="IComparer.html" TARGET="contents">IComparer</A> to use to determine whether two keys are equal in the new instance, or <CODE>null</CODE>
+ to use the default comparer.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>d</I> is <CODE>null</CODE>
+. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The initial capacity of the new
+      instance is set to the number of entries in <I>d</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.Add Method"><H3>Hashtable.Add Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Add(object key, object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds an entry with the specified key and value into the
+      current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>key</DT>
+<DD>The key of the entry to add.</DD>
+<DT>value</DT>
+<DD>The value of the entry to add.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>key</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>An entry with the same key already exists in the current instance.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only or has a fixed size.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.Clear Method"><H3>Hashtable.Clear Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Clear();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes all entries from the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support
+      the <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> interface.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: The value of each key and value in the current instance is set to
+      <CODE>null</CODE>
+. The System.Collections.Hashtable.Count property of the current instance 
+         is set to zero. The capacity of the current instance remains
+         unchanged.<P>
+
+If the current instance is empty, it remains unchanged and no exception is
+         thrown.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.Clone Method"><H3>Hashtable.Clone Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual object Clone();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Creates a <A HREF="../../System/Object.html" TARGET="contents">Object</A>
+that is a copy of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Object.html" TARGET="contents">Object</A>
+that is a copy of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support the <A HREF="../../System/ICloneable.html" TARGET="contents">ICloneable</A> interface.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+[<I>Default</I>: This method creates a new <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> instance is initialized with the same count,
+<A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> implementation, and <A HREF="IComparer.html" TARGET="contents">IComparer</A> implementation 
+as the current instance. The references to the objects contained by the current
+instance are copied to the new instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.Contains Method"><H3>Hashtable.Contains Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool Contains(object key);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether the current instance contains the specified key.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>key</DT>
+<DD>The key to locate in the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+
+if the current instance contains <I>key</I>; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>key</I> is <CODE>null</CODE>
+. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support the <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> 
+interface.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Default</I>: 
+ This method is equivalent to System.Collections.Hashtable.ContainsKey(System.Object).]<P>
+
+<P>
+
+[<I>Note</I>:  
+ For the default implementation, this method has a constant (O(1)) lookup time.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.ContainsKey Method"><H3>Hashtable.ContainsKey Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool ContainsKey(object key);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance contains an entry with the specified key.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>key</DT>
+<DD>The key of the entry to locate in the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if
+ the current instance contains an entry with <I>key</I>; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>key</I> is <CODE>null</CODE>
+. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Default</I>: 
+ This method uses System.Collections.Hashtable.KeyEquals(System.Object,System.Object) to compare <I>key</I> to the keys in the current instance.
+ ]<P>
+
+<P>
+
+[<I>Note</I>: For the default implementation, this method has a constant (O(1)) lookup
+ time.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.ContainsValue Method"><H3>Hashtable.ContainsValue Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool ContainsValue(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance contains an entry with the specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The value to locate in the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+
+if the current instance contains an
+entry with <I>value</I>; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support 
+ the <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> interface.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Default</I>: This method is equivalent to System.Collections.Hashtable.ContainsKey(System.Object).]<P>
+
+<P>
+
+[<I>Note</I>: For the default implementation, this method has a constant (O(1)) lookup 
+ time.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.CopyTo Method"><H3>Hashtable.CopyTo Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void CopyTo(Array array, int arrayIndex);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Copies the entries of the current instance to a
+      one-dimensional <A HREF="../../System/Array.html" TARGET="contents">Array</A> starting at the specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>array</DT>
+<DD>The one-dimensional, zero-indexed <A HREF="../../System/Array.html" TARGET="contents">Array</A> that is the destination of the objects copied from the current instance.</DD>
+<DT>arrayIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the zero-based index in <I>array</I> at which copying begins. This value is between 0 and <I>array</I>.Count minus the System.Collections.Hashtable.Count of the current index, inclusive.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>array</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>arrayIndex</I> &lt; 0.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>array</I> has more than one dimension.<P>
+
+<I>arrayIndex</I> &gt; <I>array</I>.Count - The System.Collections.Hashtable.Count of the current instance.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/InvalidCastException.html" TARGET="contents">InvalidCastException</A></TD><TD>The type of the current instance is not assignment-compatible with the type of <I>array</I>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: The <A HREF="DictionaryEntry.html" TARGET="contents">DictionaryEntry</A> elements in the current instance are copied to the <A HREF="../../System/Array.html" TARGET="contents">Array</A> in the same order in which they are contained the
+   current instance. If <A HREF="DictionaryEntry.html" TARGET="contents">DictionaryEntry</A> is not
+   assignment-compatible with the type of <I>array</I>, a <A HREF="../../System/InvalidCastException.html" TARGET="contents">InvalidCastException</A>
+   is thrown. If an exception is thrown
+   while copying, the state of the current instance is undefined.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.GetEnumerator Method"><H3>Hashtable.GetEnumerator Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual IDictionaryEnumerator GetEnumerator();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="IDictionaryEnumerator.html" TARGET="contents">IDictionaryEnumerator</A> for the
+   current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="IDictionaryEnumerator.html" TARGET="contents">IDictionaryEnumerator</A> for the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the elements of the current instance are modified
+      while an enumeration is in progress, a call to System.Collections.IEnumerator.MoveNext or System.Collections.IEnumerator.Current throws <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>. <P>
+
+[<I>Note</I>: For detailed information regarding the use of an enumerator, see <A HREF="IEnumerator.html" TARGET="contents">IEnumerator</A>.<P>
+
+This property is implemented to support the <A HREF="IList.html" TARGET="contents">IList</A> interface.<P>
+
+]<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.GetHash Method"><H3>Hashtable.GetHash Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected virtual int GetHash(object key);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Generates a hash code for the specified key in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>key</DT>
+<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> whose hash code is to be generated.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the hash code for <I>key</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>key</I> is <CODE>null</CODE>
+. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is accessible only through this class or a derived class.<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: If the current instance was instantiated with a specific <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> implementation, this method uses that hash
+   code provider; otherwise, it uses the System.Object.GetHashCode implementation of
+<I>key</I>
+.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.KeyEquals Method"><H3>Hashtable.KeyEquals Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected virtual bool KeyEquals(object item, object key);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the specified <A HREF="../../System/Object.html" TARGET="contents">Object</A> and the specified key in the
+   current instance represent the same value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>item</DT>
+<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to compare with <I>key</I>.</DD>
+<DT>key</DT>
+<DD>The key in the current instance to compare with <I>item</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>item</I> and <I>key</I> represent the
+   same value; otherwise,
+<CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>item</I> is <CODE>null</CODE>
+. <P>
+
+-or-<P>
+
+<I>key</I> is <CODE>null</CODE>
+. <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is accessible only through this class or a derived class.<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: If the
+      current instance was initialized with a specified <A HREF="IComparer.html" TARGET="contents">IComparer</A> implementation, this method uses that
+      implementation to perform the comparison; otherwise, the System.Object.Equals(System.Object) implementation of <I>item</I> is used.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.Remove Method"><H3>Hashtable.Remove Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Remove(object key);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes the entry with the specified key from the
+      current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>key</DT>
+<DD>The key of the entry to remove.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>key</I> is <CODE>null</CODE>
+. </TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only or has a fixed size.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support
+      the <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> interface.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+[<I>Default</I>: This method uses the System.Object.Equals(System.Object) implementation of
+<I>key</I> to locate it in the current instance. If <I>key</I> is 
+found in the current instance, the values of both <I>key</I> and its
+associated value are set to <CODE>null</CODE>
+. If <I>key</I> is not
+found in the
+current instance, no exception is thrown and the current
+instance remains unchanged.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.Synchronized Method"><H3>Hashtable.Synchronized Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Hashtable Synchronized(Hashtable table);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a synchronized (thread-safe) wrapper for the specified <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>table</DT>
+<DD>The <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> to synchronize.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A synchronized (thread-safe) wrapper for <I>table</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>table</I> is <CODE>null</CODE>
+. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method returns a new <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> instance that contains values equal to the
+   values of <I>table</I> , and provides synchronized access to those values.<P>
+
+If more than one thread is to write to a <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> concurrently, all
+write
+operations are required to be done through this wrapper.<P>
+
+[<I>Note</I>: A <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> can safely support one
+writer and multiple readers concurrently.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.System.Collections.IEnumerable.GetEnumerator Method"><H3>Hashtable.System.Collections.IEnumerable.GetEnumerator Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>IEnumerator IEnumerable.GetEnumerator();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="IEnumerable.html" TARGET="contents">IEnumerable</A> interface. [Note: For more information, see System.Collections.IEnumerable.GetEnumerator.]
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.Count() Property"><H3>Hashtable.Count() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>int ICollection.Count { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="ICollection.html" TARGET="contents">ICollection</A> interface. [Note: For more information, see System.Collections.ICollection.Count.]
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.Count() Property"><H3>Hashtable.Count() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual int Count { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the number of key-and-value pairs contained in the
+      current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number of key-and-value pairs contained in the
+   current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.IsFixedSize() Property"><H3>Hashtable.IsFixedSize() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool IDictionary.IsFixedSize { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> interface. [Note: For more information, see System.Collections.IDictionary.IsFixedSize.]
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.IsFixedSize() Property"><H3>Hashtable.IsFixedSize() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool IsFixedSize { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> indicating whether the current instance
+   has a fixed size.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the
+   current instance has a fixed size; otherwise,
+<CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is a read-only.<P>
+
+[<I>Note</I>: Elements can be modified in, but not
+      added to or removed from a <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> with a fixed size.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: The default
+      value of this property is <CODE>false</CODE>
+ .]<P>
+
+<P>
+
+[<I>Overrides</I>: Override
+      this property, setting it to <CODE> true</CODE>
+
+      , to prevent addition or removal of entries in the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.IsReadOnly() Property"><H3>Hashtable.IsReadOnly() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool IDictionary.IsReadOnly { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> interface. [Note: For more information, see System.Collections.IDictionary.IsReadOnly.]
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.IsReadOnly() Property"><H3>Hashtable.IsReadOnly() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool IsReadOnly { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current instance
+   is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the
+   current instance is read-only; otherwise,
+<CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: Elements cannot be modified in, added
+      to, or removed from a <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> that is read-only.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: The default
+      value of this property is <CODE> false</CODE>
+.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override
+      this property, setting it to <CODE> true</CODE>
+ , in
+      order to prevent the addition, removal, or modification of
+      entries in the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.IsSynchronized() Property"><H3>Hashtable.IsSynchronized() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool ICollection.IsSynchronized { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="ICollection.html" TARGET="contents">ICollection</A> interface. [Note: For more information, see System.Collections.ICollection.IsSynchronized.]
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.IsSynchronized() Property"><H3>Hashtable.IsSynchronized() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool IsSynchronized { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether access to the current instance
+   is synchronized (thread-safe).<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if access to
+   the current instance is synchronized
+   (thread-safe); otherwise, <CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: This property is implemented to support the <A HREF="ICollection.html" TARGET="contents">ICollection</A>
+   interface.<P>
+
+For more information regarding synchronization of access to a <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> ,
+see System.Collections.Hashtable.Synchronized(System.Collections.Hashtable) .<P>
+
+]<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+[<I>Default</I>: The default
+   value of this property is <CODE> false</CODE>
+.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override
+   this property, setting it to <CODE> true</CODE>
+
+   , if thread-safety can be guaranteed for
+   the current instance. In order to obtain this safety, use System.Collections.Hashtable.SyncRoot or System.Collections.Hashtable.Synchronized(System.Collections.Hashtable)
+   .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.Item Property"><H3>Hashtable.Item Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual object this[object key] { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the value in the current instance that is associated with the specified key.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>key</DT>
+<DD>The key whose value to get or set.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ The value in the current instance that is associated
+      with <I>key</I>. If <I>key</I> is
+      not contained in the current instance, attempting to get it returns
+   <CODE>null</CODE>
+, and attempting to set it creates a new entry
+      using <I>key</I>
+      
+      .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>key</I> is <CODE>null</CODE>
+. </TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The property is being set and the current instance is read-only.<P>
+
+The property is being set, <I>key</I> is not contained in the current instance, and the current instance has a fixed size.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This property provides the ability to
+      access a specific element in the current instance using the following notation:
+      <CODE>myCollection[key]</CODE>
+      .]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: If this property is being set and <I>key</I> is already contained
+   in the current instance, the value associated with the old key is
+   replaced.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.Keys() Property"><H3>Hashtable.Keys() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>ICollection IDictionary.Keys { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> interface. [Note: For more information, see System.Collections.IDictionary.Keys.]
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.Keys() Property"><H3>Hashtable.Keys() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual ICollection Keys { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="ICollection.html" TARGET="contents">ICollection</A> containing the keys of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="ICollection.html" TARGET="contents">ICollection</A> containing the keys of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: The order of the keys in the <A HREF="ICollection.html" TARGET="contents">ICollection</A> is unspecified, but it is
+      the same order as the associated values in the <A HREF="ICollection.html" TARGET="contents">ICollection</A>
+      returned by the System.Collections.Hashtable.Values method.<P>
+
+ The returned <A HREF="ICollection.html" TARGET="contents">ICollection</A> is a reference to the current instance, not
+   a static copy. Therefore, changes to the current instance continue to be
+   reflected in the <A HREF="ICollection.html" TARGET="contents">ICollection</A>.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.SyncRoot() Property"><H3>Hashtable.SyncRoot() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>object ICollection.SyncRoot { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="ICollection.html" TARGET="contents">ICollection</A> interface. [Note: For more information, see System.Collections.ICollection.SyncRoot.]
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.SyncRoot() Property"><H3>Hashtable.SyncRoot() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual object SyncRoot { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Object.html" TARGET="contents">Object</A> that can be used to synchronize access to
+   the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Object.html" TARGET="contents">Object</A> that can be used to synchronize access to the
+   current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+A thread is required to perform synchronized operations only on the System.Collections.Hashtable.SyncRoot of a <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>, not directly on
+   the table itself. This maintains proper synchronization with any other threads
+   concurrently modifying the table.<P>
+
+[<I>Note</I>: This property is implemented to support
+   the <A HREF="ICollection.html" TARGET="contents">ICollection</A> interface.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+   above.]<P>
+
+<P>
+
+[<I>Default</I>: This method returns a reference to
+   the current instance.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this property to return an object on which to lock when
+   implementing a collection that wraps another collection (using a subset of it, for
+   example). This is useful when providing synchronized access through two or more
+   wrapper collections to the same underlying collection. Typically, this property returns a
+   reference to the current instance.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this property to obtain a <A HREF="../../System/Object.html" TARGET="contents">Object</A> that can be used to synchronize access to the current
+instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.Values() Property"><H3>Hashtable.Values() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>ICollection IDictionary.Values { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> interface. [Note: For more information, see System.Collections.IDictionary.Values.]
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Hashtable.Values() Property"><H3>Hashtable.Values() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual ICollection Values { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="ICollection.html" TARGET="contents">ICollection</A> containing the values of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="ICollection.html" TARGET="contents">ICollection</A> containing the values of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: The order of the values in the <A HREF="ICollection.html" TARGET="contents">ICollection</A> is unspecified, but it is
+      the same order as the associated keys in the <A HREF="ICollection.html" TARGET="contents">ICollection</A> returned by the System.Collections.Hashtable.Keys method.<P>
+
+ The returned <A HREF="ICollection.html" TARGET="contents">ICollection</A> is a reference to the current instance, not
+   a static copy. Therefore, changes to the current instance continue to be
+   reflected in the <A HREF="ICollection.html" TARGET="contents">ICollection</A>.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

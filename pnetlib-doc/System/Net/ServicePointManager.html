@@ -1,0 +1,523 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.ServicePointManager Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.ServicePointManager Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class ServicePointManager</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;ServicePointManager<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Manages <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instances.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePointManager.html" TARGET="contents">ServicePointManager</A> creates, maintains,
+ and deletes <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instances. <P>
+
+ When an application requests a connection to an Internet resource through
+ the <A HREF="ServicePointManager.html" TARGET="contents">ServicePointManager</A>, the <A HREF="ServicePointManager.html" TARGET="contents">ServicePointManager</A>
+ returns a <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instance containing
+ connection information for the host identified by
+ the Uniform Resource Identifier (URI) of the resource. If there is an existing <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> for that host, the
+<A HREF="ServicePointManager.html" TARGET="contents">ServicePointManager</A> 
+returns the existing <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A>, otherwise the <A HREF="ServicePointManager.html" TARGET="contents">ServicePointManager</A> creates a new <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A>
+instance. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ServicePointManager Methods<P>
+
+<A HREF="#ServicePointManager.FindServicePoint(System.Uri) Method" TARGET="contents">ServicePointManager.FindServicePoint(System.Uri) Method</A><BR>
+<A HREF="#ServicePointManager.FindServicePoint(System.String, System.Net.IWebProxy) Method" TARGET="contents">ServicePointManager.FindServicePoint(System.String, System.Net.IWebProxy) Method</A><BR>
+<A HREF="#ServicePointManager.FindServicePoint(System.Uri, System.Net.IWebProxy) Method" TARGET="contents">ServicePointManager.FindServicePoint(System.Uri, System.Net.IWebProxy) Method</A><BR>
+<P>
+
+ServicePointManager Fields<P>
+
+<A HREF="#ServicePointManager.DefaultNonPersistentConnectionLimit Field" TARGET="contents">ServicePointManager.DefaultNonPersistentConnectionLimit Field</A><BR>
+<A HREF="#ServicePointManager.DefaultPersistentConnectionLimit Field" TARGET="contents">ServicePointManager.DefaultPersistentConnectionLimit Field</A><BR>
+<P>
+
+ServicePointManager Properties<P>
+
+<A HREF="#ServicePointManager.DefaultConnectionLimit Property" TARGET="contents">ServicePointManager.DefaultConnectionLimit Property</A><BR>
+<A HREF="#ServicePointManager.MaxServicePointIdleTime Property" TARGET="contents">ServicePointManager.MaxServicePointIdleTime Property</A><BR>
+<A HREF="#ServicePointManager.MaxServicePoints Property" TARGET="contents">ServicePointManager.MaxServicePoints Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ServicePointManager.FindServicePoint(System.Uri) Method"><H3>ServicePointManager.FindServicePoint(System.Uri) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static ServicePoint FindServicePoint(Uri address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Finds an existing <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> or creates a new <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> to connect to the specified host.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> containing the Internet host to contact.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> that connects to the host identified in
+<I>address</I> 
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>address </I>is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The maximum number of service points defined in System.Net.ServicePointManager.MaxServicePoints has been reached and there is no service point that connects to the specified host.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is identical to System.Net.ServicePointManager.FindServicePoint(System.Uri)(<I>address</I>, System.Net.GlobalProxySelection.GetEmptyWebProxy).<P>
+
+ If no <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> exists for the host named in <I>address</I> , the <A HREF="ServicePointManager.html" TARGET="contents">ServicePointManager</A> attempts to
+create one.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePointManager.html" TARGET="contents">System.Net.ServicePointManager Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ServicePointManager.FindServicePoint(System.String, System.Net.IWebProxy) Method"><H3>ServicePointManager.FindServicePoint(System.String, System.Net.IWebProxy) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static ServicePoint FindServicePoint(string uriString, IWebProxy proxy);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Finds an existing <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> or creates a new <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> to connect to the specified host.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>uriString</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing a URI that names the host to contact.</DD>
+<DT>proxy</DT>
+<DD>A <A HREF="IWebProxy.html" TARGET="contents">IWebProxy</A> that represents a proxy server to access.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> that connects to the host identified in
+<I>uriString</I> 
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>uriString</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/UriFormatException.html" TARGET="contents">UriFormatException</A></TD><TD>The URI specified in <I>uriString</I> is in an invalid form.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The maximum number of service points defined in System.Net.ServicePointManager.MaxServicePoints has been reached and there is no service point that connects to the specified host.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is identical to System.Net.ServicePointManager.FindServicePoint(System.Uri)(new <A HREF="../../System/Uri.html" TARGET="contents">Uri</A>(<I>uriString</I>),
+<I>proxy</I>).<P>
+
+If no <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> exists for the host named in <I>uriString</I>, the
+<A HREF="ServicePointManager.html" TARGET="contents">ServicePointManager</A> attempts to create one.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePointManager.html" TARGET="contents">System.Net.ServicePointManager Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ServicePointManager.FindServicePoint(System.Uri, System.Net.IWebProxy) Method"><H3>ServicePointManager.FindServicePoint(System.Uri, System.Net.IWebProxy) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static ServicePoint FindServicePoint(Uri address, IWebProxy proxy);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Finds an existing <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> or creates a new <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> to connect to the specified host.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> instance containing the address of the Internet resource to contact.</DD>
+<DT>proxy</DT>
+<DD>A <A HREF="IWebProxy.html" TARGET="contents">IWebProxy</A> that represents a proxy server to access.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> that connects to the host identified in
+<I>address</I> 
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>address </I>is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The maximum number of service points defined in System.Net.ServicePointManager.MaxServicePoints has been reached and there is no service point that connects to the specified host.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ If no <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> exists for the System.Uri.Host specified in <I>address</I> , the <A HREF="ServicePointManager.html" TARGET="contents">ServicePointManager</A> attempts to create one.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePointManager.html" TARGET="contents">System.Net.ServicePointManager Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ServicePointManager.DefaultNonPersistentConnectionLimit Field"><H3>ServicePointManager.DefaultNonPersistentConnectionLimit Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public const int DefaultNonPersistentConnectionLimit = 4;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ The default number of non-persistent connections allowed on a <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> .
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+The value of this field is
+      4.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePointManager.html" TARGET="contents">System.Net.ServicePointManager Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ServicePointManager.DefaultPersistentConnectionLimit Field"><H3>ServicePointManager.DefaultPersistentConnectionLimit Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public const int DefaultPersistentConnectionLimit = 2;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ The default number of persistent connections allowed on a <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> .
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+The value of this field is
+      2.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePointManager.html" TARGET="contents">System.Net.ServicePointManager Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ServicePointManager.DefaultConnectionLimit Property"><H3>ServicePointManager.DefaultConnectionLimit Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int DefaultConnectionLimit { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the maximum number of concurrent connections allowed by a
+   <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the maximum number of concurrent connections allowed by a <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value specified for a set operation is less than or equal to zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Net.ServicePointManager.DefaultConnectionLimit property sets the default maximum number of concurrent
+   connections that the <A HREF="ServicePointManager.html" TARGET="contents">ServicePointManager</A> assigns to the System.Net.ServicePoint.ConnectionLimit property
+   when creating <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instances.<P>
+
+[<I>Note</I>: Changing the System.Net.ServicePointManager.DefaultConnectionLimit property has no effect on existing <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A>
+instances; it affects only <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instances that
+are initialized after the change.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePointManager.html" TARGET="contents">System.Net.ServicePointManager Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ServicePointManager.MaxServicePointIdleTime Property"><H3>ServicePointManager.MaxServicePointIdleTime Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int MaxServicePointIdleTime { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the maximum amount of time a <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instance can be idle, 
+   after which resources allocated
+   to the service point can be released.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the maximum idle time, in milliseconds, of a <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value specified for a set operation is less than System.Threading.Timeout.Infinite or greater than System.Int32.MaxValue</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A>
+is idle when the list of
+connections associated with the <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> is empty.<P>
+
+The System.Net.ServicePointManager.MaxServicePointIdleTime
+property holds the value for the maximum idle time for service points. When a <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instance is created,
+this value is assigned to its System.Net.ServicePoint.MaxIdleTime property. Changes to the value
+of this property affect only <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instances that are initialized after this property
+is changed.<P>
+
+After a <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> has been idle for the time
+specified in System.Net.ServicePoint.MaxIdleTime , it is
+released by the service point manager, and
+any resources allocated
+for it are freed.<P>
+
+The default value of this property is
+   implementation defined.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePointManager.html" TARGET="contents">System.Net.ServicePointManager Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ServicePointManager.MaxServicePoints Property"><H3>ServicePointManager.MaxServicePoints Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int MaxServicePoints { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the maximum number of <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instances managed by this class at any
+ time.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the maximum number of <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instances to maintain.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value specified for a set operation is less than zero or greater than System.Int32.MaxValue</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If this property is set to a value that is less than the
+ number of <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instances currently in
+ existence, the <A HREF="ServicePointManager.html" TARGET="contents">ServicePointManager</A>
+ deletes the
+ <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instances with the longest idle times.
+ If the number of <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instances with active
+ connections is greater than the value of
+ System.Net.ServicePointManager.MaxServicePoints, the <A HREF="ServicePointManager.html" TARGET="contents">ServicePointManager</A> 
+ deletes <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A>
+ instances as they become idle. <P>
+
+[<I>Note</I>: The default value
+ of the System.Net.ServicePointManager.MaxServicePoints property is 0, which indicates
+ there is no limit to the number of <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> instances.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ServicePointManager.html" TARGET="contents">System.Net.ServicePointManager Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,1314 @@
+<HTML>
+<HEAD>
+<TITLE>System.IO.StreamReader Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.IO.StreamReader Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class StreamReader : TextReader</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/MarshalByRefObject.html" TARGET="contents">MarshalByRefObject</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="TextReader.html" TARGET="contents">TextReader</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StreamReader<P>
+
+This type implements <A HREF="../../System/IDisposable.html" TARGET="contents">IDisposable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implements a <A HREF="Stream.html" TARGET="contents">Stream</A> that reads
+   characters from a byte stream in a particular encoding.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> class is designed for
+   character input in a particular <A HREF="../../System/Text/Encoding.html" TARGET="contents">Encoding</A>, whereas subclasses of <A HREF="Stream.html" TARGET="contents">Stream</A> are designed for byte input and output.<P>
+
+[<I>Note</I>: <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> defaults to UTF-8 encoding unless specified
+   otherwise, instead of defaulting to the ANSI code page for the current system.
+   UTF-8 handles Unicode characters correctly and provides consistent results on localized
+   versions of the operating system.<P>
+
+When reading from a <A HREF="Stream.html" TARGET="contents">Stream</A>, it is more efficient to use a buffer that is the
+same size as the internal buffer of the stream.<P>
+
+By default, a <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> is not thread safe. For a
+thread-safe wrapper, see System.IO.TextReader.Synchronized(System.IO.TextReader)
+.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+StreamReader Constructors<P>
+
+<A HREF="#StreamReader(System.IO.Stream) Constructor" TARGET="contents">StreamReader(System.IO.Stream) Constructor</A><BR>
+<A HREF="#StreamReader(System.IO.Stream, bool) Constructor" TARGET="contents">StreamReader(System.IO.Stream, bool) Constructor</A><BR>
+<A HREF="#StreamReader(System.IO.Stream, System.Text.Encoding) Constructor" TARGET="contents">StreamReader(System.IO.Stream, System.Text.Encoding) Constructor</A><BR>
+<A HREF="#StreamReader(System.IO.Stream, System.Text.Encoding, bool) Constructor" TARGET="contents">StreamReader(System.IO.Stream, System.Text.Encoding, bool) Constructor</A><BR>
+<A HREF="#StreamReader(System.IO.Stream, System.Text.Encoding, bool, int) Constructor" TARGET="contents">StreamReader(System.IO.Stream, System.Text.Encoding, bool, int) Constructor</A><BR>
+<A HREF="#StreamReader(System.String) Constructor" TARGET="contents">StreamReader(System.String) Constructor</A><BR>
+<A HREF="#StreamReader(System.String, bool) Constructor" TARGET="contents">StreamReader(System.String, bool) Constructor</A><BR>
+<A HREF="#StreamReader(System.String, System.Text.Encoding) Constructor" TARGET="contents">StreamReader(System.String, System.Text.Encoding) Constructor</A><BR>
+<A HREF="#StreamReader(System.String, System.Text.Encoding, bool) Constructor" TARGET="contents">StreamReader(System.String, System.Text.Encoding, bool) Constructor</A><BR>
+<A HREF="#StreamReader(System.String, System.Text.Encoding, bool, int) Constructor" TARGET="contents">StreamReader(System.String, System.Text.Encoding, bool, int) Constructor</A><BR>
+<P>
+
+StreamReader Methods<P>
+
+<A HREF="#StreamReader.Close Method" TARGET="contents">StreamReader.Close Method</A><BR>
+<A HREF="#StreamReader.DiscardBufferedData Method" TARGET="contents">StreamReader.DiscardBufferedData Method</A><BR>
+<A HREF="#StreamReader.Dispose Method" TARGET="contents">StreamReader.Dispose Method</A><BR>
+<A HREF="#StreamReader.Peek Method" TARGET="contents">StreamReader.Peek Method</A><BR>
+<A HREF="#StreamReader.Read(char[], int, int) Method" TARGET="contents">StreamReader.Read(char[], int, int) Method</A><BR>
+<A HREF="#StreamReader.Read() Method" TARGET="contents">StreamReader.Read() Method</A><BR>
+<A HREF="#StreamReader.ReadLine Method" TARGET="contents">StreamReader.ReadLine Method</A><BR>
+<A HREF="#StreamReader.ReadToEnd Method" TARGET="contents">StreamReader.ReadToEnd Method</A><BR>
+<P>
+
+StreamReader Properties<P>
+
+<A HREF="#StreamReader.BaseStream Property" TARGET="contents">StreamReader.BaseStream Property</A><BR>
+<A HREF="#StreamReader.CurrentEncoding Property" TARGET="contents">StreamReader.CurrentEncoding Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="StreamReader(System.IO.Stream) Constructor"><H3>StreamReader(System.IO.Stream) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StreamReader(Stream stream);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> class for the specified stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>stream</DT>
+<DD>The <A HREF="Stream.html" TARGET="contents">Stream</A> to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>stream</I> does not support reading.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>stream</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.IO.StreamReader.CurrentEncoding property to <A HREF="../../System/Text/UTF8Encoding.html" TARGET="contents">UTF8Encoding</A>, the System.IO.StreamReader.BaseStream property using <I>stream    </I> , and the internal buffer to the default size.
+   [<I>Note</I>: The default buffer size is implementation
+      dependent.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader(System.IO.Stream, bool) Constructor"><H3>StreamReader(System.IO.Stream, bool) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StreamReader(Stream stream, bool detectEncodingFromByteOrderMarks);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> class for the specified stream, with the specified
+   byte order mark detection option.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>stream</DT>
+<DD>The <I>stream </I> to read.</DD>
+<DT>detectEncodingFromByteOrderMarks</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether the new <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> is required to look for byte order marks at the beginning of the stream. Specify <CODE>true</CODE>
+ to enable detection of byte order marks; otherwise, specify <CODE>false</CODE>
+ .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>stream</I> does not support reading.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>stream </I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.IO.StreamReader.CurrentEncoding property to <A HREF="../../System/Text/UTF8Encoding.html" TARGET="contents">UTF8Encoding</A> , the System.IO.StreamReader.BaseStream property using <I>stream    </I>, and the internal buffer to the default size.
+      [<I>Note</I>: The default buffer size is implementation
+      defined.]<P>
+
+<P>
+
+If requested, the current constructor detects the encoding by
+      examining the first three bytes of the stream. The constructor automatically recognizes
+      UTF-8, little-endian Unicode, and big-endian Unicode text if
+      the file starts with the appropriate byte order marks. Otherwise, UTF-8 encoding is
+      used. For more information, see the System.Text.Encoding.GetPreamble method.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader(System.IO.Stream, System.Text.Encoding) Constructor"><H3>StreamReader(System.IO.Stream, System.Text.Encoding) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StreamReader(Stream stream, Encoding encoding);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="StreamReader.html" TARGET="contents">StreamReader</A>
+class for the specified stream with the specified character encoding.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>stream</DT>
+<DD>The <A HREF="Stream.html" TARGET="contents">Stream</A> to read.</DD>
+<DT>encoding</DT>
+<DD>A <A HREF="../../System/Text/Encoding.html" TARGET="contents">Encoding</A> that specifies the character encoding to use.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>stream</I> does not support reading.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>stream </I> or <I>encoding</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.IO.StreamReader.CurrentEncoding property using <I>encoding</I> , the System.IO.StreamReader.BaseStream property using <I>stream    </I>
+   , and the internal buffer to the default size. [<I>Note</I>: The default buffer size is implementation defined.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader(System.IO.Stream, System.Text.Encoding, bool) Constructor"><H3>StreamReader(System.IO.Stream, System.Text.Encoding, bool) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StreamReader(Stream stream, Encoding encoding, bool detectEncodingFromByteOrderMarks);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> class for the specified stream, with the specified character encoding and byte order mark detection option.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>stream</DT>
+<DD>The <A HREF="Stream.html" TARGET="contents">Stream</A> to read.</DD>
+<DT>encoding</DT>
+<DD>A <A HREF="../../System/Text/Encoding.html" TARGET="contents">Encoding</A> that specifies the character encoding to use.</DD>
+<DT>detectEncodingFromByteOrderMarks</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether the new <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> is required to look for byte order marks at the beginning of the stream. Specify <CODE>true</CODE>
+ to enable detection of byte order marks; otherwise, specify <CODE>false</CODE>
+ .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>stream</I> does not support reading.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>stream </I>or <I>encoding</I> is <CODE>null</CODE>
+ .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.IO.StreamReader.CurrentEncoding property using
+<I>encoding</I> , the System.IO.StreamReader.BaseStream property using <I>stream </I> , and the internal buffer to the default size. 
+      [<I>Note</I>: The default buffer size is implementation
+      defined.]<P>
+
+<P>
+
+If requested, this constructor detects the encoding
+      by examining the first three bytes of <I>stream</I>
+      . This constructor
+      automatically recognizes UTF-8, little-endian Unicode, and big-endian Unicode text if the stream starts
+      with the appropriate byte order marks. Otherwise, the user-provided encoding is
+      used. See the System.Text.Encoding.GetPreamble method for more information.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader(System.IO.Stream, System.Text.Encoding, bool, int) Constructor"><H3>StreamReader(System.IO.Stream, System.Text.Encoding, bool, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StreamReader(Stream stream, Encoding encoding, bool detectEncodingFromByteOrderMarks, int bufferSize);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> class for the specified stream, with the specified character encoding, byte order mark
+   detection option, and buffer size.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>stream</DT>
+<DD>The <A HREF="Stream.html" TARGET="contents">Stream</A> to read.</DD>
+<DT>encoding</DT>
+<DD>A <A HREF="../../System/Text/Encoding.html" TARGET="contents">Encoding</A> that specifies the character encoding to use.</DD>
+<DT>detectEncodingFromByteOrderMarks</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether the new <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> is required to look for byte order marks at the beginning of the stream. Specify <CODE>true</CODE>
+ to enable detection of byte order marks; otherwise, specify <CODE>false</CODE>
+ .</DD>
+<DT>bufferSize</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the minimum buffer size, in number of 16-bit characters. If <I>bufferSize</I> is less than the minimum allowable size (128 characters), the minimum allowable size is used.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>stream</I> does not support reading.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>stream </I>or <I>encoding</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>bufferSize </I>is less than or equal to zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.IO.StreamReader.CurrentEncoding property using
+<I>encoding</I> parameter the System.IO.StreamReader.BaseStream property using <I>stream </I> .<P>
+
+If requested, this constructor detects the encoding by examining
+   the first three bytes of the stream. The constructor automatically recognizes UTF-8,
+   little-endian Unicode, and big-endian Unicode text if the
+   file starts with the appropriate byte order marks. Otherwise, the user-provided encoding is
+   used. For more information, see the System.Text.Encoding.GetPreamble method.<P>
+
+[<I>Note</I>: When reading from a <A HREF="Stream.html" TARGET="contents">Stream</A>, it is more
+efficient to use a buffer that is the same size as the internal buffer of the
+stream.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader(System.String) Constructor"><H3>StreamReader(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StreamReader(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> class for the specified file name.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the complete file path to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is in an invalid format or contains invalid characters.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD>The file specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I> is an empty string (&quot;&quot;).</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.IO.StreamReader.CurrentEncoding property to <A HREF="../../System/Text/UTF8Encoding.html" TARGET="contents">UTF8Encoding</A>, and
+   the internal buffer to the default size. [<I>Note</I>: The default buffer size is implementation defined.]<P>
+
+<P>
+
+[<I>Note</I>: <I>path</I> is not required to be
+   a file stored on disk; it can be any part of a system that supports access via
+   streams. For example, depending on the system, this class may be able to access
+   a physical device.<P>
+
+ For information on the valid format and characters for
+   path strings, see <A HREF="Path.html" TARGET="contents">Path</A> . <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader(System.String, bool) Constructor"><H3>StreamReader(System.String, bool) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StreamReader(string path, bool detectEncodingFromByteOrderMarks);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> class
+   for the specified file name, with the specified byte order mark detection option.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the complete file path to read.</DD>
+<DT>detectEncodingFromByteOrderMarks</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether the new <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> is required to look for byte order marks at the beginning of the stream. Specify <CODE>true</CODE>
+ to enable detection of byte order marks; otherwise, specify <CODE>false</CODE>
+ .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is in an invalid format or contains invalid characters.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD>The file specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is an empty string (&quot;&quot;).</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.IO.StreamReader.CurrentEncoding property to <A HREF="../../System/Text/UTF8Encoding.html" TARGET="contents">UTF8Encoding</A> , and the internal buffer to the default size.
+      [<I>Note</I>: The default buffer size is implementation
+      defined.]<P>
+
+<P>
+
+ If requested, the current constructor
+      detects the encoding by examining the first three bytes of the stream.
+      The constructor automatically recognizes UTF-8, little-endian Unicode, and
+      big-endian Unicode text if the file starts with the appropriate byte order marks.
+      Otherwise, UTF-8 encoding is used. See the System.Text.Encoding.GetPreamble
+      method for more information.<P>
+
+[<I>Note</I>: <I>path</I> is not required to be a
+      file stored on disk; it can be any part of a system that supports access via
+      streams. For example, depending on the system, this class may be able to access
+      a physical device.<P>
+
+For information on the valid format and characters for
+      path strings, see <A HREF="Path.html" TARGET="contents">Path</A>.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader(System.String, System.Text.Encoding) Constructor"><H3>StreamReader(System.String, System.Text.Encoding) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StreamReader(string path, Encoding encoding);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="StreamReader.html" TARGET="contents">StreamReader</A>
+class for the specified file name and with the specified character encoding.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the complete file path to read.</DD>
+<DT>encoding</DT>
+<DD>A <A HREF="../../System/Text/Encoding.html" TARGET="contents">Encoding</A> that specifies the character encoding to use.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is in an invalid format or contains invalid characters.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD>The file specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is an empty string (&quot;&quot;).</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>or <I>encoding</I> is <CODE>null</CODE>
+ .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.IO.StreamReader.CurrentEncoding property using
+<I>encoding</I> , and the internal buffer to the default size. 
+   [<I>Note</I>: The default buffer size is implementation
+      defined.]<P>
+
+<P>
+
+[<I>Note</I>: <I>path</I> is not required to be a
+      file stored on disk; it can be any part of a system that supports access via
+      streams. For example, depending on the system, this class may be able to access
+      a physical device.<P>
+
+For information on the valid format and characters for
+      path strings, see <A HREF="Path.html" TARGET="contents">Path</A>. <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader(System.String, System.Text.Encoding, bool) Constructor"><H3>StreamReader(System.String, System.Text.Encoding, bool) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StreamReader(string path, Encoding encoding, bool detectEncodingFromByteOrderMarks);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> class for the specified file name, with the specified character encoding and byte order mark detection option.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the complete file path to read.</DD>
+<DT>encoding</DT>
+<DD>A <A HREF="../../System/Text/Encoding.html" TARGET="contents">Encoding</A> that specifies the character encoding to use.</DD>
+<DT>detectEncodingFromByteOrderMarks</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether the new <A HREF="StreamReader.html" TARGET="contents">StreamReader</A>is required to look for byte order marks at the beginning of the stream. Specify <CODE>true</CODE>
+ to enable detection of byte order marks; otherwise, specify <CODE>false</CODE>
+ .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is in an invalid format or contains invalid characters.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD>The file specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I> is an empty string (&quot;&quot;).</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I> or <I>encoding</I> is <CODE>null</CODE>
+ .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.IO.StreamReader.CurrentEncoding property using
+<I>encoding</I> , and the internal buffer to the default size. 
+   [<I>Note</I>: The default buffer size is implementation
+      defined.]<P>
+
+<P>
+
+If requested, the current constructor detects the
+      encoding by examining the first three bytes of the stream. The constructor
+      automatically recognizes UTF-8, little-endian Unicode, and big-endian Unicode
+      text if the file starts with the appropriate byte order marks. Otherwise, the
+      user-provided encoding is used. See the System.Text.Encoding.GetPreamble
+      
+      method for more information.<P>
+
+[<I>Note</I>: <I>path</I> is not required to be a
+      file stored on disk; it can be any part of a system that supports access via
+      streams. For example, depending on the system, this class may be able to access
+      a physical device.<P>
+
+For information on the valid format and characters for
+      path strings, see <A HREF="Path.html" TARGET="contents">Path</A>. <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader(System.String, System.Text.Encoding, bool, int) Constructor"><H3>StreamReader(System.String, System.Text.Encoding, bool, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StreamReader(string path, Encoding encoding, bool detectEncodingFromByteOrderMarks, int bufferSize);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> class for the specified file name, with the specified character encoding, byte order
+   mark detection option, and buffer size.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the complete file path to read.</DD>
+<DT>encoding</DT>
+<DD>A <A HREF="../../System/Text/Encoding.html" TARGET="contents">Encoding</A> that specifies the character encoding to use.</DD>
+<DT>detectEncodingFromByteOrderMarks</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether the new <A HREF="StreamReader.html" TARGET="contents">StreamReader</A>is required to look for byte order marks at the beginning of the stream. Specify <CODE>true</CODE>
+ to enable detection of byte order marks; otherwise, specify <CODE>false</CODE>
+ .</DD>
+<DT>bufferSize</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the minimum buffer size, in number of 16-bit characters. If less than the minimum allowable size (128 characters), the minimum allowable size is used.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is in an invalid format or contains invalid characters.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD>The file specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is an empty string (&quot;&quot;).</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I> or <I>encoding</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>buffersize</I> is less than or equal to zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.IO.StreamReader.CurrentEncoding property using
+<I>encoding</I> .<P>
+
+If requested, the current constructor detects the encoding by examining the
+   first three bytes of the stream. The constructor automatically recognizes UTF-8,
+   little-endian Unicode, and big-endian Unicode text if the file starts with the
+   appropriate byte order marks. Otherwise, the user-provided encoding is used. See
+   the System.Text.Encoding.GetPreamble method for more information.<P>
+
+[<I>Note</I>: <I>path</I> is not required to be a file stored on disk;
+   it can be any part of a system that supports access via streams. For example,
+   depending on the system, this class may be able to access a physical device.<P>
+
+When reading from a <A HREF="Stream.html" TARGET="contents">Stream</A>, it is more efficient to use a buffer that is the
+same size as the internal buffer of the stream.<P>
+
+For information on the valid format and characters for path strings, see
+<A HREF="Path.html" TARGET="contents">Path</A>. <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader.Close Method"><H3>StreamReader.Close Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void Close();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Closes the current instance of <A HREF="StreamReader.html" TARGET="contents">StreamReader</A>
+, releasing any system resources associated with it.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ Following a call to this method, operations on the current instance might raise exceptions.<P>
+
+[<I>Note</I>: This version of System.IO.StreamReader.Close is equivalent to System.IO.StreamReader.Dispose(System.Boolean)(<CODE>true</CODE>
+).<P>
+
+This method overrides System.IO.TextReader.Close.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader.DiscardBufferedData Method"><H3>StreamReader.DiscardBufferedData Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void DiscardBufferedData();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Allows a <A HREF="StreamReader.html" TARGET="contents">StreamReader</A>
+to discard its buffered data.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is useful when reading from a stream after seeking
+      to a new position. If this method is not called and the internal
+      buffer is not empty, a read attempt at the new location will first
+      return data that is in the buffer before returning the text at the current
+      position in the stream.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader.Dispose Method"><H3>StreamReader.Dispose Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected override void Dispose(bool disposing);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Releases the unmanaged resources used by the <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> and
+   optionally releases the managed resources.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>disposing</DT>
+<DD><CODE>true</CODE>
+ to release both managed and unmanaged resources; <CODE>false</CODE>
+ to release only unmanaged resources.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+When the <I>disposing</I> parameter is <CODE>true</CODE>
+, this method
+   releases all resources held by any managed objects that this <A HREF="StreamReader.html" TARGET="contents">StreamReader</A>
+   references. This method invokes the <CODE>Dispose()</CODE>
+ method of each
+   referenced object.<P>
+
+[<I>Note</I>: System.IO.StreamReader.Dispose(System.Boolean) may be called multiple
+   times by other objects. When overriding System.IO.StreamReader.Dispose(System.Boolean)(<A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>), be careful not
+   to reference objects that have been previously disposed in an earlier call to
+System.IO.StreamReader.Dispose(System.Boolean) .<P>
+
+This method calls the dispose method of the base class, System.IO.TextReader.Dispose(System.Boolean)(<I>disposing</I>).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader.Peek Method"><H3>StreamReader.Peek Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int Peek();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the next character in the underlying stream
+      without advancing the position of the <A HREF="StreamReader.html" TARGET="contents">StreamReader</A>
+      in the stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The next character from the character source
+      as a <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> , or -1 if at the end of the
+      stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method returns -1 is when the end of the underlying stream is reached
+         because a Unicode character can contain only values between hexadecimal 0x0000
+         to 0xFFFF (0 to 65535).<P>
+
+This method overrides System.IO.TextReader.Peek.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader.Read(char[], int, int) Method"><H3>StreamReader.Read(char[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int Read(char[] buffer, int index, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reads a maximum of <I>count </I>
+characters from the current stream into <I>buffer</I>,
+beginning at <I>index</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>buffer</DT>
+<DD>A <A HREF="../../System/Char.html" TARGET="contents">Char</A> array. When this method returns, contains the specified character array with the values between <I>index</I> and <I>(index + count - 1)</I> replaced by the characters read from the current instance.</DD>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index of <I>buffer</I> at which to begin writing.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the maximum number of characters to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of characters that have been read, or zero if
+   there are no more characters left to read. Can be less than <I>count</I>
+   if the end
+   of the stream has been reached.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>buffer</I> .Length - <I>index</I> &lt; <I>count</I> .</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> or <I>count</I> is negative.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred<P>
+
+ -or-<P>
+
+ the current stream is closed.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method returns after either <I>count</I> characters are
+      read, or the end of the file is reached. System.IO.TextReader.ReadBlock(System.Char[],System.Int32,System.Int32) is a blocking
+      version of System.IO.StreamReader.Read .<P>
+
+This method overrides System.IO.TextReader.Read.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader.Read() Method"><H3>StreamReader.Read() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int Read();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Reads the next
+      character from the input stream
+      and advances the character position by one character.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The next character from the character source represented
+      as a <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> , or -1 if at the end
+      of the stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method returns -1 is when the end of the underlying stream is reached
+         because a Unicode character can contain only values between hexadecimal 0x0000
+         to 0xFFFF (0 to 65535).<P>
+
+This method overrides System.IO.TextReader.Read.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader.ReadLine Method"><H3>StreamReader.ReadLine Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ReadLine();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reads a line of characters from the current stream and returns
+      the data as a string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the next line from the input stream, or
+<CODE>null</CODE>
+ if the end of the input
+   stream is reached.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/OutOfMemoryException.html" TARGET="contents">OutOfMemoryException</A></TD><TD>There is insufficient memory to allocate a buffer for the returned string.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  This method defines a line as a sequence of
+         characters followed by a carriage return (hexadecimal 0x000d), a line feed (hexadecimal 0x000a), or System.Environment.NewLine. The returned string does not contain the terminating
+         character(s).<P>
+
+This method overrides System.IO.TextReader.ReadLine.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader.ReadToEnd Method"><H3>StreamReader.ReadToEnd Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ReadToEnd();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reads the stream from the current position to the
+      end of the stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the rest of the stream as a string, from the current
+   position to the end. If the current position is at the end of the stream, returns the empty string (&quot;&quot;).<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/OutOfMemoryException.html" TARGET="contents">OutOfMemoryException</A></TD><TD>There is insufficient memory to allocate a buffer for the returned string.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method overrides System.IO.TextReader.ReadToEnd
+   .<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader.BaseStream Property"><H3>StreamReader.BaseStream Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual Stream BaseStream { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the underlying stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The underlying <A HREF="Stream.html" TARGET="contents">Stream</A> which the current <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> instance is reading.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StreamReader.CurrentEncoding Property"><H3>StreamReader.CurrentEncoding Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual Encoding CurrentEncoding { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the current character encoding that the current
+   <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> is
+      using.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+
+   The current <A HREF="../../System/Text/Encoding.html" TARGET="contents">Encoding</A> used by the current reader.
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+ The value returned
+      by this property might change after the first call to a System.IO.StreamReader.Read
+      method if encoding auto detection was specified to the constructor for the
+      current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamReader.html" TARGET="contents">System.IO.StreamReader Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

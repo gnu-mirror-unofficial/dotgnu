@@ -1,0 +1,132 @@
+<HTML>
+<HEAD>
+<TITLE>System.Collections.IHashCodeProvider Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Collections.IHashCodeProvider Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public interface IHashCodeProvider</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Implemented by classes that support custom hash functions for instances of the class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> contains the System.Collections.IHashCodeProvider.GetHashCode(System.Object) method. The consumer of an
+ object should call this method to obtain a hash code for the object using a
+ custom hash function.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IHashCodeProvider Methods<P>
+
+<A HREF="#IHashCodeProvider.GetHashCode Method" TARGET="contents">IHashCodeProvider.GetHashCode Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IHashCodeProvider.GetHashCode Method"><H3>IHashCodeProvider.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>int GetHashCode(object obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Generates a hash code for the specified <A HREF="../../System/Object.html" TARGET="contents">Object</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>obj</DT>
+<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> for which a hash code is to be generated.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the hash code for the specified <A HREF="../../System/Object.html" TARGET="contents">Object</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>obj </I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: If <I>obj</I> is <CODE>null</CODE>
+, it is required that a call to
+System.Collections.IHashCodeProvider.GetHashCode(System.Object) throw <A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: Implement
+   this method to generate a better hash table
+   distribution than the default method provided by the type of the <A HREF="../../System/Object.html" TARGET="contents">Object</A> for which the hash code is
+   being generated.]<P>
+
+<P>
+
+[<I>Usage</I>: The value returned by this method
+   should not be persisted past the lifetime of the application that created the
+   value. The first reason is that the hash function of a class may be
+   altered to generate a better distribution, rendering any values from the old
+   hash function useless. The second reason is that the default
+   implementation of this class does not guarantee that the same value will be
+   returned by different instances.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IHashCodeProvider.html" TARGET="contents">System.Collections.IHashCodeProvider Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

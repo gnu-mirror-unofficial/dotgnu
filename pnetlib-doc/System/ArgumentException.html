@@ -1,0 +1,416 @@
+<HTML>
+<HEAD>
+<TITLE>System.ArgumentException Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.ArgumentException Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class ArgumentException : SystemException</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="Exception.html" TARGET="contents">Exception</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="SystemException.html" TARGET="contents">SystemException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ArgumentException<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents the error that
+      occurs when an argument passed to a method is invalid.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A> is thrown when a method is invoked and at
+   least one of the passed arguments does not meet the method&apos;s parameter specification.<P>
+
+[<I>Note</I>: The Base Class Library includes three derived types: <P>
+
+<UL>
+<LI><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></LI>
+<LI><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A><P>
+
+</LI>
+<LI><A HREF="DuplicateWaitObjectException.html" TARGET="contents">DuplicateWaitObjectException</A><P>
+
+</LI>
+</UL>
+When appropriate, use these types instead of <A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A>.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates an error that causes
+      a <A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A> exception to be thrown by the system.<P>
+
+<PRE>using System;
+public class MyClass {}
+public class ArgExceptionExample {
+  public static void Main() {
+    MyClass my = new MyClass();
+    string s = &quot;sometext&quot;;
+    try {
+       int i = s.CompareTo(my);
+    }
+    catch (ArgumentException e) {
+       Console.WriteLine(&quot;Error: {0}&quot;,e);
+    }
+  }
+}
+   </PRE>
+The output is<P>
+
+<CODE>Error: System.ArgumentException: Object must be of type String.<P>
+
+at System.String.CompareTo(Object value)<P>
+
+at ArgExceptionExample.Main()<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ArgumentException Constructors<P>
+
+<A HREF="#ArgumentException() Constructor" TARGET="contents">ArgumentException() Constructor</A><BR>
+<A HREF="#ArgumentException(System.String) Constructor" TARGET="contents">ArgumentException(System.String) Constructor</A><BR>
+<A HREF="#ArgumentException(System.String, System.Exception) Constructor" TARGET="contents">ArgumentException(System.String, System.Exception) Constructor</A><BR>
+<A HREF="#ArgumentException(System.String, System.String, System.Exception) Constructor" TARGET="contents">ArgumentException(System.String, System.String, System.Exception) Constructor</A><BR>
+<A HREF="#ArgumentException(System.String, System.String) Constructor" TARGET="contents">ArgumentException(System.String, System.String) Constructor</A><BR>
+<P>
+
+ArgumentException Properties<P>
+
+<A HREF="#ArgumentException.ParamName Property" TARGET="contents">ArgumentException.ParamName Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ArgumentException() Constructor"><H3>ArgumentException() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ArgumentException();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ArgumentException.Message property of the new instance to a system-supplied
+   message that describes the error, such as &quot;An invalid argument was specified.&quot;
+   This message takes into account the current system culture.<P>
+
+The System.ArgumentException.InnerException property is initialized to 
+<CODE>null</CODE>
+ .<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArgumentException.html" TARGET="contents">System.ArgumentException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ArgumentException(System.String) Constructor"><H3>ArgumentException(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ArgumentException(string message);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ArgumentException.Message property of the new instance using <I>message</I>. If <I>message</I> is
+<CODE>null</CODE>
+, the System.ArgumentException.Message property is initialized to the 
+   system-supplied message provided by the constructor that takes no arguments. The System.ArgumentException.InnerException and
+System.ArgumentException.ParamName properties are
+   initialized to <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArgumentException.html" TARGET="contents">System.ArgumentException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ArgumentException(System.String, System.Exception) Constructor"><H3>ArgumentException(System.String, System.Exception) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ArgumentException(string message, Exception innerException);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+<DT>innerException</DT>
+<DD>An instance of <A HREF="Exception.html" TARGET="contents">Exception</A> that is the cause of the current Exception. If <I>innerException</I> is non-null, then the current Exception was raised in a catch block handling <I>innerException</I> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ArgumentException.Message property of the new instance using <I>message</I>, and the System.ArgumentException.InnerException
+property using <I>innerException</I>. If <I>message</I> is
+<CODE>null</CODE>
+, the System.ArgumentException.Message property is initialized to the 
+system-supplied message provided by the constructor that takes no arguments. The
+System.ArgumentException.ParamName property is initialized to 
+<CODE>null</CODE>
+ 
+. <P>
+
+[<I>Note</I>: For information on inner exceptions, see
+System.Exception.InnerException.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArgumentException.html" TARGET="contents">System.ArgumentException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ArgumentException(System.String, System.String, System.Exception) Constructor"><H3>ArgumentException(System.String, System.String, System.Exception) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ArgumentException(string message, string paramName, Exception innerException);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+<DT>paramName</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that contains the name of the parameter that caused the current exception.</DD>
+<DT>innerException</DT>
+<DD>An instance of <A HREF="Exception.html" TARGET="contents">Exception</A> that is the cause of the current Exception. If <I>innerException</I> is non-null, then the current Exception was raised in a catch block handling <I>innerException</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ArgumentException.Message property of the new instance using <I>message</I>,
+   the System.ArgumentException.ParamName property using <I>paramName</I>, and the System.ArgumentException.InnerException property using <I>innerException</I>. If <I>message</I> is
+<CODE>null</CODE>
+, the System.ArgumentException.Message property is initialized to the 
+   system-supplied message provided by the constructor that takes no arguments. <P>
+
+[<I>Note</I>:  For information on inner exceptions, see System.Exception.InnerException.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArgumentException.html" TARGET="contents">System.ArgumentException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ArgumentException(System.String, System.String) Constructor"><H3>ArgumentException(System.String, System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ArgumentException(string message, string paramName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+<DT>paramName</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that contains the name of the parameter that caused the exception.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ArgumentException.Message property of the new instance using <I>message</I>, and
+   the System.ArgumentException.ParamName property using <I>paramName</I>. If <I>message</I> is <CODE>null</CODE>
+,
+   the System.ArgumentException.Message property is initialized to the system-supplied message
+   provided by the constructor that takes no arguments. The System.ArgumentException.InnerException property is
+   initialized to <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArgumentException.html" TARGET="contents">System.ArgumentException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ArgumentException.ParamName Property"><H3>ArgumentException.ParamName Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string ParamName { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the name of the parameter that caused the
+      current Exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> that contains the 
+   name of the parameter that caused the current Exception, or
+<CODE>null</CODE>
+ if no value was specified to the constructor
+   for
+   the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This property is read-only.<P>
+
+[<I>Behaviors</I>: The System.ArgumentException.ParamName property
+   returns the same value as was passed into the constructor.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override
+   the System.ArgumentException.ParamName property
+   to customize the content or format of the parameter name. ]<P>
+
+<P>
+
+[<I>Usage</I>: 
+   Use this property to retrieve the name of the invalid parameter.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArgumentException.html" TARGET="contents">System.ArgumentException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

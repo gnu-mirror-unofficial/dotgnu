@@ -1,0 +1,184 @@
+<HTML>
+<HEAD>
+<TITLE>System.Threading.ThreadAbortException Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Threading.ThreadAbortException Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class ThreadAbortException : SystemException</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/Exception.html" TARGET="contents">Exception</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../System/SystemException.html" TARGET="contents">SystemException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ThreadAbortException<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Thrown by the system when a call is made to
+   System.Threading.Thread.Abort(System.Object).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ Instances of this exception type can only
+      be created by the system.<P>
+
+When a call is made to System.Threading.Thread.Abort(System.Object)
+to terminate a thread, the system throws a <A HREF="ThreadAbortException.html" TARGET="contents">ThreadAbortException</A> in the target
+thread. <A HREF="ThreadAbortException.html" TARGET="contents">ThreadAbortException</A> is a
+special exception that can
+be caught by application code, but is rethrown at the end of the catch block
+unless System.Threading.Thread.ResetAbort is called. When the
+<CODE>ThreadAbortException </CODE>
+ 
+exception is raised, the system executes any <CODE>finally </CODE>
+blocks for the target thread. The finally blocks are executed even if
+System.Threading.Thread.ResetAbort is called. If the abort is successful, 
+the target thread is left in the System.Threading.ThreadState.Stopped and
+System.Threading.ThreadState.Aborted states.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates aborting a thread.
+      The thread that receives the <A HREF="ThreadAbortException.html" TARGET="contents">ThreadAbortException</A> uses the System.Threading.Thread.ResetAbort method to cancel the abort request and
+      continue executing.<P>
+
+<PRE>using System;
+using System.Threading;
+using System.Security.Permissions;
+
+public class ThreadWork {
+  public static void DoWork() {
+    try {
+      for (int i=0; i&lt;100; i++) {
+        Console.WriteLine(&quot;Thread - working.&quot;); 
+        Thread.Sleep(100);
+      }
+    }
+    catch (ThreadAbortException e) {
+      Console.WriteLine(&quot;Thread - caught ThreadAbortException - resetting.&quot;);
+      Thread.ResetAbort();
+    }
+    Console.WriteLine(&quot;Thread - still alive and working.&quot;); 
+    Thread.Sleep(1000);
+    Console.WriteLine(&quot;Thread - finished working.&quot;);
+  } 
+}
+
+class ThreadAbortTest{
+  public static void Main() {
+    ThreadStart myThreadDelegate = new ThreadStart(ThreadWork.DoWork);
+    Thread myThread = new Thread(myThreadDelegate);
+    myThread.Start();
+    Thread.Sleep(100);
+    Console.WriteLine(&quot;Main - aborting my thread.&quot;);
+    myThread.Abort();
+    myThread.Join();
+    Console.WriteLine(&quot;Main ending.&quot;); 
+  }
+}
+   </PRE>
+The output is <P>
+
+<CODE>Thread - working.<P>
+
+Main - aborting my thread.<P>
+
+Thread - caught ThreadAbortException - resetting.<P>
+
+Thread - still alive and working.<P>
+
+Thread - finished working.<P>
+
+Main ending.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ThreadAbortException Properties<P>
+
+<A HREF="#ThreadAbortException.ExceptionState Property" TARGET="contents">ThreadAbortException.ExceptionState Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ThreadAbortException.ExceptionState Property"><H3>ThreadAbortException.ExceptionState Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public object ExceptionState { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets an object that contains application-specific
+      information related to the thread abort.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Object.html" TARGET="contents">Object</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The object returned by this property is specified via the
+   <I>stateInfo</I> parameter of System.Threading.Thread.Abort(System.Object). This property returns
+   <CODE>null</CODE>
+ if no
+      object was specified, or the System.Threading.Thread.Abort(System.Object) method with no parameters was
+      called. The exact content and usage
+      of this object is application-defined; it is typically used to convey
+      information that is meaningful to the thread being aborted.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ThreadAbortException.html" TARGET="contents">System.Threading.ThreadAbortException Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

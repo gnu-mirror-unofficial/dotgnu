@@ -1,0 +1,505 @@
+<HTML>
+<HEAD>
+<TITLE>System.IO.FileNotFoundException Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.IO.FileNotFoundException Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class FileNotFoundException : IOException</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/Exception.html" TARGET="contents">Exception</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../System/SystemException.html" TARGET="contents">SystemException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="IOException.html" TARGET="contents">IOException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FileNotFoundException<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Represents the error that occurs when a file path
+      argument specifies a file that does not exist.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates an error that causes
+      the <A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A>
+      exception to be thrown.<P>
+
+<PRE>using System;
+using System.IO;
+class FileNotFoundExample {
+    public static void Main () {
+    string badPath = &quot;/Eccma/examples/FileTest.cs&quot;;
+    string goodPath = &quot;/Ecma/examples2/FileTest.cs&quot;;
+    try {
+        File.Copy(badPath,goodPath);
+    }
+    catch (FileNotFoundException e) {
+    Console.WriteLine(&quot;Caught: {0}&quot;,e.Message);
+    }
+    }
+}
+   </PRE>
+The output is<P>
+
+<CODE>Caught: Could not find file &quot;/Eccma/examples/FileTest.cs&quot;.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+FileNotFoundException Constructors<P>
+
+<A HREF="#FileNotFoundException() Constructor" TARGET="contents">FileNotFoundException() Constructor</A><BR>
+<A HREF="#FileNotFoundException(System.String) Constructor" TARGET="contents">FileNotFoundException(System.String) Constructor</A><BR>
+<A HREF="#FileNotFoundException(System.String, System.Exception) Constructor" TARGET="contents">FileNotFoundException(System.String, System.Exception) Constructor</A><BR>
+<A HREF="#FileNotFoundException(System.String, System.String) Constructor" TARGET="contents">FileNotFoundException(System.String, System.String) Constructor</A><BR>
+<A HREF="#FileNotFoundException(System.String, System.String, System.Exception) Constructor" TARGET="contents">FileNotFoundException(System.String, System.String, System.Exception) Constructor</A><BR>
+<P>
+
+FileNotFoundException Methods<P>
+
+<A HREF="#FileNotFoundException.ToString Method" TARGET="contents">FileNotFoundException.ToString Method</A><BR>
+<P>
+
+FileNotFoundException Properties<P>
+
+<A HREF="#FileNotFoundException.FileName Property" TARGET="contents">FileNotFoundException.FileName Property</A><BR>
+<A HREF="#FileNotFoundException.Message Property" TARGET="contents">FileNotFoundException.Message Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="FileNotFoundException() Constructor"><H3>FileNotFoundException() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public FileNotFoundException();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.IO.FileNotFoundException.Message
+property of the new instance to a system-supplied message that
+describes the error, such as &quot;Could not find the specified
+file.&quot; This message takes into account the current system culture.<P>
+
+
+The System.IO.FileNotFoundException.InnerException and System.IO.FileNotFoundException.FileName properties of the new instance are initialized
+to <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileNotFoundException.html" TARGET="contents">System.IO.FileNotFoundException Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileNotFoundException(System.String) Constructor"><H3>FileNotFoundException(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public FileNotFoundException(string message);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.IO.FileNotFoundException.Message property of the
+   new instance using <I>message</I>. If <I>message</I> is
+<CODE>null</CODE>
+, the System.IO.FileNotFoundException.Message property is initialized to the 
+   system-supplied message provided by the constructor that takes no arguments.<P>
+
+ The System.IO.FileNotFoundException.InnerException and System.IO.FileNotFoundException.FileName properties of the new instance are initialized to
+<CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileNotFoundException.html" TARGET="contents">System.IO.FileNotFoundException Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileNotFoundException(System.String, System.Exception) Constructor"><H3>FileNotFoundException(System.String, System.Exception) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public FileNotFoundException(string message, Exception innerException);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+<DT>innerException</DT>
+<DD>An instance of <A HREF="../../System/Exception.html" TARGET="contents">Exception</A> that is the cause of the current exception. If <I>innerException</I> is non-null, then the current Exception was raised in a catch block handling <I>innerException</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.IO.FileNotFoundException.Message property of the
+   new instance using <I>message</I> and the System.IO.FileNotFoundException.InnerException property using
+<I>innerException</I>. If <I>message</I> is 
+<CODE>null</CODE>
+, the System.IO.FileNotFoundException.Message property is initialized to the 
+   system-supplied message provided by the constructor that takes no arguments.<P>
+
+ The System.IO.FileNotFoundException.FileName property of the new instance is 
+initialized to <CODE>null</CODE>
+.<P>
+
+[<I>Note</I>: For more information on inner
+   exceptions, see System.Exception.InnerException.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileNotFoundException.html" TARGET="contents">System.IO.FileNotFoundException Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileNotFoundException(System.String, System.String) Constructor"><H3>FileNotFoundException(System.String, System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public FileNotFoundException(string message, string fileName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+<DT> fileName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file that was not found.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The constructor initializes the System.IO.FileNotFoundException.Message property of the
+   new instance using <I>message</I> and the System.IO.FileNotFoundException.FileName property using
+<I>fileName</I>. If <I>message</I> is <CODE>null</CODE>
+, 
+   the System.IO.FileNotFoundException.Message property is initialized to the system-supplied
+   message provided by the constructor that takes no arguments.<P>
+
+ The System.IO.FileNotFoundException.InnerException property of the new instance is initialized to 
+<CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileNotFoundException.html" TARGET="contents">System.IO.FileNotFoundException Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileNotFoundException(System.String, System.String, System.Exception) Constructor"><H3>FileNotFoundException(System.String, System.String, System.Exception) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public FileNotFoundException(string message, string fileName, Exception innerException);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>message</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+<DT>fileName</DT>
+<DD>The name of the file that was not found.</DD>
+<DT> innerException</DT>
+<DD>An instance of <A HREF="../../System/Exception.html" TARGET="contents">Exception</A> that is the cause of the current exception. If <I>innerException</I> is non-null, then the current Exception was raised in a catch block handling <I>innerException</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.IO.FileNotFoundException.Message property of the
+   new instance using <I>message</I>, the System.IO.FileNotFoundException.FileName property using
+<I>fileName</I>, and the System.IO.FileNotFoundException.InnerException property using
+<I>innerException</I>. If <I>message</I> is 
+<CODE>null</CODE>
+, the System.IO.FileNotFoundException.Message property is initialized to the 
+   system-supplied message provided by the constructor that takes no arguments.<P>
+
+[<I>Note</I>: For more information on inner
+   exceptions, see System.Exception.InnerException.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileNotFoundException.html" TARGET="contents">System.IO.FileNotFoundException Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileNotFoundException.ToString Method"><H3>FileNotFoundException.ToString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="../../System/String.html" TARGET="contents">String</A> representation of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <CODE>String</CODE>
+
+representation of the current Exception. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The string representation returned
+      by this method includes the fully qualified name of the current Exception,
+      the message, the result of calling <CODE>ToString</CODE>
+ on the inner
+      Exception, the file name, and the result of calling System.Environment.StackTrace. Null values are omitted from the returned string.<P>
+
+[<I>Note</I>: This method overrides System.Object.ToString.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example causes a <A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A> exception and displays the result
+   of calling <CODE>ToString</CODE>
+ on that Exception.<P>
+
+<PRE>using System;
+using System.IO;
+class FileNotFoundExample {
+  public static void Main () {
+    string badPath = &quot;/Eccma/examples/FileTest.cs&quot;;
+    string goodPath = &quot;/Ecma/examples2/FileTest.cs&quot;;
+    try {
+        File.Copy(badPath,goodPath);
+    }
+    catch (FileNotFoundException e) {
+        Console.WriteLine(&quot;Caught: {0}&quot;,e.ToString());
+    }
+  }
+}
+</PRE>
+The output is <P>
+
+<PRE>
+Caught: System.IO.FileNotFoundException: Could not find file &quot;/Eccma/examples/FileTest.cs&quot;.
+File name: &quot;/Eccma/examples/FileTest.cs&quot;
+   at System.IO.__Error.WinIOError(Int32 errorCode, String str)
+   at System.IO.File.InternalCopy(String sourceFileName, String destFileName,
+      Boolean overwrite)
+   at FileNotFoundExample.Main()
+ </PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileNotFoundException.html" TARGET="contents">System.IO.FileNotFoundException Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileNotFoundException.FileName Property"><H3>FileNotFoundException.FileName Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string FileName { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the name of the file that cannot be found.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file, or
+<CODE>null</CODE>
+ if no file
+   name was passed to the constructor for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileNotFoundException.html" TARGET="contents">System.IO.FileNotFoundException Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileNotFoundException.Message Property"><H3>FileNotFoundException.Message Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string Message { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the error message that explains the reason for the exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the
+   error message. This string includes the System.IO.FileNotFoundException.FileName if a value for that property was supplied to the
+   constructor for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileNotFoundException.html" TARGET="contents">System.IO.FileNotFoundException Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

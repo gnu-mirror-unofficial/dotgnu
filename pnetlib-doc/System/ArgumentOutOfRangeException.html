@@ -1,0 +1,374 @@
+<HTML>
+<HEAD>
+<TITLE>System.ArgumentOutOfRangeException Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.ArgumentOutOfRangeException Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class ArgumentOutOfRangeException : ArgumentException</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="Exception.html" TARGET="contents">Exception</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="SystemException.html" TARGET="contents">SystemException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ArgumentOutOfRangeException<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Represents the error that occurs when an
+      argument passed to a method is invalid because it is
+      outside the allowable range of values as specified by the method.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A> is thrown when a method is 
+      invoked and at least one of the arguments passed to the method is not
+   <CODE>null</CODE>
+ 
+   and does not contain a valid value. <P>
+
+<A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A> behaves identically to <A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A>. It is provided so that 
+application code can differentiate between exceptions caused by invalid
+arguments that are not <CODE>null</CODE>
+, and exceptions caused by
+<CODE>null</CODE>
+ arguments. For errors caused by <CODE>null</CODE>
+ 
+arguments, see <A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A>. <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates an error that causes 
+      the <A HREF="Array.html" TARGET="contents">Array</A>
+      class to throw a <A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A> exception.<P>
+
+<PRE>using System;
+class ArgOutOfRangeExample {
+ public static void Main() {
+ int[] array1 = {0,0};
+ int[] array2 = {0,0};
+ try {
+ Array.Copy(array1,array2,-1);
+ }
+ catch (ArgumentOutOfRangeException e) {
+ Console.WriteLine(&quot;Error: {0}&quot;,e);
+ }
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>Error: System.ArgumentOutOfRangeException: Non-negative number required.<P>
+
+Parameter name: length<P>
+
+at System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array
+         destinationArray, Int32 destinationIndex, Int32 length)<P>
+
+at ArgOutOfRangeExample.Main()<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ArgumentOutOfRangeException Constructors<P>
+
+<A HREF="#ArgumentOutOfRangeException() Constructor" TARGET="contents">ArgumentOutOfRangeException() Constructor</A><BR>
+<A HREF="#ArgumentOutOfRangeException(System.String) Constructor" TARGET="contents">ArgumentOutOfRangeException(System.String) Constructor</A><BR>
+<A HREF="#ArgumentOutOfRangeException(System.String, System.String) Constructor" TARGET="contents">ArgumentOutOfRangeException(System.String, System.String) Constructor</A><BR>
+<A HREF="#ArgumentOutOfRangeException(System.String, System.Object, System.String) Constructor" TARGET="contents">ArgumentOutOfRangeException(System.String, System.Object, System.String) Constructor</A><BR>
+<P>
+
+ArgumentOutOfRangeException Properties<P>
+
+<A HREF="#ArgumentOutOfRangeException.ActualValue Property" TARGET="contents">ArgumentOutOfRangeException.ActualValue Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ArgumentOutOfRangeException() Constructor"><H3>ArgumentOutOfRangeException() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ArgumentOutOfRangeException();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ArgumentOutOfRangeException.Message property of the new instance to a system-supplied
+   message that describes the error, such as &quot;Non-negative number required.&quot; This
+   message takes into account the current system culture.<P>
+
+The System.ArgumentOutOfRangeException.ParamName and System.ArgumentOutOfRangeException.ActualValue properties are initialized 
+to <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArgumentOutOfRangeException.html" TARGET="contents">System.ArgumentOutOfRangeException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ArgumentOutOfRangeException(System.String) Constructor"><H3>ArgumentOutOfRangeException(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ArgumentOutOfRangeException(string paramName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>paramName</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that contains the name of the parameter that caused the current exception. The content of <I>paramName</I> is intended to be understood by humans.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ArgumentOutOfRangeException.ParamName property of the new instance
+   using <I>paramName</I> . The System.ArgumentOutOfRangeException.Message property is
+   initialized to the system-supplied message provided by the
+   constructor that takes no arguments.<P>
+
+The System.ArgumentOutOfRangeException.ActualValue property is initialized to 
+<CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArgumentOutOfRangeException.html" TARGET="contents">System.ArgumentOutOfRangeException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ArgumentOutOfRangeException(System.String, System.String) Constructor"><H3>ArgumentOutOfRangeException(System.String, System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ArgumentOutOfRangeException(string paramName, string message);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>paramName</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that contains the name of the parameter that caused the current exception. The content of <I>paramName</I> is intended to be understood by humans.</DD>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ArgumentOutOfRangeException.ParamName property of the new instance using <I>paramName</I>,
+   and the System.ArgumentOutOfRangeException.Message property using <I>message</I>. If <I>message</I> is <CODE>null</CODE>
+,
+   the System.ArgumentOutOfRangeException.Message property is initialized to the system-supplied message
+   provided by the constructor that takes no arguments.<P>
+
+The System.ArgumentOutOfRangeException.ActualValue property is initialized to 
+<CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArgumentOutOfRangeException.html" TARGET="contents">System.ArgumentOutOfRangeException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ArgumentOutOfRangeException(System.String, System.Object, System.String) Constructor"><H3>ArgumentOutOfRangeException(System.String, System.Object, System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public ArgumentOutOfRangeException(string paramName, object actualValue, string message);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>paramName</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that contains the name of the parameter that caused the current exception. The content of <I>paramName</I> is intended to be understood by humans.</DD>
+<DT>actualValue</DT>
+<DD>The value of the argument that caused the current exception.</DD>
+<DT>message</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that describes the error. The content of <I>message</I> is intended to be understood by humans. The caller of this constructor is required to ensure that this string has been localized for the current system culture.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.ArgumentOutOfRangeException.ParamName property of the new instance using <I>paramName</I>,
+   the System.ArgumentOutOfRangeException.ActualValue property using <I>actualValue</I>, and the System.ArgumentOutOfRangeException.Message property using <I>message</I> . If <I>message</I> is <CODE>null</CODE>
+,
+   the System.ArgumentOutOfRangeException.Message property is initialized to the system-supplied message
+   provided by the constructor that takes no arguments. <P>
+
+[<I>Note</I>:  The <I>actualValue</I> parameter
+contains the invalid argument that was passed to the method. Use
+the System.ArgumentOutOfRangeException.ParamName property to retrieve the name of the
+parameter used to pass <I>actualValue</I>.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArgumentOutOfRangeException.html" TARGET="contents">System.ArgumentOutOfRangeException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ArgumentOutOfRangeException.ActualValue Property"><H3>ArgumentOutOfRangeException.ActualValue Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual object ActualValue { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the value of the parameter that caused the current exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Object.html" TARGET="contents">Object</A> that contains the 
+   value of the parameter that caused the current exception, or
+<CODE>null</CODE>
+ if no value was specified to the constructor for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is
+      read-only.<P>
+
+[<I>Behaviors</I>: 
+      
+      The System.ArgumentOutOfRangeException.ActualValue property returns the same
+      value as
+      was passed into the
+      constructor.]<P>
+
+<P>
+
+[<I>Overrides</I>: 
+      
+      Override
+      the System.ArgumentOutOfRangeException.ActualValue property to customize the content or
+      format of the value.]<P>
+
+<P>
+
+[<I>Usage</I>: 
+      
+      Use this property to retrieve the invalid argument.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArgumentOutOfRangeException.html" TARGET="contents">System.ArgumentOutOfRangeException Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

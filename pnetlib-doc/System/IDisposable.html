@@ -1,0 +1,186 @@
+<HTML>
+<HEAD>
+<TITLE>System.IDisposable Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.IDisposable Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public interface IDisposable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented by classes that require explicit control over resource cleanup.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Objects that need to free resources that cannot safely be reclaimed by the
+      garbage collector implement the <A HREF="IDisposable.html" TARGET="contents">IDisposable</A> interface. <P>
+
+It is a version breaking change to add the <A HREF="IDisposable.html" TARGET="contents">IDisposable</A> interface to an existing class, as it
+   changes the semantics of the class. <P>
+
+[<I>Note</I>: <A HREF="IDisposable.html" TARGET="contents">IDisposable</A> contains the System.IDisposable.Dispose method. The consumer of an object should 
+call this method when the object is no longer needed. The <A HREF="IDisposable.html" TARGET="contents">IDisposable</A> interface is generally provided for the
+release of unmanaged resources that need to be reclaimed in some order or time
+dependent manner. It is important to note that the actual release of these
+resources happens at the first call to System.IDisposable.Dispose for
+any given object that supports this interface. Programmers should take care
+to pair the creation of objects that implement <CODE>IDisposable</CODE>
+ with
+at most one invocation of the <CODE>Dispose</CODE>
+ method. Though it
+is legal to invoke <CODE>Dispose</CODE>
+ more than once, if this happens it
+may indicate the presence of a bug since such an object is usually rendered
+otherwise unusable after the first <CODE>Dispose</CODE>
+ invocation. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IDisposable Methods<P>
+
+<A HREF="#IDisposable.Dispose Method" TARGET="contents">IDisposable.Dispose Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IDisposable.Dispose Method"><H3>IDisposable.Dispose Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>void Dispose();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs application-defined tasks associated with
+      freeing or resetting resources.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is, by convention, used for all tasks associated with freeing
+         resources held by an object, or preparing an object for reuse. <P>
+
+When implementing the System.IDisposable.Dispose method, objects should seek to ensure
+      that all held resources are freed by propagating the call through the
+      containment hierarchy. For example, if an object A allocates an object B, and B
+      allocates an object C, then A&apos;s System.IDisposable.Dispose implementation should call
+   System.IDisposable.Dispose on B,
+      which should in turn call System.IDisposable.Dispose on C. Objects should also call the
+   System.IDisposable.Dispose method
+      of their base class if the base class implements <A HREF="IDisposable.html" TARGET="contents">IDisposable</A>.<P>
+
+If an object&apos;s System.IDisposable.Dispose method is called more than once, the object should
+   ignore all calls after the first one. The object should not throw an exception
+   if its System.IDisposable.Dispose
+   method is called multiple times. System.IDisposable.Dispose may throw an exception if an error
+   occurs because a resource has already been freed and
+System.IDisposable.Dispose had 
+   not been called previously. <P>
+
+A resource type may use a particular convention to denote an allocated state
+   versus a freed state. An example of this is stream classes, which are
+   traditionally thought of as open or closed. Classes that have such conventions
+   may choose to implement a public method with a customized name, which calls the
+System.IDisposable.Dispose 
+method. <P>
+
+Because the System.IDisposable.Dispose method must be called explicitly, objects that implement
+<A HREF="IDisposable.html" TARGET="contents">IDisposable</A> 
+should also implement a finalizer to handle freeing resources when
+System.IDisposable.Dispose is not 
+called. By default, the garbage collector will automatically call an object&apos;s
+finalizer prior to reclaiming its memory. However, once the
+System.IDisposable.Dispose method 
+has been called, it is typically unnecessary and/or undesirable for the garbage
+collector to call the disposed object&apos;s finalizer. To prevent automatic
+finalization, System.IDisposable.Dispose implementations can call System.GC.SuppressFinalize(System.Object). For
+additional information on implementing finalizers, see <A HREF="GC.html" TARGET="contents">GC</A> and System.Object.Finalize.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+Resource classes should follow the pattern illustrated by
+      this example:<P>
+
+<PRE>class ResourceWrapper : BaseType, IDisposable {
+  // Pointer to a external resource.
+  private int handle; 
+  private OtherResource otherRes; //Other resource you use.
+  private bool disposed = false;
+
+  public ResourceWrapper () {
+    handle = //Allocate on the unmanaged side.
+    otherRes = new OtherResource (...);
+  }
+  // Free your own state.
+  private void freeState () {
+    if (!disposed) {
+       CloseHandle (handle);
+       dispose = true;
+    }
+  }
+
+  // Free your own state, call dispose on all state you hold, 
+  // and take yourself off the Finalization queue.
+  public void Dispose () {
+    freeState ();
+    OtherRes.Dispose();
+    // If base type implements dispose, call it.
+    base.Dispose(); 
+    GC.SuppressFinalize(this);  
+  }
+
+  // Free your own state (not other state you hold) 
+  // and give your base class a chance to finalize. 
+  ~ResourceWrapper (){
+     freeState();
+  }
+}
+   </PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IDisposable.html" TARGET="contents">System.IDisposable Interface</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

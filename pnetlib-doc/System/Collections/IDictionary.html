@@ -1,0 +1,662 @@
+<HTML>
+<HEAD>
+<TITLE>System.Collections.IDictionary Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Collections.IDictionary Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public interface IDictionary : ICollection, IEnumerable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+This type implements <A HREF="ICollection.html" TARGET="contents">ICollection</A> and <A HREF="IEnumerable.html" TARGET="contents">IEnumerable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented by classes that support collections of associated keys and values (i.e. dictionaries).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  Each key-value pair must have a unique non-null key, but
+ the value of an association can be any object reference, including a null
+ reference. The <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> interface allows
+ the contained keys and values to be enumerated, but it does not imply any
+ particular sort order.<P>
+
+<A HREF="IDictionary.html" TARGET="contents">IDictionary</A>
+ implementations fall into three categories: read-only, fixed-size,
+ variable-size. A read-only implementation cannot be modified. A fixed-size
+ implementation does not allow the addition or removal of elements, but it allows
+ the modification of existing elements. A variable-size implementation allows the addition,
+ removal and modification of elements.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>DefaultMemberAttribute(&quot;Item&quot;)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IDictionary Methods<P>
+
+<A HREF="#IDictionary.Add Method" TARGET="contents">IDictionary.Add Method</A><BR>
+<A HREF="#IDictionary.Clear Method" TARGET="contents">IDictionary.Clear Method</A><BR>
+<A HREF="#IDictionary.Contains Method" TARGET="contents">IDictionary.Contains Method</A><BR>
+<A HREF="#IDictionary.GetEnumerator Method" TARGET="contents">IDictionary.GetEnumerator Method</A><BR>
+<A HREF="#IDictionary.Remove Method" TARGET="contents">IDictionary.Remove Method</A><BR>
+<P>
+
+IDictionary Properties<P>
+
+<A HREF="#IDictionary.IsFixedSize Property" TARGET="contents">IDictionary.IsFixedSize Property</A><BR>
+<A HREF="#IDictionary.IsReadOnly Property" TARGET="contents">IDictionary.IsReadOnly Property</A><BR>
+<A HREF="#IDictionary.Item Property" TARGET="contents">IDictionary.Item Property</A><BR>
+<A HREF="#IDictionary.Keys Property" TARGET="contents">IDictionary.Keys Property</A><BR>
+<A HREF="#IDictionary.Values Property" TARGET="contents">IDictionary.Values Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IDictionary.Add Method"><H3>IDictionary.Add Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>void Add(object key, object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Adds an entry with the provided key and value to the
+      current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>key</DT>
+<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to use as the key of the entry to add.</DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to use as the value of the entry to add.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>key</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD> An entry with the same key already exists in the current instance.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only or has a fixed size.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the specified key already exists in the current
+      instance, this method throws a <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A>
+      exception but does not modify the
+      associated value.<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IDictionary.html" TARGET="contents">System.Collections.IDictionary Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IDictionary.Clear Method"><H3>IDictionary.Clear Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>void Clear();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Removes all key and value pairs from the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> is read-only. <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IDictionary.html" TARGET="contents">System.Collections.IDictionary Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IDictionary.Contains Method"><H3>IDictionary.Contains Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool Contains(object key);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether the current instance contains an entry with the specified key.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>key</DT>
+<DD>The key to locate in the <A HREF="IDictionary.html" TARGET="contents">IDictionary</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> contains an entry with the key; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>key </I>is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IDictionary.html" TARGET="contents">System.Collections.IDictionary Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IDictionary.GetEnumerator Method"><H3>IDictionary.GetEnumerator Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>IDictionaryEnumerator GetEnumerator();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a
+   <A HREF="IDictionaryEnumerator.html" TARGET="contents">IDictionaryEnumerator</A> for the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="IDictionaryEnumerator.html" TARGET="contents">IDictionaryEnumerator</A> for the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the elements of the current instance are modified while an enumeration is
+      in progress, a call to System.Collections.IEnumerator.MoveNext or System.Collections.IEnumerator.Current will throw <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A> . <P>
+
+[<I>Note</I>: For detailed information regarding the
+      use of an enumerator, see <A HREF="IEnumerator.html" TARGET="contents">IEnumerator</A>.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IDictionary.html" TARGET="contents">System.Collections.IDictionary Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IDictionary.Remove Method"><H3>IDictionary.Remove Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>void Remove(object key);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes the entry with the specified key from the
+      current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>key</DT>
+<DD>The key of the entry to remove.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>key </I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only or has a fixed size.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  If <I>key</I> is not found in the 
+      current instance, no exception is thrown and the current instance remains unchanged.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IDictionary.html" TARGET="contents">System.Collections.IDictionary Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IDictionary.IsFixedSize Property"><H3>IDictionary.IsFixedSize Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool IsFixedSize { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a value indicating whether the current instance
+      has a fixed size.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the
+   current instance has a fixed size;
+   otherwise, <CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: A collection with a fixed size does not
+      allow the addition or removal of elements, but does allow the modification of
+      existing elements.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: The default of this property is
+   <CODE>false</CODE>
+.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override
+      this method, setting the value as <CODE> true</CODE>
+
+      , to prevent the addition
+      and removal of the elements in the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IDictionary.html" TARGET="contents">System.Collections.IDictionary Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IDictionary.IsReadOnly Property"><H3>IDictionary.IsReadOnly Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool IsReadOnly { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a value indicating whether the current instance
+      is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the
+   current instance is read-only; otherwise,
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: A collection that is read-only does not
+      allow the addition, removal, or modification of elements.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: The default of this property is
+   <CODE>false</CODE>
+.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override
+      this method, setting the value as <CODE> true</CODE>
+
+      , to prevent the addition, removal, and modification of the elements in
+      the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IDictionary.html" TARGET="contents">System.Collections.IDictionary Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IDictionary.Item Property"><H3>IDictionary.Item Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>object this[object key] { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the element in the current instance that is associated with the specified key.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>key</DT>
+<DD>The key of the element to get or set.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The element with the specified key.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>key</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The property is set and the current instance is read-only.<P>
+
+The property is set, <I>key</I> does not exist in the collection, and the current instance has a fixed size.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This property provides the ability to
+      access a specific element in the collection by using the following syntax: <CODE>myCollection[index]</CODE>.]<P>
+
+<P>
+
+[<I>Behaviors</I>: When setting this property, if the specified key already 
+         exists in the current instance, the value is required to be replaced; otherwise,
+         a new element is required to be created.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IDictionary.html" TARGET="contents">System.Collections.IDictionary Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IDictionary.Keys Property"><H3>IDictionary.Keys Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>ICollection Keys { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="ICollection.html" TARGET="contents">ICollection</A> containing the keys of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="ICollection.html" TARGET="contents">ICollection</A> containing the keys of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IDictionary.html" TARGET="contents">System.Collections.IDictionary Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IDictionary.Values Property"><H3>IDictionary.Values Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>ICollection Values { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="ICollection.html" TARGET="contents">ICollection</A> containing the values in the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="ICollection.html" TARGET="contents">ICollection</A> containing the values in the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IDictionary.html" TARGET="contents">System.Collections.IDictionary Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

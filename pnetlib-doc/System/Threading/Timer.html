@@ -1,0 +1,606 @@
+<HTML>
+<HEAD>
+<TITLE>System.Threading.Timer Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Threading.Timer Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class Timer : MarshalByRefObject, IDisposable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/MarshalByRefObject.html" TARGET="contents">MarshalByRefObject</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;Timer<P>
+
+This type implements <A HREF="../../System/IDisposable.html" TARGET="contents">IDisposable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides a mechanism for executing methods at specified intervals.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+A <A HREF="TimerCallback.html" TARGET="contents">TimerCallback</A> delegate
+   is used to specify the methods associated with a <CODE>Timer</CODE>
+ . The methods do
+   not execute in the thread that created the timer; they execute in a separate thread that is automatically
+   allocated by the system. The timer delegate
+   is specified when the timer is constructed, and cannot be changed.<P>
+
+When creating a timer, the application specifies an
+   amount of time to wait before the first invocation of the delegate methods (due time), and an amount
+   of time to wait between subsequent invocations (period). A timer invokes its methods once
+   when its due time elapses, and invokes its methods once per
+   period thereafter. These values may be changed, or the timer disabled using the System.Threading.Timer.Change(System.Int32,System.Int32)
+   
+   method.<P>
+
+ When a timer is no longer needed, use the System.Threading.Timer.Dispose(System.Threading.WaitHandle)
+method to free the resources held by the timer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the features of the <A HREF="Timer.html" TARGET="contents">Timer</A>
+class.<P>
+
+<PRE>using System;
+using System.Threading;
+
+class TimerExampleState {
+    public int counter = 0;
+    public Timer tmr;
+}
+
+class App {
+   public static void Main() {
+    TimerExampleState s = new TimerExampleState();
+
+    // Create the delegate that invokes methods for the timer.
+    TimerCallback timerDelegate = new TimerCallback(CheckStatus);
+
+    // Create a timer that waits one second, then invokes every second.
+    Timer timer = new Timer(timerDelegate, s,1000, 1000);
+    
+    // Keep a handle to the timer, so it can be disposed.
+    s.tmr = timer;
+
+    // The main thread does nothing until the timer is disposed.
+    while (s.tmr != null)
+        Thread.Sleep(0);
+    Console.WriteLine(&quot;Timer example done.&quot;);
+   }
+   // The following method is called by the timer&apos;s delegate.
+
+   static void CheckStatus(Object state) {
+    TimerExampleState s = (TimerExampleState) state;
+    s.counter++;
+          Console.WriteLine(&quot;{0} Checking Status {1}.&quot;,DateTime.Now.TimeOfDay, s.counter);
+        if (s.counter == 5) {
+        // Shorten the period. Wait 10 seconds to restart the timer.
+        (s.tmr).Change(10000,100);
+        Console.WriteLine(&quot;changed...&quot;);
+    }
+        if (s.counter == 10) {
+        Console.WriteLine(&quot;disposing of timer...&quot;);
+        s.tmr.Dispose();
+        s.tmr = null;
+    }
+   }
+}
+</PRE>
+An example of some output is<P>
+
+<CODE>10:51:40.5809015 Checking Status 1.<P>
+
+10:51:41.5823515 Checking Status 2.<P>
+
+10:51:42.5838015 Checking Status 3.<P>
+
+10:51:43.5852515 Checking Status 4.<P>
+
+10:51:44.5867015 Checking Status 5.<P>
+
+changed...<P>
+
+10:51:54.5911870 Checking Status 6.<P>
+
+10:51:54.6913320 Checking Status 7.<P>
+
+10:51:54.7914770 Checking Status 8.<P>
+
+10:51:54.8916220 Checking Status 9.<P>
+
+10:51:54.9917670 Checking Status 10.<P>
+
+disposing of timer...<P>
+
+Timer example done.<P>
+
+</CODE>The exact timings returned by this example will vary.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Timer Constructors<P>
+
+<A HREF="#Timer(System.Threading.TimerCallback, System.Object, int, int) Constructor" TARGET="contents">Timer(System.Threading.TimerCallback, System.Object, int, int) Constructor</A><BR>
+<A HREF="#Timer(System.Threading.TimerCallback, System.Object, System.TimeSpan, System.TimeSpan) Constructor" TARGET="contents">Timer(System.Threading.TimerCallback, System.Object, System.TimeSpan, System.TimeSpan) Constructor</A><BR>
+<P>
+
+Timer Methods<P>
+
+<A HREF="#Timer.Change(int, int) Method" TARGET="contents">Timer.Change(int, int) Method</A><BR>
+<A HREF="#Timer.Change(System.TimeSpan, System.TimeSpan) Method" TARGET="contents">Timer.Change(System.TimeSpan, System.TimeSpan) Method</A><BR>
+<A HREF="#Timer.Dispose() Method" TARGET="contents">Timer.Dispose() Method</A><BR>
+<A HREF="#Timer.Dispose(System.Threading.WaitHandle) Method" TARGET="contents">Timer.Dispose(System.Threading.WaitHandle) Method</A><BR>
+<A HREF="#Timer.Finalize Method" TARGET="contents">Timer.Finalize Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Timer(System.Threading.TimerCallback, System.Object, int, int) Constructor"><H3>Timer(System.Threading.TimerCallback, System.Object, int, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Timer(TimerCallback callback, object state, int dueTime, int period);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <CODE>Timer </CODE>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>callback</DT>
+<DD>A <A HREF="TimerCallback.html" TARGET="contents">TimerCallback</A> delegate.</DD>
+<DT>state</DT>
+<DD>A <A HREF="../../System/Object.html" TARGET="contents">Object</A> containing application-specific information relevant to the methods invoked by <I>callback</I>, or <CODE>null</CODE>
+.</DD>
+<DT>dueTime</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the amount of time to delay before <I>callback</I> invokes its methods, in milliseconds. Specify System.Threading.Timeout.Infinite to prevent the timer from starting. Specify zero to start the timer immediately.</DD>
+<DT>period</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the time interval between invocations of the methods referenced by <I>callback,</I> in milliseconds. Specify System.Threading.Timeout.Infinite to disable periodic signaling.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>dueTime</I> or <I>period</I> is negative and is not equal to System.Threading.Timeout.Infinite. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>callback</I> is a <CODE>null</CODE>
+ reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<I>callback</I> invokes its methods once after <I>dueTime</I> elapses, and then invokes
+   its methods each time the <I>period</I> time interval elapses.<P>
+
+If <I>dueTime</I> is zero,
+<I>callback</I> performs 
+its first invocation immediately. If <I>dueTime</I> is
+System.Threading.Timeout.Infinite, <I>callback</I> 
+does not invoke its methods; the timer is disabled, but may be re-enabled using
+the System.Threading.Timer.Change(System.Int32,System.Int32)
+method.<P>
+
+If <I>period </I>is zero
+or System.Threading.Timeout.Infinite and
+<I>dueTime</I> is not System.Threading.Timeout.Infinite, <I>callback</I> 
+invokes its methods exactly once; the periodic behavior of the timer is
+disabled, but may be re-enabled using the System.Threading.Timer.Change(System.Int32,System.Int32)
+method.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Timer.html" TARGET="contents">System.Threading.Timer Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Timer(System.Threading.TimerCallback, System.Object, System.TimeSpan, System.TimeSpan) Constructor"><H3>Timer(System.Threading.TimerCallback, System.Object, System.TimeSpan, System.TimeSpan) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Timer(TimerCallback callback, object state, TimeSpan dueTime, TimeSpan period);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <CODE>Timer </CODE>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>callback</DT>
+<DD>A <A HREF="TimerCallback.html" TARGET="contents">TimerCallback</A> delegate.</DD>
+<DT>state</DT>
+<DD>A <A HREF="../../System/Object.html" TARGET="contents">Object</A> containing application-specific information relevant to the methods invoked by <I>callback</I>, or <CODE>null</CODE>
+ .</DD>
+<DT>dueTime</DT>
+<DD>A <A HREF="../../System/TimeSpan.html" TARGET="contents">TimeSpan</A> set to the amount of time to delay before <I>callback</I> invokes its methods. Set the value to System.Threading.Timeout.Infinite milliseconds to prevent the timer from starting. Specify zero to start the timer immediately.</DD>
+<DT>period</DT>
+<DD>A <A HREF="../../System/TimeSpan.html" TARGET="contents">TimeSpan</A> set to the time interval between invocations of the methods referenced by <I>callback</I> . Set the value to System.Threading.Timeout.Infinite milliseconds to disable periodic signaling.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The number of milliseconds in the value of <I>dueTime</I> or <I>period</I> is negative and not equal to System.Threading.Timeout.Infinite, or is greater than System.Int32.MaxValue.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>callback</I> is a <CODE>null</CODE>
+ reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>callback</I> delegate invokes its methods
+   once after <I>dueTime</I> elapses, and then invokes its
+   methods each time the <I>period</I> time interval
+   elapses.<P>
+
+If <I>dueTime,</I> in milliseconds, is zero,
+<I>callback</I> performs its first invocation immediately. If <I>dueTime</I> is System.Threading.Timeout.Infinite 
+, no method invocation occurs. The timer is disabled, but may be re-enabled using
+the System.Threading.Timer.Change(System.Int32,System.Int32)
+method.<P>
+
+
+If <I>period </I>is zero or System.Threading.Timeout.Infinite milliseconds and <I>dueTime</I> is not System.Threading.Timeout.Infinite, <I>callback</I>
+invokes its methods exactly once. The periodic behavior of the timer is
+disabled, but may be re-enabled using the System.Threading.Timer.Change(System.Int32,System.Int32)
+method.
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Timer.html" TARGET="contents">System.Threading.Timer Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Timer.Change(int, int) Method"><H3>Timer.Change(int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool Change(int dueTime, int period);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Changes the
+   start time and interval between method invocations for a timer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>dueTime</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the amount of time to delay before the delegate specified at <A HREF="Timer.html" TARGET="contents">Timer</A> construction time invokes its methods, in milliseconds. Specify System.Threading.Timeout.Infinite to prevent the timer from restarting. Specify zero to restart the timer immediately.</DD>
+<DT>period</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the time interval between invocations of the methods referenced by the delegate specified at <A HREF="Timer.html" TARGET="contents">Timer</A> construction time<I>,</I> in milliseconds. Specify System.Threading.Timeout.Infinite to disable periodic signaling.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+
+if the current instance has not been disposed; otherwise, <CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>dueTime</I> or <I>period</I> is negative and is not equal to System.Threading.Timeout.Infinite .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The delegate specified at <A HREF="Timer.html" TARGET="contents">Timer</A> construction time invokes its methods once after <I>dueTime</I> elapses, and
+   then invokes its methods each time the <I>period</I> time interval elapses.<P>
+
+If <I>dueTime</I> is zero, the
+delegate specified at <A HREF="Timer.html" TARGET="contents">Timer</A>
+construction time performs its next invocation
+immediately. If <I>dueTime</I> is System.Threading.Timeout.Infinite
+, no method invocation occurs. The timer is disabled, but may be re-enabled by
+calling this method and specifying a non-negative value for
+<I>dueTime</I> 
+.<P>
+
+
+If <I>period </I>is zero or System.Threading.Timeout.Infinite and <I>dueTime</I> is not System.Threading.Timeout.Infinite, the
+delegate specified at <A HREF="Timer.html" TARGET="contents">Timer</A>
+construction time invokes its methods exactly once. The periodic
+behavior of the timer is disabled, but may be re-enabled by calling this method
+and specifying a positive value for <I>period</I>
+.
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Timer.html" TARGET="contents">System.Threading.Timer Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Timer.Change(System.TimeSpan, System.TimeSpan) Method"><H3>Timer.Change(System.TimeSpan, System.TimeSpan) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool Change(TimeSpan dueTime, TimeSpan period);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Changes the start time and
+   interval between method invocations for a timer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>dueTime</DT>
+<DD>A <A HREF="../../System/TimeSpan.html" TARGET="contents">TimeSpan</A> set to the amount of time to delay before the delegate specified at <A HREF="Timer.html" TARGET="contents">Timer</A> construction time invokes its methods. Specify System.Threading.Timeout.Infinite milliseconds to prevent the timer from restarting. Specify zero to restart the timer immediately. </DD>
+<DT>period</DT>
+<DD>A <A HREF="../../System/TimeSpan.html" TARGET="contents">TimeSpan</A> set to the time interval between invocations of the methods referenced by the delegate specified at <A HREF="Timer.html" TARGET="contents">Timer</A> construction time. Specify System.Threading.Timeout.Infinite milliseconds to disable periodic signaling. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+ if the current instance has
+   not been disposed; otherwise, <CODE>false</CODE>
+.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The delegate specified at <A HREF="Timer.html" TARGET="contents">Timer</A> construction time invokes its methods once after <I>dueTime</I> elapses, and
+   then invokes its methods each time the <I>period</I> time interval elapses.<P>
+
+If <I>dueTime,</I> in milliseconds,
+is zero, the delegate specified at <A HREF="Timer.html" TARGET="contents">Timer</A> construction time performs its
+next invocation immediately. If <I>dueTime</I> is System.Threading.Timeout.Infinite milliseconds, no method invocation occurs. The timer is disabled, but may be re-enabled by
+calling this method and specifying a non-negative value for <I>dueTime</I>
+.<P>
+
+
+If <I>period </I>is zero or System.Threading.Timeout.Infinite milliseconds and <I>dueTime</I> is not
+System.Threading.Timeout.Infinite milliseconds, the delegate specified at <A HREF="Timer.html" TARGET="contents">Timer</A> 
+construction time
+invokes its methods exactly once. The periodic behavior of the timer is
+disabled, but may be re-enabled by calling this method and specifying a positive
+value for <I>period</I>
+.
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Timer.html" TARGET="contents">System.Threading.Timer Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Timer.Dispose() Method"><H3>Timer.Dispose() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public void Dispose();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Releases the resources held by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is
+ implemented to support the <A HREF="../../System/IDisposable.html" TARGET="contents">IDisposable</A>
+ interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Timer.html" TARGET="contents">System.Threading.Timer Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Timer.Dispose(System.Threading.WaitHandle) Method"><H3>Timer.Dispose(System.Threading.WaitHandle) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool Dispose(WaitHandle notifyObject);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Releases the resources held by the current instance.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>notifyObject</DT>
+<DD>Specifies a <A HREF="WaitHandle.html" TARGET="contents">WaitHandle</A> to be signaled when the timer has been disposed of. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+if the call succeeds;
+   otherwise, <CODE>false</CODE>
+.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>notifyObject</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ When this method completes, the <A HREF="WaitHandle.html" TARGET="contents">WaitHandle</A> specified by <I>notifyObject</I> is
+   signaled.
+   <P>
+
+This method calls System.GC.SuppressFinalize(System.Object) to prevent the garbage collector from finalizing the
+current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Timer.html" TARGET="contents">System.Threading.Timer Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Timer.Finalize Method"><H3>Timer.Finalize Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>~Timer();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Releases the resources held by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Application code does not call this method; it is 
+         automatically invoked by during garbage collection unless finalization by the
+         garbage collector has been disabled. For more information, see System.GC.SuppressFinalize(System.Object),
+         and System.Object.Finalize.<P>
+
+ This method overrides System.Object.Finalize.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Timer.html" TARGET="contents">System.Threading.Timer Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

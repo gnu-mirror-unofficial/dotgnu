@@ -1,0 +1,814 @@
+<HTML>
+<HEAD>
+<TITLE>System.Environment Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Environment Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class Environment</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Environment<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides the current settings for, and information about, the execution environment.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Use this class to retrieve the following 
+ information:<P>
+
+<UL>
+<LI>Command line arguments</LI>
+<LI>Exit codes</LI>
+<LI>Environment variable settings</LI>
+<LI>Contents of the call stack</LI>
+<LI>Time since last system boot</LI>
+<LI>Version of the execution engine</LI>
+</UL>
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Environment Methods<P>
+
+<A HREF="#Environment.Exit Method" TARGET="contents">Environment.Exit Method</A><BR>
+<A HREF="#Environment.GetCommandLineArgs Method" TARGET="contents">Environment.GetCommandLineArgs Method</A><BR>
+<A HREF="#Environment.GetEnvironmentVariable Method" TARGET="contents">Environment.GetEnvironmentVariable Method</A><BR>
+<A HREF="#Environment.GetEnvironmentVariables Method" TARGET="contents">Environment.GetEnvironmentVariables Method</A><BR>
+<P>
+
+Environment Properties<P>
+
+<A HREF="#Environment.CommandLine Property" TARGET="contents">Environment.CommandLine Property</A><BR>
+<A HREF="#Environment.ExitCode Property" TARGET="contents">Environment.ExitCode Property</A><BR>
+<A HREF="#Environment.HasShutdownStarted Property" TARGET="contents">Environment.HasShutdownStarted Property</A><BR>
+<A HREF="#Environment.NewLine Property" TARGET="contents">Environment.NewLine Property</A><BR>
+<A HREF="#Environment.StackTrace Property" TARGET="contents">Environment.StackTrace Property</A><BR>
+<A HREF="#Environment.TickCount Property" TARGET="contents">Environment.TickCount Property</A><BR>
+<A HREF="#Environment.Version Property" TARGET="contents">Environment.Version Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Environment.Exit Method"><H3>Environment.Exit Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static void Exit(int exitCode);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Terminates the current process and sets the process exit code to the specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>exitCode</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> value that is provided to the operating system.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The immediate caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method causes an executing program to halt.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Environment.html" TARGET="contents">System.Environment Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Environment.GetCommandLineArgs Method"><H3>Environment.GetCommandLineArgs Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string[] GetCommandLineArgs();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the arguments specified on the command
+      line.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="String.html" TARGET="contents">String</A> array. Each <A HREF="String.html" TARGET="contents">String</A> in the array
+   contains a single command line argument.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The first element in the array contains the filename of
+      the executing program. If the filename is not available, the first element is
+      equal to System.String.Empty. The remaining elements contain any additional tokens
+      entered on the command line.<P>
+
+[<I>Note</I>: The program filename may, but is not required to,
+         include path information.<P>
+
+To obtain the command line as a single <A HREF="String.html" TARGET="contents">String</A>, use the System.Environment.CommandLine
+   property.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Environment.html" TARGET="contents">System.Environment Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Environment.GetEnvironmentVariable Method"><H3>Environment.GetEnvironmentVariable Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string GetEnvironmentVariable(string variable);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the value of
+      the specified environment variable.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>variable</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the name of an environment variable.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing the current setting of <I>variable</I> , or 
+<CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>variable</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If <I>variable</I> contains a valid name for an environment variable, and
+   if the caller has sufficient permissions, this method returns the current
+   setting for <I>variable</I>. Environment variable names are
+   case-insensitive.<P>
+
+If <I>variable</I> specifies an
+invalid name or the system does not support environment variables, this method
+returns <CODE>null</CODE>
+
+.<P>
+
+[<I>Note</I>: To obtain names and settings for all
+   environment variables, use the System.Environment.GetEnvironmentVariables method.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Environment.html" TARGET="contents">System.Environment Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Environment.GetEnvironmentVariables Method"><H3>Environment.GetEnvironmentVariables Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static IDictionary GetEnvironmentVariables();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns all
+      environment variables and their current settings.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../System/Collections/IDictionary.html" TARGET="contents">IDictionary</A> object containing environment variable names
+   and settings, or <CODE>null</CODE>
+
+   if
+   the system does not
+   support environment variables.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The names and settings for the environment variables are
+      stored in the returned <A HREF="../System/Collections/IDictionary.html" TARGET="contents">IDictionary</A> object as keys and values, respectively.<P>
+
+[<I>Note</I>: To obtain the
+      setting of a single environment variable, use the System.Environment.GetEnvironmentVariable(System.String) method. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example prints the names and values of all
+      environment variables defined in the environment.<P>
+
+<PRE>using System;
+using System.Collections;
+
+class EnvTest:Object {
+  public static void Main() {
+    Console.WriteLine(&quot;Environment Variables&quot;);
+    IDictionary envars =
+        Environment.GetEnvironmentVariables();
+    IDictionaryEnumerator varEnumerator =
+        envars.GetEnumerator();
+    while(varEnumerator.MoveNext() != false) {
+      Console.WriteLine(&quot;{0}={1}&quot;, 
+                        varEnumerator.Key,
+                        varEnumerator.Value);
+    }
+  }
+}
+   </PRE>
+The output will vary depending on your system.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Environment.html" TARGET="contents">System.Environment Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Environment.CommandLine Property"><H3>Environment.CommandLine Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string CommandLine { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the information entered on the command line when the current process was
+      started.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing
+   the command line arguments.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+This property provides access to the program name and
+      any arguments specified on the command line when the current process was
+      started.<P>
+
+If the environment does not support a program name, as
+         may be the case with compact devices, then the program name is equal to System.String.Empty.<P>
+
+The format of the information returned by this property is implementation-defined.<P>
+
+<PRE></PRE>
+[<I>Note</I>: The program name may, but is not required to, include
+      path information.<P>
+
+Use the System.Environment.GetCommandLineArgs method to retrieve the command line information parsed
+   and stored in an array of strings.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Environment.html" TARGET="contents">System.Environment Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Environment.ExitCode Property"><H3>Environment.ExitCode Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int ExitCode { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the exit code of a process.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A>
+value returned by a process. The default value is zero.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+When a process exits, if the process does not return a
+      value, the value of System.Environment.ExitCode
+      is returned. If the value of this property is not set by
+      an application, zero is returned.<P>
+
+On operating systems that do
+      not support process exit codes, CLI implementations are required to fully support getting and
+      setting values for this property.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Environment.html" TARGET="contents">System.Environment Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Environment.HasShutdownStarted Property"><H3>Environment.HasShutdownStarted Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool HasShutdownStarted { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a value indicating whether an application has started to shut down.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ indicates the shutdown
+   process has started; otherwise <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: This property is for use inside the finalizer of an application. If the 
+         shutdown process has started, static members should not be accessed; they
+         may have been cleaned up by the garbage collector. If the member has been
+         cleaned up, any access attempt will cause an exception to be thrown. <P>
+
+System.Console.Out is a special case that is always available after the 
+      shutdown process has started.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Environment.html" TARGET="contents">System.Environment Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Environment.NewLine Property"><H3>Environment.NewLine Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string NewLine { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the newline string for the current platform.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> containing the characters required to write a newline.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>:  This property is
+      intended for platform-independent formatting of multi-line strings. This value
+      is automatically appended to text when using <CODE>WriteLine </CODE>
+methods,
+      such as System.Console.WriteLine
+      .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates using the System.Environment.NewLine
+property. The string returned by System.Environment.NewLine is inserted between &quot;Hello&quot; and
+&quot;World&quot;, causing a line break between the words in the output.<P>
+
+<PRE>using System;
+class TestClass {
+    public static void Main() {
+      Console.WriteLine(&quot;Hello,{0}World&quot;,
+                        Environment.NewLine);
+    }
+}
+</PRE>
+The output is<P>
+
+<CODE>Hello,<P>
+
+World<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Environment.html" TARGET="contents">System.Environment Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Environment.StackTrace Property"><H3>Environment.StackTrace Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string StackTrace { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a string representation of the state of the call stack.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing a description of the methods currently in the
+   call stack. This value can be System.String.Empty .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: An example of how the <A HREF="String.html" TARGET="contents">String</A> returned by this property might be
+      formatted follows, where one line of information is provided for each method on
+      the call stack:<P>
+
+<CODE>at
+   <I>FullClassName</I>.<I>MethodName</I>(<I>MethodParms</I>) in
+   <I>FileName</I>:line <I>LineNumber</I></CODE><P>
+
+<I>FullClassName</I>, <I>MethodName</I>,
+<I>MethodParms</I>, <I>FileName</I>, and <I>LineNumber</I> are defined as 
+follows:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>ItemDescription</TH></TR>
+<TR><TD> The fully qualified name of the
+      class. </TD><TD><I>FullClassName</I> The fully qualified name of the
+      class. </TD></TR>
+<TR><TD>The name of the method. </TD><TD><I>MethodName</I>The name of the method. </TD></TR>
+<TR><TD>The list of parameter type/name pairs. Each pair is
+   separated by a comma (,). This information is omitted if
+<I>MethodName</I> 
+takes zero
+parameters.</TD><TD><I>MethodParms</I>The list of parameter type/name pairs. Each pair is
+   separated by a comma (,). This information is omitted if
+<I>MethodName</I> 
+takes zero
+parameters.</TD></TR>
+<TR><TD>The name of the source file where the
+<I>MethodName</I> method is declared. 
+   This information is omitted if debug symbols are not available.</TD><TD><I>FileName</I>The name of the source file where the
+<I>MethodName</I> method is declared. 
+   This information is omitted if debug symbols are not available.</TD></TR>
+<TR><TD>The number of the line in <I>FileName</I> that
+contains the source code from <I>MethodName</I>
+for the instruction that is on the call stack. This information
+is omitted if debug symbols are not available.</TD><TD><I>LineNumber</I>The number of the line in <I>FileName</I> that
+contains the source code from <I>MethodName</I>
+for the instruction that is on the call stack. This information
+is omitted if debug symbols are not available.</TD></TR>
+</TABLE>
+The literal &quot;at&quot; is preceded by a single space.<P>
+
+The literals &quot;in&quot; and &quot;:line&quot; are omitted if debug
+   symbols are not available.<P>
+
+The method calls are described in reverse chronological
+   order (the most recent method call is described first).<P>
+
+System.Environment.StackTrace may not report as many method
+calls as expected, due to code transformations that occur during
+optimization.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example gets the System.Environment.StackTrace
+property from within a series of nested calls.<P>
+
+<PRE>using System;
+public class TestCallStack {
+    public void MyMethod1 () {
+        MyMethod2();
+    }
+    public void MyMethod2 () {
+        MyMethod3();
+    }
+    public void MyMethod3 () {
+        Console.WriteLine(&quot;TestCallStack: {0}&quot;,
+                          Environment.StackTrace);
+    }
+    public static void Main() {
+        TestCallStack t = new TestCallStack();
+        t.MyMethod1();
+    }
+}
+</PRE>
+Without debug symbols the output is<P>
+
+<CODE>TestCallStack: at System.Environment.GetStackTrace(Exception e)<P>
+
+at System.Environment.GetStackTrace(Exception e)<P>
+
+at System.Environment.get_StackTrace()<P>
+
+at TestCallStack.Main()<P>
+
+</CODE>With debug symbols the output is<P>
+
+<CODE>TestCallStack: at System.Environment.GetStackTrace(Exception e)<P>
+
+at System.Environment.GetStackTrace(Exception e)<P>
+
+at System.Environment.get_StackTrace()<P>
+
+at TestCallStack.MyMethod3() in c:\ECMAExamples\envstack.cs:line 10<P>
+
+at TestCallStack.MyMethod2() in c:\ECMAExamples\envstack.cs:line 8<P>
+
+at TestCallStack.MyMethod1() in c:\ECMAExamples\envstack.cs:line 5<P>
+
+at TestCallStack.Main() in c:\ECMAExamples\envstack.cs:line 15<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Environment.html" TARGET="contents">System.Environment Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Environment.TickCount Property"><H3>Environment.TickCount Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int TickCount { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the number of milliseconds elapsed since the system was
+      started.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> value containing the amount of time in milliseconds that
+   has passed since the last time the computer was started.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This property is
+      read-only.<P>
+
+ The resolution of the System.Environment.TickCount
+property cannot be less than 500
+milliseconds.<P>
+
+ The value of this property is derived from the system
+   timer.<P>
+
+ The System.Environment.TickCount property handles an overflow condition by
+resetting its value to zero. The minimum value returned by System.Environment.TickCount
+is
+0.<P>
+
+[<I>Note</I>: System.Environment.TickCount
+is measured in milliseconds, not in
+&quot;ticks&quot;.<P>
+
+ The System.Environment.TickCount
+reaches its maximum value after approximately 24.8 days of continuous up
+time.<P>
+
+ For applications that require a finer granularity or a 
+   larger maximum time than System.Environment.TickCount supports, see System.DateTime.Now
+   
+   .<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Environment.html" TARGET="contents">System.Environment Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Environment.Version Property"><H3>Environment.Version Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Version Version { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the current version of
+ the execution engine.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Version.html" TARGET="contents">Version</A> object that contains the major, minor, build, and 
+ revision numbers of the execution engine.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Environment.html" TARGET="contents">System.Environment Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

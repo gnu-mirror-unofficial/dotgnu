@@ -1,0 +1,211 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.Sockets.LingerOption Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.Sockets.LingerOption Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class LingerOption</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;LingerOption<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Maintains information that specifies how a <A HREF="Socket.html" TARGET="contents">Socket</A> instance
+   with pending data behaves when the System.Net.Sockets.Socket.Close method of
+   the socket is called. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ An instance of this class is
+      passed into the System.Net.Sockets.Socket.SetSocketOption(System.Net.Sockets.SocketOptionLevel,System.Net.Sockets.SocketOptionName,System.Int32) method
+      and is returned by the System.Net.Sockets.Socket.GetSocketOption(System.Net.Sockets.SocketOptionLevel,System.Net.Sockets.SocketOptionName) method when the <I>optionName</I>
+      parameter is set to System.Net.Sockets.SocketOptionName.Linger.<P>
+
+When the System.Net.Sockets.LingerOption.Enabled property is <CODE>true</CODE>
+, any queued data continues to be sent until
+   time equal to the setting of the System.Net.Sockets.LingerOption.LingerTime property has passed or until
+   the input queue is empty. At this time, the connection is closed. <P>
+
+ When the System.Net.Sockets.LingerOption.LingerTime property is zero or the System.Net.Sockets.LingerOption.Enabled property is
+<CODE>false</CODE>
+, calling System.Net.Sockets.Socket.Close immediately closes the socket and any
+pending data is lost. <P>
+
+
+When setting the System.Net.Sockets.SocketOptionName.Linger option of an instance of
+the <A HREF="Socket.html" TARGET="contents">Socket</A> class, a <A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A> exception is thrown if the
+System.Net.Sockets.LingerOption.LingerTime property is
+less than zero or greater than System.UInt16.MaxValue.
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+LingerOption Constructors<P>
+
+<A HREF="#LingerOption Constructor" TARGET="contents">LingerOption Constructor</A><BR>
+<P>
+
+LingerOption Properties<P>
+
+<A HREF="#LingerOption.Enabled Property" TARGET="contents">LingerOption.Enabled Property</A><BR>
+<A HREF="#LingerOption.LingerTime Property" TARGET="contents">LingerOption.LingerTime Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="LingerOption Constructor"><H3>LingerOption Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public LingerOption(bool enable, int seconds);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of
+      the <A HREF="LingerOption.html" TARGET="contents">LingerOption</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enable</DT>
+<DD>A <A HREF="../../../System/Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+ enables the linger option and <CODE>false</CODE>
+ disables the option.</DD>
+<DT> seconds</DT>
+<DD>A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> that contains the number of seconds to remain connected after the System.Net.Sockets.Socket.Close method is called.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="LingerOption.html" TARGET="contents">LingerOption</A> instance is created with the System.Net.Sockets.LingerOption.Enabled property set to <I>enable </I>and the
+System.Net.Sockets.LingerOption.LingerTime property set to <I>seconds</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="LingerOption.html" TARGET="contents">System.Net.Sockets.LingerOption Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="LingerOption.Enabled Property"><H3>LingerOption.Enabled Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool Enabled { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets a <A HREF="../../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the connection remains
+   open (lingers) for a period of time after the System.Net.Sockets.Socket.Close method is
+   called.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true </CODE>
+to enable lingering
+   after the System.Net.Sockets.Socket.Close
+   method is called; otherwise
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="LingerOption.html" TARGET="contents">System.Net.Sockets.LingerOption Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="LingerOption.LingerTime Property"><H3>LingerOption.LingerTime Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int LingerTime { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the amount of time to remain connected after
+      the System.Net.Sockets.Socket.Close method is called.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> that contains the amount of time, in seconds, to remain connected after
+   calling the System.Net.Sockets.Socket.Close
+   method.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+When setting the System.Net.Sockets.SocketOptionName.Linger option of an instance of
+   the <A HREF="Socket.html" TARGET="contents">Socket</A> class, a <A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A> exception is thrown if the
+System.Net.Sockets.LingerOption.LingerTime 
+property is less than zero or greater than
+System.UInt16.MaxValue . <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="LingerOption.html" TARGET="contents">System.Net.Sockets.LingerOption Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,302 @@
+<HTML>
+<HEAD>
+<TITLE>System.Xml.XmlResolver Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Xml.XmlResolver Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class XmlResolver</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;XmlResolver<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System.Xml
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Resolves external XML resources named by a
+      URI.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This class is used to resolve external XML resources such as entities, 
+      document type definitions (DTDs), or schemas. It is also used to process include
+      and import elements found in Extensible StyleSheet Language (XSL) stylesheets or
+      XML Schema Definition language (XSD) schemas.<P>
+
+This class is <CODE>abstract</CODE>
+ and implemented in the <A HREF="XmlUrlResolver.html" TARGET="contents">XmlUrlResolver</A> 
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+XmlResolver Constructors<P>
+
+<A HREF="#XmlResolver Constructor" TARGET="contents">XmlResolver Constructor</A><BR>
+<P>
+
+XmlResolver Methods<P>
+
+<A HREF="#XmlResolver.GetEntity Method" TARGET="contents">XmlResolver.GetEntity Method</A><BR>
+<A HREF="#XmlResolver.ResolveUri Method" TARGET="contents">XmlResolver.ResolveUri Method</A><BR>
+<P>
+
+XmlResolver Properties<P>
+
+<A HREF="#XmlResolver.Credentials Property" TARGET="contents">XmlResolver.Credentials Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="XmlResolver Constructor"><H3>XmlResolver Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected XmlResolver();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new instance of the <A HREF="XmlResolver.html" TARGET="contents">XmlResolver</A> class.
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlResolver.html" TARGET="contents">System.Xml.XmlResolver Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlResolver.GetEntity Method"><H3>XmlResolver.GetEntity Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract object GetEntity(Uri absoluteUri, string role, Type ofObjectToReturn);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Maps a URI to an object
+      containing the actual resource that the URI represents.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>absoluteUri</DT>
+<DD>An instance of the <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> class containing an absolute URI.</DD>
+<DT>role</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the <CODE>xlink:role</CODE>, or used as an implementation specific argument in other scenarios.</DD>
+<DT>ofObjectToReturn</DT>
+<DD>The type of object to return.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Object.html" TARGET="contents">Object</A>
+containing the resource.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>absoluteUri</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD><I>ofObjectToReturn</I> is not a supported type.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  At a minimum, supporting the return of a <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> object is required.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlResolver.html" TARGET="contents">System.Xml.XmlResolver Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlResolver.ResolveUri Method"><H3>XmlResolver.ResolveUri Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract Uri ResolveUri(Uri baseUri, string relativeUri);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Resolves the absolute URI from the base and relative URIs.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>baseUri</DT>
+<DD>The <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> specifying the base URI used to resolve <I>relativeURI</I>.</DD>
+<DT>relativeUri</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the URI to resolve. The URI can be absolute or relative.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> containing the absolute URI, or <CODE>null</CODE>
+ if <I>relativeUri</I> can not be resolved.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD><I>baseUri</I> and <I>relativeUri</I> are <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  As described above. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  This method must be overridden in order to
+      provide the functionality described above, as there is no default implementation.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlResolver.html" TARGET="contents">System.Xml.XmlResolver Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="XmlResolver.Credentials Property"><H3>XmlResolver.Credentials Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract ICredentials Credentials { set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Sets the credentials used to authenticate Web
+      requests.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Net/ICredentials.html" TARGET="contents">ICredentials</A> instance
+   containing the
+   credentials.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This property
+         sets the credentials used to authenticate Web requests. If the virtual directory
+         is configured to allow anonymous access, this property does not need to be set.
+         Otherwise, the credentials of the user must be supplied. If credentials are
+         needed but not supplied, the <A HREF="XmlResolver.html" TARGET="contents">XmlResolver</A>
+         
+         class uses default credentials (System.Net.CredentialCache.DefaultCredentials).<P>
+
+This property is write-only.<P>
+
+]<P>
+
+[<I>Overrides</I>:  This property must be overridden in order to
+      provide the functionality described above, as there is no default implementation.
+   ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+See System.Xml.XmlUrlResolver.Credentials for an example using this property.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlResolver.html" TARGET="contents">System.Xml.XmlResolver Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

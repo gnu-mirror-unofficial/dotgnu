@@ -1,0 +1,1360 @@
+<HTML>
+<HEAD>
+<TITLE>System.IO.Path Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.IO.Path Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class Path</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Path<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs operations on <A HREF="../../System/String.html" TARGET="contents">String</A> instances that contain
+   file or directory path information.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ A path is a string that provides the location of a file
+      or directory. A path does not necessarily point to a location on disk; for
+      example, a path may map to a location in memory or on a device. Paths are
+      composed of the components described below. Component names are shown in
+   <I>italics </I>
+   
+   and the following table describes the symbols used in component definitions:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>SymbolDescription</TH></TR>
+<TR><TD>Indicates a path component.</TD><TD> &lt; &gt;Indicates a path component.</TD></TR>
+<TR><TD>Indicates a grouping; either all components
+         in a grouping are present, or none are permitted to be
+         present.</TD><TD> { } Indicates a grouping; either all components
+         in a grouping are present, or none are permitted to be
+         present.</TD></TR>
+<TR><TD>Indicates that the component or grouping that immediately precedes
+         this symbol can appear zero, one, or multiple times.</TD><TD> *Indicates that the component or grouping that immediately precedes
+         this symbol can appear zero, one, or multiple times.</TD></TR>
+<TR><TD>Indicates that the component or grouping that immediately precedes
+         this symbol can appear zero, or one times.</TD><TD> ?Indicates that the component or grouping that immediately precedes
+         this symbol can appear zero, or one times.</TD></TR>
+<TR><TD>Indicates string concatenation.</TD><TD> +Indicates string concatenation.</TD></TR>
+</TABLE>
+ The components that define a path are as
+   follows:<P>
+
+<I>Directory Name</I>: A string that
+specifies one or more directory levels in a file system. If a directory name
+contains
+multiple levels, a <I>directory separator character</I> separates the levels; however, a directory name does not begin or
+end with a directory separator character. In the example path <CODE>C:/foo/bar/bat.txt</CODE>, the directory
+name is &quot;<CODE>foo/bar</CODE>&quot;. System.IO.Path.GetDirectoryName(System.String) returns the directory name component of a path.
+Note that this method does include a beginning separator character if one is
+included
+in the specified
+path. <P>
+
+<I>Directory Separator Character</I>:
+An implementation-defined constant string containing a single printable
+non-alphanumeric character used to separate levels in a file system. In the
+example path <CODE>C:/foo/bar/bat.txt</CODE>, the directory separator character is &quot;<CODE>/</CODE>&quot;. The System.IO.Path.DirectorySeparatorChar and System.IO.Path.AltDirectorySeparatorChar store
+implementation-defined directory separator characters
+.<P>
+
+<I>Extension</I>: A string that consists of the
+characters at the end of a file name, from and including the last <I>extension separator character</I>. The minimum and
+maximum lengths of extension components are platform-specific. In the example
+path <CODE>C:/foo/bar/bat.txt</CODE>
+, the <I>extension</I> is &quot;<CODE>.txt</CODE>&quot;. The System.IO.Path.GetExtension(System.String) method returns the
+extension component of a
+path.<P>
+
+<I>Extension Separator Character</I>:
+An implementation-defined constant string
+composed of a single character that appears after the last character in the
+<I>file base</I> component indicating the beginning of the <I>extension</I> 
+component. If the extension separator character<I> </I>is the first character
+in a <I>file name</I>, it is not interpreted as a
+extension separator character<I>.</I> If more than one extension separator
+character<I> </I>appears in a file name, only the last occurrence is the
+extension separator character; all other occurrences are part of the file base
+component<I>.</I> In the example path <CODE>C:/foo/bar/bat.txt</CODE>, the extension separator character
+is &quot;<CODE>.</CODE>&quot;. <P>
+
+<I>File Base</I>: A string containing the
+<I>file</I><I>name</I> with the <I>extension </I>component removed. In the example path <CODE>C:/foo/bar/bat.txt</CODE>, the file base
+is &quot;<CODE>bat</CODE>&quot;.
+The System.IO.Path.GetFileNameWithoutExtension(System.String) method returns the
+file base component of a
+path.<P>
+
+<I>File Name</I>: A string containing all information
+required to uniquely identify a file within a directory. This component is defined
+as follows:<P>
+
+<CODE>&amp;lt;file
+   base&gt;{+&lt;extension&gt;}?</CODE><P>
+
+ The file name component is commonly referred to as a
+   relative file name. In the example path <CODE>C:/foo/bar/bat.txt</CODE>, the file name is &quot;<CODE>bat.txt</CODE>&quot;. The System.IO.Path.GetFileName(System.String)
+method returns the file name component of a
+path.<P>
+
+<I>Full Directory Name</I>: A string containing all
+information required to uniquely identify a directory within a file
+system. This component is defined as
+follows:<P>
+
+<CODE>&amp;lt;path
+   root&gt;+&lt;directory name&gt;</CODE><P>
+
+ The full directory name component is commonly referred to
+   as the absolute directory name. In the example path <CODE>C:/foo/bar/bat.txt</CODE>, the full directory name is &quot;<CODE>C:/foo/bar</CODE>
+&quot;.<P>
+
+<I>Full</I><I>Path</I>: A string containing all
+information required to uniquely identify a file within a file system. This
+component is defined as
+follows:<P>
+
+<CODE>&amp;lt;full
+   directory name&gt;+&lt;directory separator character&gt;+&lt;file
+   name&gt;</CODE><P>
+
+ The full path component is commonly referred to as the
+   absolute file name. In the example path <CODE>C:/foo/bar/bat.txt</CODE>, the full path is &quot;<CODE>C:/foo/bar/bat.txt</CODE>&quot;. The System.IO.Path.GetFullPath(System.String) method returns the full path
+component.<P>
+
+<I>Path Root</I>: A string containing all information
+required to uniquely identify the highest level in a file
+system. The component is defined as
+follows:<P>
+
+<CODE>{&lt;volume
+   identifier&gt;+&lt;volume separator character&gt;}?+&lt;directory separator
+   character&gt;</CODE><P>
+
+ In the example path <CODE>C:/foo/bar/bat.txt</CODE> , the path root is &quot;<CODE>C:/</CODE>&quot;. The System.IO.Path.GetPathRoot(System.String)
+method returns the <I>path root</I>
+component.<P>
+
+<I>Volume</I><I>Identifier</I>: A string composed of a single alphabetic
+character that uniquely defines a drive or volume in a file system. This
+component is optional; on systems that do not support volume identifiers, this
+component is required to be a zero length string. In the example path <CODE>C:/foo/bar/bat.txt</CODE>
+, the path root<I> </I>is &quot;<CODE>C:</CODE>&quot;. In the example path, <CODE>\\myserver\myshare\foo\bar\baz.txt</CODE>
+the path root is &quot;<CODE>\\myserver\myshare</CODE>&quot;. <P>
+
+<I>Volume Separator Character</I>: A
+string composed of a single alphabetic character used to separate the
+<I>volume</I><I>identifier</I> from other components in a path. This
+component can appear in a path only if a volume identifier is
+present<I>.</I> This component is optional; on systems that do not
+support the volume identifier<I> </I>component, the volume separator character
+component is required to be a zero length
+string.<P>
+
+The exact format of a path is determined by the current
+   platform. For example, on Windows systems a path can start with a volume
+   identifier, while this element is not present in Unix system paths. On some
+   systems, paths containing file names can contain extensions. The format of an
+   extension
+   is platform dependent; for example, some systems limit extensions to
+   three characters, while others do not. The current platform and possibly the current
+   file system determine the set of characters used to separate the elements of
+   a path, and the set of characters that cannot be used when specifying paths.
+   Because of these differences, the fields of the <A HREF="Path.html" TARGET="contents">Path</A> class as well as the exact behavior
+   of some members of the <A HREF="Path.html" TARGET="contents">Path</A> class are determined by the current platform and/or file
+   system.<P>
+
+A path contains either absolute or relative location
+   information. Absolute paths fully specify a location: the file or directory can
+   be uniquely identified regardless of the current location. A full path or full
+   directory name component is present in an absolute path. Relative paths specify
+   a partial location: the current working directory is used as the starting point
+   when locating a file specified with a relative path. [<I>Note</I>: To determine the current working directory, call System.IO.Directory.GetCurrentDirectory
+   .]<P>
+
+<P>
+
+ Most members of the <CODE>Path</CODE>
+ class do not interact with the file system
+and do not verify the existence of the file or directory specified by a path
+string. <A HREF="Path.html" TARGET="contents">Path</A>
+members that modify a path string, such
+as System.IO.Path.ChangeExtension(System.String,System.String), have no effect on files and directories in the
+file system. <A HREF="Path.html" TARGET="contents">Path</A>
+members do, however, validate the contents of a specified path string, and
+throw <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A> if the string contains
+characters that are not valid in path strings, as defined by the current
+platform and file system. Implementations are
+required to preserve the case of file and directory path strings, and to be case
+sensitive if and only if the current platform is case-sensitive.
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Path Methods<P>
+
+<A HREF="#Path.ChangeExtension Method" TARGET="contents">Path.ChangeExtension Method</A><BR>
+<A HREF="#Path.Combine Method" TARGET="contents">Path.Combine Method</A><BR>
+<A HREF="#Path.GetDirectoryName Method" TARGET="contents">Path.GetDirectoryName Method</A><BR>
+<A HREF="#Path.GetExtension Method" TARGET="contents">Path.GetExtension Method</A><BR>
+<A HREF="#Path.GetFileName Method" TARGET="contents">Path.GetFileName Method</A><BR>
+<A HREF="#Path.GetFileNameWithoutExtension Method" TARGET="contents">Path.GetFileNameWithoutExtension Method</A><BR>
+<A HREF="#Path.GetFullPath Method" TARGET="contents">Path.GetFullPath Method</A><BR>
+<A HREF="#Path.GetPathRoot Method" TARGET="contents">Path.GetPathRoot Method</A><BR>
+<A HREF="#Path.GetTempFileName Method" TARGET="contents">Path.GetTempFileName Method</A><BR>
+<A HREF="#Path.GetTempPath Method" TARGET="contents">Path.GetTempPath Method</A><BR>
+<A HREF="#Path.HasExtension Method" TARGET="contents">Path.HasExtension Method</A><BR>
+<A HREF="#Path.IsPathRooted Method" TARGET="contents">Path.IsPathRooted Method</A><BR>
+<P>
+
+Path Fields<P>
+
+<A HREF="#Path.AltDirectorySeparatorChar Field" TARGET="contents">Path.AltDirectorySeparatorChar Field</A><BR>
+<A HREF="#Path.DirectorySeparatorChar Field" TARGET="contents">Path.DirectorySeparatorChar Field</A><BR>
+<A HREF="#Path.PathSeparator Field" TARGET="contents">Path.PathSeparator Field</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Path.ChangeExtension Method"><H3>Path.ChangeExtension Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string ChangeExtension(string path, string extension);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Changes the extension component of the specified path string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the path information to modify.</DD>
+<DT>extension</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the new extension. Specify <CODE>null</CODE>
+ to remove an existing extension from <I>path</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A>
+containing the modified path information.<P>
+
+Platforms that do not support this feature
+   return <I>path</I> unmodified.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-defined invalid characters.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The exact behavior of this
+      method is platform-specific. This method checks <I>path</I> for invalid
+      characters as defined by the current platform and file system.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Path.html" TARGET="contents">System.IO.Path Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Path.Combine Method"><H3>Path.Combine Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string Combine(string path1, string path2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Concatenates two
+      path strings.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path1</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the first path.</DD>
+<DT>path2</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the second path.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing
+<I>path1</I> followed by <I>path2</I>.
+   If one of the specified paths is a zero length string, this method returns the
+   other path. If <I>path2</I> contains an absolute path, this method returns
+<I>path2</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path1</I> or <I>path2</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path1</I> or <I>path2</I> contains one or more implementation-defined invalid characters.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If <I>path1</I> does not end with
+   a valid separator character (System.IO.Path.DirectorySeparatorChar or System.IO.Path.AltDirectorySeparatorChar), <CODE>DirectorySeparatorChar</CODE>
+
+   is appended to <I>path1</I> prior
+   to the concatenation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example demonstrates using the
+   <CODE>Combine</CODE>
+ method on a Windows system.<P>
+
+<PRE>using System;
+using System.IO;
+class CombineTest {
+ public static void Main() {
+ string path1, path2;
+ Console.WriteLine(&quot;Dir char is {0} Alt dir char is {1}&quot;,
+ Path.DirectorySeparatorChar,
+ Path.AltDirectorySeparatorChar
+ );
+ path1 = &quot;foo.txt&quot;;
+ path2 = &quot;\\ecmatest\\examples&quot;;
+ Console.WriteLine(&quot;{0} combined with {1} = {2}&quot;,path1, path2 , Path.Combine(path1, 
+
+path2));
+ path1 = &quot;\\ecmatest\\examples&quot;;
+ path2 = &quot;foo.txt&quot;;
+ Console.WriteLine(&quot;{0} combined with {1} = {2}&quot;,path1, path2 , Path.Combine(path1, 
+
+path2));
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>Dir char is \ Alt dir char is /<P>
+
+foo.txt combined with \ecmatest\examples = \ecmatest\examples<P>
+
+\ecmatest\examples combined with foo.txt = 
+         \ecmatest\examples\foo.txt<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Path.html" TARGET="contents">System.IO.Path Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Path.GetDirectoryName Method"><H3>Path.GetDirectoryName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string GetDirectoryName(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the directory name component of the specified path string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the path of a file or directory.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing directory information for <I>path</I>, or
+<CODE>null</CODE>
+ if <I>path</I> denotes a root directory, is 
+   the empty string, or is <CODE>null.</CODE>
+ Returns System.String.Empty if path
+   does not contain directory information.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-defined invalid characters.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The string returned by this method consists
+      of all characters between the first and last System.IO.Path.DirectorySeparatorChar or System.IO.Path.AltDirectorySeparatorChar character
+      in <I>path</I>. The first separator character is included, but the last separator character is not included in
+      the returned string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates using the System.IO.Path.GetDirectoryName(System.String) method on a Windows system.<P>
+
+<PRE>using System;
+using System.IO;
+class GetDirectoryTest {
+ public static void Main() {
+   string [] paths = {
+     @&quot;\ecmatest\examples\pathtests.txt&quot;,
+     @&quot;\ecmatest\examples\&quot;,
+     &quot;pathtests.xyzzy&quot;,
+     @&quot;\&quot;,
+     @&quot;C:\&quot;,
+    @&quot;\\myserver\myshare\foo\bar\baz.txt&quot;
+   };
+   foreach (string pathString in paths) {
+     string s = Path.GetDirectoryName(pathString);
+     Console.WriteLine(&quot;Path: {0} directory is {1}&quot;,pathString, s== null? &quot;null&quot;: s);
+   }
+ }
+}
+</PRE>
+The output is <P>
+
+<CODE>Path: \ecmatest\examples\pathtests.txt directory is \ecmatest\examples<P>
+
+Path: \ecmatest\examples\ directory is \ecmatest\examples<P>
+
+ Path: pathtests.xyzzy directory is<P>
+
+ Path: \ directory is null<P>
+
+Path: C:\ directory is null<P>
+
+Path: \\myserver\myshare\foo\bar\baz.txt directory is \\myserver\myshare\foo\bar<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Path.html" TARGET="contents">System.IO.Path Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Path.GetExtension Method"><H3>Path.GetExtension Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string GetExtension(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the extension component of the specified path string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the path information from which to get the extension.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the extension of <I>path,</I><CODE>null</CODE>
+ ,
+or System.String.Empty. If <I>path</I> is
+<CODE>null</CODE>
+, returns <CODE>null</CODE>
+. If path does not have extension information, 
+returns System.String.Empty.<P>
+
+The extension returned by this method includes the
+      platform-specific extension separator character used to separate the extension
+      from the rest of the path.<P>
+
+Platforms that do not
+      support this feature return <I>path</I> unmodified.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-defined invalid characters.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The exact behavior of this method
+      is platform-specific. The character used to separate the extension from the rest of the path is
+      platform-specific.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates using the System.IO.Path.GetExtension(System.String) method on a Windows
+   system.<P>
+
+<PRE>using System;
+using System.IO;
+class GetDirectoryTest {
+ public static void Main(){
+   string [] paths = {
+     @&quot;\ecmatest\examples\pathtests.txt&quot;,
+     @&quot;\ecmatest\examples\&quot;,
+     &quot;pathtests.xyzzy&quot;,
+     &quot;pathtests.xyzzy.txt&quot;,
+     @&quot;\&quot;,
+     &quot;&quot;
+   };
+   foreach (string pathString in paths){
+     string s = Path.GetExtension (pathString);
+     if (s == String.Empty) s= &quot;(empty string)&quot;;
+     if (s == null) s= &quot;null&quot;;
+     Console.WriteLine(&quot;{0} is the extension of {1}&quot;, s, pathString);
+   }
+ }
+}
+</PRE>
+The output is<P>
+
+<CODE>.txt is the extension of \ecmatest\examples\pathtests.txt<P>
+
+(empty string) is the extension of \ecmatest\examples\ <P>
+
+.xyzzy is the extension of pathtests.xyzzy <P>
+
+.txt is the extension of pathtests.xyzzy.txt <P>
+
+(empty string) is the extension of \ <P>
+
+(empty string) is the extension of <P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Path.html" TARGET="contents">System.IO.Path Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Path.GetFileName Method"><H3>Path.GetFileName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string GetFileName(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the file name, including the extension if any, of the specified path string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the path information from which to obtain the filename and extension.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> consisting of the characters
+   after the last directory character in <I>path</I>. If the last character
+   of <I>path</I> is a directory separator character, returns System.String.Empty. If <I>path</I> is <CODE>null</CODE>
+, returns
+<CODE>null</CODE>
+.<P>
+
+Platforms that do not support this feature
+   return <I>path</I> unmodified.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-defined invalid characters.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The directory separator characters used to determine the start of
+      the file name are System.IO.Path.DirectorySeparatorChar and System.IO.Path.AltDirectorySeparatorChar.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the behavior of the
+      System.IO.Path.GetFileName(System.String) method on a
+      Windows system.<P>
+
+<PRE>using System;
+using System.IO;
+class FileNameTest {
+ public static void Main() {
+   string [] paths = {&quot;pathtests.txt&quot;,
+     @&quot;\ecmatest\examples\pathtests.txt&quot;,
+     &quot;c:pathtests.txt&quot;,
+     @&quot;\ecmatest\examples\&quot;,
+     &quot;&quot;
+   };
+   foreach (string p in paths) {
+     Console.WriteLine(&quot;Path: {0} filename = {1}&quot;,p, Path.GetFileName(p));
+   }
+ }
+}
+      </PRE>
+The output is <P>
+
+<CODE>Path: pathtests.txt filename = pathtests.txt <P>
+
+Path: \ecmatest\examples\pathtests.txt filename = pathtests.txt <P>
+
+Path: c:pathtests.txt filename = pathtests.txt <P>
+
+Path: \ecmatest\examples\ filename = <P>
+
+Path: filename = <P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Path.html" TARGET="contents">System.IO.Path Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Path.GetFileNameWithoutExtension Method"><H3>Path.GetFileNameWithoutExtension Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string GetFileNameWithoutExtension(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the file base component of the specified path string without the extension.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the path of the file.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> consisting of the
+   string returned by System.IO.Path.GetFileName(System.String) , minus
+   the platform-specific extension separator character and extension. Platforms that do not support this feature
+   return <I>path</I>
+   unmodified.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-defined invalid characters.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: For additional details, see System.IO.Path.GetFileName(System.String).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Path.html" TARGET="contents">System.IO.Path Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Path.GetFullPath Method"><H3>Path.GetFullPath Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string GetFullPath(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns information required to uniquely identify a
+      file within a file system.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the file or directory for which to obtain absolute path information.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the fully qualified (absolute) location of <I>path</I> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.<P>
+
+The system could not retrieve the absolute path.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permissions.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+ .</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The absolute path includes all information required to locate
+      a file or directory on a system. The file or directory specified by <I>path</I> is not required to exist; however if
+   <I>path</I> does exist, the caller is required to have permission to obtain
+      path information for <I>path</I>. Note
+      that unlike most members of the <A HREF="Path.html" TARGET="contents">Path</A>
+      class, this method accesses the file
+      system.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example demonstrates the System.IO.Path.GetFullPath(System.String) method on a Windows system. In
+   this example, the absolute path for the current directory is c:\ecmatest\examples.<P>
+
+<PRE>using System; 
+using System.IO; 
+class GetDirectoryTest { 
+ public static void Main() { 
+   string [] paths = { 
+     @&quot;\ecmatest\examples\pathtests.txt&quot;, 
+     @&quot;\ecmatest\examples\&quot;, 
+     &quot;pathtests.xyzzy&quot;, 
+     @&quot;\&quot;, 
+   }; 
+   foreach (string pathString in paths) 
+     Console.WriteLine(&quot;Path: {0} full path is {1}&quot;,pathString, 
+
+Path.GetFullPath(pathString));
+ } 
+}
+</PRE>
+The output is <P>
+
+<CODE>Path: \ecmatest\examples\pathtests.txt full path is
+      C:\ecmatest\examples\pathtests.txt<P>
+
+Path: \ecmatest\examples\ full path is C:\ecmatest\examples\<P>
+
+Path: pathtests.xyzzy full path is
+      C:\ecmatest\examples\pathtests.xyzzy<P>
+
+Path: \ full path is C:\ <P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Path.html" TARGET="contents">System.IO.Path Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Path.GetPathRoot Method"><H3>Path.GetPathRoot Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string GetPathRoot(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the path root component of the specified path.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the path from which to obtain root directory information</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the root directory of <I>path</I>, or
+<CODE>null</CODE>
+ if <I>path</I> is 
+<CODE>null</CODE>
+ or does not contain root directory information. 
+   Returns System.String.Empty
+   if the specified path does not contain root information. <P>
+
+Platforms that do not support this feature
+   return <I>path</I> unmodified.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-defined invalid characters or is equal to System.String.Empty . </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method does not verify that the path exists.
+      <P>
+
+The exact behavior of this method is platform-specific.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.IO.Path.GetPathRoot(System.String) 
+method.<P>
+
+<PRE>using System;
+using System.IO;
+class GetPathRootTest 
+{
+  public static void Main() {
+    string [] paths = {                                
+
+@&quot;\ecmatest\examples\pathtests.txt&quot;,
+      &quot;pathtests.xyzzy&quot;,
+      @&quot;\&quot;,
+      @&quot;C:\&quot;,                                  
+
+@&quot;\\myserver\myshare\foo\bar\baz.txt&quot;
+    };
+    foreach (string pathString in paths) {
+      string s = Path.GetPathRoot(pathString);
+      Console.WriteLine(&quot;Path: {0} Path root is {1}&quot;,pathString, s== null? &quot;null&quot;: s);
+    }
+  }
+}
+</PRE>
+The output is<P>
+
+<CODE>Path: \ecmatest\examples\pathtests.txt Path root is \<P>
+
+Path: pathtests.xyzzy Path root is<P>
+
+Path: \ Path root is \<P>
+
+Path: C:\ Path root is C:\<P>
+
+Path: \\myserver\myshare\foo\bar\baz.txt 
+      Path root is \\myserver\myshare<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Path.html" TARGET="contents">System.IO.Path Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Path.GetTempFileName Method"><H3>Path.GetTempFileName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string GetTempFileName();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a unique temporary file name and creates a 0-byte file by
+      that name on disk.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the temporary file.
+   <P>
+
+Platforms that do not support this feature
+   return System.String.Empty.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Path.html" TARGET="contents">System.IO.Path Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Path.GetTempPath Method"><H3>Path.GetTempPath Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string GetTempPath();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the path information of a temporary directory.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the full directory name of a temporary
+   directory.<P>
+
+The information returned by this method is
+   platform-specific. Platforms that do not support this feature return
+System.String.Empty.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+On platforms that provide a mechanism for users
+      to discover this information, (for example by checking an environment variable),
+      implementations of the CLI return the same information as the platform-specific
+      mechanism.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Path.html" TARGET="contents">System.IO.Path Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Path.HasExtension Method"><H3>Path.HasExtension Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool HasExtension(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> indicating whether the specified path includes an extension component.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the path to search for an extension.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if 
+<I>path</I> includes a file extension.<P>
+
+Platforms that do not support this feature
+   return <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-defined invalid characters. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Path.html" TARGET="contents">System.IO.Path Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Path.IsPathRooted Method"><H3>Path.IsPathRooted Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool IsPathRooted(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> indicating whether the specified path string contains a
+   path root component.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the path to test.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if
+<I>path</I> contains an absolute path; <CODE>false</CODE>
+ 
+if <I>path</I> contains relative path information.<P>
+
+Platforms that do not support this feature
+   return <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-defined invalid characters.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method does not access file systems or verify the existence of the specified path. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Path.html" TARGET="contents">System.IO.Path Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Path.AltDirectorySeparatorChar Field"><H3>Path.AltDirectorySeparatorChar Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly char AltDirectorySeparatorChar;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Provides a string containing an alternate single printable 
+      non-alphanumeric character used to separate directory levels in a hierarchical
+      file system.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+ This field can be set to the
+      same value as System.IO.Path.DirectorySeparatorChar.<P>
+
+[<I>Note</I>: System.IO.Path.AltDirectorySeparatorChar and System.IO.Path.DirectorySeparatorChar are
+      both valid for separating directory levels in a path string.<P>
+
+The value of this field is a backslash (&apos;\&apos;) on Windows systems and a slash
+      (&apos;/&apos;) on Unix systems.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Path.html" TARGET="contents">System.IO.Path Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Path.DirectorySeparatorChar Field"><H3>Path.DirectorySeparatorChar Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly char DirectorySeparatorChar;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides a string containing a single
+      printable non-alphanumeric character used to separate directory levels in a hierarchical file system.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+[<I>Note</I>: System.IO.Path.AltDirectorySeparatorChar and System.IO.Path.DirectorySeparatorChar are both
+   valid for separating directory levels in a path string.<P>
+
+The value of this field is a backslash (&apos;\&apos;) on Windows systems and a slash (&apos;/&apos;) on Unix systems.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Path.html" TARGET="contents">System.IO.Path Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Path.PathSeparator Field"><H3>Path.PathSeparator Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly char PathSeparator;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides a platform-specific separator character used to
+      separate path strings in environment variables.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Path.html" TARGET="contents">System.IO.Path Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

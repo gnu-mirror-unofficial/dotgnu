@@ -1,0 +1,3960 @@
+<HTML>
+<HEAD>
+<TITLE>System.Text.StringBuilder Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Text.StringBuilder Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class StringBuilder</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;StringBuilder<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+
+   Represents a mutable string of characters.
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This class represents string-like objects that are
+      mutable. After a <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> object has been created, it can be directly modified by
+      removing, replacing, or inserting characters. This contrasts the <A HREF="../../System/String.html" TARGET="contents">String</A> class, which
+      represents an immutable string of characters.<P>
+
+The System.Text.StringBuilder.Capacity of an instance of the <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> class is
+   the maximum number of characters it can hold in the currently allocated space.
+   The <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> will dynamically allocate more space when it is
+   required.<P>
+
+Unlike most types in the Base Class Library, the arguments to <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> members
+are assumed to be passed as <CODE>in</CODE>
+ / <CODE>out</CODE>
+ arguments
+(passed by reference). [<I>Note</I>: Normally arguments
+are <CODE>in</CODE>
+ arguments (passed by value) unless explicitly declared
+as <CODE>out</CODE>
+ or <CODE>in </CODE>
+/
+<CODE>out</CODE>
+.]<P>
+
+<P>
+
+[<I>Note</I>: An instance of <A HREF="../../System/String.html" TARGET="contents">String</A> is said to be &quot;immutable&quot; because its
+   value cannot be modified once it has been created. Methods on <A HREF="../../System/String.html" TARGET="contents">String</A> that appear to
+   modify a <A HREF="../../System/String.html" TARGET="contents">String</A>
+   instance actually return a new instance containing the modification. The <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> class
+   provides methods that actually modify the contents of a string-like object.<P>
+
+Relational operators only perform reference comparisons
+   (unless overloaded by a particular language compiler). Despite this restriction,
+   relational operators can be used to compare <A HREF="../../System/String.html" TARGET="contents">String</A> objects that are assigned literal
+   values. Their values are immutable and can&apos;t change, so a reference comparison
+   is sufficient. Because <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> instances are mutable, they should not be compared with
+   relational operators.<P>
+
+For performance reasons a <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> might
+allocate more memory than needed. The amount of memory allocated is
+implementation specific.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>DefaultMemberAttribute(&quot;Chars&quot;)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+StringBuilder Constructors<P>
+
+<A HREF="#StringBuilder() Constructor" TARGET="contents">StringBuilder() Constructor</A><BR>
+<A HREF="#StringBuilder(int) Constructor" TARGET="contents">StringBuilder(int) Constructor</A><BR>
+<A HREF="#StringBuilder(System.String) Constructor" TARGET="contents">StringBuilder(System.String) Constructor</A><BR>
+<P>
+
+StringBuilder Methods<P>
+
+<A HREF="#StringBuilder.Append(char, int) Method" TARGET="contents">StringBuilder.Append(char, int) Method</A><BR>
+<A HREF="#StringBuilder.Append(char[], int, int) Method" TARGET="contents">StringBuilder.Append(char[], int, int) Method</A><BR>
+<A HREF="#StringBuilder.Append(System.String) Method" TARGET="contents">StringBuilder.Append(System.String) Method</A><BR>
+<A HREF="#StringBuilder.Append(System.String, int, int) Method" TARGET="contents">StringBuilder.Append(System.String, int, int) Method</A><BR>
+<A HREF="#StringBuilder.Append(bool) Method" TARGET="contents">StringBuilder.Append(bool) Method</A><BR>
+<A HREF="#StringBuilder.Append(sbyte) Method" TARGET="contents">StringBuilder.Append(sbyte) Method</A><BR>
+<A HREF="#StringBuilder.Append(byte) Method" TARGET="contents">StringBuilder.Append(byte) Method</A><BR>
+<A HREF="#StringBuilder.Append(char) Method" TARGET="contents">StringBuilder.Append(char) Method</A><BR>
+<A HREF="#StringBuilder.Append(short) Method" TARGET="contents">StringBuilder.Append(short) Method</A><BR>
+<A HREF="#StringBuilder.Append(int) Method" TARGET="contents">StringBuilder.Append(int) Method</A><BR>
+<A HREF="#StringBuilder.Append(long) Method" TARGET="contents">StringBuilder.Append(long) Method</A><BR>
+<A HREF="#StringBuilder.Append(float) Method" TARGET="contents">StringBuilder.Append(float) Method</A><BR>
+<A HREF="#StringBuilder.Append(double) Method" TARGET="contents">StringBuilder.Append(double) Method</A><BR>
+<A HREF="#StringBuilder.Append(System.Decimal) Method" TARGET="contents">StringBuilder.Append(System.Decimal) Method</A><BR>
+<A HREF="#StringBuilder.Append(ushort) Method" TARGET="contents">StringBuilder.Append(ushort) Method</A><BR>
+<A HREF="#StringBuilder.Append(uint) Method" TARGET="contents">StringBuilder.Append(uint) Method</A><BR>
+<A HREF="#StringBuilder.Append(ulong) Method" TARGET="contents">StringBuilder.Append(ulong) Method</A><BR>
+<A HREF="#StringBuilder.Append(System.Object) Method" TARGET="contents">StringBuilder.Append(System.Object) Method</A><BR>
+<A HREF="#StringBuilder.Append(char[]) Method" TARGET="contents">StringBuilder.Append(char[]) Method</A><BR>
+<A HREF="#StringBuilder.AppendFormat(System.String, System.Object) Method" TARGET="contents">StringBuilder.AppendFormat(System.String, System.Object) Method</A><BR>
+<A HREF="#StringBuilder.AppendFormat(System.String, System.Object, System.Object) Method" TARGET="contents">StringBuilder.AppendFormat(System.String, System.Object, System.Object) Method</A><BR>
+<A HREF="#StringBuilder.AppendFormat(System.String, System.Object, System.Object, System.Object) Method" TARGET="contents">StringBuilder.AppendFormat(System.String, System.Object, System.Object, System.Object) Method</A><BR>
+<A HREF="#StringBuilder.AppendFormat(System.String, System.Object[]) Method" TARGET="contents">StringBuilder.AppendFormat(System.String, System.Object[]) Method</A><BR>
+<A HREF="#StringBuilder.AppendFormat(System.IFormatProvider, System.String, System.Object[]) Method" TARGET="contents">StringBuilder.AppendFormat(System.IFormatProvider, System.String, System.Object[]) Method</A><BR>
+<A HREF="#StringBuilder.EnsureCapacity Method" TARGET="contents">StringBuilder.EnsureCapacity Method</A><BR>
+<A HREF="#StringBuilder.Equals Method" TARGET="contents">StringBuilder.Equals Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, System.String, int) Method" TARGET="contents">StringBuilder.Insert(int, System.String, int) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, System.String) Method" TARGET="contents">StringBuilder.Insert(int, System.String) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, bool) Method" TARGET="contents">StringBuilder.Insert(int, bool) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, sbyte) Method" TARGET="contents">StringBuilder.Insert(int, sbyte) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, byte) Method" TARGET="contents">StringBuilder.Insert(int, byte) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, short) Method" TARGET="contents">StringBuilder.Insert(int, short) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, char) Method" TARGET="contents">StringBuilder.Insert(int, char) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, char[]) Method" TARGET="contents">StringBuilder.Insert(int, char[]) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, char[], int, int) Method" TARGET="contents">StringBuilder.Insert(int, char[], int, int) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, int) Method" TARGET="contents">StringBuilder.Insert(int, int) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, long) Method" TARGET="contents">StringBuilder.Insert(int, long) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, float) Method" TARGET="contents">StringBuilder.Insert(int, float) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, double) Method" TARGET="contents">StringBuilder.Insert(int, double) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, System.Decimal) Method" TARGET="contents">StringBuilder.Insert(int, System.Decimal) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, ushort) Method" TARGET="contents">StringBuilder.Insert(int, ushort) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, uint) Method" TARGET="contents">StringBuilder.Insert(int, uint) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, ulong) Method" TARGET="contents">StringBuilder.Insert(int, ulong) Method</A><BR>
+<A HREF="#StringBuilder.Insert(int, System.Object) Method" TARGET="contents">StringBuilder.Insert(int, System.Object) Method</A><BR>
+<A HREF="#StringBuilder.Remove Method" TARGET="contents">StringBuilder.Remove Method</A><BR>
+<A HREF="#StringBuilder.Replace(System.String, System.String) Method" TARGET="contents">StringBuilder.Replace(System.String, System.String) Method</A><BR>
+<A HREF="#StringBuilder.Replace(System.String, System.String, int, int) Method" TARGET="contents">StringBuilder.Replace(System.String, System.String, int, int) Method</A><BR>
+<A HREF="#StringBuilder.Replace(char, char) Method" TARGET="contents">StringBuilder.Replace(char, char) Method</A><BR>
+<A HREF="#StringBuilder.Replace(char, char, int, int) Method" TARGET="contents">StringBuilder.Replace(char, char, int, int) Method</A><BR>
+<A HREF="#StringBuilder.ToString() Method" TARGET="contents">StringBuilder.ToString() Method</A><BR>
+<A HREF="#StringBuilder.ToString(int, int) Method" TARGET="contents">StringBuilder.ToString(int, int) Method</A><BR>
+<P>
+
+StringBuilder Properties<P>
+
+<A HREF="#StringBuilder.Capacity Property" TARGET="contents">StringBuilder.Capacity Property</A><BR>
+<A HREF="#StringBuilder.Chars Property" TARGET="contents">StringBuilder.Chars Property</A><BR>
+<A HREF="#StringBuilder.Length Property" TARGET="contents">StringBuilder.Length Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="StringBuilder() Constructor"><H3>StringBuilder() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new, empty instance of the <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The new instance of <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> represents a string equal to System.String.Empty. The System.Text.StringBuilder.Capacity
+is set to the default capacity.<P>
+
+[<I>Note</I>:  The default value
+   of the System.Text.StringBuilder.Capacity
+   property is implementation dependent.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder(int) Constructor"><H3>StringBuilder(int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder(int capacity);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new, empty instance of the <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> class, with a specified
+System.Text.StringBuilder.Capacity
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>capacity</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the starting number of characters allowed in the <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> . </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ If the specified capacity is less than the default
+      capacity, the System.Text.StringBuilder.Capacity of the new instance of <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> is set to
+      the default value. The <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> will dynamically allocate more space when it is
+      required.
+      <P>
+
+ The new <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> is initialized to represent an empty
+   string.
+   <P>
+
+[<I>Note</I>:  The default value
+   of the System.Text.StringBuilder.Capacity
+   property is implementation dependent.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder(System.String) Constructor"><H3>StringBuilder(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder(string value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> class, with the specified <A HREF="../../System/String.html" TARGET="contents">String</A> as its value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the string value of the new instance of <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  The System.Text.StringBuilder.Capacity of
+   the new instance is implementation defined.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(char, int) Method"><H3>StringBuilder.Append(char, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(char value, int repeatCount);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Appends multiple copies of a character to the end of the 
+      current <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A>
+      .
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> to be appended.</DD>
+<DT>repeatCount</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of times to append <I>value</I> . </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>repeatCount</I> is less than zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends <I>repeatCount</I> copies of the specified character to
+   the current instance.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+necessary.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(char[], int, int) Method"><H3>StringBuilder.Append(char[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(char[] value, int startIndex, int charCount);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the string representation of an array of Unicode characters to the
+      end of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> array to be appended.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index in <I>value</I> at which the subarray starts. </DD>
+<DT>charCount</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of characters to copy from <I>value</I> . </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference, and <I>startIndex</I> and <I>charCount</I> are not both zero.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>charCount</I> or <I>startIndex</I> is less than zero.<P>
+
+-or-<P>
+
+The sum of <I>startIndex</I> and <I>charCount</I> is greater than the length of <I>value</I>.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends with the specified range of characters from the
+   <I>value</I> array to the current instance. If <I>value</I> is a null
+      reference, and both <I>startIndex</I> and <I>charCount</I> are zero, no
+      changes are made.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+   necessary.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(System.String) Method"><H3>StringBuilder.Append(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(string value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends a copy of a string to the end of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to be appended. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends the <I>value</I> string to the
+   current instance. If <I>value</I> is a null reference, no changes are
+   made.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+necessary.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(System.String, int, int) Method"><H3>StringBuilder.Append(System.String, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(string value, int startIndex, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends a copy of an array of Unicode characters, specified by a starting
+      index and length, of a specified <A HREF="../../System/String.html" TARGET="contents">String</A> to the end of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> from which the substring will be taken. </DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index in <I>value</I> from which to start copying.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of characters to copy from <I>value</I> . </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference, and <I>startIndex</I> and <I>count</I> are not both zero.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>charCount</I> or <I>startIndex</I> is less than zero. <P>
+
+ -or- <P>
+
+The sum of <I>startIndex</I> and <I>charCount</I> is greater than the length of <I>value</I> . <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends the specified range of characters in
+      the <I>value</I> string to the current instance. If <I>value</I> is a null
+      reference and <I>startIndex</I> and <I>count</I> are both zero, no changes
+      are made.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+   necessary.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(bool) Method"><H3>StringBuilder.Append(bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(bool value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the string representation of a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> to the end of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> to be appended. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The current instance after peroration has
+      occurred.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method appends
+   <I>value</I>.ToString()
+      to the current instance.<P>
+
+The System.Text.StringBuilder.Capacity
+of the current instance is increased as necessary.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(sbyte) Method"><H3>StringBuilder.Append(sbyte) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(sbyte value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the string representation of a <A HREF="../../System/SByte.html" TARGET="contents">SByte</A> to the end of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/SByte.html" TARGET="contents">SByte</A> to be appended. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.Text.StringBuilder.Append(System.Char,System.Int32)(<A HREF="../../System/Int16.html" TARGET="contents">Int16</A>).<P>
+
+This method appends
+   <I>value</I>.ToString() to the current instance.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+   necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(byte) Method"><H3>StringBuilder.Append(byte) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(byte value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the string representation of a <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> to the end of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> to be appended. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends
+   <I>value</I>.ToString() to
+      the current instance.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(char) Method"><H3>StringBuilder.Append(char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(char value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the string representation of a Unicode character to the end of the
+      current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> to be appended. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends the specified character to the current instance.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+   necessary.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(short) Method"><H3>StringBuilder.Append(short) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(short value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the string representation of a <A HREF="../../System/Int16.html" TARGET="contents">Int16</A> to the end of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Int16.html" TARGET="contents">Int16</A> to be appended. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The current instance after peroration has occurred.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends
+   <I>value</I>.ToString() to the current instance.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+   necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(int) Method"><H3>StringBuilder.Append(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(int value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the string representation of a <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> to the end of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> to be appended. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends
+   <I>value</I>.ToString() to the current instance.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+   necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(long) Method"><H3>StringBuilder.Append(long) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(long value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the string representation of a <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> to the end of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> to be appended. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends
+   <I>value</I>.ToString() to the current instance.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+   necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(float) Method"><H3>StringBuilder.Append(float) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(float value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the string representation of a <A HREF="../../System/Single.html" TARGET="contents">Single</A>
+to the end of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Single.html" TARGET="contents">Single</A> to be appended. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends
+   <I>value</I>.ToString() to the current instance.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+   necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(double) Method"><H3>StringBuilder.Append(double) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(double value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the string representation of a <A HREF="../../System/Double.html" TARGET="contents">Double</A>
+to the end of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Double.html" TARGET="contents">Double</A> to be appended. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends
+   <I>value</I>.ToString() to the current instance.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+   necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(System.Decimal) Method"><H3>StringBuilder.Append(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the string representation of a <A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A> to
+   the end of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A> to be appended. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The current instance after peroration has
+      occurred.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends
+   <I>value</I>.ToString() to
+      the current instance.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+   necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(ushort) Method"><H3>StringBuilder.Append(ushort) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(ushort value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the string representation of a <A HREF="../../System/UInt16.html" TARGET="contents">UInt16</A> to the end of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/UInt16.html" TARGET="contents">UInt16</A> to be appended. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.Text.StringBuilder.Append(System.Char,System.Int32)(<A HREF="../../System/Int32.html" TARGET="contents">Int32</A>).<P>
+
+This method appends
+   <I>value</I>.ToString() to
+      the current instance.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+   necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(uint) Method"><H3>StringBuilder.Append(uint) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(uint value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the string representation of a <A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A> to the end of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A> to be appended. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.Text.StringBuilder.Append(System.Char,System.Int32)(<A HREF="../../System/Int64.html" TARGET="contents">Int64</A>).<P>
+
+This method appends
+   <I>value</I>.ToString() to
+      the current instance.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+   necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(ulong) Method"><H3>StringBuilder.Append(ulong) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(ulong value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the string representation of a <A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A> to the end of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A> to be appended. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.Text.StringBuilder.Append(System.Char,System.Int32)(<A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A>).<P>
+
+This method appends
+   <I>value</I>.ToString() to
+      the current instance.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+   necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(System.Object) Method"><H3>StringBuilder.Append(System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the string representation of an object to the end of the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to be appended. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends
+   <I>value</I>.ToString() to the current instance. If <I>value</I> is a
+      null reference, no changes are made.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+   necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Append(char[]) Method"><H3>StringBuilder.Append(char[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Append(char[] value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Appends the string representation of all of the
+      characters in a <A HREF="../../System/Array.html" TARGET="contents">Array</A> to the end of the
+      current instance.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The array of <A HREF="../../System/Char.html" TARGET="contents">Char</A> to be appended. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends all of the characters in the specified array to the
+      current instance in the same order as they appear in <I>value</I>. If
+   <I>value</I> is a null reference no changes are made.<P>
+
+The System.Text.StringBuilder.Capacity of the current instance is increased as
+   necessary.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.AppendFormat(System.String, System.Object) Method"><H3>StringBuilder.AppendFormat(System.String, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder AppendFormat(string format, object arg0);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the specified string to the current instance, with the format
+      specifications in that string being replaced with the appropriately formatted
+      string value of the specified object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing zero or more format specifications.</DD>
+<DT>arg0</DT>
+<DD>A <A HREF="../../System/Object.html" TARGET="contents">Object</A> to be formatted.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> or <I>arg0</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> is invalid.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends the formatted copy of the specified string to the current
+      instance.<P>
+
+[<I>Note</I>:  This version of System.Text.StringBuilder.AppendFormat(System.String,System.Object) is equivalent to System.Text.StringBuilder.AppendFormat(System.String,System.Object)(
+<CODE>null</CODE>
+ , <I>format</I>, <CODE>new Object[]</CODE>
+ 
+{<I>arg0</I>} ). For more information on the format specification, see the
+<A HREF="../../System/String.html" TARGET="contents">String</A> 
+class overview. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<PRE>using System;
+using System.Text;
+
+public class StringBuilderTest {
+  public static void Main() { 
+     
+      StringBuilder sb = new StringBuilder(&quot;The high &quot;);
+      Console.WriteLine( sb.AppendFormat(&quot;temperature today was {0, 6}.&quot;, 88) ); 
+  }
+}
+      </PRE>
+The output is<P>
+
+<PRE>The high temperature today was     88.
+ </PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.AppendFormat(System.String, System.Object, System.Object) Method"><H3>StringBuilder.AppendFormat(System.String, System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder AppendFormat(string format, object arg0, object arg1);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the specified string to the current instance, with the format
+      specifications in that string being replaced with the appropriately formatted
+      string values of the specified objects.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing zero or more format specifications.</DD>
+<DT>arg0</DT>
+<DD>The first <A HREF="../../System/Object.html" TARGET="contents">Object</A> to be formatted. Can be a null reference.</DD>
+<DT>arg1</DT>
+<DD>The second <A HREF="../../System/Object.html" TARGET="contents">Object</A> to be formatted. Can be a null reference.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> is invalid.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends the formatted copy of the specified 
+      string to the current instance. If an object referenced in the format string is
+   <CODE>null</CODE>
+ 
+   , an empty string is used in its place.<P>
+
+[<I>Note</I>:  This version of
+System.Text.StringBuilder.AppendFormat(System.String,System.Object) is equivalent to System.Text.StringBuilder.AppendFormat(System.String,System.Object)(
+<CODE>null</CODE>
+ , <I>format</I>,
+<CODE>new Object[]</CODE>
+
+{<I>arg0</I>, <I>arg1</I>} ). For more information on the format
+specification, see the <A HREF="../../System/String.html" TARGET="contents">String</A> class overview.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<PRE>using System;
+using System.Text;
+
+public class StringBuilderTest {
+  public static void Main() {
+
+     StringBuilder sb = new StringBuilder(&quot;The high &quot;);
+     Console.WriteLine( sb.AppendFormat(&quot;temperature today was {0} {1}.&quot;, &quot;very&quot;, &quot;high&quot;) ); 
+  }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The high temperature today was very high.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.AppendFormat(System.String, System.Object, System.Object, System.Object) Method"><H3>StringBuilder.AppendFormat(System.String, System.Object, System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder AppendFormat(string format, object arg0, object arg1, object arg2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the specified string to the current instance, with
+      the format specifications in that string being replaced with the appropriately formatted
+      string values of the specified objects.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing zero or more format specifications.</DD>
+<DT>arg0</DT>
+<DD>The first <A HREF="../../System/Object.html" TARGET="contents">Object</A> to be formatted. Can be a null reference.</DD>
+<DT>arg1</DT>
+<DD>The second <A HREF="../../System/Object.html" TARGET="contents">Object</A> to be formatted. Can be a null reference.</DD>
+<DT>arg2</DT>
+<DD>The third <A HREF="../../System/Object.html" TARGET="contents">Object</A> to be formatted. Can be a null reference.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> is invalid.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends the formatted copy of the specified 
+      string to the current instance. If an object referenced in the format string is
+   <CODE>null</CODE>
+ 
+   , an empty string is used in its place.<P>
+
+[<I>Note</I>:  This version of
+System.Text.StringBuilder.AppendFormat(System.String,System.Object) is equivalent to System.Text.StringBuilder.AppendFormat(System.String,System.Object)(
+<CODE>null</CODE>
+ , <I>format</I>,
+<CODE>new Object[]</CODE>
+
+{<I>arg0, arg1, arg2</I>} ). For more information on the format specification, see the
+<A HREF="../../System/String.html" TARGET="contents">String</A>
+class overview. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<PRE>using System;
+using System.Text;
+
+public class StringBuilderTest {
+  public static void Main() {
+
+     StringBuilder sb = new StringBuilder(&quot;The high &quot;);
+     Console.WriteLine( sb.AppendFormat(&quot;temperature today was {0} {1} {2}.&quot;, &quot;very&quot;, &quot;very&quot;, &quot;high&quot;) ); 
+  }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The high
+      temperature today was very very high.</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.AppendFormat(System.String, System.Object[]) Method"><H3>StringBuilder.AppendFormat(System.String, System.Object[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder AppendFormat(string format, params object[] args);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the specified string to the current instance, with the
+      format specifications in that string being replaced with the appropriately formatted string values of
+      the elements in the specified array.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing zero or more format specifications.</DD>
+<DT>args</DT>
+<DD> A <A HREF="../../System/Object.html" TARGET="contents">Object</A> array to be formatted.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The current instance after
+      peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> or <I>args</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> is invalid.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends the formatted copy of the specified
+      string to the current instance. If an object referenced in the format string is
+   <CODE>null</CODE>
+
+   , an empty string is used in its place.<P>
+
+[<I>Note</I>:  This version of
+System.Text.StringBuilder.AppendFormat(System.String,System.Object) is equivalent to System.Text.StringBuilder.AppendFormat(System.String,System.Object)( 
+<CODE>null</CODE>
+ , <I>format</I>, <I>args</I> ). For more
+   information on the format specification see the <A HREF="../../System/String.html" TARGET="contents">String</A>
+   class overview. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<PRE>using System;
+using System.Text;
+
+public class StringBuilderTest {
+  public static void Main() {
+
+     string [] strings = {&quot;very&quot;, &quot;very&quot;, null, &quot;high&quot;};
+
+     StringBuilder sb = new StringBuilder(&quot;The high &quot;);
+     Console.WriteLine( sb.AppendFormat(&quot;temperature today was {0}, {1} {2}{3}.&quot;, strings) ); 
+  }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The high
+      temperature today was very, very high.</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.AppendFormat(System.IFormatProvider, System.String, System.Object[]) Method"><H3>StringBuilder.AppendFormat(System.IFormatProvider, System.String, System.Object[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder AppendFormat(IFormatProvider provider, string format, params object[] args);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Appends the specified string to the current instance, with the format specifications in that string being replaced
+      with the string values of the specified array of objects, formatted in
+      accordance with the formatting object returned by the specified <A HREF="../../System/IFormatProvider.html" TARGET="contents">IFormatProvider</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>provider</DT>
+<DD>A <A HREF="../../System/IFormatProvider.html" TARGET="contents">IFormatProvider</A> that supplies a formatting object that provides culture specific formatting information. Can be a null reference.</DD>
+<DT>format</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing zero or more format specifications.</DD>
+<DT>args</DT>
+<DD> A <A HREF="../../System/Object.html" TARGET="contents">Object</A> array to be formatted.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after peroration has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> or <I>args</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> is invalid.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method appends the formatted copy of the specified
+      string to the current instance. If an object referenced in the format string is
+   <CODE>null</CODE>
+
+   , an empty string is used in its place.<P>
+
+The format parameter is embedded with zero or more format
+   specifications of the form, {<I>N</I> [, <I>M</I>
+   ][: <I>formatString</I> ]}, where <I>N</I> is a zero-based
+   integer indicating the argument to be formatted, <I>M</I>
+   is an optional
+   integer indicating the width of the region to contain the formatted value, and
+<I>formatString</I> is an optional string of formatting codes.
+   [<I>Note</I>:  For more information on the format
+      specification see the <A HREF="../../System/String.html" TARGET="contents">String</A>
+      class overview.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<PRE>using System;
+using System.Text;
+
+public class StringBuilderTest {
+  public static void Main() {
+
+     string a = &quot;very&quot;;
+     string b = &quot;very&quot;;
+     string c = &quot;high&quot;;
+
+     StringBuilder sb = new StringBuilder(&quot;The high &quot;);
+     Console.WriteLine(sb.AppendFormat(null, &quot;temperature today was {0}, {1} {2}.&quot;, a, b, c) ); 
+  }
+}
+   </PRE>
+The output is<P>
+
+<CODE>The high
+      temperature today was very, very high.</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.EnsureCapacity Method"><H3>StringBuilder.EnsureCapacity Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int EnsureCapacity(int capacity);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Ensures that the capacity of the current instance is at least a specified
+      value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>capacity</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the minimum capacity to ensure. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> equal to the
+   new System.Text.StringBuilder.Capacity of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>capacity</I> is less zero. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the specified value is less than the current
+   System.Text.StringBuilder.Capacity, no changes are made and
+   System.Text.StringBuilder.Capacity remains the same.<P>
+
+[<I>Note</I>:  For performance
+      reasons, the new System.Text.StringBuilder.Capacity might
+      be larger than the specified value. The amount of memory allocated by this
+      method is implementation specific.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Equals Method"><H3>StringBuilder.Equals Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool Equals(StringBuilder sb);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance and a specified <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> have 
+ the same value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>sb</DT>
+<DD>A <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the current instance and <I>sb</I> have the same 
+ value; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, System.String, int) Method"><H3>StringBuilder.Insert(int, System.String, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, string value, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Inserts multiple copies of a
+      string into the current instance at a specified index.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert.</DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to be inserted.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of times the string is to be inserted. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The current instance after insertion has occurred.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance <P>
+
+-or-<P>
+
+<I>index</I> is less than zero<P>
+
+-or-<P>
+
+<I>count</I> is less than zero<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method inserts the <I>value</I> string <I>count</I> times
+   into the current instance at the specified location. Existing characters are
+   shifted to make room for the new text, and System.Text.StringBuilder.Capacity is adjusted as necessary.<P>
+
+If <I>value</I> is
+<CODE>Empty</CODE>
+ or a null reference, the <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> is
+not changed. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, System.String) Method"><H3>StringBuilder.Insert(int, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, string value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts the string representation of a string object into the current instance at a
+      specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to be inserted. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after insertion has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance <P>
+
+-or-<P>
+
+<I>index</I> is less than zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method inserts <I>value</I>
+into the current instance at the specified location. Existing characters are
+shifted to make room for the new text, and System.Text.StringBuilder.Capacity is
+adjusted as necessary.<P>
+
+If <I>value</I> is
+<CODE>Empty</CODE>
+ or a null reference, the <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> is
+not changed.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, bool) Method"><H3>StringBuilder.Insert(int, bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, bool value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts the string representation of a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value into the current
+   instance at a specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value to be inserted. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The current instance after insertion has occurred.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance<P>
+
+-or-<P>
+
+<I>index</I> is less than zero<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method inserts
+   <I>value</I>.ToString() into the current instance at the specified
+      location. Existing characters are shifted to make room for the new text, and
+   System.Text.StringBuilder.Capacity is
+      adjusted as necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, sbyte) Method"><H3>StringBuilder.Insert(int, sbyte) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, sbyte value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts the string representation of a <A HREF="../../System/SByte.html" TARGET="contents">SByte</A> into the current instance at the
+   specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/SByte.html" TARGET="contents">SByte</A> to be inserted. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after insertion has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance<P>
+
+-or-<P>
+
+<I>index</I> is less than zero<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.Text.StringBuilder.Insert(System.Int32,System.String,System.Int32)(<A HREF="../../System/Int32.html" TARGET="contents">Int32</A>, <A HREF="../../System/Int16.html" TARGET="contents">Int16</A>).<P>
+
+This method inserts
+   <I>value</I>.ToString() into the current instance at the specified
+      location. Existing characters are shifted to make room for the new text, and
+   System.Text.StringBuilder.Capacity is adjusted as necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, byte) Method"><H3>StringBuilder.Insert(int, byte) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, byte value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts the string representation of a <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> into the current instance at the
+   specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> to be inserted. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after insertion has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance<P>
+
+-or-<P>
+
+<I>index</I> is less than zero<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method inserts
+   <I>value</I>.ToString() into the current instance at the specified
+      location. Existing characters are shifted to make room for the new text, and
+   System.Text.StringBuilder.Capacity
+   is adjusted as
+   necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, short) Method"><H3>StringBuilder.Insert(int, short) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, short value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts the string representation of a <A HREF="../../System/Int16.html" TARGET="contents">Int16</A> into the current instance at a
+   specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Int16.html" TARGET="contents">Int16</A> to be inserted. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The current instance after insertion has occurred.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance<P>
+
+-or-<P>
+
+<I>index</I> is less than zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method inserts
+   <I>value</I>.ToString() into the current instance at the specified
+      location. Existing characters are shifted to make room for the new text, and
+   System.Text.StringBuilder.Capacity is adjusted as necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, char) Method"><H3>StringBuilder.Insert(int, char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, char value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts the string representation of a Unicode character into the current
+      instance at a specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> to be inserted. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after insertion has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance<P>
+
+-or-<P>
+
+<I>index</I> is less than zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method inserts
+   <I>value</I>.ToString() into the current instance at the specified
+      location. Existing characters are shifted to make room for the new text, and
+   System.Text.StringBuilder.Capacity is
+      adjusted as necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, char[]) Method"><H3>StringBuilder.Insert(int, char[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, char[] value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts the string representation of an array of Unicode characters into the
+      current instance at a specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert.</DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> array to be inserted.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The current instance after insertion has occurred.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance <P>
+
+-or-<P>
+
+<I>index</I> is less than zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method inserts all of the characters in the specified array into the
+      current instance in the same order as they appear in <I>value</I>. Existing characters are shifted to make room for
+      the new text, and System.Text.StringBuilder.Capacity is
+      adjusted as necessary.<P>
+
+If <I>value</I> is empty or a null reference, the <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> is
+   not changed.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, char[], int, int) Method"><H3>StringBuilder.Insert(int, char[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, char[] value, int startIndex, int charCount);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Inserts the string representation of a subarray
+      of Unicode characters into the current instance at a specified index.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert.</DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> array from which to get the characters to be inserted. </DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the starting index within <I>value</I>.</DD>
+<DT>charCount</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of characters to insert from <I>value</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after insertion has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference, and <I>startIndex</I> and <I>charCount</I> are not both zero.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance or less than zero.<P>
+
+-or-<P>
+
+<I>startIndex</I> or <I>charCount</I> is less than zero or their sum is greater than the length of <I>value</I>.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method inserts the specified range of characters from <I>value</I>
+array into the current instance in the same order as they appear in
+<I>value</I>. Existing 
+characters are shifted to make room for the new text, and
+System.Text.StringBuilder.Capacity is adjusted as necessary.<P>
+
+If <I>value</I> is an empty array or a null reference and
+<I>startIndex</I> and <I>charCount</I> are both zero, the <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> is 
+not changed. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, int) Method"><H3>StringBuilder.Insert(int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, int value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts the string representation of a <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> into the current instance at the
+   specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> to be inserted. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after insertion has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance<P>
+
+-or-<P>
+
+<I>index</I> is less than zero<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method inserts
+   <I>value</I>.ToString() into the current instance at the specified
+      location. Existing characters are shifted to make room for the new text, and
+   System.Text.StringBuilder.Capacity is adjusted as necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, long) Method"><H3>StringBuilder.Insert(int, long) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, long value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Inserts the string representation of a <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> into the current instance at the
+   specified index.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> to be inserted. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after insertion has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance <P>
+
+ -or- <P>
+
+<I>index</I> is less than zero. <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method inserts
+   <I>value</I>.ToString() into the current instance at the specified
+      location. Existing characters are shifted to make room for the new text, and
+   System.Text.StringBuilder.Capacity is adjusted as necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, float) Method"><H3>StringBuilder.Insert(int, float) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, float value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts the string representation of a <A HREF="../../System/Single.html" TARGET="contents">Single</A> into the current instance at the
+   specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Single.html" TARGET="contents">Single</A> to be inserted. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after insertion has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance<P>
+
+-or-<P>
+
+<I>index</I> is less than zero<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method inserts
+   <I>value</I>.ToString() into the current instance at the specified
+      location. Existing characters are shifted to make room for the new text, and
+   System.Text.StringBuilder.Capacity is adjusted as necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, double) Method"><H3>StringBuilder.Insert(int, double) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, double value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts the string representation of a <A HREF="../../System/Double.html" TARGET="contents">Double</A> into the current instance at the
+   specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Double.html" TARGET="contents">Double</A> to be inserted. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after insertion has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance<P>
+
+-or-<P>
+
+<I>index</I> is less than zero<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method inserts
+   <I>value</I>.ToString() into the current instance at the specified
+      location. Existing characters are shifted to make room for the new text, and
+   System.Text.StringBuilder.Capacity is adjusted as necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, System.Decimal) Method"><H3>StringBuilder.Insert(int, System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts the string representation of a <A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A> into the current instance at the
+   specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A> to be inserted. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after insertion has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance<P>
+
+-or-<P>
+
+<I>index</I> is less than zero<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method inserts
+   <I>value</I>.ToString() into the current instance at the specified
+      location. Existing characters are shifted to make room for the new text, and
+   System.Text.StringBuilder.Capacity is adjusted as necessary.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, ushort) Method"><H3>StringBuilder.Insert(int, ushort) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, ushort value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts the string representation of a <A HREF="../../System/UInt16.html" TARGET="contents">UInt16</A> into the current instance at the
+   specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/UInt16.html" TARGET="contents">UInt16</A> to insert. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after insertion has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance<P>
+
+-or-<P>
+
+<I>index</I> is less than zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.Text.StringBuilder.Insert(System.Int32,System.String,System.Int32)(<A HREF="../../System/Int32.html" TARGET="contents">Int32</A>, <A HREF="../../System/Int32.html" TARGET="contents">Int32</A>).<P>
+
+ This method inserts
+   <I>value</I>.ToString() into the current instance at the specified
+      location. Existing characters are shifted to make room for the new text, and
+   System.Text.StringBuilder.Capacity is adjusted as necessary.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, uint) Method"><H3>StringBuilder.Insert(int, uint) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, uint value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts the string representation of a <A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A> into the current instance at the
+   specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/UInt32.html" TARGET="contents">UInt32</A> to be inserted. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after insertion has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance<P>
+
+-or-<P>
+
+<I>index</I> is less than zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.Text.StringBuilder.Insert(System.Int32,System.String,System.Int32)(<A HREF="../../System/Int32.html" TARGET="contents">Int32</A>, <A HREF="../../System/Int64.html" TARGET="contents">Int64</A>).<P>
+
+This method inserts
+   <I>value</I>.ToString() into the current instance at the specified
+      location. Existing characters are shifted to make room for the new text, and
+   System.Text.StringBuilder.Capacity is
+      adjusted as necessary.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, ulong) Method"><H3>StringBuilder.Insert(int, ulong) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, ulong value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts the string representation of a <A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A> into the current instance at a
+   specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/UInt64.html" TARGET="contents">UInt64</A> to be inserted.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after insertion has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance<P>
+
+-or-<P>
+
+<I>index</I> is less than zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.Text.StringBuilder.Insert(System.Int32,System.String,System.Int32)(<A HREF="../../System/Int32.html" TARGET="contents">Int32</A>, <A HREF="../../System/Decimal.html" TARGET="contents">Decimal</A>).<P>
+
+This method inserts
+   <I>value</I>.ToString() into the current instance at the specified
+      location. Existing characters are shifted to make room for the new text, and
+   System.Text.StringBuilder.Capacity is
+      adjusted as necessary.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Insert(int, System.Object) Method"><H3>StringBuilder.Insert(int, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Insert(int index, object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts the string representation of an object into the current instance at a
+      specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to insert. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to be inserted. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after insertion has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is greater than the length of the current instance<P>
+
+-or-<P>
+
+<I>index</I> is less than zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method inserts
+   <I>value</I>.ToString() into the current instance at the specified
+      location. Existing characters are shifted to make room for the new text, and
+   System.Text.StringBuilder.Capacity is
+      adjusted as necessary.<P>
+
+If <I>value</I> is a null reference, the <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> is
+   not changed.<P>
+
+<CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Remove Method"><H3>StringBuilder.Remove Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Remove(int startIndex, int length);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes a specified range of characters from the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>startIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which to begin removal.</DD>
+<DT>length</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of characters to be removed. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The current instance after removal has occurred.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>length</I> is less than zero <P>
+
+-or-<P>
+
+The sum of <I>startIndex</I> and <I>length</I> is greater than the length of the current instance.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method removes the specified range of characters from the current
+      instance. The characters at (<I>startIndex</I> + <I>length</I>) are moved to
+   <I>startIndex</I>, and the string value of the current instance is shortened
+      by <I>length</I>.<P>
+
+[<I>Note</I>: The 
+   System.Text.StringBuilder.Replace(System.String,System.String) method can be used
+      to remove all instances of a string from a <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A>. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<PRE>using System;
+using System.Text;
+
+public class StringBuilderTest  {
+   public static void Main()  {
+   
+      StringBuilder sb = new StringBuilder(&quot;0123456789&quot;);
+      Console.WriteLine(sb);
+      sb.Remove(3, 4);
+      Console.WriteLine(sb);
+   }
+}
+   </PRE>
+The output is<P>
+
+<CODE>0123456789<P>
+
+012789<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Replace(System.String, System.String) Method"><H3>StringBuilder.Replace(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Replace(string oldValue, string newValue);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+
+   Replaces all instances of a specified string with
+   another specified string<CODE>.</CODE>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>oldValue</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the string value to replace. </DD>
+<DT>newValue</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the string value with which to replace <I>oldValue</I>. Can be a null reference. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The current instance after substitution has
+      occurred.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>oldValue</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The length of <I>oldvalue</I> is zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method substitutes each occurrence of <I>oldValue</I> in the
+   current instance with <I>newValue</I>. [<I>Note</I>: 
+   If <I>newValue</I> is <CODE>null</CODE>
+ , instances of <I>oldValue</I>
+   are removed.]<P>
+
+<P>
+
+This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Replace(System.String, System.String, int, int) Method"><H3>StringBuilder.Replace(System.String, System.String, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Replace(string oldValue, string newValue, int startIndex, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Replaces all instances of a specified string in a 
+      specified range with another specified string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>oldValue</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the string value to replace.</DD>
+<DT>newValue</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the string value with which to replace <I>oldValue</I>. Can be a null reference.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the location from which to start replacing <I>oldValue</I>.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the length of the range in which to replace <I>oldValue</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after substitution has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>oldValue</I> is a null reference.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>count</I> is less than zero.<P>
+
+-or-<P>
+
+The sum of <I>startIndex</I> and <I>count</I> is greater than the length of the current instance.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The length of <I>oldvalue</I> is zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method substitutes each occurrence of <I>oldValue</I> in the specified range of the
+   current instance with <I>newValue</I>. [<I>Note</I>: 
+   If <I>newValue</I> is <CODE>null</CODE>
+ , instances of <I>oldValue</I> are
+   removed.]<P>
+
+<P>
+
+This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Replace(char, char) Method"><H3>StringBuilder.Replace(char, char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Replace(char oldChar, char newChar);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Replaces all instances of a specified character in the current instance with
+      another specified character.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>oldChar</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> to replace.</DD>
+<DT>newChar</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> with which to replace <I>oldChar</I> . </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after substitution has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method substitutes each occurrence of <I>oldChar</I> in the current instance with
+<I>newChar</I>.<P>
+
+This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Replace(char, char, int, int) Method"><H3>StringBuilder.Replace(char, char, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public StringBuilder Replace(char oldChar, char newChar, int startIndex, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Replaces all instances of a specified character in a specified range with
+      another specified character.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>oldChar</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> to replace. </DD>
+<DT>newChar</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> with which to replace <I>oldChar</I> . </DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index from which to start replacing <I>oldChar</I>.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the length of the range in which to replace <I>oldChar</I> . </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current instance after substitution has occurred.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The sum of <I>startIndex</I> and <I>count</I> is larger than the length of the current instance <P>
+
+-or-<P>
+
+<I>startIndex</I> or <I>count</I> is less than zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method substitutes each occurrence of <I>oldChar</I> in the specified range of the
+   current instance with <I>newChar</I>.<P>
+
+This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.ToString() Method"><H3>StringBuilder.ToString() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="../../System/String.html" TARGET="contents">String</A> representation of the value of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> representing the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method overrides System.Object.ToString.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.ToString(int, int) Method"><H3>StringBuilder.ToString(int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToString(int startIndex, int length);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="../../System/String.html" TARGET="contents">String</A> representation of a substring of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>startIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index at which the substring begins. </DD>
+<DT>length</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the length of the substring. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="../../System/String.html" TARGET="contents">String</A> representing the characters in the specified range.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>length</I> is less than zero. <P>
+
+ -or- <P>
+
+The sum of <I>startIndex</I> and <I>length</I> is greater than the length of the current instance. <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Capacity Property"><H3>StringBuilder.Capacity Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Capacity { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the maximum number of characters that can be contained in the
+      memory allocated by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the maximum number of characters that can be contained in the memory
+   allocated by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The value specified for a set operation is less than System.Text.StringBuilder.Length.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Text.StringBuilder.Capacity property does not affect the string value of the current
+   instance. The <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> will dynamically
+   increase the System.Text.StringBuilder.Capacity and allocate
+   more space when it is required.<P>
+
+[<I>Note</I>:  For performance
+   reasons a <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> might allocate more memory than needed. The amount of
+   memory allocated is implementation specific. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Chars Property"><H3>StringBuilder.Chars Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public char this[int index] { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the character at a specified position in the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Char.html" TARGET="contents">Char</A> containing the Unicode character at location <I>index</I> in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/IndexOutOfRangeException.html" TARGET="contents">IndexOutOfRangeException</A></TD><TD><I>index</I> is greater than or equal to the length of the current instance.<P>
+
+-or-<P>
+
+<I>index</I> is less than zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<I>index</I> is the position of a character within the
+<A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A>. The first character in the string is at index 0. 
+   The length of a string is the number of characters it contains. The last
+   accessible character of a <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> instance is at the index System.Text.StringBuilder.Length
+   - 1.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="StringBuilder.Length Property"><H3>StringBuilder.Length Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int Length { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the length of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the length of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value specified for a set operation is less than 0 or greater than System.Int32.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ If the specified length is less than the current length,
+      the <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> is truncated to the specified length. If the specified
+      length is greater than the current length, the end of the string value of the
+   <A HREF="StringBuilder.html" TARGET="contents">StringBuilder</A> is
+      padded with
+      spaces.
+      <P>
+
+ If the specified length is greater than the current
+   System.Text.StringBuilder.Capacity , System.Text.StringBuilder.Capacity is set to the
+      specified
+      length.
+      <P>
+
+[<I>Note</I>:  A space in Unicode format is defined as the
+      hexadecimal value
+      0x20.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StringBuilder.html" TARGET="contents">System.Text.StringBuilder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

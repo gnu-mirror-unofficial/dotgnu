@@ -1,0 +1,377 @@
+<HTML>
+<HEAD>
+<TITLE>System.Text.Decoder Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Text.Decoder Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class Decoder</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Decoder<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts blocks of bytes into blocks of characters,
+      maintaining state across successive calls for reading from a <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A>.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Following instantiation of a decoder,
+      sequential blocks of bytes are converted into blocks of characters through calls
+      to the System.Text.Decoder.GetChars(System.Byte[],System.Int32,System.Int32,System.Char[],System.Int32) method. The decoder maintains state between the
+      conversions, allowing it to correctly decode a character whose bytes span
+      multiple blocks. This greatly assists decoding streams of bytes into
+      characters. An instance of a specific implementation of the
+   <A HREF="Decoder.html" TARGET="contents">Decoder</A>
+   class is typically obtained through a call to the System.Text.Encoding.GetDecoder
+   method of a <A HREF="Encoding.html" TARGET="contents">Encoding</A> object.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example demonstrates using the <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A>
+implementation of the <A HREF="Decoder.html" TARGET="contents">Decoder</A> class to convert two byte arrays to a character
+array, where one character&apos;s bytes span multiple byte arrays. This demonstrates
+how to use a <A HREF="Decoder.html" TARGET="contents">Decoder</A>
+in streaming-like situations.<P>
+
+<PRE>
+using System;
+using System.Text;
+
+public class DecoderExample 
+{
+   public static void Main() 
+   {
+      // These bytes in UTF-8 correspond to 3 different
+      // Unicode characters - A (U+0041), # (U+0023),
+      // and the biohazard symbol (U+2623). Note the 
+      // biohazard symbol requires 3 bytes in UTF-8 
+      // (in hex, e2, 98, a3). Decoders store state across
+      // multiple calls to GetChars, handling the case 
+      // when one char spans multiple byte arrays.
+
+      byte[] bytes1 = { 0x41, 0x23, 0xe2 };
+      byte[] bytes2 = { 0x98, 0xa3 };
+      char[] chars = new char[3]; 
+
+      Decoder d = Encoding.UTF8.GetDecoder();
+      int charLen = d.GetChars(bytes1, 0, bytes1.Length,
+                               chars, 0);
+      // charLen is 2.
+
+      charLen += d.GetChars(bytes2, 0, bytes2.Length,
+                            chars, charLen);
+      // charLen is now 3. 
+
+      foreach(char c in chars) 
+         Console.Write(&quot;U+{0:x} &quot;, (ushort)c);
+   }
+}
+</PRE>
+The output is <P>
+
+<CODE>U+41 U+23 U+2623<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Decoder Constructors<P>
+
+<A HREF="#Decoder Constructor" TARGET="contents">Decoder Constructor</A><BR>
+<P>
+
+Decoder Methods<P>
+
+<A HREF="#Decoder.GetCharCount Method" TARGET="contents">Decoder.GetCharCount Method</A><BR>
+<A HREF="#Decoder.GetChars Method" TARGET="contents">Decoder.GetChars Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Decoder Constructor"><H3>Decoder Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected Decoder();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs a new instance of the <A HREF="Decoder.html" TARGET="contents">Decoder</A> class.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor is called only by classes that inherit from the <A HREF="Decoder.html" TARGET="contents">Decoder</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decoder.html" TARGET="contents">System.Text.Decoder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decoder.GetCharCount Method"><H3>Decoder.GetCharCount Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract int GetCharCount(byte[] bytes, int index, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines the exact number of characters that will be produced by
+      decoding the specified range of the specified array of
+      bytes.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>bytes</DT>
+<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array to decode. </DD>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the first index in <I>bytes</I> to decode. </DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number elements in <I>bytes</I> to decode. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing 
+   the number of characters the next call to System.Text.Decoder.GetChars(System.Byte[],System.Int32,System.Int32,System.Char[],System.Int32) will produce if presented with the
+   specified range of <I>bytes</I>
+   .<P>
+
+[<I>Note</I>: This value takes into account the state in which the current instance was
+   left following the last call to System.Text.Decoder.GetChars(System.Byte[],System.Int32,System.Int32,System.Char[],System.Int32). This
+   contrasts with System.Text.Encoding.GetChars(System.Byte[]), which does not maintain state information
+   across subsequent calls.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>bytes</I> is <CODE>null</CODE>
+ . </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> &lt; 0. <P>
+
+ -or- <P>
+
+<I>count</I> &lt; 0. <P>
+
+ -or- <P>
+
+<I>index </I>and <I>count </I>do not specify a valid range in <I>bytes</I> (i.e. (<I>index</I> + <I>count</I>) &gt; <I>bytes</I>.Length).<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this
+      method
+      
+      to return the appropriate value for a
+      particular encoding.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to
+      determine the appropriate size of a buffer to contain the
+      decoded values.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decoder.html" TARGET="contents">System.Text.Decoder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decoder.GetChars Method"><H3>Decoder.GetChars Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Decodes the specified range of the specified array of bytes into the specified range
+      of the specified array of characters for a particular encoding.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>bytes</DT>
+<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array to decode. </DD>
+<DT>byteIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the first index of <I>bytes</I> from which to decode. </DD>
+<DT>byteCount</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number elements in <I>bytes</I> to decode. </DD>
+<DT>chars</DT>
+<DD>A <A HREF="../../System/Char.html" TARGET="contents">Char</A> array of characters to decode into. </DD>
+<DT>charIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the first index of <I>chars</I> to store the decoded bytes. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing
+   the number of characters decoded into <I>chars</I> for a
+   particular encoding.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>chars</I> does not contain sufficient space to store the decoded characters.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>bytes </I>is <CODE>null</CODE>
+ . <P>
+
+-or- <P>
+
+<I>chars </I>is <CODE>null</CODE>
+ . <P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>byteIndex</I> &lt; 0. <P>
+
+ -or- <P>
+
+<I>byteCount </I> &lt; 0. <P>
+
+ -or- <P>
+
+<I>charIndex </I> &lt; 0. <P>
+
+ -or- <P>
+
+<I>byteIndex</I> and <I>byteCount</I> do not specify a valid range in <I>bytes</I> (i.e. (<I>byteIndex </I>+ <I>byteCount </I> ) &gt; <I>bytes</I>.Length). <P>
+
+-or- <P>
+
+<I>charIndex</I> &gt; <I>chars</I>.Length.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: System.Text.Decoder.GetCharCount(System.Byte[],System.Int32,System.Int32) can be used to determine the exact number of
+   characters that will be produced for a specified range of bytes.
+   Alternatively, System.Text.Encoding.GetMaxCharCount(System.Int32) of the <A HREF="Encoding.html" TARGET="contents">Encoding</A> object that produced the current instance can be used to
+   determine the maximum number of characters that may be produced for a specified
+   number of bytes, regardless of the actual byte values.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this method to decode the values of a <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array for a
+particular encoding.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to
+   decode the elements of a byte array for a particular encoding.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decoder.html" TARGET="contents">System.Text.Decoder Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

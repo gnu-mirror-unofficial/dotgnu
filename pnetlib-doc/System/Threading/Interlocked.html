@@ -1,0 +1,620 @@
+<HTML>
+<HEAD>
+<TITLE>System.Threading.Interlocked Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Threading.Interlocked Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class Interlocked</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Interlocked<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ The <A HREF="Interlocked.html" TARGET="contents">Interlocked</A> class provides atomic operations for variables that are shared by
+   multiple threads.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The <A HREF="Interlocked.html" TARGET="contents">Interlocked</A> methods protect against errors that can
+   occur when the scheduler switches contexts while a
+   thread is updating a variable that can be accessed by other threads. The
+   members of this class do not throw exceptions.<P>
+
+[<I>Note</I>: The System.Threading.Interlocked.Increment(System.Int32@) method
+   and its counterpart, System.Threading.Interlocked.Decrement(System.Int32@),
+   
+   increment or decrement a variable and store
+   the resulting value, as an atomic operation.<P>
+
+The System.Threading.Interlocked.Exchange(System.Int32@,System.Int32) method atomically exchanges the values of the
+specified variables. The System.Threading.Interlocked.CompareExchange(System.Int32@,System.Int32,System.Int32) method
+provides an atomic
+operation that compares two values and stores a third value in one of the
+variables, based on the outcome of the comparison.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Interlocked Methods<P>
+
+<A HREF="#Interlocked.CompareExchange(System.Int32&, int, int) Method" TARGET="contents">Interlocked.CompareExchange(System.Int32&amp;, int, int) Method</A><BR>
+<A HREF="#Interlocked.CompareExchange(System.Single&, float, float) Method" TARGET="contents">Interlocked.CompareExchange(System.Single&amp;, float, float) Method</A><BR>
+<A HREF="#Interlocked.CompareExchange(System.Object&, System.Object, System.Object) Method" TARGET="contents">Interlocked.CompareExchange(System.Object&amp;, System.Object, System.Object) Method</A><BR>
+<A HREF="#Interlocked.Decrement(System.Int32&) Method" TARGET="contents">Interlocked.Decrement(System.Int32&amp;) Method</A><BR>
+<A HREF="#Interlocked.Decrement(System.Int64&) Method" TARGET="contents">Interlocked.Decrement(System.Int64&amp;) Method</A><BR>
+<A HREF="#Interlocked.Exchange(System.Int32&, int) Method" TARGET="contents">Interlocked.Exchange(System.Int32&amp;, int) Method</A><BR>
+<A HREF="#Interlocked.Exchange(System.Single&, float) Method" TARGET="contents">Interlocked.Exchange(System.Single&amp;, float) Method</A><BR>
+<A HREF="#Interlocked.Exchange(System.Object&, System.Object) Method" TARGET="contents">Interlocked.Exchange(System.Object&amp;, System.Object) Method</A><BR>
+<A HREF="#Interlocked.Increment(System.Int32&) Method" TARGET="contents">Interlocked.Increment(System.Int32&amp;) Method</A><BR>
+<A HREF="#Interlocked.Increment(System.Int64&) Method" TARGET="contents">Interlocked.Increment(System.Int64&amp;) Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Interlocked.CompareExchange(System.Int32&amp;, int, int) Method"><H3>Interlocked.CompareExchange(System.Int32&amp;, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int CompareExchange(ref int location1, int value, int comparand);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Compares two <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> values for equality and stores a
+   specified value if they are equal.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>location1</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> reference whose value is updated with <I>value</I> if the original value of <I>location1</I> is equal to <I>comparand</I>. </DD>
+<DT>value</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> whose value will replace the value of <I>location1</I> if <I>location1</I> and <I>comparand </I> are equal. </DD>
+<DT>comparand</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> to be compared to <I>location1.</I></DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The original value of <I>location1</I>.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The compare and store operations are performed as
+      an atomic operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Interlocked.html" TARGET="contents">System.Threading.Interlocked Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Interlocked.CompareExchange(System.Single&amp;, float, float) Method"><H3>Interlocked.CompareExchange(System.Single&amp;, float, float) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static float CompareExchange(ref float location1, float value, float comparand);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Compares two <A HREF="../../System/Single.html" TARGET="contents">Single</A> values for equality and stores a
+   specified value if they are equal.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>location1</DT>
+<DD>A <A HREF="../../System/Single.html" TARGET="contents">Single</A> whose value is updated with <I>value</I> if its original value is equal to <I>comparand</I>. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Single.html" TARGET="contents">Single</A> value that will replace value of <I>location1</I> if <I>location1</I> and <I>comparand </I> are equal. </DD>
+<DT>comparand</DT>
+<DD>A <A HREF="../../System/Single.html" TARGET="contents">Single</A> to be compared to <I>location1.</I></DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Single.html" TARGET="contents">Single</A> containing the original value of <I>location1</I>.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The address of <I>location1</I> is <CODE>null</CODE>
+ .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The compare and store operations are performed as
+      an atomic operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Interlocked.html" TARGET="contents">System.Threading.Interlocked Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Interlocked.CompareExchange(System.Object&amp;, System.Object, System.Object) Method"><H3>Interlocked.CompareExchange(System.Object&amp;, System.Object, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static object CompareExchange(ref object location1, object value, object comparand);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Compares two <A HREF="../../System/Object.html" TARGET="contents">Object</A> variables for equality and stores a specified object
+   if they are equal.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>location1</DT>
+<DD>A <A HREF="../../System/Object.html" TARGET="contents">Object</A> reference that is set to <I>value</I> if the object to which it refers is equal to <I>comparand</I>. </DD>
+<DT>value</DT>
+<DD>The reference that will replace the value of <I>location1</I> if <I>location1</I> and <I>comparand</I> are equal. </DD>
+<DT>comparand</DT>
+<DD>An object to be compared to that referred to by <I>location1.</I></DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Object.html" TARGET="contents">Object</A> containing the original value of <I>location1</I>.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The address of <I>location1</I> is <CODE>null</CODE>
+ .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The compare and store operations are performed as an
+      atomic operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Interlocked.html" TARGET="contents">System.Threading.Interlocked Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Interlocked.Decrement(System.Int32&amp;) Method"><H3>Interlocked.Decrement(System.Int32&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int Decrement(ref int location);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Decrements the specified variable and stores the result as an atomic operation.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>location</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the variable whose value is to be decremented. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the
+   decremented value.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method handles an overflow condition by wrapping:
+      if <I>location</I> = System.Int32.MinValue , <I>location</I> - 1 =
+   System.Int32.MaxValue . No exception is
+      thrown. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Interlocked.html" TARGET="contents">System.Threading.Interlocked Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Interlocked.Decrement(System.Int64&amp;) Method"><H3>Interlocked.Decrement(System.Int64&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static long Decrement(ref long location);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Decrements the specified variable and stores the result as an atomic operation.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>location</DT>
+<DD>A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> containing the variable whose value is to be decremented. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A>
+containing the decremented value. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method handles an overflow condition by wrapping: if <I>location</I> = 
+System.Int64.MinValue , 
+<I>location</I> - 1 = System.Int64.MaxValue . No exception is thrown. <P>
+
+The 64-bit versions
+   of System.Threading.Interlocked.Increment(System.Int32@) and System.Threading.Interlocked.Decrement(System.Int32@) are truly atomic only on systems where
+   a <A HREF="../../System/IntPtr.html" TARGET="contents">IntPtr</A> is
+   64-bits long. On other systems, these methods are atomic with respect to
+   each other, but not with respect to other means of accessing the data.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Interlocked.html" TARGET="contents">System.Threading.Interlocked Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Interlocked.Exchange(System.Int32&amp;, int) Method"><H3>Interlocked.Exchange(System.Int32&amp;, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int Exchange(ref int location1, int value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Sets a <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> variable to a specified value as an atomic
+   operation and returns the original value.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>location1</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> variable to set to the supplied value as an atomic operation. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> value to which <I>location1</I> is set. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the value of <I>location1</I>
+before the exchange.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Interlocked.html" TARGET="contents">System.Threading.Interlocked Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Interlocked.Exchange(System.Single&amp;, float) Method"><H3>Interlocked.Exchange(System.Single&amp;, float) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static float Exchange(ref float location1, float value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Sets a <A HREF="../../System/Single.html" TARGET="contents">Single</A> variable to a specified value as an atomic
+   operation and returns the original value.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>location1</DT>
+<DD>A <A HREF="../../System/Single.html" TARGET="contents">Single</A> variable to set to the supplied value as an atomic operation. </DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Single.html" TARGET="contents">Single</A> value to which <I>location1</I> is set. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Single.html" TARGET="contents">Single</A> containing the value of <I>location1</I>
+before the exchange.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Interlocked.html" TARGET="contents">System.Threading.Interlocked Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Interlocked.Exchange(System.Object&amp;, System.Object) Method"><H3>Interlocked.Exchange(System.Object&amp;, System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static object Exchange(ref object location1, object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Sets a <A HREF="../../System/Object.html" TARGET="contents">Object</A> reference to refer to a specified object as an
+   atomic operation and returns a reference to the original object.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>location1</DT>
+<DD>The variable to set. </DD>
+<DT>value</DT>
+<DD>The reference to which <I>location1</I> is set. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The original value of <I>location1</I> .
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The address of <I>location1</I> is <CODE>null</CODE>
+ .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Interlocked.html" TARGET="contents">System.Threading.Interlocked Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Interlocked.Increment(System.Int32&amp;) Method"><H3>Interlocked.Increment(System.Int32&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int Increment(ref int location);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Increments the specified variable and stores the result as an atomic operation.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>location</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the variable whose value is to be incremented.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the incremented value.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method handles an overflow condition by wrapping: if <I>location</I> = 
+System.Int32.MaxValue , 
+<I>location</I> + 1 = System.Int32.MinValue . No exception is thrown. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Interlocked.html" TARGET="contents">System.Threading.Interlocked Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Interlocked.Increment(System.Int64&amp;) Method"><H3>Interlocked.Increment(System.Int64&amp;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static long Increment(ref long location);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Increments the specified variable and stores the result as an atomic operation.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>location</DT>
+<DD>A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> containing the variable whose value is to be incremented. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A>
+containing the incremented value. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method handles an overflow condition by wrapping: if <I>location</I> = 
+System.Int64.MaxValue , 
+<I>location</I> + 1 = System.Int64.MinValue . No exception is thrown. <P>
+
+ The 64-bit versions of System.Threading.Interlocked.Increment(System.Int32@)
+and System.Threading.Interlocked.Decrement(System.Int32@) are truly atomic only on systems where a <A HREF="../../System/IntPtr.html" TARGET="contents">IntPtr</A> is 64-bits
+long. On other systems, these methods are atomic with respect to each
+other, but not with respect to other means of accessing the data.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Interlocked.html" TARGET="contents">System.Threading.Interlocked Class</A>, <A HREF="Threading.html" TARGET="members">System.Threading Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

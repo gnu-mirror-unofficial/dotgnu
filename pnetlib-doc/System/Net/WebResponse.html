@@ -1,0 +1,611 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.WebResponse Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.WebResponse Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class WebResponse : MarshalByRefObject, IDisposable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/MarshalByRefObject.html" TARGET="contents">MarshalByRefObject</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;WebResponse<P>
+
+This type implements <A HREF="../../System/IDisposable.html" TARGET="contents">IDisposable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Represents a response received from a Uniform Resource Identifier
+      (URI).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebResponse.html" TARGET="contents">WebResponse</A> is the base
+   class from which protocol-specific response classes, such as <A HREF="HttpWebResponse.html" TARGET="contents">HttpWebResponse</A>
+   , are derived.<P>
+
+Classes that derive from <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> are required to
+override the following members in the <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> class: <P>
+
+<UL>
+<LI>System.Net.WebResponse.ContentLength: Gets or sets the content length of 
+      the data being received.</LI>
+<LI>System.Net.WebResponse.ContentType: Gets or sets the media type of the 
+      data being received.</LI>
+<LI>System.Net.WebResponse.GetResponseStream: Returns a
+   <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> that contains data from 
+      the current host.</LI>
+<LI>System.Net.WebResponse.ResponseUri: Gets a <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> containing the URI of the resource associated with the 
+      current instance.</LI>
+<LI>System.Net.WebResponse.Headers:
+      Gets or sets the collection of header name/value pairs associated with the
+      current instance.</LI>
+</UL>
+[<I>Note</I>:  Applications can participate in request/response transactions in a
+      protocol-agnostic manner using instances of the <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> class while
+      protocol-specific classes derived from <A HREF="WebResponse.html" TARGET="contents">WebResponse</A>
+      
+      carry
+      out the details of the
+      request.<P>
+
+ Applications do not create <A HREF="WebResponse.html" TARGET="contents">WebResponse</A>
+objects directly; they are created by calling System.Net.WebRequest.GetResponse
+.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example creates a <A HREF="WebResponse.html" TARGET="contents">WebResponse</A>
+instance from a <A HREF="WebRequest.html" TARGET="contents">WebRequest</A>
+.<P>
+
+<PRE>using System;
+using System.Net;
+
+public class WebResponseExample {
+
+  public static void Main() {
+
+    // Initialize the WebRequest.
+    WebRequest myRequest =
+      WebRequest.Create(&quot;http://www.contoso.com&quot;);
+
+    // Return the response. 
+    WebResponse myResponse = myRequest.GetResponse();
+
+    // Code to use the WebResponse goes here.
+
+    // Close the response to free resources.
+    myResponse.Close();
+  }
+}
+</PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+WebResponse Constructors<P>
+
+<A HREF="#WebResponse Constructor" TARGET="contents">WebResponse Constructor</A><BR>
+<P>
+
+WebResponse Methods<P>
+
+<A HREF="#WebResponse.Close Method" TARGET="contents">WebResponse.Close Method</A><BR>
+<A HREF="#WebResponse.GetResponseStream Method" TARGET="contents">WebResponse.GetResponseStream Method</A><BR>
+<A HREF="#WebResponse.System.IDisposable.Dispose Method" TARGET="contents">WebResponse.System.IDisposable.Dispose Method</A><BR>
+<P>
+
+WebResponse Properties<P>
+
+<A HREF="#WebResponse.ContentLength Property" TARGET="contents">WebResponse.ContentLength Property</A><BR>
+<A HREF="#WebResponse.ContentType Property" TARGET="contents">WebResponse.ContentType Property</A><BR>
+<A HREF="#WebResponse.Headers Property" TARGET="contents">WebResponse.Headers Property</A><BR>
+<A HREF="#WebResponse.ResponseUri Property" TARGET="contents">WebResponse.ResponseUri Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="WebResponse Constructor"><H3>WebResponse Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected WebResponse();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a new
+      instance of the <A HREF="WebResponse.html" TARGET="contents">WebResponse</A>
+      class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor is called only by classes that derive from <A HREF="WebResponse.html" TARGET="contents">WebResponse</A>.<P>
+
+[<I>Note</I>: To obtain a <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> instance, use the System.Net.WebRequest.GetResponse method; do not use this
+constructor.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebResponse.html" TARGET="contents">System.Net.WebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebResponse.Close Method"><H3>WebResponse.Close Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual void Close();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Closes the response stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This method is not implemented in the derived class.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This method is
+      required to free the connection used by the <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> returned by a call to System.Net.WebResponse.GetResponseStream .]<P>
+
+<P>
+
+[<I>Default</I>: The <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> class is 
+   abstract and does not provide an implementation for this method. This method
+   throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This method is
+   required to be overridden in derived classes to close the response stream and
+   free resources allocated by the current instance.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method or
+System.IO.Stream.Close to
+   clean up the resources used by a <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebResponse.html" TARGET="contents">System.Net.WebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebResponse.GetResponseStream Method"><H3>WebResponse.GetResponseStream Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual Stream GetResponseStream();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> that contains data from the current host.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> for reading data from the
+   current
+   host.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This method is not implemented in the derived class. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This method is
+      required to return a <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> from the host specified by the System.Net.WebResponse.ResponseUri property of the current instance.]<P>
+
+<P>
+
+[<I>Default</I>: This method throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This
+   method is required to be overridden by classes that inherit from
+<A HREF="WebResponse.html" TARGET="contents">WebResponse</A>.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to open a connection to the current host. To close the stream when it
+   is no longer needed, in order to prevent the exhaustion of system resources, invoke
+   either the System.IO.Stream.Close or System.Net.WebResponse.Close
+   methods.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebResponse.html" TARGET="contents">System.Net.WebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebResponse.System.IDisposable.Dispose Method"><H3>WebResponse.System.IDisposable.Dispose Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>void IDisposable.Dispose();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="../../System/IDisposable.html" TARGET="contents">IDisposable</A> interface. [Note: For more information, see System.IDisposable.Dispose.]
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebResponse.html" TARGET="contents">System.Net.WebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebResponse.ContentLength Property"><H3>WebResponse.ContentLength Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual long ContentLength { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the content length of the data received from the server.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A>
+containing the number of bytes returned from the resource.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This property is not implemented in the derived class. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This
+      property contains the number of bytes of data in the response to the
+      request associated with the current instance. For request methods that contain
+      header information, the System.Net.WebResponse.ContentLength does not include
+      the length of the header information. The value of this property is
+      set by the Content-Length header received in the
+      response.]<P>
+
+<P>
+
+[<I>Default</I>: The <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> class 
+   is abstract and does not provide an implementation for this property. This property throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This
+   property is required to be overridden by classes that inherit from
+<A HREF="WebResponse.html" TARGET="contents">WebResponse</A> to set the content length as appropriate for the 
+   derived class. ]<P>
+
+<P>
+
+[<I>Usage</I>: Use this property to determine the number of bytes in the response.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebResponse.html" TARGET="contents">System.Net.WebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebResponse.ContentType Property"><H3>WebResponse.ContentType Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual string ContentType { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the media type of the data received.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> that
+   contains the media type of the response data.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This property is not implemented in the derived class. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The media type is typically the MIME encoding of
+      the content.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Default</I>: The <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> class is abstract and 
+   does not provide an implementation for this property. This property throws
+<A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This property is required to be overridden by classes that inherit from
+<A HREF="WebResponse.html" TARGET="contents">WebResponse</A>.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this
+   property to get the media type of the response.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebResponse.html" TARGET="contents">System.Net.WebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebResponse.Headers Property"><H3>WebResponse.Headers Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual WebHeaderCollection Headers { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the collection of header name/value pairs associated with the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="WebHeaderCollection.html" TARGET="contents">WebHeaderCollection</A> containing the header name/value pairs associated
+   with the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This property is not implemented in the derived class. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property contains a <A HREF="WebHeaderCollection.html" TARGET="contents">WebHeaderCollection</A> instance containing the
+   header information returned in the response from the resource. <P>
+
+[<I>Behaviors</I>: This property is read-only.]<P>
+
+<P>
+
+[<I>Default</I>: The <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> class is
+abstract and does not provide an implementation for this property. This property
+throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Overrides</I>: This property
+   is required to be overridden by classes that inherit from <A HREF="WebResponse.html" TARGET="contents">WebResponse</A>.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this property
+   to retrieve the header information received with the response.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebResponse.html" TARGET="contents">System.Net.WebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="WebResponse.ResponseUri Property"><H3>WebResponse.ResponseUri Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual Uri ResponseUri { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the URI 
+      of the resource associated with the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> containing the URI 
+   of the resource associated with the current response.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>This property is not implemented in the derived class. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This property is read-only.<P>
+
+This property returns the URI that provided the response 
+         information in the current instance. [<I>Note</I>: If the
+         method protocol used in the associated <A HREF="WebRequest.html" TARGET="contents">WebRequest</A> permits redirection, the value of this property
+         might differ from the System.Net.WebRequest.RequestUri property of the request.]<P>
+
+<P>
+
+]<P>
+
+[<I>Default</I>: The <A HREF="WebResponse.html" TARGET="contents">WebResponse</A> class is 
+   abstract and does not provide an implementation for this property. This property
+   throws <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>
+   .]<P>
+
+<P>
+
+[<I>Overrides</I>: This property
+   is required to be overridden by classes that inherit from <A HREF="WebResponse.html" TARGET="contents">WebResponse</A>.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this property
+   to determine the URI that originated the response.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebResponse.html" TARGET="contents">System.Net.WebResponse Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

@@ -1,0 +1,145 @@
+<HTML>
+<HEAD>
+<TITLE>System.IComparable Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.IComparable Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public interface IComparable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Implemented by classes that support an ordering of instances of the class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <A HREF="IComparable.html" TARGET="contents">IComparable</A> contains the
+System.IComparable.CompareTo(System.Object) method. The consumer of an object should call this 
+ method when sorting instances of a class.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IComparable Methods<P>
+
+<A HREF="#IComparable.CompareTo Method" TARGET="contents">IComparable.CompareTo Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IComparable.CompareTo Method"><H3>IComparable.CompareTo Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>int CompareTo(object obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the sort order of the current instance compared 
+      to the specified
+      object.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>obj</DT>
+<DD>The <A HREF="Object.html" TARGET="contents">Object</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
+   current instance as compared to object. The following table defines the conditions under which the returned value is a negative
+   number, zero, or a positive number.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description </TH><TH>Returned Value Description </TH></TR>
+<TR><TD> The current instance is &lt; <I>obj</I>. </TD><TD> Any negative value  The current instance is &lt; <I>obj</I>. </TD></TR>
+<TR><TD>The current instance is ==
+   <I>obj</I>. </TD><TD> Zero The current instance is ==
+   <I>obj</I>. </TD></TR>
+<TR><TD> The current instance is &gt; than <I>obj</I> or <I>obj</I> is a null
+   reference. </TD><TD> Any positive value  The current instance is &gt; than <I>obj</I> or <I>obj</I> is a null
+   reference. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: For any objects A, B and C, the following are required to be true:<P>
+
+A.CompareTo(A) is required to return zero. <P>
+
+If A.CompareTo(B) returns zero then B.CompareTo(A) is required to return zero.<P>
+
+If A.CompareTo(B) returns zero and B.CompareTo(C) 
+         returns zero then A.CompareTo(C) is required to return zero.<P>
+
+If A.CompareTo(B) returns a value other than zero then 
+         B.CompareTo(A) is required to return a value of the opposite
+         sign.<P>
+
+If A.CompareTo(B) returns a value <I>x</I> not equal 
+      to zero, and B.CompareTo(C) returns a value <I>y</I> of the same sign as
+   <I>x</I>, then A.CompareTo(C) is required to a value of the same sign as 
+   <I>x</I> and <I>y</I> 
+   .<P>
+
+The exact behavior of this method is unspecified. The intent of this method is
+   to provide a mechanism that orders instances of a class in a manner that is
+   consistent with the mathematical definitions of the relational operators (&lt;,
+   &gt;, and ==), without regard for class-specific definitions of the
+   operators.<P>
+
+]<P>
+
+[<I>Usage</I>: Use the System.IComparable.CompareTo(System.Object) method to determine the ordering of instances of a
+class.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IComparable.html" TARGET="contents">System.IComparable Interface</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

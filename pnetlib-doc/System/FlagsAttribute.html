@@ -1,0 +1,153 @@
+<HTML>
+<HEAD>
+<TITLE>System.FlagsAttribute Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.FlagsAttribute Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class FlagsAttribute : Attribute</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="Attribute.html" TARGET="contents">Attribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;FlagsAttribute<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Indicates that the <A HREF="Enum.html" TARGET="contents">Enum</A> targeted by the current attribute is declared as a bit-field.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The <A HREF="FlagsAttribute.html" TARGET="contents">FlagsAttribute</A> class provides the consumer of a <A HREF="Enum.html" TARGET="contents">Enum</A> the information that the
+   enumeration is to be used as a bit-field. Additionally, when formatting a <A HREF="Enum.html" TARGET="contents">Enum</A>, using the <A HREF="FlagsAttribute.html" TARGET="contents">FlagsAttribute</A> causes a value that is a bitwise OR combination of
+   multiple fields to print correctly.<P>
+
+[<I>Note</I>:  Bit-fields are generally used for lists of
+      elements that might occur in combination; whereas enumeration constants are
+      generally used for lists of mutually exclusive elements. Therefore, bit-fields
+      are designed to be combined with the bitwise OR operator to generate unnamed
+      values, whereas enumerated constants are not. Languages
+      vary in their usage of bit-fields compared to enumeration constants.<P>
+
+This attribute can only be applied to enumerations.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+ The following example demonstrates the use of
+      <A HREF="FlagsAttribute.html" TARGET="contents">FlagsAttribute</A> on the formatting of a
+      <A HREF="Enum.html" TARGET="contents">Enum</A>. With this attribute, the <I>Position</I> enumeration is used as a bit-field, and the value 3 (Top
+      | Left) is considered a valid value for the enumeration when formatting. Without this
+      attribute, the enumeration <I>Color</I> is not used as a
+      bit-field, and the value 3 (Red | Blue) is not considered a valid value for the
+      enumeration when formatting.<P>
+
+<PRE>
+using System;
+[FlagsAttribute()] 
+public enum Position { 
+
+  Top = 0x1, 
+  Left = 0x2, 
+  Bottom = 0x4, 
+  Right = 0x8 
+} 
+
+//enum Color declared without FlagsAttribute 
+public enum Color { 
+
+  Red = 0x1, 
+  Blue = 0x2, 
+  Yellow = 0x4 
+} 
+
+public class enumFormat { 
+
+  public static void Main() { 
+
+    Position p = Position.Top | Position.Left; 
+    Console.WriteLine(&quot;Position: {0}&quot;, p); 
+    Color c = Color.Red | Color.Blue; 
+    Console.WriteLine(&quot;Color: {0}&quot;, c); 
+  } 
+} 
+      </PRE>
+The output is<P>
+
+<CODE>Position: Top, Left<P>
+
+Color: 3<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>AttributeUsageAttribute(AttributeTargets.Enum, AllowMultiple=false, Inherited=false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+FlagsAttribute Constructors<P>
+
+<A HREF="#FlagsAttribute Constructor" TARGET="contents">FlagsAttribute Constructor</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="FlagsAttribute Constructor"><H3>FlagsAttribute Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public FlagsAttribute();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs a new instance of the <A HREF="FlagsAttribute.html" TARGET="contents">FlagsAttribute</A> class.
+ <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FlagsAttribute.html" TARGET="contents">System.FlagsAttribute Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

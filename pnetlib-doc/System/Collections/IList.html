@@ -1,0 +1,734 @@
+<HTML>
+<HEAD>
+<TITLE>System.Collections.IList Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Collections.IList Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public interface IList : ICollection, IEnumerable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+This type implements <A HREF="ICollection.html" TARGET="contents">ICollection</A> and <A HREF="IEnumerable.html" TARGET="contents">IEnumerable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented by
+ classes that support a collection of objects that can be individually indexed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <A HREF="IList.html" TARGET="contents">IList</A> implementations fall into three categories:
+ read-only, fixed-size, variable-size. A read-only list cannot be modified. A
+ fixed-size list allows the modification of existing elements, but does not
+ allow the addition or removal of elements. A variable-size list allows the modification, addition, and
+ removal of elements.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>DefaultMemberAttribute(&quot;Item&quot;)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IList Methods<P>
+
+<A HREF="#IList.Add Method" TARGET="contents">IList.Add Method</A><BR>
+<A HREF="#IList.Clear Method" TARGET="contents">IList.Clear Method</A><BR>
+<A HREF="#IList.Contains Method" TARGET="contents">IList.Contains Method</A><BR>
+<A HREF="#IList.IndexOf Method" TARGET="contents">IList.IndexOf Method</A><BR>
+<A HREF="#IList.Insert Method" TARGET="contents">IList.Insert Method</A><BR>
+<A HREF="#IList.Remove Method" TARGET="contents">IList.Remove Method</A><BR>
+<A HREF="#IList.RemoveAt Method" TARGET="contents">IList.RemoveAt Method</A><BR>
+<P>
+
+IList Properties<P>
+
+<A HREF="#IList.IsFixedSize Property" TARGET="contents">IList.IsFixedSize Property</A><BR>
+<A HREF="#IList.IsReadOnly Property" TARGET="contents">IList.IsReadOnly Property</A><BR>
+<A HREF="#IList.Item Property" TARGET="contents">IList.Item Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IList.Add Method"><H3>IList.Add Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>int Add(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Adds an item to the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to add to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the index of the current instance into which the new element was inserted.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only or has a fixed size.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Usage</I>: Use
+      the System.Collections.IList.Add(System.Object) method to add another element to the
+      current instance. The index into which that element is
+      added is implementation-dependent. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IList.html" TARGET="contents">System.Collections.IList Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IList.Clear Method"><H3>IList.Clear Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>void Clear();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Removes all items from the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only. <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Overrides</I>: Implementations 
+      of this method can vary in how a call to this method affects the capacity of a list. Typically, the count
+      is set to zero. The capacity can be set to zero, some default, or remain
+      unchanged.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this method to
+      delete all values from the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IList.html" TARGET="contents">System.Collections.IList Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IList.Contains Method"><H3>IList.Contains Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool Contains(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether the current instance contains a specific value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to locate in the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the <A HREF="../../System/Object.html" TARGET="contents">Object</A> is found in the current instance; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Usage</I>: Use the System.Collections.IList.Contains(System.Object) method to determine if a particular <A HREF="../../System/Object.html" TARGET="contents">Object</A> is an element of the current
+   instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IList.html" TARGET="contents">System.Collections.IList Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IList.IndexOf Method"><H3>IList.IndexOf Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>int IndexOf(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines the index of a specific item in the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to locate in the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The index of <I>value</I> if found
+   in the current instance; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Overrides</I>: The default
+      implementations of this method use System.Object.Equals(System.Object) to search for value in the
+      current instance.]<P>
+
+<P>
+
+[<I>Usage</I>: Use System.Collections.IList.IndexOf(System.Object) to determine if a <A HREF="../../System/Object.html" TARGET="contents">Object</A> is contained in the current instance and, if it is
+contained, its index in the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IList.html" TARGET="contents">System.Collections.IList Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IList.Insert Method"><H3>IList.Insert Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>void Insert(int index, object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Inserts an item to the current instance at the
+      specified position.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the zero-based index at which <I>value</I> is inserted.</DD>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to insert into the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is not a valid index in the current instance (i.e. is greater than the number of elements in the current instance).</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only or has a fixed size.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>:  If <I>index</I> equals the number
+   of items in the <A HREF="IList.html" TARGET="contents">IList</A>, then <I>value</I> is
+   required to be appended
+   to the end of the current instance.
+   
+]<P>
+
+<P>
+
+[<I>Usage</I>: Use System.Collections.IList.Insert(System.Int32,System.Object)
+to place a new element into a specific position in the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IList.html" TARGET="contents">System.Collections.IList Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IList.Remove Method"><H3>IList.Remove Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>void Remove(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Removes the first occurrence of a specified <A HREF="../../System/Object.html" TARGET="contents">Object</A> from
+   the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to remove from the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only or has a fixed size.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.<P>
+
+In addition, if <I>value</I>
+   is <CODE>null</CODE>
+ or is not found in the current instance, it is required that no
+   exception be thrown and the current instance remain unchanged.<P>
+
+]<P>
+
+[<I>Overrides</I>: The default implementations
+   of this method use System.Object.Equals(System.Object) to search for value
+   in the current instance.]<P>
+
+<P>
+
+[<I>Usage</I>: Use System.Collections.IList.Remove(System.Object)
+to delete a specified <A HREF="../../System/Object.html" TARGET="contents">Object</A> from the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IList.html" TARGET="contents">System.Collections.IList Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IList.RemoveAt Method"><H3>IList.RemoveAt Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>void RemoveAt(int index);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Removes the item at the specified
+      index of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the zero-based index of the item to remove.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is not a valid index in current instance.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only or has a fixed size.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Usage</I>: Use System.Collections.IList.RemoveAt(System.Int32) to delete a specified <A HREF="../../System/Object.html" TARGET="contents">Object</A> from the current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IList.html" TARGET="contents">System.Collections.IList Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IList.IsFixedSize Property"><H3>IList.IsFixedSize Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool IsFixedSize { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current instance has a fixed size.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the
+   current instance has a fixed size; otherwise,
+<CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: A collection with a fixed size does not
+      allow the addition or removal of elements, but it allows the modification of
+      existing elements.]<P>
+
+<P>
+
+[<I>Behaviors</I>: Any method that adds or removes an
+      element of a collection is required to check the value of this property for
+      the particular collection before adding or removing elements. If the
+      value of this property is <CODE>false</CODE>
+, any
+      attempt to add or remove an element
+      of the current instance is required to throw a <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.]<P>
+
+<P>
+
+[<I>Default</I>: The default of this property is <CODE>false</CODE>
+.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this property, setting the
+   value to <CODE>true</CODE>
+, in order to prevent the addition or removal of
+   elements in the current instance.]<P>
+
+<P>
+
+[<I>Usage</I>: Use
+System.Collections.IList.IsFixedSize to secure
+   the current instance from
+   modification from methods, such as System.Collections.IList.Add(System.Object) and System.Collections.IList.Remove(System.Object), which add or remove elements from a
+   list.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IList.html" TARGET="contents">System.Collections.IList Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IList.IsReadOnly Property"><H3>IList.IsReadOnly Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>bool IsReadOnly { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets a value indicating whether the current instance is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the
+   current instance is read-only; otherwise,
+<CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: A collection that is read-only does not
+      allow the modification, addition, or removal of elements.]<P>
+
+<P>
+
+[<I>Behaviors</I>: Any method that modifies,
+      adds, or removes an element of a collection is required to check the
+      value of this property for the particular collection before
+      executing. If the value of this property is <CODE>false</CODE>
+, any
+      attempt to
+      modify, add, or remove an element of the current instance is required to throw
+      a <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>.
+      ]<P>
+
+<P>
+
+[<I>Default</I>: The default of this property is
+      <CODE>false</CODE>
+.]<P>
+
+<P>
+
+[<I>Overrides</I>: Override this property, setting the
+      value to <CODE>true</CODE>
+, in order to prevent the
+      modification, addition, or removal of elements in the current
+      instance.]<P>
+
+<P>
+
+[<I>Usage</I>: Use System.Collections.IList.IsReadOnly to
+   secure the current instance from
+   modification from methods, such as System.Collections.IList.Add(System.Object) and System.Collections.IList.Remove(System.Object), which modify, add, or remove elements
+   from a list.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IList.html" TARGET="contents">System.Collections.IList Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="IList.Item Property"><H3>IList.Item Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>object this[int index] { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets or sets the element at the specified index in the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the zero-based index of the element to get or set.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The element at the specified index in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is not a valid index in the current instance.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The property is being set and the current instance is read-only.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described above.]<P>
+
+<P>
+
+[<I>Usage</I>: Use this property
+      for subscript indexing for the current instance in the following form: <CODE> myCollection[index]</CODE>.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IList.html" TARGET="contents">System.Collections.IList Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

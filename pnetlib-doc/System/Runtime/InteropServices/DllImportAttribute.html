@@ -1,0 +1,369 @@
+<HTML>
+<HEAD>
+<TITLE>System.Runtime.InteropServices.DllImportAttribute Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Runtime.InteropServices.DllImportAttribute Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class DllImportAttribute : Attribute</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../../System/Attribute.html" TARGET="contents">Attribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;DllImportAttribute<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Indicates that the target method of this attribute is an export from an unmanaged shared library.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This attribute provides the information needed to call
+      a method exported from an unmanaged shared library. This attribute provides the name of the
+      shared library file, the name of the method within that library, the calling convention, and character set of the
+      unmanaged function.<P>
+
+[<I>Note</I>: A shared library refers
+      to Dynamically Linked Libraries on Windows systems, and Shared Libraries on
+      Unix systems.]<P>
+
+<P>
+
+Compilers are required to not preserve this type 
+      in metadata as a custom attribute. Instead, compilers are required to emit it
+      directly in the file format, as described in Partition II of the CLI
+      Specification. Metadata consumers, such as the Reflection API, are required to
+      retrieve this data from the file format and return it as if it were a custom
+      attribute. <P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the use of the <A HREF="DllImportAttribute.html" TARGET="contents">DllImportAttribute</A>.<P>
+
+[<I>Note</I>: The non-standard
+<CODE>GetLocalTime</CODE>
+ API used in this example indicates the current local system time.]<P>
+
+<P>
+
+<PRE>using System;
+using System.Runtime.InteropServices;
+
+[ StructLayout( LayoutKind.Sequential )]
+public class SystemTime {
+ public ushort year; 
+ public ushort month;
+ public ushort dayOfWeek; 
+ public ushort day; 
+ public ushort hour; 
+ public ushort minute; 
+ public ushort second; 
+ public ushort milliseconds; 
+}
+
+public class LibWrap {
+ [ DllImportAttribute( &quot;Kernel32&quot;, CharSet=CharSet.Auto, CallingConvention=CallingConvention.StdCall, EntryPoint=&quot;GetLocalTime&quot; )]
+ public static extern void GetLocalTime( SystemTime st );
+}
+
+public class DllImportAttributeTest {
+ public static void Main() {
+
+ SystemTime st = new SystemTime();
+ 
+ LibWrap.GetLocalTime( st );
+ Console.Write( &quot;The Date and Time is: &quot; );
+ Console.Write( &quot;{0:00}/{1:00}/{2} at &quot;, st.month, st.day, st.year );
+ Console.WriteLine( &quot;{0:00}:{1:00}:{2:00}&quot;, st.hour, st.minute, st.second ); 
+ }
+}
+</PRE>
+When run at the given time on the given date, the output produced was<P>
+
+<CODE>The Date and Time is: 05/16/2001 at 11:39:17<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>AttributeUsageAttribute(AttributeTargets.Method, AllowMultiple=false, Inherited=false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+DllImportAttribute Constructors<P>
+
+<A HREF="#DllImportAttribute Constructor" TARGET="contents">DllImportAttribute Constructor</A><BR>
+<P>
+
+DllImportAttribute Fields<P>
+
+<A HREF="#DllImportAttribute.CallingConvention Field" TARGET="contents">DllImportAttribute.CallingConvention Field</A><BR>
+<A HREF="#DllImportAttribute.CharSet Field" TARGET="contents">DllImportAttribute.CharSet Field</A><BR>
+<A HREF="#DllImportAttribute.EntryPoint Field" TARGET="contents">DllImportAttribute.EntryPoint Field</A><BR>
+<A HREF="#DllImportAttribute.ExactSpelling Field" TARGET="contents">DllImportAttribute.ExactSpelling Field</A><BR>
+<P>
+
+DllImportAttribute Properties<P>
+
+<A HREF="#DllImportAttribute.Value Property" TARGET="contents">DllImportAttribute.Value Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="DllImportAttribute Constructor"><H3>DllImportAttribute Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public DllImportAttribute(string dllName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="DllImportAttribute.html" TARGET="contents">DllImportAttribute</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>dllName</DT>
+<DD>A <A HREF="../../../System/String.html" TARGET="contents">String</A> that specifies the name of the shared library containing the unmanaged method to import.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the shared library specified in <I>dllName</I> is not found, an error
+   occurs at runtime.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DllImportAttribute.html" TARGET="contents">System.Runtime.InteropServices.DllImportAttribute Class</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DllImportAttribute.CallingConvention Field"><H3>DllImportAttribute.CallingConvention Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public CallingConvention CallingConvention;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="CallingConvention.html" TARGET="contents">CallingConvention</A> 
+value that specifies the calling convention used when passing arguments to
+the unmanaged implementation of a method in a
+shared library.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The default
+   <A HREF="CallingConvention.html" TARGET="contents">CallingConvention</A> value
+      is System.Runtime.InteropServices.CallingConvention.StdCall.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DllImportAttribute.html" TARGET="contents">System.Runtime.InteropServices.DllImportAttribute Class</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DllImportAttribute.CharSet Field"><H3>DllImportAttribute.CharSet Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public CharSet CharSet;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+A <A HREF="CharSet.html" TARGET="contents">CharSet</A> value that controls function name modification and indicates how the <A HREF="../../../System/String.html" TARGET="contents">String</A> arguments to the method will be
+   marshaled.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is set to one of the <A HREF="CharSet.html" TARGET="contents">CharSet</A> values to indicate the
+   required modifications to the name of the imported function and to the <A HREF="../../../System/String.html" TARGET="contents">String</A> arguments of the
+   function. The default value for System.Runtime.InteropServices.DllImportAttribute.CharSet is System.Runtime.InteropServices.CharSet.Ansi.<P>
+
+If System.Runtime.InteropServices.DllImportAttribute.CharSet is set to System.Runtime.InteropServices.CharSet.Unicode, all string arguments
+are converted to Unicode characters before being passed to the unmanaged
+implementation. If the
+field is set to System.Runtime.InteropServices.CharSet.Ansi the string characters
+are converted to ANSI characters. If System.Runtime.InteropServices.DllImportAttribute.CharSet is set to System.Runtime.InteropServices.CharSet.Auto, the <A HREF="../../../System/String.html" TARGET="contents">String</A> and function name
+conversion is platform dependent.<P>
+
+The System.Runtime.InteropServices.DllImportAttribute.CharSet field might 
+also be used to determine which version of a function is imported from the
+specified shared library by modifying the provided name of the function.
+The name modification is platform specific, and includes
+   additional characters to indicate the character set.<P>
+
+The default value of this field is
+System.Runtime.InteropServices.CharSet.Ansi.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DllImportAttribute.html" TARGET="contents">System.Runtime.InteropServices.DllImportAttribute Class</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DllImportAttribute.EntryPoint Field"><H3>DllImportAttribute.EntryPoint Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string EntryPoint;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../../System/String.html" TARGET="contents">String</A> that specifies the name of the shared library
+   entry
+   point.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DllImportAttribute.html" TARGET="contents">System.Runtime.InteropServices.DllImportAttribute Class</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DllImportAttribute.ExactSpelling Field"><H3>DllImportAttribute.ExactSpelling Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public bool ExactSpelling;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../../System/Boolean.html" TARGET="contents">Boolean</A>
+value indicating whether the name of the
+entry point in the unmanaged library is modified to correspond to the <A HREF="CharSet.html" TARGET="contents">CharSet</A> value specified in
+the System.Runtime.InteropServices.DllImportAttribute.CharSet field.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DllImportAttribute.html" TARGET="contents">System.Runtime.InteropServices.DllImportAttribute Class</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="DllImportAttribute.Value Property"><H3>DllImportAttribute.Value Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string Value { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the name of the shared library file with the entry point.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../../System/String.html" TARGET="contents">String</A> containing the name of the shared library file from which a function implementation
+   is imported.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DllImportAttribute.html" TARGET="contents">System.Runtime.InteropServices.DllImportAttribute Class</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

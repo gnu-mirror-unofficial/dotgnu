@@ -1,0 +1,1851 @@
+<HTML>
+<HEAD>
+<TITLE>System.IO.FileStream Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.IO.FileStream Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public class FileStream : Stream</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../System/MarshalByRefObject.html" TARGET="contents">MarshalByRefObject</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="Stream.html" TARGET="contents">Stream</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FileStream<P>
+
+This type implements <A HREF="../../System/IDisposable.html" TARGET="contents">IDisposable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Exposes a <A HREF="Stream.html" TARGET="contents">Stream</A> around a file,
+   supporting both synchronous and asynchronous read and write operations.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">FileStream</A> is used for reading and writing files on
+   a file system, as well as other file-related operating system handles
+   such as pipes, standard input, standard output. <A HREF="FileStream.html" TARGET="contents">FileStream</A>
+   buffers input and output for better performance.<P>
+
+The <A HREF="FileStream.html" TARGET="contents">FileStream</A>
+class can open a file in one of two modes, either synchronously or
+asynchronously, with significant performance consequences for the
+synchronous methods (System.IO.FileStream.Read(System.Byte[],System.Int32,System.Int32) and
+System.IO.FileStream.Write(System.Byte[],System.Int32,System.Int32)) and the asynchronous
+methods (System.IO.FileStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object) and
+System.IO.FileStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object) ). Both sets 
+of methods will work in either mode; however, the mode will affect the
+performance of these methods. <A HREF="FileStream.html" TARGET="contents">FileStream</A> defaults
+to opening files synchronously, but provides a constructor to open
+files asynchronously.<P>
+
+ When accessing files, a security check is performed when
+   the file is created or opened. The security check is typically not done again unless
+   the file is closed and reopened. [<I>Note</I>: Checking
+   permissions when the file is first accessed minimizes the impact of the security
+   check on application performance (since opening a file happens once, while
+   reading and writing can happen multiple times).]<P>
+
+ Note that if an
+opened file is passed to an untrusted caller, the security system can, but is
+not required to prevent the caller from accessing the file.<P>
+
+<A HREF="FileStream.html" TARGET="contents">FileStream</A> objects support random access to files using the
+System.IO.FileStream.Seek(System.Int64,System.IO.SeekOrigin) method, and the System.IO.Stream.CanSeek properties 
+of <A HREF="FileStream.html" TARGET="contents">FileStream</A> instances encapsulating files are set to <CODE>true</CODE>
+. The System.IO.FileStream.Seek(System.Int64,System.IO.SeekOrigin) method allows the
+read/write position to be moved to any position within the file. This is done
+with byte offset reference point parameters. The byte offset is relative to the
+seek reference point, which can be the beginning, the current position, or the
+end of the underlying file, as represented by the three values of the
+<A HREF="SeekOrigin.html" TARGET="contents">SeekOrigin</A> enumeration.<P>
+
+If a <A HREF="FileStream.html" TARGET="contents">FileStream</A> encapsulates a device that does not support
+seeking, its System.IO.FileStream.CanSeek property is <CODE>false</CODE>
+. [<I>Note</I>: For additional information, see System.IO.Stream.CanSeek.]<P>
+
+<P>
+
+[<I>Note</I>: The
+<A HREF="File.html" TARGET="contents">File</A> class provides 
+   methods for the creation of <A HREF="FileStream.html" TARGET="contents">FileStream</A>
+   objects
+   based on file paths. The <A HREF="MemoryStream.html" TARGET="contents">MemoryStream</A> class creates a stream from a byte array and
+   functions similarly to a <A HREF="FileStream.html" TARGET="contents">FileStream</A>.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the use of a <A HREF="FileStream.html" TARGET="contents">FileStream</A>
+object.<P>
+
+<PRE>using System;
+using System.IO;
+
+class Directory {
+   public static void Main(String[] args) { 
+      FileStream fs = new FileStream(&quot;log.txt&quot;, FileMode.OpenOrCreate, FileAccess.Write);
+      StreamWriter w = new StreamWriter(fs);         
+      w.BaseStream.Seek(0, SeekOrigin.End);   // Set the file pointer to the end.
+
+      Log (&quot;Test1&quot;, w);
+      Log (&quot;Test2&quot;, w);
+ 
+      w.Close(); // Close the writer and underlying file.     
+
+      fs = new FileStream(&quot;log.txt&quot;, FileMode.OpenOrCreate, FileAccess.Read);
+
+      StreamReader r = new StreamReader(fs);        
+      r.BaseStream.Seek(0, SeekOrigin.Begin);   
+      DumpLog (r);
+   }
+
+   public static void Log (String logMessage, StreamWriter w) {
+      w.Write(&quot;Log Entry : &quot;);
+      w.WriteLine(&quot;{0} {1}&quot;, DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
+      w.WriteLine(&quot;:&quot;);
+      w.WriteLine(&quot;:{0}&quot;, logMessage);
+      w.WriteLine (&quot;-------------------------------&quot;);
+      w.Flush();  
+   }
+
+   public static void DumpLog (StreamReader r) {
+      while (r.Peek() &gt; -1) { // While not at the end of the file, write to standard output.     
+        Console.WriteLine(r.ReadLine());
+      }
+
+      r.Close();
+   }
+}
+</PRE>
+Some example output is <P>
+
+<CODE>Log Entry : 9:26:21 AM Friday, July 06, 2001<P>
+
+:<P>
+
+:Test1<P>
+
+-------------------------------<P>
+
+Log Entry : 9:26:21 AM Friday, July 06, 2001<P>
+
+:<P>
+
+:Test2<P>
+
+-------------------------------<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+FileStream Constructors<P>
+
+<A HREF="#FileStream(System.String, System.IO.FileMode) Constructor" TARGET="contents">FileStream(System.String, System.IO.FileMode) Constructor</A><BR>
+<A HREF="#FileStream(System.String, System.IO.FileMode, System.IO.FileAccess) Constructor" TARGET="contents">FileStream(System.String, System.IO.FileMode, System.IO.FileAccess) Constructor</A><BR>
+<A HREF="#FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare) Constructor" TARGET="contents">FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare) Constructor</A><BR>
+<A HREF="#FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, int) Constructor" TARGET="contents">FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, int) Constructor</A><BR>
+<A HREF="#FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, int, bool) Constructor" TARGET="contents">FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, int, bool) Constructor</A><BR>
+<P>
+
+FileStream Methods<P>
+
+<A HREF="#FileStream.BeginRead Method" TARGET="contents">FileStream.BeginRead Method</A><BR>
+<A HREF="#FileStream.BeginWrite Method" TARGET="contents">FileStream.BeginWrite Method</A><BR>
+<A HREF="#FileStream.Close Method" TARGET="contents">FileStream.Close Method</A><BR>
+<A HREF="#FileStream.Dispose Method" TARGET="contents">FileStream.Dispose Method</A><BR>
+<A HREF="#FileStream.EndRead Method" TARGET="contents">FileStream.EndRead Method</A><BR>
+<A HREF="#FileStream.EndWrite Method" TARGET="contents">FileStream.EndWrite Method</A><BR>
+<A HREF="#FileStream.Finalize Method" TARGET="contents">FileStream.Finalize Method</A><BR>
+<A HREF="#FileStream.Flush Method" TARGET="contents">FileStream.Flush Method</A><BR>
+<A HREF="#FileStream.Read Method" TARGET="contents">FileStream.Read Method</A><BR>
+<A HREF="#FileStream.ReadByte Method" TARGET="contents">FileStream.ReadByte Method</A><BR>
+<A HREF="#FileStream.Seek Method" TARGET="contents">FileStream.Seek Method</A><BR>
+<A HREF="#FileStream.SetLength Method" TARGET="contents">FileStream.SetLength Method</A><BR>
+<A HREF="#FileStream.Write Method" TARGET="contents">FileStream.Write Method</A><BR>
+<A HREF="#FileStream.WriteByte Method" TARGET="contents">FileStream.WriteByte Method</A><BR>
+<P>
+
+FileStream Properties<P>
+
+<A HREF="#FileStream.CanRead Property" TARGET="contents">FileStream.CanRead Property</A><BR>
+<A HREF="#FileStream.CanSeek Property" TARGET="contents">FileStream.CanSeek Property</A><BR>
+<A HREF="#FileStream.CanWrite Property" TARGET="contents">FileStream.CanWrite Property</A><BR>
+<A HREF="#FileStream.IsAsync Property" TARGET="contents">FileStream.IsAsync Property</A><BR>
+<A HREF="#FileStream.Length Property" TARGET="contents">FileStream.Length Property</A><BR>
+<A HREF="#FileStream.Position Property" TARGET="contents">FileStream.Position Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="FileStream(System.String, System.IO.FileMode) Constructor"><H3>FileStream(System.String, System.IO.FileMode) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public FileStream(string path, FileMode mode);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="FileStream.html" TARGET="contents">FileStream</A>
+class with the specified path and creation mode.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the relative or absolute path for the file that the current <A HREF="FileStream.html" TARGET="contents">FileStream</A> object will encapsulate.</DD>
+<DT>mode</DT>
+<DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> value that determines how to open or create the file.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>mode</I> is System.IO.FileMode.Truncate or System.IO.FileMode.Open, but the specified file cannot be found. If a different mode is specified and the file cannot be found, a new one is created.<P>
+
+</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred, such as specifying System.IO.FileMode.CreateNew when the file specified by <I>path</I> already exists.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> does not exist.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path </I>exceeds the system-defined maximum length. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>mode</I> contains an invalid value. <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor sets System.IO.FileAccess.ReadWrite access to the file, and the System.IO.Stream.CanRead and
+System.IO.Stream.CanWrite properties of the current instance are set to 
+<CODE>true</CODE>
+ .<P>
+
+[<I>Note</I>: <I>path</I> is not required to be a
+file stored on disk; it can be any part of a system that supports access via
+streams. For example, depending on the system, this class may be able to access
+a physical device.]<P>
+
+<P>
+
+System.IO.Stream.CanSeek is
+<CODE>true</CODE>
+ for all <A HREF="FileStream.html" TARGET="contents">FileStream</A> objects that encapsulate files. If <I>path  </I>specifies a device that does not support seeking, the System.IO.FileStream.CanSeek
+property of the resulting <A HREF="FileStream.html" TARGET="contents">FileStream</A> is required to be <CODE>false</CODE>
+. [<I>Note</I>: For additional
+information, see System.IO.Stream.CanSeek .
+]<P>
+
+<P>
+
+ Requests to open the
+   file for writing by the current or another thread will fail until the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object has been closed.
+   Read attempts
+   will succeed.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream(System.String, System.IO.FileMode, System.IO.FileAccess) Constructor"><H3>FileStream(System.String, System.IO.FileMode, System.IO.FileAccess) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public FileStream(string path, FileMode mode, FileAccess access);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="FileStream.html" TARGET="contents">FileStream</A>
+class with the specified path, creation mode, and access
+type.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the relative or absolute path for the file that the current <A HREF="FileStream.html" TARGET="contents">FileStream</A> object will encapsulate.</DD>
+<DT>mode</DT>
+<DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> value that determines how to open or create the file.</DD>
+<DT>access</DT>
+<DD>A <A HREF="FileAccess.html" TARGET="contents">FileAccess</A> value that determines how the file may be accessed by the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object. This parameter is used to specify the initial values of the System.IO.FileStream.CanRead and System.IO.FileStream.CanWrite properties.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>mode</I> is System.IO.FileMode.Truncate or System.IO.FileMode.Open , but the specified file was not found. If a different mode is specified and the file was not found, a new one is created.<P>
+
+</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred, such as specifying System.IO.FileMode.CreateNew when the file specified by <I>path</I> already exists.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified by <I>path</I> does not exist.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The <I>access</I> requested is not permitted by the operating system for the specified <I>path</I>.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path </I>exceeds the system-defined maximum length. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>mode</I> or <I>access</I> contain an invalid value. <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This constructor sets read/write access to the file. Requests to open the
+      file for writing by the current or another thread will fail until the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object has
+      been closed. Read attempts will succeed.<P>
+
+[<I>Note</I>: <I>path</I> is not required to be a
+   file stored on disk; it can be any part of a system that supports access via
+   streams. For example, depending on the system, this class may be able to access
+   a physical device.]<P>
+
+<P>
+
+System.IO.Stream.CanSeek is
+<CODE>true</CODE>
+ for all <A HREF="FileStream.html" TARGET="contents">FileStream</A> objects that encapsulate files. If <I>path  </I>indicates a device that does not support seeking, the System.IO.FileStream.CanSeek
+property on the resulting <A HREF="FileStream.html" TARGET="contents">FileStream</A> is required to be <CODE>false</CODE>
+. For additional
+information, see System.IO.Stream.CanSeek
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare) Constructor"><H3>FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public FileStream(string path, FileMode mode, FileAccess access, FileShare share);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="FileStream.html" TARGET="contents">FileStream</A> class
+   with the specified path, creation mode, access type, and
+   sharing permission.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing relative or absolute path for the file that the current <A HREF="FileStream.html" TARGET="contents">FileStream</A> object will encapsulate.</DD>
+<DT>mode</DT>
+<DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> value that determines how to open or create the file.</DD>
+<DT>access</DT>
+<DD>A <A HREF="FileAccess.html" TARGET="contents">FileAccess</A> value that determines how the file may be accessed by the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object. This parameter is used to specify the initial values of the System.IO.FileStream.CanRead and System.IO.FileStream.CanWrite properties. For additional information, see System.IO.Stream.CanRead and System.IO.Stream.CanWrite.</DD>
+<DT>share</DT>
+<DD>A <A HREF="FileShare.html" TARGET="contents">FileShare</A> value that determines how the file will be shared by processes.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>mode</I> is System.IO.FileMode.Truncate or System.IO.FileMode.Open , but the specified file cannot be found. If a different mode is specified and the file cannot be found, a new one is created.<P>
+
+</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred, such as specifying System.IO.FileMode.CreateNew and the file specified by <I>path</I> already exists.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified by <I>path</I> does not exist.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The <I>access</I> requested is not permitted by the operating system for the specified <I>path</I>.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path </I>exceeds the system-defined maximum length. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>mode</I>, <I>access</I>, or <I>share </I>contains an invalid value. <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This constructor sets read/write access to the file. Requests to open the
+      file for writing by the current or another process will fail until the <A HREF="FileStream.html" TARGET="contents">FileStream</A>
+      object
+      has been closed. Read attempts will succeed.<P>
+
+[<I>Note</I>: <I>path</I> is not required to be a
+   file stored on disk; it can be any part of a system that supports access via
+   streams. For example, depending on the system, this class may be able to access
+   a physical device.]<P>
+
+<P>
+
+System.IO.Stream.CanSeek is
+<CODE>true</CODE>
+ for all <A HREF="FileStream.html" TARGET="contents">FileStream</A> objects that encapsulate files. If <I>path  </I>indicates a device that does not support seeking, the System.IO.FileStream.CanSeek
+property on the resulting <A HREF="FileStream.html" TARGET="contents">FileStream</A> is required to be <CODE>false</CODE>
+. For additional
+information, see System.IO.Stream.CanSeek
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, int) Constructor"><H3>FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public FileStream(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="FileStream.html" TARGET="contents">FileStream</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the relative or absolute path for the file that the current <A HREF="FileStream.html" TARGET="contents">FileStream</A> object will encapsulate.</DD>
+<DT>mode</DT>
+<DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> constant that determines how to open or create the file.</DD>
+<DT>access</DT>
+<DD>A <A HREF="FileAccess.html" TARGET="contents">FileAccess</A> value that determines how the file may be accessed by the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object. This parameter is used to specify the initial values of the System.IO.FileStream.CanRead and System.IO.FileStream.CanWrite properties. For additional information, see System.IO.Stream.CanRead and System.IO.Stream.CanWrite .</DD>
+<DT>share</DT>
+<DD>A <A HREF="FileShare.html" TARGET="contents">FileShare</A> constant that determines how the file will be shared by processes.</DD>
+<DT>bufferSize</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the desired buffer size in bytes.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The <I>path</I> parameter is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>bufferSize</I> is less than or equal to zero.<P>
+
+-or-<P>
+
+<I>mode</I>, <I>access</I>, or <I>share </I>contain an invalid value.<P>
+
+</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>mode</I> is System.IO.FileMode.Truncate or System.IO.FileMode.Open , but the specified file cannot be found. If a different mode is specified and the file cannot be found, a new one is created.<P>
+
+</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred, such as specifying System.IO.FileMode.CreateNew and the file specified by <I>path</I> already exists.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> does not exist.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The <I>access</I> requested is not permitted by the operating system for the specified <I>path</I>.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path </I>exceeds the system-defined maximum length. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <I>path</I> is not required to be a
+   file stored on disk; it can be any part of a system that supports access via
+   streams. For example, depending on the system, this class may be able to access
+   a physical device.]<P>
+
+<P>
+
+System.IO.Stream.CanSeek is
+<CODE>true</CODE>
+ for all <A HREF="FileStream.html" TARGET="contents">FileStream</A> objects that encapsulate files. If <I>path  </I>indicates a device that does not support seeking, the System.IO.FileStream.CanSeek
+property on the resulting <A HREF="FileStream.html" TARGET="contents">FileStream</A> is required to be <CODE>false</CODE>
+. For additional
+information, see System.IO.Stream.CanSeek
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, int, bool) Constructor"><H3>FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, int, bool) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public FileStream(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, bool useAsync);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="FileStream.html" TARGET="contents">FileStream</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the relative or absolute path for the file that the new <A HREF="FileStream.html" TARGET="contents">FileStream</A> object will encapsulate.</DD>
+<DT>mode</DT>
+<DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> value that determines how to open or create the file.</DD>
+<DT>access</DT>
+<DD>A <A HREF="FileAccess.html" TARGET="contents">FileAccess</A> value that determines how the file may be accessed by the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object. This parameter is used to specify the initial values of the System.IO.FileStream.CanRead and System.IO.FileStream.CanWrite properties.</DD>
+<DT>share</DT>
+<DD>A <A HREF="FileShare.html" TARGET="contents">FileShare</A> value that determines how the file will be shared by processes.</DD>
+<DT>bufferSize</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the desired buffer size in bytes.</DD>
+<DT>useAsync</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that specifies whether to use asynchronous I/O or synchronous I/O. If the underlying operating system does not support asynchronous I/O, the <A HREF="FileStream.html" TARGET="contents">FileStream</A> ignores this parameter and uses synchronous I/O.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>bufferSize</I> is less than or equal to zero.<P>
+
+-or-<P>
+
+<I>mode</I>, <I>access</I>, or <I>share </I>contain an invalid value.<P>
+
+</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>mode</I> is System.IO.FileMode.Truncate or System.IO.FileMode.Open, but the specified file cannot be found. If a different mode is specified and the file cannot be found, a new one is created.<P>
+
+</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred, such as specifying System.IO.FileMode.CreateNew and the file specified by <I>path</I> already exists.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified by <I>path</I> does not exist.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The <I>access</I> requested is not permitted by the operating system for the specified <I>path</I>.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path </I>exceeds the system-defined maximum length. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This constructor sets read/write access to the file. Requests to open
+      the file for writing by this or another process will fail until the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object has
+      been closed. Read attempts will succeed.<P>
+
+[<I>Note</I>: <I>path</I> is not required to be a file
+   stored on disk; it can be any part of a system that supports access via streams.
+   For example, depending on the system, this class may be able to access a
+   physical device.]<P>
+
+<P>
+
+System.IO.Stream.CanSeek is <CODE>true</CODE>
+ for all <A HREF="FileStream.html" TARGET="contents">FileStream</A> objects
+that encapsulate files. If <I>path </I>indicates a device that does not support
+seeking, the System.IO.FileStream.CanSeek property on the resulting <A HREF="FileStream.html" TARGET="contents">FileStream</A> is required to be
+<CODE>false</CODE>
+. For additional information, see System.IO.Stream.CanSeek
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.BeginRead Method"><H3>FileStream.BeginRead Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IAsyncResult BeginRead(byte[] array, int offset, int numBytes, AsyncCallback userCallback, object stateObject);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Begins an asynchronous read.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>array</DT>
+<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array that specifies the buffer to read data into.</DD>
+<DT>offset</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the zero based byte offset in <I>array</I> at which to begin reading.</DD>
+<DT>numBytes</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the maximum number of bytes to read.</DD>
+<DT>userCallback</DT>
+<DD>A <A HREF="../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate that references the method to be called when the asynchronous read operation is completed.</DD>
+<DT>stateObject</DT>
+<DD>An application defined object containing the status of the asynchronous read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> that references the asynchronous read.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The sum of <I>offset and</I><I>numBytes</I> is greater than the length of <I>array</I>.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>array</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset</I> or <I>numBytes</I> is negative. </TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The asynchronous read operation attempted to read past the end of the file.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ To determine the number of bytes read, call
+   System.IO.Stream.EndRead(System.IAsyncResult) with the returned
+   <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A>.<P>
+
+Multiple simultaneous asynchronous requests render the
+      request completion order uncertain.<P>
+
+[<I>Note</I>: Use the System.IO.FileStream.CanRead property to determine whether the current
+   instance supports reading. For additional information, see System.IO.Stream.CanRead.<P>
+
+This method overrides System.IO.Stream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object). <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.BeginWrite Method"><H3>FileStream.BeginWrite Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override IAsyncResult BeginWrite(byte[] array, int offset, int numBytes, AsyncCallback userCallback, object stateObject);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Begins an asynchronous write operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>array</DT>
+<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array buffer to write data to.</DD>
+<DT>offset</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the zero based byte offset in <I>array</I> at which to begin writing.</DD>
+<DT>numBytes</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the maximum number of bytes to write.</DD>
+<DT>userCallback</DT>
+<DD>A <A HREF="../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate that references the method to be called when the asynchronous write operation is completed.</DD>
+<DT>stateObject</DT>
+<DD>An application defined object containing the status of the asynchronous read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> that references the asynchronous write.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The sum of <I>offset and </I><I>numBytes</I> is greater than the length of <I>array</I>.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>array</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset</I> or <I>numBytes</I> is negative.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The stream does not support writing, or an I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Multiple simultaneous asynchronous requests render the request completion
+      order uncertain.<P>
+
+[<I>Note</I>: Use the System.IO.FileStream.CanWrite property to determine whether the current
+      instance supports writing. For additional information, see System.IO.Stream.CanWrite.
+      <P>
+
+This method overrides System.IO.Stream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.Close Method"><H3>FileStream.Close Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void Close();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Closes the file and releases any resources associated with
+      the current file stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is
+      equivalent to System.IO.FileStream.Dispose(System.Boolean)(<CODE>true</CODE>
+).<P>
+
+Any data previously written to the buffer is copied to the file
+      before the file stream is closed, so it is not necessary to call System.IO.FileStream.Flush before
+      invoking <CODE>Close</CODE>
+. Following a call to <CODE>Close</CODE>
+, any operations on the file stream
+      might raise exceptions. Invoking this method on the
+      same instance multiple times does not result in an exception.<P>
+
+[<I>Usage</I>: The System.IO.FileStream.Finalize
+method invokes <CODE>Close </CODE>
+so that the file stream is closed
+before the garbage collector finalizes the object. However, objects writing to
+the <A HREF="FileStream.html" TARGET="contents">FileStream</A>, such as a <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A>, might not have flushed
+the data from their internal buffers to the <A HREF="FileStream.html" TARGET="contents">FileStream</A> when the call to <CODE>Finalize</CODE>
+ closes
+the stream. To prevent data loss, always call <CODE>Close</CODE>
+ on the highest-level object.]<P>
+
+<P>
+
+[<I>Note</I>: 
+   
+   This method overrides System.IO.Stream.Close.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.Dispose Method"><H3>FileStream.Dispose Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>protected virtual void Dispose(bool disposing);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Releases the unmanaged resources used by the <A HREF="FileStream.html" TARGET="contents">FileStream</A> and
+   optionally releases the managed resources.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>disposing</DT>
+<DD>Specify <CODE>true</CODE>
+ to release both managed and unmanaged resources, or specify <CODE>false</CODE>
+ to release only unmanaged resources.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+When the <I>disposing</I> parameter is <CODE>true</CODE>
+, this method
+   releases all resources held by any managed objects that this <A HREF="FileStream.html" TARGET="contents">FileStream</A> references.<P>
+
+[<I>Note</I>: System.IO.FileStream.Dispose(System.Boolean)
+may be called multiple times by other objects. When overriding
+System.IO.FileStream.Dispose(System.Boolean)(<A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>), be careful not to reference objects 
+that have been previously disposed in an earlier call to System.IO.FileStream.Dispose(System.Boolean) .<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.EndRead Method"><H3>FileStream.EndRead Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int EndRead(IAsyncResult asyncResult);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Ends a pending asynchronous read request, and blocks until
+      the read request has completed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>asyncResult</DT>
+<DD>The <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object for the pending asynchronous request.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of
+   bytes read from the stream. Returns 0 only if the end of the file has
+   been reached, otherwise, this method blocks until at least one byte is available.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>asyncResult</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>asyncResult</I> was not returned by a call to System.IO.FileStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object).</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>System.IO.FileStream.EndRead(System.IAsyncResult) was called multiple times with <I>asyncResult</I> .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<CODE>EndRead</CODE>
+ will
+   block until the I/O operation has completed.<P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.EndRead(System.IAsyncResult).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.EndWrite Method"><H3>FileStream.EndWrite Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void EndWrite(IAsyncResult asyncResult);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Ends an asynchronous write, blocking until the I/O operation
+      has completed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>asyncResult</DT>
+<DD>The <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object for the pending asynchronous request.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>asyncResult</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>asyncResult</I> was not returned by a call to System.IO.FileStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object).</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>System.IO.FileStream.EndWrite(System.IAsyncResult) was called multiple times with <I>asyncResult</I> .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.IO.FileStream.EndWrite(System.IAsyncResult) will block
+   until the I/O operation has completed.<P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.EndWrite(System.IAsyncResult).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.Finalize Method"><H3>FileStream.Finalize Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>~FileStream();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Releases the resources held by the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.IO.FileStream.Finalize 
+closes the <A HREF="FileStream.html" TARGET="contents">FileStream</A>.<P>
+
+[<I>Note</I>: Application code does not call this method; it is automatically invoked by 
+      during garbage collection unless finalization by the garbage collector has been
+      disabled. For more information, see System.GC.SuppressFinalize(System.Object), and System.Object.Finalize.<P>
+
+This method overrides System.Object.Finalize.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.Flush Method"><H3>FileStream.Flush Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void Flush();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Updates the underlying file with the current state of the buffer and
+      subsequently clears the buffer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current instance has already been closed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+A <A HREF="FileStream.html" TARGET="contents">FileStream</A> buffer can be 
+   used either for reading or writing. If data was copied to the buffer for
+   writing, it is written to the file and the buffer is
+   cleared. <P>
+
+If data was copied to the buffer for reading, and the
+System.IO.Stream.CanSeek property is <CODE>true</CODE>
+, the current 
+   position within the file is decremented by the number of unread bytes in the
+   buffer. The buffer is then cleared. <P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.Flush.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.Read Method"><H3>FileStream.Read Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int Read(byte[] array, int offset, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Reads a block of bytes from the stream and returns the data in
+      the specified buffer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>array</DT>
+<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array. When this method returns, the bytes between <I>offset </I>and <I>(offset + count - 1)</I> in <I>array</I> are replaced by the bytes read from the current stream.</DD>
+<DT>offset</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the byte offset in <I>array</I> at which to begin writing data read from the current stream.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing maximum number of bytes to read.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the total number of bytes
+   read into the buffer, or zero if the end of the stream is reached.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>array</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset</I> or <I>count </I> is negative.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current stream does not support reading.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>offset </I> + <I>count</I> is greater than the length of <I>array</I>.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current stream is closed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.IO.FileStream.Read(System.Byte[],System.Int32,System.Int32) method returns zero only after reaching
+   the end of the stream. Otherwise, System.IO.FileStream.Read(System.Byte[],System.Int32,System.Int32) always reads at least one byte from the
+   stream before returning. If no data is available from the stream, this method
+   blocks until at least one byte of data can be returned.<P>
+
+If the read operation is successful, the current position
+   of the stream is advanced by the number of bytes read. If
+   an exception occurs, the current position of the stream is unchanged.<P>
+
+[<I>Note</I>: Use the System.IO.FileStream.CanRead property to determine
+whether the current instance supports reading. For additional information, see
+System.IO.Stream.CanRead.]<P>
+
+<P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.Read(System.Byte[],System.Int32,System.Int32)
+.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.ReadByte Method"><H3>FileStream.ReadByte Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int ReadByte();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Reads a byte from the file
+      and advances the read position one byte.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The byte cast to a <A HREF="../../System/Int32.html" TARGET="contents">Int32</A>, or -1 if the end of
+   the stream has been reached.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current stream is closed.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current stream does not support reading.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Use the System.IO.FileStream.CanRead property to determine whether the current 
+      instance supports reading. For additional information, see System.IO.Stream.CanRead.<P>
+
+This method overrides System.IO.Stream.ReadByte.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.Seek Method"><H3>FileStream.Seek Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override long Seek(long offset, SeekOrigin origin);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sets the current position of the current stream to the specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>offset</DT>
+<DD>A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> containing the position relative to <I>origin</I> from which to begin seeking.</DD>
+<DT>origin</DT>
+<DD>A <A HREF="SeekOrigin.html" TARGET="contents">SeekOrigin</A> value specifying the beginning, the end, or the current position as a reference point for <I>offset.</I></DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> containing the new position in the stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The stream does not support seeking.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>Attempted seeking before the beginning of the stream or to more than one byte past the end of the stream.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current stream is closed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Use the System.IO.FileStream.CanSeek
+property to determine whether the current instance supports seeking. For
+additional information, see System.IO.Stream.CanSeek
+.]<P>
+
+<P>
+
+[<I>Usage</I>: In order to open a new file and write to it, set the position
+   to one byte beyond the end of the stream. This allows you
+   to append to the file. The position cannot be set to more than
+   one byte beyond the end of the stream.]<P>
+
+<P>
+
+[<I>Note</I>: This method overrides System.IO.Stream.Seek(System.Int64,System.IO.SeekOrigin).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.SetLength Method"><H3>FileStream.SetLength Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void SetLength(long value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sets the length of
+      the current stream to the specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> that specifies the new length of the stream.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current stream does not support writing and seeking.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>value</I> is less than zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If <I>value</I> is less than the current length of the 
+   stream, the stream is truncated. If <I>value</I>
+   is greater than the current length of
+   the stream, the stream is expanded, and the contents of the stream between
+   the old and the new length are undefined. A stream is required to support
+   both writing and seeking to implement System.IO.FileStream.SetLength(System.Int64).<P>
+
+[<I>Note</I>: Use the System.IO.FileStream.CanWrite property to determine whether the current
+   instance supports writing, and the System.IO.FileStream.CanSeek property to determine whether
+   seeking is supported. For additional information, see System.IO.Stream.CanWrite and System.IO.Stream.CanSeek .<P>
+
+This method overrides System.IO.Stream.SetLength(System.Int64).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.Write Method"><H3>FileStream.Write Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void Write(byte[] array, int offset, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a block of bytes from a specified byte array to
+      the current stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>array</DT>
+<DD>The <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array to read.</DD>
+<DT>offset</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the byte offset in <I>array</I> at which to begin reading.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the maximum number of bytes to write to the current stream.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>array</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>offset </I>+ <I>count</I> is greater than the length of <I>array</I>.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset</I> or <I>count</I> is negative.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current stream does not support writing.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the write operation is successful, the current position of the stream is
+      advanced by the number of bytes written. If an exception occurs, the current
+      position of the stream is unchanged.<P>
+
+[<I>Note</I>: Use the System.IO.FileStream.CanWrite property to determine whether the current
+      instance supports writing. For additional information, see System.IO.Stream.CanWrite.<P>
+
+This method overrides System.IO.Stream.Write(System.Byte[],System.Int32,System.Int32).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.WriteByte Method"><H3>FileStream.WriteByte Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override void WriteByte(byte value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Writes a byte to the current position in the file stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> to write to the stream.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The current stream is closed.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current stream does not support writing.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Usage</I>: Use System.IO.FileStream.WriteByte(System.Byte)
+method to write a byte to a <A HREF="FileStream.html" TARGET="contents">FileStream</A>
+efficiently.]<P>
+
+<P>
+
+[<I>Note</I>: Use the System.IO.FileStream.CanWrite property to determine whether the current
+   instance supports writing. For additional information, see System.IO.Stream.CanWrite.<P>
+
+This method overrides System.IO.Stream.WriteByte(System.Byte).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.CanRead Property"><H3>FileStream.CanRead Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool CanRead { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current stream supports reading.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the stream supports reading;
+<CODE>false</CODE>
+ if the stream is
+   closed or was opened with write-only
+   access.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: This property overrides System.IO.Stream.CanRead.<P>
+
+If a class derived from <A HREF="Stream.html" TARGET="contents">Stream</A> does not support reading,
+   the <CODE>Read</CODE>
+ and <CODE>Peek</CODE>
+ methods throw a <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>
+   .<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.CanSeek Property"><H3>FileStream.CanSeek Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool CanSeek { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current stream supports seeking.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the stream supports seeking;
+<CODE>false</CODE>
+ if the stream is 
+   closed or if the <A HREF="FileStream.html" TARGET="contents">FileStream</A> was constructed from an
+   operating-system handle such as a pipe or output to the console.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: If a class derived from <A HREF="Stream.html" TARGET="contents">Stream</A>
+   does not support seeking, a call to System.IO.FileStream.Length (both <CODE>get</CODE>
+ and
+<CODE>set</CODE>
+
+), System.IO.FileStream.Position, or System.IO.FileStream.Seek(System.Int64,System.IO.SeekOrigin) throws a
+<A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>
+.<P>
+
+This property overrides System.IO.Stream.CanSeek.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.CanWrite Property"><H3>FileStream.CanWrite Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool CanWrite { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current stream supports writing.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the stream supports writing;
+<CODE>false</CODE>
+ if the stream is
+   closed or was opened with read-only access.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If a class derived from <A HREF="Stream.html" TARGET="contents">Stream</A> does not support writing, a call to System.IO.FileStream.Write(System.Byte[],System.Int32,System.Int32),
+System.IO.FileStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object), or System.IO.FileStream.EndWrite(System.IAsyncResult) will throw a
+<A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>
+.<P>
+
+[<I>Note</I>: This property 
+   overrides System.IO.Stream.CanWrite.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.IsAsync Property"><H3>FileStream.IsAsync Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual bool IsAsync { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value indicating whether the current
+   instance was opened asynchronously or
+   synchronously.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the
+   current
+<A HREF="FileStream.html" TARGET="contents">FileStream</A> was opened
+   asynchronously; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: This property is
+      read-only.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.Length Property"><H3>FileStream.Length Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override long Length { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the length in bytes of the stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> value containing the length of the stream in bytes.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>System.IO.FileStream.CanSeek for this stream is <CODE>false</CODE>
+.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred, such as the file being closed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="FileStream.Position Property"><H3>FileStream.Position Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override long Position { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the current
+      position of this stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> containing the current position of this stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current stream does not support seeking.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="EndOfStreamException.html" TARGET="contents">EndOfStreamException</A></TD><TD>Attempted seeking past the end of a stream that does not support this.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value specified for a set operation is negative.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ In order to open a new file and write to it, set the position
+      to one byte beyond the end of the stream. This allows you
+      to append to the file. The position cannot be set to more than
+      one byte beyond the end of the stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="FileStream.html" TARGET="contents">System.IO.FileStream Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

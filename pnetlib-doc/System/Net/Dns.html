@@ -1,0 +1,711 @@
+<HTML>
+<HEAD>
+<TITLE>System.Net.Dns Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Net.Dns Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public sealed class Dns</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Dns<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Obtains domain information from the Domain Name System as
+      defined by IETF RFC 1035 and RFC 1036.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="Dns.html" TARGET="contents">Dns</A> class creates
+   and sends queries to obtain information about a host server from the Internet
+   Domain Name System (DNS). In order to access DNS, the machine executing the
+   query is required to be connected to a network. If the query is executed on a
+   machine that does not have access to a domain name server, a <A HREF="../../System/Net/Sockets/SocketException.html" TARGET="contents">SocketException</A>
+   is thrown. <P>
+
+ Information from the DNS query is returned in an
+   instance of the <A HREF="IPHostEntry.html" TARGET="contents">IPHostEntry</A> class. If the specified host
+   has more than one entry in the DNS database, the <A HREF="IPHostEntry.html" TARGET="contents">IPHostEntry</A> instance contains
+   multiple IP addresses and
+   aliases. <P>
+
+[<I>Note</I>: See the <A HREF="IPHostEntry.html" TARGET="contents">IPHostEntry</A>
+class page for an example that uses the <A HREF="Dns.html" TARGET="contents">Dns</A> class.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Dns Methods<P>
+
+<A HREF="#Dns.BeginGetHostByName Method" TARGET="contents">Dns.BeginGetHostByName Method</A><BR>
+<A HREF="#Dns.BeginResolve Method" TARGET="contents">Dns.BeginResolve Method</A><BR>
+<A HREF="#Dns.EndGetHostByName Method" TARGET="contents">Dns.EndGetHostByName Method</A><BR>
+<A HREF="#Dns.EndResolve Method" TARGET="contents">Dns.EndResolve Method</A><BR>
+<A HREF="#Dns.GetHostByAddress(System.String) Method" TARGET="contents">Dns.GetHostByAddress(System.String) Method</A><BR>
+<A HREF="#Dns.GetHostByAddress(System.Net.IPAddress) Method" TARGET="contents">Dns.GetHostByAddress(System.Net.IPAddress) Method</A><BR>
+<A HREF="#Dns.GetHostByName Method" TARGET="contents">Dns.GetHostByName Method</A><BR>
+<A HREF="#Dns.GetHostName Method" TARGET="contents">Dns.GetHostName Method</A><BR>
+<A HREF="#Dns.Resolve Method" TARGET="contents">Dns.Resolve Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dns.BeginGetHostByName Method"><H3>Dns.BeginGetHostByName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static IAsyncResult BeginGetHostByName(string hostName, AsyncCallback requestCallback, object stateObject);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Begins the asynchronous execution of a DNS query to obtain address information about the specified host.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>hostName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the DNS name of the host.</DD>
+<DT> requestCallback</DT>
+<DD>A <A HREF="../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate, or <CODE>null</CODE>
+ .</DD>
+<DT> stateObject</DT>
+<DD>An application-defined object, or <CODE>null</CODE>
+ .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> instance that contains information about the asynchronous operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>hostName</I> is <CODE>null</CODE>
+ .</TD></TR>
+<TR><TD><A HREF="../../System/Net/Sockets/SocketException.html" TARGET="contents">SocketException</A></TD><TD>An error was encountered executing the DNS query .</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have permission to access DNS information.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method starts an 
+      asynchronous request for information about the specified host. To retrieve the
+      results of the query and release resources allocated by this method, call
+      the System.Net.Dns.EndGetHostByName(System.IAsyncResult) method and specify the <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object
+      returned by this method. [<I>Note</I>: The System.Net.Dns.EndGetHostByName(System.IAsyncResult)
+      method should be called exactly once for each call to
+   System.Net.Dns.BeginGetHostByName(System.String,System.AsyncCallback,System.Object) .]<P>
+
+<P>
+
+If the <I>requestCallback</I> parameter is not 
+<CODE>null</CODE>
+, the method referenced by <I>requestCallback</I> is invoked when the 
+   asynchronous operation completes. The <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object returned by this method is
+   passed as the argument to the method referenced by <I>requestCallback</I>
+   . The method referenced by
+<I>requestCallback</I> can retrieve the results of the query by calling 
+System.Net.Dns.EndGetHostByName(System.IAsyncResult) .<P>
+
+
+The <I>stateObject</I> parameter can be any object
+that the caller wishes to have available for the duration of the asynchronous
+operation. This object is available via the System.IAsyncResult.AsyncState
+property of the object returned by this method.
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Dns.html" TARGET="contents">System.Net.Dns Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Dns.BeginResolve Method"><H3>Dns.BeginResolve Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static IAsyncResult BeginResolve(string hostName, AsyncCallback requestCallback, object stateObject);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Begins the asynchronous execution of a DNS query to
+      resolve a host name or IP address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>hostName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the DNS name or IP address of the host.</DD>
+<DT> requestCallback</DT>
+<DD>A <A HREF="../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate or <CODE>null</CODE>
+ .</DD>
+<DT> stateObject</DT>
+<DD>An application-defined object, or <CODE>null</CODE>
+ .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> instance that contains information about the asynchronous operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>hostName</I> is <CODE>null</CODE>
+ .</TD></TR>
+<TR><TD><A HREF="../../System/Net/Sockets/SocketException.html" TARGET="contents">SocketException</A></TD><TD>An error was encountered executing the DNS query .</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have permission to access DNS information.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method starts an asynchronous request for DNS
+      information about the specified host. To retrieve the results of the query and
+      release resources allocated by this method, call the System.Net.Dns.EndResolve(System.IAsyncResult)
+      method, and specify the <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object returned by this method. [<I>Note</I>: The System.Net.Dns.EndResolve(System.IAsyncResult)
+      method should be called exactly once for each call to System.Net.Dns.BeginResolve(System.String,System.AsyncCallback,System.Object)]<P>
+
+.<P>
+
+ If the <I>requestCallback</I> parameter is not
+<CODE>null</CODE>
+, the method referenced by <I>requestCallback</I> is 
+   invoked when the asynchronous operation completes. The <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object
+   returned by this method is passed as the argument to the method referenced by
+<I>requestCallback</I>. The method referenced by <I>requestCallback</I> can 
+   retrieve the results of the query by calling System.Net.Dns.EndResolve(System.IAsyncResult).<P>
+
+ The <I>stateObject</I> parameter can be any object that the caller wishes
+   to have available for the duration of the asynchronous operation. This object is
+   available via the System.IAsyncResult.AsyncState property of the object returned by this
+   method. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Dns.html" TARGET="contents">System.Net.Dns Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Dns.EndGetHostByName Method"><H3>Dns.EndGetHostByName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static IPHostEntry EndGetHostByName(IAsyncResult asyncResult);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Ends an asynchronous query to obtain address information about the specified host.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>asyncResult</DT>
+<DD>The <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> object that holds the state information for the asynchronous operation.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="IPHostEntry.html" TARGET="contents">IPHostEntry</A> object containing DNS address information about a host. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>asyncResult </I>is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method blocks if the asynchronous operation has not completed.<P>
+
+The System.Net.Dns.EndGetHostByName(System.IAsyncResult) method completes an asynchronous request for
+   DNS information that was started with a call to System.Net.Dns.BeginGetHostByName(System.String,System.AsyncCallback,System.Object). The object
+   specified for the <I>asyncResult</I> parameter is required to be the same
+   object as was returned by the System.Net.Dns.BeginGetHostByName(System.String,System.AsyncCallback,System.Object) method call that began the request.
+   <P>
+
+If the System.Net.Dns.EndGetHostByName(System.IAsyncResult) method is invoked via the <A HREF="../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate 
+specified to the System.Net.Dns.BeginGetHostByName(System.String,System.AsyncCallback,System.Object) method, the <I>asyncResult</I>
+parameter is the <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> argument passed to the delegate&apos;s method.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Dns.html" TARGET="contents">System.Net.Dns Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Dns.EndResolve Method"><H3>Dns.EndResolve Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static IPHostEntry EndResolve(IAsyncResult asyncResult);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Ends an asynchronous query to resolve a host name or IP address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>asyncResult</DT>
+<DD>The <CODE>System.IAsyncResult</CODE>
+ object that holds the state information for the asynchronous operation. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="IPHostEntry.html" TARGET="contents">IPHostEntry</A> object containing address information about a host. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>asyncResult </I>is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method blocks if the asynchronous operation has not
+      completed.<P>
+
+The System.Net.Dns.EndResolve(System.IAsyncResult) method completes an asynchronous request for
+   DNS information that was started with a call to System.Net.Dns.BeginResolve(System.String,System.AsyncCallback,System.Object) . The object specified for the
+<I>asyncResult</I> parameter is required to be the same object as was returned 
+   by the System.Net.Dns.BeginResolve(System.String,System.AsyncCallback,System.Object) method call that began the request.
+   <P>
+
+If the System.Net.Dns.EndResolve(System.IAsyncResult) method is invoked via the <A HREF="../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate 
+specified to the System.Net.Dns.BeginResolve(System.String,System.AsyncCallback,System.Object) method, the <I>asyncResult</I> parameter is the
+<A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> 
+argument passed to the delegate&apos;s method.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Dns.html" TARGET="contents">System.Net.Dns Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Dns.GetHostByAddress(System.String) Method"><H3>Dns.GetHostByAddress(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static IPHostEntry GetHostByAddress(string address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Queries DNS for the DNS host name of the specified IP address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing an IP address.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="IPHostEntry.html" TARGET="contents">IPHostEntry</A> instance containing the host information.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>address </I>is <CODE>null</CODE>
+ .</TD></TR>
+<TR><TD><A HREF="../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>address </I>is not a valid IP address.</TD></TR>
+<TR><TD><A HREF="../../System/Net/Sockets/SocketException.html" TARGET="contents">SocketException</A></TD><TD>An error was encountered executing the DNS query .</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have permission to access DNS information.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The IP address specified by the <I>address </I>parameter
+   is required to be in dotted-quad notation (for example, &quot;192.168.1.2&quot;).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Dns.html" TARGET="contents">System.Net.Dns Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Dns.GetHostByAddress(System.Net.IPAddress) Method"><H3>Dns.GetHostByAddress(System.Net.IPAddress) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static IPHostEntry GetHostByAddress(IPAddress address);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Queries DNS for the DNS host name of the specified IP
+      address.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="IPAddress.html" TARGET="contents">IPAddress</A> instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="IPHostEntry.html" TARGET="contents">IPHostEntry</A> instance containing the host information.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>address </I>is <CODE>null</CODE>
+ .</TD></TR>
+<TR><TD><A HREF="../../System/Net/Sockets/SocketException.html" TARGET="contents">SocketException</A></TD><TD>An error was encountered executing the DNS query .</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have permission to access DNS information.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Dns.html" TARGET="contents">System.Net.Dns Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Dns.GetHostByName Method"><H3>Dns.GetHostByName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static IPHostEntry GetHostByName(string hostName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Queries DNS for address information about the specified
+      host.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>hostName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the DNS name of the host.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="IPHostEntry.html" TARGET="contents">IPHostEntry</A> object containing host information for the address
+   specified in <I>hostName</I>
+   .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>hostName </I>is <CODE>null</CODE>
+ .</TD></TR>
+<TR><TD><A HREF="../../System/Net/Sockets/SocketException.html" TARGET="contents">SocketException</A></TD><TD>An error was encountered executing the DNS query .</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have permission to access DNS information.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: To retrieve host information asynchronously, use the System.Net.Dns.BeginGetHostByName(System.String,System.AsyncCallback,System.Object) and System.Net.Dns.EndGetHostByName(System.IAsyncResult)
+   methods. <P>
+
+See the <A HREF="IPHostEntry.html" TARGET="contents">IPHostEntry</A>
+class page for an example that uses the System.Net.Dns.GetHostByName(System.String) method.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Dns.html" TARGET="contents">System.Net.Dns Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Dns.GetHostName Method"><H3>Dns.GetHostName Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static string GetHostName();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the DNS host name of the local machine.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the DNS host name
+   of the local machine.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/Net/Sockets/SocketException.html" TARGET="contents">SocketException</A></TD><TD>An error was encountered resolving the local host name.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have permission to access DNS information.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Dns.html" TARGET="contents">System.Net.Dns Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Dns.Resolve Method"><H3>Dns.Resolve Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static IPHostEntry Resolve(string hostName);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Resolves a DNS host name or IP address to a <A HREF="IPHostEntry.html" TARGET="contents">IPHostEntry</A>
+instance. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>hostName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing a DNS-style host name or IP address.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="IPHostEntry.html" TARGET="contents">IPHostEntry</A> instance
+   containing address information about the host specified in
+<I>hostName</I>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>hostName </I>is <CODE>null</CODE>
+ .</TD></TR>
+<TR><TD><A HREF="../../System/Net/Sockets/SocketException.html" TARGET="contents">SocketException</A></TD><TD>An error was encountered executing the DNS query .</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have permission to access DNS information.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Net.Dns.Resolve(System.String) method
+   queries a DNS server for the IP address associated
+   with a host name or an IP address in dotted-quad notation. <P>
+
+When <I>hostName </I>is a DNS-style host name associated with multiple IP
+addresses, only the first IP address that resolves to that host name is
+returned. <P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the use of the System.Net.Dns.Resolve(System.String) method.<P>
+
+<PRE>using System;
+using System.Net;
+
+public class DnsTest {
+ public static void Main() {
+   IPHostEntry hostInfo1 = Dns.Resolve(&quot;www.contoso.com&quot;);
+   DisplayHostInfo(hostInfo1);
+   Console.WriteLine();
+ }
+
+ public static void DisplayHostInfo(IPHostEntry hostInfo) {
+   string[] aliases = hostInfo.Aliases;
+   IPAddress[] addresses = hostInfo.AddressList;
+   Console.WriteLine(&quot;The host name is: {0}&quot;, hostInfo.HostName);
+
+   for(int x = 0; x &lt; aliases.Length; x++)
+     Console.WriteLine(&quot;Alias {0} == {1}&quot;, aliases[x], addresses[x]);
+ }
+}
+</PRE>
+The output is<P>
+
+<CODE> The host name is: contoso.com<P>
+
+ Alias www.contoso.com == 207.46.230.186 <P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Dns.html" TARGET="contents">System.Net.Dns Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

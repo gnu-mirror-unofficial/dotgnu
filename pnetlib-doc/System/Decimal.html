@@ -1,0 +1,4405 @@
+<HTML>
+<HEAD>
+<TITLE>System.Decimal Structure</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Decimal Structure</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public struct Decimal : IComparable, IFormattable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="ValueType.html" TARGET="contents">ValueType</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;Decimal<P>
+
+This type implements <A HREF="IFormattable.html" TARGET="contents">IFormattable</A> and <A HREF="IComparable.html" TARGET="contents">IComparable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Represents a floating-point decimal data type with up to 29 significant
+      digits, suitable for financial and commercial calculations.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="Decimal.html" TARGET="contents">Decimal</A> type can represent
+   values from approximately -7.9 x 10<SUP>28</SUP> to 7.9 x 10<SUP>28</SUP>, with 28 or 29 significant
+digits. The <A HREF="Decimal.html" TARGET="contents">Decimal</A> data type is ideally suited
+to financial calculations that require a large number of significant digits and
+no round-off errors.<P>
+
+The finite set of values of type decimal are of the form
+   -1<SUP><I>s</I></SUP> x c x 10<SUP><I>-f</I></SUP>, where the sign <I>s</I> is 0 or
+1, the coefficient c is given by 0 &lt;= <I>c</I> &lt; 2<SUP>96</SUP> , and the scale f is such that 0 &lt;= <I>f</I> &lt;=
+28.<P>
+
+A <A HREF="Decimal.html" TARGET="contents">Decimal</A> is represented as a 96-bit integer scaled by a power of
+ten. For a <A HREF="Decimal.html" TARGET="contents">Decimal</A> with an absolute value less than 1.0, the value is exact
+to the 28<SUP>th</SUP>
+decimal place, but no further. For a <A HREF="Decimal.html" TARGET="contents">Decimal</A> with an absolute value greater than or
+equal to 1.0, the value is exact to 28 or 29 digits.<P>
+
+The result of an operation on values of type <A HREF="Decimal.html" TARGET="contents">Decimal</A> is that which would result
+from calculating an exact result
+(preserving scale, as defined for each operator) and then rounding to fit the representation. That is, results
+are exact to 28 or 29 digits, but to no more than
+28 decimal places. A zero result has a sign of 0 and a
+scale of 0.<P>
+
+ Results are rounded to the nearest representable
+   value, and, when a result is equally close to two representable values,
+   to the value that has an even number in the least significant digit
+   position (banker&apos;s rounding).<P>
+
+[<I>Note</I>:  Unlike the <A HREF="Single.html" TARGET="contents">Single</A> and <A HREF="Double.html" TARGET="contents">Double</A> data types,
+   decimal fractional numbers such as 0.1 can be represented exactly in the <A HREF="Decimal.html" TARGET="contents">Decimal</A> representation.
+   In the <A HREF="Single.html" TARGET="contents">Single</A> and <A HREF="Double.html" TARGET="contents">Double</A>
+   representations, such numbers are often infinite fractions, making
+   those representations prone to round-off errors.<P>
+
+Further, the <A HREF="Decimal.html" TARGET="contents">Decimal</A> representation preserves scale, so that 1.23 + 1.27 will give the answer 2.50, not 2.5. <P>
+
+]<P>
+
+If a <A HREF="Decimal.html" TARGET="contents">Decimal</A> arithmetic operation produces a value that is too small
+for the <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+format after rounding, the result of the operation is zero. If a <A HREF="Decimal.html" TARGET="contents">Decimal</A> arithmetic
+operation produces a result that is too large for the <A HREF="Decimal.html" TARGET="contents">Decimal</A> format, a
+<A HREF="OverflowException.html" TARGET="contents">OverflowException</A> is thrown.<P>
+
+[<I>Note</I>: The <A HREF="Decimal.html" TARGET="contents">Decimal</A> class implements implicit conversions from the <A HREF="SByte.html" TARGET="contents">SByte</A>, <A HREF="Byte.html" TARGET="contents">Byte</A>, <A HREF="Int16.html" TARGET="contents">Int16</A>, <A HREF="UInt16.html" TARGET="contents">UInt16</A>, <A HREF="Int32.html" TARGET="contents">Int32</A>, <A HREF="UInt32.html" TARGET="contents">UInt32</A>, <A HREF="Int64.html" TARGET="contents">Int64</A>, and <A HREF="UInt64.html" TARGET="contents">UInt64</A> types to <A HREF="Decimal.html" TARGET="contents">Decimal</A>. These implicit
+   conversions never lose information and never throw exceptions. The <A HREF="Decimal.html" TARGET="contents">Decimal</A> class also
+   implements explicit conversions from <A HREF="Decimal.html" TARGET="contents">Decimal</A> to <A HREF="Byte.html" TARGET="contents">Byte</A>, <A HREF="SByte.html" TARGET="contents">SByte</A>, <A HREF="Int16.html" TARGET="contents">Int16</A>, <A HREF="UInt16.html" TARGET="contents">UInt16</A>, <A HREF="Int32.html" TARGET="contents">Int32</A>, <A HREF="UInt32.html" TARGET="contents">UInt32</A>, <A HREF="Int64.html" TARGET="contents">Int64</A>, and <A HREF="UInt64.html" TARGET="contents">UInt64</A>. These explicit conversions round the
+<A HREF="Decimal.html" TARGET="contents">Decimal</A> value 
+   towards zero to the nearest integer, and then convert that integer to the
+   destination type. A <A HREF="OverflowException.html" TARGET="contents">OverflowException</A> is thrown if the result is not within the range of the
+   destination type.<P>
+
+The <A HREF="Decimal.html" TARGET="contents">Decimal</A> class provides narrowing conversions to and from the
+<A HREF="Single.html" TARGET="contents">Single</A> and 
+<A HREF="Double.html" TARGET="contents">Double</A> types. A 
+conversion from <A HREF="Decimal.html" TARGET="contents">Decimal</A> to <A HREF="Single.html" TARGET="contents">Single</A> or <A HREF="Double.html" TARGET="contents">Double</A> may lose precision, but will not lose information about
+the overall magnitude of the numeric value, and will never throw an exception. A
+conversion from <A HREF="Single.html" TARGET="contents">Single</A> or <A HREF="Double.html" TARGET="contents">Double</A> to <A HREF="Decimal.html" TARGET="contents">Decimal</A> throws a <A HREF="OverflowException.html" TARGET="contents">OverflowException</A> if the value is not within the range of
+the <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+type.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Decimal Constructors<P>
+
+<A HREF="#Decimal(int) Constructor" TARGET="contents">Decimal(int) Constructor</A><BR>
+<A HREF="#Decimal(uint) Constructor" TARGET="contents">Decimal(uint) Constructor</A><BR>
+<A HREF="#Decimal(long) Constructor" TARGET="contents">Decimal(long) Constructor</A><BR>
+<A HREF="#Decimal(ulong) Constructor" TARGET="contents">Decimal(ulong) Constructor</A><BR>
+<A HREF="#Decimal(float) Constructor" TARGET="contents">Decimal(float) Constructor</A><BR>
+<A HREF="#Decimal(double) Constructor" TARGET="contents">Decimal(double) Constructor</A><BR>
+<A HREF="#Decimal(int[]) Constructor" TARGET="contents">Decimal(int[]) Constructor</A><BR>
+<P>
+
+Decimal Methods<P>
+
+<A HREF="#Decimal.Add Method" TARGET="contents">Decimal.Add Method</A><BR>
+<A HREF="#Decimal.Compare Method" TARGET="contents">Decimal.Compare Method</A><BR>
+<A HREF="#Decimal.CompareTo Method" TARGET="contents">Decimal.CompareTo Method</A><BR>
+<A HREF="#Decimal.Divide Method" TARGET="contents">Decimal.Divide Method</A><BR>
+<A HREF="#Decimal.Equals(System.Object) Method" TARGET="contents">Decimal.Equals(System.Object) Method</A><BR>
+<A HREF="#Decimal.Equals(System.Decimal, System.Decimal) Method" TARGET="contents">Decimal.Equals(System.Decimal, System.Decimal) Method</A><BR>
+<A HREF="#Decimal.Floor Method" TARGET="contents">Decimal.Floor Method</A><BR>
+<A HREF="#Decimal.GetBits Method" TARGET="contents">Decimal.GetBits Method</A><BR>
+<A HREF="#Decimal.GetHashCode Method" TARGET="contents">Decimal.GetHashCode Method</A><BR>
+<A HREF="#Decimal.Multiply Method" TARGET="contents">Decimal.Multiply Method</A><BR>
+<A HREF="#Decimal.Negate Method" TARGET="contents">Decimal.Negate Method</A><BR>
+<A HREF="#Decimal.Parse(System.String) Method" TARGET="contents">Decimal.Parse(System.String) Method</A><BR>
+<A HREF="#Decimal.Parse(System.String, System.Globalization.NumberStyles) Method" TARGET="contents">Decimal.Parse(System.String, System.Globalization.NumberStyles) Method</A><BR>
+<A HREF="#Decimal.Parse(System.String, System.IFormatProvider) Method" TARGET="contents">Decimal.Parse(System.String, System.IFormatProvider) Method</A><BR>
+<A HREF="#Decimal.Parse(System.String, System.Globalization.NumberStyles, System.IFormatProvider) Method" TARGET="contents">Decimal.Parse(System.String, System.Globalization.NumberStyles, System.IFormatProvider) Method</A><BR>
+<A HREF="#Decimal.Remainder Method" TARGET="contents">Decimal.Remainder Method</A><BR>
+<A HREF="#Decimal.Round Method" TARGET="contents">Decimal.Round Method</A><BR>
+<A HREF="#Decimal.Subtract Method" TARGET="contents">Decimal.Subtract Method</A><BR>
+<A HREF="#Decimal.ToString(System.IFormatProvider) Method" TARGET="contents">Decimal.ToString(System.IFormatProvider) Method</A><BR>
+<A HREF="#Decimal.ToString(System.String, System.IFormatProvider) Method" TARGET="contents">Decimal.ToString(System.String, System.IFormatProvider) Method</A><BR>
+<A HREF="#Decimal.ToString() Method" TARGET="contents">Decimal.ToString() Method</A><BR>
+<A HREF="#Decimal.ToString(System.String) Method" TARGET="contents">Decimal.ToString(System.String) Method</A><BR>
+<A HREF="#Decimal.Truncate Method" TARGET="contents">Decimal.Truncate Method</A><BR>
+<A HREF="#Decimal.op_Addition Method" TARGET="contents">Decimal.op_Addition Method</A><BR>
+<A HREF="#Decimal.op_Decrement Method" TARGET="contents">Decimal.op_Decrement Method</A><BR>
+<A HREF="#Decimal.op_Division Method" TARGET="contents">Decimal.op_Division Method</A><BR>
+<A HREF="#Decimal.op_Equality Method" TARGET="contents">Decimal.op_Equality Method</A><BR>
+<A HREF="#System.Decimal Decimal.op_Explicit(float) Method" TARGET="contents">System.Decimal Decimal.op_Explicit(float) Method</A><BR>
+<A HREF="#System.Decimal Decimal.op_Explicit(double) Method" TARGET="contents">System.Decimal Decimal.op_Explicit(double) Method</A><BR>
+<A HREF="#byte Decimal.op_Explicit(System.Decimal) Method" TARGET="contents">byte Decimal.op_Explicit(System.Decimal) Method</A><BR>
+<A HREF="#sbyte Decimal.op_Explicit(System.Decimal) Method" TARGET="contents">sbyte Decimal.op_Explicit(System.Decimal) Method</A><BR>
+<A HREF="#char Decimal.op_Explicit(System.Decimal) Method" TARGET="contents">char Decimal.op_Explicit(System.Decimal) Method</A><BR>
+<A HREF="#short Decimal.op_Explicit(System.Decimal) Method" TARGET="contents">short Decimal.op_Explicit(System.Decimal) Method</A><BR>
+<A HREF="#ushort Decimal.op_Explicit(System.Decimal) Method" TARGET="contents">ushort Decimal.op_Explicit(System.Decimal) Method</A><BR>
+<A HREF="#int Decimal.op_Explicit(System.Decimal) Method" TARGET="contents">int Decimal.op_Explicit(System.Decimal) Method</A><BR>
+<A HREF="#uint Decimal.op_Explicit(System.Decimal) Method" TARGET="contents">uint Decimal.op_Explicit(System.Decimal) Method</A><BR>
+<A HREF="#long Decimal.op_Explicit(System.Decimal) Method" TARGET="contents">long Decimal.op_Explicit(System.Decimal) Method</A><BR>
+<A HREF="#ulong Decimal.op_Explicit(System.Decimal) Method" TARGET="contents">ulong Decimal.op_Explicit(System.Decimal) Method</A><BR>
+<A HREF="#float Decimal.op_Explicit(System.Decimal) Method" TARGET="contents">float Decimal.op_Explicit(System.Decimal) Method</A><BR>
+<A HREF="#double Decimal.op_Explicit(System.Decimal) Method" TARGET="contents">double Decimal.op_Explicit(System.Decimal) Method</A><BR>
+<A HREF="#Decimal.op_GreaterThan Method" TARGET="contents">Decimal.op_GreaterThan Method</A><BR>
+<A HREF="#Decimal.op_GreaterThanOrEqual Method" TARGET="contents">Decimal.op_GreaterThanOrEqual Method</A><BR>
+<A HREF="#System.Decimal Decimal.op_Implicit(byte) Method" TARGET="contents">System.Decimal Decimal.op_Implicit(byte) Method</A><BR>
+<A HREF="#System.Decimal Decimal.op_Implicit(sbyte) Method" TARGET="contents">System.Decimal Decimal.op_Implicit(sbyte) Method</A><BR>
+<A HREF="#System.Decimal Decimal.op_Implicit(short) Method" TARGET="contents">System.Decimal Decimal.op_Implicit(short) Method</A><BR>
+<A HREF="#System.Decimal Decimal.op_Implicit(ushort) Method" TARGET="contents">System.Decimal Decimal.op_Implicit(ushort) Method</A><BR>
+<A HREF="#System.Decimal Decimal.op_Implicit(char) Method" TARGET="contents">System.Decimal Decimal.op_Implicit(char) Method</A><BR>
+<A HREF="#System.Decimal Decimal.op_Implicit(int) Method" TARGET="contents">System.Decimal Decimal.op_Implicit(int) Method</A><BR>
+<A HREF="#System.Decimal Decimal.op_Implicit(uint) Method" TARGET="contents">System.Decimal Decimal.op_Implicit(uint) Method</A><BR>
+<A HREF="#System.Decimal Decimal.op_Implicit(long) Method" TARGET="contents">System.Decimal Decimal.op_Implicit(long) Method</A><BR>
+<A HREF="#System.Decimal Decimal.op_Implicit(ulong) Method" TARGET="contents">System.Decimal Decimal.op_Implicit(ulong) Method</A><BR>
+<A HREF="#Decimal.op_Increment Method" TARGET="contents">Decimal.op_Increment Method</A><BR>
+<A HREF="#Decimal.op_Inequality Method" TARGET="contents">Decimal.op_Inequality Method</A><BR>
+<A HREF="#Decimal.op_LessThan Method" TARGET="contents">Decimal.op_LessThan Method</A><BR>
+<A HREF="#Decimal.op_LessThanOrEqual Method" TARGET="contents">Decimal.op_LessThanOrEqual Method</A><BR>
+<A HREF="#Decimal.op_Modulus Method" TARGET="contents">Decimal.op_Modulus Method</A><BR>
+<A HREF="#Decimal.op_Multiply Method" TARGET="contents">Decimal.op_Multiply Method</A><BR>
+<A HREF="#Decimal.op_Subtraction Method" TARGET="contents">Decimal.op_Subtraction Method</A><BR>
+<A HREF="#Decimal.op_UnaryNegation Method" TARGET="contents">Decimal.op_UnaryNegation Method</A><BR>
+<A HREF="#Decimal.op_UnaryPlus Method" TARGET="contents">Decimal.op_UnaryPlus Method</A><BR>
+<P>
+
+Decimal Fields<P>
+
+<A HREF="#Decimal.MaxValue Field" TARGET="contents">Decimal.MaxValue Field</A><BR>
+<A HREF="#Decimal.MinValue Field" TARGET="contents">Decimal.MinValue Field</A><BR>
+<A HREF="#Decimal.MinusOne Field" TARGET="contents">Decimal.MinusOne Field</A><BR>
+<A HREF="#Decimal.One Field" TARGET="contents">Decimal.One Field</A><BR>
+<A HREF="#Decimal.Zero Field" TARGET="contents">Decimal.Zero Field</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Decimal(int) Constructor"><H3>Decimal(int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Decimal(int value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Int32.html" TARGET="contents">Int32</A> value used to initialize the new <A HREF="Decimal.html" TARGET="contents">Decimal</A>. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the new <A HREF="Decimal.html" TARGET="contents">Decimal</A> to the value
+   specified by <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal(uint) Constructor"><H3>Decimal(uint) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Decimal(uint value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="UInt32.html" TARGET="contents">UInt32</A> value used to initialize the new <A HREF="Decimal.html" TARGET="contents">Decimal</A>. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use the 
+   <A HREF="Decimal.html" TARGET="contents">Decimal</A>(<A HREF="Int64.html" TARGET="contents">Int64</A>) constructor.<P>
+
+This constructor initializes the new <A HREF="Decimal.html" TARGET="contents">Decimal</A> to the value
+   specified by <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal(long) Constructor"><H3>Decimal(long) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Decimal(long value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Int64.html" TARGET="contents">Int64</A> value used to initialize the new <A HREF="Decimal.html" TARGET="contents">Decimal</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the new <A HREF="Decimal.html" TARGET="contents">Decimal</A> to the value
+   specified by <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal(ulong) Constructor"><H3>Decimal(ulong) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Decimal(ulong value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="UInt64.html" TARGET="contents">UInt64</A> value used to initialize the new <A HREF="Decimal.html" TARGET="contents">Decimal</A>. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the new <A HREF="Decimal.html" TARGET="contents">Decimal</A> to the value
+   specified by <I>value</I>.<P>
+
+This member is not CLS-compliant. For a CLS-compliant alternative, use the 
+<A HREF="Decimal.html" TARGET="contents">Decimal</A>(<A HREF="Int64.html" TARGET="contents">Int64</A>) constructor.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal(float) Constructor"><H3>Decimal(float) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Decimal(float value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Single.html" TARGET="contents">Single</A> value used to initialize the new <A HREF="Decimal.html" TARGET="contents">Decimal</A>. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>value</I> is one of the following:<P>
+
+greater than System.Decimal.MaxValue<P>
+
+less than System.Decimal.MinValue<P>
+
+equal to System.Single.NaN<P>
+
+equal to System.Single.PositiveInfinity<P>
+
+equal to System.Single.NegativeInfinity<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the new <A HREF="Decimal.html" TARGET="contents">Decimal</A> to the value
+   specified by <I>value</I>. This constructor rounds <I>value</I> to 7
+   significant digits using banker&apos;s rounding.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal(double) Constructor"><H3>Decimal(double) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Decimal(double value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Double.html" TARGET="contents">Double</A> value used to initialize the new <A HREF="Decimal.html" TARGET="contents">Decimal</A>. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>value</I> is one of the following:<P>
+
+greater than System.Decimal.MaxValue<P>
+
+less than System.Decimal.MinValue<P>
+
+equal to System.Double.NaN<P>
+
+equal to System.Double.PositiveInfinity<P>
+
+equal to System.Double.NegativeInfinity<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the new <A HREF="Decimal.html" TARGET="contents">Decimal</A> to the value
+   specified by <I>value</I>. This constructor rounds <I>value</I> to 15
+   significant digits using banker&apos;s rounding.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal(int[]) Constructor"><H3>Decimal(int[]) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public Decimal(int[] bits);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new <A HREF="Decimal.html" TARGET="contents">Decimal</A> value. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>bits</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> array containing a bit representation of a <A HREF="Decimal.html" TARGET="contents">Decimal</A>. <I>bits</I> contains the following four elements: <P>
+
+ Index 0 (bits 0-31) contains the low-order 32 bits of the decimal&apos;s coefficient. <P>
+
+ Index 1 (bits 32-63) contains the middle 32 bits of the decimal&apos;s coefficient.<P>
+
+ Index 2 (bits 64-95) contains the high-order 32 bits of the decimal&apos;s coefficient.<P>
+
+ Index 3 (bits 96-127) contains the sign bit and scale. See below.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>bits</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>bits</I> does not contain four elements. <P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This constructor initializes the new <A HREF="Decimal.html" TARGET="contents">Decimal</A> to the value represented by the elements of
+<I>bits</I>
+. <P>
+
+[<I>Note</I>:  The elements of
+<I> bits</I> represent a
+<A HREF="Decimal.html" TARGET="contents">Decimal</A> as 
+   a coefficient <I>c</I> , a scale <I>f</I>, and sign bit <I>s</I>. The decimal value is computed as
+   -1<SUP>s</SUP> x <I>c</I> x 10<SUP>-f</SUP>. The
+coefficient <I>c </I>is divided into three 32-bit integer values.]<P>
+
+<P>
+
+ The sign and scale occupy a total of 32 bits as follows:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>NameDescription</TH><TH>Bit PositionsNameDescription</TH></TR>
+<TR><TD>(None.)Zero.</TD><TD> 0-15(None.)Zero.</TD></TR>
+<TR><TD> ScaleContains a value between 0 and 28.</TD><TD> 16-23  ScaleContains a value between 0 and 28.</TD></TR>
+<TR><TD>(None.)Zero.</TD><TD> 24-30 (None.)Zero.</TD></TR>
+<TR><TD>Sign0 (positive) or 1 (negative).</TD><TD> 31 Sign0 (positive) or 1 (negative).</TD></TR>
+</TABLE>
+[<I>Note</I>:  A numeric
+   value may have several possible binary representations; they are numerically equal
+   but have different scales. Also, the bit representation differentiates between
+   -0, 0.00, and 0; these are all treated as 0 in operations, and any zero result will
+   have a sign of 0 and a scale of
+   0.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates using the <A HREF="Decimal.html" TARGET="contents">Decimal</A> (Int32 [])
+   constructor.<P>
+
+<PRE>using System;
+class ConstructDecimal {
+ public static void Main() {
+ int negativeBitValue = unchecked ((int)0x80000000);
+ int [] parts0 = {0,0,0,0}; //Positive Zero.
+ int [] parts1 = {1,0,0,0};
+ int [] parts2 = {0,1,0,0};
+ int [] parts3 = {0,0,1,0};
+ int [] parts4 = {0,0,0,negativeBitValue}; // Negative zero.
+ int [] parts5 = {1,1,1,0};
+ int [] partsMaxValue = {-1,-1,-1,0};
+ int [] partsMinValue = {-1,-1,-1,negativeBitValue};
+
+ decimal d = new Decimal(parts0);
+ Console.WriteLine(&quot;{{0,0,0,0}} = {0}&quot;,d);
+ d = new Decimal(parts1);
+ Console.WriteLine(&quot;{{1,0,0,0}} = {0}&quot;,d);
+ d = new Decimal(parts2);
+ Console.WriteLine(&quot;{{0,1,0,0}} = {0}&quot;,d);
+ d = new Decimal(parts3);
+ Console.WriteLine(&quot;{{0,0,1,0}} = {0}&quot;,d);
+ d = new Decimal(parts4);
+ Console.WriteLine(&quot;{{0,0,0,{0}}} = {1}&quot;,parts4[3],d);
+ d = new Decimal(parts5);
+ Console.WriteLine(&quot;{{1,1,1,0}} = {0}&quot;,d);
+ d = new Decimal(partsMaxValue );
+ Console.WriteLine(&quot;{{-1,-1,-1,0}} = {0}&quot;,d);
+ d = new Decimal(partsMinValue);
+ Console.WriteLine(&quot;{{-1,-1,-1,{0}}} = {1}&quot;,partsMinValue [3],d);
+ }
+}
+</PRE>
+The output is<P>
+
+<CODE>{0,0,0,0} = 0<P>
+
+{1,0,0,0} = 1<P>
+
+{0,1,0,0} = 4294967296<P>
+
+{0,0,1,0} = 18446744073709551616<P>
+
+{0,0,0,-2147483648} = 0<P>
+
+{1,1,1,0} = 18446744078004518913<P>
+
+{-1,-1,-1,0} = 79228162514264337593543950335<P>
+
+{-1,-1,-1,-2147483648} = -79228162514264337593543950335<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Add Method"><H3>Decimal.Add Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static decimal Add(decimal d1, decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds two <A HREF="Decimal.html" TARGET="contents">Decimal</A> values
+   together.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The first value to add..</DD>
+<DT>d2</DT>
+<DD>The second value to add.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Decimal.html" TARGET="contents">Decimal</A> containing the sum of <I>d1</I> and <I>d2</I>. The 
+   scale of the result, before any rounding, is the larger of the scales of d1 and
+   d2. For example, 1.1 + 2.22 gives 3.32, and 2.50 + 1 gives 3.50.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The sum of <I>d1</I> and <I>d2</I> is less than System.Decimal.MinValue or greater than System.Decimal.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Compare Method"><H3>Decimal.Compare Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int Compare(decimal d1, decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Compares the values of two <A HREF="Decimal.html" TARGET="contents">Decimal</A> values and returns
+   sort order information.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The first value to compare. </DD>
+<DT>d2</DT>
+<DD>The second value to compare. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of
+<I>d1</I> and <I>d2</I>.  The exact value 
+   returned by this method is implementation defined. The following table
+defines the conditions under which the returned value is a
+negative number, zero, or a positive number. Each comparison compares the
+numerical values of d1 and d2.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH> Meaning</TH><TH> Return Value Meaning</TH></TR>
+<TR><TD><I>d1</I>&amp;lt; <I>d2</I></TD><TD> Any
+         negative
+         number<I>d1</I>&amp;lt; <I>d2</I></TD></TR>
+<TR><TD><I>d1</I> == <I>d2</I></TD><TD> Zero<I>d1</I> == <I>d2</I></TD></TR>
+<TR><TD><I>d1</I>&amp;gt;<I>d2</I></TD><TD> Any positive
+      number<I>d1</I>&amp;gt;<I>d2</I></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.CompareTo Method"><H3>Decimal.CompareTo Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public int CompareTo(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the sort order of the current instance compared
+      to the specified <A HREF="Object.html" TARGET="contents">Object</A>
+      .
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Object.html" TARGET="contents">Object</A> to compare to the current instance. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
+   current instance as compared to <I>value</I>. The following table defines the conditions under
+   which the returned value is a negative number, zero,
+   or a positive number. Each comparison compares the numerical values of d1
+   and d2.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Return ValueDescription</TH></TR>
+<TR><TD>Current instance &lt; <I>value</I>.</TD><TD> Any negative numberCurrent instance &lt; <I>value</I>.</TD></TR>
+<TR><TD>Current instance == <I>value</I>.</TD><TD> ZeroCurrent instance == <I>value</I>.</TD></TR>
+<TR><TD>current instance &gt; <I>value</I>, or <I>value</I> is
+   a null reference.</TD><TD> Any positive numbercurrent instance &gt; <I>value</I>, or <I>value</I> is
+   a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>value</I> is not a <A HREF="Decimal.html" TARGET="contents">Decimal</A> and is not a null reference. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  This method is
+      implemented to support the <A HREF="IComparable.html" TARGET="contents">IComparable</A> interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Divide Method"><H3>Decimal.Divide Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static decimal Divide(decimal d1, decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Divides the value of one <A HREF="Decimal.html" TARGET="contents">Decimal</A> by
+   another.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The dividend. </DD>
+<DT>d2</DT>
+<DD>The divisor. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Decimal.html" TARGET="contents">Decimal</A> containing the result of dividing <I>d1</I> by
+<I>d2</I> . The scale of the result, before any rounding, is 
+   the smallest scale that will preserve a result equal to the exact result. For
+   example, 2.22 / 2 gives 1.11.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="DivideByZeroException.html" TARGET="contents">DivideByZeroException</A></TD><TD><I>d2</I> is zero. </TD></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The result is greater than System.Decimal.MaxValue or less than System.Decimal.MinValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Equals(System.Object) Method"><H3>Decimal.Equals(System.Object) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool Equals(object value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance and the
+      specified <A HREF="Object.html" TARGET="contents">Object</A>
+      have the same type and value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Object.html" TARGET="contents">Object</A> to compare to the current instance. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>value</I> has the same type and is numerically equal to
+   (has the same value as) the current instance. If <I>value</I> is a null
+   reference or is not an instance of <A HREF="Decimal.html" TARGET="contents">Decimal</A>, returns
+<CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  This method
+      overrides System.Object.Equals(System.Object).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Equals(System.Decimal, System.Decimal) Method"><H3>Decimal.Equals(System.Decimal, System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool Equals(decimal d1, decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether two <A HREF="Decimal.html" TARGET="contents">Decimal</A> values have the same value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The first <A HREF="Decimal.html" TARGET="contents">Decimal</A> to compare. </DD>
+<DT>d2</DT>
+<DD>The second <A HREF="Decimal.html" TARGET="contents">Decimal</A> to compare. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>d1</I> and <I>d2</I> are numerically
+   equal
+   (have the same value), otherwise <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Floor Method"><H3>Decimal.Floor Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static decimal Floor(decimal d);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Rounds a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to the closest integer towards negative infinity.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> to round downward. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Decimal.html" TARGET="contents">Decimal</A> value <I>v</I> such that <I>v</I> is a whole
+   number and <I>d</I>
+   - 1 &lt; <I>v</I>
+   &lt;=
+   
+<I>d</I> . The scale of the result will be zero.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.Decimal.Floor(System.Decimal) method.<P>
+
+<PRE>using System;
+class DecimalTest {
+ public static void Main() {
+   Console.WriteLine(&quot;floor {0} is {1}&quot;, 3.14159m, Decimal.Floor(3.14159m));
+   Console.WriteLine(&quot;floor {0} is {1}&quot;, -3.9m, Decimal.Floor(-3.9m));
+   Console.WriteLine(&quot;floor {0} is {1}&quot;, 3.0m, Decimal.Floor(3.0m));
+ }
+}
+</PRE>
+The output is<P>
+
+<CODE>floor 3.14159 is 3<P>
+
+floor -3.9 is -4<P>
+
+floor 3.0 is 3<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.GetBits Method"><H3>Decimal.GetBits Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static int[] GetBits(decimal d);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a binary representation of the specified <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> value for which a binary representation is returned. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ An array of type <A HREF="Int32.html" TARGET="contents">Int32</A> containing the following four
+   elements:
+   <P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>IndexDescription</TH></TR>
+<TR><TD> Low-order 32 bits of the decimal&apos;s
+         coefficient, <I>c</I>.</TD><TD> 0  Low-order 32 bits of the decimal&apos;s
+         coefficient, <I>c</I>.</TD></TR>
+<TR><TD>Middle 32 bits of <I>c</I>.</TD><TD> 1 Middle 32 bits of <I>c</I>.</TD></TR>
+<TR><TD>High-order 32 bits of <I>c</I>.</TD><TD> 2 High-order 32 bits of <I>c</I>.</TD></TR>
+<TR><TD> Sign bit and scale. See below.</TD><TD> 3  Sign bit and scale. See below.</TD></TR>
+</TABLE>
+ The sign bit and scale occupy 32 bits as
+   follows:
+   <P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Bit PositionsDescription</TH></TR>
+<TR><TD>Unused.</TD><TD> 0-15Unused.</TD></TR>
+<TR><TD>Contains the scale <I>f</I>, a value between 0 and 28 which indicates the power of 10 to divide
+   <I>c</I> by, to produce the <A HREF="Decimal.html" TARGET="contents">Decimal</A> value.</TD><TD> 16-23 Contains the scale <I>f</I>, a value between 0 and 28 which indicates the power of 10 to divide
+   <I>c</I> by, to produce the <A HREF="Decimal.html" TARGET="contents">Decimal</A> value.</TD></TR>
+<TR><TD>Unused.</TD><TD> 24-30 Unused.</TD></TR>
+<TR><TD>The sign, <I>s</I> , of the <A HREF="Decimal.html" TARGET="contents">Decimal</A> value. 0 (zero or positive) or 1
+   (negative).</TD><TD> 31 The sign, <I>s</I> , of the <A HREF="Decimal.html" TARGET="contents">Decimal</A> value. 0 (zero or positive) or 1
+   (negative).</TD></TR>
+</TABLE>
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  The elements of the returned array contain a binary
+         representation of <I>d</I>
+         as a coefficient <I>c</I> a scale <I>f</I> and
+         sign bit <I>s</I>. The value of <I>d</I> is computed as -1<SUP>s</SUP> x <I>c</I> x 10<SUP>-f</SUP>
+      
+      .<P>
+
+<I>c</I> occupies the first three elements of the
+   returned array. The fourth element contains <I>f</I> and <I>s</I>
+   .<P>
+
+]<P>
+
+ A numeric value may have several possible binary
+   representations; they are numerically equal but have different scales. Also, the
+   bit representation differentiates between -0, 0.00, and 0; these are all
+   treated as 0 in operations, and any zero result will have a
+   sign of 0 and a scale of 0.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the different
+      representations of 1.00 and 1.<P>
+
+<PRE>using System;
+public class Class1  {
+    public static void Print (int [] bs) {
+        foreach (int b in bs) {
+            Console.Write (b+&quot; &quot;);
+        }
+    }
+public static void Main () {
+   decimal d = 1.00m;
+    decimal d1 = 1;
+    Console.Write (d);
+    Console.Write (&quot; - bits: &quot;); 
+    Print (decimal.GetBits(d));
+    Console.WriteLine();
+    Console.Write (d1);
+    Console.Write (&quot; - bits: &quot;); 
+    Print (decimal.GetBits(d1));
+    Console.WriteLine();
+    Console.WriteLine (&quot;d1.CompareTo(d) == {0}&quot;, d1.CompareTo(d));
+    Console.WriteLine (&quot;d1 == d {0}&quot;, d1 == d);
+}
+}
+   </PRE>
+The output is<P>
+
+<CODE>1.00 - bits: 100 0 0 512<P>
+
+1 - bits: 1 0 0 0<P>
+
+d1.CompareTo(d) == 0<P>
+
+d1 == d True<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.GetHashCode Method"><H3>Decimal.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int GetHashCode();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Generates a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the hash code for this instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The algorithm used to
+      generate the hash code value is unspecified.<P>
+
+[<I>Note</I>: This method
+      overrides System.Object.GetHashCode.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Multiply Method"><H3>Decimal.Multiply Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static decimal Multiply(decimal d1, decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the result of multiplying two <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+values.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The first value to multiply. </DD>
+<DT>d2</DT>
+<DD>The second value to multiply. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The result of multiplying <I>d1</I> and
+<I>d2</I> . The scale of the result, before any 
+   rounding, is the sum of the scales of d1 and
+   d2.<P>
+
+For example, 123 x 3 gives 369, and 2.2 x 1.35 gives 2.970.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The result is greater than System.Decimal.MaxValue or less than System.Decimal.MinValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Negate Method"><H3>Decimal.Negate Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static decimal Negate(decimal d);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the result of multiplying a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value by
+   negative
+   one.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d</DT>
+<DD>The value to negate. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The negated value of <I>d</I>. If <I>d</I> is zero then zero is returned (with 0 sign and 
+   scale); otherwise the scale of the result is the same as the scale of
+<I>d</I>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Parse(System.String) Method"><H3>Decimal.Parse(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static decimal Parse(string s);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the specified <A HREF="String.html" TARGET="contents">String</A> converted to a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the value to convert. The string is interpreted using the System.Globalization.NumberStyles.Number style, preserving scale.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="Decimal.html" TARGET="contents">Decimal</A> value obtained from <I>s</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s </I>is not in the correct format.</TD></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a number greater than System.Decimal.MaxValue or less than System.Decimal.MinValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Decimal.Parse(System.String) is equivalent to System.Decimal.Parse(System.String)
+(<I>s</I> , System.Globalization.NumberStyles.Number , <CODE>null</CODE>
+ ).<P>
+
+The string <I>s</I> is parsed using the formatting information
+in a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> initialized for the current system
+culture. [<I>Note</I>:  For more information, see System.Globalization.NumberFormatInfo.CurrentInfo .]<P>
+
+<P>
+
+If necessary, the value of s is rounded using banker&apos;s 
+   rounding. Any scale apparent in the string s is preserved unless the value
+   is rounded or the value is zero (in which latter case the sign and scale will be
+   0). Hence the string &quot;2.900&quot; will be parsed to form the decimal with sign
+   0, coefficient 2900, and scale 3.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.Decimal.Parse(System.String) method.<P>
+
+<PRE>using System;
+using System.Globalization;
+class DecimalParseClass {
+  public static void Main() {
+    string s1 = &quot; -1.001  &quot;;
+    string s2 = &quot;+1,000,111.99&quot;;     
+    string s3 = &quot;2.900&quot;;
+    Console.WriteLine(&quot;String: {0} (decimal) {1}&quot;,s1,Decimal.Parse(s1));
+    Console.WriteLine(&quot;String: {0} (decimal) {1}&quot;,s2,Decimal.Parse(s2));
+    Console.WriteLine(&quot;String: {0} (decimal) {1}&quot;,s3,Decimal.Parse(s3));
+  }
+}
+</PRE>
+The output is<P>
+
+<CODE>String: -1.001 (decimal) -1.001<P>
+
+String: +1,000,111.99 (decimal) 1000111.99<P>
+
+String: 2.900 (decimal) 2.900<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Parse(System.String, System.Globalization.NumberStyles) Method"><H3>Decimal.Parse(System.String, System.Globalization.NumberStyles) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static decimal Parse(string s, NumberStyles style);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the specified <A HREF="String.html" TARGET="contents">String</A> converted to a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the value to convert. The string is interpreted using the style specified by <I>style</I> , preserving scale.</DD>
+<DT>style</DT>
+<DD>Zero or more <A HREF="../System/Globalization/NumberStyles.html" TARGET="contents">NumberStyles</A> values that specify the style of <I>s</I>. Specify multiple values for <I>style</I> using the bitwise OR operator. If <I>style</I> is a null reference, the string is interpreted using the System.Globalization.NumberStyles.Number style.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="Decimal.html" TARGET="contents">Decimal</A> value obtained from <I>s</I>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct style.</TD></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a number greater than System.Decimal.MaxValue or less than System.Decimal.MinValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Decimal.Parse(System.String) is equivalent to System.Decimal.Parse(System.String)
+(<I>s</I>, <I>style</I> , <CODE>null</CODE>
+ ).<P>
+
+The string <I>s</I> is parsed using the formatting
+information in a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> initialized for the current system
+culture. [<I>Note</I>:  For more information, see System.Globalization.NumberFormatInfo.CurrentInfo .]<P>
+
+<P>
+
+If necessary, the value of <I>s</I> is rounded using banker&apos;s rounding.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates supplying <A HREF="../System/Globalization/NumberStyles.html" TARGET="contents">NumberStyles</A> values to the System.Decimal.Parse(System.String)
+method to allow for a symbol separating groups
+of digits, and a decimal separator. This example uses the symbols from the U.S.
+English culture, namely a comma and a decimal point.<P>
+
+<PRE>using System;
+using System.Globalization;
+class DecimalParseClass {
+public static void Main() {
+ string s = &quot;1,000,111.99&quot;; 
+ NumberStyles ns = NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint;
+ decimal d = Decimal.Parse(s,ns);
+ Console.WriteLine(&quot;{0} parsed to decimal {1}&quot;,s,d);
+}
+}
+</PRE>
+The output is<P>
+
+<CODE>1,000,111.99 parsed to decimal 1000111.99<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Parse(System.String, System.IFormatProvider) Method"><H3>Decimal.Parse(System.String, System.IFormatProvider) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static decimal Parse(string s, IFormatProvider provider);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the specified <A HREF="String.html" TARGET="contents">String</A> converted to a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the value to convert. The <A HREF="String.html" TARGET="contents">String</A> is interpreted using the System.Globalization.NumberStyles.Number style, preserving scale.</DD>
+<DT>provider</DT>
+<DD>A <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that supplies a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> containing culture-specific formatting information about <I>s</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="Decimal.html" TARGET="contents">Decimal</A> value obtained from <I>s</I>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct style.</TD></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a number greater than System.Decimal.MaxValue or less than System.Decimal.MinValue.</TD></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Decimal.Parse(System.String) is equivalent to System.Decimal.Parse(System.String)
+(<I>s</I>, System.Globalization.NumberStyles.Number , <I>provider</I> ).<P>
+
+The string <I>s</I> is parsed using the
+culture-specific formatting information from the <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> instance supplied by <I>provider</I>. If
+<I>provider</I> is 
+<CODE>null</CODE>
+ or a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> cannot be obtained from 
+<I>provider</I>, the formatting information for the current system culture is 
+used.<P>
+
+If necessary, the value of s is rounded using banker&apos;s
+   rounding. Any scale apparent in the string s is preserved unless the value
+   is rounded or the value is zero (in which latter case the sign and scale will be
+   0). Hence the string &quot;2.900&quot; will be parsed to form the decimal with sign
+   0, coefficient 2900, and
+   scale 3.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates supplying a <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> to the
+System.Decimal.Parse(System.String) 
+method to allow a decimal point, and commas separating groups of digits.<P>
+
+<PRE>using System;
+using System.Globalization;
+class DecimalParseClass {
+public static void Main() {
+ string s = &quot;1,000,111.99&quot;; 
+ //Get the default formatting symbols.
+ NumberFormatInfo nfi = new NumberFormatInfo();
+ // Default group separator is &apos;,&apos;
+ // Default decimal separator is &apos;.&apos;
+ decimal d = Decimal.Parse(s,nfi);
+ Console.WriteLine(&quot;{0} parsed to decimal {1}&quot;,s,d);
+}
+}
+</PRE>
+The output is<P>
+
+<CODE>1,000,111.99
+   parsed to decimal 1000111.99</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Parse(System.String, System.Globalization.NumberStyles, System.IFormatProvider) Method"><H3>Decimal.Parse(System.String, System.Globalization.NumberStyles, System.IFormatProvider) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static decimal Parse(string s, NumberStyles style, IFormatProvider provider);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the specified <A HREF="String.html" TARGET="contents">String</A> converted to a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the value to convert. The string is interpreted using the style specified by <I>style</I> , preserving scale.</DD>
+<DT>style</DT>
+<DD>Zero or more <A HREF="../System/Globalization/NumberStyles.html" TARGET="contents">NumberStyles</A> values that specify the style of <I>s</I>. Specify multiple values for <I>style</I> using the bitwise OR operator. If <I>style</I> is a null reference, the string is interpreted using the System.Globalization.NumberStyles.Number style.</DD>
+<DT>provider</DT>
+<DD>A <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that supplies a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> containing culture-specific formatting information about <I>s</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="Decimal.html" TARGET="contents">Decimal</A> value obtained from <I>s</I>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference. <P>
+
+</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct style.</TD></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a number greater than System.Decimal.MaxValue or less than System.Decimal.MinValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The string <I>s</I> is parsed using the
+   culture-specific formatting information from the <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> instance supplied by <I>provider</I>. If
+<I>provider</I> is 
+<CODE>null</CODE>
+ or if a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> cannot be obtained from 
+<I>provider</I>, the formatting information for the current system culture is used.<P>
+
+If necessary, the value of <I>s</I> is rounded using banker&apos;s rounding.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates supplying <A HREF="../System/Globalization/NumberStyles.html" TARGET="contents">NumberStyles</A> values and a <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> to the
+System.Decimal.Parse(System.String) 
+method to allow colons separating
+groups of digits, and a decimal point.<P>
+
+<PRE>using System;
+using System.Globalization;
+class DecimalParseClass {
+public static void Main() {
+ string s = &quot;1:000:111.99&quot;; 
+ NumberStyles ns = NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint;
+ NumberFormatInfo nfi = new NumberFormatInfo();
+ //Change the format info to separate digit groups using a colon.
+ nfi.NumberGroupSeparator = &quot;:&quot;;
+ decimal d = Decimal.Parse(s,ns,nfi);
+ Console.WriteLine(&quot;{0} parsed to decimal {1}&quot;,s,d);
+}
+}
+</PRE>
+The output is<P>
+
+<CODE>1:000:111.99 parsed to decimal 1000111.99<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Remainder Method"><H3>Decimal.Remainder Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static decimal Remainder(decimal d1, decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Computes the remainder after dividing two <A HREF="Decimal.html" TARGET="contents">Decimal</A> values.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The dividend.</DD>
+<DT> d2</DT>
+<DD>The divisor.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The remainder after dividing d1 by d2 to give an integer
+      result. The sign of the result, if non-zero, is the same as the sign of d1, and
+      the scale of the result is the same as the scale of d2.<P>
+
+For example, -10 % 3 gives -1, and 3.6 % 1.3 gives 1.0 (where % indicates the
+      remainder operation).<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="DivideByZeroException.html" TARGET="contents">DivideByZeroException</A></TD><TD><I>d2</I> is zero.</TD></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>d1</I> divided by <I>d2</I> is greater than System.Decimal.MaxValue or less than System.Decimal.MinValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Round Method"><H3>Decimal.Round Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static decimal Round(decimal d, int decimals);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Rounds a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value
+   to a specified number of decimal places.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> to round. </DD>
+<DT>decimals</DT>
+<DD>The number of decimal places to round to. 0 &lt;= <I>decimals</I> &lt;= 28. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="Decimal.html" TARGET="contents">Decimal</A> result of rounding <I>d</I> to <I>decimals</I>
+decimal places.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>decimals</I> is not between 0 and 28, inclusive. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+When <I>d</I> is exactly half way
+   between two rounded values, the result is the rounded value that has an even
+   digit in the rightmost decimal position. For example, when rounded to two
+   decimals, the value 2.345 becomes 2.34 and the value 2.355 becomes 2.36.
+   [<I>Note</I>: This process is known as rounding half towards even, or banker&apos;s
+      rounding.]<P>
+
+<P>
+
+The scale of the result will be the smaller of 
+   <I>decimals</I> and the scale of
+      d.<P>
+
+[<I>Note</I>: The scale of <I>d</I> is never
+   increased, so System.Decimal.Round(System.Decimal,System.Int32) cannot cause overflow.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.Decimal.Round(System.Decimal,System.Int32) method.<P>
+
+<PRE>using System;
+class MyClass {
+public static void Main() {
+ decimal d1 = 2.5m;
+ decimal d2 = 3.5m;
+ decimal d3 = 2.98765432m;
+ decimal d4 = 2.18765432m;
+ Console.WriteLine(&quot;Rounding to 0 places...&quot;);
+ Console.WriteLine(&quot;round {0} = {1}&quot;,d1, Decimal.Round(d1,0));
+ Console.WriteLine(&quot;round {0} = {1}&quot;,d2, Decimal.Round(d2,0));
+ Console.WriteLine(&quot;round {0} = {1}&quot;,d3, Decimal.Round(d3,0));
+ Console.WriteLine(&quot;round {0} = {1}&quot;,d4, Decimal.Round(d4,0));
+ Console.WriteLine(&quot;Rounding to 2 places...&quot;);
+ Console.WriteLine(&quot;round {0} = {1}&quot;,d1, Decimal.Round(d1,2));
+ Console.WriteLine(&quot;round {0} = {1}&quot;,d2, Decimal.Round(d2,2));
+ Console.WriteLine(&quot;round {0} = {1}&quot;,d3, Decimal.Round(d3,2));
+ Console.WriteLine(&quot;round {0} = {1}&quot;,d4, Decimal.Round(d4,2));
+}
+}
+</PRE>
+The output is<P>
+
+<CODE>Rounding to 0 places...<P>
+
+round 2.5 = 2<P>
+
+round 3.5 = 4<P>
+
+round 2.98765432 = 3<P>
+
+round 2.18765432 = 2<P>
+
+Rounding to 2 places...<P>
+
+round 2.5 = 2.5<P>
+
+round 3.5 = 3.5<P>
+
+round 2.98765432 = 2.99<P>
+
+round 2.18765432 = 2.19<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Subtract Method"><H3>Decimal.Subtract Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static decimal Subtract(decimal d1, decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Subtracts one <A HREF="Decimal.html" TARGET="contents">Decimal</A> value from
+   another.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The left-side operand. </DD>
+<DT>d2</DT>
+<DD>The right-side operand. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Decimal.html" TARGET="contents">Decimal</A> containing the result of subtracting <I>d2</I> from
+<I>d1</I> . The scale of the result, before any rounding, is 
+   the larger of the scales of d1 and
+   d2.<P>
+
+For example, 1.1 - 2.22 gives -1.12, and 2.50 - 1 gives 1.50.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The result is greater than System.Decimal.MaxValue or less than System.Decimal.MinValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.ToString(System.IFormatProvider) Method"><H3>Decimal.ToString(System.IFormatProvider) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToString(IFormatProvider provider);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>provider</DT>
+<DD>A <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that supplies a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> containing culture-specific formatting information. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> representation of the current instance formatted using
+   the general format specifier, (&quot;G&quot;). The string takes into account the
+   formatting information in the <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> instance supplied by <I>provider</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Decimal.ToString is equivalent to System.Decimal.ToString (<CODE>null</CODE>
+
+, <I>provider</I> ).<P>
+
+If <I>provider</I> is 
+<CODE>null</CODE>
+ or if a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> cannot
+be obtained from <I>provider</I>, the formatting information for the current
+system culture is used.<P>
+
+[<I>Note</I>:  The general format
+   specifier formats the number in either fixed-point or exponential notation form.
+   For a detailed description of the general format, see the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A> interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.ToString(System.String, System.IFormatProvider) Method"><H3>Decimal.ToString(System.String, System.IFormatProvider) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToString(string format, IFormatProvider provider);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing a character that specifies the format of the returned string, optionally followed by a non-negative integer that specifies the precision of the number in the returned <A HREF="String.html" TARGET="contents">String</A> .</DD>
+<DT>provider</DT>
+<DD>A <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that supplies a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> instance containing culture-specific formatting information. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> representation of the current instance formatted as
+   specified by <I>format</I>. The string takes into account the information in
+   the <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> instance supplied by <I>provider</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> is invalid.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If <I>provider</I> is
+<CODE>null</CODE>
+ or if a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> cannot
+   be obtained from <I>provider</I> , the formatting information for the current system culture is used.<P>
+
+The following table lists the characters that are valid for the
+<I>format</I> parameter.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Description</TH><TH>Format CharactersDescription</TH></TR>
+<TR><TD>Currency format.</TD><TD> &quot;C&quot;, &quot;c&quot;Currency format.</TD></TR>
+<TR><TD>Normalize format (trims trailing zeros).</TD><TD> &quot;Z&quot;, &quot;z&quot;Normalize format (trims trailing zeros).</TD></TR>
+<TR><TD>Exponential notation format.</TD><TD> &quot;E&quot;, &quot;e&quot;Exponential notation format.</TD></TR>
+<TR><TD>Fixed-point format.</TD><TD> &quot;F&quot;, &quot;f&quot;Fixed-point format.</TD></TR>
+<TR><TD>General format.</TD><TD> &quot;G&quot;, &quot;g&quot;General format.</TD></TR>
+<TR><TD>Number format.</TD><TD> &quot;N&quot;, &quot;n&quot;Number format.</TD></TR>
+<TR><TD>Percent format.</TD><TD> &quot;P&quot;, &quot;p&quot;Percent format.</TD></TR>
+</TABLE>
+If <I>format</I> is a null reference, the general format specifier &quot;G&quot; is used.<P>
+
+[<I>Note</I>: For a detailed description of formatting, see the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A> interface.<P>
+
+This method is implemented to support the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A> interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.ToString() Method"><H3>Decimal.ToString() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a canonical <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> representation of
+   the current instance formatted using the general format specifier, (&quot;G&quot;). The string
+   takes into account the current system culture and
+   preserves the scale of the number.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This version of System.Decimal.ToString is equivalent to System.Decimal.ToString (<CODE>null</CODE>
+,
+<CODE>null</CODE>
+
+).<P>
+
+[<I>Note</I>:  The general format specifier formats the number in either fixed-point or exponential notation form, preserving
+      the scale of the number. For a detailed description of the
+      general format, see the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>
+      interface.<P>
+
+ This method overrides System.Object.ToString
+.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.ToString(System.String) Method"><H3>Decimal.ToString(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public string ToString(string format);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format of the returned string. [<I>Note</I>:  For a list of valid values, see System.Decimal.ToString (<A HREF="String.html" TARGET="contents">String</A>, <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> ).]<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> representation of the current instance formatted as
+   specified by <I>format</I>. The string takes into account the current system
+   culture.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> is invalid.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Decimal.ToString is equivalent to System.Decimal.ToString
+(<I>format</I> ,
+<CODE>null</CODE>
+
+).<P>
+
+If <I>format</I>
+is a null reference, the general format specifier &quot;G&quot; is used. <P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example shows the effects of various
+      formats on the string returned by System.Decimal.ToString.<P>
+
+<PRE>using System;
+class test {
+ public static void Main() {
+ decimal d = 1234.56789m;
+ Console.WriteLine(d);
+ string[] fmts = {&quot;C&quot;,&quot;E&quot;,&quot;F&quot;,&quot;G&quot;,&quot;N&quot;,&quot;P&quot;};
+ for (int i=0;i&lt;fmts.Length;i++)
+ Console.WriteLine(&quot;{0}: {1}&quot;, 
+ fmts[i],d.ToString(fmts[i]));
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>1234.56789<P>
+
+C: $1,234.57<P>
+
+E: 1.234568E+003<P>
+
+F: 1234.57<P>
+
+G: 1234.56789<P>
+
+N: 1,234.57<P>
+
+P: 123,456.79 %<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Truncate Method"><H3>Decimal.Truncate Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static decimal Truncate(decimal d);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Rounds a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value towards zero, to the closest integer value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> to truncate.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="Decimal.html" TARGET="contents">Decimal</A> result of truncating <I>d</I> . the scale of the result is 
+   0.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates using the System.Decimal.Truncate(System.Decimal) method.<P>
+
+<PRE>using System;
+class MyClass {
+public static void Main() {
+ decimal d1 = 1234.56789m;
+ decimal d2 = -1234.56789m;
+ Console.WriteLine(&quot;{0} truncated is {1}&quot;, d1, Decimal.Truncate(d1));
+ Console.WriteLine(&quot;{0} truncated is {1}&quot;, d2, Decimal.Truncate(d2));
+}
+}
+</PRE>
+The output is<P>
+
+<CODE>1234.56789 truncated is 1234<P>
+
+-1234.56789 truncated is -1234<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.op_Addition Method"><H3>Decimal.op_Addition Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Decimal operator +(Decimal d1, Decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Adds two <A HREF="Decimal.html" TARGET="contents">Decimal</A> values together. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The first value to add. </DD>
+<DT>d2</DT>
+<DD>The second value to add. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The value returned by System.Decimal.Add(System.Decimal,System.Decimal)
+(<I>d1</I>,<I>d2</I>).<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The sum of <I>d1</I> and <I>d2</I> is greater than System.Decimal.MaxValue or less than System.Decimal.MinValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.op_Decrement Method"><H3>Decimal.op_Decrement Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Decimal operator --(Decimal d);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the specified value decremented by
+      one.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d</DT>
+<DD>A <A HREF="Decimal.html" TARGET="contents">Decimal</A> value.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The value returned by System.Decimal.Subtract(System.Decimal,System.Decimal) (<I>d</I> , System.Decimal.One ).<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The result is greater than System.Decimal.MaxValue or less than System.Decimal.MinValue .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.op_Division Method"><H3>Decimal.op_Division Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Decimal operator /(Decimal d1, Decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Divides one <A HREF="Decimal.html" TARGET="contents">Decimal</A> value by another <A HREF="Decimal.html" TARGET="contents">Decimal</A> . <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The dividend. </DD>
+<DT>d2</DT>
+<DD>The divisor. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The value returned by System.Decimal.Divide(System.Decimal,System.Decimal) (<I>d1</I>,
+<I>d2</I>). <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="DivideByZeroException.html" TARGET="contents">DivideByZeroException</A></TD><TD>The divisor is zero. </TD></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The result is greater than System.Decimal.MaxValue or less than System.Decimal.MinValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.op_Equality Method"><H3>Decimal.op_Equality Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator ==(Decimal d1, Decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether two decimals have the
+      same value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The first <A HREF="Decimal.html" TARGET="contents">Decimal</A> to compare. </DD>
+<DT>d2</DT>
+<DD>The second <A HREF="Decimal.html" TARGET="contents">Decimal</A> to compare.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if System.Decimal.Compare(System.Decimal,System.Decimal)
+(<I>d1</I>, <I>d2</I> ) returns
+zero; otherwise <CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="System.Decimal Decimal.op_Explicit(float) Method"><H3>System.Decimal Decimal.op_Explicit(float) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static explicit operator Decimal(float value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an explicit conversion of a <A HREF="Single.html" TARGET="contents">Single</A> value to <A HREF="Decimal.html" TARGET="contents">Decimal</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Single.html" TARGET="contents">Single</A> value to convert to <A HREF="Decimal.html" TARGET="contents">Decimal</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+with the
+specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>value</I> is one of the following:<P>
+
+greater than System.Decimal.MaxValue<P>
+
+less than System.Decimal.MinValue<P>
+
+equal to System.Single.NaN<P>
+
+equal to System.Single.PositiveInfinity<P>
+
+equal to System.Single.NegativeInfinity<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="System.Decimal Decimal.op_Explicit(double) Method"><H3>System.Decimal Decimal.op_Explicit(double) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static explicit operator Decimal(double value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an explicit conversion of a <A HREF="Double.html" TARGET="contents">Double</A> value to <A HREF="Decimal.html" TARGET="contents">Decimal</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Double.html" TARGET="contents">Double</A> value to convert to <A HREF="Decimal.html" TARGET="contents">Decimal</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+with the
+specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>value</I> is one of the following:<P>
+
+greater than System.Decimal.MaxValue<P>
+
+less than System.Decimal.MinValue<P>
+
+equal to System.Double.NaN<P>
+
+equal to System.Double.PositiveInfinity<P>
+
+equal to System.Double.NegativeInfinity<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="byte Decimal.op_Explicit(System.Decimal) Method"><H3>byte Decimal.op_Explicit(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static explicit operator byte(Decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an explicit conversion of a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to <A HREF="Byte.html" TARGET="contents">Byte</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to convert to <A HREF="Byte.html" TARGET="contents">Byte</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Byte.html" TARGET="contents">Byte</A> containing
+<I>value</I> rounded towards zero to the nearest
+   integer. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The resulting integer value is greater than System.Byte.MaxValue or less than System.Byte.MinValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="sbyte Decimal.op_Explicit(System.Decimal) Method"><H3>sbyte Decimal.op_Explicit(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static explicit operator sbyte(Decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an explicit conversion of a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to <A HREF="SByte.html" TARGET="contents">SByte</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to convert to <A HREF="SByte.html" TARGET="contents">SByte</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="SByte.html" TARGET="contents">SByte</A> containing
+<I>value</I> rounded towards zero to the nearest
+   integer. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The resulting integer value is greater than System.SByte.MaxValue or less than System.SByte.MinValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant 
+      alternative to <A HREF="SByte.html" TARGET="contents">SByte</A>, use <A HREF="Int16.html" TARGET="contents">Int16</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="char Decimal.op_Explicit(System.Decimal) Method"><H3>char Decimal.op_Explicit(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static explicit operator char(Decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an explicit conversion of a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to <A HREF="Char.html" TARGET="contents">Char</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to convert to <A HREF="Char.html" TARGET="contents">Char</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Char.html" TARGET="contents">Char</A> containing
+<I>value</I> rounded towards zero to the nearest
+   integer. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The resulting integer value is greater than System.Char.MaxValue or less than System.Char.MinValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="short Decimal.op_Explicit(System.Decimal) Method"><H3>short Decimal.op_Explicit(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static explicit operator short(Decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an explicit conversion of a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to <A HREF="Int16.html" TARGET="contents">Int16</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to convert to <A HREF="Int16.html" TARGET="contents">Int16</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int16.html" TARGET="contents">Int16</A> containing
+<I>value</I> rounded towards zero to the nearest
+   integer. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The resulting integer value is greater than System.Int16.MaxValue or less than System.Int16.MinValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ushort Decimal.op_Explicit(System.Decimal) Method"><H3>ushort Decimal.op_Explicit(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static explicit operator ushort(Decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an explicit conversion of a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to <A HREF="UInt16.html" TARGET="contents">UInt16</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to convert to <A HREF="UInt16.html" TARGET="contents">UInt16</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="UInt16.html" TARGET="contents">UInt16</A> containing
+<I>value</I> rounded towards zero to the nearest
+   integer. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The resulting integer value is greater than System.UInt16.MaxValue or less than System.UInt16.MinValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant 
+      alternative to <A HREF="UInt16.html" TARGET="contents">UInt16</A>, use <A HREF="Int32.html" TARGET="contents">Int32</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="int Decimal.op_Explicit(System.Decimal) Method"><H3>int Decimal.op_Explicit(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static explicit operator int(Decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an explicit conversion of a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to <A HREF="Int32.html" TARGET="contents">Int32</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to convert to <A HREF="Int32.html" TARGET="contents">Int32</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing
+<I>value</I> rounded towards zero to the nearest
+   integer. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The resulting integer value is greater than System.Int32.MaxValue or less than System.Int32.MinValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="uint Decimal.op_Explicit(System.Decimal) Method"><H3>uint Decimal.op_Explicit(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static explicit operator uint(Decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an explicit conversion of a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to <A HREF="UInt32.html" TARGET="contents">UInt32</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to convert to <A HREF="UInt32.html" TARGET="contents">UInt32</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="UInt32.html" TARGET="contents">UInt32</A> containing <I>value</I> rounded towards zero to the
+   nearest integer. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The resulting integer value is greater than System.UInt32.MaxValue or less than System.UInt32.MinValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant 
+      alternative to <A HREF="UInt32.html" TARGET="contents">UInt32</A>, use <A HREF="Int64.html" TARGET="contents">Int64</A> ). <P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="long Decimal.op_Explicit(System.Decimal) Method"><H3>long Decimal.op_Explicit(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static explicit operator long(Decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an explicit conversion of a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to <A HREF="Int64.html" TARGET="contents">Int64</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to convert to <A HREF="Int64.html" TARGET="contents">Int64</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int64.html" TARGET="contents">Int64</A> containing
+<I>value</I> rounded towards zero to the nearest
+   integer. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The resulting integer value is greater than System.Int64.MaxValue or less than System.Int64.MinValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="ulong Decimal.op_Explicit(System.Decimal) Method"><H3>ulong Decimal.op_Explicit(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static explicit operator ulong(Decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an explicit conversion of a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to <A HREF="UInt64.html" TARGET="contents">UInt64</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to convert to <A HREF="UInt64.html" TARGET="contents">UInt64</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="UInt64.html" TARGET="contents">UInt64</A> containing
+<I>value</I> rounded towards zero to the nearest
+   integer. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The resulting integer value is greater than System.UInt64.MaxValue or less than System.UInt64.MinValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant
+      alternative to <A HREF="UInt64.html" TARGET="contents">UInt64</A>, use <A HREF="Int64.html" TARGET="contents">Int64</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="float Decimal.op_Explicit(System.Decimal) Method"><H3>float Decimal.op_Explicit(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static explicit operator float(Decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an explicit conversion of a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to <A HREF="Single.html" TARGET="contents">Single</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to convert to <A HREF="Single.html" TARGET="contents">Single</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Single.html" TARGET="contents">Single</A> with the specified value. <P>
+
+[<I>Note</I>:  This operation can
+   produce round-off errors due to the fact that <A HREF="Single.html" TARGET="contents">Single</A> has fewer significant digits than
+<A HREF="Decimal.html" TARGET="contents">Decimal</A>.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="double Decimal.op_Explicit(System.Decimal) Method"><H3>double Decimal.op_Explicit(System.Decimal) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static explicit operator double(Decimal value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an explicit conversion of a <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to <A HREF="Double.html" TARGET="contents">Double</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Decimal.html" TARGET="contents">Decimal</A> value to convert to <A HREF="Double.html" TARGET="contents">Double</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Double.html" TARGET="contents">Double</A> with the specified value. <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  This operation can
+      produce round-off errors due to the fact that <A HREF="Double.html" TARGET="contents">Double</A> has fewer significant digits than
+   <A HREF="Decimal.html" TARGET="contents">Decimal</A>.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.op_GreaterThan Method"><H3>Decimal.op_GreaterThan Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator &gt;(Decimal d1, Decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether one <A HREF="Decimal.html" TARGET="contents">Decimal</A> value is greater than another
+<A HREF="Decimal.html" TARGET="contents">Decimal</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The first <A HREF="Decimal.html" TARGET="contents">Decimal</A> to compare. </DD>
+<DT>d2</DT>
+<DD>The second <A HREF="Decimal.html" TARGET="contents">Decimal</A> to compare. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if System.Decimal.Compare(System.Decimal,System.Decimal) (<I>d1</I>,
+<I>d2</I>) returns a value that is greater than zero; otherwise 
+<CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.op_GreaterThanOrEqual Method"><H3>Decimal.op_GreaterThanOrEqual Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator &gt;=(Decimal d1, Decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether one <A HREF="Decimal.html" TARGET="contents">Decimal</A> value is greater than or equal to
+   another <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+   value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The first <A HREF="Decimal.html" TARGET="contents">Decimal</A> to compare. </DD>
+<DT>d2</DT>
+<DD>The second <A HREF="Decimal.html" TARGET="contents">Decimal</A> to compare. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if System.Decimal.Compare(System.Decimal,System.Decimal) (<I>d1</I>,
+<I>d2</I>) returns a value that is greater than or equal to zero; otherwise 
+<CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="System.Decimal Decimal.op_Implicit(byte) Method"><H3>System.Decimal Decimal.op_Implicit(byte) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static implicit operator Decimal(byte value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an implicit conversion of a <A HREF="Byte.html" TARGET="contents">Byte</A> value to <A HREF="Decimal.html" TARGET="contents">Decimal</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Byte.html" TARGET="contents">Byte</A> value to convert to <A HREF="Decimal.html" TARGET="contents">Decimal</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+with the
+specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="System.Decimal Decimal.op_Implicit(sbyte) Method"><H3>System.Decimal Decimal.op_Implicit(sbyte) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static implicit operator Decimal(sbyte value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an implicit conversion of a <A HREF="SByte.html" TARGET="contents">SByte</A> value to <A HREF="Decimal.html" TARGET="contents">Decimal</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="SByte.html" TARGET="contents">SByte</A> value to convert to <A HREF="Decimal.html" TARGET="contents">Decimal</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+with the
+specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+
+   This member is not CLS-compliant. <P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="System.Decimal Decimal.op_Implicit(short) Method"><H3>System.Decimal Decimal.op_Implicit(short) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static implicit operator Decimal(short value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an implicit conversion of a <A HREF="Int16.html" TARGET="contents">Int16</A> value to <A HREF="Decimal.html" TARGET="contents">Decimal</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Int16.html" TARGET="contents">Int16</A> value to convert to <A HREF="Decimal.html" TARGET="contents">Decimal</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+with the
+specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="System.Decimal Decimal.op_Implicit(ushort) Method"><H3>System.Decimal Decimal.op_Implicit(ushort) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static implicit operator Decimal(ushort value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an implicit conversion of a <A HREF="UInt16.html" TARGET="contents">UInt16</A> value to <A HREF="Decimal.html" TARGET="contents">Decimal</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="UInt16.html" TARGET="contents">UInt16</A> value to convert to <A HREF="Decimal.html" TARGET="contents">Decimal</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+with the
+specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This member is not CLS-compliant.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="System.Decimal Decimal.op_Implicit(char) Method"><H3>System.Decimal Decimal.op_Implicit(char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static implicit operator Decimal(char value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an implicit conversion of a <A HREF="Char.html" TARGET="contents">Char</A> value to <A HREF="Decimal.html" TARGET="contents">Decimal</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Char.html" TARGET="contents">Char</A> value to convert to <A HREF="Decimal.html" TARGET="contents">Decimal</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+with the
+specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="System.Decimal Decimal.op_Implicit(int) Method"><H3>System.Decimal Decimal.op_Implicit(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static implicit operator Decimal(int value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an implicit conversion of a <A HREF="Int32.html" TARGET="contents">Int32</A> value to <A HREF="Decimal.html" TARGET="contents">Decimal</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Int32.html" TARGET="contents">Int32</A> value to convert to <A HREF="Decimal.html" TARGET="contents">Decimal</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+with the
+specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="System.Decimal Decimal.op_Implicit(uint) Method"><H3>System.Decimal Decimal.op_Implicit(uint) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static implicit operator Decimal(uint value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an implicit conversion of a <A HREF="UInt32.html" TARGET="contents">UInt32</A> value to <A HREF="Decimal.html" TARGET="contents">Decimal</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="UInt32.html" TARGET="contents">UInt32</A> value to convert to <A HREF="Decimal.html" TARGET="contents">Decimal</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+with the
+specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+
+   This member is not CLS-compliant. <P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="System.Decimal Decimal.op_Implicit(long) Method"><H3>System.Decimal Decimal.op_Implicit(long) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static implicit operator Decimal(long value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an implicit conversion of a <A HREF="Int64.html" TARGET="contents">Int64</A> value to <A HREF="Decimal.html" TARGET="contents">Decimal</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Int64.html" TARGET="contents">Int64</A> value to convert to <A HREF="Decimal.html" TARGET="contents">Decimal</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+with the
+specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="System.Decimal Decimal.op_Implicit(ulong) Method"><H3>System.Decimal Decimal.op_Implicit(ulong) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static implicit operator Decimal(ulong value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an implicit conversion of a <A HREF="UInt64.html" TARGET="contents">UInt64</A> value to <A HREF="Decimal.html" TARGET="contents">Decimal</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="UInt64.html" TARGET="contents">UInt64</A> value to convert to <A HREF="Decimal.html" TARGET="contents">Decimal</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+with the
+specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.op_Increment Method"><H3>Decimal.op_Increment Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Decimal operator ++(Decimal d);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the specified value incremented by one.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d</DT>
+<DD>A <A HREF="Decimal.html" TARGET="contents">Decimal</A> value.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The value returned by System.Decimal.Add(System.Decimal,System.Decimal) (<I>d</I> ,
+System.Decimal.One ).<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The result is greater than System.Decimal.MaxValue or less than System.Decimal.MinValue .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.op_Inequality Method"><H3>Decimal.op_Inequality Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator !=(Decimal d1, Decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether two decimals do not have
+      the same value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The first <A HREF="Decimal.html" TARGET="contents">Decimal</A> to compare. </DD>
+<DT>d2</DT>
+<DD>The second <A HREF="Decimal.html" TARGET="contents">Decimal</A> to compare. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if System.Decimal.Compare(System.Decimal,System.Decimal) (<I>d1</I>,
+<I>d2</I>) does not return zero; otherwise <CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.op_LessThan Method"><H3>Decimal.op_LessThan Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator  &lt;(Decimal d1, Decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether one <A HREF="Decimal.html" TARGET="contents">Decimal</A> value is less than another
+<A HREF="Decimal.html" TARGET="contents">Decimal</A> 
+value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The first <A HREF="Decimal.html" TARGET="contents">Decimal</A> to compare. </DD>
+<DT>d2</DT>
+<DD>The first <A HREF="Decimal.html" TARGET="contents">Decimal</A> to compare.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if System.Decimal.Compare(System.Decimal,System.Decimal) (<I>d1</I>,
+<I>d2</I>) returns a value that is less than zero; otherwise 
+<CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.op_LessThanOrEqual Method"><H3>Decimal.op_LessThanOrEqual Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator &lt;=(Decimal d1, Decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether one <A HREF="Decimal.html" TARGET="contents">Decimal</A> value is less than or equal to another
+<A HREF="Decimal.html" TARGET="contents">Decimal</A> 
+value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The first <A HREF="Decimal.html" TARGET="contents">Decimal</A> to compare. </DD>
+<DT>d2</DT>
+<DD>The second <A HREF="Decimal.html" TARGET="contents">Decimal</A> to compare. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if System.Decimal.Compare(System.Decimal,System.Decimal) (<I>d1</I>,
+<I>d2</I>) returns a value that is less than or equal to zero; otherwise 
+<CODE>false</CODE>
+. <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.op_Modulus Method"><H3>Decimal.op_Modulus Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Decimal operator %(Decimal d1, Decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Divides one <A HREF="Decimal.html" TARGET="contents">Decimal</A> value by another <A HREF="Decimal.html" TARGET="contents">Decimal</A> and returns the
+   remainder.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The dividend. </DD>
+<DT>d2</DT>
+<DD>The divisor. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The value returned by System.Decimal.Remainder(System.Decimal,System.Decimal) (<I>d1</I>,
+<I>d2</I>).<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="DivideByZeroException.html" TARGET="contents">DivideByZeroException</A></TD><TD><I>d2</I> is zero. </TD></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>d1</I> divided by <I>d2</I> is greater than System.Decimal.MaxValue or less than System.Decimal.MinValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.op_Multiply Method"><H3>Decimal.op_Multiply Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Decimal operator *(Decimal d1, Decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the result of multiplying two <A HREF="Decimal.html" TARGET="contents">Decimal</A>
+values.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The first operand. </DD>
+<DT>d2</DT>
+<DD>The second operand. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The value returned by System.Decimal.Multiply(System.Decimal,System.Decimal) (<I>d1</I>,
+<I>d2</I>). <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The result is greater than System.Decimal.MaxValue or less than System.Decimal.MinValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.op_Subtraction Method"><H3>Decimal.op_Subtraction Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Decimal operator -(Decimal d1, Decimal d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Subtracts one <A HREF="Decimal.html" TARGET="contents">Decimal</A> value from
+   another.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The left-side operand. </DD>
+<DT>d2</DT>
+<DD>The right-side operand. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ The value returned by System.Decimal.Subtract(System.Decimal,System.Decimal) (<I>d1</I>,
+<I>d2</I>
+).<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD>The result is greater than System.Decimal.MaxValue or less than System.Decimal.MinValue. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.op_UnaryNegation Method"><H3>Decimal.op_UnaryNegation Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Decimal operator -(Decimal d);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the specified value multiplied by negative one
+      (-1).<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d</DT>
+<DD>A <A HREF="Decimal.html" TARGET="contents">Decimal</A> value.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The value returned by System.Decimal.Negate(System.Decimal) (<I>d</I>).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.op_UnaryPlus Method"><H3>Decimal.op_UnaryPlus Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Decimal operator +(Decimal d);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+
+ Returns the specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d</DT>
+<DD>A <A HREF="Decimal.html" TARGET="contents">Decimal</A> value.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+Returns <I>d</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.MaxValue Field"><H3>Decimal.MaxValue Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly decimal MaxValue;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Contains the maximum positive value for the <A HREF="Decimal.html" TARGET="contents">Decimal</A> type.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The value of this constant is
+ 79228162514264337593543950335.<P>
+
+ This field is
+ read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>DecimalConstantAttribute(79228162514264337593543950335, 79228162514264337593543950335, 79228162514264337593543950335, 79228162514264337593543950335, 79228162514264337593543950335)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.MinValue Field"><H3>Decimal.MinValue Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly decimal MinValue;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Contains the minimum (most negative) value for the
+ <A HREF="Decimal.html" TARGET="contents">Decimal</A> type.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The value of this constant
+ is -79228162514264337593543950335.<P>
+
+ This field
+ is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>DecimalConstantAttribute(-79228162514264337593543950335, -79228162514264337593543950335, -79228162514264337593543950335, -79228162514264337593543950335, -79228162514264337593543950335)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.MinusOne Field"><H3>Decimal.MinusOne Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly decimal MinusOne;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Contains negative one (-1).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>DecimalConstantAttribute(-1, -1, -1, -1, -1)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.One Field"><H3>Decimal.One Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly decimal One;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Contains one (1).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>DecimalConstantAttribute(1, 1, 1, 1, 1)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Decimal.Zero Field"><H3>Decimal.Zero Field</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static readonly decimal Zero;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Contains zero (0).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This field is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>DecimalConstantAttribute(0, 0, 0, 0, 0)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Decimal.html" TARGET="contents">System.Decimal Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

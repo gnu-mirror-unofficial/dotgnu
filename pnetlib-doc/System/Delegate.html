@@ -1,0 +1,1607 @@
+<HTML>
+<HEAD>
+<TITLE>System.Delegate Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Delegate Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public abstract class Delegate : ICloneable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Delegate<P>
+
+This type implements <A HREF="ICloneable.html" TARGET="contents">ICloneable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ A class used to create types that invoke methods.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Delegate types derive from the <A HREF="Delegate.html" TARGET="contents">Delegate</A> class. The declaration of a delegate type
+   establishes a contract that specifies the signature of one or more methods. [<I>Note</I>:  For an example of a delegate type
+   declaration, see the examples at the end of this topic.]<P>
+
+<P>
+
+Delegate types are implicitly sealed: it is not permissible to derive a new
+   type from a delegate type. [<I>Note</I>:  The <A HREF="Delegate.html" TARGET="contents">Delegate</A> class is not
+   considered a delegate type; it is a class used to derive delegate
+   types.]<P>
+
+<P>
+
+[<I>Note</I>:  For information on subclassing the Delegate class,
+   see Partition II of the CLI Specification.]<P>
+
+<P>
+
+A delegate is an instance of a delegate type. A non-null
+   delegate references an <I>invocation list</I>, which is made up of one or more
+   entries. Each entry consists of a pair of values: a non-null method, and a
+   corresponding object, called the <I>target</I>. If the method is static, the
+   corresponding target is <CODE> null</CODE>
+
+   , otherwise the target is the instance
+   on which the method is to be called.<P>
+
+The signature of each method in the invocation list is required to exactly
+   match the signature specified by the delegate&apos;s type.<P>
+
+When a delegate is invoked, the methods in the corresponding invocation list
+   are invoked in the order in which they appear in that list. A delegate attempts
+   to invoke every method in its invocation list, with duplicate methods being
+   invoked once for each occurrence in that list.<P>
+
+Delegates are immutable; once created, the invocation list of a delegate does
+   not change. Combining operations, such as System.Delegate.Combine(System.Delegate,System.Delegate) and
+System.Delegate.Remove(System.Delegate,System.Delegate), cannot alter existing delegates. Instead, such operations 
+   result in the return of either a new delegate that contains the results
+   of the operation, an existing delegate, or the null value. [<I>Note</I>:  A combining operation returns the null value when the
+   result of the operation is an empty invocation list. A combining operation
+   returns an existing delegate when the requested operation has no effect (for
+   example, if an attempt is made to remove a nonexistent entry).]<P>
+
+<P>
+
+ If an invoked method throws an exception, the
+   method stops executing and the exception is passed back to the caller of the
+   delegate. The delegate does not continue invoking methods from its invocation
+   list. Catching the exception in the caller does not alter this behavior. It is
+   possible that non-standard methods that implement combining operations allow the
+   creation of delegates with different behavior. When this is the case, the
+   non-standard methods are required to specify the behavior.<P>
+
+When the signature of the methods invoked by a delegate includes a return value,
+   the delegate returns the return value of the last element in the invocation
+   list. When the signature includes a parameter that is passed by reference,
+   the final value of the parameter is the result of every method in the invocation
+   list executing sequentially and updating the parameter&apos;s value.
+   [<I>Note</I>:  For an example that
+      demonstrates this behavior, see Example 2.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+<CODE>Example1: </CODE>
+<P>
+
+The following example creates two delegates. The first
+   delegate invokes a static method, and the second invokes an instance method on a target object.<P>
+
+<PRE>using System;
+public delegate string DelegatedMethod(string s);
+class MyClass {
+ public static string StaticMethod(string s) {
+ return (&quot;Static method Arg=&quot; + s);
+ }
+ public string InstanceMethod(string s) {
+ return (&quot;Instance method Arg=&quot; + s);
+ }
+}
+class TestClass {
+ public static void Main() {
+ MyClass myInstance = new MyClass();
+ //Create delegates from delegate type DelegatedMethod.
+ DelegatedMethod delStatic = new DelegatedMethod(MyClass.StaticMethod); 
+ DelegatedMethod delInstance = new DelegatedMethod(myInstance.InstanceMethod);
+ //Invoke the methods referenced by the delegates.
+ Console.WriteLine (delStatic(&quot;Call 1&quot;));
+ Console.WriteLine (delInstance (&quot;Call 2&quot;));
+ }
+}
+</PRE>
+ The output is<P>
+
+<CODE>Static method Arg=Call 1<P>
+
+Instance method Arg=Call 2<P>
+
+</CODE><CODE>Example2:</CODE>
+<P>
+
+The following example shows the return value and the
+   final value of a parameter that is passed by reference to a delegate that invokes multiple methods.<P>
+
+<PRE>using System;
+class MyClass {
+ public int Increment(ref int i) {
+   Console.WriteLine(&quot;Incrementing {0}&quot;,i);
+   return (i++);
+ }
+ public int Negate(ref int i) {
+   Console.WriteLine(&quot;Negating {0}&quot;,i);
+   i = i * -1;
+   return i;
+ }
+}
+
+public delegate int DelegatedMethod(ref int i);
+class TestClass {
+ public static void Main() {
+   MyClass myInstance = new MyClass();
+   DelegatedMethod delIncrementer = new DelegatedMethod(myInstance.Increment);
+   DelegatedMethod delNegater = new DelegatedMethod(myInstance.Negate);
+   DelegatedMethod d = (DelegatedMethod) Delegate.Combine(delIncrementer, delNegater);
+   int i = 1;
+   Console.WriteLine(&quot;Invoking delegate using ref value {0}&quot;,i);
+   int retvalue = d(ref i); 
+   Console.WriteLine(&quot;After Invoking delegate i = {0} return value is {1}&quot;,i, retvalue);
+  }
+}
+</PRE>
+ The output is<P>
+
+<CODE>Invoking delegate using ref value 1<P>
+
+Incrementing 1<P>
+
+Negating 2<P>
+
+After Invoking delegate i = -2 return value is -2<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Delegate Methods<P>
+
+<A HREF="#Delegate.Clone Method" TARGET="contents">Delegate.Clone Method</A><BR>
+<A HREF="#Delegate.Combine(System.Delegate, System.Delegate) Method" TARGET="contents">Delegate.Combine(System.Delegate, System.Delegate) Method</A><BR>
+<A HREF="#Delegate.Combine(System.Delegate[]) Method" TARGET="contents">Delegate.Combine(System.Delegate[]) Method</A><BR>
+<A HREF="#Delegate.CreateDelegate(System.Type, System.Object, System.String) Method" TARGET="contents">Delegate.CreateDelegate(System.Type, System.Object, System.String) Method</A><BR>
+<A HREF="#Delegate.CreateDelegate(System.Type, System.Type, System.String) Method" TARGET="contents">Delegate.CreateDelegate(System.Type, System.Type, System.String) Method</A><BR>
+<A HREF="#Delegate.CreateDelegate(System.Type, System.Reflection.MethodInfo) Method" TARGET="contents">Delegate.CreateDelegate(System.Type, System.Reflection.MethodInfo) Method</A><BR>
+<A HREF="#Delegate.DynamicInvoke Method" TARGET="contents">Delegate.DynamicInvoke Method</A><BR>
+<A HREF="#Delegate.Equals Method" TARGET="contents">Delegate.Equals Method</A><BR>
+<A HREF="#Delegate.GetHashCode Method" TARGET="contents">Delegate.GetHashCode Method</A><BR>
+<A HREF="#Delegate.GetInvocationList Method" TARGET="contents">Delegate.GetInvocationList Method</A><BR>
+<A HREF="#Delegate.Remove Method" TARGET="contents">Delegate.Remove Method</A><BR>
+<A HREF="#Delegate.RemoveAll Method" TARGET="contents">Delegate.RemoveAll Method</A><BR>
+<A HREF="#Delegate.op_Equality Method" TARGET="contents">Delegate.op_Equality Method</A><BR>
+<A HREF="#Delegate.op_Inequality Method" TARGET="contents">Delegate.op_Inequality Method</A><BR>
+<P>
+
+Delegate Properties<P>
+
+<A HREF="#Delegate.Method Property" TARGET="contents">Delegate.Method Property</A><BR>
+<A HREF="#Delegate.Target Property" TARGET="contents">Delegate.Target Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Delegate.Clone Method"><H3>Delegate.Clone Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual object Clone();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Creates a copy of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Object.html" TARGET="contents">Object</A> that is a copy of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The System.Delegate.Clone method creates a new instance of the
+   same type as the current instance and then copies the contents of each of the current instance&apos;s non-static fields.<P>
+
+[<I>Note</I>:  This method is
+   implemented to support the <A HREF="ICloneable.html" TARGET="contents">ICloneable</A> interface.]<P>
+
+<P>
+
+[<I>Behaviors</I>: The returned object must have the exact same type and invocation list as the current instance.]<P>
+
+<P>
+
+[<I>Default</I>: 
+   The default implementation of the System.Delegate.Clone method creates a new instance, which is the
+   exact same type as the current instance, and then copies the contents of each of
+   the current instance&apos;s non-static fields. If the field is a value type, a
+   bit-by-bit copy of the field is performed. If the field is a reference type, the
+   object referenced by the field is not copied; instead, the returned object
+   contains a copy of the reference. This behavior is identical to System.Object.MemberwiseClone .
+]<P>
+
+<P>
+
+[<I>Overrides</I>: 
+   Subclasses of
+<A HREF="Delegate.html" TARGET="contents">Delegate</A> should
+   override System.Delegate.Clone to customize the way in which copies of the subclass are constructed.
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Delegate.html" TARGET="contents">System.Delegate Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Delegate.Combine(System.Delegate, System.Delegate) Method"><H3>Delegate.Combine(System.Delegate, System.Delegate) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Delegate Combine(Delegate a, Delegate b);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Concatenates the invocation lists of the specified
+      delegates.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>a</DT>
+<DD>The delegate whose invocation list will be first in the invocation list of the new delegate.</DD>
+<DT>b</DT>
+<DD>The delegate whose invocation list will be last in the invocation list of the new delegate.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A delegate, or <CODE>null</CODE>
+ .<P>
+
+The following table describes the value returned
+   when <I>a</I> or <I>b</I> is
+<CODE>null</CODE>
+
+.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>bReturn Value</TH><TH>abReturn Value</TH></TR>
+<TR><TD>nullnull</TD><TD> nullnullnull</TD></TR>
+<TR><TD>non-null<I>b</I></TD><TD> nullnon-null<I>b</I></TD></TR>
+<TR><TD>null<I>a</I></TD><TD> non-nullnull<I>a</I></TD></TR>
+</TABLE>
+When <I>a</I> and <I>b</I> are non-null, this method
+returns a new delegate with the concatenated invocation lists of <I>a</I> and
+<I>b</I> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>a</I> and <I>b</I> are not of the same type.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Unless <I>a</I> or <I>b</I> is <CODE>null</CODE>
+ , <I>a</I> and
+<I>b</I> are required 
+   to be the exact same type.<P>
+
+Consider the following situation, in which D1, D2, D3, D4, and D5 are
+   delegate instances of the same type, D1&apos;s invocation list has one entry, E1, and
+   D2&apos;s invocation list has one entry, E2.<P>
+
+Then, D3 = Combine(D1, D2) results in D3&apos;s having an invocation list of E1 +
+   E2.<P>
+
+Then, D4 = Combine(D2, D1) results in D4&apos;s having an invocation list of E2 +
+   E1.<P>
+
+Then, D5 = Combine(D3, D4) results in D5&apos;s having an invocation list of E1 +
+   E2 + E2 + E1.<P>
+
+[<I>Note</I>:  The invocation list of the returned
+      delegate may contain duplicate methods.
+      <P>
+
+System.Delegate.Combine(System.Delegate,System.Delegate) is useful for creating event handlers that call multiple
+   methods each time an event occurs.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Delegate.html" TARGET="contents">System.Delegate Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Delegate.Combine(System.Delegate[]) Method"><H3>Delegate.Combine(System.Delegate[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Delegate Combine(Delegate[] delegates);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Concatenates the invocation lists of the specified
+      delegates.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>delegates</DT>
+<DD>An array of delegates of the exact same type.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new delegate, or <CODE>null</CODE>
+ if <I>delegates</I> is <CODE>null</CODE>
+ or has only
+<CODE>null</CODE>
+ 
+elements.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The delegates in <I>delegates</I> are not of the same type.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The invocation list of the returned delegate is
+      constructed by concatenating the invocation lists of the delegates in
+      <I>delegates</I>, in increasing subscript order. For example, consider the
+      following situation, in which the elements of delegates have the following
+      invocation lists (where En represents an entry in an invocation list, and null
+      represents an empty invocation list): [0] = E1, [1] = null, [2] = E2 + E3, and
+      [3] = E4 + E5 + E6. When these elements are combined, the resulting delegate
+      contains the invocation list E1 + E2 + E3 + E4 + E5 + E6. <P>
+
+Null elements in <I>delegates</I> are not included in the returned
+   delegate. <P>
+
+[<I>Note</I>:  The invocation list of the returned
+   delegate may contain duplicate methods.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Delegate.html" TARGET="contents">System.Delegate Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Delegate.CreateDelegate(System.Type, System.Object, System.String) Method"><H3>Delegate.CreateDelegate(System.Type, System.Object, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Delegate CreateDelegate(Type type, object target, string method);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a new delegate with the specified target
+      and instance method as its invocation list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>type</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of the delegate to return. This <A HREF="Type.html" TARGET="contents">Type</A> is required to derive from <A HREF="Delegate.html" TARGET="contents">Delegate</A> .</DD>
+<DT>target</DT>
+<DD>An instance of an object that implements <I>method</I> .</DD>
+<DT>method</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the name of the instance method to be invoke on <I>target</I> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Delegate.html" TARGET="contents">Delegate</A> of type
+<I>type</I> that invokes <I>method</I> on <I>target</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>type, target, or method</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>type</I> does not derive from <A HREF="Delegate.html" TARGET="contents">Delegate</A>.<P>
+
+-or-<P>
+
+<I>method</I> is not an instance method.<P>
+
+-or-<P>
+
+<I>target</I> does not implement <I>method</I>.<P>
+
+</TD></TR>
+<TR><TD><A HREF="MethodAccessException.html" TARGET="contents">MethodAccessException</A></TD><TD>The caller does not have the required permission.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is used to dynamically
+      create delegates that invoke instance methods. To create a delegate that invokes
+      static methods, see System.Delegate.CreateDelegate(System.Type,System.Object,System.String)(<A HREF="Type.html" TARGET="contents">Type</A>, <A HREF="Type.html" TARGET="contents">Type</A>, <A HREF="String.html" TARGET="contents">String</A>).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Delegate.html" TARGET="contents">System.Delegate Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Delegate.CreateDelegate(System.Type, System.Type, System.String) Method"><H3>Delegate.CreateDelegate(System.Type, System.Type, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Delegate CreateDelegate(Type type, Type target, string method);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a new delegate with the specified
+      static method as its invocation list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>type</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of delegate to return. This <A HREF="Type.html" TARGET="contents">Type</A> is required to derive from <A HREF="Delegate.html" TARGET="contents">Delegate</A> .</DD>
+<DT>target</DT>
+<DD>A <A HREF="Type.html" TARGET="contents">Type</A> representing the class that implements <I>method</I> .</DD>
+<DT>method</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing the name of the static method implemented by <I>target</I> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Delegate.html" TARGET="contents">Delegate</A> of type <I>type</I> that invokes <I>method.</I><P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>type, target, or method</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>type</I> does not derive from <A HREF="Delegate.html" TARGET="contents">Delegate</A>.<P>
+
+-or-<P>
+
+<I>method</I> is not a static method.<P>
+
+ -or-<P>
+
+<I>target</I> does not implement <I>method</I> .<P>
+
+</TD></TR>
+<TR><TD><A HREF="MethodAccessException.html" TARGET="contents">MethodAccessException</A></TD><TD>The caller does not have the required permission.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is used to dynamically
+      create delegates that invoke static methods. To create a delegate that invokes
+      instance methods, see System.Delegate.CreateDelegate(System.Type,System.Object,System.String)(<A HREF="Type.html" TARGET="contents">Type</A>, <A HREF="Object.html" TARGET="contents">Object</A>, <A HREF="String.html" TARGET="contents">String</A>).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Delegate.html" TARGET="contents">System.Delegate Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Delegate.CreateDelegate(System.Type, System.Reflection.MethodInfo) Method"><H3>Delegate.CreateDelegate(System.Type, System.Reflection.MethodInfo) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Delegate CreateDelegate(Type type, MethodInfo method);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns a new delegate with the specified static
+      method as its invocation list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>type</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of <A HREF="Delegate.html" TARGET="contents">Delegate</A> to return. This <A HREF="Type.html" TARGET="contents">Type</A> is required to derive from <A HREF="Delegate.html" TARGET="contents">Delegate</A> .</DD>
+<DT>method</DT>
+<DD>A <A HREF="../System/Reflection/MethodInfo.html" TARGET="contents">MethodInfo</A> that reflects a static method.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Delegate.html" TARGET="contents">Delegate</A> of type <I>type</I> that invokes <I>method.</I><P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>type</I> or <I>method</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>type</I> does not derive from <A HREF="Delegate.html" TARGET="contents">Delegate</A>.<P>
+
+-or-<P>
+
+<I>method</I> does not reflect a static method.<P>
+
+</TD></TR>
+<TR><TD><A HREF="ExecutionEngineException.html" TARGET="contents">ExecutionEngineException</A></TD><TD>The <CODE>Invoke</CODE>
+ method of the <I>type</I> delegate was not found.<P>
+
+</TD></TR>
+<TR><TD><A HREF="MethodAccessException.html" TARGET="contents">MethodAccessException</A></TD><TD>The caller does not have the required permission.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is used to dynamically
+      create delegates that invoke static methods. To create a delegate that invokes
+      instance methods, see System.Delegate.CreateDelegate(System.Type,System.Object,System.String)(<A HREF="Type.html" TARGET="contents">Type</A>, <A HREF="Object.html" TARGET="contents">Object</A>, <A HREF="String.html" TARGET="contents">String</A>).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Delegate.html" TARGET="contents">System.Delegate Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Delegate.DynamicInvoke Method"><H3>Delegate.DynamicInvoke Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public object DynamicInvoke(object[] args);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Causes a delegate to invoke the methods in its invocation
+      list using the specified arguments.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>args</DT>
+<DD>An array of <A HREF="Object.html" TARGET="contents">Object</A> instances that are to be passed to the methods in the invocation list of the current instance. Specify <CODE>null</CODE>
+ if the methods invoked by the current instance do not take arguments.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The <A HREF="Object.html" TARGET="contents">Object</A> returned by the
+   last method in the invocation list of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The type of one or more elements in <I>args</I> is invalid as a parameter to the methods implemented by the current instance.<P>
+
+</TD></TR>
+<TR><TD><A HREF="MethodAccessException.html" TARGET="contents">MethodAccessException</A></TD><TD>The caller does not have the required permissions.<P>
+
+-or-<P>
+
+The number, order or type of parameters listed in <I>args</I> is invalid.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../System/Reflection/TargetException.html" TARGET="contents">TargetException</A></TD><TD>A method in the invocation list of the current instance is an instance method and its target object is <CODE>null</CODE>
+.<P>
+
+-or-<P>
+
+A method in the invocation list of the current instance was invoked on a target object or a class that does not implement it.<P>
+
+</TD></TR>
+<TR><TD>System.Reflection.TargetParamterCountException</TD><TD> The number of elements in <I>args</I> is not equal to the number of parameters required by the methods invoked by the current instance.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../System/Reflection/TargetInvocationException.html" TARGET="contents">TargetInvocationException</A></TD><TD>A method in the invocation list of the current instance threw an exception.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Delegate.html" TARGET="contents">System.Delegate Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Delegate.Equals Method"><H3>Delegate.Equals Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override bool Equals(object obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the
+      specified object is equal to the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>obj</DT>
+<DD>The <A HREF="Object.html" TARGET="contents">Object</A> to compare with the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>obj</I> is equal to the
+   current instance, otherwise <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Two delegates are equal if they are not null and are of
+      the exact same type, their invocation lists contain the same number of elements,
+      and every element in the invocation list of the first delegate is equal to
+      the element in the corresponding position in the invocation list of the second delegate.<P>
+
+ Two invocation list elements are equal if they invoke the same
+      instance method on the same target instance, or they invoke the same static method.<P>
+
+[<I>Note</I>:  This method
+      overrides System.Object.Equals(System.Object)
+      .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Delegate.html" TARGET="contents">System.Delegate Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Delegate.GetHashCode Method"><H3>Delegate.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public override int GetHashCode();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Generates a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the hash code for this instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The algorithm used to
+      generate the hash code is unspecified.<P>
+
+[<I>Note</I>:  This method
+      overrides System.Object.GetHashCode
+      
+      .]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Delegate.html" TARGET="contents">System.Delegate Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Delegate.GetInvocationList Method"><H3>Delegate.GetInvocationList Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public virtual Delegate[] GetInvocationList();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the invocation list of the current delegate.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An ordered set of <A HREF="Delegate.html" TARGET="contents">Delegate</A> instances whose invocation lists collectively match those of the current delegate.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: 
+      The
+      array contains a set of delegates, each having an invocation list of one
+      entry. Invoking these delegates sequentially, in the order in which they appear in the
+      array, produces the same results as invoking the current delegate.
+   ]<P>
+
+<P>
+
+[<I>Overrides</I>: 
+      Override System.Delegate.GetInvocationList
+      when subclassing Delegate.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Delegate.html" TARGET="contents">System.Delegate Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Delegate.Remove Method"><H3>Delegate.Remove Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Delegate Remove(Delegate source, Delegate value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes the invocation list of a <A HREF="Delegate.html" TARGET="contents">Delegate</A> from the
+   invocation list of another delegate.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>source</DT>
+<DD>The delegate from which to remove the invocation list of <I>value</I>.</DD>
+<DT>value</DT>
+<DD>The delegate that supplies the invocation list to remove from <I>source</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+Returns a new delegate, <I>source</I>, or <CODE>null</CODE>
+ . <P>
+
+If <I>source</I> and <I>value</I> are not <CODE>null</CODE>
+ , are not equal, and the
+invocation list of <I>value</I> is contained in the invocation list of source,
+returns a new delegate with the invocation list of <I>value</I> removed from
+the invocation list of <I>source</I>.<P>
+
+If the invocation lists of <I>source</I> and <I>value</I> are equal,
+returns <CODE>null</CODE>
+
+.<P>
+
+If the invocation list of <I>value</I> is not found in the invocation list
+of <I>source</I>, returns <I>source</I>.<P>
+
+The following table describes the value returned when <I>source</I> or
+<I>value</I> is 
+<CODE>null</CODE>
+ .<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH><I>value</I>Return value</TH><TH><I>source</I><I>value</I>Return value</TH></TR>
+<TR><TD>nullnull</TD><TD> nullnullnull</TD></TR>
+<TR><TD>non-nullnull</TD><TD> nullnon-nullnull</TD></TR>
+<TR><TD>null<I>source</I></TD><TD> non-nullnull<I>source</I></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The invocation list of <I>value</I> is required to be
+   an exact match of a contiguous set of elements in the invocation list of
+ <I>source</I>. If the invocation list of <I>value</I> occurs more than once 
+   in the invocation list of <I>source</I>, the last occurrence is removed.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.Delegate.Remove(System.Delegate,System.Delegate) method.<P>
+
+<PRE>using System;
+class MyClass {
+    public string InstanceMethod(string s) {
+    return (&quot;Instance String &quot; + s);
+    }
+}
+class MyClass2 {
+    public string InstanceMethod2(string s) {
+    return (&quot;Instance String2 &quot; + s);
+    }
+}
+public delegate string DelegatedMethod(string s);
+
+class TestClass {
+    public static void WriteDelegate (string label, Delegate d) {
+    Console.WriteLine(&quot;Invocation list targets for {0}:&quot;,label);
+    foreach(Delegate x in d.GetInvocationList())
+        Console.WriteLine(&quot;{0}&quot;,x.Target);
+    }
+
+    public static void Main() {
+    MyClass myInstance = new MyClass();
+    DelegatedMethod delInstance = new DelegatedMethod(myInstance.InstanceMethod);
+    MyClass2 myInstance2 = new MyClass2();
+    DelegatedMethod delInstance2 = new DelegatedMethod(myInstance2.InstanceMethod2);
+    DelegatedMethod [] sourceArray = {delInstance, delInstance2, delInstance2, delInstance};
+    DelegatedMethod [] remove1 = {delInstance};
+    DelegatedMethod [] remove2 = {delInstance2, delInstance2};
+    DelegatedMethod [] remove3 = {delInstance2, delInstance};
+    DelegatedMethod [] remove4 = {delInstance, delInstance2};
+    DelegatedMethod [] remove5 = {delInstance, delInstance};
+    Delegate source = Delegate.Combine(sourceArray);
+    // Display invocation list of source
+    TestClass.WriteDelegate(&quot;source&quot;, source);
+    //Test 1: value occurs in source twice.
+    Delegate value1 = Delegate.Combine(remove1);
+    Delegate result1 = Delegate.Remove(source, value1);
+    TestClass.WriteDelegate(&quot;value1&quot;, value1);
+    if (result1==null) {
+        Console.WriteLine(&quot;removal test 1 result is null&quot;);
+    } else {
+        TestClass.WriteDelegate(&quot;result1&quot;, result1);
+    }
+    //Test 2: value matches the middle two elements of source.
+    Delegate value2 = Delegate.Combine(remove2);
+    Delegate result2 = Delegate.Remove(source, value2);
+    TestClass.WriteDelegate(&quot;value2&quot;, value2);
+    if (result2==null) {
+        Console.WriteLine(&quot;removal test 2 result2 is null&quot;);
+    } else {
+        TestClass.WriteDelegate(&quot;result2&quot;, result2);
+    }
+    //Test 3: value matches the last two elements of source.
+    Delegate value3 = Delegate.Combine(remove3);
+    Delegate result3 = Delegate.Remove(source, value3);
+    TestClass.WriteDelegate(&quot;value3&quot;, value3);
+    if (result3==null) {
+        Console.WriteLine(&quot;removal test 3 result3 is null&quot;);
+    } else {
+        TestClass.WriteDelegate(&quot;result3&quot;, result3);
+    }
+    //Test 4: value matches the first two elements of source.
+    Delegate value4 = Delegate.Combine(remove4);
+    Delegate result4 = Delegate.Remove(source, value4);
+    TestClass.WriteDelegate(&quot;value4&quot;, value4);
+    if (result4==null) {
+        Console.WriteLine(&quot;removal test 4 result4 is null&quot;);
+    } else {
+        TestClass.WriteDelegate(&quot;result4&quot;, result4);
+    }
+    //Test 5: value does not occur in source.
+    Delegate value5 = Delegate.Combine(remove5);
+    Delegate result5 = Delegate.Remove(source, value5);
+    TestClass.WriteDelegate(&quot;value5&quot;, value5);
+    if (result5==null) {
+        Console.WriteLine(&quot;removal test 5 result5 is null&quot;);
+    } else {
+        TestClass.WriteDelegate(&quot;result5&quot;, result5);
+    }
+    //Test 6: value exactly matches source.
+    Delegate result6 = Delegate.Remove(source, source);
+    TestClass.WriteDelegate(&quot;value=source&quot;, source);
+    if (result6==null) {
+        Console.WriteLine(&quot;removal test 6 result6 is null&quot;);
+    } else {
+
+        TestClass.WriteDelegate(&quot;result6&quot;, result6);
+    }
+}
+}
+</PRE>
+The output is<P>
+
+<CODE>Invocation list targets for source:<P>
+
+MyClass<P>
+
+MyClass2<P>
+
+MyClass2<P>
+
+MyClass<P>
+
+Invocation list targets for value1:<P>
+
+MyClass<P>
+
+Invocation list targets for result1:<P>
+
+MyClass<P>
+
+MyClass2<P>
+
+MyClass2<P>
+
+Invocation list targets for value2:<P>
+
+MyClass2<P>
+
+MyClass2<P>
+
+Invocation list targets for result2:<P>
+
+MyClass<P>
+
+MyClass<P>
+
+Invocation list targets for value3:<P>
+
+MyClass2<P>
+
+MyClass<P>
+
+Invocation list targets for result3:<P>
+
+MyClass<P>
+
+MyClass2<P>
+
+Invocation list targets for value4:<P>
+
+MyClass<P>
+
+MyClass2<P>
+
+Invocation list targets for result4:<P>
+
+MyClass2<P>
+
+MyClass<P>
+
+Invocation list targets for value5:<P>
+
+MyClass<P>
+
+MyClass<P>
+
+Invocation list targets for result5:<P>
+
+MyClass<P>
+
+MyClass2<P>
+
+MyClass2<P>
+
+MyClass<P>
+
+Invocation list targets for value=source:<P>
+
+MyClass<P>
+
+MyClass2<P>
+
+MyClass2<P>
+
+MyClass<P>
+
+removal test 6 result6 is null<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Delegate.html" TARGET="contents">System.Delegate Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Delegate.RemoveAll Method"><H3>Delegate.RemoveAll Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static Delegate RemoveAll(Delegate source, Delegate value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes all matching occurrences of the invocation list of a <A HREF="Delegate.html" TARGET="contents">Delegate</A> from the     invocation list of another delegate.
+    <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>source</DT>
+<DD>The delegate from which to remove all matching occurrences of the invocation list of <I>value</I>.</DD>
+<DT>value</DT>
+<DD>The delegate that supplies the invocation list to remove from <I>source</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+Returns a new delegate, <I>source</I>, or <CODE>null</CODE>
+.<P>
+
+If <I>source</I> and <I>value</I> are not <CODE>null</CODE>
+ , are not equal, and the invocation list of <I>value</I> is contained in the invocation list of source, returns a new delegate with all matching occurrences of the invocation list of <I>value</I> removed from the invocation list of <I>source</I>.
+    <P>
+
+If the invocation lists of <I>source</I> and <I>value</I> are equal, or if <I>source</I> contains only a succession of invocation lists equal to <I>value</I>, returns <CODE>null</CODE>
+.<P>
+
+If the invocation list of <I>value</I> is not found in the invocation list of <I>source</I>, returns <I>source</I>.<P>
+
+The following table describes the value returned when <I>source</I> or <I>value</I> is <CODE>null</CODE>
+ .<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH><I>value</I>Return value</TH><TH><I>source</I><I>value</I>Return value</TH></TR>
+<TR><TD>nullnull</TD><TD> nullnullnull</TD></TR>
+<TR><TD>non-nullnull</TD><TD> nullnon-nullnull</TD></TR>
+<TR><TD>null<I>source</I></TD><TD> non-nullnull<I>source</I></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The invocation list of <I>value</I> is required to be   an exact match of a contiguous set of elements in the invocation list of<I>source</I>. If the invocation list of <I>value</I> occurs more than once    in the invocation list of <I>source</I>, all occurrences are removed.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Delegate.html" TARGET="contents">System.Delegate Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Delegate.op_Equality Method"><H3>Delegate.op_Equality Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator ==(Delegate d1, Delegate d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the specified delegates are equal.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The first delegate to compare.</DD>
+<DT>d2</DT>
+<DD>The second delegate to compare.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if
+<I>d1</I>.Equals(<I>d2</I>) returns <CODE>true</CODE>
+; 
+   otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  See System.Delegate.Equals(System.Object).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Delegate.html" TARGET="contents">System.Delegate Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Delegate.op_Inequality Method"><H3>Delegate.op_Inequality Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public static bool operator !=(Delegate d1, Delegate d2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the specified Delegates are not equal.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>d1</DT>
+<DD>The first delegate to compare.</DD>
+<DT>d2</DT>
+<DD>The second delegate to compare.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if
+<I>d1</I>.Equals(<I>d2</I>) returns 
+<CODE>false</CODE>
+; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  See System.Delegate.Equals(System.Object).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Delegate.html" TARGET="contents">System.Delegate Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Delegate.Method Property"><H3>Delegate.Method Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public MethodInfo Method { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the last method in a delegate&apos;s invocation 
+      list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../System/Reflection/MethodInfo.html" TARGET="contents">MethodInfo</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="MemberAccessException.html" TARGET="contents">MemberAccessException</A></TD><TD>The caller does not have the required permissions.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Delegate.html" TARGET="contents">System.Delegate Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A><HR>
+
+<A NAME="Delegate.Target Property"><H3>Delegate.Target Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public object Target { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the last object upon which a delegate invokes an
+      instance method.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Object.html" TARGET="contents">Object</A> instance, or 
+<CODE>null</CODE>
+ if the delegate invokes only static methods.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+If the delegate invokes only static methods, this 
+      property returns <CODE>null</CODE>
+
+      . If the delegate invokes one or more instance methods, this property returns the target of the last instance method/target pair in the invocation list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+Example 1:<P>
+
+The following example gets the System.Delegate.Target property values
+   for two delegates. The first delegate invokes a static method, and the second
+   invokes an instance method.<P>
+
+<PRE>using System;
+public delegate string DelegatedMethod(string s);
+class MyClass {
+  public static string StaticMethod(string s) {
+    return (&quot;Static method Arg=&quot; + s);
+  }
+  public string InstanceMethod(string s) {
+    return (&quot;Instance method Arg=&quot; + s);
+  }
+}
+class TestClass {
+  public static void Main() {
+    MyClass myInstance = new MyClass();
+     //Create  delegates from delegate type DelegatedMethod.
+    DelegatedMethod delStatic = new DelegatedMethod(MyClass.StaticMethod);        
+    DelegatedMethod delInstance = new DelegatedMethod(myInstance.InstanceMethod);
+    object t = delStatic.Target; 
+    Console.WriteLine (&quot;Static target is {0}&quot;, t==null ? &quot;null&quot;:t);    
+    t = delInstance.Target;
+    Console.WriteLine (&quot;Instance target is {0}&quot;, t==null ? &quot;null&quot;:t);
+    }
+}
+</PRE>
+The output is<P>
+
+<CODE>Static target is null<P>
+
+Instance target is MyClass<P>
+
+</CODE>Example 2: <P>
+
+The following example gets the System.Delegate.Target property value for three delegates
+created using instance methods, static methods, and a combination of the two. <P>
+
+<PRE>using System;
+class MyClass {
+  public static string StaticMethod(string s) {
+    return (&quot;Static String &quot; + s);
+  }
+  public string InstanceMethod(string s) {
+    return (&quot;Instance String &quot; + s);
+  }
+}
+class MyClass2 {
+  public static string StaticMethod2(string s) {
+    return (&quot;Static String2 &quot; + s);
+  }
+  public string InstanceMethod2(string s) {
+    return (&quot;Instance String2 &quot; + s);
+  }
+}
+public delegate string DelegatedMethod(string s);
+
+class TestClass {
+    public static void Main() {
+    DelegatedMethod delStatic = new DelegatedMethod(MyClass.StaticMethod);
+    DelegatedMethod delStatic2 = new DelegatedMethod(MyClass2.StaticMethod2);
+    
+    MyClass myInstance = new MyClass();
+    DelegatedMethod delInstance = new DelegatedMethod(myInstance.InstanceMethod);
+
+    MyClass2 myInstance2 = new MyClass2();
+    DelegatedMethod delInstance2 = new DelegatedMethod(myInstance2.InstanceMethod2);
+
+    Delegate d = Delegate.Combine(delStatic, delInstance );
+    Delegate e = Delegate.Combine(delInstance,delInstance2);
+    Delegate f = Delegate.Combine(delStatic, delStatic2 );
+    if (d!=null) {
+        Console.WriteLine(&quot;Combined 1 static, 1 instance, same class:&quot;);
+        Console.WriteLine(&quot;target...{0}&quot;, d.Target == null ? &quot;null&quot; : d.Target);
+        foreach(Delegate x in d.GetInvocationList())
+            Console.WriteLine(&quot;invoke element target: {0}&quot;,x.Target);
+
+    }
+    Console.WriteLine(&quot;&quot;);
+    if (e!=null) {
+        Console.WriteLine(&quot;Combined 2 instance methods, different classes:&quot;);
+        Console.WriteLine(&quot;target...{0}&quot;, e.Target == null ? &quot;null&quot; : e.Target);
+        foreach(Delegate x in e.GetInvocationList())
+            Console.WriteLine(&quot;invoke element target: {0}&quot;,x.Target);
+    }
+    Console.WriteLine(&quot;&quot;);
+    if (f!=null) {
+        Console.WriteLine(&quot;Combined 2 static methods, different classes:&quot;);
+        Console.WriteLine(&quot;target...{0}&quot;, f.Target == null ? &quot;null&quot; : f.Target);
+        foreach(Delegate x in f.GetInvocationList())
+            Console.WriteLine(&quot;invoke element target: {0}&quot;,x.Target);
+    }
+
+    }
+}
+</PRE>
+The output is<P>
+
+<CODE>Combined 1 static, 1 instance, same class:<P>
+
+target...MyClass<P>
+
+invoke element target:<P>
+
+invoke element target: MyClass<P>
+
+Combined 2 instance methods, different classes:<P>
+
+target...MyClass2<P>
+
+invoke element target: MyClass<P>
+
+invoke element target: MyClass2<P>
+
+Combined 2 static methods, different classes:<P>
+
+target...null<P>
+
+invoke element target:<P>
+
+invoke element target:<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Delegate.html" TARGET="contents">System.Delegate Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

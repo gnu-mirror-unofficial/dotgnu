@@ -1,0 +1,162 @@
+<HTML>
+<HEAD>
+<TITLE>System.ICloneable Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.ICloneable Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public interface ICloneable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Implemented by classes that require control over the
+ way in which copies of
+ instances are constructed.
+ <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: <A HREF="ICloneable.html" TARGET="contents">ICloneable</A> contains the System.ICloneable.Clone method.
+ The consumer of an object should call this method when a copy of the object is
+ needed.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ICloneable Methods<P>
+
+<A HREF="#ICloneable.Clone Method" TARGET="contents">ICloneable.Clone Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ICloneable.Clone Method"><H3>ICloneable.Clone Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>object Clone();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Creates a copy of the current instance.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Object.html" TARGET="contents">Object</A> of the same type as the current instance, containing
+   copies of the non-static members of the current instance.
+   <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The exact behavior of this method is unspecified. The intent
+      of the method is to provide a mechanism that constructs
+      instances that
+      are copies of the current instance, without regard for class-specific definitions of the term
+      &quot;copy&quot;. <P>
+
+[<I>Note</I>:  Use the System.Object.MemberwiseClone
+method to create a shallow copy of an object. For more information, see System.Object.MemberwiseClone . ]<P>
+
+<P>
+
+[<I>Behaviors</I>:  This method is required to return
+   an instance of the same type as the current instance. ]<P>
+
+<P>
+
+[<I>Overrides</I>:  Implement this method to provide
+   class-specific copying behavior. ]<P>
+
+<P>
+
+[<I>Usage</I>:  Use the System.ICloneable.Clone method
+to obtain a copy of the current instance. ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example shows an implementation of System.ICloneable.Clone that
+   uses the System.Object.MemberwiseClone
+   method to create a copy of
+   the current instance.<P>
+
+<PRE>using System;
+class MyClass :ICloneable {
+    public int myField;
+    public MyClass() {
+        myField = 0;
+    }
+    public MyClass(int value) {
+        myField = value;
+    }
+    public object Clone() {
+        return this.MemberwiseClone();
+    }
+}
+public class TestMyClass {
+    public static void Main() {
+        MyClass my1 = new MyClass(44);
+        MyClass my2 = (MyClass) my1.Clone();
+        Console.WriteLine(&quot;my1 {0} my2 {1}&quot;,my1.myField, my2.myField);
+        my2.myField = 22;
+        Console.WriteLine(&quot;my1 {0} my2 {1}&quot;,my1.myField, my2.myField);
+    }
+}
+</PRE>
+The output is<P>
+
+<CODE>my1 44 my2 44<P>
+
+my1 44 my2 22<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ICloneable.html" TARGET="contents">System.ICloneable Interface</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>

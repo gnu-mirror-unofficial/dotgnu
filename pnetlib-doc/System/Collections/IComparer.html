@@ -1,0 +1,160 @@
+<HTML>
+<HEAD>
+<TITLE>System.Collections.IComparer Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Collections.IComparer Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>public interface IComparer</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides a mechanism to customize the sort
+      ordering of a collection.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The default implementation of this interface
+      is <A HREF="Comparer.html" TARGET="contents">Comparer</A>
+      .<P>
+
+[<I>Note</I>: <A HREF="IComparer.html" TARGET="contents">IComparer</A> contains the System.Collections.IComparer.Compare(System.Object,System.Object) method. The consumer of an object
+      should call this method when sorting members of a collection.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IComparer Methods<P>
+
+<A HREF="#IComparer.Compare Method" TARGET="contents">IComparer.Compare Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IComparer.Compare Method"><H3>IComparer.Compare Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#EEEEFF"><PRE>int Compare(object x, object y);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the sort order of two <A HREF="../../System/Object.html" TARGET="contents">Object</A> instances.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>x</DT>
+<DD>First <A HREF="../../System/Object.html" TARGET="contents">Object</A> to compare.</DD>
+<DT>y</DT>
+<DD>Second <A HREF="../../System/Object.html" TARGET="contents">Object</A> to compare.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of
+<I>x</I> as compared to <I>y</I>. The following table defines the conditions
+   under which the returned value is a negative number, zero, or a positive
+   number.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF"><TH>Condition</TH><TH>ValueCondition</TH></TR>
+<TR><TD><I>x</I> &lt; <I>y</I>.</TD><TD> Any negative number<I>x</I> &lt; <I>y</I>.</TD></TR>
+<TR><TD><I>x</I> == <I>y</I>.</TD><TD> Zero<I>x</I> == <I>y</I>.</TD></TR>
+<TR><TD><I>x</I> &gt; <I>y</I>.</TD><TD> Any positive number<I>x</I> &gt; <I>y</I>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: For any objects A, B, and C, the following are required to be true: <P>
+
+System.Collections.IComparer.Compare(System.Object,System.Object) (A, A) is required to
+      return zero.
+      <P>
+
+ If
+   System.Collections.IComparer.Compare(System.Object,System.Object)(A, B)
+      returns zero, then System.Collections.IComparer.Compare(System.Object,System.Object) (B, A) is required to
+      return zero.
+      <P>
+
+ If System.Collections.IComparer.Compare(System.Object,System.Object)(A, B) returns zero and System.Collections.IComparer.Compare(System.Object,System.Object)(B, C)
+   returns zero then System.Collections.IComparer.Compare(System.Object,System.Object) (A, C) is required to
+   return zero.
+   <P>
+
+ If System.Collections.IComparer.Compare(System.Object,System.Object)(A, B) returns a value other than
+zero, then System.Collections.IComparer.Compare(System.Object,System.Object) (B,
+A)
+is required to return a value of the
+opposite sign.<P>
+
+ If System.Collections.IComparer.Compare(System.Object,System.Object)(A, B) returns a value x not equal to
+zero, and System.Collections.IComparer.Compare(System.Object,System.Object)(B, C)
+returns
+a value y of the same sign as x, then System.Collections.IComparer.Compare(System.Object,System.Object) (A,
+C) is required to return
+a value of the same sign as x
+and y.<P>
+
+]<P>
+
+[<I>Note</I>: The exact ordering of this method is unspecified. The intent of the method
+      is to provide a mechanism that orders instances of a class in a manner that
+      is consistent with the mathematical definitions of the relational operators (&lt;,
+      &gt;, and ==), without regard for class-specific definitions of the
+      operators.<P>
+
+]<P>
+
+[<I>Usage</I>: This interface is used in conjunction with the System.Array.Sort(System.Array) and System.Array.BinarySearch(System.Array,System.Object) methods.
+<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IComparer.html" TARGET="contents">System.Collections.IComparer Interface</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+</A></BODY>
+</HTML>
