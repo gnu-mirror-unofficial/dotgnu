@@ -1,4 +1,9 @@
 #!/usr/bin/env python1.5
+##############################################
+# This is released under the GNU GPL license #
+# Copyright (c) FSF India                    #
+# Author        Gopal.V                      #
+##############################################
 import xml.dom.minidom
 import string
 import sys
@@ -12,7 +17,7 @@ cvs_entries=cvsmoddate("/home/gopal/dotgnu/pnetlib/runtime")
 # * implement command line options       #
 # * implement theme/template support     #
 # * implement maintainer ids             #
-# * implement this whole thing in C      #
+# * implement this whole thing in C#     #
 ##########################################
 class classnode:
 	def __init__(self,node):
@@ -118,20 +123,15 @@ def write_pnetlib_header(fp):
 	print_curved_title(fp,"""Portable.NET""")
 def write_pnetlib_footer(fp):
 	fp.write("<br><br>")
+	import time
+	lastd=time.gmtime(time.time());
 	print_curved_header(fp,"&nbsp;")
-	print_curved_title(fp,"""<p align="center">
-								Portable.NET is a Free CLR environment
-								for GNU systems. <br>
-								It is part of the DotGNU meta project.
-							</p>
-							<p align="center">
-								Visit <a href="http://www.dotgnu.org">
-								http://www.dotgnu.org</a> for more details
-							</p>
-							<p align="center">
+	print_curved_title(fp,"""<p align="center"><font size="-3">
+							&copy; All copyrights to DotGNU.org<br>
+							Licensed under the GNU FDL.</font>
 							<table border="0" cellspacing="10" align="center">
 							<tr align="center">
-								<td><a href="http://www.fsf.org.in">
+								<td><a href="http://www.fsf.org">
 								<img src="powered-by-fs.png" 
 								alt="[Powered by Free Software]"></a></td>
 								
@@ -145,9 +145,17 @@ def write_pnetlib_footer(fp):
 								alt="[Powered by GNU]"></a>
 								</td>
 							</tr>
-							</table>
+							<tr>
+							<td></td>
+							<td><font size="-5">Maintained by Gopal.V </font></td>
+							<td></td>
+							</tr>
+							</table>							
 							</p>
-							""")
+							<p align="right">
+							<font size="-5">Last Updated on <i>"""+
+							`lastd[2]`+"-"+`lastd[1]`+"-"+`lastd[0]`+
+							"""</i></font></p>""")
 	print_curved_footer(fp)
 #end format functions
 
@@ -161,7 +169,7 @@ def print_namespace_list(nslist,ctor,method,field,prop,event,attr):
 	
 	write_pnetlib_header(fp)
 	print_curved_title(fp,"""<h1>Namespaces</h1> """)
-	print_curved_title(fp,"<p align=\"right\"><a href=\""+nslist[0]+".html\">Next</a></p>")
+	print_curved_title(fp,"<p align=\"right\"><a href=\""+nslist[0]+".html\"><img src=\"rarrow.jpg\"</a></p>")
 	fp.write("<tr><td>&nbsp;</td><td>")	
 	#nested tabling is *so* difficult
 	fp.write("""<table align="left" width="100%" bordercolor="#dedebb">""")
