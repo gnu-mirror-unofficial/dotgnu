@@ -12,26 +12,31 @@
 <h1>Analysis of McAfee patent #6,266,774</h1>
 
 Rhys Weatherley, <a href="mailto:rweather@southern-storm.com.au">rweather@southern-storm.com.au</a>.<br>
-Copyright &copy; 2001 Southern Storm Software, Pty Ltd.  All rights
-reserved.<br>
+Copyright &copy; 2001 Rhys Weatherley.  All rights reserved.<br>
 Permission to distribute unmodified copies of this work is hereby granted.<p>
 
-Last Modified: 8 August 2001
+Last Modified: 10 August 2001
 
 <h2>1. Introduction</h2>
 
 This document is an analysis of the McAfee patent #6,266,774, explaining
 what it does and does not cover.  We hope to dispell the myth that this
-covers "all application service providers".<p>
+covers all application service providers.<p>
+
+This document was prepared in part to assist the DotGNU project,
+<a href="http://www.dotgnu.org/">http://www.dotgnu.org/</a>, a
+free software initiative under the auspices of the GNU project,
+<a href="http://www.gnu.org/">http://www.gnu.org/</a> and FreeDevelopers,
+<a href="http://www.freedevelopers.net/">http://www.freedevelopers.net/</a>.<p>
 
 We concentrate on the claims in the patent, not the description or
-McAfee's press releases.  Only the claims have legal weight.  Any other
-information, particularly claims made by McAfee itself, should be treated
-with skepticism.  It is common for patent owners to overstate the
-reach of their patents.<p>
+McAfee's press releases.  Only the claims have legal weight.<p>
 
 Nothing in this document should be construed as legal advice.  It is
 an independent review by a computer programmer, not a patent attorney.<p>
+
+If you discover any issues with this document, or other examples of
+prior art, please e-mail the author.<p>
 
 <h2>2. Overview of the patent</h2>
 
@@ -59,7 +64,7 @@ Essentially, the patent covers a system for automatically downloading
 security patches and virus scanner updates over the Internet.  This
 is hardly an earth-shattering achievement: any competent Internet
 programmer could devise such a scheme.  As we will see, the claims
-are fairly obvious to a practicioner of computer programming.<p>
+are obvious to a practicioner of computer programming.<p>
 
 <h2>3. The main claims</h2>
 
@@ -106,6 +111,22 @@ a markup language.  But these are just recent incarnations of a very old,
 and obvious, idea.  Namely, administration is more efficient if it can
 be centralised.<p>
 
+This claim is vague as to who or what performs the "directing".  Is
+it the user themselves?  An automated process installed on user's machine?
+Or the server computer?  The first interpretation is no different than regular
+Web traffic.  The second interpretation is no different than a Unix machine
+using NFS to download a shell script at pre-determined times.<p>
+
+The patent description is also vague, but the third would seem to be
+the most likely interpretation.  That is, the server sends some information
+to the user's Web browser to cause it to accept the download of the software
+package on a secondary connection.<p>
+
+There are two sources of prior art for this: FTP and HTTP redirects.  FTP
+servers negotiate with their clients to set up a secondary connection to
+exchange data files.  HTTP redirects can also be used to force a Web
+browser to visit a secondary Web site that performs data transfer.<p>
+
 <blockquote>
 12. A computer program product for execution by a server computer for
 enabling the maintenance of a remote user computer coupled to the server
@@ -136,6 +157,12 @@ date provide the above functionality.  The more usual name for the client
 part of the mechanism is "browser plug-ins", which are activated by
 information supplied by the server upon user request.<p>
 
+If the third interpretation of "directing" in claim 1 is the correct one,
+then existing Web servers provide all of the functionality except the
+establishment of the secondary connection.  Such functionality is more
+common to FTP servers.  The patent has combined the functionality of
+HTTP and FTP in the most obvious manner possible.<p>
+
 <blockquote>
 14. A computer-readable medium, comprising:
 
@@ -153,13 +180,31 @@ information supplied by the server upon user request.<p>
 </ul>
 </blockquote>
 
-This refers to the mechanism used to represent the software updates as
-the "markup language communication unit".  Packaging software for download
-is not new: the ZIP format has existed since the early 1990's for precisely
-this purpose.  Adding additional script commands is also quite common:
-the shar archive format was doing this in the late 1980's, and the RPM
-format is a more recent example from the mid-1990's.  All of these predate
-the patent filing date by at least a year.<p>
+This refers to the mechanism used to represent and deliver the software
+updates as the "markup language communication unit".  Packaging software
+for download is not new: the ZIP format has existed since the early 1990's
+for precisely this purpose.  Incorporating additional script commands is
+also quite common: the shar archive format was doing this in the late 1980's,
+and the RPM format is a more recent example from the mid-1990's.  All of
+these predate the patent filing date by at least a year.<p>
+
+The first part of this claim is vague as to when the unit is generated.
+Is it generated once for all users and stored for download?  If so, then
+claim 14 is precisely the same as ZIP, shar, and RPM in functionality.<p>
+
+Alternatively, the unit may be generated "on the fly" in the server.
+The unit can thus be customized to the specific maintainence tasks
+required by the user's machine.  Previous systems did not normally
+do this, because it is inefficient.  However, if an administrator of
+a previous system wanted to build such a system, it would be quite
+obvious how to do so.  Packaging software is fully automatable and
+configurable.<p>
+
+There is some prior art for packaging software "on the fly" in a
+server.  The wu-ftpd FTP server can automatically package the contents
+of a directory as a "tar" file for download to a user's machine.
+Because the server does not know ahead of time which directories the
+user may wish to download, it must perform the task upon request.<p>
 
 <h2>4. Restating the obvious</h2>
 
@@ -240,9 +285,9 @@ being a secure network connection.<p>
 </blockquote>
 
 This claim says that the patent still holds if the information is sent
-over a secure connection.  That is, if the user accesses the server using
-SSL rather than a raw connection, then the patent still holds.  It is
-obvious to anyone familiar with Internet protocols that any information
+over a secure connection.  That is, the user accesses the server and
+downloads the software package using SSL rather than a raw connection.
+It is obvious to anyone familiar with Internet protocols that any information
 that is sent via an insecure channel can also be sent by a secure channel.<p>
 
 <blockquote>
@@ -316,8 +361,9 @@ this will result in a better system for the users.<p>
 </ul>
 </blockquote>
 
-This claims says that a receipt is generated after payment information
-is supplied.  This is an obvious requirement for any e-commerce system.<p>
+This claims says that a receipt is generated and transmitted after the payment
+information is supplied.  This is an obvious requirement for any e-commerce
+system.<p>
 
 <blockquote>
 11. The method of claim 1 wherein said one or more maintenance tasks
@@ -384,9 +430,6 @@ Using the Internet instead of NFS and a markup language instead of shell
 scripts or RPM packages, is obvious to practicioners of computer
 programming.<p>
 
-This patent should never have been granted, according to the USPTO's
-own guidelines on the subject.<p>
-
 <h2>6. Avoiding the patent</h2>
 
 If the prior art is not sufficient to overturn the patent, then there
@@ -403,6 +446,12 @@ connection to the server, and to negotiate over this direct connection.
 There is no need for the involvement of a full Internet browser.  Thus,
 a competing system need only avoid using a browser to contact the server,
 and would thereby deliver a superior user experience.<p>
+
+The patent description attempts to justify this complexity because then
+users don't need to understand how to manually install the maintainence
+system.  An alternative mechanism that is installed by OEM's on user
+computers, or is distributed as part of some standard software package,
+would provide the same level of functionality without confusing users.<p>
 
 Some concern has been expressed that this patent covers all manner of
 "application service providers" (ASP's).  This concern is based on the
@@ -426,30 +475,39 @@ herein.
 </blockquote>
 
 Since the patent description carries no legal weight, this is just
-wishful thinking on McAfee's part.  Claims 7 and 11 make it quite clear
-what type of maintainence operations are being performed.  ASP's that
-provide access to ordinary applications will rarely, if ever, need to
-perform these kinds of maintainence tasks.  For example, an online
-ticket reservation ASP does not need to access the user's machine to
+wishful thinking.  Claims 7 and 11 make it quite clear what type of
+maintainence operations are being performed, and the bulk of the
+patent description makes no mention of other application types.
+ASP's that provide access to ordinary applications will rarely, if ever,
+need to perform maintainence tasks.  For example, an online ticket
+reservation ASP does not need to access the user's machine to
 compress files, scan for viruses, etc.<p>
 
 Even if the description was accepted as legal, it overlaps very
 heavily with technologies such as Java that were already deployed
-one year prior to the filing date.  Thus, McAfee are trying to patent
-the download of non-maintainence software well after such software was
-being widely downloaded and deployed.  This claim has no merit
-whatsoever.<p>
+one year prior to the filing date.  One cannot patent the download
+of non-maintainence software well after such software was being
+widely downloaded and deployed.  This claim has no merit whatsoever.<p>
 
-Claim 9 was a serious oversight on the part of McAfee.  Payment
-information is sent via e-mail.  To avoid infringement, competitors
-can use a Web browser or a direct HTTP/HTTPS connection instead.
-The result is likely to be a better user experience.<p>
+Claim 9 was a serious oversight.  Payment information is sent via e-mail.
+To avoid infringement, competitors can instead use a Web browser or a
+direct HTTP or HTTPS connection.  The result is likely to be a better
+user experience.<p>
+
+As claim 1 is vague as to the method for "directing" the user's
+machine to download the software package, it is safer to use straightforward
+download mechanisms, rather than unnecessarily clever secondary connections.<p>
+
+Claim 14 is ambiguous as to when the software package is generated.
+It may be safer to use methods that package the software ahead of time
+rather than on the fly.  However, the example of wu-ftpd demonstrates
+that on the fly packaging is obvious.<p>
 <P><HR>Copyright 2001 FreeDevelopers.Net, Inc.
 <P>
 Verbatim copying and distribution of this entire article are
 permitted in any medium or format, provided this notice is
 preserved.
-<P>This page was last updated on Thu Aug  9 15:01:13 2001. It is maintained by
+<P>This page was last updated on Fri Aug 10 08:39:33 2001. It is maintained by
 <A href="http://thinkcoach.com">Norbert Bollow</A>
 <A href="mailto:nb@freedevelopers.net">&lt;nb@freedevelopers.net&gt;</A>
 with support from the
