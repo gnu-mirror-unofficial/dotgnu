@@ -75,7 +75,8 @@ class Developer:
 		else:
 			return None
 	def toHtml(self,w):
-		w.writeline("""<foaf:Person id=\"%s\">""" % self.name)
+		w.writeline("""<foaf:Person>""" )	
+		w.writeline("""<foaf:name>%s</foaf:name>""" %self.name )
 		w.writeline("""<foaf:interest rdf:resource=\"http://www.dotgnu.org/\"/>""")
 		w.writeline("""<dc:contributor rdf:resource=\"http://www.dotgnu.org/\"/>""")
 		
@@ -96,10 +97,10 @@ class Developer:
 			for mode in self.chat.keys():
 				if mode!="irc":
 					if(not first):
-						w.writeline("""<dotgnu:%s/>%s</dotgnu:irc>"""  % (mode,self.chat[mode],mode))
+						w.writeline("""<dotgnu:%s>%s</dotgnu:irc>"""  % (mode,self.chat[mode],mode))
 					else:
 						first=0
-				w.writeline("""<dotgnu:%s/>%s</dotgnu:%s>"""  % (mode,self.chat[mode],mode))
+				w.writeline("""<dotgnu:%s>%s</dotgnu:%s>"""  % (mode,self.chat[mode],mode))
 
 		w.writeline("""</foaf:Person>""")
 
@@ -111,39 +112,39 @@ def processTree(tree):
 		developers[dev.name]=dev
 	sorted=developers.keys()
 	sorted.sort()
-	fp=open("../src/people.xml","w")
+	fp=open("../src/people.foaf","w")
 	w=StringWriter(fp)
-	w.writeline("""
-	<!-- DotGNU People FOAF -->
-	<?xml version="1.0" encoding="ISO-8859-1"?>
+	w.writeline("""<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- DotGNU People FOAF -->
 <rdf:RDF
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:dotgnu="http://dotgnu.org/2003/06/dotgnu.rdfs"
-	xmlns:wn="http://xmlns.com/wordnet/1.6/"
 	xmlns:rss="http://purl.org/rss/1.0/"
-	xmlns:cc="http://web.resource.org/cc/"
-	xmlns:air="http://www.megginson.com/exp/ns/airports#"
-	xmlns:contact="http://www.w3.org/2000/10/swap/pim/contact#"
-	xmlns:rel="http://www.perceive.net/schemas/20021119/relationship/relationship.rdf"
-	xmlns:trust="http://www.perceive.net/schemas/20020725/trust/trust.rdf#"
-	xmlns:wot="http://xmlns.com/wot/0.1/"
 	xmlns:foaf="http://xmlns.com/foaf/0.1/">
 ]>
 <dotgnu:DevelopersList rdf:about="http://dotgnu.org/2003/06/developers.foaf">
-<rdf:Seq>
-	""")
+""")
+#       xmlns:cc="http://web.resource.org/cc/"
+#	xmlns:wn="http://xmlns.com/wordnet/1.6/"
+# 	xmlns:air="http://www.megginson.com/exp/ns/airports#"
+# 	xmlns:contact="http://www.w3.org/2000/10/swap/pim/contact#"
+# 	xmlns:rel="http://www.perceive.net/schemas/20021119/relationship/relationship.rdf"
+# 	xmlns:trust="http://www.perceive.net/schemas/20020725/trust/trust.rdf#"
+# 	xmlns:wot="http://xmlns.com/wot/0.1/"
+	
 	for each in sorted:
 		print "processing %s .........." % each
+		w.writeline( """<rdf:Seq>""")
 		developers[each].toHtml(w)
+		w.writeline( """</rdf:Seq>""")
 	w.writeline( """
-	</rdf:Seq>
-	</dotgnu:DevelopersList>
-	</rdf:RDF>""")
+</dotgnu:DevelopersList>
+</rdf:RDF>""")
 	w.flush()
 	w.close()
-	print "wrote result to ../src/people.xml"
+	print "wrote result to ../src/people.foaf"
 				
 if __name__=="__main__":
 	tree=xml.dom.minidom.parse("developers.xml")
