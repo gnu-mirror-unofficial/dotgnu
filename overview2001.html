@@ -1,0 +1,800 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>2001: The Year When DotGNU Was Born</title>
+</head>
+  <body>
+       
+<div style="border: 3px outset ; margin-left: 15%; margin-right: 15%; margin-top: 3em;">
+       
+<h1 style="text-align: center;">This Year in DotGNU - No. 1</h1>
+       
+<h2 style="text-align: center;">2001 -- The Year When DotGNU Was Born</h2>
+       
+<p style="margin-left: 60%;">A year ago there was nothing,<br>
+    and now there is something.<br>
+   <br>
+    Rhys Weatherley</p>
+    </div>
+       
+<p>Recently, on the DotGNU developer's mailing list a member proposed that 
+ "DotGNU" should be interpreted as a recursive acronym (like GNU stands for 
+ "GNU's Not Unix"); so, perhaps someday, "DotGNU" will really mean something 
+ akin to "DotGNU over the GNU Networking Universe". Even today the DotGNU 
+project and members are building an "operating system for the Internet" - 
+a collection of tools that allow software components to interact with each 
+other over the Internet.</p>
+       
+<p>General project website: <a href="http://www.dotgnu.org">http://www.dotgnu.org</a></p>
+      
+<div style="border: 3px outset ; margin-top: 4em; padding-left: 1em; padding-right: 1em;">
+      
+<p style="border-top: 0px none; border-bottom: 4px double; border-left: 0px none; border-right: 0px none;">
+   Table Of Contents</p>
+       
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none;">
+   Section A: DotGNU - Make the Web Work for You!</p>
+       
+<p>The "New and Cool Software" department would like to draw your attention 
+ to these articles:</p>
+       
+<ol>
+    <li>DotGNU Portable.NET (with its C# compiler, runtime and related development 
+ tools) - by Portable.NET lead developer Rhys Weatherley</li>
+    <li>phpGroupWare (a collection of groupware applications which can be 
+used  from any browser  and also from other programs via XML-RPC). - by phpGroupWare 
+ lead developer Dan Kuykendall</li>
+       
+</ol>
+       
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none;">
+   Section B: DotGNU - Don't Get Tangled in the .Net!</p>
+       
+<p>From the beginning, we have been concerned that Microsoft's probable intention 
+ with .NET is to ensnare and entrap developers.  There can be no doubt that 
+ this unscrupulous proprietary software company wants to extend their effective
+  desktop OS monopoly to encompass the Authentication, Authorization, and
+Virtual  Identity systems on the Internet.  One of the main objectives of
+the DotGNU project is to prevent that takeover by providing tools for webservices
+ without <i>vendor lock-in</i> of any kind. The "Webservices Ethics" department
+ would like to draw attention to these articles, which reflect our aims and
+intentions:</p>
+       
+<ol start="3">
+    <li>Email discussion of policies for authentication and IDsec  between
+ Richard Stallman, David Sugar and Tony Stanco                
+    <p>[DotGNU is sponsored by FreeDevelopers (founded by Tony Stanco) and 
+ by the GNU project (founded and led by Richard Stallman).  David Sugar is 
+ the chairman of the DotGNU Steering Committee.]</p>
+       <br>
+     </li>
+    <li>Questions and Answers about Webservices - by Steering Committee member 
+ and co-founder of the DotGNU project, Norbert Bollow</li>
+     
+</ol>
+     
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none;">
+   Section C:  DotGNU -- The Big Picture</p>
+       
+<ol start="5">
+    <li>"Origins of the DotGNU project" - by Steering Committee member and
+ co-founder  of the DotGNU project, Barry Fitzgerald </li>
+     <li>An overview of DotGNU - by DotGNU Steering Committee chairman David 
+ Sugar </li>
+     <li>A formula for DotGNU - by DotGNU Steering Committee member Arun
+M.    </li>
+     
+</ol>
+        
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none;">
+   Section D:  DotGNU -- A Community</p>
+       
+<p>This section contains notes from various contributors to the DotGNU, project 
+ in which they explain why they care about DotGNU.</p>
+   </div>
+       
+<div style="border: 3px outset ; margin-left: 15%; margin-right: 15%; margin-top: 3em;">
+       
+<p style="text-align: left; padding-left: 10%; padding-right: 10%;"> Section 
+ A: DotGNU - Make the Web Work for You!<br>
+   <br>
+    Article 1:   DotGNU Portable.NET (with its C# compiler, runtime and related 
+ development tools)</p>
+       
+<p style="margin-left: 60%;">by Portable.NET lead developer<br>
+   Rhys Weatherley</p>
+    </div>
+       
+<p>The Portable.NET project was begun in January 2001, with the goal of building 
+ a runtime engine, a C# compiler, and the C# system library. Early on, I realized
+that much of the infrastructure needed for a runtime  engine was identical
+to the code needed for a C# compiler.  In particular,  the metadata reading
+and writing routines in the runtime engine could also  be used as the internal
+class representation for the compiler. From this early core, the assembler,
+disassembler, and the other development tools quickly emerged.  At this point,
+the runtime engine, the compiler, and the C# library were still in an embryonic
+form.  The C# library was split out of the "pnet" tree into "pnetlib" specifically
+so it could be reused by other projects.</p>
+                
+<p>Around late April, the C# compiler clearly was becoming a  problem to maintain.
+ The level of complexity was so great that bugs kept  creeping into the code.
+ I had used similar designs on previous compiler projects,  and had also
+had problems with complexity.  My design was technically correct,  but the
+sheer number of details kept sinking the code.  So I went back to  the drawing
+board to rethink the design and to perform some research. The result was
+the "treecc" tool, which provides an aspect-oriented approach to building
+compilers.  The complexity that once caused so many problems was now trivial
+to handle. </p>
+   
+<p>The C# compiler was re-written in early July and was a marked improvement.
+  I also discovered that using the treecc framework to support languages
+other than C#, and bytecode formats other than IL, was very easy too.  Support 
+for compiling C# to the JVM and for compiling Java to IL should be released 
+in early-2002.</p>
+          
+<p>Portable.NET and DotGNU merged in August.  A lot of progress was made on
+the core infrastructure, the pnetlib C# library, and the C# compiler.  But
+the runtime engine was still lagging behind. The polymorphic nature of the
+instruction set was making building an efficient engine very difficult .</p>
+            
+<p>I began work on another background research project to devise a new engine. 
+  This culminated in the "Converted Virtual Machine" (CVM) in October 2001: 
+ a radically new design for bytecode interpreters.  Instead of interpreting 
+ the difficult IL instructions directly, the bytecode is converted into another
+  instruction set that can be interpreted efficiently. One of the major benefits
+ of the new engine design is that&nbsp; JITs can be easily supported in the 
+future.  CVM itself is essentially a "bytecode JIT".  Most of the hard work 
+is already done, which should make writing a native JIT a fairly simple task.</p>
+        
+<p>At the end of 2001, Portable.NET had reached the stage of being able to 
+ run simple example programs, and even a few complex ones such as the "Curse 
+ of Frogger" video game.</p>
+        
+<p>The biggest area to be dealt with in early 2002 is completing the C# compiler 
+ and the C# library, and then beginning work on an x86 JIT.</p>
+        
+<p>From my own personal perspective, Portable.NET is interesting because 
+of the research into language implementation techniques that has arisen from
+ my work on the project.  I'm hoping to be able to "spin off" other tools,
+like treecc, which are not only useful to Portable.NET, but are also useful
+to other Free Software projects.</p>
+        
+<div style="border: 3px outset ; margin-left: 15%; margin-right: 15%; margin-top: 3em;">
+       
+<p style="text-align: left; padding-left: 10%; padding-right: 10%;"> Section 
+ A: DotGNU - Make the Web Work for You!<br>
+   <br>
+    Article 2:   phpGroupWare (a collection of groupware applications which 
+ can be used from any browser and also from other programs via XML-RPC).</p>
+       
+<p style="margin-left: 60%;">by phpGroupWare lead developer<br>
+   Dan Kuykendall</p>
+    </div>
+        
+<p>phpGroupWare is a web-based and web service for groupware applications. 
+  The package includes all the standard PIM applications such as email, calendar, 
+address-book,  todo list, and notes; and with the powerful, well defined and
+easy to use  API we have developed, other applications can, and have been,
+fully integrated. All  applications are optionally installed so that the
+administrator can pick and choose  only the applications that meet the needs
+of their users. Normally users  take advantage of the terrific web interface
+from any browser on any platform  they choose; we adhere to pure HTML standards
+as much as possible. The web interface is the most fully supported interface
+to the applications  in phpGroupWare but not the only possible one.</p>
+ 
+<p>With the use of the simple XML-RPC protocol, which we now support in phpGroupWare, 
+developers and users can access the applications functionality and data from 
+other applications. These applications  would need to be written in a language 
+that supports XML-RPC, but that includes  most languages of which I am aware. 
+This makes phpGroupWare a "web service" because it is offering up its functionality 
+as a service to other applications. This gives developers and users alike 
+great power and flexibility.</p>
+        
+<p>Web services are not the answer to all problems, but they open great 
+possibilities for platform and language independence, as well as offering
+greater opportunities to share code and functionality than ever before possible.
+ The  possibilities are only becoming visible, but they <b>will</b> change
+how applications  are developed from this point into the future.</p>
+        
+<p>By combining forces with DotGNU, we will be able to leverage our  collective 
+knowledge and experience to develop outstanding applications and  services 
+for users. DotGNU is focused, among other things, on authentication  services 
+and platform independent bytecode solutions while the phpGroupWare  team focuses
+on Groupware based solutions. When the two come together, phpGroupWare  will
+use the Authentication services of DotGNU, and DotGNU will have real- world,
+working, groupware webservices making use of their technology. Even  more
+importantly, the phpGroupWare team is able to lend experience on subjects 
+such as creating a universal preferences settings service, which will follow 
+the DotGNU authentication services effort. phpGroupWare will immediately make
+use of the DotGNU standards as they are released. We are providing DotGNU 
+a great testing ground, while giving phpGroupWare the opportunity to influence 
+what are sure to be important standards.</p>
+        
+<div style="border: 3px outset ; margin-left: 15%; margin-right: 15%; margin-top: 3em;">
+       
+<p style="text-align: left; padding-left: 10%; padding-right: 10%;"> Section 
+ B: DotGNU - Don't Get Tangled in the .Net!<br>
+   <br>
+    Article 3:  Email discussion of policies for authentication and IDsec 
+ between Richard Stallman, David Sugar and Tony Stanco<br>
+   <br>
+    [DotGNU is sponsored by FreeDevelopers (founded by Tony Stanco)  and
+by  the GNU project (founded and led by Richard Stallman).   David Sugar
+is the  chairman of the DotGNU Steering Committee.] </p>
+    </div>
+        
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none; margin-top: 2em;">
+   David Sugar wrote:</p>
+       
+<p>Identity services allow people to roam from one content provider's web 
+ site to another without having to refill forms or provide information separately, 
+ such as credit card information, etc.</p>
+       
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none;">
+   Richard Stallman wrote:</p>
+       
+<p>Does this enable all those web sites to work together to collect information 
+ about you?  That is one of the things people regard as a threat to privacy. 
+  Think of doubleclick, for instance.</p>
+       
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none;">
+   David Sugar wrote:</p>
+       
+<p>If done incorrectly it does.  The key question is how to protect privacy 
+ and provide convenience for people that do not otherwise understand what 
+they are surrendering thru convenience.  In the IDsec method, at least right 
+at the start no single central authority has every users data; rather any 
+number of profile providers can be providing it, including your own workstation,
+  and on a selective and controlled basis.</p>
+        
+<p>However, this doesn't in itself prevent the possibility of collecting user
+data in the way you speak of, as it happens already today.  If one goes to
+site A and B, and happens to permit sharing of, say, a credit card number 
+ with both, certainly sites A and B can form a common database keyed on the 
+ common credit card and identify people that way.  Other kinds of data can 
+ also be common keyed to try and match users between sites.</p>
+       
+<p>What IDsec does provide for, and in fact what we want in DotGNU, is that 
+ no single entity will have a master database of every user and hence one 
+cannot form a single master common keyed database of everyone that can be 
+sold to other commercial entities directly.  Since separate and unique session 
+keys are used, unless common and unique identifying data (like say a credit 
+card # or ssn) is being permitted to be shared, there is no direct way to 
+determine that user "X" visiting site "A" is also user "Y" visiting site "B".
+ In IDsec there is direct user control of what data is shared and with whom,
+and used correctly, one can prevent correlative data from being shared if
+one uses it purely for session identity so when I visit site "A" I simply 
+ tell it I am the same "X" I was last time and share no data at all and have 
+the simple convenience of no login and single global sign-on.  Used this way
+it does not tell anyone that "A" presented to site "X" is also "B" on site
+"Y".  One can also keep multiple profiles, including anonymous ones, and
+choose which identity to use when visiting a given site.  Of course, it does
+not prevent or protect users who do share correlative data, but neither does
+manual entry in today's world except thru the occasional typo.</p>
+       
+<p>IDsec is certainly not perfect, and may require some thought to use in 
+ a way that does protect privacy fully, but it is a far better solution than 
+ those otherwise being pushed for today. There are things we may wish to change
+ in IDsec to make it better for privacy, but it is at least seems a reasonable
+ starting point.</p>
+        
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none; margin-top: 2em;">
+   Tony Stanco wrote:</p>
+       
+<p>Yes. IDsec seems to be on the right track. The question is not should all
+that information be accumulated, but by whom. I should have all the information 
+ about me on my machine. Others should only have parts. And I think IDsec 
+allows this. In fact, for those who know some accounting, the system should 
+be like double entry accounting. I have all my information because I deal 
+with everyone, but they only have the other side of the transaction that I
+did with them.</p>
+        
+<p>This is important, because I have all my information, but more importantly, 
+ I can <i>check</i> everyone else's information about me. If I don't have 
+the information  on my machine, I have no way of knowing what others have 
+on me, or be able  to correct errors that they may have made.</p>
+        
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none; margin-top: 2em;">
+   David Sugar wrote:</p>
+       
+<p>IDsec certainly does allow this, where you can have complete information 
+ on yourself on your machine, and others have incomplete but factually correct 
+ information as you permitted to share and which you control the update and 
+ correction of.  It's original intent, however, was clearly to enable the 
+creation of internet identity providers as third parties; that the individual 
+ can be such a third party is almost a side-effect of their original design 
+:).</p>
+        
+<p>As I said, IDsec is certainly not perfect, but it is close to or can be 
+ made to do what we envisioned.  As free software we will be able to influence 
+ it's better aspects.  One such way would be to make it fairly easy and painless 
+ for any user to setup their own identity service.  That being said, I am 
+not opposed in principle to the existence of third parties that wish to aggregate 
+ users and offer identity services so long as anyone can commercially offer 
+ such services, companies can provide it to shield their employee information 
+ from such third parties if they choose, and there is the ultimate choice 
+of being my own identity service.</p>
+        
+<p>That it can enable commercial providers of identity services will provide 
+ incentives for commercial interests to adopt it over solutions that they 
+would have no control over.  That a bank or financial institution can securely 
+provide identity to their existing customer base rather than put it in the 
+hands of a third party is a compelling selling point for them.  In this respect, 
+ I see IDsec as potentially interesting because it can successfully align 
+many commercial interests with our own ethical ones.</p>
+        
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none; margin-top: 2em;">
+   Tony Stanco wrote:</p>
+       
+<p>Yes. Agreed.</p>
+       
+<p>I think that most people will opt for a commercial provider, which they 
+ should be free to do. And yes, banks are a natural candidate.  They are already
+ really just data centers; it just happens to be financial data. But this
+is also why they are deathly afraid of losing control. MS called them dinosaurs
+ a few years back (which really is right), and they are now afraid of any
+loss of control of their data and guard it with their life. (One reason e-banking
+ is moving so slowly). But they will eventually have to join a system and
+it might as well be ours.</p>
+        
+<p>I still suggest that we provide local backup capacities on the personal 
+ machines, even if people opt for commercial providers, otherwise they will 
+ be subject to lock-in. So while a commercial provider may be a live repository, 
+ everyone should have a backup on their own machine to protect/check their 
+ data and so they can change providers easily.</p>
+          
+<div style="border: 3px outset ; margin-left: 15%; margin-right: 15%; margin-top: 3em;">
+       
+<p style="text-align: left; padding-left: 10%; padding-right: 10%;"> Section 
+ B: DotGNU - Don't Get Tangled in the .Net!<br>
+   <br>
+    Article 4:  Questions and Answers about "Webservices" </p>
+       
+<p style="margin-left: 60%;">by a co-founder of the DotGNU project together
+   with Enzo-Adrian Reyes and Barry Fitzgerald)<br>
+   <br>
+   Norbert Bollow</p>
+    </div>
+       
+<ul style="list-style-type: circle;">
+    <li>What are webservices good for?               
+    <p>   When a program is implemented as a "webservice", the functionality 
+ can be used by other programs, which can be   implemented in any programming 
+ language, and which can be run on   any computer connected to the Internet. 
+Multiple users in different parts  of   the world can potentially interact 
+with a single dataset.</p>
+     </li>
+     <li>How do you define "webservice"?               
+    <p> "Webservices" are any services that are offered on the web   (regardless 
+ of what technology is used to provide them).</p>
+                   
+    <p>In order to turn this statement into an actual definition,  these explanations
+need to be added:</p>
+                   
+    <ol style="list-style-type: lower-alpha;">
+    <li>With "service" we mean not only that some functionality is      
+provided,  but that there should also be some description of       this functionality, 
+ namely how the service should be used       and what it provides.</li>
+     <li>With saying that the service is "offered on the web" we       mean 
+ that it's offered on the internet via standard       protocols, i.e. protocols 
+ that are open, widely published,       and freely available for anyone to 
+ implement.<br>
+           <br>
+        It is sometimes useful to distinguish between "webservice    components", 
+ which are meant to be used by other webservices,    and "webservice applications", 
+ which are meant to be used by    humans directly.  Both "webservice components"
+and    "webservice applications" are "webservices" as defined above.<br>
+         <br>
+       </li>
+                   
+    </ol>
+    </li>
+     <li>What about other definitions of "webservice"?<br>
+       <br>
+      A definition attempt by the Stencil Group has been discussed in some
+   detail on the DotGNU developers mailing list, in these messages:     
+          
+    <ol style="list-style-type: square;">
+      <li><a href="http://archive.dotgnu.org/pipermail/developers/2001-November/001252.html">
+http://archive.dotgnu.org/pipermail/developers/2001-November/001252.html</a></li>
+      <li><a href="http://archive.dotgnu.org/pipermail/developers/2001-November/001253.html">
+http://archive.dotgnu.org/pipermail/developers/2001-November/001253.html</a></li>
+      <li><a href="http://archive.dotgnu.org/pipermail/developers/2001-November/001254.html">
+http://archive.dotgnu.org/pipermail/developers/2001-November/001254.html</a></li>
+      <li><a href="http://archive.dotgnu.org/pipermail/developers/2001-November/001255.html">
+http://archive.dotgnu.org/pipermail/developers/2001-November/001255.html<br>
+        </a>         <br>
+       </li>
+                   
+    </ol>
+    </li>
+     <li>Are webservices "the future", or will something better be invented 
+ soon?<br>
+       <br>
+    Who knows? Webservices may become the   preferred  way to implement all 
+kinds of intranet- and Internet-based computer  applications, for the following 
+  reasons:                
+    <ol style="list-style-type: square;">
+    <li>Loose coupling between components: Each component can be     implemented 
+ in the preferred programming language of the     implementors of that component, 
+ regardless of what languages     and development tools have been used to 
+implement other     components.  There is less organizational overhead to 
+develop     changes or enhancements to various components in parallel.</li>
+    <li>Rapid prototyping and an easy transition from prototype to     production: 
+ Prototypes of webservice components can be     conveniently implemented in
+ scripting languages like Perl,     Python or PHP.  The transition to production
+ will typically     include moving the component to a different server (or
+     several load-balanced servers) and possibly also a more     efficient
+ re-implementation of the component.<br>
+         <br>
+       </li>
+                   
+    </ol>
+    </li>
+     <li>Is the data stored on the webservice server?                   
+                
+    <p>Data can be stored either locally or on the webservice server.   If 
+ multiple users need to interact with the same set of data,   then the data 
+should  be stored on the webservice server. This raises the legitimate concern
+of whether a webservice   provide  can "lock in" customers by making &nbsp;access
+to their data inconvenient or   impossible. This issue is   addressed in
+the following questions.</p>
+ 
+    <ul style="list-style-type: disc;">
+     <li>Can we move to a different webservice provider?                
+        <p>The DotGNU webservice server requires that for each webservice
+  and  each set of data that each service acts upon, there is an "owner of
+the   data" who has  the right to download the entire set of data   together
+with the program that implements the webservice.   Program which have been
+downloaded in this way can be executed   in any DotGNU Secure Execution Environment
+on a desktop   computer or on a DotGNU webservices server.</p>
+                   
+        <p>This means that when there is a need for an application to use
+  data from multiple sources, where no-one has ownership rights   to all
+the data, then the application must be divided into   multiple webservice
+components.</p>
+     </li>
+     <li>Can we get source code for the webservice programs?            
+   
+        <p>If all of the following conditions are met, then the webservice
+  provider is required to distribute the source code for the   webservice
+program to you, upon your request:</p>
+                   
+        <ol style="list-style-type: square;">
+    <li>The webservice program has been licensed to the webservice     provider 
+ under the terms of the GNU General Public License,     or it is a derivative 
+ work of such a program.</li>
+    <li>The webservice program runs on a DotGNU webservice server.</li>
+    <li>You are recognized as an "owner of the data" for this webservice:
+ the webservice server will upon your request distribute   the program to
+you in binary form.  According the terms of the   GNU General  Public License,
+this implies that the webservice   provider must upon request  distribute
+the source code for the   webservice program to you.<br>
+            <br>
+          </li>
+        </ol>
+      </li>
+     <li>Am I obligated to give away my webservice source code?         
+     
+        <p>You are <i><b>not </b></i>automatically obligated to distribute
+your source   code,  and you are certainly <i><b>not </b></i>obligated to
+just give it away.   However, if you  sell webservice services, then your
+customers   will expect that you make  them the "owner of the data" that
+the webservice uses, and depending on  the exact circumstances   that may
+indirectly give these customers a right  to get the   source code upon request.
+ Here are the details:</p>
+                   
+        <p>If you provide a webservice using a GPL'd webservice program 
+ (which  you may have modified), then the "owner of the data"   will be able
+to obtain  the webservices programs under the terms   of the GNU GPL, and
+this implies  in particular that they will   have a right to get the source
+code of the  exact version of the   program which you're using.  The terms
+of the GNU GPL also   require you to make a written promise to this "owner
+of the   data" that you will be willing to provide the source code upon 
+ request.  This ensures that the "owner of the data" will know   about this
+right to the source code.</p>
+                   
+        <p>The "owner of the data" is typically a paying customer, and the
+  fact that the customer has a right to get the source code   increases the 
+value of the service you provide.  Therefore you   will be able to charge 
+a higher price and/or close more sales.</p>
+                   
+        <p>You can use the DotGNU development tools to program your own 
+ webservices  (instead of just modifying the webservice programs   which
+are distributed  with DotGNU, or which others have made   available under
+the GNU GPL) and  then your are not required to   make source code for these
+webservices available  to the   customer who is the "owner of the data".
+ However, even in   these  situations where you are not required to make
+the source   code available  to your customers, we strongly encourage you
+to   provide the source code  to your customers under the terms of   the
+GNU GPL anyway.  We believe that  this is ethically the   right thing to
+do, and that it will be good for your  business.</p>
+    </li>
+    
+    </ul>
+  </li>
+   
+</ul>
+         
+<div style="border: 3px outset ; margin-left: 15%; margin-right: 15%; margin-top: 3em;">
+       
+<p style="text-align: left; padding-left: 10%; padding-right: 10%;"> Section 
+ C:   DotGNU -- The Big Picture<br>
+   <br>
+    Article 5:   Origins of the DotGNU project </p>
+       
+<p style="margin-left: 60%;">by co-founder of the DotGNU project together 
+ with  Enzo-Adrian Reyes and Norbert Bollow<br>
+   <br>
+   Barry Fitzgerald</p>
+    </div>
+        
+<p>The introduction of the DotGNU project on the FreeDevelopers mailing list 
+ back in June of 2001 brought many arguments.  People wondered what value 
+the project would bring to the GNU/Linux world and shuddered at the thought
+of dealing  with Microsoft-founded technologies.  Many people even wondered
+if the project  would inadvertently help Microsoft.  In the time since the
+idea first surfaced, the discussions refined the idea until a founding philosophy
+was designed.   Our goals were not simply compatibility with the Microsoft
+platform, we decided almost right away that there was an obligation to create
+a webservices framework that would ensure that the freedom of the members
+of our community  would be protected.  If our work helped the proprietary
+companies of the world to subjugate the members of our community, then the
+project would have been for nothing. As a consequence, the project leaders
+mandated that the protection of freedom was a key aspect of the DotGNU project.</p>
+        
+<p>"Webservices" is the new buzzword.  Every tech-writer is writing about 
+ webservices when they talk about the future of the technological world.
+ The question  is: where do these new webservices fit into the larger picture?
+ If you're  to believe some people: webservices are the future and the standard
+method  of running programs is defunct.  If you're to believe others: webservices
+  are a fad and no one will ever use them.  As with most tech prognostication, 
+ both predictions will most likely be partly true.  The fact of the matter
+is that the  success of network services (webmail, etc...) is already happening
+and these  services are complimenting the computer usage of people every
+day.  This has been the case been for some time as well.  To allow this market
+to be overtaken by a proprietary vendor would be unthinkable. So, we must
+embrace the world the way it is, and create a Free framework with which webservices 
+and larger network service enabled applications can be easily constructed, 
+thus allowing for competition in the marketplace, security, freedom, and
+privacy.</p>
+        
+<div style="border: 3px outset ; margin-left: 15%; margin-right: 15%; margin-top: 3em;">
+       
+<p style="text-align: left; padding-left: 10%; padding-right: 10%;"> Section 
+ C:   DotGNU -- The Big Picture<br>
+   <br>
+    Article 7:   A technical overview of DotGNU </p>
+       
+<p style="margin-left: 60%;">by chairman of the DotGNU Steering Committee
+  <br>
+   <br>
+   David Sugar</p>
+    </div>
+        
+<p>DotGNU is in part concerned with producing bytecode runtime systems for 
+ portable executables, and of course, we are interested in the ECMA "standardized" 
+ bytecode system and creating a freely licensed and fully portable implementation 
+ as represented by the Portable.NET project.  Having a portable and universally 
+ interoperable runtime for developing and delivering web hosted applications 
+ represents an important part of DotGNU, as does extending support to other 
+ existing bytecode systems such as Java.</p>
+        
+<p>Another part of DotGNU is concerned with providing a fully valid and technically 
+ correct solution for authentication and user identities that provide the 
+convenience of internet-wide single sign-on services without the need to deliberately
+handicap such systems thru a single vendor point of failure or implement
+such a solution in a manner that forces users to compromise personal data
+or which compromises the integrity of commercial organizations.  Certainly
+there is neither any technical merit nor commercial reason to have one and
+only one source of authentication and identity services on the Internet.</p>
+        
+<p>While enabling the existence and use of multiple trusted third party identity 
+ services is quite valid and useful commercially when such services can be 
+ hosted on a non-discriminatory basis by any organization wishing to do so 
+ in a free and open market, rather than by either a single vendor or a small 
+ group of privileged vendors, ideally we wish it to be possible for an individual 
+ user to provide identity and personal data services directly from corporate 
+ offices or even their own workstation if so desired to protect their personal 
+ data to the fullest.</p>
+        
+<p>Tying together authentication, identity, and runtime, are meaningful services, 
+ and DotGNU also will produce useful web hosted application services that 
+will demonstrate the full cycle of authenticated single login in a secure 
+manner with personal data that can be kept private and secure or hosted by 
+trusted third parties and using the Portable.NET runtime to deliver these 
+ services where they involve local execution on your workstation, all using 
+freely licensed software under the GPL and hosted on freely licensed operating 
+systems, such as GNU/Linux.</p>
+        
+<div style="border: 3px outset ; margin-left: 15%; margin-right: 15%; margin-top: 3em;">
+       
+<p style="text-align: left; padding-left: 10%; padding-right: 10%;"> Section 
+ C:   DotGNU -- The Big Picture<br>
+   <br>
+    Article 8:   A formula for DotGNU </p>
+       
+<p style="margin-left: 60%;">by DotGNU Steering Committee member <br>
+   <br>
+   Arun M.</p>
+    </div>
+       
+<ul style="list-style-type: none;">
+    <li style="margin-top: 1em;"><span style="font-size: larger; font-weight: bolder;">
+   DotGNU = Runtimes/Compilers</span>                
+    <ul style="list-style-type: circle;">
+    <li>App Server</li>
+    <li>Web Services Development FrameWork</li>
+    <li>Common Services</li>
+    <li>Desktop Integration</li>
+                   
+    </ul>
+    </li>
+    <li style="margin-top: 1em;"><span style="font-weight: bolder;">Runtime</span><br>
+    C# runtime (Pnet) is major component of DotGNU,  but DotGNU will support 
+ others like parrot, Kaffe etc. Various language compilers  for CIL are needed.</li>
+    <li style="margin-top: 1em;"><span style="font-weight: bolder;">AppServer</span><br>
+    An application server based on CIL/C# is needed. It will take     more
+ time as we need to complete C# corelibs. Now the question is,  should we
+restrict AppServer to C#?  Can  we add other existing AppServers to DotGNU
+?  A few choices are Zope, Webware,  eZPublish, phpCMS.  Will they be interested
+in joining?</li>
+    <li style="margin-top: 1em;"><span style="font-weight: bolder;">WebServicesDevelopmentFrameWork</span><br>
+    A set of libraries for common web service standards is a     major component 
+ in this. Most AppSevers now have xml-rpc or     SOAP support. Some even support
+ WSDL. SandStorm may be a  good addition to DotGNU in this regard.</li>
+    <li style="margin-top: 1em;"><span style="font-weight: bolder;">CommonServices</span><br>
+    Identity is the first component. IDSec, macs, FrePort, etcetera comes 
+here.      Groupware comes next (solved by phpGroupWare).  Another major 
+   one  is ERP system available as webservice. GNUe should join     DotGNU, 
+or DotGNU  should work on a webservice plugin for GNUe.</li>
+    <li style="margin-top: 1em;"><span style="font-weight: bolder;">DesktopIntegration</span><br>
+        Desktop applications will have to be written to support the     services 
+ we provide.</li>
+       
+</ul>
+          
+<div style="border: 3px outset ; margin-left: 15%; margin-right: 15%; margin-top: 3em;">
+       
+<p style="text-align: left; padding-left: 10%; padding-right: 10%;"> Section 
+ D:   DotGNU -- A Community<br>
+   <br>
+    DotGNU is not just a collection of software, but also  Community of Free 
+ Software developers.  Here are some notes from various contributors to the 
+ DotGNU project, in which they explain why they care about DotGNU.</p>
+       
+<p style="margin-left: 60%;">(The submissions are sorted according to their 
+ length)</p>
+    </div>
+        
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none; margin-top: 2em;">
+   Bill Lance writes:</p>
+       
+<p>The Internet came to life at the rim when it dropped the idea of a central 
+ server.  The forces of government and finance wish to pull power back to 
+the center and regain control.  The pressure to things like ASP's, subscription/teathered 
+ software, and server centric webservices are manifestations of this today 
+ and reveal their strategy.  DotGNU seems to me to be the incubator of the
+  LibreSoftware alternative.  That's why I'm here.</p>
+        
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none; margin-top: 2em;">
+   Bradley Kuhn writes:</p>
+       
+<p>DotGNU is of particular interest to me and I was honored to be put on the
+Steering Committee this year.  DotGNU has the potential to bring together 
+ years of work in programming language integration research, and marry it 
+beautifully with web services. I have in the past worked on using the Java 
+Virtual Machine as a language integration platform, thus I am excited that 
+DotGNU's Portable.NET might make true language integration possible.<br>
+   <br>
+    - Bradley M. Kuhn, Vice President of the FSF and DotGNU SC Member</p>
+        
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none; margin-top: 2em;">
+   Norbert Bollow writes:</p>
+       
+<p>If everyone uses webservices, and these programs use Microsoft's centralized 
+ auth system, then secret services and other crackers can easily observe how
+ anyone is using their PC. This could far too easily become the foundation 
+ of a "Big Brother" type totalitarian system.  Microsoft is a Goliath.  From 
+ the beginning of DotGNU I have felt somewhat like a David challenging this
+  Goliath, doing what needs to be done, in the name of Jesus.  Yes, I believe 
+ that for DotGNU to be successful, we need to have God on our side.</p>
+        
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none; margin-top: 2em;">
+   Barry Fitzgerald writes:</p>
+       
+<p>DotGNU has the potential of solving a number of problems that currently 
+ keep developers in the habit of creating programs for That Other Platform. 
+  We could create a unified, cross-system compatible and completely interoperable 
+ development environment for multiple language development.  This would be 
+ a boon for the entire development industry and would solve many potential
+  program availability issues that currently keep GNU/Linux from becoming
+ubiquitous in the market.  This aspect provides a unique opportunity to place
+Free Software at the forefront of the industry if we take our steps wisely.
+ Interoperability truly is king, but we must do more than interoperate. 
+We must create the  best Dam*ed development environment that ever existed.
+ In the long run, this is our mandate.  We must, along with the rest of the
+Free Software world, do what it takes to dethrone the proprietary forces
+of the world.</p>
+        
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none;">
+   Gopal.V writes:</p>
+
+<p>DotGNU was the first free software project I have associated
+with. The thing I like about DotGNU is that it is not simply a
+.NET clone, period. IMHO this is a free (as in speech!), secure
+and portable webservice framework. Then why add C# support ?.
+Well, we have to follow ECMA/IEEE standards even when they are
+proposed by a monopolist. But we have taken the high road where
+most would have preferred the easier one, to ensure that our work
+remains free for the future (read:bootstrapping off gcc).  It's
+been a tough year for DotGNU but it has not been without its
+rewards. We have gained new allies in this war for freedom like
+the phpgroupware team. ("join up" ,they said, "it's a man's
+life".)</p>
+
+<p>It's kudos to all the developers of DotGNU. Thanks to them ,
+DotGNU has arrived. Watch out 2002, here we come !</p>
+
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none;">
+   Dan Kuykendall writes:</p>
+       
+<p>I have been working with phpGroupWare since its inception as the project 
+ leader. I have had several years of experience as a groupware administrator 
+ of all three of the big commercial groupware servers and felt that all of 
+ them lacked in some way or another. When phpGroupWare started I knew that 
+ I could help build a groupware server that did not have all the failings 
+of the commercial products in both features and lack of freedom. By helping 
+build both the code and the community I feel that my efforts have been a tremendous
+success. phpGroupWare is a powerful, flexible and *free* product that can
+meet and exceed the needs of many many people. When I became aware of web
+services and realized their potential I immediately started to push phpGroupWare
+in that direction because I knew that web services would change the rules,
+and I wanted to be there. Our code has so easily been adapted and continues
+to be a perfect testing ground for new technology that I know we have built
+something to be proud of, and I believe the DotGNU team has show great vision
+and wisdom in including us into their team. I believe phpGroupWare and DotGNU
+can be successful and offer the world top rate applications and services
+without giving up freedom or features.</p>
+        
+<p style="border-top: 0px none; border-bottom: 1px dotted; border-left: 0px none; border-right: 0px none; margin-top: 2em;">
+   David Sugar writes:</p>
+        
+<p>There were many things that concerned me when I first heard about DotGNU. 
+  Of course, like many others at the time, I was highly skeptical of such 
+an enterprise until I took the time to think deeper on the subject.  There 
+are those that say that DotGNU helps legitimize ".NET" services from Microsoft. 
+  I believe Java already does this very well.  The problem Java faces is that
+ Sun does not wish to relinquish control to certain parts of it, just as
+Microsoft  chooses not to relinquish control to parts of it's so called ".NET"
+technologies,  especially in regards to authentication and web services.</p>
+        
+<p>Neither situation is valid or useful for web centric free software to progress.
+ To create software on a non-free infrastructure (Java) is problematic even
+if the resulting software itself can be freely licensed.  Worst still would
+be to create a free infrastructure or runtime that integrates with proprietary
+ services and protocols, as the latter, while free on the surface, can be
+used to lock out any other vendor solutions at the key middleware services
+level and in fact could be used to effectively block free software development
+by changing licensing on key services and protocols that may later be required.
+  While it's easy to pretend that these things will not happen or will never
+ be adopted by others, the fact remains that burying one's head in the sand
+ will not make the problem go away.</p>
+        
+<p>DotGNU is about assuring freedom, for both developers and users. In this 
+ sense, I, among others, understood it was necessary to look at and engage 
+ in the full spectrum of services, from basic runtime to web services and 
+protocols, and to do so in a manner that protects the integrity of user's 
+private data.  This was why I chose to become part of DotGNU, because I thought 
+it was far better to do something than simply ignore the problem and hope 
+it would simply go away...</p>
+        
+<p style="border-top: 3px double; border-bottom: 3px double; border-left: 0px none; border-right: 0px none; margin-top: 3em;">
+    "This year in DotGNU - No 1" -- All articles are Copyright &copy;2001 
+by  their authors.  Compilation Copyright &copy;2002 by Norbert Bollow.  HTML
+formatting by John Le'Brecage. All rights reserved.  Verbatim copying and
+distribution of this entire issue is permitted in any medium or format, provided
+this notice is preserved.</p>
+       
+</body>
+</html>
