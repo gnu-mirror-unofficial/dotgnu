@@ -94,6 +94,10 @@ for instructions on installing the binary package distributions.
 </p>
 <h2>Source Code Downloads</h2>
 <p>
+The most recent version can be downloaded from the
+<a href="http://www.southern-storm.com.au/portable_net.html">Southern Storm
+site</a>.
+<!--
 Released versions are available 
 <a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet">from ftp.gnu.org</a>
 and its mirrors:
@@ -105,17 +109,17 @@ and its mirrors:
 <a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet/pnetlib-0.6.0.1.tar.gz">pnetlib-0.6.0.1.tar.gz</a><br/>
 <a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet/pnetC-0.6.0.tar.gz">pnetC-0.6.0.tar.gz</a><br/>
 <a href="ftp://ftp.gnu.org/gnu/dotgnu/pnet/ml-pnet-0.6.0.tar.gz">ml-pnet-0.6.0.tar.gz</a>
-</blockquote></p>
+</blockquote>
+-->
+</p>
 <p>
 It may however be best to grab the latest development version
 from <a href="http://savannah.gnu.org/cvs/?group_id=353">Savannah CVS</a>.
-This project's CVS repository can be checked out through anonymous (pserver)
-CVS with the following instruction set.  When prompted for a password for
-anoncvs, simply press the Enter key.
+This project's CVS repository can be checked out through anonymous
+CVS with the following instruction set.
 <pre>
-  cvs -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/dotgnu-pnet login
-
-  cvs -z3 -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/dotgnu-pnet co .
+  export CVS_RSH="ssh"
+  cvs -d :ext:anoncvs@savannah.gnu.org:/cvsroot/dotgnu-pnet co .
 </pre>
 </p>
 <p>
@@ -251,13 +255,20 @@ updating the source code.  The CVS version will always be more recent
 than the release versions.</p>
 <p>
 
-<blockquote><pre>cvs -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/dotgnu-pnet login
-cvs -z3 -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/dotgnu-pnet
-           checkout <i>component</i></pre></blockquote></p>
+<blockquote><pre>
+  export CVS_RSH="ssh"
+  cvs -d :ext:anoncvs@savannah.gnu.org:/cvsroot/dotgnu-pnet co .
+</pre></blockquote></p>
 <p>
 
 where <code><i>component</i></code> is the name of the component that you
 wish to check out.  When prompted for a password, just hit the Enter key.</p>
+
+<p>
+NOTE: Before you can build the cvs version, you need to run
+<code>auto_gen.sh</code> in order to create the Makefile.in and
+configure files.
+</p>
 
 <h2>Running the examples</h2>
 <p>
