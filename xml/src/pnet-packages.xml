@@ -119,6 +119,7 @@ Currently packages are available for the following systems:
 GNU/Linux distributions:
 <a href="#ebuilds">Gentoo (ebuilds)</a>,
 <a href="#fedora">RedHat/Fedora (RPMs)</a>,
+<a href="#debs">Debian</a>
 <a href="#pld">PLD (RPMs)</a>
 </p>
 <p>
@@ -176,14 +177,27 @@ list.
 		<a href="http://apt.linuks.org/fedora/2.0/noarch/RPMS.linuks/pnetC-0.6.6-150.noarch.rpm">pnetC</a>
 		<a href="http://apt.linuks.org/fedora/2.0/i386/RPMS.linuks/treecc-0.3.0-150.i386.rpm">treecc</a>.
 	</p>
+	<h3><a name="debs">Debian</a></h3>
+
 	<p>
-		APT for RPM users can use the following:
+		Debian packages have been built by
+		Andrew Mitchell (ajmitch at gnu dot org).
 	</p>
-<pre>
-# linuks.org APT (RPM) repository
-rpm http://apt.linuks.org fedora/2.0/i386 os linuks updates
-rpm-src http://apt.linuks.org fedora/2.0/i386 os linuks updates
-</pre>
+	<p>
+		Users of Debian "unstable" can install them by making
+                sure that in the file <code>/etc/apt/sources.lists</code>
+		there is a line
+	</p>
+	<pre>
+	deb http://mentors.debian.net/debian unstable main
+	</pre>
+	<p>
+		and then:
+	</p>
+	<pre>
+	apt-get install pnet
+	apt-get install ml-pnet      # additional libs from mono (optional)
+	</pre>
 	<h3><a name="pld">Packages for PLD</a></h3>
 <p>
 Thanks to Andrzej Dopierala (undefine AT aramin DOT net), PLD packages are
