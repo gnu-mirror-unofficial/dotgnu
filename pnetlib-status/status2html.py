@@ -86,11 +86,11 @@ def get_last_active(name):
 	else:
 		fname=string.replace(name,".","/")
 	try:
-		retval="<i> on "+cvs_entries.getDateStr(fname+".cs")+"</i>"
+		retval="<i> last modified on "+cvs_entries.getDateStr(fname+".cs")+"</i>"
 		return retval;
 	except KeyError:
 		try:
-			retval="<i> on "+cvs_sys_entries.getDateStr(fname+".cs")+"</i>"
+			retval="<i> last modified on "+cvs_sys_entries.getDateStr(fname+".cs")+"</i>"
 			return retval;
 		except KeyError:
 			return ""
