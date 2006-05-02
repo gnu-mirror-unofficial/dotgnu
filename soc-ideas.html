@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>DotGNU ideas list: Summer of Code</title>
+</head>
+<body>
+
+<h3><a href="http://www.gnu.org/software/dotgnu/">DotGNU ideas list: Summer of Code</a></h3>
+
+The <a href="http://www.gnu.org/software/dotgnu/">DotGNU</a> project
+is a Free Software implementation of the .NET and Mono platforms and
+spans many different programming areas: from low-level tasks like code
+generators to compilers, to class libraries and GUI applications.
+<p>
+
+The Portable .NET implements Just-In-Time compilation
+functionality. Unlike other JIT's, libJIT (a reusable JIT library) is
+designed to be independent of any particular virtual machine bytecode
+format or language. If you run Portable .NET on a machine for which a
+native code generator is not yet available, then Portable .NET will
+fall back to interpreting the code.
+<p>
+
+Read <a
+href="http://www.southern-storm.com.au/doc/libjit/libjit_1.html#SEC1">the
+libjit rationale</a> for instruction and rationale for the DotGNU JIT
+Library (libJIT).
+
+<ol>
+<li>Add ahead-of-time compilation support in libJIT (Complexity: medium-high)
+<p>
+The libJIT library contains routines that permit pre-compiling JIT'ed
+functions to an on-disk representation. This representation can be
+loaded at some future time, to avoid the overhead of compiling the
+functions at runtime.
+We use the ELF format for this purpose, which is a common binary format used by modern operating systems and compilers.
+
+<li>Port libJIT to a new architecture or improve existing architecture support (Complexity: medium-high)<br>
+<p>
+You could port libJIT to a new architecture, for example OpenRISC,
+SPARC, MIPSEL and so on or improve an existing code generator (x86, arm...).
+The <a
+href="http://www.southern-storm.com.au/doc/libjit/libjit_19.html#SEC37">libJIT
+manual</a> describes the steps needed to for porting libJIT to new
+architectures. 
+
+<li>Enhance the libJIT interpreter (Complexity: medium)<br>
+<p>
+LibJIT includes an interpreter for running code on platforms that
+don't have a native code generator yet. This reduces the need for
+programmers to write their own interpreters for such platforms.
+Essentially, this project means making the regression tests with 'make
+check' in the Portable .NET directory work with the interpreter.
+
+<li>Enhance libJIT optimization (Complexity: medium-high)<br>
+<p>
+For example, implement inlining, enhance constant propagation or
+dead-code elimination.
+
+<li>Work on memory leaks, implement a special feature in the Garbage Collector. (Complexity: high)<br>
+<p>
+It would be beneficial to have a method in GC which can enumerate all
+objects which reference a specified object.  The signature of this
+method might be, for example, <code>object[] GC.GetReferences( object
+o )</code>.
+
+<li>Fill the gaps in Portable.NET's System.Windows.Forms (Complexity: medium)<br>
+<p>
+The Portable .NET Windows.Froms library implements much of .NET 1.1,
+but some classes are still missing.
+
+<li>Replacing CIL with native code. (Complexity: high)<br>
+<p>
+DotGNU contains a code generator that can be used for Just-in-Time
+compilation at runtime.  Code can also be compiled ahead of time to
+produce native code before it's needed. The goal is to modify the runtime
+and compilation so that the bytecodes can be safely removed from a program
+and a single image is shipped containing both metadata and native code.
+
+<li>Implement generics or any other C# 2.0, 3.0 feature. (Complexity: very high)<br>
+<p>
+The Portable .NET C# compiler is based on the <a
+href="http://www.southern-storm.com.au/treecc_doc/treecc_toc.html">treecc</a>
+tool.
+
+<li>C# bindings for Allegro (Complexity: medium-high)<br>
+<p>
+This includes not only being able to call Allegro functions from C#, but
+also being able to do so in a way which 'feels natural' for the C#
+language.
+
+</ol><br>
+<a href="http://dotgnu.org/">Back to dotgnu.org</a>
+</body>
+</html>
