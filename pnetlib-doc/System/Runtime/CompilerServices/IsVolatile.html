@@ -34,22 +34,20 @@ RuntimeInfrastructure
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Marks a field as volatile.<P>
+Marks a location in the memory store as volatile.<P>
 
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-<A HREF="IsVolatile.html" TARGET="contents">IsVolatile</A> is a class used only
-   in custom modifiers of
-   method signatures to indicate that the field it marks is &quot;volatile&quot;. Any compiler
-   that imports metadata with one or more fields marked as &quot;volatile&quot; is required to use
-<CODE>volatile.</CODE>
- 
-prefixed instructions to access such fields.<P>
+<A HREF="IsVolatile.html" TARGET="contents">IsVolatile</A> is a class used only in custom modifiers of method signatures to indicate that a location in the memory store (see &quot;The Memory Store&quot; in Partition I) is &quot;volatile&quot;.<P>
 
-[<I>Note</I>: For most languages, it is recommended that the notion of &quot;volatile&quot; be attached to fields using language syntax instead of custom modifiers.<P>
+When used as a required modifier, any compiler that successfully imports metadata that describes a memory location as &quot;volatile&quot; is required to use <CODE>volatile.</CODE>
+ 
+prefixed instructions to access such locations. Examples of such locations are volatile fields, volatile targets of pointers, and volatile elements of arrays.<P>
+
+[<I>Note</I>: For most languages, it is recommended that the notion of &quot;volatile&quot; be attached to locations using language syntax instead of custom modifiers.<P>
 
 The types in 
    <CODE>System.Runtime.CompilerServices</CODE>

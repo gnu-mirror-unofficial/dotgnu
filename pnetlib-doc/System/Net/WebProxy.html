@@ -92,6 +92,7 @@ public class WebProxyExample {
 
 WebProxy Constructors<P>
 
+<A HREF="#WebProxy%28System.String%2C%20bool%2C%20System.String%5B%5D%2C%20System.Net.ICredentials%29%20Constructor" TARGET="contents">WebProxy(System.String, bool, System.String[], System.Net.ICredentials) Constructor</A><BR>
 <A HREF="#WebProxy%28%29%20Constructor" TARGET="contents">WebProxy() Constructor</A><BR>
 <A HREF="#WebProxy%28System.Uri%29%20Constructor" TARGET="contents">WebProxy(System.Uri) Constructor</A><BR>
 <A HREF="#WebProxy%28System.Uri%2C%20bool%29%20Constructor" TARGET="contents">WebProxy(System.Uri, bool) Constructor</A><BR>
@@ -101,7 +102,6 @@ WebProxy Constructors<P>
 <A HREF="#WebProxy%28System.String%29%20Constructor" TARGET="contents">WebProxy(System.String) Constructor</A><BR>
 <A HREF="#WebProxy%28System.String%2C%20bool%29%20Constructor" TARGET="contents">WebProxy(System.String, bool) Constructor</A><BR>
 <A HREF="#WebProxy%28System.String%2C%20bool%2C%20System.String%5B%5D%29%20Constructor" TARGET="contents">WebProxy(System.String, bool, System.String[]) Constructor</A><BR>
-<A HREF="#WebProxy%28System.String%2C%20bool%2C%20System.String%5B%5D%2C%20System.Net.ICredentials%29%20Constructor" TARGET="contents">WebProxy(System.String, bool, System.String[], System.Net.ICredentials) Constructor</A><BR>
 <P>
 
 WebProxy Methods<P>
@@ -118,6 +118,98 @@ WebProxy Properties<P>
 <A HREF="#WebProxy.BypassList%20Property" TARGET="contents">WebProxy.BypassList Property</A><BR>
 <A HREF="#WebProxy.BypassProxyOnLocal%20Property" TARGET="contents">WebProxy.BypassProxyOnLocal Property</A><BR>
 <A HREF="#WebProxy.Credentials%20Property" TARGET="contents">WebProxy.Credentials Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="WebProxy%28System.String%2C%20bool%2C%20System.String%5B%5D%2C%20System.Net.ICredentials%29%20Constructor"><H3>WebProxy(System.String, bool, System.String[], System.Net.ICredentials) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public WebProxy(string Address, bool BypassOnLocal, string[] BypassList, ICredentials Credentials);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="WebProxy.html" TARGET="contents">WebProxy</A> class with the specified URI, bypass setting, list of URIs to bypass, and credentials.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>Address</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that represents the URI of the proxy server. </DD>
+<DT>BypassOnLocal</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> that indicates whether or not to bypass the proxy for local connections. Specify <CODE>true</CODE>
+ to bypass the proxy for local connections; otherwise, <CODE>false</CODE>
+.<P>
+
+</DD>
+<DT>BypassList</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> array of regular expressions that describe the URIs that will not be accessed using the current instance. [<I>Note</I>: For more information on the format of these regular expressions, see IETF RFC 2396, Appendix B.]<P>
+
+</DD>
+<DT>Credentials</DT>
+<DD>A <A HREF="ICredentials.html" TARGET="contents">ICredentials</A> object to submit to the proxy server for client authentication. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/UriFormatException.html" TARGET="contents">UriFormatException</A></TD><TD><I>Address </I>is not in a valid URI format.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This constructor initializes the properties of the new instance
+      as follows.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Property</TH><TH>Value</TH></TR>
+<TR><TD>System.Net.WebProxy.Address<P>
+
+</TD><TD>A new
+         <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> constructed from <I>Address</I> or, if <I>Address</I> does not contain &quot;://&quot;, constructed from &quot;http://<I>Address</I>&quot;. If <I>Address</I> is <CODE>null</CODE>
+,
+            this property is set to <CODE>null</CODE>
+.</TD></TR>
+<TR><TD>System.Net.WebProxy.BypassArrayList<P>
+
+</TD><TD> 
+            A new <A HREF="../../System/Collections/ArrayList.html" TARGET="contents">ArrayList</A>
+            constructed from <I>BypassList</I> or, if <I>BypassList</I> is
+         <CODE>null</CODE>
+, a new 
+            empty <A HREF="../../System/Collections/ArrayList.html" TARGET="contents">ArrayList</A>.</TD></TR>
+<TR><TD>System.Net.WebProxy.BypassList<P>
+
+</TD><TD><I>BypassList</I> or, if <I>BypassList</I> is 
+      <CODE>null</CODE>
+, a new empty <A HREF="../../System/String.html" TARGET="contents">String</A> array.</TD></TR>
+<TR><TD>System.Net.WebProxy.BypassProxyOnLocal<P>
+
+</TD><TD><I>BypassOnLocal</I></TD></TR>
+<TR><TD>System.Net.WebProxy.Credentials<P>
+
+</TD><TD><I>Credentials</I></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebProxy.html" TARGET="contents">System.Net.WebProxy Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
 </BLOCKQUOTE>
 
 <HR>
@@ -785,98 +877,6 @@ Constructs and initializes a new instance of the <A HREF="WebProxy.html" TARGET=
 
 </TD><TD><CODE>null</CODE>
 </TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="WebProxy.html" TARGET="contents">System.Net.WebProxy Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="WebProxy%28System.String%2C%20bool%2C%20System.String%5B%5D%2C%20System.Net.ICredentials%29%20Constructor"><H3>WebProxy(System.String, bool, System.String[], System.Net.ICredentials) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public WebProxy(string Address, bool BypassOnLocal, string[] BypassList, ICredentials Credentials);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Constructs and initializes a new instance of the <A HREF="WebProxy.html" TARGET="contents">WebProxy</A> class with the specified URI, bypass setting, list of URIs to bypass, and credentials.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>Address</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that represents the URI of the proxy server. </DD>
-<DT>BypassOnLocal</DT>
-<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> that indicates whether or not to bypass the proxy for local connections. Specify <CODE>true</CODE>
- to bypass the proxy for local connections; otherwise, <CODE>false</CODE>
-.<P>
-
-</DD>
-<DT>BypassList</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> array of regular expressions that describe the URIs that will not be accessed using the current instance. [<I>Note</I>: For more information on the format of these regular expressions, see IETF RFC 2396, Appendix B.]<P>
-
-</DD>
-<DT>Credentials</DT>
-<DD>A <A HREF="ICredentials.html" TARGET="contents">ICredentials</A> object to submit to the proxy server for client authentication. </DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/UriFormatException.html" TARGET="contents">UriFormatException</A></TD><TD><I>Address </I>is not in a valid URI format.<P>
-
-</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
- This constructor initializes the properties of the new instance
-      as follows.<P>
-
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Property</TH><TH>Value</TH></TR>
-<TR><TD>System.Net.WebProxy.Address<P>
-
-</TD><TD>A new
-         <A HREF="../../System/Uri.html" TARGET="contents">Uri</A> constructed from <I>Address</I> or, if <I>Address</I> does not contain &quot;://&quot;, constructed from &quot;http://<I>Address</I>&quot;. If <I>Address</I> is <CODE>null</CODE>
-,
-            this property is set to <CODE>null</CODE>
-.</TD></TR>
-<TR><TD>System.Net.WebProxy.BypassArrayList<P>
-
-</TD><TD> 
-            A new <A HREF="../../System/Collections/ArrayList.html" TARGET="contents">ArrayList</A>
-            constructed from <I>BypassList</I> or, if <I>BypassList</I> is
-         <CODE>null</CODE>
-, a new 
-            empty <A HREF="../../System/Collections/ArrayList.html" TARGET="contents">ArrayList</A>.</TD></TR>
-<TR><TD>System.Net.WebProxy.BypassList<P>
-
-</TD><TD><I>BypassList</I> or, if <I>BypassList</I> is 
-      <CODE>null</CODE>
-, a new empty <A HREF="../../System/String.html" TARGET="contents">String</A> array.</TD></TR>
-<TR><TD>System.Net.WebProxy.BypassProxyOnLocal<P>
-
-</TD><TD><I>BypassOnLocal</I></TD></TR>
-<TR><TD>System.Net.WebProxy.Credentials<P>
-
-</TD><TD><I>Credentials</I></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 

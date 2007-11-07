@@ -66,7 +66,7 @@ A garbage collection consists of the following
 During a collection, the garbage collector will not free an object if it
    finds one or more references to the object in managed code. However, the garbage
    collector does not recognize references to an object from unmanaged code, and
-   may free objects that are being used exclusively in unmanaged code unless
+   can free objects that are being used exclusively in unmanaged code unless
    explicitly prevented from doing so. The System.GC.KeepAlive(System.Object) method provides a mechanism that
    prevents the garbage collector from collecting objects that are still in use in
    unmanaged code.<P>
@@ -127,10 +127,41 @@ System.IDisposable.Dispose method can call methods in the <A HREF="GC.html" TARG
 
 GC Methods<P>
 
+<A HREF="#GC.Collect%20Method" TARGET="contents">GC.Collect Method</A><BR>
 <A HREF="#GC.KeepAlive%20Method" TARGET="contents">GC.KeepAlive Method</A><BR>
 <A HREF="#GC.ReRegisterForFinalize%20Method" TARGET="contents">GC.ReRegisterForFinalize Method</A><BR>
 <A HREF="#GC.SuppressFinalize%20Method" TARGET="contents">GC.SuppressFinalize Method</A><BR>
 <A HREF="#GC.WaitForPendingFinalizers%20Method" TARGET="contents">GC.WaitForPendingFinalizers Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="GC.Collect%20Method"><H3>GC.Collect Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static void Collect()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Requests that the garbage collector reclaim memory allocated to objects for which there are no valid references.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+A call to this method is only a suggestion; such a call does not guarantee that any inaccessible memory is, in fact, reclaimed.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="GC.html" TARGET="contents">System.GC Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
 </BLOCKQUOTE>
 
 <HR>
@@ -224,7 +255,6 @@ Requests that the specified object be added to the list
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>obj</I> is a <CODE>null</CODE>
  reference.</TD></TR>
-<TR><TD><A HREF="ExecutionEngineException.html" TARGET="contents">ExecutionEngineException</A></TD><TD>The caller of this method is not the same as the object passed to this method.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -246,7 +276,7 @@ System.Object.Finalize
 
 [<I>Note</I>: By default, all
    objects that implement finalizers are added to the list of objects that require
-   finalization; however, an object may have already been finalized, or may have
+   finalization; however, an object might have already been finalized, or might have
    disabled finalization by calling the System.GC.SuppressFinalize(System.Object)
    method.]<P>
 
@@ -294,7 +324,6 @@ Instructs the garbage collector not to call the System.Object.Finalize method on
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>obj</I> is a <CODE>null</CODE>
  reference.</TD></TR>
-<TR><TD><A HREF="InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The caller of this method is not the same as the object passed to this method.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 

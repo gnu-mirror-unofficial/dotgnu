@@ -85,10 +85,10 @@ The System.Net.Sockets.NetworkStream.Flush method is reserved for future use but
 
 NetworkStream Constructors<P>
 
+<A HREF="#NetworkStream%28System.Net.Sockets.Socket%2C%20System.IO.FileAccess%2C%20bool%29%20Constructor" TARGET="contents">NetworkStream(System.Net.Sockets.Socket, System.IO.FileAccess, bool) Constructor</A><BR>
+<A HREF="#NetworkStream%28System.Net.Sockets.Socket%2C%20System.IO.FileAccess%29%20Constructor" TARGET="contents">NetworkStream(System.Net.Sockets.Socket, System.IO.FileAccess) Constructor</A><BR>
 <A HREF="#NetworkStream%28System.Net.Sockets.Socket%29%20Constructor" TARGET="contents">NetworkStream(System.Net.Sockets.Socket) Constructor</A><BR>
 <A HREF="#NetworkStream%28System.Net.Sockets.Socket%2C%20bool%29%20Constructor" TARGET="contents">NetworkStream(System.Net.Sockets.Socket, bool) Constructor</A><BR>
-<A HREF="#NetworkStream%28System.Net.Sockets.Socket%2C%20System.IO.FileAccess%29%20Constructor" TARGET="contents">NetworkStream(System.Net.Sockets.Socket, System.IO.FileAccess) Constructor</A><BR>
-<A HREF="#NetworkStream%28System.Net.Sockets.Socket%2C%20System.IO.FileAccess%2C%20bool%29%20Constructor" TARGET="contents">NetworkStream(System.Net.Sockets.Socket, System.IO.FileAccess, bool) Constructor</A><BR>
 <P>
 
 NetworkStream Methods<P>
@@ -115,6 +115,152 @@ NetworkStream Properties<P>
 <A HREF="#NetworkStream.DataAvailable%20Property" TARGET="contents">NetworkStream.DataAvailable Property</A><BR>
 <A HREF="#NetworkStream.Length%20Property" TARGET="contents">NetworkStream.Length Property</A><BR>
 <A HREF="#NetworkStream.Position%20Property" TARGET="contents">NetworkStream.Position Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="NetworkStream%28System.Net.Sockets.Socket%2C%20System.IO.FileAccess%2C%20bool%29%20Constructor"><H3>NetworkStream(System.Net.Sockets.Socket, System.IO.FileAccess, bool) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public NetworkStream(Socket socket, FileAccess access, bool ownsSocket);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>socket</DT>
+<DD>An instance of the <A HREF="Socket.html" TARGET="contents">Socket</A> class.</DD>
+<DT>access</DT>
+<DD>One of the values of the <A HREF="../../../System/IO/FileAccess.html" TARGET="contents">FileAccess</A> enumeration.</DD>
+<DT> ownsSocket</DT>
+<DD><CODE>true</CODE>
+ if <I>socket</I> is owned by the current instance; otherwise, <CODE>false</CODE>
+.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>socket</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>The System.Net.Sockets.Socket.Blocking property of <I>socket</I> is <CODE>false</CODE>
+.<P>
+
+ -or-<P>
+
+The System.Net.Sockets.Socket.Connected property of <I>socket</I> is <CODE>false</CODE>
+.<P>
+
+ -or-<P>
+
+The System.Net.Sockets.Socket.SocketType property of <I>socket</I> is not System.Net.Sockets.SocketType.Stream.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<I>socket</I> is required to be an
+   instance of the <A HREF="Socket.html" TARGET="contents">Socket</A> class with its System.Net.Sockets.Socket.Connected
+   property equal to <CODE>true</CODE>
+
+   , System.Net.Sockets.Socket.Blocking property equal to <CODE>true</CODE>
+ ,
+   and <A HREF="SocketType.html" TARGET="contents">SocketType</A> equal to System.Net.Sockets.SocketType.Stream.<P>
+
+ When <I>ownsSocket</I> is <CODE>true</CODE>
+, the current instance owns <I>socket</I>, meaning the System.Net.Sockets.NetworkStream.Close
+and System.Net.Sockets.NetworkStream.Dispose(System.Boolean) methods call the System.Net.Sockets.Socket.Close
+method of <I>socket</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="NetworkStream%28System.Net.Sockets.Socket%2C%20System.IO.FileAccess%29%20Constructor"><H3>NetworkStream(System.Net.Sockets.Socket, System.IO.FileAccess) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public NetworkStream(Socket socket, FileAccess access);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>socket</DT>
+<DD>An instance of the <A HREF="Socket.html" TARGET="contents">Socket</A> class.</DD>
+<DT> access</DT>
+<DD>One of the values of the <A HREF="../../../System/IO/FileAccess.html" TARGET="contents">FileAccess</A> enumeration.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>socket</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>The System.Net.Sockets.Socket.Blocking property of <I>socket</I> is <CODE>false</CODE>
+.<P>
+
+ -or-<P>
+
+The System.Net.Sockets.Socket.Connected property of <I>socket</I> is <CODE>false</CODE>
+.<P>
+
+ -or-<P>
+
+The System.Net.Sockets.Socket.SocketType property of <I>socket</I> is not System.Net.Sockets.SocketType.Stream.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor is equivalent to
+   System.Net.Sockets.NetworkStream.NetworkStream(<I>socket</I>, <I>access</I>, <CODE>false</CODE>
+).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
 </BLOCKQUOTE>
 
 <HR>
@@ -241,158 +387,6 @@ The System.Net.Sockets.Socket.SocketType property of <I>socket</I> is not System
 This constructor is
       equivalent to System.Net.Sockets.NetworkStream.NetworkStream(<I>socket</I>, System.IO.FileAccess.ReadWrite,
    <I>ownsSocket</I>).<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="NetworkStream%28System.Net.Sockets.Socket%2C%20System.IO.FileAccess%29%20Constructor"><H3>NetworkStream(System.Net.Sockets.Socket, System.IO.FileAccess) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public NetworkStream(Socket socket, FileAccess access);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Constructs and initializes a new instance of the <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A>
-class.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>socket</DT>
-<DD>An instance of the <A HREF="Socket.html" TARGET="contents">Socket</A> class.</DD>
-<DT> access</DT>
-<DD>One of the values of the <A HREF="../../../System/IO/FileAccess.html" TARGET="contents">FileAccess</A> enumeration.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>socket</I> is <CODE>null</CODE>
-.</TD></TR>
-<TR><TD><A HREF="../../../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>The System.Net.Sockets.Socket.Blocking property of <I>socket</I> is <CODE>false</CODE>
-.<P>
-
- -or-<P>
-
-The System.Net.Sockets.Socket.Connected property of <I>socket</I> is <CODE>false</CODE>
-.<P>
-
- -or-<P>
-
-The System.Net.Sockets.Socket.SocketType property of <I>socket</I> is not System.Net.Sockets.SocketType.Stream.<P>
-
-</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-This constructor is equivalent to
-   System.Net.Sockets.NetworkStream.NetworkStream(<I>socket</I>, <I>access</I>, <CODE>false</CODE>
-).<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="NetworkStream.html" TARGET="contents">System.Net.Sockets.NetworkStream Class</A>, <A HREF="Sockets.html" TARGET="members">System.Net.Sockets Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="NetworkStream%28System.Net.Sockets.Socket%2C%20System.IO.FileAccess%2C%20bool%29%20Constructor"><H3>NetworkStream(System.Net.Sockets.Socket, System.IO.FileAccess, bool) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public NetworkStream(Socket socket, FileAccess access, bool ownsSocket);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Constructs and initializes a new instance of the <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A> class.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>socket</DT>
-<DD>An instance of the <A HREF="Socket.html" TARGET="contents">Socket</A> class.</DD>
-<DT>access</DT>
-<DD>One of the values of the <A HREF="../../../System/IO/FileAccess.html" TARGET="contents">FileAccess</A> enumeration.</DD>
-<DT> ownsSocket</DT>
-<DD><CODE>true</CODE>
- if <I>socket</I> is owned by the current instance; otherwise, <CODE>false</CODE>
-.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>socket</I> is <CODE>null</CODE>
-.</TD></TR>
-<TR><TD><A HREF="../../../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD>The System.Net.Sockets.Socket.Blocking property of <I>socket</I> is <CODE>false</CODE>
-.<P>
-
- -or-<P>
-
-The System.Net.Sockets.Socket.Connected property of <I>socket</I> is <CODE>false</CODE>
-.<P>
-
- -or-<P>
-
-The System.Net.Sockets.Socket.SocketType property of <I>socket</I> is not System.Net.Sockets.SocketType.Stream.<P>
-
-</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-<I>socket</I> is required to be an
-   instance of the <A HREF="Socket.html" TARGET="contents">Socket</A> class with its System.Net.Sockets.Socket.Connected
-   property equal to <CODE>true</CODE>
-
-   , System.Net.Sockets.Socket.Blocking property equal to <CODE>true</CODE>
- ,
-   and <A HREF="SocketType.html" TARGET="contents">SocketType</A> equal to System.Net.Sockets.SocketType.Stream.<P>
-
- When <I>ownsSocket</I> is <CODE>true</CODE>
-, the current instance owns <I>socket</I>, meaning the System.Net.Sockets.NetworkStream.Close
-and System.Net.Sockets.NetworkStream.Dispose(System.Boolean) methods call the System.Net.Sockets.Socket.Close
-method of <I>socket</I>.<P>
-
-The System.Net.Sockets.NetworkStream.Readable and System.Net.Sockets.NetworkStream.Writeable properties are set depending on the value of
-<I>access</I>. If <I>access</I> is 
-not one of the values defined in the <A HREF="../../../System/IO/FileAccess.html" TARGET="contents">FileAccess</A> enumeration, the System.Net.Sockets.NetworkStream.Readable and System.Net.Sockets.NetworkStream.Writeable properties are set to
-<CODE>true</CODE>
-.<P>
 
 </BLOCKQUOTE>
 
@@ -1375,7 +1369,7 @@ When no buffer space is available within the underlying protocol, this method
 This property is read-only.<P>
 
 The value of this property is initially set by the 
-   <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A> constructors and can be changed using the System.Net.Sockets.NetworkStream.Readable property.<P>
+   <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A> constructors.<P>
 
 [<I>Note</I>: This property overrides System.IO.Stream.CanRead.<P>
 
@@ -1470,9 +1464,9 @@ indicates that the current stream does not support writing.<P>
 <BLOCKQUOTE>
 This property is read-only.<P>
 
-The value of this property is initially set by the 
+The value of this property is set by the 
    <A HREF="NetworkStream.html" TARGET="contents">NetworkStream</A> 
-   constructors and can be changed using the System.Net.Sockets.NetworkStream.Writeable property.<P>
+   constructors.<P>
 
 [<I>Note</I>: This property overrides System.IO.Stream.CanWrite.<P>
 

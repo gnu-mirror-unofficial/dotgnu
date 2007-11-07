@@ -7,7 +7,7 @@
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public struct UInt32 : IComparable, IFormattable</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public struct UInt32 : IComparable, IFormattable, IComparable&lt;UInt32&gt;, IEquatable&lt;UInt32&gt;</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -18,7 +18,7 @@
 &nbsp;&nbsp;<A HREF="ValueType.html" TARGET="contents">ValueType</A><BR>
 &nbsp;&nbsp;&nbsp;&nbsp;UInt32<P>
 
-This type implements <A HREF="IComparable.html" TARGET="contents">IComparable</A> and <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>.
+This type implements <A HREF="IComparable.html" TARGET="contents">IComparable</A>, <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>, System.IComparable&lt;System.UInt32&gt;, and System.IEquatable&lt;System.UInt32&gt;.
 </BLOCKQUOTE>
 
 <H4>Assembly</H4>
@@ -67,8 +67,10 @@ The <A HREF="UInt32.html" TARGET="contents">UInt32</A> data type represents inte
 
 UInt32 Methods<P>
 
-<A HREF="#UInt32.CompareTo%20Method" TARGET="contents">UInt32.CompareTo Method</A><BR>
-<A HREF="#UInt32.Equals%20Method" TARGET="contents">UInt32.Equals Method</A><BR>
+<A HREF="#UInt32.CompareTo%28System.Object%29%20Method" TARGET="contents">UInt32.CompareTo(System.Object) Method</A><BR>
+<A HREF="#UInt32.CompareTo%28uint%29%20Method" TARGET="contents">UInt32.CompareTo(uint) Method</A><BR>
+<A HREF="#UInt32.Equals%28System.Object%29%20Method" TARGET="contents">UInt32.Equals(System.Object) Method</A><BR>
+<A HREF="#UInt32.Equals%28uint%29%20Method" TARGET="contents">UInt32.Equals(uint) Method</A><BR>
 <A HREF="#UInt32.GetHashCode%20Method" TARGET="contents">UInt32.GetHashCode Method</A><BR>
 <A HREF="#UInt32.Parse%28System.String%29%20Method" TARGET="contents">UInt32.Parse(System.String) Method</A><BR>
 <A HREF="#UInt32.Parse%28System.String%2C%20System.Globalization.NumberStyles%29%20Method" TARGET="contents">UInt32.Parse(System.String, System.Globalization.NumberStyles) Method</A><BR>
@@ -88,7 +90,7 @@ UInt32 Fields<P>
 
 <HR>
 
-<A NAME="UInt32.CompareTo%20Method"><H3>UInt32.CompareTo Method</H3>
+<A NAME="UInt32.CompareTo%28System.Object%29%20Method"><H3>UInt32.CompareTo(System.Object) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
@@ -116,16 +118,13 @@ Returns the sort order of the current instance compared
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
-   current instance as compared to <I>value</I>. The following table defines the
-   conditions under which the return value is a negative number, zero, or a
-   positive number.<P>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the current instance as compared to <I>value</I>. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
-<TR><TD> Any negative number</TD><TD>Current instance &lt; <I>value</I>.</TD></TR>
+<TR><TD> A negative number</TD><TD>Current instance &lt; <I>value</I>.</TD></TR>
 <TR><TD> Zero</TD><TD>Current instance == <I>value</I>.</TD></TR>
-<TR><TD> Any positive number</TD><TD>Current instance &gt; <I>value</I>, or
+<TR><TD> A positive number</TD><TD>Current instance &gt; <I>value</I>, or
 <I>value</I> is a null reference.<P>
 
 </TD></TR>
@@ -160,7 +159,62 @@ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that refle
 
 <HR>
 
-<A NAME="UInt32.Equals%20Method"><H3>UInt32.Equals Method</H3>
+<A NAME="UInt32.CompareTo%28uint%29%20Method"><H3>UInt32.CompareTo(uint) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int CompareTo(uint value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the sort order of the current instance compared
+      to the specified <A HREF="UInt32.html" TARGET="contents">UInt32</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="UInt32.html" TARGET="contents">UInt32</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the current instance as compared to <I>value</I>. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
+<TR><TD> A negative number</TD><TD>Current instance &lt; <I>value</I>.</TD></TR>
+<TR><TD> Zero</TD><TD>Current instance == <I>value</I>.</TD></TR>
+<TR><TD> A positive number</TD><TD>Current instance &gt; <I>value</I>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support the System.IComparable&lt;UInt32&gt; interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UInt32.html" TARGET="contents">System.UInt32 Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="UInt32.Equals%28System.Object%29%20Method"><H3>UInt32.Equals(System.Object) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
@@ -201,6 +255,56 @@ Determines whether the current instance and the specified <A HREF="Object.html" 
 <BLOCKQUOTE>
 [<I>Note</I>: This method
       overrides System.Object.Equals(System.Object).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UInt32.html" TARGET="contents">System.UInt32 Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="UInt32.Equals%28uint%29%20Method"><H3>UInt32.Equals(uint) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override bool Equals(uint obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance and the specified <A HREF="UInt32.html" TARGET="contents">UInt32</A> represent the same value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>obj</DT>
+<DD>The <A HREF="UInt32.html" TARGET="contents">UInt32</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>obj</I> represents the same value as the current instance; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support the System.IEquatable&lt;UInt32&gt; interface.]<P>
 
 <P>
 

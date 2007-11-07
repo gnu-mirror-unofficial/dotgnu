@@ -179,11 +179,11 @@ Log Entry : 9:26:21 AM Friday, July 06, 2001<P>
 
 FileStream Constructors<P>
 
-<A HREF="#FileStream%28System.String%2C%20System.IO.FileMode%29%20Constructor" TARGET="contents">FileStream(System.String, System.IO.FileMode) Constructor</A><BR>
-<A HREF="#FileStream%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%29%20Constructor" TARGET="contents">FileStream(System.String, System.IO.FileMode, System.IO.FileAccess) Constructor</A><BR>
-<A HREF="#FileStream%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%2C%20System.IO.FileShare%29%20Constructor" TARGET="contents">FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare) Constructor</A><BR>
-<A HREF="#FileStream%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%2C%20System.IO.FileShare%2C%20int%29%20Constructor" TARGET="contents">FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, int) Constructor</A><BR>
 <A HREF="#FileStream%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%2C%20System.IO.FileShare%2C%20int%2C%20bool%29%20Constructor" TARGET="contents">FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, int, bool) Constructor</A><BR>
+<A HREF="#FileStream%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%2C%20System.IO.FileShare%2C%20int%29%20Constructor" TARGET="contents">FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, int) Constructor</A><BR>
+<A HREF="#FileStream%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%2C%20System.IO.FileShare%29%20Constructor" TARGET="contents">FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare) Constructor</A><BR>
+<A HREF="#FileStream%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%29%20Constructor" TARGET="contents">FileStream(System.String, System.IO.FileMode, System.IO.FileAccess) Constructor</A><BR>
+<A HREF="#FileStream%28System.String%2C%20System.IO.FileMode%29%20Constructor" TARGET="contents">FileStream(System.String, System.IO.FileMode) Constructor</A><BR>
 <P>
 
 FileStream Methods<P>
@@ -216,11 +216,11 @@ FileStream Properties<P>
 
 <HR>
 
-<A NAME="FileStream%28System.String%2C%20System.IO.FileMode%29%20Constructor"><H3>FileStream(System.String, System.IO.FileMode) Constructor</H3>
+<A NAME="FileStream%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%2C%20System.IO.FileShare%2C%20int%2C%20bool%29%20Constructor"><H3>FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, int, bool) Constructor</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public FileStream(string path, FileMode mode);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public FileStream(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, bool useAsync);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -228,7 +228,7 @@ FileStream Properties<P>
 
 <BLOCKQUOTE>
 Constructs and initializes a new instance of the <A HREF="FileStream.html" TARGET="contents">FileStream</A>
-class with the specified path and creation mode.<P>
+class.<P>
 
 </BLOCKQUOTE>
 
@@ -237,9 +237,17 @@ class with the specified path and creation mode.<P>
 <BLOCKQUOTE>
 <DL>
 <DT>path</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the relative or absolute path for the file that the current <A HREF="FileStream.html" TARGET="contents">FileStream</A> object will encapsulate.</DD>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the relative or absolute path for the file that the new <A HREF="FileStream.html" TARGET="contents">FileStream</A> object will encapsulate.</DD>
 <DT>mode</DT>
 <DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> value that determines how to open or create the file.</DD>
+<DT>access</DT>
+<DD>A <A HREF="FileAccess.html" TARGET="contents">FileAccess</A> value that determines how the file can be accessed by the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object. This parameter is used to specify the initial values of the System.IO.FileStream.CanRead and System.IO.FileStream.CanWrite properties.</DD>
+<DT>share</DT>
+<DD>A <A HREF="FileShare.html" TARGET="contents">FileShare</A> value that determines how the file will be shared by processes.</DD>
+<DT>bufferSize</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the desired buffer size in bytes.</DD>
+<DT>useAsync</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that specifies whether to use asynchronous I/O or synchronous I/O. If the underlying operating system does not support asynchronous I/O, the <A HREF="FileStream.html" TARGET="contents">FileStream</A> ignores this parameter and uses synchronous I/O.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -248,51 +256,46 @@ class with the specified path and creation mode.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>bufferSize</I> is less than or equal to zero.<P>
+
+-or-<P>
+
+<I>mode</I>, <I>access</I>, or <I>share </I>contain an invalid value.<P>
+
+</TD></TR>
 <TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>mode</I> is System.IO.FileMode.Truncate or System.IO.FileMode.Open, but the specified file cannot be found. If a different mode is specified and the file cannot be found, a new one is created.<P>
 
 </TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred, such as specifying System.IO.FileMode.CreateNew when the file specified by <I>path</I> already exists.</TD></TR>
-<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> does not exist.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred, such as specifying System.IO.FileMode.CreateNew and the file specified by <I>path</I> already exists.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified by <I>path</I> does not exist.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The <I>access</I> requested is not permitted by the operating system for the specified <I>path</I>.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path </I>exceeds the system-defined maximum length. </TD></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>mode</I> contains an invalid value. <P>
-
-</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-This constructor sets System.IO.FileAccess.ReadWrite access to the file, and the System.IO.Stream.CanRead and
-System.IO.Stream.CanWrite properties of the current instance are set to 
-<CODE>true</CODE>
- .<P>
+ This constructor sets read/write access to the file.<P>
 
-[<I>Note</I>: <I>path</I> is not required to be a
-file stored on disk; it can be any part of a system that supports access via
-streams. For example, depending on the system, this class may be able to access
-a physical device.]<P>
+[<I>Note</I>: <I>path</I> is not required to be a file
+   stored on disk; it can be any part of a system that supports access via streams.
+   For example, depending on the system, this class might be able to access a
+   physical device.]<P>
 
 <P>
 
-System.IO.Stream.CanSeek is
-<CODE>true</CODE>
- for all <A HREF="FileStream.html" TARGET="contents">FileStream</A> objects that encapsulate files. If <I>path  </I>specifies a device that does not support seeking, the System.IO.FileStream.CanSeek
-property of the resulting <A HREF="FileStream.html" TARGET="contents">FileStream</A> is required to be <CODE>false</CODE>
-. [<I>Note</I>: For additional
-information, see System.IO.Stream.CanSeek .
-]<P>
-
-<P>
-
- Requests to open the
-   file for writing by the current or another thread will fail until the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object has been closed.
-   Read attempts
-   will succeed.<P>
+System.IO.Stream.CanSeek is <CODE>true</CODE>
+ for all <A HREF="FileStream.html" TARGET="contents">FileStream</A> objects
+that encapsulate files. If <I>path </I>indicates a device that does not support
+seeking, the System.IO.FileStream.CanSeek property on the resulting <A HREF="FileStream.html" TARGET="contents">FileStream</A> is required to be
+<CODE>false</CODE>
+. For additional information, see System.IO.Stream.CanSeek
+.<P>
 
 </BLOCKQUOTE>
 
@@ -304,11 +307,11 @@ information, see System.IO.Stream.CanSeek .
 
 <HR>
 
-<A NAME="FileStream%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%29%20Constructor"><H3>FileStream(System.String, System.IO.FileMode, System.IO.FileAccess) Constructor</H3>
+<A NAME="FileStream%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%2C%20System.IO.FileShare%2C%20int%29%20Constructor"><H3>FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, int) Constructor</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public FileStream(string path, FileMode mode, FileAccess access);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public FileStream(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -316,8 +319,7 @@ information, see System.IO.Stream.CanSeek .
 
 <BLOCKQUOTE>
 Constructs and initializes a new instance of the <A HREF="FileStream.html" TARGET="contents">FileStream</A>
-class with the specified path, creation mode, and access
-type.<P>
+class.<P>
 
 </BLOCKQUOTE>
 
@@ -328,9 +330,13 @@ type.<P>
 <DT>path</DT>
 <DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the relative or absolute path for the file that the current <A HREF="FileStream.html" TARGET="contents">FileStream</A> object will encapsulate.</DD>
 <DT>mode</DT>
-<DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> value that determines how to open or create the file.</DD>
+<DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> constant that determines how to open or create the file.</DD>
 <DT>access</DT>
-<DD>A <A HREF="FileAccess.html" TARGET="contents">FileAccess</A> value that determines how the file may be accessed by the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object. This parameter is used to specify the initial values of the System.IO.FileStream.CanRead and System.IO.FileStream.CanWrite properties.</DD>
+<DD>A <A HREF="FileAccess.html" TARGET="contents">FileAccess</A> value that determines how the file can be accessed by the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object. This parameter is used to specify the initial values of the System.IO.FileStream.CanRead and System.IO.FileStream.CanWrite properties. For additional information, see System.IO.Stream.CanRead and System.IO.Stream.CanWrite .</DD>
+<DT>share</DT>
+<DD>A <A HREF="FileShare.html" TARGET="contents">FileShare</A> constant that determines how the file will be shared by processes.</DD>
+<DT>bufferSize</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the desired buffer size in bytes.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -339,33 +345,33 @@ type.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The <I>path</I> parameter is <CODE>null</CODE>
 .</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
-<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>mode</I> is System.IO.FileMode.Truncate or System.IO.FileMode.Open , but the specified file was not found. If a different mode is specified and the file was not found, a new one is created.<P>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>bufferSize</I> is less than or equal to zero.<P>
+
+-or-<P>
+
+<I>mode</I>, <I>access</I>, or <I>share </I>contain an invalid value.<P>
 
 </TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred, such as specifying System.IO.FileMode.CreateNew when the file specified by <I>path</I> already exists.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>mode</I> is System.IO.FileMode.Truncate or System.IO.FileMode.Open , but the specified file cannot be found. If a different mode is specified and the file cannot be found, a new one is created.<P>
+
+</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred, such as specifying System.IO.FileMode.CreateNew and the file specified by <I>path</I> already exists.</TD></TR>
 <TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified by <I>path</I> does not exist.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> does not exist.</TD></TR>
 <TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The <I>access</I> requested is not permitted by the operating system for the specified <I>path</I>.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path </I>exceeds the system-defined maximum length. </TD></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>mode</I> or <I>access</I> contain an invalid value. <P>
-
-</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
- This constructor sets read/write access to the file. Requests to open the
-      file for writing by the current or another thread will fail until the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object has
-      been closed. Read attempts will succeed.<P>
-
 [<I>Note</I>: <I>path</I> is not required to be a
    file stored on disk; it can be any part of a system that supports access via
-   streams. For example, depending on the system, this class may be able to access
+   streams. For example, depending on the system, this class might be able to access
    a physical device.]<P>
 
 <P>
@@ -414,7 +420,7 @@ Constructs and initializes a new instance of the <A HREF="FileStream.html" TARGE
 <DT>mode</DT>
 <DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> value that determines how to open or create the file.</DD>
 <DT>access</DT>
-<DD>A <A HREF="FileAccess.html" TARGET="contents">FileAccess</A> value that determines how the file may be accessed by the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object. This parameter is used to specify the initial values of the System.IO.FileStream.CanRead and System.IO.FileStream.CanWrite properties. For additional information, see System.IO.Stream.CanRead and System.IO.Stream.CanWrite.</DD>
+<DD>A <A HREF="FileAccess.html" TARGET="contents">FileAccess</A> value that determines how the file can be accessed by the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object. This parameter is used to specify the initial values of the System.IO.FileStream.CanRead and System.IO.FileStream.CanWrite properties. For additional information, see System.IO.Stream.CanRead and System.IO.Stream.CanWrite.</DD>
 <DT>share</DT>
 <DD>A <A HREF="FileShare.html" TARGET="contents">FileShare</A> value that determines how the file will be shared by processes.</DD>
 </DL>
@@ -427,7 +433,7 @@ Constructs and initializes a new instance of the <A HREF="FileStream.html" TARGE
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>mode</I> is System.IO.FileMode.Truncate or System.IO.FileMode.Open , but the specified file cannot be found. If a different mode is specified and the file cannot be found, a new one is created.<P>
 
 </TD></TR>
@@ -445,14 +451,11 @@ Constructs and initializes a new instance of the <A HREF="FileStream.html" TARGE
 <H4>Description</H4>
 
 <BLOCKQUOTE>
- This constructor sets read/write access to the file. Requests to open the
-      file for writing by the current or another process will fail until the <A HREF="FileStream.html" TARGET="contents">FileStream</A>
-      object
-      has been closed. Read attempts will succeed.<P>
+ This constructor sets read/write access to the file.<P>
 
 [<I>Note</I>: <I>path</I> is not required to be a
    file stored on disk; it can be any part of a system that supports access via
-   streams. For example, depending on the system, this class may be able to access
+   streams. For example, depending on the system, this class might be able to access
    a physical device.]<P>
 
 <P>
@@ -475,11 +478,11 @@ information, see System.IO.Stream.CanSeek
 
 <HR>
 
-<A NAME="FileStream%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%2C%20System.IO.FileShare%2C%20int%29%20Constructor"><H3>FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, int) Constructor</H3>
+<A NAME="FileStream%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%29%20Constructor"><H3>FileStream(System.String, System.IO.FileMode, System.IO.FileAccess) Constructor</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public FileStream(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public FileStream(string path, FileMode mode, FileAccess access);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -487,7 +490,8 @@ information, see System.IO.Stream.CanSeek
 
 <BLOCKQUOTE>
 Constructs and initializes a new instance of the <A HREF="FileStream.html" TARGET="contents">FileStream</A>
-class.<P>
+class with the specified path, creation mode, and access
+type.<P>
 
 </BLOCKQUOTE>
 
@@ -498,13 +502,9 @@ class.<P>
 <DT>path</DT>
 <DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the relative or absolute path for the file that the current <A HREF="FileStream.html" TARGET="contents">FileStream</A> object will encapsulate.</DD>
 <DT>mode</DT>
-<DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> constant that determines how to open or create the file.</DD>
+<DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> value that determines how to open or create the file.</DD>
 <DT>access</DT>
-<DD>A <A HREF="FileAccess.html" TARGET="contents">FileAccess</A> value that determines how the file may be accessed by the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object. This parameter is used to specify the initial values of the System.IO.FileStream.CanRead and System.IO.FileStream.CanWrite properties. For additional information, see System.IO.Stream.CanRead and System.IO.Stream.CanWrite .</DD>
-<DT>share</DT>
-<DD>A <A HREF="FileShare.html" TARGET="contents">FileShare</A> constant that determines how the file will be shared by processes.</DD>
-<DT>bufferSize</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the desired buffer size in bytes.</DD>
+<DD>A <A HREF="FileAccess.html" TARGET="contents">FileAccess</A> value that determines how the file can be accessed by the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object. This parameter is used to specify the initial values of the System.IO.FileStream.CanRead and System.IO.FileStream.CanWrite properties.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -513,33 +513,45 @@ class.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The <I>path</I> parameter is <CODE>null</CODE>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>bufferSize</I> is less than or equal to zero.<P>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.<P>
 
 -or-<P>
 
-<I>mode</I>, <I>access</I>, or <I>share </I>contain an invalid value.<P>
+<I>access </I> specified <CODE>Read</CODE>
+ and <I>mode</I> specified <CODE>Create</CODE>
+ , <CODE>CreateNew</CODE>
+ , <CODE>Truncate</CODE>
+ or <CODE>Append</CODE>
+.<P>
 
 </TD></TR>
-<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>mode</I> is System.IO.FileMode.Truncate or System.IO.FileMode.Open , but the specified file cannot be found. If a different mode is specified and the file cannot be found, a new one is created.<P>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>mode</I> is System.IO.FileMode.Truncate or System.IO.FileMode.Open , but the specified file was not found. If a different mode is specified and the file was not found, a new one is created.<P>
 
 </TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred, such as specifying System.IO.FileMode.CreateNew and the file specified by <I>path</I> already exists.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred, such as specifying System.IO.FileMode.CreateNew when the file specified by <I>path</I> already exists.</TD></TR>
 <TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> does not exist.</TD></TR>
-<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The <I>access</I> requested is not permitted by the operating system for the specified <I>path</I>.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified by <I>path</I> does not exist.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a read-only file and <I>access</I>  is not <CODE>Read</CODE>
+  , or <I>path</I> specified a directory.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path </I>exceeds the system-defined maximum length. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>mode</I> or <I>access</I> contain an invalid value. <P>
+
+</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
+ This constructor sets read/write access to the file. Requests to open the
+      file for writing by the current or another thread will fail until the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object has
+      been closed. Read attempts will succeed.<P>
+
 [<I>Note</I>: <I>path</I> is not required to be a
    file stored on disk; it can be any part of a system that supports access via
-   streams. For example, depending on the system, this class may be able to access
+   streams. For example, depending on the system, this class might be able to access
    a physical device.]<P>
 
 <P>
@@ -562,11 +574,11 @@ information, see System.IO.Stream.CanSeek
 
 <HR>
 
-<A NAME="FileStream%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%2C%20System.IO.FileShare%2C%20int%2C%20bool%29%20Constructor"><H3>FileStream(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, int, bool) Constructor</H3>
+<A NAME="FileStream%28System.String%2C%20System.IO.FileMode%29%20Constructor"><H3>FileStream(System.String, System.IO.FileMode) Constructor</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public FileStream(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, bool useAsync);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public FileStream(string path, FileMode mode);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -574,7 +586,7 @@ information, see System.IO.Stream.CanSeek
 
 <BLOCKQUOTE>
 Constructs and initializes a new instance of the <A HREF="FileStream.html" TARGET="contents">FileStream</A>
-class.<P>
+class with the specified path and creation mode.<P>
 
 </BLOCKQUOTE>
 
@@ -583,17 +595,9 @@ class.<P>
 <BLOCKQUOTE>
 <DL>
 <DT>path</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the relative or absolute path for the file that the new <A HREF="FileStream.html" TARGET="contents">FileStream</A> object will encapsulate.</DD>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the relative or absolute path for the file that the current <A HREF="FileStream.html" TARGET="contents">FileStream</A> object will encapsulate.</DD>
 <DT>mode</DT>
 <DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> value that determines how to open or create the file.</DD>
-<DT>access</DT>
-<DD>A <A HREF="FileAccess.html" TARGET="contents">FileAccess</A> value that determines how the file may be accessed by the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object. This parameter is used to specify the initial values of the System.IO.FileStream.CanRead and System.IO.FileStream.CanWrite properties.</DD>
-<DT>share</DT>
-<DD>A <A HREF="FileShare.html" TARGET="contents">FileShare</A> value that determines how the file will be shared by processes.</DD>
-<DT>bufferSize</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the desired buffer size in bytes.</DD>
-<DT>useAsync</DT>
-<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that specifies whether to use asynchronous I/O or synchronous I/O. If the underlying operating system does not support asynchronous I/O, the <A HREF="FileStream.html" TARGET="contents">FileStream</A> ignores this parameter and uses synchronous I/O.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -602,48 +606,51 @@ class.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>bufferSize</I> is less than or equal to zero.<P>
-
--or-<P>
-
-<I>mode</I>, <I>access</I>, or <I>share </I>contain an invalid value.<P>
-
-</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 <TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>mode</I> is System.IO.FileMode.Truncate or System.IO.FileMode.Open, but the specified file cannot be found. If a different mode is specified and the file cannot be found, a new one is created.<P>
 
 </TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred, such as specifying System.IO.FileMode.CreateNew and the file specified by <I>path</I> already exists.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified by <I>path</I> does not exist.</TD></TR>
-<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The <I>access</I> requested is not permitted by the operating system for the specified <I>path</I>.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred, such as specifying System.IO.FileMode.CreateNew when the file specified by <I>path</I> already exists.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> does not exist.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path </I>exceeds the system-defined maximum length. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>mode</I> contains an invalid value. <P>
+
+</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
- This constructor sets read/write access to the file. Requests to open
-      the file for writing by this or another process will fail until the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object has
-      been closed. Read attempts will succeed.<P>
+This constructor sets System.IO.FileAccess.ReadWrite access to the file, and the System.IO.Stream.CanRead and
+System.IO.Stream.CanWrite properties of the current instance are set to 
+<CODE>true</CODE>
+ .<P>
 
-[<I>Note</I>: <I>path</I> is not required to be a file
-   stored on disk; it can be any part of a system that supports access via streams.
-   For example, depending on the system, this class may be able to access a
-   physical device.]<P>
+[<I>Note</I>: <I>path</I> is not required to be a
+file stored on disk; it can be any part of a system that supports access via
+streams. For example, depending on the system, this class might be able to access
+a physical device.]<P>
 
 <P>
 
-System.IO.Stream.CanSeek is <CODE>true</CODE>
- for all <A HREF="FileStream.html" TARGET="contents">FileStream</A> objects
-that encapsulate files. If <I>path </I>indicates a device that does not support
-seeking, the System.IO.FileStream.CanSeek property on the resulting <A HREF="FileStream.html" TARGET="contents">FileStream</A> is required to be
-<CODE>false</CODE>
-. For additional information, see System.IO.Stream.CanSeek
-.<P>
+System.IO.Stream.CanSeek is
+<CODE>true</CODE>
+ for all <A HREF="FileStream.html" TARGET="contents">FileStream</A> objects that encapsulate files. If <I>path  </I>specifies a device that does not support seeking, the System.IO.FileStream.CanSeek
+property of the resulting <A HREF="FileStream.html" TARGET="contents">FileStream</A> is required to be <CODE>false</CODE>
+. [<I>Note</I>: For additional
+information, see System.IO.Stream.CanSeek .
+]<P>
+
+<P>
+
+ Requests to open the
+   file for writing by the current or another thread will fail until the <A HREF="FileStream.html" TARGET="contents">FileStream</A> object has been closed.
+   Read attempts
+   will succeed.<P>
 
 </BLOCKQUOTE>
 
@@ -677,13 +684,13 @@ Begins an asynchronous read.<P>
 <DT>array</DT>
 <DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array that specifies the buffer to read data into.</DD>
 <DT>offset</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the zero based byte offset in <I>array</I> at which to begin reading.</DD>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the zero based byte offset in <I>array</I> at which to begin writing data read from the stream.</DD>
 <DT>numBytes</DT>
 <DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the maximum number of bytes to read.</DD>
 <DT>userCallback</DT>
 <DD>A <A HREF="../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate that references the method to be called when the asynchronous read operation is completed.</DD>
 <DT>stateObject</DT>
-<DD>An application defined object containing the status of the asynchronous read.</DD>
+<DD>An application-defined object containing the status of the asynchronous read.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -754,15 +761,15 @@ Begins an asynchronous write operation.<P>
 <BLOCKQUOTE>
 <DL>
 <DT>array</DT>
-<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array buffer to write data to.</DD>
+<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array buffer containing data to write to the current stream.</DD>
 <DT>offset</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the zero based byte offset in <I>array</I> at which to begin writing.</DD>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the zero-based byte offset in <I>array</I>, which marks the beginning of the data to written to the current stream.</DD>
 <DT>numBytes</DT>
 <DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the maximum number of bytes to write.</DD>
 <DT>userCallback</DT>
 <DD>A <A HREF="../../System/AsyncCallback.html" TARGET="contents">AsyncCallback</A> delegate that references the method to be called when the asynchronous write operation is completed.</DD>
 <DT>stateObject</DT>
-<DD>An application defined object containing the status of the asynchronous read.</DD>
+<DD>An application-defined object containing the status of the asynchronous write.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -782,7 +789,8 @@ A <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> th
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>array</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset</I> or <I>numBytes</I> is negative.</TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The stream does not support writing, or an I/O error occurred.</TD></TR>
+<TR><TD>System.SystemNotSupportedException</TD><TD>The stream does not support writing. </TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -914,7 +922,7 @@ When the <I>disposing</I> parameter is <CODE>true</CODE>
    releases all resources held by any managed objects that this <A HREF="FileStream.html" TARGET="contents">FileStream</A> references.<P>
 
 [<I>Note</I>: System.IO.FileStream.Dispose(System.Boolean)
-may be called multiple times by other objects. When overriding
+can be called multiple times by other objects. When overriding
 System.IO.FileStream.Dispose(System.Boolean)(<A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>), be careful not to reference objects 
 that have been previously disposed in an earlier call to System.IO.FileStream.Dispose(System.Boolean) .<P>
 
@@ -1297,7 +1305,7 @@ This method overrides System.IO.Stream.ReadByte.<P>
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Sets the current position of the current stream to the specified value.<P>
+Changes the position within the current stream by the given offset, which is relative to the stated origin.<P>
 
 </BLOCKQUOTE>
 
@@ -1341,10 +1349,7 @@ additional information, see System.IO.Stream.CanSeek
 
 <P>
 
-[<I>Usage</I>: In order to open a new file and write to it, set the position
-   to one byte beyond the end of the stream. This allows you
-   to append to the file. The position cannot be set to more than
-   one byte beyond the end of the stream.]<P>
+[<I>Usage</I>: The position can be set beyond the end of the stream.]<P>
 
 <P>
 
@@ -1464,7 +1469,7 @@ Writes a block of bytes from a specified byte array to
 .</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>offset </I>+ <I>count</I> is greater than the length of <I>array</I>.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset</I> or <I>count</I> is negative.</TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>An I/O error occurred.</TD></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current stream does not support writing.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -1522,7 +1527,7 @@ Writes a byte to the current position in the file stream.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The current stream is closed.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current stream is closed.</TD></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current stream does not support writing.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -1589,8 +1594,7 @@ This property is read-only.<P>
 
 If a class derived from <A HREF="Stream.html" TARGET="contents">Stream</A> does not support reading,
    the <CODE>Read</CODE>
- and <CODE>Peek</CODE>
- methods throw a <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>
+ method throws a <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>
    .<P>
 
 ]<P>
@@ -1687,8 +1691,8 @@ Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value i
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-If a class derived from <A HREF="Stream.html" TARGET="contents">Stream</A> does not support writing, a call to System.IO.FileStream.Write(System.Byte[],System.Int32,System.Int32),
-System.IO.FileStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object), or System.IO.FileStream.EndWrite(System.IAsyncResult) will throw a
+If a class derived from <A HREF="Stream.html" TARGET="contents">Stream</A> does not support writing, a call to System.IO.FileStream.Write(System.Byte[],System.Int32,System.Int32) or 
+System.IO.FileStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object) will throw a
 <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>
 .<P>
 
@@ -1840,10 +1844,7 @@ Gets or sets the current
 <H4>Description</H4>
 
 <BLOCKQUOTE>
- In order to open a new file and write to it, set the position
-      to one byte beyond the end of the stream. This allows you
-      to append to the file. The position cannot be set to more than
-      one byte beyond the end of the stream.<P>
+The position can be set beyond the end of the stream.<P>
 
 </BLOCKQUOTE>
 

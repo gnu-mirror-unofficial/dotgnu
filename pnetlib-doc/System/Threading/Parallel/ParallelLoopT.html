@@ -1,0 +1,276 @@
+<HTML>
+<HEAD>
+<TITLE>System.Threading.Parallel.ParallelLoop&lt;T&gt; Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Threading.Parallel.ParallelLoop&lt;T&gt; Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public abstract class ParallelLoop&lt;T&gt; : IDisposable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;ParallelLoop&lt;T&gt;<P>
+
+This type implements <A HREF="../../../System/IDisposable.html" TARGET="contents">IDisposable</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System.Threading.Parallel
+</BLOCKQUOTE>
+
+<H4>Library</H4>
+
+<BLOCKQUOTE>
+Parallel
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+A parallel loop over iteration values of type T.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+
+                    Abstract generic class <A HREF="ParallelLoopT.html" TARGET="contents">ParallelLoop&lt;T&gt;</A> abstracts common behavior of the loop classes that iterate over values of type T.   
+                    Its derived classes differ in how the iteration space is defined.
+                    <P>
+
+
+                    Iteration commences once method System.Threading.Parallel.ParallelLoop&lt;T&gt;.BeginRun is called. 
+                    The callback is applied to each iteration value.  
+                    A conforming implementation can use the thread calling System.Threading.Parallel.ParallelLoop&lt;T&gt;.BeginRun to execute all iterations, 
+                    regardless of the value of System.Threading.Parallel.ParallelLoop&lt;T&gt;.MaxThreads.  
+                    The thread that calls System.Threading.Parallel.ParallelLoop&lt;T&gt;.BeginRun shall call 
+                    method System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRun to block until all iterations complete or are cancelled.  
+                    When System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRun is called, the calling thread can be employed as a worker thread. 
+                    <P>
+
+ 
+                    Calling method System.Threading.Parallel.ParallelLoop&lt;T&gt;.Run is equivalent to calling
+                    System.Threading.Parallel.ParallelLoop&lt;T&gt;.BeginRun followed by calling “System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRun.   
+                    <P>
+
+ 
+                    A parallel loop can be cancelled at any time (even before it starts running) by calling method System.Threading.Parallel.ParallelLoop&lt;T&gt;.Cancel.  
+                    Cancellation is asynchronous in the sense that method System.Threading.Parallel.ParallelLoop&lt;T&gt;.Cancel can return while portions of the loop are still running.  
+                    Any number of threads can call System.Threading.Parallel.ParallelLoop&lt;T&gt;.Cancel on the same object.  
+                    Cancellation affects only iterations that have not yet been issued to worker threads.  
+                    Outstanding iterations are completed normally.
+                    <P>
+
+
+                    If one or more invocations of a callback throws an unhandled exception, the rest of the loop is cancelled.  
+                    One of the  exceptions is saved inside the <A HREF="ParallelLoopT.html" TARGET="contents">ParallelLoop&lt;T&gt;</A> until the loop has stopped running, 
+                    and then the saved exception is rethrown when method System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRun is invoked.   
+                    In the case of multiple exceptions, the implementation can choose any one of the exceptions to save and rethrow.  
+                    <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ParallelLoop&lt;T&gt; Methods<P>
+
+<A HREF="#ParallelLoop%3CT%3E.BeginRun%20Method" TARGET="contents">ParallelLoop&lt;T&gt;.BeginRun Method</A><BR>
+<A HREF="#ParallelLoop%3CT%3E.Cancel%20Method" TARGET="contents">ParallelLoop&lt;T&gt;.Cancel Method</A><BR>
+<A HREF="#ParallelLoop%3CT%3E.EndRun%20Method" TARGET="contents">ParallelLoop&lt;T&gt;.EndRun Method</A><BR>
+<A HREF="#ParallelLoop%3CT%3E.Run%20Method" TARGET="contents">ParallelLoop&lt;T&gt;.Run Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelLoop%3CT%3E.BeginRun%20Method"><H3>ParallelLoop&lt;T&gt;.BeginRun Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public abstract void BeginRun(Action&lt;T&gt; action);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Begin executing iterations, applying the action delegate to each iteration value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>action</DT>
+<DD>The <A HREF="../../../System/Delegate.html" TARGET="contents">Delegate</A>to apply to each iteration value.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>action </I>is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is not thread safe. It should be called only once for a given instance of a <A HREF="ParallelLoopT.html" TARGET="contents">ParallelLoop&lt;T&gt;</A>.<P>
+
+
+                            If one or more invocations of a callback throws an unhandled exception, the rest of the loop is cancelled.  One of the  exceptions is saved inside the <A HREF="ParallelLoopT.html" TARGET="contents">ParallelLoop&lt;T&gt;</A>until the loop has stopped running, and then the saved exception is rethrown when method EndRun is invoked.   In the case of multiple exceptions, the implementation can choose any one of the exceptions to save and rethrow.  
+                            <P>
+
+[<I>Note</I>: Implementations, particularly on single-threaded hardware, are free to employ the calling thread to execute all loop iterations.]<P>
+
+<P>
+
+[<I>Note</I>: The return value is void, not <A HREF="../../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A>, and there is no callBack or stateObject arguments.  This departure from the usual asynchronous call pattern (e.g. FileStreamBeginRead) is deliberate, because in typical scenarios the extra complexity would just add pointless burden on the implementation.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelLoopT.html" TARGET="contents">System.Threading.Parallel.ParallelLoop&lt;T&gt; Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelLoop%3CT%3E.Cancel%20Method"><H3>ParallelLoop&lt;T&gt;.Cancel Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public abstract void Cancel();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Eventually cancel issuance of any further iterations<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+A <A HREF="ParallelLoopT.html" TARGET="contents">ParallelLoop&lt;T&gt;</A> can be cancelled at any time (even before it starts running) by calling method Cancel.  Cancellation is asynchronous in the sense that method Cancel can return while portions of the loop are still running.  Any number of threads can concurrently call Cancel on the same object.  Cancellation affects only iterations that have not yet been issued to worker threads.  Outstanding iterations are completed normally.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelLoopT.html" TARGET="contents">System.Threading.Parallel.ParallelLoop&lt;T&gt; Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelLoop%3CT%3E.EndRun%20Method"><H3>ParallelLoop&lt;T&gt;.EndRun Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void EndRun();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Wait until all iterations are finished (or cancelled).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ 
+                            This method is not thread safe. 
+                            It should be called exactly once by the thread that called System.Threading.Parallel.ParallelLoop&lt;T&gt;.BeginRun.
+							<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelLoopT.html" TARGET="contents">System.Threading.Parallel.ParallelLoop&lt;T&gt; Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelLoop%3CT%3E.Run%20Method"><H3>ParallelLoop&lt;T&gt;.Run Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void Run(Action&lt;T&gt; action);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Start processing of loop iterations and wait until done.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>action</DT>
+<DD>The <A HREF="../../../System/Delegate.html" TARGET="contents">Delegate</A> applied to each iteration value</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>action </I>is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+
+                        This method is equivalent to calling System.Threading.Parallel.ParallelLoop&lt;T&gt;.BeginRun followed by calling System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRun.  
+                        
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelLoopT.html" TARGET="contents">System.Threading.Parallel.ParallelLoop&lt;T&gt; Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+</BODY>
+</HTML>

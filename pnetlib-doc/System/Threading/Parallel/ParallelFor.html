@@ -1,0 +1,251 @@
+<HTML>
+<HEAD>
+<TITLE>System.Threading.Parallel.ParallelFor Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Threading.Parallel.ParallelFor Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public sealed class ParallelFor: ParallelLoop&lt;int&gt;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+System.Threading.Parallel.ParallelLoop&lt;int&gt;<BR>
+&nbsp;&nbsp;ParallelFor<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System.Threading.Parallel
+</BLOCKQUOTE>
+
+<H4>Library</H4>
+
+<BLOCKQUOTE>
+Parallel
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+A parallel loop over consecutive integers, starting at 0<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: ParallelFor provides basic parallelism over an index space known in advance.  The index space is 0..(N-1) for some value of N.  This is the common case in -for- loops, and one can easily derive more complex arithmetic sequences via linear transformation of the index variable.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ParallelFor Constructors<P>
+
+<A HREF="#ParallelFor%28int%29%20Constructor" TARGET="contents">ParallelFor(int) Constructor</A><BR>
+<A HREF="#ParallelFor%28int%2C%20int%29%20Constructor" TARGET="contents">ParallelFor(int, int) Constructor</A><BR>
+<P>
+
+ParallelFor Methods<P>
+
+<A HREF="#ParallelFor.BeginRun%20Method" TARGET="contents">ParallelFor.BeginRun Method</A><BR>
+<A HREF="#ParallelFor.Cancel%20Method" TARGET="contents">ParallelFor.Cancel Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelFor%28int%29%20Constructor"><H3>ParallelFor(int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public ParallelFor(int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a <A HREF="ParallelFor.html" TARGET="contents">ParallelFor</A>
+that will iterate over the integers 0..count-1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>count</DT>
+<DD>number of loop iterations</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The loop starts executing when method System.Threading.Parallel.ParallelFor.BeginRun is called.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelFor.html" TARGET="contents">System.Threading.Parallel.ParallelFor Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelFor%28int%2C%20int%29%20Constructor"><H3>ParallelFor(int, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public ParallelFor(int count, int numThreads);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a <A HREF="ParallelFor.html" TARGET="contents">ParallelFor</A>
+that will iterate over the integers 0..count-1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>count</DT>
+<DD>number of loop iterations</DD>
+<DT>numThreads</DT>
+<DD>maximum number of threads to use</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The value for numThreads is negative</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The loop starts executing when method System.Threading.Parallel.ParallelFor.BeginRun is called.<P>
+
+If numThreads is 0, then up to System.Threading.Parallel.ParallelEnvironment.MaxThreads threads are used instead.  The value of numThreads includes the thread that created the System.Threading.Parallel.ParallelFor&lt;T&gt;, hence using numThreads=1 forces sequential execution.
+							<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelFor.html" TARGET="contents">System.Threading.Parallel.ParallelFor Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelFor.BeginRun%20Method"><H3>ParallelFor.BeginRun Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override void BeginRun(Action&lt;T&gt; action);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Begin executing iterations.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>action</DT>
+<DD>The <A HREF="../../../System/Delegate.html" TARGET="contents">Delegate</A> that processes each work item.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>action </I>is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is not thread safe. It should be called only once for a given instance of a <A HREF="ParallelFor.html" TARGET="contents">ParallelFor</A>.<P>
+
+[<I>Note</I>: Implementations, particularly on single-threaded hardware, are free to employ the calling thread to execute all loop iterations.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelFor.html" TARGET="contents">System.Threading.Parallel.ParallelFor Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelFor.Cancel%20Method"><H3>ParallelFor.Cancel Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override void Cancel();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Cancel any iterations that have not yet started<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is safe to call concurrently on the same instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelFor.html" TARGET="contents">System.Threading.Parallel.ParallelFor Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+</BODY>
+</HTML>

@@ -43,9 +43,7 @@ When an enumerator is instantiated or a call is made to
       taken. When the enumerator is in this position, a
       call to System.Collections.IEnumerator.MoveNext is necessary before
       reading System.Collections.IEnumerator.Current
-      from the collection. If changes are made to the collection, such as adding,
-      modifying or deleting elements, the snapshot gets out of sync and the enumerator
-      throws a <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>. Two enumerators instantiated from the same collection
+      from the collection. If changes are made to the collection (such as adding, repositioning, or deleting elements) the snapshot can get out of sync, causing the enumerator to throw a <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A> if System.Collections.IEnumerator.MoveNext or System.Collections.IEnumerator.Reset are invoked. Two enumerators instantiated from the same collection
       at the same time can have different snapshots of the collection.<P>
 
  Enumerators are intended to
@@ -258,19 +256,6 @@ of the collection.]<P>
 
 </BLOCKQUOTE>
 
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD> The current instance is positioned before the first element or after the last element of the collection.<P>
-
-The collection was modified after the current instance was instantiated.<P>
-
-</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
 <H4>Description</H4>
 
 <BLOCKQUOTE>
@@ -284,8 +269,8 @@ The collection was modified after the current instance was instantiated.<P>
       instance is positioned unless it is positioned before the first or after
       the last element of the collection. If the current instance is
       positioned before the first element or after the last element of the
-      collection, or elements were added, removed, or repositioned in the collection after the current
-      instance was instantiated, System.Collections.IEnumerator.Current is required to throw <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>.<P>
+      collection, System.Collections.IEnumerator.Current returns an unspecified value or throws an unspecified exception. If elements were added, removed, or repositioned in the collection after the current
+      instance was instantiated, System.Collections.IEnumerator.Current returns the value it would have returned before the collection was modified.<P>
 
 It is also required that System.Collections.IEnumerator.Current not change the position of
    the current instance: consecutive calls to System.Collections.IEnumerator.Current are required to return the same object until

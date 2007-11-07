@@ -124,10 +124,10 @@ System.Net.HttpWebRequest.SendChunked<P>
 HttpWebRequest Methods<P>
 
 <A HREF="#HttpWebRequest.Abort%20Method" TARGET="contents">HttpWebRequest.Abort Method</A><BR>
-<A HREF="#HttpWebRequest.AddRange%28int%2C%20int%29%20Method" TARGET="contents">HttpWebRequest.AddRange(int, int) Method</A><BR>
-<A HREF="#HttpWebRequest.AddRange%28int%29%20Method" TARGET="contents">HttpWebRequest.AddRange(int) Method</A><BR>
-<A HREF="#HttpWebRequest.AddRange%28System.String%2C%20int%2C%20int%29%20Method" TARGET="contents">HttpWebRequest.AddRange(System.String, int, int) Method</A><BR>
 <A HREF="#HttpWebRequest.AddRange%28System.String%2C%20int%29%20Method" TARGET="contents">HttpWebRequest.AddRange(System.String, int) Method</A><BR>
+<A HREF="#HttpWebRequest.AddRange%28System.String%2C%20int%2C%20int%29%20Method" TARGET="contents">HttpWebRequest.AddRange(System.String, int, int) Method</A><BR>
+<A HREF="#HttpWebRequest.AddRange%28int%29%20Method" TARGET="contents">HttpWebRequest.AddRange(int) Method</A><BR>
+<A HREF="#HttpWebRequest.AddRange%28int%2C%20int%29%20Method" TARGET="contents">HttpWebRequest.AddRange(int, int) Method</A><BR>
 <A HREF="#HttpWebRequest.BeginGetRequestStream%20Method" TARGET="contents">HttpWebRequest.BeginGetRequestStream Method</A><BR>
 <A HREF="#HttpWebRequest.BeginGetResponse%20Method" TARGET="contents">HttpWebRequest.BeginGetResponse Method</A><BR>
 <A HREF="#HttpWebRequest.EndGetRequestStream%20Method" TARGET="contents">HttpWebRequest.EndGetRequestStream Method</A><BR>
@@ -213,18 +213,19 @@ This method
 
 <HR>
 
-<A NAME="HttpWebRequest.AddRange%28int%2C%20int%29%20Method"><H3>HttpWebRequest.AddRange(int, int) Method</H3>
+<A NAME="HttpWebRequest.AddRange%28System.String%2C%20int%29%20Method"><H3>HttpWebRequest.AddRange(System.String, int) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public void AddRange(int from, int to);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void AddRange(string rangeSpecifier, int range);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Adds a HTTP Range header to the current instance for a specified range.<P>
+ Adds a HTTP Range header to the current request for a specific range from the
+      beginning or end of the requested data.<P>
 
 </BLOCKQUOTE>
 
@@ -232,81 +233,10 @@ Adds a HTTP Range header to the current instance for a specified range.<P>
 
 <BLOCKQUOTE>
 <DL>
-<DT>from</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> indicating the starting byte position of the entity-body data to be returned.</DD>
-<DT> to</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> indicating the last byte.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>from </I> &lt; 0.<P>
-
--or-<P>
-
-<I>to </I> &lt; 0.<P>
-
--or-<P>
-
-<I>from </I> &gt; <I>to </I>.<P>
-
-</TD></TR>
-<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The range header could not be added.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-This method is equivalent to System.Net.HttpWebRequest.AddRange(System.Int32,System.Int32)(&quot;bytes&quot;, <I>from</I>, <I>to</I>).<P>
-
-[<I>Note</I>: The HTTP Range header specifies either a single range of bytes or a set
-      of byte ranges in an entity-body to be returned. If the server accessed by
-      the current instance supports the use of this header, this allows for the
-      partial retrieval of the entity due to, for example, the entity being
-      particularly large or there having been a failed transfer of data.<P>
-
-For more information on the HTTP Range header, see Section 14.35 of RFC
-      2616.<P>
-
-]<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="HttpWebRequest.AddRange%28int%29%20Method"><H3>HttpWebRequest.AddRange(int) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public void AddRange(int range);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Adds a HTTP Range header to the current instance for
-      a specific range from the beginning or end of the requested data.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
+<DT>rangeSpecifier</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that contains the description of the range.</DD>
 <DT>range</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the starting or ending point of the range. If this value is positive, the range is from the beginning of the data to <I>range</I>. If this value is negative, the range is from <I>range</I> to the end of the data.</DD>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that designates the starting or ending point of the range. If this value is positive, the range is from the beginning of the data to <I>range</I>. If this value is negative, the range is from <I>range</I> to the end of the data. </DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -315,6 +245,9 @@ Adds a HTTP Range header to the current instance for
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>rangeSpecifier </I>is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>rangeSpecifier</I> is invalid.</TD></TR>
 <TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The range header could not be added.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -322,8 +255,6 @@ Adds a HTTP Range header to the current instance for
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-This method is equivalent to System.Net.HttpWebRequest.AddRange(System.Int32,System.Int32)(&quot;bytes&quot;, <I>range</I>).<P>
-
 [<I>Note</I>: The HTTP Range header specifies either a single range of bytes or a set of
       byte ranges in an entity-body to be returned. If the server accessed by the
       current instance supports the use of this header, this allows for the partial
@@ -421,19 +352,19 @@ For more information on the HTTP Range header, see Section 14.35 of IETF RFC
 
 <HR>
 
-<A NAME="HttpWebRequest.AddRange%28System.String%2C%20int%29%20Method"><H3>HttpWebRequest.AddRange(System.String, int) Method</H3>
+<A NAME="HttpWebRequest.AddRange%28int%29%20Method"><H3>HttpWebRequest.AddRange(int) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public void AddRange(string rangeSpecifier, int range);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void AddRange(int range);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Adds a HTTP Range header to the current request for a specific range from the
-      beginning or end of the requested data.<P>
+Adds a HTTP Range header to the current instance for
+      a specific range from the beginning or end of the requested data.<P>
 
 </BLOCKQUOTE>
 
@@ -441,10 +372,8 @@ For more information on the HTTP Range header, see Section 14.35 of IETF RFC
 
 <BLOCKQUOTE>
 <DL>
-<DT>rangeSpecifier</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that contains the description of the range.</DD>
 <DT>range</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that designates the starting or ending point of the range. If this value is positive, the range is from the beginning of the data to <I>range</I>. If this value is negative, the range is from <I>range</I> to the end of the data. </DD>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the starting or ending point of the range. If this value is positive, the range is from the beginning of the data to <I>range</I>. If this value is negative, the range is from <I>range</I> to the end of the data.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -453,9 +382,6 @@ For more information on the HTTP Range header, see Section 14.35 of IETF RFC
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>rangeSpecifier </I>is <CODE>null</CODE>
-.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>rangeSpecifier</I> is invalid.</TD></TR>
 <TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The range header could not be added.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -463,11 +389,85 @@ For more information on the HTTP Range header, see Section 14.35 of IETF RFC
 <H4>Description</H4>
 
 <BLOCKQUOTE>
+This method is equivalent to System.Net.HttpWebRequest.AddRange(System.Int32,System.Int32)(&quot;bytes&quot;, <I>range</I>).<P>
+
 [<I>Note</I>: The HTTP Range header specifies either a single range of bytes or a set of
       byte ranges in an entity-body to be returned. If the server accessed by the
       current instance supports the use of this header, this allows for the partial
       retrieval of the entity due to, for example, the entity being particularly
       large or there having been a failed transfer of data.<P>
+
+For more information on the HTTP Range header, see Section 14.35 of RFC
+      2616.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="HttpWebRequest.html" TARGET="contents">System.Net.HttpWebRequest Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="HttpWebRequest.AddRange%28int%2C%20int%29%20Method"><H3>HttpWebRequest.AddRange(int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void AddRange(int from, int to);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds a HTTP Range header to the current instance for a specified range.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>from</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> indicating the starting byte position of the entity-body data to be returned.</DD>
+<DT> to</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> indicating the last byte.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>from </I> &lt; 0.<P>
+
+-or-<P>
+
+<I>to </I> &lt; 0.<P>
+
+-or-<P>
+
+<I>from </I> &gt; <I>to </I>.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The range header could not be added.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to System.Net.HttpWebRequest.AddRange(System.Int32,System.Int32)(&quot;bytes&quot;, <I>from</I>, <I>to</I>).<P>
+
+[<I>Note</I>: The HTTP Range header specifies either a single range of bytes or a set
+      of byte ranges in an entity-body to be returned. If the server accessed by
+      the current instance supports the use of this header, this allows for the
+      partial retrieval of the entity due to, for example, the entity being
+      particularly large or there having been a failed transfer of data.<P>
 
 For more information on the HTTP Range header, see Section 14.35 of RFC
       2616.<P>
@@ -537,13 +537,6 @@ No writeable stream is available.<P>
 -or-<P>
 
 The System.Net.HttpWebRequest.Method property of the current instance is &quot;GET&quot; or &quot;HEAD&quot;.<P>
-
-</TD></TR>
-<TR><TD><A HREF="WebException.html" TARGET="contents">WebException</A></TD><TD>System.Net.HttpWebRequest.Abort was previously called.<P>
-
--or-<P>
-
-An error occurred while processing the request.<P>
 
 </TD></TR>
 </TABLE>
@@ -956,7 +949,7 @@ An error occurred while processing the request.<P>
 
  Call the System.IO.Stream.Close method to close the stream and release
       the connection
-      for reuse. Failure to close the stream may cause the application to run out of
+      for reuse. Failure to close the stream might cause the application to run out of
       connections.
       <P>
 
@@ -1068,7 +1061,7 @@ Gets or sets a <A HREF="../../System/String.html" TARGET="contents">String</A> c
 
 <BLOCKQUOTE>
 [<I>Note</I>: For additional information see section
-      14.1 of IETF RFC 2068 - HTTP/1.1.]<P>
+      14.1 of IETF RFC 2616 - HTTP/1.1.]<P>
 
 <P>
 
@@ -1288,7 +1281,7 @@ The current request sends the System.Net.HttpWebRequest.Connection property to t
    header.<P>
 
 For additional
-   information see section 14.10 of IETF RFC 2068 - HTTP/1.1.<P>
+   information see section 14.10 of IETF RFC 2616 - HTTP/1.1.<P>
 
 ]<P>
 
@@ -1335,7 +1328,7 @@ A <A HREF="../../System/String.html" TARGET="contents">String</A> that contains 
  site that retrieves customer information from a database server.<P>
 
  Each
- connection group creates additional connections for a server. This may
+ connection group creates additional connections for a server. This might
  result in exceeding System.Net.ServicePoint.ConnectionLimit for that server.<P>
 
 This property overrides System.Net.WebRequest.ConnectionGroupName.<P>
@@ -1406,7 +1399,7 @@ This property is required to be set prior to writing data to the request data
 <P>
 
 [<I>Note</I>: For additional information see section 14.13 of IETF RFC
-      2068 - HTTP/1.1.<P>
+      2616 - HTTP/1.1.<P>
 
 This property overrides System.Net.WebRequest.ContentLength.<P>
 
@@ -1460,7 +1453,7 @@ The System.Net.HttpWebRequest.ContentType property contains the media type
    .<P>
 
 For additional information see section 14.17 of IETF RFC
-   2068 - HTTP/1.1.<P>
+   2616 - HTTP/1.1.<P>
 
 This property overrides System.Net.WebRequest.ContentType.<P>
 
@@ -1619,7 +1612,7 @@ Gets or sets the value of the HTTP Expect header.<P>
  .<P>
 
 For additional information see section 14.20 of IETF RFC
-      2068 - HTTP/1.1.<P>
+      2616 - HTTP/1.1.<P>
 
 ]<P>
 
@@ -1788,7 +1781,7 @@ A <A HREF="../../System/DateTime.html" TARGET="contents">DateTime</A> that conta
 
 <BLOCKQUOTE>
 [<I>Note</I>: For additional
-      information see section 14.25 of IETF RFC 2068 - HTTP/1.1.]<P>
+      information see section 14.25 of IETF RFC 2616 - HTTP/1.1.]<P>
 
 <P>
 
@@ -1871,7 +1864,7 @@ Gets or sets the maximum number of redirects that the current instance will foll
 <BLOCKQUOTE>
 A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> value that
    indicates the maximum number of redirection responses that the current instance will follow. The
-   default value is implementation-defined.<P>
+   default value is implementation-specific.<P>
 
 </BLOCKQUOTE>
 
@@ -2293,7 +2286,7 @@ Gets or sets the value of the HTTP Referer header.<P>
 
 <BLOCKQUOTE>
 [<I>Note</I>: For additional
-      information see section 14.36 of IETF RFC 2068 - HTTP/1.1.]<P>
+      information see section 14.36 of IETF RFC 2616 - HTTP/1.1.]<P>
 
 <P>
 
@@ -2436,9 +2429,7 @@ Gets the service point to use for the current instance.<P>
 <H4>Property Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> 
-that represents the network connection to the
-destination. The value of this property is <CODE>null</CODE>
+A <A HREF="ServicePoint.html" TARGET="contents">ServicePoint</A> that represents the network connection to the destination. The value of this property can be, but is not required to be,  <CODE>null</CODE>
  until the System.Net.HttpWebRequest.GetResponse method is called.<P>
 
 </BLOCKQUOTE>
@@ -2568,7 +2559,7 @@ Values assigned to the System.Net.HttpWebRequest.TransferEncoding property repla
    existing contents.<P>
 
 For additional information see section 14.41 of IETF RFC
-   2068 - HTTP/1.1.<P>
+   2616 - HTTP/1.1.<P>
 
 ]<P>
 
@@ -2611,7 +2602,7 @@ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the
 
 <BLOCKQUOTE>
 [<I>Note</I>: For additional 
-      information see section 14.43 of IETF RFC 2068 - HTTP/1.1.]<P>
+      information see section 14.43 of IETF RFC 2616 - HTTP/1.1.]<P>
 
 <P>
 

@@ -78,12 +78,13 @@ The types in
 
 DecimalConstantAttribute Constructors<P>
 
-<A HREF="#DecimalConstantAttribute%20Constructor" TARGET="contents">DecimalConstantAttribute Constructor</A><BR>
+<A HREF="#DecimalConstantAttribute%28byte%2C%20byte%2C%20uint%2C%20uint%2C%20uint%29%20Constructor" TARGET="contents">DecimalConstantAttribute(byte, byte, uint, uint, uint) Constructor</A><BR>
+<A HREF="#DecimalConstantAttribute%28System.String%29%20Constructor" TARGET="contents">DecimalConstantAttribute(System.String) Constructor</A><BR>
 </BLOCKQUOTE>
 
 <HR>
 
-<A NAME="DecimalConstantAttribute%20Constructor"><H3>DecimalConstantAttribute Constructor</H3>
+<A NAME="DecimalConstantAttribute%28byte%2C%20byte%2C%20uint%2C%20uint%2C%20uint%29%20Constructor"><H3>DecimalConstantAttribute(byte, byte, uint, uint, uint) Constructor</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
@@ -123,6 +124,84 @@ class with the specified value.<P>
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>scale</I> &gt; 28.</TD></TR>
 </TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: For representations of <A HREF="../../../System/Decimal.html" TARGET="contents">Decimal</A> whose values can have scales exceeding 255, the constructor System.Runtime.CompilerServices.DecimalConstantAttribute.System.DecimalConstantAttribute<CODE>(System.String)</CODE>
+  must be used instead.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DecimalConstantAttribute.html" TARGET="contents">System.Runtime.CompilerServices.DecimalConstantAttribute Class</A>, <A HREF="CompilerServices.html" TARGET="members">System.Runtime.CompilerServices Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="DecimalConstantAttribute%28System.String%29%20Constructor"><H3>DecimalConstantAttribute(System.String) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public DecimalConstantAttribute(string s)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs a new instance of the <A HREF="DecimalConstantAttribute.html" TARGET="contents">DecimalConstantAttribute</A> 
+class with the specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>s</DT>
+<DD>A <A HREF="../../../System/String.html" TARGET="contents">String</A> containing the value to convert.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="../../../System/FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct format.</TD></TR>
+<TR><TD><A HREF="../../../System/OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a number greater than  System.Decimal.MaxValue or less than System.Decimal.MinValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The format of <I>s</I> is specified by the grammar shown below, in which where the characters in the strings accepted for infinity and nan are not case-sensitive, trailing zero digits in decimal-part are significant, and he purpose of the sign of, and optional digits following, &apos;NaN&apos; (quiet NaN) and &apos;sNaN&apos; (signaling NaN) is unspecified. An implementation is free to ignore such signs and digits.<P>
+
+<I>s</I> shall not contain any white space characters.<P>
+
+If an implementation&apos;s representation of <A HREF="../../../System/Decimal.html" TARGET="contents">Decimal</A> supports NaNs and infinities, that implementation shall correctly handle strings designating those values; otherwise, support for such strings is optional.<P>
+
+Results are rounded to the nearest representable value, and, when a result is equally close to two representable values, to the value that has an even number in the least significant digit position (banker&apos;s rounding).<P>
+
+<PRE>numeric-string:: = [sign] numeric-value | [sign] nan
+numeric-value:: = decimal-part [exponent-part] | infinity
+decimal-part:: = digits &apos;.&apos; [digits] | [&apos;.&apos;] digits
+exponent-part:: = indicator [sign] digits
+sign:: = &apos;+&apos; | &apos;-&apos;
+digits:: = digit [digit]+
+digit:: = &apos;0&apos; | &apos;1&apos; | &apos;2&apos; | &apos;3&apos; | &apos;4&apos; | &apos;5&apos; | &apos;6&apos; | &apos;7&apos; | &apos;8&apos; | &apos;9&apos;
+indicator:: = &apos;e&apos; | &apos;E&apos;
+infinity:: = &apos;Infinity&apos; | &apos;Inf&apos;
+nan:: = &apos;NaN&apos; [digits] | &apos;sNaN&apos; [digits]&apos;
+</PRE>
 </BLOCKQUOTE>
 
 <H4>See Also</H4>

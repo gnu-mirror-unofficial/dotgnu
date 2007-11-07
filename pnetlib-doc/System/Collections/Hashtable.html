@@ -50,7 +50,7 @@ BCL
 
 <P>
 
-Objects used as keys in a <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> is required
+Objects used as keys in a <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> are required
 to either implement both System.Object.GetHashCode and System.Object.Equals(System.Object) or neither. Furthermore, for a particular key, these methods are required to produce the same results when called with
 the same parameters while that key exists in a particular <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> . Keys cannot be mutated while they are
 used in the table.<P>
@@ -125,12 +125,12 @@ foreach (DictionaryEntry myEntry in
 
 Hashtable Constructors<P>
 
-<A HREF="#Hashtable%28%29%20Constructor" TARGET="contents">Hashtable() Constructor</A><BR>
-<A HREF="#Hashtable%28int%29%20Constructor" TARGET="contents">Hashtable(int) Constructor</A><BR>
-<A HREF="#Hashtable%28System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor" TARGET="contents">Hashtable(System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</A><BR>
-<A HREF="#Hashtable%28int%2C%20System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor" TARGET="contents">Hashtable(int, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</A><BR>
-<A HREF="#Hashtable%28System.Collections.IDictionary%29%20Constructor" TARGET="contents">Hashtable(System.Collections.IDictionary) Constructor</A><BR>
 <A HREF="#Hashtable%28System.Collections.IDictionary%2C%20System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor" TARGET="contents">Hashtable(System.Collections.IDictionary, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</A><BR>
+<A HREF="#Hashtable%28System.Collections.IDictionary%29%20Constructor" TARGET="contents">Hashtable(System.Collections.IDictionary) Constructor</A><BR>
+<A HREF="#Hashtable%28int%2C%20System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor" TARGET="contents">Hashtable(int, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</A><BR>
+<A HREF="#Hashtable%28System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor" TARGET="contents">Hashtable(System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</A><BR>
+<A HREF="#Hashtable%28int%29%20Constructor" TARGET="contents">Hashtable(int) Constructor</A><BR>
+<A HREF="#Hashtable%28%29%20Constructor" TARGET="contents">Hashtable() Constructor</A><BR>
 <P>
 
 Hashtable Methods<P>
@@ -171,51 +171,19 @@ Hashtable Properties<P>
 
 <HR>
 
-<A NAME="Hashtable%28%29%20Constructor"><H3>Hashtable() Constructor</H3>
+<A NAME="Hashtable%28System.Collections.IDictionary%2C%20System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor"><H3>Hashtable(System.Collections.IDictionary, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public Hashtable();</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public Hashtable(IDictionary d, IHashCodeProvider hcp, IComparer comparer);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Constructs and initializes a new instance of the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>
-class.<P>
-
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-The new instance is initialized with the default
- capacity, <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A>, and <A HREF="IComparer.html" TARGET="contents">IComparer</A>.<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="Hashtable%28int%29%20Constructor"><H3>Hashtable(int) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public Hashtable(int capacity);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Constructs and initializes a new instance of the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>
-class with the specified initial capacity.<P>
+ Constructs and initializes a new instance of the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> class
+   using the values of the specified <A HREF="IDictionary.html" TARGET="contents">IDictionary</A>, the specified <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A>, and the specified <A HREF="IComparer.html" TARGET="contents">IComparer</A>.<P>
 
 </BLOCKQUOTE>
 
@@ -223,8 +191,18 @@ class with the specified initial capacity.<P>
 
 <BLOCKQUOTE>
 <DL>
-<DT>capacity</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number of entries that the new <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> instance can initially contain. </DD>
+<DT>d</DT>
+<DD>The <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> used to initialize the elements of the new instance.</DD>
+<DT>hcp</DT>
+<DD>The <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> that supplies the hash codes for all keys in the new instance; or, <CODE>null</CODE>
+ to use the default hash code provider.<P>
+
+</DD>
+<DT>comparer</DT>
+<DD>The <A HREF="IComparer.html" TARGET="contents">IComparer</A> to use to determine whether two keys are equal in the new instance, or <CODE>null</CODE>
+ to use the default comparer.<P>
+
+</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -233,105 +211,17 @@ class with the specified initial capacity.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>capacity</I> &lt; 0. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>d</I> is <CODE>null</CODE>
+. </TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-The new instance is initialized with the default <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> and <A HREF="IComparer.html" TARGET="contents">IComparer</A>.<P>
+The initial capacity of the new
+      instance is set to the number of entries in <I>d</I>.<P>
 
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="Hashtable%28System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor"><H3>Hashtable(System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public Hashtable(IHashCodeProvider hcp, IComparer comparer);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Constructs and initializes a new instance of the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> class with the specified <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> and the specified <A HREF="IComparer.html" TARGET="contents">IComparer</A>.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>hcp</DT>
-<DD>The <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> that supplies the hash codes for all keys in the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>; or, <CODE>null</CODE>
- to use the default hash code provider.<P>
-
-</DD>
-<DT>comparer</DT>
-<DD>The <A HREF="IComparer.html" TARGET="contents">IComparer</A> to use to determine whether two keys are equal; or, <CODE>null</CODE>
- to use the default comparer.<P>
-
-</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-The new instance is initialized with the default capacity.<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="Hashtable%28int%2C%20System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor"><H3>Hashtable(int, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public Hashtable(int capacity, IHashCodeProvider hcp, IComparer comparer);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Constructs and initializes a new instance of the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> class with the specified initial capacity, the specified
-<A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A>, and the specified <A HREF="IComparer.html" TARGET="contents">IComparer</A>.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>capacity</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number of entries that the new <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> instance can initially contain. </DD>
-<DT>hcp</DT>
-<DD>The <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> that supplies the hash codes for all keys in the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>; or, <CODE>null</CODE>
- to use the default hash code provider.<P>
-
-</DD>
-<DT>comparer</DT>
-<DD>The <A HREF="IComparer.html" TARGET="contents">IComparer</A> to use to determine whether two keys are equal, or <CODE>null</CODE>
- to use the default comparer.<P>
-
-</DD>
-</DL>
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -394,19 +284,19 @@ The initial capacity of the new instance is set to the
 
 <HR>
 
-<A NAME="Hashtable%28System.Collections.IDictionary%2C%20System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor"><H3>Hashtable(System.Collections.IDictionary, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</H3>
+<A NAME="Hashtable%28int%2C%20System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor"><H3>Hashtable(int, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public Hashtable(IDictionary d, IHashCodeProvider hcp, IComparer comparer);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public Hashtable(int capacity, IHashCodeProvider hcp, IComparer comparer);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Constructs and initializes a new instance of the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> class
-   using the values of the specified <A HREF="IDictionary.html" TARGET="contents">IDictionary</A>, the specified <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A>, and the specified <A HREF="IComparer.html" TARGET="contents">IComparer</A>.<P>
+ Constructs and initializes a new instance of the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> class with the specified initial capacity, the specified
+<A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A>, and the specified <A HREF="IComparer.html" TARGET="contents">IComparer</A>.<P>
 
 </BLOCKQUOTE>
 
@@ -414,18 +304,98 @@ The initial capacity of the new instance is set to the
 
 <BLOCKQUOTE>
 <DL>
-<DT>d</DT>
-<DD>The <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> used to initialize the elements of the new instance.</DD>
+<DT>capacity</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the minimum number of entries that the new <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> instance can initially contain. </DD>
 <DT>hcp</DT>
-<DD>The <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> that supplies the hash codes for all keys in the new instance; or, <CODE>null</CODE>
+<DD>The <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> that supplies the hash codes for all keys in the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>; or, <CODE>null</CODE>
  to use the default hash code provider.<P>
 
 </DD>
 <DT>comparer</DT>
-<DD>The <A HREF="IComparer.html" TARGET="contents">IComparer</A> to use to determine whether two keys are equal in the new instance, or <CODE>null</CODE>
+<DD>The <A HREF="IComparer.html" TARGET="contents">IComparer</A> to use to determine whether two keys are equal, or <CODE>null</CODE>
  to use the default comparer.<P>
 
 </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Hashtable%28System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor"><H3>Hashtable(System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public Hashtable(IHashCodeProvider hcp, IComparer comparer);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> class with the specified <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> and the specified <A HREF="IComparer.html" TARGET="contents">IComparer</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>hcp</DT>
+<DD>The <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> that supplies the hash codes for all keys in the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>; or, <CODE>null</CODE>
+ to use the default hash code provider.<P>
+
+</DD>
+<DT>comparer</DT>
+<DD>The <A HREF="IComparer.html" TARGET="contents">IComparer</A> to use to determine whether two keys are equal; or, <CODE>null</CODE>
+ to use the default comparer.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The new instance is initialized with the default capacity.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Hashtable%28int%29%20Constructor"><H3>Hashtable(int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public Hashtable(int capacity);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>
+class with the specified initial capacity.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>capacity</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the minimum number of entries that the new <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> instance can initially contain. </DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -434,16 +404,48 @@ The initial capacity of the new instance is set to the
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>d</I> is <CODE>null</CODE>
-. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>capacity</I> &lt; 0. </TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-The initial capacity of the new
-      instance is set to the number of entries in <I>d</I>.<P>
+The new instance is initialized with the default <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> and <A HREF="IComparer.html" TARGET="contents">IComparer</A>.<P>
+
+The number of entries that the new instance can contain can be greater than <I>capacity</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Hashtable%28%29%20Constructor"><H3>Hashtable() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public Hashtable();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs and initializes a new instance of the <A HREF="Hashtable.html" TARGET="contents">Hashtable</A>
+class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The new instance is initialized with the default
+ capacity, <A HREF="IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A>, and <A HREF="IComparer.html" TARGET="contents">IComparer</A>.<P>
 
 </BLOCKQUOTE>
 
@@ -856,7 +858,7 @@ Copies the entries of the current instance to a
 <DT>array</DT>
 <DD>The one-dimensional, zero-indexed <A HREF="../../System/Array.html" TARGET="contents">Array</A> that is the destination of the objects copied from the current instance.</DD>
 <DT>arrayIndex</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the zero-based index in <I>array</I> at which copying begins. This value is between 0 and <I>array</I>.Count minus the System.Collections.Hashtable.Count of the current index, inclusive.</DD>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the zero-based index in <I>array</I> at which copying begins. This value is between 0 and <I>array</I>.Length minus the System.Collections.Hashtable.Count of the current instance, inclusive.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -870,7 +872,9 @@ Copies the entries of the current instance to a
 <TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>arrayIndex</I> &lt; 0.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>array</I> has more than one dimension.<P>
 
-<I>arrayIndex</I> &gt; <I>array</I>.Count - The System.Collections.Hashtable.Count of the current instance.<P>
+-or-<P>
+
+<I>arrayIndex</I> &gt; <I>array</I>.Length - The System.Collections.Hashtable.Count of the current instance.<P>
 
 </TD></TR>
 <TR><TD><A HREF="../../System/InvalidCastException.html" TARGET="contents">InvalidCastException</A></TD><TD>The type of the current instance is not assignment-compatible with the type of <I>array</I>.</TD></TR>
@@ -930,8 +934,8 @@ A <A HREF="IDictionaryEnumerator.html" TARGET="contents">IDictionaryEnumerator</
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-If the elements of the current instance are modified
-      while an enumeration is in progress, a call to System.Collections.IEnumerator.MoveNext or System.Collections.IEnumerator.Current throws <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>. <P>
+If the current instance is modified
+      while an enumeration is in progress, a call to System.Collections.IEnumerator.MoveNext or System.Collections.IEnumerator.Reset throws <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>. <P>
 
 [<I>Note</I>: For detailed information regarding the use of an enumerator, see <A HREF="IEnumerator.html" TARGET="contents">IEnumerator</A>.<P>
 
@@ -1267,28 +1271,6 @@ Implemented to support the <A HREF="IEnumerable.html" TARGET="contents">IEnumera
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>int ICollection.Count { get; }</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Implemented to support the <A HREF="ICollection.html" TARGET="contents">ICollection</A> interface. [Note: For more information, see System.Collections.ICollection.Count.]
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="Hashtable.Count%28%29%20Property"><H3>Hashtable.Count() Property</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
 <TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual int Count { get; }</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -1319,6 +1301,28 @@ This property is read-only.<P>
 
 <P>
 
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Hashtable.Count%28%29%20Property"><H3>Hashtable.Count() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>int ICollection.Count { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="ICollection.html" TARGET="contents">ICollection</A> interface. [Note: For more information, see System.Collections.ICollection.Count.]
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -1381,7 +1385,7 @@ Gets a <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> indicat
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-This property is a read-only.<P>
+This property is read-only.<P>
 
 [<I>Note</I>: Elements can be modified in, but not
       added to or removed from a <A HREF="Hashtable.html" TARGET="contents">Hashtable</A> with a fixed size.]<P>
@@ -1759,28 +1763,6 @@ This property is read-only.<P>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>object ICollection.SyncRoot { get; }</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Implemented to support the <A HREF="ICollection.html" TARGET="contents">ICollection</A> interface. [Note: For more information, see System.Collections.ICollection.SyncRoot.]
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="Hashtable.SyncRoot%28%29%20Property"><H3>Hashtable.SyncRoot() Property</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
 <TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual object SyncRoot { get; }</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -1848,18 +1830,18 @@ instance.]<P>
 
 <HR>
 
-<A NAME="Hashtable.Values%28%29%20Property"><H3>Hashtable.Values() Property</H3>
+<A NAME="Hashtable.SyncRoot%28%29%20Property"><H3>Hashtable.SyncRoot() Property</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>ICollection IDictionary.Values { get; }</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>object ICollection.SyncRoot { get; }</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Implemented to support the <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> interface. [Note: For more information, see System.Collections.IDictionary.Values.]
+Implemented to support the <A HREF="ICollection.html" TARGET="contents">ICollection</A> interface. [Note: For more information, see System.Collections.ICollection.SyncRoot.]
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -1913,6 +1895,28 @@ This property is read-only.<P>
 
 ]<P>
 
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Hashtable.html" TARGET="contents">System.Collections.Hashtable Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Hashtable.Values%28%29%20Property"><H3>Hashtable.Values() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>ICollection IDictionary.Values { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="IDictionary.html" TARGET="contents">IDictionary</A> interface. [Note: For more information, see System.Collections.IDictionary.Values.]
 </BLOCKQUOTE>
 
 <H4>See Also</H4>

@@ -1,0 +1,221 @@
+<HTML>
+<HEAD>
+<TITLE>System.Runtime.CompilerServices.CompilationRelaxationsAttribute Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Runtime.CompilerServices.CompilationRelaxationsAttribute Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public class CompilationRelaxationsAttribute : Attribute</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="../../../System/Attribute.html" TARGET="contents">Attribute</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;CompilationRelaxationsAttribute<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Library</H4>
+
+<BLOCKQUOTE>
+RuntimeInfrastructure
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This attribute allows the user to specify whether the ordering of instruction checking is strict or relaxed. It also allows the user to specify whether or not strings are interned.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Optimizers are granted additional latitude for relaxed exceptions.  A method is relaxed for certain kinds of exceptions if the innermost custom attribute System.Runtime.CompilerServices.CompilationRelaxationAttribute pertaining to that kind of exception is present and specifies to relax those kinds of exceptions. (Here, &quot;innermost&quot; means inspecting the method, its class, and its assembly, in that order.)<P>
+
+[<I>Note</I>: For background and implementation information for relaxed exception handling, plus examples, see Annex F of Partition VI.]<P>
+
+<P>
+
+[<I>Note</I>: See the <A HREF="CompilationRelaxations.html" TARGET="contents">CompilationRelaxations</A> enumeration for a description of the kinds of exceptions that can be relaxed or made strict.]<P>
+
+<P>
+
+The runtime can create one string object for each unique string literal, rather than making multiple copies. This is called string interning, which internally requires building auxiliary tables that consume memory resources. String interning can be enabled or disabled at the assembly level via this attribute.<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>AttributeUsageAttribute(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Constructor | AttributeTargets.Method, AllowMultiple=false, Inherited=false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CompilerServices.html" TARGET="members">System.Runtime.CompilerServices Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+CompilationRelaxationsAttribute Constructors<P>
+
+<A HREF="#CompilationRelaxationsAttribute%28System.Runtime.CompilerServices.%20CompilationRelaxations%29%20Constructor" TARGET="contents">CompilationRelaxationsAttribute(System.Runtime.CompilerServices. CompilationRelaxations) Constructor</A><BR>
+<A HREF="#CompilationRelaxationsAttribute%28int%29%20Constructor" TARGET="contents">CompilationRelaxationsAttribute(int) Constructor</A><BR>
+<P>
+
+CompilationRelaxationsAttribute Properties<P>
+
+<A HREF="#CompilationRelaxationsAttribute.CompilationRelaxations%20Property" TARGET="contents">CompilationRelaxationsAttribute.CompilationRelaxations Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="CompilationRelaxationsAttribute%28System.Runtime.CompilerServices.%20CompilationRelaxations%29%20Constructor"><H3>CompilationRelaxationsAttribute(System.Runtime.CompilerServices. CompilationRelaxations) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public CompilationRelaxationsAttribute(CompilationRelaxations relaxations)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="CompilationRelaxationsAttribute.html" TARGET="contents">CompilationRelaxationsAttribute</A> class with the specified <A HREF="CompilationRelaxations.html" TARGET="contents">CompilationRelaxations</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>relaxations</DT>
+<DD>A a bitwise OR combination of enumeration values from <A HREF="CompilationRelaxations.html" TARGET="contents">CompilationRelaxations</A> that specifies the desired ordering of instruction checking and string interning.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>For some xxx, <I>relaxations</I>  has both Strictxxx and Relaxedxx set, or has both StringInterning and NoStringInterning set.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>relaxations</I> flags describe whether to change exception strictness, or string interning.  For exceptions of kind xxx, setting Strictxxx makes those exceptions have strict ordering, and setting Relaxedxxx makes those exceptions have relaxed ordering.  Setting neither flag for xxx causes no change for exceptions of kind xxx; i.e., the strictness/relaxation for xxx defaults to what it would be if the attribute were not present.  See <A HREF="CompilationRelaxations.html" TARGET="contents">CompilationRelaxations</A>  for a list of the xxx choices.)<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CompilationRelaxationsAttribute.html" TARGET="contents">System.Runtime.CompilerServices.CompilationRelaxationsAttribute Class</A>, <A HREF="CompilerServices.html" TARGET="members">System.Runtime.CompilerServices Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="CompilationRelaxationsAttribute%28int%29%20Constructor"><H3>CompilationRelaxationsAttribute(int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public CompilationRelaxationsAttribute(int relaxations)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="CompilationRelaxationsAttribute.html" TARGET="contents">CompilationRelaxationsAttribute</A> class with the specified <A HREF="CompilationRelaxations.html" TARGET="contents">CompilationRelaxations</A> value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>relaxations</DT>
+<DD>A bitwise OR combination of enumeration values from <A HREF="CompilationRelaxations.html" TARGET="contents">CompilationRelaxations</A> that specifies the desired ordering of instruction checking and string interning.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>For some xxx, <I>relaxations</I>  has both Strictxxx and Relaxedxx set, or has both StringInterning and NoStringInterning set.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <I>relaxations</I> flags describe whether to change exception strictness, or string interning.  For exceptions of kind xxx, setting Strictxxx makes those exceptions have strict ordering, and setting Relaxedxxx makes those exceptions have relaxed ordering.  Setting neither flag for xxx causes no change for exceptions of kind xxx; i.e., the strictness/relaxation for xxx defaults to what it would be if the attribute were not present.  See <A HREF="CompilationRelaxations.html" TARGET="contents">CompilationRelaxations</A>  for a list of the xxx choices.)<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CompilationRelaxationsAttribute.html" TARGET="contents">System.Runtime.CompilerServices.CompilationRelaxationsAttribute Class</A>, <A HREF="CompilerServices.html" TARGET="members">System.Runtime.CompilerServices Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="CompilationRelaxationsAttribute.CompilationRelaxations%20Property"><H3>CompilationRelaxationsAttribute.CompilationRelaxations Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int CompilationRelaxations { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the set of values sent to the <A HREF="CompilationRelaxationsAttribute.html" TARGET="contents">CompilationRelaxationsAttribute</A> constructor that specifies the desired ordering of instruction checking and string interning.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The current set of values that specifies the desired ordering of instruction checking and string interning.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="CompilationRelaxationsAttribute.html" TARGET="contents">System.Runtime.CompilerServices.CompilationRelaxationsAttribute Class</A>, <A HREF="CompilerServices.html" TARGET="members">System.Runtime.CompilerServices Namespace</A>
+</BLOCKQUOTE>
+
+</BODY>
+</HTML>

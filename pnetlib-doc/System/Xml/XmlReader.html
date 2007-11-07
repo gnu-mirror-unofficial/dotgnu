@@ -110,7 +110,7 @@ To read strongly typed data, use the <A HREF="XmlConvert.html" TARGET="contents"
 
 This class throws a <A HREF="XmlException.html" TARGET="contents">XmlException</A> on XML parse errors.
 After an exception is thrown, the state of the reader is not predictable. For
-example, the reported node type may be different than the actual node type of
+example, the reported node type might be different than the actual node type of
 the current node.<P>
 
 [<I>Note</I>: This class is <CODE>abstract</CODE>
@@ -146,9 +146,9 @@ XmlReader Constructors<P>
 XmlReader Methods<P>
 
 <A HREF="#XmlReader.Close%20Method" TARGET="contents">XmlReader.Close Method</A><BR>
-<A HREF="#XmlReader.GetAttribute%28int%29%20Method" TARGET="contents">XmlReader.GetAttribute(int) Method</A><BR>
-<A HREF="#XmlReader.GetAttribute%28System.String%2C%20System.String%29%20Method" TARGET="contents">XmlReader.GetAttribute(System.String, System.String) Method</A><BR>
 <A HREF="#XmlReader.GetAttribute%28System.String%29%20Method" TARGET="contents">XmlReader.GetAttribute(System.String) Method</A><BR>
+<A HREF="#XmlReader.GetAttribute%28System.String%2C%20System.String%29%20Method" TARGET="contents">XmlReader.GetAttribute(System.String, System.String) Method</A><BR>
+<A HREF="#XmlReader.GetAttribute%28int%29%20Method" TARGET="contents">XmlReader.GetAttribute(int) Method</A><BR>
 <A HREF="#XmlReader.IsName%20Method" TARGET="contents">XmlReader.IsName Method</A><BR>
 <A HREF="#XmlReader.IsNameToken%20Method" TARGET="contents">XmlReader.IsNameToken Method</A><BR>
 <A HREF="#XmlReader.IsStartElement%28System.String%2C%20System.String%29%20Method" TARGET="contents">XmlReader.IsStartElement(System.String, System.String) Method</A><BR>
@@ -170,9 +170,9 @@ XmlReader Methods<P>
 <A HREF="#XmlReader.ReadEndElement%20Method" TARGET="contents">XmlReader.ReadEndElement Method</A><BR>
 <A HREF="#XmlReader.ReadInnerXml%20Method" TARGET="contents">XmlReader.ReadInnerXml Method</A><BR>
 <A HREF="#XmlReader.ReadOuterXml%20Method" TARGET="contents">XmlReader.ReadOuterXml Method</A><BR>
-<A HREF="#XmlReader.ReadStartElement%28System.String%2C%20System.String%29%20Method" TARGET="contents">XmlReader.ReadStartElement(System.String, System.String) Method</A><BR>
-<A HREF="#XmlReader.ReadStartElement%28System.String%29%20Method" TARGET="contents">XmlReader.ReadStartElement(System.String) Method</A><BR>
 <A HREF="#XmlReader.ReadStartElement%28%29%20Method" TARGET="contents">XmlReader.ReadStartElement() Method</A><BR>
+<A HREF="#XmlReader.ReadStartElement%28System.String%29%20Method" TARGET="contents">XmlReader.ReadStartElement(System.String) Method</A><BR>
+<A HREF="#XmlReader.ReadStartElement%28System.String%2C%20System.String%29%20Method" TARGET="contents">XmlReader.ReadStartElement(System.String, System.String) Method</A><BR>
 <A HREF="#XmlReader.ReadString%20Method" TARGET="contents">XmlReader.ReadString Method</A><BR>
 <A HREF="#XmlReader.ResolveEntity%20Method" TARGET="contents">XmlReader.ResolveEntity Method</A><BR>
 <A HREF="#XmlReader.Skip%20Method" TARGET="contents">XmlReader.Skip Method</A><BR>
@@ -272,18 +272,18 @@ Constructs a new instance of the <A HREF="XmlReader.html" TARGET="contents">XmlR
 
 <HR>
 
-<A NAME="XmlReader.GetAttribute%28int%29%20Method"><H3>XmlReader.GetAttribute(int) Method</H3>
+<A NAME="XmlReader.GetAttribute%28System.String%29%20Method"><H3>XmlReader.GetAttribute(System.String) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public abstract string GetAttribute(int i);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public abstract string GetAttribute(string name);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Returns the value of the attribute with the specified index relative to the containing element.<P>
+Returns the value of the attribute with the specified qualified name.<P>
 
 </BLOCKQUOTE>
 
@@ -291,8 +291,8 @@ Returns the value of the attribute with the specified index relative to the cont
 
 <BLOCKQUOTE>
 <DL>
-<DT>i</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> specifying the zero-based index of the attribute relative to the containing element.</DD>
+<DT>name</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the qualified name of the attribute.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -300,17 +300,10 @@ Returns the value of the attribute with the specified index relative to the cont
 
 <BLOCKQUOTE>
 A <A HREF="../../System/String.html" TARGET="contents">String</A>
-containing the value of the specified attribute.<P>
+containing the value of the specified attribute, or <CODE>null</CODE>
+ if the
+attribute is not found.<P>
 
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>i</I> is less than 0, or greater than or equal to the System.Xml.XmlReader.AttributeCount of the containing element.</TD></TR>
-</TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
@@ -412,18 +405,18 @@ For an example demonstrating this method, see System.Xml.XmlTextReader.GetAttrib
 
 <HR>
 
-<A NAME="XmlReader.GetAttribute%28System.String%29%20Method"><H3>XmlReader.GetAttribute(System.String) Method</H3>
+<A NAME="XmlReader.GetAttribute%28int%29%20Method"><H3>XmlReader.GetAttribute(int) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public abstract string GetAttribute(string name);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public abstract string GetAttribute(int i);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Returns the value of the attribute with the specified qualified name.<P>
+Returns the value of the attribute with the specified index relative to the containing element.<P>
 
 </BLOCKQUOTE>
 
@@ -431,8 +424,8 @@ Returns the value of the attribute with the specified qualified name.<P>
 
 <BLOCKQUOTE>
 <DL>
-<DT>name</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the qualified name of the attribute.</DD>
+<DT>i</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> specifying the zero-based index of the attribute relative to the containing element.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -440,10 +433,17 @@ Returns the value of the attribute with the specified qualified name.<P>
 
 <BLOCKQUOTE>
 A <A HREF="../../System/String.html" TARGET="contents">String</A>
-containing the value of the specified attribute, or <CODE>null</CODE>
- if the
-attribute is not found.<P>
+containing the value of the specified attribute.<P>
 
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>i</I> is less than 0, or greater than or equal to the System.Xml.XmlReader.AttributeCount of the containing element.</TD></TR>
+</TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
@@ -1955,32 +1955,21 @@ If the current node is an attribute, the position of the reader is not changed.<
 
 <HR>
 
-<A NAME="XmlReader.ReadStartElement%28System.String%2C%20System.String%29%20Method"><H3>XmlReader.ReadStartElement(System.String, System.String) Method</H3>
+<A NAME="XmlReader.ReadStartElement%28%29%20Method"><H3>XmlReader.ReadStartElement() Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual void ReadStartElement(string localname, string ns);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual void ReadStartElement();</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Reads an <CODE>Element</CODE>
- node with the specified local name and
-   namespace URI and advances the reader to the next node.<P>
+ Reads an <CODE>Element</CODE>
+ node and advances the reader to the next
+   node.<P>
 
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>localname</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the local name of an element.</DD>
-<DT> ns</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the namespace URI associated with the element.</DD>
-</DL>
 </BLOCKQUOTE>
 
 <H4>Exceptions</H4>
@@ -1989,9 +1978,7 @@ Reads an <CODE>Element</CODE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>The node is not an <CODE>Element</CODE>
- node, the System.Xml.XmlReader.LocalName property of the <CODE>Element</CODE>
- node does not equal <I>localname</I>, the System.Xml.XmlReader.NamespaceURI property of the <CODE>Element</CODE>
- node does not equal <I>ns</I>, or an error occurred while parsing the XML.</TD></TR>
+ node or an error occurred while parsing the XML.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -2002,29 +1989,29 @@ Reads an <CODE>Element</CODE>
 
 <P>
 
-[<I>Default</I>: This method calls
-      the System.Xml.XmlReader.MoveToContent method. If the returned node is an
-   <CODE>Element</CODE>
- node, this method compares the System.Xml.XmlReader.LocalName
-   and System.Xml.XmlReader.NamespaceURI properties of the node to <I>localname</I>
-   and <I>ns</I>, respectively. If they are equal, this method calls the System.Xml.XmlReader.Read
-   method to read the element and move to the next node. ]<P>
+[<I>Default</I>: This method
+      calls the System.Xml.XmlReader.MoveToContent method, which determines whether the
+      current node can contain content and, if not, moves the reader to the next
+      content node or the end of the input stream. The node the reader ends up
+      positioned on is checked to determine if it is an <CODE>Element</CODE>
+
+      node. If so, the node is read and the reader is moved to the next node. ]<P>
 
 <P>
 
-[<I>Overrides</I>:  Override this
-   method to customize the behavior of this method in types derived from
-   the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
-   class.
-]<P>
+[<I>Overrides</I>:  Override this 
+      method to customize the behavior of this method in types derived from
+      the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
+      class.
+
+      ]<P>
 
 <P>
 
 [<I>Usage</I>:  Use this method to
-   read an <CODE>Element</CODE>
- node with the specified
-   local name and namespace URI, and advance the reader to the next node.
-]<P>
+      read an <CODE>Element</CODE>
+ node and advance the reader to the next node.
+      ]<P>
 
 <P>
 
@@ -2119,21 +2106,32 @@ the reader to the next node.<P>
 
 <HR>
 
-<A NAME="XmlReader.ReadStartElement%28%29%20Method"><H3>XmlReader.ReadStartElement() Method</H3>
+<A NAME="XmlReader.ReadStartElement%28System.String%2C%20System.String%29%20Method"><H3>XmlReader.ReadStartElement(System.String, System.String) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual void ReadStartElement();</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual void ReadStartElement(string localname, string ns);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Reads an <CODE>Element</CODE>
- node and advances the reader to the next
-   node.<P>
+Reads an <CODE>Element</CODE>
+ node with the specified local name and
+   namespace URI and advances the reader to the next node.<P>
 
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>localname</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the local name of an element.</DD>
+<DT> ns</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the namespace URI associated with the element.</DD>
+</DL>
 </BLOCKQUOTE>
 
 <H4>Exceptions</H4>
@@ -2142,7 +2140,9 @@ the reader to the next node.<P>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD>The node is not an <CODE>Element</CODE>
- node or an error occurred while parsing the XML.</TD></TR>
+ node, the System.Xml.XmlReader.LocalName property of the <CODE>Element</CODE>
+ node does not equal <I>localname</I>, the System.Xml.XmlReader.NamespaceURI property of the <CODE>Element</CODE>
+ node does not equal <I>ns</I>, or an error occurred while parsing the XML.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -2153,29 +2153,29 @@ the reader to the next node.<P>
 
 <P>
 
-[<I>Default</I>: This method
-      calls the System.Xml.XmlReader.MoveToContent method, which determines whether the
-      current node can contain content and, if not, moves the reader to the next
-      content node or the end of the input stream. The node the reader ends up
-      positioned on is checked to determine if it is an <CODE>Element</CODE>
-
-      node. If so, the node is read and the reader is moved to the next node. ]<P>
+[<I>Default</I>: This method calls
+      the System.Xml.XmlReader.MoveToContent method. If the returned node is an
+   <CODE>Element</CODE>
+ node, this method compares the System.Xml.XmlReader.LocalName
+   and System.Xml.XmlReader.NamespaceURI properties of the node to <I>localname</I>
+   and <I>ns</I>, respectively. If they are equal, this method calls the System.Xml.XmlReader.Read
+   method to read the element and move to the next node. ]<P>
 
 <P>
 
-[<I>Overrides</I>:  Override this 
-      method to customize the behavior of this method in types derived from
-      the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
-      class.
-
-      ]<P>
+[<I>Overrides</I>:  Override this
+   method to customize the behavior of this method in types derived from
+   the <A HREF="XmlReader.html" TARGET="contents">XmlReader</A>
+   class.
+]<P>
 
 <P>
 
 [<I>Usage</I>:  Use this method to
-      read an <CODE>Element</CODE>
- node and advance the reader to the next node.
-      ]<P>
+   read an <CODE>Element</CODE>
+ node with the specified
+   local name and namespace URI, and advance the reader to the next node.
+]<P>
 
 <P>
 

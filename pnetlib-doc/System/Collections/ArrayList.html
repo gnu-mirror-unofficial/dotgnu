@@ -135,9 +135,9 @@ ArrayList Methods<P>
 <A HREF="#ArrayList.Clear%20Method" TARGET="contents">ArrayList.Clear Method</A><BR>
 <A HREF="#ArrayList.Clone%20Method" TARGET="contents">ArrayList.Clone Method</A><BR>
 <A HREF="#ArrayList.Contains%20Method" TARGET="contents">ArrayList.Contains Method</A><BR>
-<A HREF="#ArrayList.CopyTo%28System.Array%2C%20int%29%20Method" TARGET="contents">ArrayList.CopyTo(System.Array, int) Method</A><BR>
 <A HREF="#ArrayList.CopyTo%28int%2C%20System.Array%2C%20int%2C%20int%29%20Method" TARGET="contents">ArrayList.CopyTo(int, System.Array, int, int) Method</A><BR>
 <A HREF="#ArrayList.CopyTo%28System.Array%29%20Method" TARGET="contents">ArrayList.CopyTo(System.Array) Method</A><BR>
+<A HREF="#ArrayList.CopyTo%28System.Array%2C%20int%29%20Method" TARGET="contents">ArrayList.CopyTo(System.Array, int) Method</A><BR>
 <A HREF="#ArrayList.FixedSize%20Method" TARGET="contents">ArrayList.FixedSize Method</A><BR>
 <A HREF="#ArrayList.GetEnumerator%28%29%20Method" TARGET="contents">ArrayList.GetEnumerator() Method</A><BR>
 <A HREF="#ArrayList.GetEnumerator%28int%2C%20int%29%20Method" TARGET="contents">ArrayList.GetEnumerator(int, int) Method</A><BR>
@@ -147,23 +147,23 @@ ArrayList Methods<P>
 <A HREF="#ArrayList.IndexOf%28System.Object%2C%20int%29%20Method" TARGET="contents">ArrayList.IndexOf(System.Object, int) Method</A><BR>
 <A HREF="#ArrayList.Insert%20Method" TARGET="contents">ArrayList.Insert Method</A><BR>
 <A HREF="#ArrayList.InsertRange%20Method" TARGET="contents">ArrayList.InsertRange Method</A><BR>
-<A HREF="#ArrayList.LastIndexOf%28System.Object%2C%20int%2C%20int%29%20Method" TARGET="contents">ArrayList.LastIndexOf(System.Object, int, int) Method</A><BR>
-<A HREF="#ArrayList.LastIndexOf%28System.Object%2C%20int%29%20Method" TARGET="contents">ArrayList.LastIndexOf(System.Object, int) Method</A><BR>
 <A HREF="#ArrayList.LastIndexOf%28System.Object%29%20Method" TARGET="contents">ArrayList.LastIndexOf(System.Object) Method</A><BR>
+<A HREF="#ArrayList.LastIndexOf%28System.Object%2C%20int%29%20Method" TARGET="contents">ArrayList.LastIndexOf(System.Object, int) Method</A><BR>
+<A HREF="#ArrayList.LastIndexOf%28System.Object%2C%20int%2C%20int%29%20Method" TARGET="contents">ArrayList.LastIndexOf(System.Object, int, int) Method</A><BR>
 <A HREF="#ArrayList.ReadOnly%20Method" TARGET="contents">ArrayList.ReadOnly Method</A><BR>
 <A HREF="#ArrayList.Remove%20Method" TARGET="contents">ArrayList.Remove Method</A><BR>
 <A HREF="#ArrayList.RemoveAt%20Method" TARGET="contents">ArrayList.RemoveAt Method</A><BR>
 <A HREF="#ArrayList.RemoveRange%20Method" TARGET="contents">ArrayList.RemoveRange Method</A><BR>
 <A HREF="#ArrayList.Repeat%20Method" TARGET="contents">ArrayList.Repeat Method</A><BR>
-<A HREF="#ArrayList.Reverse%28int%2C%20int%29%20Method" TARGET="contents">ArrayList.Reverse(int, int) Method</A><BR>
 <A HREF="#ArrayList.Reverse%28%29%20Method" TARGET="contents">ArrayList.Reverse() Method</A><BR>
+<A HREF="#ArrayList.Reverse%28int%2C%20int%29%20Method" TARGET="contents">ArrayList.Reverse(int, int) Method</A><BR>
 <A HREF="#ArrayList.SetRange%20Method" TARGET="contents">ArrayList.SetRange Method</A><BR>
 <A HREF="#ArrayList.Sort%28int%2C%20int%2C%20System.Collections.IComparer%29%20Method" TARGET="contents">ArrayList.Sort(int, int, System.Collections.IComparer) Method</A><BR>
 <A HREF="#ArrayList.Sort%28System.Collections.IComparer%29%20Method" TARGET="contents">ArrayList.Sort(System.Collections.IComparer) Method</A><BR>
 <A HREF="#ArrayList.Sort%28%29%20Method" TARGET="contents">ArrayList.Sort() Method</A><BR>
 <A HREF="#ArrayList.Synchronized%20Method" TARGET="contents">ArrayList.Synchronized Method</A><BR>
-<A HREF="#ArrayList.ToArray%28System.Type%29%20Method" TARGET="contents">ArrayList.ToArray(System.Type) Method</A><BR>
 <A HREF="#ArrayList.ToArray%28%29%20Method" TARGET="contents">ArrayList.ToArray() Method</A><BR>
+<A HREF="#ArrayList.ToArray%28System.Type%29%20Method" TARGET="contents">ArrayList.ToArray(System.Type) Method</A><BR>
 <A HREF="#ArrayList.TrimToSize%20Method" TARGET="contents">ArrayList.TrimToSize Method</A><BR>
 <P>
 
@@ -379,7 +379,7 @@ This method returns a <A HREF="ArrayList.html" TARGET="contents">ArrayList</A> t
 System.Collections.ArrayList.Reverse, System.Collections.ArrayList.BinarySearch(System.Int32,System.Int32,System.Object,System.Collections.IComparer) and System.Collections.ArrayList.Sort 
 methods. This wrapper provides a means
 to use those methods on <A HREF="IList.html" TARGET="contents">IList</A><I>list</I> without implementing the methods for
-the list. Performing these operations through the wrapper may be less
+the list. Performing these operations through the wrapper might be less
 efficient than operations applied directly to the list.]<P>
 
 <P>
@@ -595,12 +595,11 @@ found.]<P>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>comparer</I> is <CODE>null</CODE>
-, and both <I>value</I> and at least one element in the current instance do not implement the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> interface.<P>
-
--or-<P>
-
-<I>comparer</I> is <CODE>null</CODE>
 , and <I>value</I> is not assignment-compatible with at least one element in the current instance.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD><I>comparer</I> is <CODE>null</CODE>
+, and both <I>value</I> and at least one element involved in the search in the current instance do not implement the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> interface.<P>
 
 </TD></TR>
 </TABLE>
@@ -609,6 +608,8 @@ found.]<P>
 <H4>Description</H4>
 
 <BLOCKQUOTE>
+This method performs a binary search.<P>
+
 [<I>Note</I>: A null reference can be compared with
       any type; therefore, comparisons with a null reference do not generate
       exceptions. A null reference evaluates to less than any non-null object, or
@@ -631,7 +632,7 @@ found.]<P>
    -- or of <I>value</I> if the element being compared does not implement the
    interface -- is used to make the comparison. If <I>value</I> does not implement
    the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> interface and is compared to an element
-   that does not implement the interface either, <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A>
+   that does not implement the interface, <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>
    is thrown. If the current instance is not already sorted, correct
    results are not guaranteed.<P>
 
@@ -711,11 +712,10 @@ found.]<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD> Both <I>value</I> and at least one element of the current instance do not implement the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> interface.<P>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>value</I> is not assignment-compatible with at least one element in the current instance.<P>
 
--or-<P>
-
-<I>value</I> is not assignment-compatible with at least one element in the current instance.<P>
+</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD> Both <I>value</I> and at least one element involved in the search of the current instance do not implement the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> interface.<P>
 
 </TD></TR>
 </TABLE>
@@ -724,6 +724,8 @@ found.]<P>
 <H4>Description</H4>
 
 <BLOCKQUOTE>
+This method performs a binary search.<P>
+
 [<I>Note</I>: A null reference can be compared with
       any type; therefore, comparisons with a null reference do not generate
       exceptions. A null reference evaluates to less than any non-null object, or
@@ -745,7 +747,7 @@ found.]<P>
    -- or of <I>value</I> if the element being compared does not implement the
    interface -- is used to make the comparison. If <I>value</I> does not implement
    the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> interface and is compared to an element
-   that does not implement the interface either, <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A> is thrown. If the
+   that does not implement the interface, <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A> is thrown. If the
    current instance is not already sorted, correct results are not guaranteed.<P>
 
 ]<P>
@@ -816,18 +818,18 @@ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that
       of the index of the first element that is
       greater than <I>value</I>.</TD><TD><I>value</I> was not found, and at
    least one element in the range of <I>index</I> to <I>index</I> +
-<I>count</I> in the current instance is greater than
+<I>count</I> - 1 in the current instance is greater than
 <I>value</I>.</TD></TR>
 <TR><TD> The bitwise complement of (<I>index</I> +
 <I>count</I>)</TD><TD><I>value</I> was not found, and
 <I>value</I> is greater than all elements in the range of 
-<I>index</I> to <I>index</I> + <I>count</I> in the current 
+<I>index</I> to <I>index</I> + <I>count</I> - 1 in the current 
 instance.</TD></TR>
 </TABLE>
 [<I>Note</I>: If <I>value</I> is not found and the current instance is already sorted, the
 bitwise complement of the return value indicates the index in the current instance
 where <I>value</I> would be found in the range of <I>index</I> to
-<I>index</I> + <I>count</I> .]<P>
+<I>index</I> + <I>count</I> - 1.]<P>
 
 <P>
 
@@ -843,11 +845,6 @@ where <I>value</I> would be found in the range of <I>index</I> to
 -or-<P>
 
 <I>comparer</I> is <CODE>null</CODE>
-, and both <I>value</I> and at least one element of the current instance do not implement the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> interface.<P>
-
--or-<P>
-
-<I>comparer</I> is <CODE>null</CODE>
 , and <I>value</I> is not assignment-compatible with at least one element in the current instance.<P>
 
 </TD></TR>
@@ -856,12 +853,18 @@ where <I>value</I> would be found in the range of <I>index</I> to
 -or-<P>
 
 <I>count</I> &lt; 0.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD><I>comparer</I> is <CODE>null</CODE>
+, and both <I>value</I> and at least one element involved in the search of the current instance do not implement the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> interface.<P>
+
+</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
+This method performs a binary search.<P>
+
 [<I>Note</I>: A null reference can be compared with
       any type; therefore, comparisons with a null reference do not generate
       exceptions. A null reference evaluates to less than any non-null object, or
@@ -879,14 +882,14 @@ where <I>value</I> would be found in the range of <I>index</I> to
       .<P>
 
 <I>value</I> is compared to elements in a binary search of the range of <I>index</I> to
-<I>index</I> + <I>count </I>in the current instance until an element 
+<I>index</I> + <I>count </I> - 1 in the current instance until an element 
    with a value greater than or equal to <I>value</I> is found or the end of the
    range is reached. If <I>comparer</I> is <CODE>null</CODE>
  , the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A>
    implementation of the element being compared -- or of <I>value</I> if the element being compared does
    not implement the interface -- is used to make the comparison. If
 <I>value</I> does not implement the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> interface and is compared to an element 
-   that does not implement the interface either, <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A>
+   that does not implement the interface, <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>
    is thrown. If the current instance is not already sorted,
    correct results are not guaranteed.<P>
 
@@ -1100,85 +1103,6 @@ Determines whether the specified <A HREF="../../System/Object.html" TARGET="cont
 
 <HR>
 
-<A NAME="ArrayList.CopyTo%28System.Array%2C%20int%29%20Method"><H3>ArrayList.CopyTo(System.Array, int) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual void CopyTo(Array array, int arrayIndex);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Copies the elements from the current instance to the
-      specified <A HREF="../../System/Array.html" TARGET="contents">Array</A>
-      , starting at the specified index of the array.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>array</DT>
-<DD>The one-dimensional <A HREF="../../System/Array.html" TARGET="contents">Array</A> that is the destination of the elements copied from the current instance. The System.Array.Length of this array is greater than or equal to the sum of <I>arrayIndex</I> and the System.Collections.ArrayList.Count of the current instance. </DD>
-<DT>arrayIndex</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the first index of <I>array</I> to which the elements of the current instance are copied. This value is greater than or equal to zero, and less than <I>array</I>.Length. </DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>array</I> is <CODE>null</CODE>
-.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>arrayIndex</I> &lt; 0.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>array</I> has more than one dimension.<P>
-
--or-<P>
-
-<I>arrayIndex</I> &gt;= <I>array</I>.Length.<P>
-
--or-<P>
-
-<I>arrayIndex</I> + System.Collections.ArrayList.Count of the current instance &gt; <I>array</I>.Length.<P>
-
-</TD></TR>
-<TR><TD><A HREF="../../System/InvalidCastException.html" TARGET="contents">InvalidCastException</A></TD><TD>At least one element in the current instance is not assignment-compatible with the type of <I>array</I>.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-[<I>Note</I>: This method is implemented to support
-      the <A HREF="IList.html" TARGET="contents">IList</A> interface.]<P>
-
-<P>
-
-[<I>Behaviors</I>: As described
-      above.]<P>
-
-<P>
-
-[<I>Default</I>: This method uses System.Array.Copy(System.Array,System.Array,System.Int32) to copy the
-   current instance to <I>array</I>.]<P>
-
-<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="ArrayList.html" TARGET="contents">System.Collections.ArrayList Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
 <A NAME="ArrayList.CopyTo%28int%2C%20System.Array%2C%20int%2C%20int%29%20Method"><H3>ArrayList.CopyTo(int, System.Array, int, int) Method</H3>
 
 <BLOCKQUOTE>
@@ -1334,6 +1258,85 @@ System.Collections.ArrayList.Count of the current instance &gt; <I>array</I>.Len
 
 <HR>
 
+<A NAME="ArrayList.CopyTo%28System.Array%2C%20int%29%20Method"><H3>ArrayList.CopyTo(System.Array, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual void CopyTo(Array array, int arrayIndex);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Copies the elements from the current instance to the
+      specified <A HREF="../../System/Array.html" TARGET="contents">Array</A>
+      , starting at the specified index of the array.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>array</DT>
+<DD>The one-dimensional <A HREF="../../System/Array.html" TARGET="contents">Array</A> that is the destination of the elements copied from the current instance. The System.Array.Length of this array is greater than or equal to the sum of <I>arrayIndex</I> and the System.Collections.ArrayList.Count of the current instance. </DD>
+<DT>arrayIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the first index of <I>array</I> to which the elements of the current instance are copied. This value is greater than or equal to zero, and less than <I>array</I>.Length. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>array</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>arrayIndex</I> &lt; 0.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>array</I> has more than one dimension.<P>
+
+-or-<P>
+
+<I>arrayIndex</I> &gt;= <I>array</I>.Length.<P>
+
+-or-<P>
+
+<I>arrayIndex</I> + System.Collections.ArrayList.Count of the current instance &gt; <I>array</I>.Length.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/InvalidCastException.html" TARGET="contents">InvalidCastException</A></TD><TD>At least one element in the current instance is not assignment-compatible with the type of <I>array</I>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support
+      the <A HREF="IList.html" TARGET="contents">IList</A> interface.]<P>
+
+<P>
+
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: This method uses System.Array.Copy(System.Array,System.Array,System.Int32) to copy the
+   current instance to <I>array</I>.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArrayList.html" TARGET="contents">System.Collections.ArrayList Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
 <A NAME="ArrayList.FixedSize%20Method"><H3>ArrayList.FixedSize Method</H3>
 
 <BLOCKQUOTE>
@@ -1380,7 +1383,7 @@ wrapper with a fixed size.<P>
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-This method returns a fixed-size <A HREF="ArrayList.html" TARGET="contents">ArrayList</A> that contains a reference to <I>list</I>. Operations that attempt add to or delete from 
+This method returns a fixed-size <A HREF="ArrayList.html" TARGET="contents">ArrayList</A> that contains a reference to <I>list</I>. Operations that attempt to add to or delete from 
  this new list will throw <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>. Any modifications of
  the elements in either the returned list or <I>list</I> will be reflected in
  the other. <P>
@@ -1389,6 +1392,8 @@ This method returns a fixed-size <A HREF="ArrayList.html" TARGET="contents">Arra
 <CODE>true</CODE>
 . Every other property value of the new list 
  references the same property value of <I>list</I>. <P>
+
+Adding to or removing from <I>list</I> will not throw an exception and is reflected in the returned list.<P>
 
 By performing operations on the new list, this wrapper can be used to prevent 
  additions to and deletions from the <A HREF="ArrayList.html" TARGET="contents">ArrayList</A><I>list</I>. The elements 
@@ -1433,9 +1438,7 @@ A <A HREF="IEnumerator.html" TARGET="contents">IEnumerator</A> for the current i
 <H4>Description</H4>
 
 <BLOCKQUOTE>
- If the elements of
-      the current instance are modified while an enumeration is in progress, a call
-      to System.Collections.IEnumerator.MoveNext or System.Collections.IEnumerator.Current throws <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A> . <P>
+ If the the current instance is modified while an enumeration is in progress, a call to System.Collections.IEnumerator.MoveNext or System.Collections.IEnumerator.Reset throws <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A> . <P>
 
 [<I>Note</I>:  For detailed information regarding the use of an enumerator, see
       <A HREF="IEnumerator.html" TARGET="contents">IEnumerator</A>.<P>
@@ -1482,7 +1485,7 @@ Returns a <A HREF="IEnumerator.html" TARGET="contents">IEnumerator</A> for the s
 <DT>index</DT>
 <DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index of the current instance before which the enumerator is initially placed. This value is greater than or equal to 0, and less than the System.Collections.ArrayList.Count of the current instance.</DD>
 <DT>count</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number of elements, beginning with <I>index</I> , in the current instance over which the enumerator can iterate. This value if greater than or equal to 0, and less than or equal to the System.Collections.ArrayList.Count of the current instance minus <I>index</I> .</DD>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number of elements, beginning with <I>index</I> , in the current instance over which the enumerator can iterate. This value is greater than or equal to 0, and less than or equal to the System.Collections.ArrayList.Count of the current instance minus <I>index</I> .</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -1490,7 +1493,7 @@ Returns a <A HREF="IEnumerator.html" TARGET="contents">IEnumerator</A> for the s
 
 <BLOCKQUOTE>
 A <A HREF="IEnumerator.html" TARGET="contents">IEnumerator</A> that can iterate over the range
-   of <I>index</I> to <I>index</I> + <I>count</I> in the current
+   of <I>index</I> to <I>index</I> + <I>count</I> - 1 in the current
    instance.<P>
 
 </BLOCKQUOTE>
@@ -1507,7 +1510,7 @@ A <A HREF="IEnumerator.html" TARGET="contents">IEnumerator</A> that can iterate 
 <I>count</I> &lt; 0.<P>
 
 </TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>index</I> + <I>count</I> &gt; System.Collections.ArrayList.Count of the current instance - <I>index</I>.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>index</I> + <I>count</I> &gt; System.Collections.ArrayList.Count of the current instance.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1516,8 +1519,7 @@ A <A HREF="IEnumerator.html" TARGET="contents">IEnumerator</A> that can iterate 
 <BLOCKQUOTE>
  The enumerator
       only enumerates over the range of the current instance from <I>index</I> to
-   <I>index</I> + <I>count</I>. If the elements of the current instance are modified while an
-      enumeration is in progress, a call to System.Collections.IEnumerator.MoveNext or System.Collections.IEnumerator.Current will throw <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A> . <P>
+   <I>index</I> + <I>count</I> - 1. If the current instance is modified while an enumeration is in progress, a call to System.Collections.IEnumerator.MoveNext or System.Collections.IEnumerator.Reset will throw <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A> . <P>
 
 [<I>Note</I>: For detailed information regarding the
       use of an enumerator, see <A HREF="IEnumerator.html" TARGET="contents">IEnumerator</A>.]<P>
@@ -1533,15 +1535,12 @@ A <A HREF="IEnumerator.html" TARGET="contents">IEnumerator</A> that can iterate 
    System.Collections.IEnumerator.Reset returns the enumerator to this position.
       <P>
 
-If the enumerator is positioned over an element in
-      the range of <I>index</I> -1 to <I>index</I> + <I>count</I>, and
-      the elements of the current instance have not been modified while the
+If the elements of the current instance have not been modified while the
       enumeration was in progress, a call to System.Collections.IEnumerator.MoveNext
       either returns <CODE>true</CODE>
  and advances the enumerator one element in
       the current instance, or returns <CODE>false</CODE>
- and leaves the enumerator in its current position.
-      <P>
+ indicating the enumerator is at the end of the specified range.      <P>
 
 ]<P>
 
@@ -1587,7 +1586,7 @@ Returns a <A HREF="ArrayList.html" TARGET="contents">ArrayList</A> that represen
 <BLOCKQUOTE>
  A <A HREF="ArrayList.html" TARGET="contents">ArrayList</A> that
    represents the range in the current instance from <I>index</I> to
-<I>index</I> + <I>count</I>.<P>
+<I>index</I> + <I>count</I> - 1.<P>
 
 </BLOCKQUOTE>
 
@@ -1660,7 +1659,7 @@ Searches the current instance, returning the index of
 <BLOCKQUOTE>
 <DL>
 <DT>value</DT>
-<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to locate in current instance.</DD>
+<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to locate in the current instance.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -1736,7 +1735,7 @@ Searches the current instance, returning the index of
 <DT>value</DT>
 <DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to locate in current instance.</DD>
 <DT>startIndex</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index at which to begin searching. This value is less than or equal to zero, and greater than the System.Collections.ArrayList.Count of the current instance.</DD>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index at which to begin searching. This value is greater than or equal to zero, and less than the System.Collections.ArrayList.Count of the current instance.</DD>
 <DT>count</DT>
 <DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number of elements to search. This value is between 0 and the System.Collections.ArrayList.Count of the current instance minus <I>startIndex</I> , inclusive.</DD>
 </DL>
@@ -1747,7 +1746,7 @@ Searches the current instance, returning the index of
 <BLOCKQUOTE>
 A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index of the first occurrence of <I>value</I> in
    the current instance, within the range <I>startIndex </I>to
-<I>startIndex</I> + <I> count</I> , if found; otherwise, -1.<P>
+<I>startIndex</I> + <I> count</I> - 1, if found; otherwise, -1.<P>
 
 [<I>Note</I>: This provides the caller with a standard
    code for a failed search.]<P>
@@ -1828,7 +1827,7 @@ Searches the current instance, returning the index of
 <DT>value</DT>
 <DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to locate in current instance.</DD>
 <DT>startIndex</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index at which searching begins. This value is between 0 and the System.Collections.ArrayList.Count of the current instance, inclusive.</DD>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index at which searching begins. This value is between 0 and the System.Collections.ArrayList.Count of the current instance minus 1, inclusive.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -1855,7 +1854,7 @@ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies t
 
 -or-<P>
 
-<I>startIndex</I> &gt; System.Collections.ArrayList.Count of the current instance.<P>
+<I>startIndex</I> &gt;= System.Collections.ArrayList.Count of the current instance.<P>
 
 </TD></TR>
 </TABLE>
@@ -2048,195 +2047,6 @@ instance.<P>
 
 <HR>
 
-<A NAME="ArrayList.LastIndexOf%28System.Object%2C%20int%2C%20int%29%20Method"><H3>ArrayList.LastIndexOf(System.Object, int, int) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual int LastIndexOf(object value, int startIndex, int count);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Searches the current instance, returning the index of
-      the last occurrence of the specified <A HREF="../../System/Object.html" TARGET="contents">Object</A> in the specified range.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>value</DT>
-<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to locate in the current instance.</DD>
-<DT>startIndex</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index at which searching starts.</DD>
-<DT>count</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number of elements to search, beginning with <I>startIndex</I> .</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index of the last occurrence of value in the current
-   instance, within the range <I>startIndex</I> + <I>count</I> through
-<I>startIndex</I>, if found; otherwise, -1. <P>
-
-[<I>Note</I>: This provides the caller with a standard
-   code for a failed search.]<P>
-
-<P>
-
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> &lt; 0.<P>
-
--or-<P>
-
-<I>count</I> &lt; 0.<P>
-
--or-<P>
-
-<I>startIndex</I> &gt;= System.Collections.ArrayList.Count of the current instance.<P>
-
--or-<P>
-
-<I>count</I> &gt;= System.Collections.ArrayList.Count of the current instance.<P>
-
--or-<P>
-
-<I>count</I> &gt;= <I>startIndex</I>.<P>
-
-</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-[<I>Behaviors</I>: As described
-      above.]<P>
-
-<P>
-
-[<I>Default</I>: This method uses
-   System.Array.LastIndexOf(System.Array,System.Object) to search the current instance for
-   <I>value</I>.]<P>
-
-<P>
-
-[<I>Note</I>:  For the default implementation, this method
-      performs a linear search. On average, this is an O(<I>count</I>/2)
-      operation. The longest search is an O(<I>count</I>) operation.]<P>
-
-<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="ArrayList.html" TARGET="contents">System.Collections.ArrayList Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="ArrayList.LastIndexOf%28System.Object%2C%20int%29%20Method"><H3>ArrayList.LastIndexOf(System.Object, int) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual int LastIndexOf(object value, int startIndex);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Searches the current instance, returning the index of
-      the last occurrence of the specified <A HREF="../../System/Object.html" TARGET="contents">Object</A> in
-      the specified range of the current instance.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>value</DT>
-<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to locate in the current instance.</DD>
-<DT>startIndex</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index at which searching starts. This value is between 0 and the System.Collections.ArrayList.Count of the current instance, inclusive.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index of the last occurrence of <I>value</I> in
-   the range of <I>startIndex</I>
-   through the first element of the current
-   instance, if found; otherwise, -1.<P>
-
-[<I>Note</I>: This provides the caller with a standard
-   code for a failed search.]<P>
-
-<P>
-
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> &lt; 0.<P>
-
--or-<P>
-
-<I>startIndex</I> &gt;= System.Collections.ArrayList.Count of the current instance.<P>
-
-</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-[<I>Behaviors</I>: As described
-      above.]<P>
-
-<P>
-
-[<I>Default</I>: This method uses
-   System.Array.LastIndexOf(System.Array,System.Object) to search the current instance for
-   <I>value</I>.]<P>
-
-<P>
-
-[<I>Note</I>:  For the default implementation, this method performs a linear search. On average, this is an
-      O(<I>count</I>/2)
-      operation. The longest search is
-      an O(<I>count</I>) operation.]<P>
-
-<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="ArrayList.html" TARGET="contents">System.Collections.ArrayList Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
 <A NAME="ArrayList.LastIndexOf%28System.Object%29%20Method"><H3>ArrayList.LastIndexOf(System.Object) Method</H3>
 
 <BLOCKQUOTE>
@@ -2284,9 +2094,13 @@ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies t
 
 <P>
 
-[<I>Default</I>: This method uses
+[<I>Default</I>: The ArrayList is searched backward starting at the last element and ending at the first element.<P>
+
+This method uses
    System.Array.LastIndexOf(System.Array,System.Object) to search the current instance for
-   <I>value</I>.]<P>
+   <I>value</I>.<P>
+
+]<P>
 
 <P>
 
@@ -2294,6 +2108,203 @@ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies t
       O(<I>n</I>/2) operation, where <I>n</I> is System.Collections.ArrayList.Count of the current instance. The longest search is
       an O(<I>n</I>)
       operation.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArrayList.html" TARGET="contents">System.Collections.ArrayList Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ArrayList.LastIndexOf%28System.Object%2C%20int%29%20Method"><H3>ArrayList.LastIndexOf(System.Object, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual int LastIndexOf(object value, int startIndex);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches the current instance, returning the index of
+      the last occurrence of the specified <A HREF="../../System/Object.html" TARGET="contents">Object</A> in
+      the specified range of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to locate in the current instance.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index at which searching starts. This value is between 0 and the System.Collections.ArrayList.Count of the current instance - 1, inclusive.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index of the last occurrence of <I>value</I> in
+   the range of <I>startIndex</I>
+   through the first element of the current
+   instance, if found; otherwise, -1.<P>
+
+[<I>Note</I>: This provides the caller with a standard
+   code for a failed search.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> &lt; 0.<P>
+
+-or-<P>
+
+<I>startIndex</I> &gt;= System.Collections.ArrayList.Count of the current instance.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: The ArrayList is searched backward starting at <I>startIndex</I>.<P>
+
+This method uses
+   System.Array.LastIndexOf(System.Array,System.Object) to search the current instance for
+   <I>value</I>.<P>
+
+]<P>
+
+<P>
+
+[<I>Note</I>:  For the default implementation, this method performs a linear search. On average, this is an
+      O(<I>count</I>/2)
+      operation. The longest search is
+      an O(<I>count</I>) operation.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArrayList.html" TARGET="contents">System.Collections.ArrayList Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ArrayList.LastIndexOf%28System.Object%2C%20int%2C%20int%29%20Method"><H3>ArrayList.LastIndexOf(System.Object, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual int LastIndexOf(object value, int startIndex, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Searches the current instance, returning the index of
+      the last occurrence of the specified <A HREF="../../System/Object.html" TARGET="contents">Object</A> in the specified range.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/Object.html" TARGET="contents">Object</A> to locate in the current instance.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index at which searching starts.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number of elements to search, beginning with <I>startIndex</I> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index of the last occurrence of value in the current
+   instance, within the range <I>startIndex</I> through
+<I>startIndex</I> - <I>count</I> + 1, if found; otherwise, -1. <P>
+
+[<I>Note</I>: This provides the caller with a standard
+   code for a failed search.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> &lt; 0.<P>
+
+-or-<P>
+
+<I>count</I> &lt; 0.<P>
+
+-or-<P>
+
+<I>startIndex</I> &gt;= System.Collections.ArrayList.Count of the current instance.<P>
+
+-or-<P>
+
+<I>count</I> &gt;= System.Collections.ArrayList.Count of the current instance.<P>
+
+-or-<P>
+
+<I>count</I> &gt; <I>startIndex</I> + 1.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: The ArrayList is searched backward starting at <I>startIndex</I> and ending at <I>startIndex</I> - <I>count</I> + 1.<P>
+
+This method uses
+   System.Array.LastIndexOf(System.Array,System.Object) to search the current instance for
+   <I>value</I>.<P>
+
+]<P>
+
+<P>
+
+[<I>Note</I>:  For the default implementation, this method
+      performs a linear search. On average, this is an O(<I>count</I>/2)
+      operation. The longest search is an O(<I>count</I>) operation.]<P>
 
 <P>
 
@@ -2357,8 +2368,7 @@ This method returns a read-only <A HREF="ArrayList.html" TARGET="contents">Array
  modify the elements of this new list will throw <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>. Any modifications of the
  elements <I>list</I> will be reflected in the new list.<P>
 
-[<I>Note</I>: The System.Collections.ArrayList.IsReadOnly property of the new list is 
-<CODE>true</CODE>
+[<I>Note</I>: The System.Collections.ArrayList.IsReadOnly and System.Collections.ArrayList.IsFixedSize properties of the new list are <CODE>true</CODE>
 . Every other property value of the new list 
  references the same property value of <I>list</I>. <P>
 
@@ -2429,7 +2439,7 @@ Removes the first occurrence of the
 
 [<I>Default</I>: This method determines equality by calling System.Object.Equals(System.Object).<P>
 
-If and only if <I>obj</I> is found in the current
+If <I>obj</I> is found in the current
    instance, <I>obj</I> is removed from the current instance, the rest of the
    elements are shifted down to fill the position vacated by <I>obj</I>, the System.Collections.ArrayList.Count of the current instance is
    decreased by one, and the position that was previously the last element in the
@@ -2584,7 +2594,7 @@ Removes the specified range of elements from the current instance.<P>
 <P>
 
 [<I>Default</I>: The elements in the range of <I>index</I> to <I>index</I> +
-<I>count </I>are removed from the current instance, the rest of the
+<I>count </I> - 1 are removed from the current instance, the rest of the
    elements are shifted down to fill the position vacated by those elements, the
 System.Collections.ArrayList.Count of the current instance is
    decreased by <I>count</I>, and the <I>count</I> positions that were
@@ -2657,9 +2667,57 @@ with <I>count</I> number of elements, all of which are copies of
 <BLOCKQUOTE>
 If <I>count</I> is less than the default initial capacity, 16,
    the System.Collections.ArrayList.Capacity of the new <A HREF="ArrayList.html" TARGET="contents">ArrayList</A> instance is set to the default initial
-   capacity. Else, the capacity is set to <I>count</I>
+   capacity. Otherwise, the capacity is set to <I>count</I>
    . The System.Collections.ArrayList.Count of the new instance is set
    to <I>count</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArrayList.html" TARGET="contents">System.Collections.ArrayList Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ArrayList.Reverse%28%29%20Method"><H3>ArrayList.Reverse() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual void Reverse();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reverses the sequence of the elements in the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: This method uses System.Array.Reverse(System.Array) to modify the ordering of
+   the elements in the current instance.]<P>
+
+<P>
 
 </BLOCKQUOTE>
 
@@ -2727,54 +2785,6 @@ Reverses the sequence of the elements in the specified range of the
 
 [<I>Default</I>: This method uses System.Array.Reverse(System.Array) to modify
    the ordering of the current instance.]<P>
-
-<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="ArrayList.html" TARGET="contents">System.Collections.ArrayList Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="ArrayList.Reverse%28%29%20Method"><H3>ArrayList.Reverse() Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual void Reverse();</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Reverses the sequence of the elements in the current
-      instance.<P>
-
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-[<I>Behaviors</I>: As described
-      above.]<P>
-
-<P>
-
-[<I>Default</I>: This method uses System.Array.Reverse(System.Array) to modify the ordering of
-   the elements in the current instance.]<P>
 
 <P>
 
@@ -2903,7 +2913,7 @@ System.Collections.ArrayList.Count of the current instance - <I>index</I> &lt; <
 <TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>System.Collections.ArrayList.Count of the current instance - <I>index</I> &lt; <I>count</I>.<P>
 
 </TD></TR>
-<TR><TD><A HREF="../../System/InvalidCastException.html" TARGET="contents">InvalidCastException</A></TD><TD><I>comparer</I> is <CODE>null</CODE>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD><I>comparer</I> is <CODE>null</CODE>
 , and one or more elements in the current instance do not implement the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> interface.</TD></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only.</TD></TR>
 </TABLE>
@@ -2972,7 +2982,7 @@ Sorts the elements of current instance using the specified <A HREF="IComparer.ht
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/InvalidCastException.html" TARGET="contents">InvalidCastException</A></TD><TD><I>comparer</I> is <CODE>null</CODE>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD><I>comparer</I> is <CODE>null</CODE>
 , and one or more elements in the current instance do not implement the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> interface.</TD></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only.</TD></TR>
 </TABLE>
@@ -3029,22 +3039,21 @@ Sorts the elements of the current instance.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/InvalidCastException.html" TARGET="contents">InvalidCastException</A></TD><TD>One or more elements in the current instance do not implement the <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> interface.</TD></TR>
-<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance read-only.</TD></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
+The <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> implementation of each element in the current instance is used to make the sorting comparisons.<P>
+
 [<I>Behaviors</I>: As described
       above.]<P>
 
 <P>
 
-[<I>Default</I>: The <A HREF="../../System/IComparable.html" TARGET="contents">IComparable</A> implementation of
-   each element in the current instance is used to make the sorting comparisons. If
-   the sort is not successfully completed, the results are unspecified.]<P>
+[<I>Default</I>: If the sort is not successfully completed, the results are unspecified.]<P>
 
 <P>
 
@@ -3132,6 +3141,59 @@ By performing operations on the new list, this wrapper can be used to
 
 <HR>
 
+<A NAME="ArrayList.ToArray%28%29%20Method"><H3>ArrayList.ToArray() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual object[] ToArray();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Copies the elements of the current instance
+      to a new <A HREF="../../System/Object.html" TARGET="contents">Object</A> array.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Object.html" TARGET="contents">Object</A> array containing
+   copies of the elements of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: The elements are copied using System.Array.Copy(System.Array,System.Array,System.Int32).]<P>
+
+<P>
+
+[<I>Note</I>: For the default implementation, this method is an O(<I>n</I>) operation, where
+<I>n</I> is 
+the System.Collections.ArrayList.Count of the
+current instance.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArrayList.html" TARGET="contents">System.Collections.ArrayList Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
 <A NAME="ArrayList.ToArray%28System.Type%29%20Method"><H3>ArrayList.ToArray(System.Type) Method</H3>
 
 <BLOCKQUOTE>
@@ -3193,59 +3255,6 @@ instance.<P>
    an O(<I>n</I>) operation, where <I>n</I> is
    the System.Collections.ArrayList.Count of the
    current instance.]<P>
-
-<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="ArrayList.html" TARGET="contents">System.Collections.ArrayList Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="ArrayList.ToArray%28%29%20Method"><H3>ArrayList.ToArray() Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual object[] ToArray();</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Copies the elements of the current instance
-      to a new <A HREF="../../System/Object.html" TARGET="contents">Object</A> array.<P>
-
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-A <A HREF="../../System/Object.html" TARGET="contents">Object</A> array containing
-   copies of the elements of the current instance.<P>
-
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-[<I>Behaviors</I>: As described
-      above.]<P>
-
-<P>
-
-[<I>Default</I>: The elements are copied using System.Array.Copy(System.Array,System.Array,System.Int32).]<P>
-
-<P>
-
-[<I>Note</I>: For the default implementation, this method is an O(<I>n</I>) operation, where
-<I>n</I> is 
-the System.Collections.ArrayList.Count of the
-current instance.]<P>
 
 <P>
 
@@ -3471,28 +3480,6 @@ and adding the new elements.]<P>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>bool IList.IsFixedSize { get; }</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Implemented to support the <A HREF="IList.html" TARGET="contents">IList</A> interface. [Note: For more information, see System.Collections.IList.IsFixedSize.]
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="ArrayList.html" TARGET="contents">System.Collections.ArrayList Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="ArrayList.IsFixedSize%28%29%20Property"><H3>ArrayList.IsFixedSize() Property</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
 <TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual bool IsFixedSize { get; }</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -3523,6 +3510,8 @@ This property is read-only.<P>
 [<I>Note</I>: Elements cannot be added or removed from a <A HREF="ArrayList.html" TARGET="contents">ArrayList</A> with a fixed size, while
       existing elements can be modified.<P>
 
+An attempt to add to or remove from a fixed size ArrayList will throw <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>. However, the size of a fixed size ArrayList will change to reflect the additions or removals from the ArrayList that was used to create the fixed size ArrayList.<P>
+
 This property is implemented to support the <A HREF="IList.html" TARGET="contents">IList</A> interface.<P>
 
 ]<P>
@@ -3548,18 +3537,18 @@ This property is implemented to support the <A HREF="IList.html" TARGET="content
 
 <HR>
 
-<A NAME="ArrayList.IsReadOnly%28%29%20Property"><H3>ArrayList.IsReadOnly() Property</H3>
+<A NAME="ArrayList.IsFixedSize%28%29%20Property"><H3>ArrayList.IsFixedSize() Property</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>bool IList.IsReadOnly { get; }</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>bool IList.IsFixedSize { get; }</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Implemented to support the <A HREF="IList.html" TARGET="contents">IList</A> interface. [Note: For more information, see System.Collections.IList.IsReadOnly.]
+Implemented to support the <A HREF="IList.html" TARGET="contents">IList</A> interface. [Note: For more information, see System.Collections.IList.IsFixedSize.]
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -3604,6 +3593,8 @@ This property is read-only.<P>
 [<I>Note</I>: The elements of a <A HREF="ArrayList.html" TARGET="contents">ArrayList</A> that is read-only cannot be modified, nor
       can elements be added to or removed from that list.<P>
 
+An attempt to add to, remove from, or modify a read-only ArrayList will throw <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>. However, changes to the ArrayList that was used to create the read-only ArrayList are reflected in the read-only ArrayList.<P>
+
 This property is implemented to support the <A HREF="IList.html" TARGET="contents">IList</A> interface.<P>
 
 ]<P>
@@ -3629,18 +3620,18 @@ This property is implemented to support the <A HREF="IList.html" TARGET="content
 
 <HR>
 
-<A NAME="ArrayList.IsSynchronized%28%29%20Property"><H3>ArrayList.IsSynchronized() Property</H3>
+<A NAME="ArrayList.IsReadOnly%28%29%20Property"><H3>ArrayList.IsReadOnly() Property</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>bool ICollection.IsSynchronized { get; }</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>bool IList.IsReadOnly { get; }</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Implemented to support the <A HREF="ICollection.html" TARGET="contents">ICollection</A> interface. [Note: For more information, see System.Collections.ICollection.IsSynchronized.]
+Implemented to support the <A HREF="IList.html" TARGET="contents">IList</A> interface. [Note: For more information, see System.Collections.IList.IsReadOnly.]
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -3702,6 +3693,28 @@ To guarantee the thread safety of the <A HREF="ArrayList.html" TARGET="contents"
 
 <P>
 
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArrayList.html" TARGET="contents">System.Collections.ArrayList Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ArrayList.IsSynchronized%28%29%20Property"><H3>ArrayList.IsSynchronized() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>bool ICollection.IsSynchronized { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="ICollection.html" TARGET="contents">ICollection</A> interface. [Note: For more information, see System.Collections.ICollection.IsSynchronized.]
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -3787,28 +3800,6 @@ This property is implemented to support the <A HREF="IList.html" TARGET="content
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>object ICollection.SyncRoot { get; }</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Implemented to support the <A HREF="ICollection.html" TARGET="contents">ICollection</A> interface. [Note: For more information, see System.Collections.ICollection.SyncRoot.]
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="ArrayList.html" TARGET="contents">System.Collections.ArrayList Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="ArrayList.SyncRoot%28%29%20Property"><H3>ArrayList.SyncRoot() Property</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
 <TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual object SyncRoot { get; }</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -3857,6 +3848,28 @@ interface.]<P>
 
 <P>
 
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ArrayList.html" TARGET="contents">System.Collections.ArrayList Class</A>, <A HREF="Collections.html" TARGET="members">System.Collections Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ArrayList.SyncRoot%28%29%20Property"><H3>ArrayList.SyncRoot() Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>object ICollection.SyncRoot { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support the <A HREF="ICollection.html" TARGET="contents">ICollection</A> interface. [Note: For more information, see System.Collections.ICollection.SyncRoot.]
 </BLOCKQUOTE>
 
 <H4>See Also</H4>

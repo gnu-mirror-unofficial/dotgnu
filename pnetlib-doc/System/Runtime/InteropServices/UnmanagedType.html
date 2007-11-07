@@ -42,6 +42,13 @@ RuntimeInfrastructure
 
 </BLOCKQUOTE>
 
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This type provides a set of values that identify the native types that are supported by the CLI. Each native type is encoded by a different value.  All encoding values in the range 0-63, inclusive, are reserved for backward compatibility with existing implementations of the CLI.  Values in the range 64-127 are reserved for future use in this and related Standards.<P>
+
+</BLOCKQUOTE>
+
 <H4>See Also</H4>
 
 <BLOCKQUOTE>
@@ -56,7 +63,6 @@ RuntimeInfrastructure
 UnmanagedType Fields<P>
 
 <A HREF="#UnmanagedType.Bool%20Field" TARGET="contents">UnmanagedType.Bool Field</A><BR>
-<A HREF="#UnmanagedType.ByValArray%20Field" TARGET="contents">UnmanagedType.ByValArray Field</A><BR>
 <A HREF="#UnmanagedType.CustomMarshaler%20Field" TARGET="contents">UnmanagedType.CustomMarshaler Field</A><BR>
 <A HREF="#UnmanagedType.FunctionPtr%20Field" TARGET="contents">UnmanagedType.FunctionPtr Field</A><BR>
 <A HREF="#UnmanagedType.I1%20Field" TARGET="contents">UnmanagedType.I1 Field</A><BR>
@@ -65,14 +71,11 @@ UnmanagedType Fields<P>
 <A HREF="#UnmanagedType.I8%20Field" TARGET="contents">UnmanagedType.I8 Field</A><BR>
 <A HREF="#UnmanagedType.LPArray%20Field" TARGET="contents">UnmanagedType.LPArray Field</A><BR>
 <A HREF="#UnmanagedType.LPStr%20Field" TARGET="contents">UnmanagedType.LPStr Field</A><BR>
-<A HREF="#UnmanagedType.LPTStr%20Field" TARGET="contents">UnmanagedType.LPTStr Field</A><BR>
 <A HREF="#UnmanagedType.LPWStr%20Field" TARGET="contents">UnmanagedType.LPWStr Field</A><BR>
 <A HREF="#UnmanagedType.R4%20Field" TARGET="contents">UnmanagedType.R4 Field</A><BR>
 <A HREF="#UnmanagedType.R8%20Field" TARGET="contents">UnmanagedType.R8 Field</A><BR>
-<A HREF="#UnmanagedType.Struct%20Field" TARGET="contents">UnmanagedType.Struct Field</A><BR>
 <A HREF="#UnmanagedType.SysInt%20Field" TARGET="contents">UnmanagedType.SysInt Field</A><BR>
 <A HREF="#UnmanagedType.SysUInt%20Field" TARGET="contents">UnmanagedType.SysUInt Field</A><BR>
-<A HREF="#UnmanagedType.TBStr%20Field" TARGET="contents">UnmanagedType.TBStr Field</A><BR>
 <A HREF="#UnmanagedType.U1%20Field" TARGET="contents">UnmanagedType.U1 Field</A><BR>
 <A HREF="#UnmanagedType.U2%20Field" TARGET="contents">UnmanagedType.U2 Field</A><BR>
 <A HREF="#UnmanagedType.U4%20Field" TARGET="contents">UnmanagedType.U4 Field</A><BR>
@@ -100,35 +103,6 @@ UnmanagedType Fields<P>
  is denoted by
       zero.
       <P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="UnmanagedType.html" TARGET="contents">System.Runtime.InteropServices.UnmanagedType Enum</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="UnmanagedType.ByValArray%20Field"><H3>UnmanagedType.ByValArray Field</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>ByValArray = 30;</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Specifies an array of fixed size. This unmanaged type is valid only for
-      an array in a structure.<P>
-
-When System.Runtime.InteropServices.MarshalAsAttribute.Value is set to
-<CODE>ByValArray</CODE>
-, the System.Runtime.InteropServices.MarshalAsAttribute.SizeConst field is required 
-   to contain the number of elements in the array.<P>
 
 </BLOCKQUOTE>
 
@@ -295,10 +269,10 @@ When System.Runtime.InteropServices.MarshalAsAttribute.Value is set to
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Specifies a C style array. When marshaling from 
+Specifies a C-style array. When marshaling from 
       managed to unmanaged, the length of the array is determined by the length of the
       managed array. When marshaling from unmanaged to managed, the length of the
-      array is determined from the System.Runtime.InteropServices.MarshalAsAttribute.SizeConst and the System.Runtime.InteropServices.MarshalAsAttribute.SizeParamIndex
+      array is determined from the System.Runtime.InteropServices.MarshalAsAttribute.SizeConst and System.Runtime.InteropServices.MarshalAsAttribute.SizeParamIndex
       fields. <P>
 
 </BLOCKQUOTE>
@@ -324,37 +298,6 @@ Specifies a C style array. When marshaling from
 <BLOCKQUOTE>
  Specifies a pointer to an ANSI character string.
       <P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="UnmanagedType.html" TARGET="contents">System.Runtime.InteropServices.UnmanagedType Enum</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="UnmanagedType.LPTStr%20Field"><H3>UnmanagedType.LPTStr Field</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>LPTStr = 22;</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Specifies a pointer to the preferred character
-      string representation for the current platform. <P>
-
-[<I>Note</I>: A type library exported with an
-   <CODE>LPTStr</CODE>
- on an ANSI platform will have a different
-      size than one exported on a Unicode platform.]<P>
-
-<P>
 
 </BLOCKQUOTE>
 
@@ -438,31 +381,6 @@ Specifies a C style array. When marshaling from
 
 <HR>
 
-<A NAME="UnmanagedType.Struct%20Field"><H3>UnmanagedType.Struct Field</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>Struct = 27;</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-    A C-style structure, used to marshal managed formatted classes and value
-      types.
-      <P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="UnmanagedType.html" TARGET="contents">System.Runtime.InteropServices.UnmanagedType Enum</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
 <A NAME="UnmanagedType.SysInt%20Field"><H3>UnmanagedType.SysInt Field</H3>
 
 <BLOCKQUOTE>
@@ -475,7 +393,7 @@ Specifies a C style array. When marshaling from
 
 <BLOCKQUOTE>
 
-   Specifies an implementation-sized signed integer.
+   Specifies an implementation-specific sized signed integer.
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -497,31 +415,7 @@ Specifies a C style array. When marshaling from
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Specifies an implementation-sized unsigned integer.<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="UnmanagedType.html" TARGET="contents">System.Runtime.InteropServices.UnmanagedType Enum</A>, <A HREF="InteropServices.html" TARGET="members">System.Runtime.InteropServices Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="UnmanagedType.TBStr%20Field"><H3>UnmanagedType.TBStr Field</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>TBStr = 36;</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Specifies a pointer to the preferred BSTR representation 
-      for the current platform - Unicode or SBCS.<P>
+Specifies an implementation-specific sized unsigned integer.<P>
 
 </BLOCKQUOTE>
 

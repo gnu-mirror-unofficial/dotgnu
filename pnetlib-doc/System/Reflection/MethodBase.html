@@ -35,7 +35,7 @@ Reflection
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Provides access to method and constructor metadata.<P>
+Provides information about methods and constructors.<P>
 
 </BLOCKQUOTE>
 
@@ -75,6 +75,7 @@ MethodBase Constructors<P>
 
 MethodBase Methods<P>
 
+<A HREF="#MethodBase.GetGenericArguments%20Method" TARGET="contents">MethodBase.GetGenericArguments Method</A><BR>
 <A HREF="#MethodBase.GetMethodFromHandle%20Method" TARGET="contents">MethodBase.GetMethodFromHandle Method</A><BR>
 <A HREF="#MethodBase.GetParameters%20Method" TARGET="contents">MethodBase.GetParameters Method</A><BR>
 <A HREF="#MethodBase.Invoke%28System.Object%2C%20System.Reflection.BindingFlags%2C%20System.Reflection.Binder%2C%20System.Object%5B%5D%2C%20System.Globalization.CultureInfo%29%20Method" TARGET="contents">MethodBase.Invoke(System.Object, System.Reflection.BindingFlags, System.Reflection.Binder, System.Object[], System.Globalization.CultureInfo) Method</A><BR>
@@ -84,6 +85,9 @@ MethodBase Methods<P>
 MethodBase Properties<P>
 
 <A HREF="#MethodBase.Attributes%20Property" TARGET="contents">MethodBase.Attributes Property</A><BR>
+<A HREF="#MethodBase.ContainsGenericParameters%20Property" TARGET="contents">MethodBase.ContainsGenericParameters Property</A><BR>
+<A HREF="#MethodBase.IsGenericMethod%20Property" TARGET="contents">MethodBase.IsGenericMethod Property</A><BR>
+<A HREF="#MethodBase.IsGenericMethodDefinition%20Property" TARGET="contents">MethodBase.IsGenericMethodDefinition Property</A><BR>
 </BLOCKQUOTE>
 
 <HR>
@@ -101,6 +105,71 @@ MethodBase Properties<P>
 <BLOCKQUOTE>
 Constructs a new instance of the <A HREF="MethodBase.html" TARGET="contents">MethodBase</A>
 class.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MethodBase.html" TARGET="contents">System.Reflection.MethodBase Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="MethodBase.GetGenericArguments%20Method"><H3>MethodBase.GetGenericArguments Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual Type[] GetGenericArguments()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns an array of <A HREF="../../System/Type.html" TARGET="contents">Type</A> objects that represent the type arguments of a generic method or the type parameters of a generic method definition.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An array of <A HREF="../../System/Type.html" TARGET="contents">Type</A> objects that represent the type arguments of a generic method or the type parameters of a generic method definition. Returns an empty array if the current method is not a generic method.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>Default behavior when not overridden in a derived class.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The default behavior, when not overridden in a derived class, is to throw <A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A>. In other words, derived classes do not support generics by default.<P>
+
+The elements of the returned array are in the order in which they appear in the list of type parameters for the generic method.<P>
+
+<UL>
+<LI>If the current method is a closed constructed method (that is, the System.Reflection.MethodBase.ContainsGenericParameters property returns <CODE>false</CODE>
+), the array returned by the System.Reflection.MethodBase.GetGenericArguments method contains the types that have been assigned to the generic type parameters of the generic method definition.<P>
+
+</LI>
+<LI>If the current method is a generic method definition, the array contains the type parameters. <P>
+
+</LI>
+<LI>If the current method is an open constructed method (that is, the System.Reflection.MethodBase.ContainsGenericParameters property returns <CODE>true</CODE>
+) in which specific types have been assigned to some type parameters and type parameters of enclosing generic types have been assigned to other type parameters, the array contains both types and type parameters. Use the System.Type.IsGenericParameter property to tell them apart.<P>
+
+</LI>
+</UL>
+For a list of the invariant conditions for terms specific to generic methods, see the System.Reflection.MethodInfo.IsGenericMethod  property. For a list of the invariant conditions for other terms used in generic reflection, see the System.Type.IsGenericType property.<P>
 
 </BLOCKQUOTE>
 
@@ -268,11 +337,14 @@ A <A HREF="../../System/Object.html" TARGET="contents">Object</A> that
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The types of the elements of <I>parameters</I> do not match the types of the parameters accepted by the constructor or method reflected by the current instance, under the constraints of <I>binder</I> . </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The types of the elements of <I>parameters</I> do not match the types of the parameters accepted by the constructor or method reflected by the current instance, under the constraints of the default binder.</TD></TR>
 <TR><TD><A HREF="TargetException.html" TARGET="contents">TargetException</A></TD><TD>The constructor or method reflected by the current instance is non-static, and <I>obj</I> is <CODE>null</CODE>
  or is of a type that does not implement the member reflected by the current instance.</TD></TR>
 <TR><TD><A HREF="TargetInvocationException.html" TARGET="contents">TargetInvocationException</A></TD><TD>The method reflected by the current instance threw an exception.</TD></TR>
 <TR><TD><A HREF="TargetParameterCountException.html" TARGET="contents">TargetParameterCountException</A></TD><TD><I>parameters</I>.Length does not equal the number of parameters required by the contract of the constructor or method reflected by the current instance.</TD></TR>
+<TR><TD><A HREF="../../System/MemberAccessException.html" TARGET="contents">MemberAccessException</A></TD><TD>The caller does not have permission to execute the method or constructor.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The type that declares the method is an open generic type. That is, System.Type.ContainsGenericParameters returns <CODE>true</CODE>
+ for the declaring type.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -341,11 +413,14 @@ Optional parameters can not be omitted in calls to
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The types of the elements of <I>parameters</I> do not match the types of the parameters accepted by the constructor or method reflected by the current instance, under the constraints of <I>binder</I> .</TD></TR>
-<TR><TD><A HREF="TargetException.html" TARGET="contents">TargetException</A></TD><TD>The constructor or method reflected by the current instance is non-static, and <I>obj</I> is <CODE>null</CODE>
- or is of a type that does not implement the member reflected by the current instance.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The types of the elements of <I>parameters</I> do not match the types of the parameters accepted by the constructor or method reflected by the current instance, under the constraints of  the default binder.</TD></TR>
+<TR><TD><A HREF="TargetException.html" TARGET="contents">TargetException</A></TD><TD>The constructor or method reflected by the current instance is non-static and <I>obj</I> is <CODE>null</CODE>
+, or is of a type that does not implement the member reflected by the current instance.</TD></TR>
 <TR><TD><A HREF="TargetInvocationException.html" TARGET="contents">TargetInvocationException</A></TD><TD>The constructor or method reflected by the current instance threw an exception.</TD></TR>
 <TR><TD><A HREF="TargetParameterCountException.html" TARGET="contents">TargetParameterCountException</A></TD><TD><I>parameters</I>.Length does not equal the number of parameters required by the contract of the member reflected by the current instance.</TD></TR>
+<TR><TD><A HREF="../../System/MemberAccessException.html" TARGET="contents">MemberAccessException</A></TD><TD>The caller does not have permission to execute the method or constructor.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The type that declares the method is an open generic type. That is, System.Type.ContainsGenericParameters returns <CODE>true</CODE>
+ for the declaring type.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -359,7 +434,7 @@ This version of System.Reflection.MethodBase.Invoke(System.Object,System.Object[
 <CODE>null</CODE>
 ).<P>
 
-Optional parameters can not be omitted in calls to System.Reflection.MethodBase.Invoke(System.Object,System.Object[]) .<P>
+Optional parameters cannot be omitted in calls to System.Reflection.MethodBase.Invoke(System.Object,System.Object[]) .<P>
 
 </BLOCKQUOTE>
 
@@ -497,6 +572,164 @@ Method MyPrivateStaticMethod is:<P>
 Static Not-Public HideBySig<P>
 
 </CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MethodBase.html" TARGET="contents">System.Reflection.MethodBase Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="MethodBase.ContainsGenericParameters%20Property"><H3>MethodBase.ContainsGenericParameters Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual bool ContainsGenericParameters { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a value that indicates whether a generic method contains unassigned generic type parameters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the current method  contains unassigned generic type parameters; otherwise <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The default behavior, when not overridden in a derived class, is to return <CODE>false</CODE>
+. In other words, by default, derived classes do not support generics.<P>
+
+In order to invoke a generic method, there must be no generic type definitions or open constructed types in the type arguments of the method itself, or in any enclosing types. If the System.Reflection.MethodBase.ContainsGenericParameters  property returns <CODE>true</CODE>
+, the method cannot be invoked.<P>
+
+The System.Reflection.MethodBase.ContainsGenericParameters property searches recursively for type parameters. For example, it returns <CODE>true</CODE>
+ for any method in an open type <CODE>A&lt;T&gt;</CODE>
+, even though the method itself is not generic. Contrast this with the behavior of the System.Reflection.MethodBase.IsGenericMethod property, which returns <CODE>false</CODE>
+ for such a method.<P>
+
+For a list of the invariant conditions for terms specific to generic methods, see the System.Reflection.MethodInfo.IsGenericMethod  property. For a list of the invariant conditions for other terms used in generic reflection, see the System.Type.IsGenericType property.<P>
+
+[<I>Behaviors</I>: This property is read-only.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MethodBase.html" TARGET="contents">System.Reflection.MethodBase Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="MethodBase.IsGenericMethod%20Property"><H3>MethodBase.IsGenericMethod Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual bool IsGenericMethod { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a value that indicates whether the current object is a generic method.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the current object is a generic method; otherwise <CODE>false</CODE>
+.
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The default behavior, when not overridden in a derived class, is to return <CODE>false</CODE>
+. In other words, by default, derived classes do not support generics.<P>
+
+Use this property to determine whether the current  <A HREF="MethodBase.html" TARGET="contents">MethodBase</A> object represents a generic method. Use the System.Reflection.MethodBase.ContainsGenericParameters property to determine whether the current <A HREF="MethodBase.html" TARGET="contents">MethodBase</A> object represents an open constructed method or a closed constructed method.<P>
+
+For a list of the invariant conditions for terms specific to generic methods, see the System.Reflection.MethodInfo.IsGenericMethod  property. For a list of the invariant conditions for other terms used in generic reflection, see the System.Type.IsGenericType property.<P>
+
+[<I>Behaviors</I>: This property is read-only.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="MethodBase.html" TARGET="contents">System.Reflection.MethodBase Class</A>, <A HREF="Reflection.html" TARGET="members">System.Reflection Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="MethodBase.IsGenericMethodDefinition%20Property"><H3>MethodBase.IsGenericMethodDefinition Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual bool IsGenericMethodDefinition { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a value that indicates whether the current System.Reflection.MethodBase represents a definition of a generic method.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the current <A HREF="MethodBase.html" TARGET="contents">MethodBase</A>  object represents the definition of a generic method; otherwise <CODE>false</CODE>
+.
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The default behavior, when not overridden in a derived class, is to return <CODE>false</CODE>
+. In other words, by default, derived classes do not support generics.<P>
+
+If the current <A HREF="MethodBase.html" TARGET="contents">MethodBase</A> represents a generic method definition, then:<P>
+
+<UL>
+<LI>System.Reflection.MethodBase.IsGenericMethodDefinition returns <CODE>true</CODE>
+.<P>
+
+</LI>
+<LI>For each <A HREF="../../System/Type.html" TARGET="contents">Type</A> object in the array returned by the System.Reflection.MethodBase.GetGenericArguments method: The System.Type.IsGenericParameter property returns <CODE>true</CODE>
+; the System.Type.DeclaringMethod returns the current instance; and the System.Type.GenericParameterPosition property is the same as the position of the <A HREF="../../System/Type.html" TARGET="contents">Type</A> object in the array.<P>
+
+</LI>
+</UL>
+For a list of the invariant conditions for terms specific to generic methods, see the System.Reflection.MethodInfo.IsGenericMethod  property. For a list of the invariant conditions for other terms used in generic reflection, see the System.Type.IsGenericType property.<P>
+
+[<I>Behaviors</I>: This property is read-only.<P>
+
+]<P>
+
 </BLOCKQUOTE>
 
 <H4>See Also</H4>

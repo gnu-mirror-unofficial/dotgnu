@@ -1,0 +1,264 @@
+<HTML>
+<HEAD>
+<TITLE>System.Threading.Parallel.ParallelForEach&lt;T&gt; Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Threading.Parallel.ParallelForEach&lt;T&gt; Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public sealed class ParallelForEach&lt;T&gt;: ParallelLoop&lt;T&gt;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="ParallelLoopT.html" TARGET="contents">ParallelLoop&lt;T&gt;</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;ParallelForEach&lt;T&gt;<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System.Threading.Parallel
+</BLOCKQUOTE>
+
+<H4>Library</H4>
+
+<BLOCKQUOTE>
+Parallel
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+A parallel loop over a collection containing types of T.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+
+                    A <A HREF="ParallelForEachT.html" TARGET="contents">ParallelForEach&lt;T&gt;</A> iterates over an enumerable collection.   
+                    Method System.Threading.Parallel.ParallelForEach&lt;T&gt;.BeginRun activates processing of the iterations, using a callback provided.  
+                    The collection shall not change while the <A HREF="ParallelForEachT.html" TARGET="contents">ParallelForEach&lt;T&gt;</A> is active, otherwise the behavior is undefined.  
+                    Inherited method System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRun blocks until all iterations are finished.   
+                    Inherited method System.Threading.Parallel.ParallelLoop&lt;T&gt;.Run is shorthand for System.Threading.Parallel.ParallelForEach&lt;T&gt;.BeginRun and System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRun.
+                    <P>
+
+[<I>Note</I>: <A HREF="ParallelForEachT.html" TARGET="contents">ParallelForEach&lt;T&gt;</A> is generally none-scalable in terms of parallelism, because the enumerator is inherently sequential.  
+                        If the collection allows random access, consider using class System.Threading.Parallel.ParalleFor instead. 
+                        ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ParallelForEach&lt;T&gt; Constructors<P>
+
+<A HREF="#ParallelForEach%3CT%3E%28System.IEnumerable%3CT%3E%29%20Constructor" TARGET="contents">ParallelForEach&lt;T&gt;(System.IEnumerable&lt;T&gt;) Constructor</A><BR>
+<A HREF="#ParallelForEach%3CT%3E%28System.IEnumerable%3CT%3E%2C%20int%29%20Constructor" TARGET="contents">ParallelForEach&lt;T&gt;(System.IEnumerable&lt;T&gt;, int) Constructor</A><BR>
+<P>
+
+ParallelForEach&lt;T&gt; Methods<P>
+
+<A HREF="#ParallelForEach%3CT%3E.BeginRun%20Method" TARGET="contents">ParallelForEach&lt;T&gt;.BeginRun Method</A><BR>
+<A HREF="#ParallelForEach%3CT%3E.Cancel%20Method" TARGET="contents">ParallelForEach&lt;T&gt;.Cancel Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelForEach%3CT%3E%28System.IEnumerable%3CT%3E%29%20Constructor"><H3>ParallelForEach&lt;T&gt;(System.IEnumerable&lt;T&gt;) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public ParallelForEach(IEnumerable&lt;T&gt; collection);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a <A HREF="ParallelForEachT.html" TARGET="contents">ParallelForEach&lt;T&gt;</A>
+for iterating over a collection.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>collection</DT>
+<DD>collection of values over which to iterate</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The loop does not start executing until at least method System.Threading.Parallel.ParallelForEach&lt;T&gt;.BeginRun is called and possibly not until method System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRun is called.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelForEachT.html" TARGET="contents">System.Threading.Parallel.ParallelForEach&lt;T&gt; Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelForEach%3CT%3E%28System.IEnumerable%3CT%3E%2C%20int%29%20Constructor"><H3>ParallelForEach&lt;T&gt;(System.IEnumerable&lt;T&gt;, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public ParallelForEach(IEnumerable&lt;T&gt; collection, int numThreads);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a <A HREF="ParallelForEachT.html" TARGET="contents">ParallelForEach&lt;T&gt;</A>
+for iterating over a collection.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>collection</DT>
+<DD>collection of values over which to iterate</DD>
+<DT>numThreads</DT>
+<DD>maximum number of threads to use</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The value for numThreads is negative</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The loop does not start executing until at least method System.Threading.Parallel.ParallelForEach&lt;T&gt;.BeginRun is called and possibly not until method System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRun is called.<P>
+
+If numThreads is 0, then up to System.Threading.Parallel.ParallelEnvironment.MaxThreads threads are used instead.  The value includes the thread that created the System.Threading.Parallel.ParallelFor&lt;T&gt;, hence using numThreads=1 causes sequential execution.
+							<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelForEachT.html" TARGET="contents">System.Threading.Parallel.ParallelForEach&lt;T&gt; Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelForEach%3CT%3E.BeginRun%20Method"><H3>ParallelForEach&lt;T&gt;.BeginRun Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override void BeginRun(Action&lt;T&gt; action);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Begin executing iterations.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>action</DT>
+<DD>The <A HREF="../../../System/Delegate.html" TARGET="contents">Delegate</A> that processes each work item.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>action </I>is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is not thread safe. It should be called only once for a given instance of a <A HREF="ParallelWhileT.html" TARGET="contents">ParallelWhile&lt;T&gt;</A>.<P>
+
+[<I>Note</I>: Implementations, particularly on single-threaded hardware, are free to employ the calling thread to execute all loop iterations.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelForEachT.html" TARGET="contents">System.Threading.Parallel.ParallelForEach&lt;T&gt; Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelForEach%3CT%3E.Cancel%20Method"><H3>ParallelForEach&lt;T&gt;.Cancel Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override void Cancel();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Cancel any iterations that have not yet started<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is safe to call concurrently on the same instance.<P>
+
+Does not cancel any future iterations that might be added.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelForEachT.html" TARGET="contents">System.Threading.Parallel.ParallelForEach&lt;T&gt; Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+</BODY>
+</HTML>

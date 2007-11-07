@@ -1,0 +1,153 @@
+<HTML>
+<HEAD>
+<TITLE>System.Collections.Generic.IEnumerator&lt;T&gt; Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Collections.Generic.IEnumerator&lt;T&gt; Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public interface IEnumerator&lt;T&gt;: IDisposable, IEnumerator</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+This type implements <A HREF="../../../System/IDisposable.html" TARGET="contents">IDisposable</A> and <A HREF="../../../System/Collections/IEnumerator.html" TARGET="contents">IEnumerator</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Library</H4>
+
+<BLOCKQUOTE>
+BCL
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented by generic classes that support a simple iteration over a collection.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Enumerators can be used to read the data in the collection, but they cannot be used to modify the underlying collection.<P>
+
+Initially, the enumerator is positioned before the first element in the collection. At this position, callingSystem.Collections.Generic.IEnumerator&lt;T&gt;.Current  is unspecified. Therefore, you must call System.Collections.IEnumerator.MoveNext   to advance the enumerator to the first element of the collection before reading the value of System.Collections.Generic.IEnumerator&lt;T&gt;.Current.<P>
+
+System.Collections.Generic.IEnumerator&lt;T&gt;.Current returns the same object until System.Collections.IEnumerator.MoveNext  is called. System.Collections.IEnumerator.MoveNext sets System.Collections.Generic.IEnumerator&lt;T&gt;.Current to the next element.<P>
+
+ If System.Collections.IEnumerator.MoveNext passes the end of the collection, the enumerator is positioned after the last element in the collection and  System.Collections.IEnumerator.MoveNext returns false. When the enumerator is at this position, subsequent calls to System.Collections.IEnumerator.MoveNext also return false. If the last call to System.Collections.IEnumerator.MoveNext returned false, calling System.Collections.Generic.IEnumerator&lt;T&gt;.Current is unspecified. You cannot set System.Collections.Generic.IEnumerator&lt;T&gt;.Current to the first element of the collection again; you must create a new enumerator instance instead.<P>
+
+An enumerator remains valid as long as the collection remains unchanged and the enumerator is not disposed. If changes are made to the collection, such as adding, modifying, or deleting elements, the enumerator is irrecoverably invalidated and its behavior is unspecified.   <P>
+
+The enumerator does not have exclusive access to the collection; therefore, enumerating through a collection is intrinsically not a thread-safe procedure. To guarantee thread safety during enumeration, you can lock the collection during the entire enumeration. To allow the collection to be accessed by multiple threads for reading and writing, you must implement your own synchronization.<P>
+
+Default implementations of collections in  System.Collections.Generic are not synchronized.   <P>
+
+[Note: Implementing this interface requires implementing the non-generic interface <A HREF="../../../System/Collections/IEnumerator.html" TARGET="contents">IEnumerator</A>.  The methods <CODE>MoveNext</CODE>
+, <CODE>Reset</CODE>
+ and <CODE>Dispose</CODE>
+ do not depend on the type parameter <CODE>T </CODE>
+, and appear only on the non-generic interface <A HREF="../../../System/Collections/IEnumerator.html" TARGET="contents">IEnumerator</A>.  The property <CODE>Current </CODE>
+ appears on both interfaces, but with different return types.  Implementations should provide the non-generic <CODE>Current </CODE>
+ property as an explicit interface member implementation.  This allows any consumer of the non-generic interface to consume the generic interface.]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IEnumerator&lt;T&gt; Properties<P>
+
+<A HREF="#IEnumerator%3CT%3E.Current%20Property" TARGET="contents">IEnumerator&lt;T&gt;.Current Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IEnumerator%3CT%3E.Current%20Property"><H3>IEnumerator&lt;T&gt;.Current Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>T Current { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the element in the collection over which the current instance is positioned.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ The element in the collection over which the current instance is positioned.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD>An unspecified exception type</TD><TD>If System.Collections.IEnumerator.MoveNext  is not called before the first call to System.Collections.Generic.IEnumerator&lt;T&gt;.Current.<P>
+
+-or-<P>
+
+If the previous call to System.Collections.IEnumerator.MoveNext  returned <CODE>false</CODE>
+  , indicating the end of the collection.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.Collections.Generic.IEnumerator&lt;T&gt;.Current is unspecified after any of the following conditions:<P>
+
+<UL>
+<LI>The enumerator is positioned before the first element in the collection, immediately after the enumerator is created. System.Collections.IEnumerator.MoveNext must be called to advance the enumerator to the first element of the collection before reading the value of System.Collections.Generic.IEnumerator&lt;T&gt;.Current.<P>
+
+</LI>
+<LI>The last call to System.Collections.IEnumerator.MoveNext  returned <CODE>false</CODE>
+, which indicates the end of the collection.<P>
+
+</LI>
+<LI>The enumerator is invalidated due to changes made in the collection, such as adding, repositioning, or deleting elements. </LI>
+<LI>If it has been disposed.</LI>
+</UL>
+If System.Collections.Generic.IEnumerator&lt;T&gt;.Current is accessed when its value is unspecified, an exception of unspecified type can be, but need not be, thrown.<P>
+
+System.Collections.Generic.IEnumerator&lt;T&gt;.Current returns the same object until System.Collections.IEnumerator.MoveNext  is called. System.Collections.IEnumerator.MoveNext sets System.Collections.Generic.IEnumerator&lt;T&gt;.Current  to the next element.<P>
+
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IEnumeratorT.html" TARGET="contents">System.Collections.Generic.IEnumerator&lt;T&gt; Interface</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+</BODY>
+</HTML>

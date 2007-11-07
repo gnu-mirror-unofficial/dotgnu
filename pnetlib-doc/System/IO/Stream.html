@@ -95,9 +95,7 @@ Some stream implementations perform local buffering of the underlying data to
 
 Calling System.IO.Stream.Close on a <A HREF="Stream.html" TARGET="contents">Stream</A> flushes any
 buffered data, essentially calling System.IO.Stream.Flush for you. System.IO.Stream.Close also releases operating system resources such as file handles, network
-connections, or memory used for any internal buffering.
-The System.IO.BufferedStream class provides the capability of wrapping a buffered
-stream around another stream in order to improve read and write performance.<P>
+connections, or memory used for any internal buffering.<P>
 
 If you need a <A HREF="Stream.html" TARGET="contents">Stream</A> with no backing store (i.e., a bit bucket), use
 System.IO.Stream.Null 
@@ -225,8 +223,9 @@ A <A HREF="../../System/IAsyncResult.html" TARGET="contents">IAsyncResult</A> th
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current <A HREF="Stream.html" TARGET="contents">Stream</A> does not support reading.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The stream is closed.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -252,7 +251,7 @@ If the
       asynchronous read or write is issued, not
       when the I/O operation completes.<P>
 
- Multiple simultaneous asynchronous requests render the request completion order uncertain.<P>
+ Multiple simultaneous asynchronous requests render the request completion order unspecified.<P>
 
 The <I>state</I> parameter can be any object that the caller wishes to have
    available for the duration of the asynchronous operation. This object is
@@ -328,6 +327,7 @@ that represents the asynchronous write, which could still be pending.<P>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current <A HREF="Stream.html" TARGET="contents">Stream</A> does not support writing.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The stream is closed.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -404,9 +404,7 @@ determine whether the current instance supports writing.<P>
 <H4>Description</H4>
 
 <BLOCKQUOTE>
- Following a call to this method, other operations
-      on the stream might throw exceptions. If the stream is already closed, a call
-      to System.IO.Stream.Close throws no exceptions.<P>
+Following a call to this method, a call to another operation on the same stream might result in an exception (such as <A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A>, for example). However, if the stream is already closed, a call  to System.IO.Stream.Close throws no exceptions.<P>
 
 [<I>Note</I>: If this method
       
@@ -506,8 +504,7 @@ Ends a pending asynchronous read request.<P>
 
 <BLOCKQUOTE>
  A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that indicates the number of bytes read from the stream, 
-   between 0 and the number of bytes specified via the System.IO.Stream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)<I>count</I> 
-parameter. Streams only return
+   between 0 and the number of bytes specified via the System.IO.Stream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object) parameter <I>count</I>. Streams only return
 0 at the end of the stream, otherwise, they block until at
 least 1 byte is available.<P>
 
@@ -619,7 +616,8 @@ System.IO.Stream.EndWrite(System.IAsyncResult) is required to be called exactly 
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurs, such as the file being already closed.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurs.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The stream is closed.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -676,7 +674,7 @@ System.IO.Stream.EndWrite(System.IAsyncResult) is required to be called exactly 
 <BLOCKQUOTE>
 <DL>
 <DT>buffer</DT>
-<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array. When this method returns, the elements between <I>offset</I> and <I>(offset + count)</I> are replaced by the bytes read from the current source.</DD>
+<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array. When this method returns, the elements between <I>offset</I> and <I>(offset + count - 1)</I> are replaced by the bytes read from the current source.</DD>
 <DT>offset</DT>
 <DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the zero based byte offset in <I>buffer </I> at which to begin storing the data read from the current stream.</DD>
 <DT>count</DT>
@@ -698,12 +696,13 @@ System.IO.Stream.EndWrite(System.IAsyncResult) is required to be called exactly 
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>(<I>offset</I> + <I>count</I> ) is greater than the length of <I>buffer</I>.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>(<I>offset</I> + <I>count</I> - 1) is greater than the length of <I>buffer</I>.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset</I> or <I>count</I> is less than zero.</TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current stream does not support reading.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The stream is closed.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -760,8 +759,9 @@ The unsigned byte cast to a <A HREF="../../System/Int32.html" TARGET="contents">
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The stream is closed.</TD></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The stream does not support reading.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The stream is closed. </TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error has occurred.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -798,7 +798,7 @@ The unsigned byte cast to a <A HREF="../../System/Int32.html" TARGET="contents">
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Sets the position within the current stream.<P>
+Changes the position within the current stream by the given offset, which is relative to the stated origin.<P>
 
 </BLOCKQUOTE>
 
@@ -826,7 +826,7 @@ A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> that specifies t
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The stream does not support seeking, such as if the stream is constructed from a pipe or console output.</TD></TR>
-<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current <A HREF="Stream.html" TARGET="contents">Stream</A> is closed.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The stream is closed.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error has occurred.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -847,13 +847,7 @@ specified by <I>origin </I>by the number of bytes specified by <I>offset</I>.]<P
 
 <P>
 
-[<I>Overrides</I>: If you intend to use a file as a backing store for a stream implementation,
-      you are required to override System.IO.Stream.Seek(System.Int64,System.IO.SeekOrigin) to set the System.IO.Stream.Position property one byte beyond the
-      end of the stream. Opening a new file and then writing to it requires that
-      the position be set to one byte beyond the end of the stream. The position
-      cannot be set to more than one byte beyond the end of the stream. <P>
-
-Classes derived from <A HREF="Stream.html" TARGET="contents">Stream</A> that
+[<I>Overrides</I>: Classes derived from <A HREF="Stream.html" TARGET="contents">Stream</A> that
    support seeking are required to override this method. <P>
 
 ]<P>
@@ -898,7 +892,7 @@ Sets the length of the current stream.<P>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The stream does not support both writing and seeking, such as if the stream is constructed from a pipe or console output.</TD></TR>
-<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current <A HREF="Stream.html" TARGET="contents">Stream</A> is closed.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The stream is closed.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -1003,8 +997,9 @@ Writes a
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>offset </I>or <I>count</I> is negative.</TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The stream does not support writing.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The stream is closed.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1062,8 +1057,9 @@ Writes a <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> to the curr
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The stream is closed.</TD></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The stream does not support writing.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The stream is closed.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error has occurred.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1292,6 +1288,7 @@ A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> value representi
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The stream does not support seeking.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The stream is closed.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1346,8 +1343,9 @@ A <A HREF="../../System/Int64.html" TARGET="contents">Int64</A> that specifies t
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error has occurred, such as the stream being closed.</TD></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The stream does not support seeking.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The stream is closed. </TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error has occurred.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1362,13 +1360,6 @@ The stream is required to support seeking to get or set the
 
 Classes that derive from <A HREF="Stream.html" TARGET="contents">Stream</A> are required to provide an implementation of
    this property. <P>
-
-[<I>Note</I>: If you intend to use a file as a backing store for a stream implementation,
-      opening a new file and then writing to it requires that the position be set to
-      just beyond the last byte so you can append to the file. The position cannot be
-      set more than one byte beyond the end of the stream. <P>
-
-]<P>
 
 [<I>Behaviors</I>: As described
    above.]<P>

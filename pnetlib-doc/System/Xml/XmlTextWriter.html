@@ -125,8 +125,8 @@ The output is<P>
 
 XmlTextWriter Constructors<P>
 
-<A HREF="#XmlTextWriter%28System.IO.Stream%2C%20System.Text.Encoding%29%20Constructor" TARGET="contents">XmlTextWriter(System.IO.Stream, System.Text.Encoding) Constructor</A><BR>
 <A HREF="#XmlTextWriter%28System.String%2C%20System.Text.Encoding%29%20Constructor" TARGET="contents">XmlTextWriter(System.String, System.Text.Encoding) Constructor</A><BR>
+<A HREF="#XmlTextWriter%28System.IO.Stream%2C%20System.Text.Encoding%29%20Constructor" TARGET="contents">XmlTextWriter(System.IO.Stream, System.Text.Encoding) Constructor</A><BR>
 <A HREF="#XmlTextWriter%28System.IO.TextWriter%29%20Constructor" TARGET="contents">XmlTextWriter(System.IO.TextWriter) Constructor</A><BR>
 <P>
 
@@ -151,11 +151,11 @@ XmlTextWriter Methods<P>
 <A HREF="#XmlTextWriter.WriteNmToken%20Method" TARGET="contents">XmlTextWriter.WriteNmToken Method</A><BR>
 <A HREF="#XmlTextWriter.WriteProcessingInstruction%20Method" TARGET="contents">XmlTextWriter.WriteProcessingInstruction Method</A><BR>
 <A HREF="#XmlTextWriter.WriteQualifiedName%20Method" TARGET="contents">XmlTextWriter.WriteQualifiedName Method</A><BR>
-<A HREF="#XmlTextWriter.WriteRaw%28System.String%29%20Method" TARGET="contents">XmlTextWriter.WriteRaw(System.String) Method</A><BR>
 <A HREF="#XmlTextWriter.WriteRaw%28char%5B%5D%2C%20int%2C%20int%29%20Method" TARGET="contents">XmlTextWriter.WriteRaw(char[], int, int) Method</A><BR>
+<A HREF="#XmlTextWriter.WriteRaw%28System.String%29%20Method" TARGET="contents">XmlTextWriter.WriteRaw(System.String) Method</A><BR>
 <A HREF="#XmlTextWriter.WriteStartAttribute%20Method" TARGET="contents">XmlTextWriter.WriteStartAttribute Method</A><BR>
-<A HREF="#XmlTextWriter.WriteStartDocument%28bool%29%20Method" TARGET="contents">XmlTextWriter.WriteStartDocument(bool) Method</A><BR>
 <A HREF="#XmlTextWriter.WriteStartDocument%28%29%20Method" TARGET="contents">XmlTextWriter.WriteStartDocument() Method</A><BR>
+<A HREF="#XmlTextWriter.WriteStartDocument%28bool%29%20Method" TARGET="contents">XmlTextWriter.WriteStartDocument(bool) Method</A><BR>
 <A HREF="#XmlTextWriter.WriteStartElement%20Method" TARGET="contents">XmlTextWriter.WriteStartElement Method</A><BR>
 <A HREF="#XmlTextWriter.WriteString%20Method" TARGET="contents">XmlTextWriter.WriteString Method</A><BR>
 <A HREF="#XmlTextWriter.WriteSurrogateCharEntity%20Method" TARGET="contents">XmlTextWriter.WriteSurrogateCharEntity Method</A><BR>
@@ -173,6 +173,92 @@ XmlTextWriter Properties<P>
 <A HREF="#XmlTextWriter.WriteState%20Property" TARGET="contents">XmlTextWriter.WriteState Property</A><BR>
 <A HREF="#XmlTextWriter.XmlLang%20Property" TARGET="contents">XmlTextWriter.XmlLang Property</A><BR>
 <A HREF="#XmlTextWriter.XmlSpace%20Property" TARGET="contents">XmlTextWriter.XmlSpace Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="XmlTextWriter%28System.String%2C%20System.Text.Encoding%29%20Constructor"><H3>XmlTextWriter(System.String, System.Text.Encoding) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public XmlTextWriter(string filename, Encoding encoding);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="XmlTextWriter.html" TARGET="contents">XmlTextWriter</A> class using the
+   specified
+   file.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>filename</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the path and name of the file to write to.</DD>
+<DT> encoding</DT>
+<DD>The <A HREF="../../System/Text/Encoding.html" TARGET="contents">Encoding</A> to generate, or <CODE>null</CODE>
+.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>filename</I> is System.String.Empty, contains only white space, or contains one or more implementation-specific invalid characters.<P>
+
+-or-<P>
+
+The encoding is not supported.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>filename</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/IO/DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory path specified in <I>filename</I> does not exist.</TD></TR>
+<TR><TD><A HREF="../../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD><I>filename</I> includes an invalid syntax for the path or file name.</TD></TR>
+<TR><TD><A HREF="../../System/IO/PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The specified path, file name, or both exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permissions.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>Write access is not permitted by the operating system for the path specified in <I>filename</I>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ If <I>filename</I> exists, it is truncated and overwritten with the new
+   content.<P>
+
+If <I>encoding</I> is <CODE>null</CODE>
+, the file is written as UTF-8
+and the encoding attribute is omitted from the processing instruction.<P>
+
+The following properties are initialized to the specified values:<P>
+
+System.Xml.XmlTextWriter.Formatting to System.Xml.Formatting.None.<P>
+
+System.Xml.XmlTextWriter.Indentation to 2.<P>
+
+System.Xml.XmlTextWriter.IndentChar to the space character.<P>
+
+System.Xml.XmlTextWriter.Namespaces to <CODE>true</CODE>
+.<P>
+
+System.Xml.XmlTextWriter.QuoteChar to the double quote character.<P>
+
+System.Xml.XmlTextWriter.WriteState to System.Xml.WriteState.Start.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlTextWriter.html" TARGET="contents">System.Xml.XmlTextWriter Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
 </BLOCKQUOTE>
 
 <HR>
@@ -233,92 +319,6 @@ The encoding is not supported.<P>
 
 The following properties are initialized to the
    specified values:<P>
-
-System.Xml.XmlTextWriter.Formatting to System.Xml.Formatting.None.<P>
-
-System.Xml.XmlTextWriter.Indentation to 2.<P>
-
-System.Xml.XmlTextWriter.IndentChar to the space character.<P>
-
-System.Xml.XmlTextWriter.Namespaces to <CODE>true</CODE>
-.<P>
-
-System.Xml.XmlTextWriter.QuoteChar to the double quote character.<P>
-
-System.Xml.XmlTextWriter.WriteState to System.Xml.WriteState.Start.<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="XmlTextWriter.html" TARGET="contents">System.Xml.XmlTextWriter Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="XmlTextWriter%28System.String%2C%20System.Text.Encoding%29%20Constructor"><H3>XmlTextWriter(System.String, System.Text.Encoding) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public XmlTextWriter(string filename, Encoding encoding);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Constructs and initializes a new instance of the <A HREF="XmlTextWriter.html" TARGET="contents">XmlTextWriter</A> class using the
-   specified
-   file.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>filename</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the path and name of the file to write to.</DD>
-<DT> encoding</DT>
-<DD>The <A HREF="../../System/Text/Encoding.html" TARGET="contents">Encoding</A> to generate, or <CODE>null</CODE>
-.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>filename</I> is System.String.Empty, contains only white space, or contains one or more implementation-defined invalid characters.<P>
-
--or-<P>
-
-The encoding is not supported.<P>
-
-</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>filename</I> is <CODE>null</CODE>
-.</TD></TR>
-<TR><TD><A HREF="../../System/IO/DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory path specified in <I>filename</I> does not exist.</TD></TR>
-<TR><TD><A HREF="../../System/IO/IOException.html" TARGET="contents">IOException</A></TD><TD><I>filename</I> includes an invalid syntax for the path or file name.</TD></TR>
-<TR><TD><A HREF="../../System/IO/PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The specified path, file name, or both exceeds the system-defined maximum length.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permissions.</TD></TR>
-<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>Write access is not permitted by the operating system for the path specified in <I>filename</I>.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
- If <I>filename</I> exists, it is truncated and overwritten with the new
-   content.<P>
-
-If <I>encoding</I> is <CODE>null</CODE>
-, the file is written as UTF-8
-and the encoding attribute is omitted from the processing instruction.<P>
-
-The following properties are initialized to the specified values:<P>
 
 System.Xml.XmlTextWriter.Formatting to System.Xml.Formatting.None.<P>
 
@@ -1007,7 +1007,7 @@ method.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The System.Xml.XmlTextWriter.WriteState is System.Xml.WriteState.Closed.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The System.Xml.XmlTextWriter.WriteState is notSystem.Xml.WriteState.Attribute.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1055,7 +1055,7 @@ This method overrides System.Xml.XmlWriter.WriteEndAttribute.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>The current instance is in the wrong <A HREF="WriteState.html" TARGET="contents">WriteState</A>, or the document does not have a root element.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is in the wrong <A HREF="WriteState.html" TARGET="contents">WriteState</A>, or the document does not have a root element.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1451,9 +1451,12 @@ System.Xml.XmlTextWriter.Namespaces is <CODE>false</CODE>
 , and <I>ns</I> is neither <CODE>null</CODE>
  nor System.String.Empty .<P>
 
+-or-<P>
+
+<I>localName</I> is not a valid XML name.<P>
+
 </TD></TR>
 <TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The System.Xml.XmlTextWriter.WriteState is System.Xml.WriteState.Closed.</TD></TR>
-<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD><I>localName</I> is not a valid XML name.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1473,61 +1476,6 @@ is valid according to the W3C Namespaces in XML recommendation
 (http://www.w3.org/TR/REC-xml-names).<P>
 
 [<I>Note</I>: This method overrides System.Xml.XmlWriter.WriteQualifiedName(System.String,System.String).<P>
-
-]<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="XmlTextWriter.html" TARGET="contents">System.Xml.XmlTextWriter Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="XmlTextWriter.WriteRaw%28System.String%29%20Method"><H3>XmlTextWriter.WriteRaw(System.String) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public override void WriteRaw(string data);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Writes raw text from a string.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>data</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the text to write.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The System.Xml.XmlTextWriter.WriteState is System.Xml.WriteState.Closed.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-If <I>data</I> is <CODE>null</CODE>
-, System.String.Empty is written.<P>
-
- This method does not encode any characters.<P>
-
-[<I>Note</I>: This method overrides System.Xml.XmlWriter.WriteRaw(System.Char[],System.Int32,System.Int32).<P>
 
 ]<P>
 
@@ -1608,6 +1556,61 @@ The buffer length minus <I>index</I> is less than <I>count</I>.<P>
 
 <HR>
 
+<A NAME="XmlTextWriter.WriteRaw%28System.String%29%20Method"><H3>XmlTextWriter.WriteRaw(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override void WriteRaw(string data);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes raw text from a string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>data</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> specifying the text to write.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The System.Xml.XmlTextWriter.WriteState is System.Xml.WriteState.Closed.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If <I>data</I> is <CODE>null</CODE>
+, System.String.Empty is written.<P>
+
+ This method does not encode any characters.<P>
+
+[<I>Note</I>: This method overrides System.Xml.XmlWriter.WriteRaw(System.Char[],System.Int32,System.Int32).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlTextWriter.html" TARGET="contents">System.Xml.XmlTextWriter Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
 <A NAME="XmlTextWriter.WriteStartAttribute%20Method"><H3>XmlTextWriter.WriteStartAttribute Method</H3>
 
 <BLOCKQUOTE>
@@ -1644,8 +1647,8 @@ Writes the start of an attribute with the specified prefix
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>System.Xml.XmlTextWriter.Namespaces is <CODE>false</CODE>
  for the writer, and <I>prefix</I> and <I>ns</I> are not both <CODE>null</CODE>
-.</TD></TR>
-<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The System.Xml.XmlTextWriter.WriteState is System.Xml.WriteState.Closed.</TD></TR>
+ or System.String.Empty.</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The System.Xml.XmlTextWriter.WriteState is not one of the following: System.Xml.WriteState.Attribute or System.Xml.WriteState.Element.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1656,6 +1659,65 @@ If any of the input parameters are <CODE>null</CODE>
  or System.String.Empty, the start attribute is written with that parameter missing.<P>
 
 [<I>Note</I>: This method overrides System.Xml.XmlWriter.WriteStartAttribute(System.String,System.String).<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="XmlTextWriter.html" TARGET="contents">System.Xml.XmlTextWriter Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="XmlTextWriter.WriteStartDocument%28%29%20Method"><H3>XmlTextWriter.WriteStartDocument() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override void WriteStartDocument();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes the XML declaration with the version &quot;1.0&quot; and no
+      standalone attribute.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The System.Xml.XmlTextWriter.WriteState is not System.Xml.WriteState.Start.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: When <A HREF="XmlTextWriter.html" TARGET="contents">XmlTextWriter</A> is instantiated, the System.Xml.XmlTextWriter.WriteState is set to System.Xml.WriteState.Start. All the &quot;write&quot; methods change the
+   System.Xml.XmlTextWriter.WriteState to a value other than <CODE>Start</CODE>
+. Thus,
+      if this method is not the first &quot;write&quot; method called, a <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>
+      
+      is thrown.<P>
+
+If System.Xml.XmlTextWriter.WriteStartDocument has been called and then the
+System.Xml.XmlTextWriter.WriteProcessingInstruction(System.String,System.String) method is
+   used to create another XML declaration, a <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A> will be thrown.<P>
+
+ The output of this method using an encoding equal to System.Text.Encoding.Unicode and the default System.Xml.XmlTextWriter.QuoteChar is<P>
+
+<CODE>&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;</CODE><P>
+
+Character encoding is set when the writer is instantiated.<P>
+
+This method overrides System.Xml.XmlWriter.WriteStartDocument.<P>
 
 ]<P>
 
@@ -1724,65 +1786,6 @@ equal to <CODE>true</CODE>
 , an encoding equal to System.Text.Encoding.Unicode, and using the default System.Xml.XmlTextWriter.QuoteChar is:<P>
 
 <CODE>&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot; standalone=&quot;yes&quot;?&gt;</CODE><P>
-
-Character encoding is set when the writer is instantiated.<P>
-
-This method overrides System.Xml.XmlWriter.WriteStartDocument.<P>
-
-]<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="XmlTextWriter.html" TARGET="contents">System.Xml.XmlTextWriter Class</A>, <A HREF="Xml.html" TARGET="members">System.Xml Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="XmlTextWriter.WriteStartDocument%28%29%20Method"><H3>XmlTextWriter.WriteStartDocument() Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public override void WriteStartDocument();</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Writes the XML declaration with the version &quot;1.0&quot; and no
-      standalone attribute.<P>
-
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The System.Xml.XmlTextWriter.WriteState is not System.Xml.WriteState.Start.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-[<I>Note</I>: When <A HREF="XmlTextWriter.html" TARGET="contents">XmlTextWriter</A> is instantiated, the System.Xml.XmlTextWriter.WriteState is set to System.Xml.WriteState.Start. All the &quot;write&quot; methods change the
-   System.Xml.XmlTextWriter.WriteState to a value other than <CODE>Start</CODE>
-. Thus,
-      if this method is not the first &quot;write&quot; method called, a <A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>
-      
-      is thrown.<P>
-
-If System.Xml.XmlTextWriter.WriteStartDocument has been called and then the
-System.Xml.XmlTextWriter.WriteProcessingInstruction(System.String,System.String) method is
-   used to create another XML declaration, a <A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A> will be thrown.<P>
-
- The output of this method using an encoding equal to System.Text.Encoding.Unicode and the default System.Xml.XmlTextWriter.QuoteChar is<P>
-
-<CODE>&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;</CODE><P>
 
 Character encoding is set when the writer is instantiated.<P>
 
@@ -2053,7 +2056,7 @@ The surrogate character entity is written in hexadecimal format. The range
 
 [<I>Note</I>: For both HTML and XML, the document character set (and therefore the notation
          of numeric character references) is based on UCS [ISO-10646]. A single numeric
-         character reference in a source document may therefore in some cases correspond
+         character reference in a source document might therefore in some cases correspond
          to two 16-bit units in a string (a high surrogate and a low surrogate). These
          16-bit units are referred to as a surrogate pair.<P>
 

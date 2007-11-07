@@ -87,9 +87,9 @@ File Methods<P>
 <A HREF="#File.GetLastAccessTime%20Method" TARGET="contents">File.GetLastAccessTime Method</A><BR>
 <A HREF="#File.GetLastWriteTime%20Method" TARGET="contents">File.GetLastWriteTime Method</A><BR>
 <A HREF="#File.Move%20Method" TARGET="contents">File.Move Method</A><BR>
-<A HREF="#File.Open%28System.String%2C%20System.IO.FileMode%29%20Method" TARGET="contents">File.Open(System.String, System.IO.FileMode) Method</A><BR>
-<A HREF="#File.Open%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%29%20Method" TARGET="contents">File.Open(System.String, System.IO.FileMode, System.IO.FileAccess) Method</A><BR>
 <A HREF="#File.Open%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%2C%20System.IO.FileShare%29%20Method" TARGET="contents">File.Open(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare) Method</A><BR>
+<A HREF="#File.Open%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%29%20Method" TARGET="contents">File.Open(System.String, System.IO.FileMode, System.IO.FileAccess) Method</A><BR>
+<A HREF="#File.Open%28System.String%2C%20System.IO.FileMode%29%20Method" TARGET="contents">File.Open(System.String, System.IO.FileMode) Method</A><BR>
 <A HREF="#File.OpenRead%20Method" TARGET="contents">File.OpenRead Method</A><BR>
 <A HREF="#File.OpenText%20Method" TARGET="contents">File.OpenText Method</A><BR>
 <A HREF="#File.OpenWrite%20Method" TARGET="contents">File.OpenWrite Method</A><BR>
@@ -137,13 +137,14 @@ A <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> that appends UT
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more invalid characters.</TD></TR>
-<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
-<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD>System.IO.Exception</TD><TD>A general I/O exception occurred, such as trying to access a CD-ROM drive whose tray is open.</TD></TR>
+<TR><TD>System.IO.NotSupportedException</TD><TD><I>path </I> is in an implementation-specific invalid format.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the implementation-specific maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>Access is denied. The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -205,6 +206,17 @@ Copies the specified file to a new location.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>sourceFileName </I>or <I>destFileName </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters. <P>
+
+-or-<P>
+
+<I>sourceFileName </I>or <I>destFileName</I> specifies a directory.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>sourceFileName </I>or <I>destFileName </I>is <CODE>null</CODE>
+. </TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>Directory information in <I>sourceFileName</I> or <I>destFileName</I> was not found.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>sourceFileName </I> was not found.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>destFileName</I> exists.<P>
 
 -or-<P>
@@ -212,19 +224,8 @@ Copies the specified file to a new location.<P>
  An I/O error occurred.<P>
 
 </TD></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>sourceFileName </I>or <I>destFileName </I>is <CODE>null</CODE>
-. </TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>sourceFileName </I>or <I>destFileName </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters. <P>
-
--or-<P>
-
-<I>sourceFileName </I>or <I>destFileName</I> specifies a directory.<P>
-
-</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>Directory information in <I>sourceFileName</I> or <I>destFileName</I> was not found.</TD></TR>
-<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>sourceFileName </I> was not found.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length or the absolute path information for <I>sourceFileName</I> or <I>destFileName</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -286,6 +287,17 @@ as relative to the current working directory. [<I>Note</I>: To obtain the curren
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>sourceFileName</I> or <I>destFileName</I> is a zero-length string, contains only white space, or contains one or more invalid characters.<P>
+
+-or-<P>
+
+<I>sourceFileName</I> or <I>destFileName</I> specifies a directory.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>sourceFileName </I>or <I>destFileName </I>is <CODE>null</CODE>
+. </TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>Directory information in <I>destFileName</I> or <I>sourceFileName</I> was not found.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>sourceFileName </I> was not found.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>destFileName</I> is read-only (write-protected), or <I>destFileName</I> exists and <I>overwrite</I> is <CODE>false</CODE>
  .<P>
 
@@ -294,19 +306,8 @@ as relative to the current working directory. [<I>Note</I>: To obtain the curren
  An I/O error occurred.<P>
 
 </TD></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>sourceFileName </I>or <I>destFileName </I>is <CODE>null</CODE>
-. </TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>sourceFileName</I> or <I>destFileName</I> is a zero-length string, contains only white space, or contains one or more invalid characters.<P>
-
--or-<P>
-
-<I>sourceFileName</I> or <I>destFileName</I> specifies a directory.<P>
-
-</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>Directory information in <I>destFileName</I> or <I>sourceFileName</I> was not found.</TD></TR>
-<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>sourceFileName </I> was not found.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length or the absolute path information for <I>sourceFileName</I> or <I>destFileName</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -367,25 +368,22 @@ A <A HREF="FileStream.html" TARGET="contents">FileStream</A> that provides read/
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.<P>
-
-</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a file that is read-only (write-protected).</TD></TR>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while creating the file.</TD></TR>
-<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a file that is read-only (write-protected).</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
- This method is equivalent to System.IO.File.Create(System.String) (<I>path</I>, System.IO.FileStream.DefaultBufferSize
-).<P>
-
 If the specified file does not exist, it is created; if it does exist and it is not read-only, the
    contents are overwritten.<P>
 
@@ -445,16 +443,16 @@ A <A HREF="FileStream.html" TARGET="contents">FileStream</A> that provides read/
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.<P>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.<P>
 
 </TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a file that is read-only (write-protected).</TD></TR>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while creating the file.</TD></TR>
-<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a file that is read-only (write-protected).</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -498,7 +496,7 @@ working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Creates or opens a new file for writing UTF-8 encoded text.<P>
+Creates or opens a file for writing UTF-8 encoded text.<P>
 
 </BLOCKQUOTE>
 
@@ -523,12 +521,14 @@ A <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> that writes to 
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
-<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD>System.IO.Exception</TD><TD>A general I/O exception occurred, such as trying to access a CD-ROM drive whose tray is open.</TD></TR>
+<TR><TD>System.IO.NotSupportedException</TD><TD><I>path</I> is in an implementation-specific invalid format.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the implementation-specific maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>Access is denied. The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -586,14 +586,19 @@ Deletes the specified file.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>is <CODE>null</CODE>
 .</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> identifies a directory.<P>
+
+-or-<P>
+
+<I>path</I> specifies a file that is read-only.<P>
+
+</TD></TR>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The specified file is in use.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> identifies a directory.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -605,6 +610,10 @@ argument is permitted to specify relative or absolute path
 information. Relative path information is interpreted as relative to the current
 working directory. [<I>Note</I>: To obtain the current
 working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+[<I>Note</I>: Some implementations might throw <A HREF="IOException.html" TARGET="contents">IOException</A> to cover such implementation-specific conditions as &quot;file in use&quot;.]<P>
 
 <P>
 
@@ -718,12 +727,12 @@ Platforms that do not
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -786,12 +795,12 @@ Platforms that do not
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -854,12 +863,12 @@ Platforms that do not
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -913,16 +922,16 @@ The <I>path</I> argument is permitted to specify
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The destination file is read-only or <I>destFileName</I> is a directory.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>sourceFileName </I>or <I>destFileName </I>is <CODE>null</CODE>
-. </TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>sourceFileName </I>or <I>destFileName </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters. <P>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>sourceFileName </I>or <I>destFileName </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters. <P>
 
 </TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>sourceFileName </I>or <I>destFileName </I>is <CODE>null</CODE>
+. </TD></TR>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information in <I>sourceFileName</I> or <I>destFileName</I> was not found.</TD></TR>
 <TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>sourceFileName </I>was not found or specifies a directory.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>destFileName</I> already exists or is a directory.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length or absolute path information for <I>sourceFileName</I> or <I>destFileName</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -949,19 +958,18 @@ The <I>sourceFileName </I>and <I>destFileName</I> arguments are
 
 <HR>
 
-<A NAME="File.Open%28System.String%2C%20System.IO.FileMode%29%20Method"><H3>File.Open(System.String, System.IO.FileMode) Method</H3>
+<A NAME="File.Open%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%2C%20System.IO.FileShare%29%20Method"><H3>File.Open(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static FileStream Open(string path, FileMode mode);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static FileStream Open(string path, FileMode mode, FileAccess access, FileShare share);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Opens a <A HREF="FileStream.html" TARGET="contents">FileStream</A> on the specified file
-   with read/write access.<P>
+Opens a <A HREF="FileStream.html" TARGET="contents">FileStream</A> on the specified file.<P>
 
 </BLOCKQUOTE>
 
@@ -973,13 +981,18 @@ Opens a <A HREF="FileStream.html" TARGET="contents">FileStream</A> on the specif
 <DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file to open.</DD>
 <DT> mode</DT>
 <DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> value that specifies whether a file is created if one does not exist, and determines whether the contents of existing files are retained or overwritten.</DD>
+<DT> access</DT>
+<DD>A <A HREF="FileAccess.html" TARGET="contents">FileAccess</A> value that specifies the operations that can be performed on the file.</DD>
+<DT> share</DT>
+<DD>A <A HREF="FileShare.html" TARGET="contents">FileShare</A> value specifying the type of access other threads have to the file.</DD>
 </DL>
 </BLOCKQUOTE>
 
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="FileStream.html" TARGET="contents">FileStream</A> that provides read/write access to the specified file.<P>
+A <A HREF="FileStream.html" TARGET="contents">FileStream</A>
+that provides access to the specified file.<P>
 
 </BLOCKQUOTE>
 
@@ -988,28 +1001,28 @@ A <A HREF="FileStream.html" TARGET="contents">FileStream</A> that provides read/
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.<P>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.<P>
+
+-or-<P>
+
+<I>access</I> specified <CODE>Read</CODE>
+ and <I>mode</I> specified <CODE>Create</CODE>
+, <CODE>CreateNew</CODE>
+, <CODE>Truncate</CODE>
+ or <CODE>Append</CODE>
+.<P>
 
 </TD></TR>
-<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>mode</I> specified an invalid value.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>mode</I>, <I>access</I>, or <I>share</I> specified an invalid value.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a read-only file and <I>access</I> is not <CODE>Read</CODE>
+, or <I>path</I> specified a directory.</TD></TR>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while opening the file.</TD></TR>
-<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a read-only file (this method attempts to open the file with read/write access).<P>
-
--or-<P>
-
- This operation is not supported on the current platform.<P>
-
--or-<P>
-
-<I>path</I> specified a directory.<P>
-
-</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1017,9 +1030,7 @@ A <A HREF="FileStream.html" TARGET="contents">FileStream</A> that provides read/
 
 <BLOCKQUOTE>
  This method is equivalent to <A HREF="FileStream.html" TARGET="contents">FileStream</A> (<I>path</I>,
-<I>mode</I>, System.IO.FileAccess.ReadWrite, 
-System.IO.FileShare.None 
-).<P>
+<I>mode</I>, <I>access</I>, <I>share</I>).<P>
 
 The <I>path </I> argument is permitted to specify
 relative or absolute path information. Relative path information is interpreted
@@ -1079,8 +1090,7 @@ that provides access to the specified file.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.<P>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.<P>
 
 -or-<P>
 
@@ -1092,14 +1102,14 @@ that provides access to the specified file.<P>
 .<P>
 
 </TD></TR>
-<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>mode</I> or <I>access</I> specified an invalid value.</TD></TR>
-<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while opening the file.</TD></TR>
 <TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a read-only file and <I>access</I> is not <CODE>Read</CODE>
 , or <I>path</I> specified a directory.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>mode</I> is System.IO.FileMode.Truncate or System.IO.FileMode.Open, but the specified file was not found. If a different mode is specified and the file was not found, a new one is created.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred, such as specifying System.IO.FileMode.CreateNew when the file specified by path already exists.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -1126,18 +1136,19 @@ as relative to the current working directory. [<I>Note</I>: To obtain the curren
 
 <HR>
 
-<A NAME="File.Open%28System.String%2C%20System.IO.FileMode%2C%20System.IO.FileAccess%2C%20System.IO.FileShare%29%20Method"><H3>File.Open(System.String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare) Method</H3>
+<A NAME="File.Open%28System.String%2C%20System.IO.FileMode%29%20Method"><H3>File.Open(System.String, System.IO.FileMode) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static FileStream Open(string path, FileMode mode, FileAccess access, FileShare share);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static FileStream Open(string path, FileMode mode);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Opens a <A HREF="FileStream.html" TARGET="contents">FileStream</A> on the specified file.<P>
+Opens a <A HREF="FileStream.html" TARGET="contents">FileStream</A> on the specified file
+   with read/write access.<P>
 
 </BLOCKQUOTE>
 
@@ -1149,18 +1160,13 @@ Opens a <A HREF="FileStream.html" TARGET="contents">FileStream</A> on the specif
 <DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the file to open.</DD>
 <DT> mode</DT>
 <DD>A <A HREF="FileMode.html" TARGET="contents">FileMode</A> value that specifies whether a file is created if one does not exist, and determines whether the contents of existing files are retained or overwritten.</DD>
-<DT> access</DT>
-<DD>A <A HREF="FileAccess.html" TARGET="contents">FileAccess</A> value that specifies the operations that can be performed on the file.</DD>
-<DT> share</DT>
-<DD>A <A HREF="FileShare.html" TARGET="contents">FileShare</A> value specifying the type of access other threads have to the file.</DD>
 </DL>
 </BLOCKQUOTE>
 
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="FileStream.html" TARGET="contents">FileStream</A>
-that provides access to the specified file.<P>
+A <A HREF="FileStream.html" TARGET="contents">FileStream</A> that provides read/write access to the specified file.<P>
 
 </BLOCKQUOTE>
 
@@ -1169,28 +1175,28 @@ that provides access to the specified file.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.<P>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>mode</I> specified an invalid value.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a read-only file (this method attempts to open the file with read/write access).<P>
 
 -or-<P>
 
-<I>access</I> specified <CODE>Read</CODE>
- and <I>mode</I> specified <CODE>Create</CODE>
-, <CODE>CreateNew</CODE>
-, <CODE>Truncate</CODE>
- or <CODE>Append</CODE>
-.<P>
+ This operation is not supported on the current platform.<P>
+
+-or-<P>
+
+<I>path</I> specified a directory.<P>
 
 </TD></TR>
-<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
-.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>mode</I>, <I>access</I>, or <I>share</I> specified an invalid value.</TD></TR>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while opening the file.</TD></TR>
-<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a read-only file and <I>access</I> is not <CODE>Read</CODE>
-, or <I>path</I> specified a directory.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1198,7 +1204,9 @@ that provides access to the specified file.<P>
 
 <BLOCKQUOTE>
  This method is equivalent to <A HREF="FileStream.html" TARGET="contents">FileStream</A> (<I>path</I>,
-<I>mode</I>, <I>access</I>, <I>share</I>).<P>
+<I>mode</I>, System.IO.FileAccess.ReadWrite, 
+System.IO.FileShare.None 
+).<P>
 
 The <I>path </I> argument is permitted to specify
 relative or absolute path information. Relative path information is interpreted
@@ -1253,14 +1261,14 @@ as relative to the current working directory. [<I>Note</I>: To obtain the curren
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
-<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path </I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a directory.</TD></TR>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
-<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a read-only (write-protected) file or a directory.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path </I> was not found.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1324,13 +1332,13 @@ A <A HREF="StreamReader.html" TARGET="contents">StreamReader</A> containing the 
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
-<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1394,14 +1402,14 @@ A writable <A HREF="FileStream.html" TARGET="contents">FileStream</A> that write
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
-<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
-<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD><I>path</I> specified a read-only file or a directory.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1458,13 +1466,14 @@ Sets the creation date and time for the specified file.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>creationTime </I> specifies a value outside the range of date/times permitted for this operation.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while performing the operation.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1523,12 +1532,14 @@ Sets the date and time the specified file was last accessed.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>lastAccessTime</I> specifies a value outside the range of date/times permitted for this operation.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while performing the operation.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1587,12 +1598,14 @@ Sets the date and time a file was last written to.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>lastWriteTime</I> specifies a value outside the range of date/times permitted for this operation.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while performing the operation.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 

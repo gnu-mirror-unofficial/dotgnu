@@ -7,7 +7,7 @@
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public struct Single : IComparable, IFormattable</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public struct Single : IComparable, IFormattable, IComparable&lt;Single&gt;, IEquatable&lt;Single&gt;</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -18,7 +18,7 @@
 &nbsp;&nbsp;<A HREF="ValueType.html" TARGET="contents">ValueType</A><BR>
 &nbsp;&nbsp;&nbsp;&nbsp;Single<P>
 
-This type implements <A HREF="IComparable.html" TARGET="contents">IComparable</A> and <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>.
+This type implements <A HREF="IComparable.html" TARGET="contents">IComparable</A>, <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>, System.IComparable&lt;System.Single&gt;, and System.IEquatable&lt;System.Single&gt;.
 </BLOCKQUOTE>
 
 <H4>Assembly</H4>
@@ -121,7 +121,7 @@ Conforming implementations of the CLI are permitted to perform floating-point
    example, hardware architectures that support an &quot;extended&quot; or &quot;long double&quot;
    floating-point type with greater range and precision than the <A HREF="Single.html" TARGET="contents">Single</A> type could implicitly perform all floating-point
    operations using this higher precision type. Expressions evaluated using a
-   higher precision may cause a finite result to be produced instead of an
+   higher precision might cause a finite result to be produced instead of an
    infinity.<P>
 
 </BLOCKQUOTE>
@@ -139,8 +139,10 @@ Conforming implementations of the CLI are permitted to perform floating-point
 
 Single Methods<P>
 
-<A HREF="#Single.CompareTo%20Method" TARGET="contents">Single.CompareTo Method</A><BR>
-<A HREF="#Single.Equals%20Method" TARGET="contents">Single.Equals Method</A><BR>
+<A HREF="#Single.CompareTo%28float%29%20Method" TARGET="contents">Single.CompareTo(float) Method</A><BR>
+<A HREF="#Single.CompareTo%28System.Object%29%20Method" TARGET="contents">Single.CompareTo(System.Object) Method</A><BR>
+<A HREF="#Single.Equals%28System.Object%29%20Method" TARGET="contents">Single.Equals(System.Object) Method</A><BR>
+<A HREF="#Single.Equals%28float%29%20Method" TARGET="contents">Single.Equals(float) Method</A><BR>
 <A HREF="#Single.GetHashCode%20Method" TARGET="contents">Single.GetHashCode Method</A><BR>
 <A HREF="#Single.IsInfinity%20Method" TARGET="contents">Single.IsInfinity Method</A><BR>
 <A HREF="#Single.IsNaN%20Method" TARGET="contents">Single.IsNaN Method</A><BR>
@@ -150,8 +152,8 @@ Single Methods<P>
 <A HREF="#Single.Parse%28System.String%2C%20System.Globalization.NumberStyles%29%20Method" TARGET="contents">Single.Parse(System.String, System.Globalization.NumberStyles) Method</A><BR>
 <A HREF="#Single.Parse%28System.String%2C%20System.IFormatProvider%29%20Method" TARGET="contents">Single.Parse(System.String, System.IFormatProvider) Method</A><BR>
 <A HREF="#Single.Parse%28System.String%2C%20System.Globalization.NumberStyles%2C%20System.IFormatProvider%29%20Method" TARGET="contents">Single.Parse(System.String, System.Globalization.NumberStyles, System.IFormatProvider) Method</A><BR>
-<A HREF="#Single.ToString%28System.IFormatProvider%29%20Method" TARGET="contents">Single.ToString(System.IFormatProvider) Method</A><BR>
 <A HREF="#Single.ToString%28System.String%2C%20System.IFormatProvider%29%20Method" TARGET="contents">Single.ToString(System.String, System.IFormatProvider) Method</A><BR>
+<A HREF="#Single.ToString%28System.IFormatProvider%29%20Method" TARGET="contents">Single.ToString(System.IFormatProvider) Method</A><BR>
 <A HREF="#Single.ToString%28%29%20Method" TARGET="contents">Single.ToString() Method</A><BR>
 <A HREF="#Single.ToString%28System.String%29%20Method" TARGET="contents">Single.ToString(System.String) Method</A><BR>
 <P>
@@ -168,7 +170,84 @@ Single Fields<P>
 
 <HR>
 
-<A NAME="Single.CompareTo%20Method"><H3>Single.CompareTo Method</H3>
+<A NAME="Single.CompareTo%28float%29%20Method"><H3>Single.CompareTo(float) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int CompareTo(float value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the sort order of the current instance compared
+      to the specified <A HREF="Single.html" TARGET="contents">Single</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Single.html" TARGET="contents">Single</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the current instance as compared to <I>value</I>. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
+<TR><TD> Any
+         negative
+         number</TD><TD>Current instance &lt; <I>value</I>.<P>
+
+-or-<P>
+
+Current instance is a NaN and <I>value</I> is not a NaN.<P>
+
+</TD></TR>
+<TR><TD> Zero</TD><TD>Current instance == <I>value</I> .<P>
+
+-or-<P>
+
+Current instance and <I>value</I> are both NaN,
+   positive infinity, or negative infinity.<P>
+
+</TD></TR>
+<TR><TD> A positive number</TD><TD>Current instance &gt; <I>value</I>.<P>
+
+-or-<P>
+
+Current instance is not a NaN and <I>value</I>
+is a NaN.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support the System.IComparable&lt;Single&gt; interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Single.html" TARGET="contents">System.Single Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Single.CompareTo%28System.Object%29%20Method"><H3>Single.CompareTo(System.Object) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
@@ -196,10 +275,7 @@ Returns the sort order of the current instance compared
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
-   current instance as compared to <I>value</I>. The following table defines the
-   conditions under which the returned value is a negative number, zero, or a
-   positive number.<P>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the current instance as compared to <I>value</I>. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
@@ -207,19 +283,27 @@ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that refle
          negative
          number</TD><TD>Current instance &lt; <I>value</I>.<P>
 
+-or-<P>
+
 Current instance is a NaN and <I>value</I> is
       not a NaN and is not a null reference.<P>
 
 </TD></TR>
 <TR><TD> Zero</TD><TD>Current instance == <I>value</I> .<P>
 
+-or-<P>
+
 Current instance and <I>value</I> are both NaN,
    positive infinity, or negative infinity.<P>
 
 </TD></TR>
-<TR><TD> Any positive number</TD><TD>Current instance &gt; <I>value</I>.<P>
+<TR><TD> A positive number</TD><TD>Current instance &gt; <I>value</I>.<P>
+
+-or-<P>
 
 <I>value</I> is a null reference.<P>
+
+-or-<P>
 
 Current instance is not a NaN and <I>value</I>
 is a NaN.<P>
@@ -260,7 +344,7 @@ is a NaN.<P>
 
 <HR>
 
-<A NAME="Single.Equals%20Method"><H3>Single.Equals Method</H3>
+<A NAME="Single.Equals%28System.Object%29%20Method"><H3>Single.Equals(System.Object) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
@@ -309,6 +393,63 @@ Determines whether the current instance and the specified
 [<I>Note</I>: 
       This method overrides System.Object.Equals(System.Object).
    ]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Single.html" TARGET="contents">System.Single Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Single.Equals%28float%29%20Method"><H3>Single.Equals(float) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override bool Equals(float obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance and the specified
+   <A HREF="Single.html" TARGET="contents">Single</A> represent the same value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>obj</DT>
+<DD>The <A HREF="Single.html" TARGET="contents">Single</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>obj</I> represents the same value as the current
+   instance, otherwise <CODE>false</CODE>
+. If either <I>obj</I> or the current
+   instance is a NaN and the other is not, returns <CODE>false</CODE>
+. If
+<I>obj</I> and the current instance are both NaN, positive infinity, or negative 
+   infinity, returns <CODE>true</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support the System.IEquatable&lt;Single&gt; interface.]<P>
 
 <P>
 
@@ -616,11 +757,7 @@ Returns the specified <A HREF="String.html" TARGET="contents">String</A> convert
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-The <A HREF="Single.html" TARGET="contents">Single</A> value obtained from <I>s</I>. If the parsed value is
-   less than System.Single.MinValue, this method returns
-System.Single.NegativeInfinity . If the parsed
-   value is greater than System.Single.MaxValue, this method returns System.Single.PositiveInfinity
-   . If <I>s</I> equals
+The <A HREF="Single.html" TARGET="contents">Single</A> value obtained from <I>s</I>.  If <I>s</I> equals
 System.Globalization.NumberFormatInfo.NaNSymbol, this method returns 
 System.Single.NaN .<P>
 
@@ -633,6 +770,7 @@ System.Single.NaN .<P>
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
 <TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct style.</TD></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a value that is less than System.Single.MinValue or greater than System.Single.MaxValue.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -691,10 +829,7 @@ Returns the specified <A HREF="String.html" TARGET="contents">String</A> convert
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-The <A HREF="Single.html" TARGET="contents">Single</A> value obtained from <I>s</I>. If the parsed value is
-   less than System.Single.MinValue, this method returns
-System.Single.NegativeInfinity . If the parsed
-   value is greater than System.Single.MaxValue, this method returns System.Single.PositiveInfinity . If <I>s</I>
+The <A HREF="Single.html" TARGET="contents">Single</A> value obtained from <I>s</I>. If <I>s</I>
    equals System.Globalization.NumberFormatInfo.NaNSymbol, this method returns
 System.Single.NaN .<P>
 
@@ -707,6 +842,7 @@ System.Single.NaN .<P>
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
 <TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct style.</TD></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a value that is less than System.Single.MinValue or greater than System.Single.MaxValue.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -762,10 +898,7 @@ Returns the specified <A HREF="String.html" TARGET="contents">String</A> convert
 
 <BLOCKQUOTE>
 The <A HREF="Single.html" TARGET="contents">Single</A>
-value obtained from <I>s</I>. If the parsed value is less than System.Single.MinValue, this method returns
-System.Single.NegativeInfinity 
-. If the parsed value is greater than System.Single.MaxValue, this method returns System.Single.PositiveInfinity
-. If <I>s</I> equals System.Globalization.NumberFormatInfo.NaNSymbol, this method returns
+value obtained from <I>s</I>. If <I>s</I> equals System.Globalization.NumberFormatInfo.NaNSymbol, this method returns
 System.Single.NaN .<P>
 
 </BLOCKQUOTE>
@@ -777,6 +910,7 @@ System.Single.NaN .<P>
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s </I>is a null reference.</TD></TR>
 <TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct style.</TD></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a value that is less than System.Single.MinValue or greater than System.Single.MaxValue.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -834,10 +968,7 @@ Returns the specified <A HREF="String.html" TARGET="contents">String</A> convert
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-The <A HREF="Single.html" TARGET="contents">Single</A> value obtained from <I>s</I>. If the parsed value is
-   less than System.Single.MinValue, this method returns
-System.Single.NegativeInfinity . If the parsed
-   value is greater than System.Single.MaxValue, this method returns System.Single.PositiveInfinity . If <I>s</I>
+The <A HREF="Single.html" TARGET="contents">Single</A> value obtained from <I>s</I>. If <I>s</I>
    equals System.Globalization.NumberFormatInfo.NaNSymbol, this method returns NaN.<P>
 
 </BLOCKQUOTE>
@@ -849,6 +980,7 @@ System.Single.NegativeInfinity . If the parsed
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s</I> is a null reference.</TD></TR>
 <TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>s</I> is not in the correct style.</TD></TR>
+<TR><TD><A HREF="OverflowException.html" TARGET="contents">OverflowException</A></TD><TD><I>s</I> represents a value that is less than System.Single.MinValue or greater than System.Single.MaxValue.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -863,74 +995,6 @@ The string <I>s</I> is parsed using the culture-specific formatting
 <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> cannot be obtained from <I>provider</I> 
 , the formatting information for the current
 system culture is used.<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="Single.html" TARGET="contents">System.Single Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="Single.ToString%28System.IFormatProvider%29%20Method"><H3>Single.ToString(System.IFormatProvider) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public string ToString(IFormatProvider provider);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value of the
-   current instance. <P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT> provider</DT>
-<DD>A <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that supplies a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> containing culture-specific formatting information.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-A <A HREF="String.html" TARGET="contents">String</A> representation of the current instance formatted using
-   the general format specifier, (&quot;G&quot;). The string takes into account the
-   formatting information in the <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> instance supplied by
-<I>provider</I>.<P>
-
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-This version of System.Single.ToString is equivalent to System.Single.ToString (<CODE>null</CODE>
- ,
-<I>provider</I> 
-).<P>
-
-If <I>provider</I> is 
-<CODE>null</CODE>
- or a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> cannot be obtained from <I>provider</I>, the
-formatting information for the current system culture is used.<P>
-
-[<I>Note</I>: 
-   
-   The general format specifier formats the number in either
-   fixed-point or exponential notation form. For a detailed description of the
-   general format, see the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>
-   interface.
-]<P>
-
-<P>
 
 </BLOCKQUOTE>
 
@@ -1018,6 +1082,74 @@ interface.<P>
 This method is implemented to support the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A> interface.<P>
 
 ]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Single.html" TARGET="contents">System.Single Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Single.ToString%28System.IFormatProvider%29%20Method"><H3>Single.ToString(System.IFormatProvider) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public string ToString(IFormatProvider provider);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value of the
+   current instance. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> provider</DT>
+<DD>A <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that supplies a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> containing culture-specific formatting information.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> representation of the current instance formatted using
+   the general format specifier, (&quot;G&quot;). The string takes into account the
+   formatting information in the <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> instance supplied by
+<I>provider</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This version of System.Single.ToString is equivalent to System.Single.ToString (<CODE>null</CODE>
+ ,
+<I>provider</I> 
+).<P>
+
+If <I>provider</I> is 
+<CODE>null</CODE>
+ or a <A HREF="../System/Globalization/NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> cannot be obtained from <I>provider</I>, the
+formatting information for the current system culture is used.<P>
+
+[<I>Note</I>: 
+   
+   The general format specifier formats the number in either
+   fixed-point or exponential notation form. For a detailed description of the
+   general format, see the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A>
+   interface.
+]<P>
+
+<P>
 
 </BLOCKQUOTE>
 

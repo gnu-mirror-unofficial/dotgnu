@@ -144,7 +144,7 @@ Determines the exact number of bytes required to encode
 
 <BLOCKQUOTE>
 A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing
-   the number of bytes required to encode the range in <I>chars</I> from<I> index</I> to <I> index </I> + <I>count</I> as ASCII-encoded
+   the number of bytes required to encode the range in <I>chars</I> from<I> index</I> to <I> index </I> + <I>count</I> -1 as ASCII-encoded
    characters.<P>
 
 </BLOCKQUOTE>
@@ -164,7 +164,7 @@ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing
 
  -or- <P>
 
-<I>index</I> and <I> count</I> do not specify a valid range in <I> chars</I> (i.e. (<I> index</I> + <I>count</I>) &gt; <I>chars</I>.Length).<P>
+<I>index</I> and <I> count</I> do not specify a valid range in <I> chars</I> (i.e. (<I> index</I> + <I>count</I> - 1) &gt; <I>chars</I>.Length).<P>
 
 </TD></TR>
 </TABLE>
@@ -323,7 +323,7 @@ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> whose
 
 -or-<P>
 
-<I>byteIndex </I> &gt; <I>bytes</I>.Length.<P>
+<I>byteIndex </I> &gt;= <I>bytes</I>.Length.<P>
 
 </TD></TR>
 </TABLE>
@@ -817,7 +817,7 @@ Decodes the specified range of the specified array of bytes as a string of
 <BLOCKQUOTE>
 A <A HREF="../../System/String.html" TARGET="contents">String</A> object containing
    the decoded representation of the range in <I>bytes</I> from
-<I>byteIndex</I> to <I>byteIndex</I> + <I>byteCount</I> as 
+<I>byteIndex</I> to <I>byteIndex</I> + <I>byteCount</I> -1 as 
    ASCII-encoded characters.<P>
 
 </BLOCKQUOTE>

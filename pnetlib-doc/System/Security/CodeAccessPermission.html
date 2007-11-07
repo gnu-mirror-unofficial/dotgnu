@@ -259,7 +259,7 @@ Constructs a new instance of the <A HREF="CodeAccessPermission.html" TARGET="con
       the assert do not have the requisite permissions, they can still access
       resources through the code that calls this method. Because the assertion only
       applies to the callers of the code performing the assert, a security check for
-      the asserted permission may still fail if the code calling System.Security.CodeAccessPermission.Assert
+      the asserted permission can still fail if the code calling System.Security.CodeAccessPermission.Assert
       
       has not itself been granted that permission.<P>
 
@@ -368,6 +368,8 @@ Forces a <A HREF="SecurityException.html" TARGET="contents">SecurityException</A
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="SecurityException.html" TARGET="contents">SecurityException</A></TD><TD> A caller does not have the permission specified by the current instance.<P>
 
+-or-<P>
+
  A caller has called System.Security.CodeAccessPermission.Deny for the resource protected by the current instance. <P>
 
 </TD></TR>
@@ -386,7 +388,7 @@ The permissions of the code that calls this method are
 
 [<I>Note</I>: System.Security.CodeAccessPermission.Demand is typically used by shared
  libraries to ensure that callers have permission to access a resource.
- For example, a method in a shared library calls System.Security.CodeAccessPermission.Demand for the necessary <A HREF="../../System/Security/Permissions/FileIOPermission.html" TARGET="contents">FileIOPermission</A> before
+ For example, a method in a shared library calls System.Security.CodeAccessPermission.Demand for the necessary System.Security.Permissions.FileIOPermission before
  performing a file operation requested by the caller.<P>
 
 This method is implemented to support
@@ -485,6 +487,8 @@ the resource protected by the denied permission.<P>
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>elem</I> does not contain the XML encoding for a instance of the same type as the current instance.<P>
 
+-or-<P>
+
 The version number of <I>elem</I> is not valid.<P>
 
 </TD></TR>
@@ -560,9 +564,7 @@ class page.]<P>
 <I>target</I> . If the intersection is empty or 
 <I>target</I> is <CODE>null</CODE>
 , returns <CODE>null</CODE>
-. If the 
- current instance is unrestricted, returns a copy of <I>target</I>. If
-<I>target</I> is unrestricted, returns a copy of the current instance.<P>
+.<P>
 
 </BLOCKQUOTE>
 

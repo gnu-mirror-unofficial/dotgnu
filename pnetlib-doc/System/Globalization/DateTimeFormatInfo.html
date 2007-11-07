@@ -69,7 +69,7 @@ The following table shows the standard format specifiers and the associated
       a format specifier is influenced by culture-specific date and/or time settings
       on the current system; computers with different date and time settings might
       display different patterns. The asterisk at the end of a format pattern
-      indicates that the preceding character may be repeated without changing the
+      indicates that the preceding character can be repeated without changing the
       meaning of the pattern. For example, the pattern &quot;HH*&quot; indicates that the
       strings &quot;HH&quot;, &quot;HHH&quot;, &quot;HHHH&quot;, and &quot;HHHHH&quot; produce the same result when used with
    System.DateTime.ParseExact(System.String,System.String,System.IFormatProvider) and System.DateTime.ToString methods. <P>
@@ -77,16 +77,16 @@ The following table shows the standard format specifiers and the associated
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Format Specifier</TH><TH>Format Pattern</TH></TR>
 <TR><TD> d</TD><TD>MM/dd/yyyy</TD></TR>
-<TR><TD> D</TD><TD>dddd*, MMMM* dd, yyyy</TD></TR>
-<TR><TD> f</TD><TD>dddd*, MMMM* dd, yyyy HH*:mm*</TD></TR>
-<TR><TD> F</TD><TD>dddd*, MMMM* dd, yyyy HH*:mm*:ss*</TD></TR>
+<TR><TD> D</TD><TD>dddd*, dd MMMM* yyyy</TD></TR>
+<TR><TD> f</TD><TD>dddd*, dd MMMM* yyyy HH*:mm*</TD></TR>
+<TR><TD> F</TD><TD>dddd*, dd MMMM* yyyy HH*:mm*:ss*</TD></TR>
 <TR><TD> g</TD><TD>MM/dd/yyyy HH*:mm*</TD></TR>
 <TR><TD> G</TD><TD>MM/dd/yyyy HH*:mm*:ss*</TD></TR>
 <TR><TD> m, M</TD><TD>MMMM* dd</TD></TR>
 <TR><TD> t</TD><TD>HH*:mm*</TD></TR>
 <TR><TD> T</TD><TD>HH*:mm*:ss*</TD></TR>
-<TR><TD> U</TD><TD>dddd*, MMMM* dd, yyyy HH*:mm*:ss*</TD></TR>
-<TR><TD> y, Y</TD><TD>YYYY MMMM*</TD></TR>
+<TR><TD> U</TD><TD>dddd*, dd MMMM* yyyy HH*:mm*:ss*</TD></TR>
+<TR><TD> y, Y</TD><TD>yyyy MMMM*</TD></TR>
 </TABLE>
 
 The following table lists custom format specifiers that can be combined to
@@ -500,7 +500,7 @@ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> representing the
 The value specified for <I>eraName</I> is case-insensitive.<P>
 
 [<I>Note</I>:  An era name is a
-   culturally specific name for a period of time marked by distinctive character or
+   culturally specific name for a period of time marked by distinctive characters or
    reckoned from a fixed point or event. For example &quot;A.D.&quot; and &quot;B.C.&quot; are two eras of the Gregorian calendar.]<P>
 
 <P>
@@ -559,7 +559,7 @@ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the
 
 <BLOCKQUOTE>
 [<I>Note</I>:  An era name is a
-      culturally specific name for a period of time marked by distinctive character or
+      culturally specific name for a period of time marked by distinctive characters or
       reckoned from a fixed point or event. For example &quot;A.D.&quot; and &quot;B.C.&quot; are two eras
       of the Gregorian calendar.]<P>
 
@@ -602,9 +602,7 @@ Returns an object of the specified type that provides <A HREF="../../System/Date
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A formatting object of the specified <A HREF="../../System/Type.html" TARGET="contents">Type</A>. If no formatting
-   object of the specified type is available, or <I>formatType</I> is a null reference, returns the formatting object
-   for the current culture.<P>
+The current instance, if <I>formatType</I> is of type <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A>; otherwise, a null reference.<P>
 
 </BLOCKQUOTE>
 
@@ -946,7 +944,7 @@ Gets a read-only <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFor
 <H4>Property Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance based on the
+A read-only <A HREF="DateTimeFormatInfo.html" TARGET="contents">DateTimeFormatInfo</A> instance based on the
    culture of the current thread.<P>
 
 </BLOCKQUOTE>

@@ -7,7 +7,7 @@
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public sealed class Version : ICloneable, IComparable</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public sealed class Version : ICloneable, IComparable, IComparable&lt;Version&gt;, IEquatable&lt;Version&gt;</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -17,7 +17,7 @@
 <A HREF="Object.html" TARGET="contents">Object</A><BR>
 &nbsp;&nbsp;Version<P>
 
-This type implements <A HREF="ICloneable.html" TARGET="contents">ICloneable</A> and <A HREF="IComparable.html" TARGET="contents">IComparable</A>.
+This type implements <A HREF="ICloneable.html" TARGET="contents">ICloneable</A>, <A HREF="IComparable.html" TARGET="contents">IComparable</A>, System.IComparable&lt;System.Version&gt;, and System.IEquatable&lt;System.Version&gt;.
 </BLOCKQUOTE>
 
 <H4>Assembly</H4>
@@ -46,7 +46,7 @@ BCL
    assembly consist of two to four components: <I>major</I>, <I>minor</I>,
 <I>build</I>, and <I>revision</I>. Components <I>major</I> and <I>minor</I> must 
    be defined. <I>Build</I> and <I>revision</I> components are optional. Component
-<I>revision</I> may be 
+<I>revision</I> can be 
    used if and only if build is defined. All defined components must be
    a <A HREF="Int32.html" TARGET="contents">Int32</A>
    greater than or equal to zero.<P>
@@ -96,18 +96,20 @@ BCL
 
 Version Constructors<P>
 
+<A HREF="#Version%28%29%20Constructor" TARGET="contents">Version() Constructor</A><BR>
 <A HREF="#Version%28int%2C%20int%2C%20int%2C%20int%29%20Constructor" TARGET="contents">Version(int, int, int, int) Constructor</A><BR>
 <A HREF="#Version%28int%2C%20int%2C%20int%29%20Constructor" TARGET="contents">Version(int, int, int) Constructor</A><BR>
 <A HREF="#Version%28int%2C%20int%29%20Constructor" TARGET="contents">Version(int, int) Constructor</A><BR>
 <A HREF="#Version%28System.String%29%20Constructor" TARGET="contents">Version(System.String) Constructor</A><BR>
-<A HREF="#Version%28%29%20Constructor" TARGET="contents">Version() Constructor</A><BR>
 <P>
 
 Version Methods<P>
 
 <A HREF="#Version.Clone%20Method" TARGET="contents">Version.Clone Method</A><BR>
-<A HREF="#Version.CompareTo%20Method" TARGET="contents">Version.CompareTo Method</A><BR>
-<A HREF="#Version.Equals%20Method" TARGET="contents">Version.Equals Method</A><BR>
+<A HREF="#Version.CompareTo%28System.Object%29%20Method" TARGET="contents">Version.CompareTo(System.Object) Method</A><BR>
+<A HREF="#Version.CompareTo%28System.Version%29%20Method" TARGET="contents">Version.CompareTo(System.Version) Method</A><BR>
+<A HREF="#Version.Equals%28System.Object%29%20Method" TARGET="contents">Version.Equals(System.Object) Method</A><BR>
+<A HREF="#Version.Equals%28System.Version%29%20Method" TARGET="contents">Version.Equals(System.Version) Method</A><BR>
 <A HREF="#Version.GetHashCode%20Method" TARGET="contents">Version.GetHashCode Method</A><BR>
 <A HREF="#Version.op%5FEquality%20Method" TARGET="contents">Version.op_Equality Method</A><BR>
 <A HREF="#Version.op%5FGreaterThan%20Method" TARGET="contents">Version.op_GreaterThan Method</A><BR>
@@ -123,6 +125,38 @@ Version Properties<P>
 <A HREF="#Version.Major%20Property" TARGET="contents">Version.Major Property</A><BR>
 <A HREF="#Version.Minor%20Property" TARGET="contents">Version.Minor Property</A><BR>
 <A HREF="#Version.Revision%20Property" TARGET="contents">Version.Revision Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Version%28%29%20Constructor"><H3>Version() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public Version();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of
+      the <A HREF="Version.html" TARGET="contents">Version</A> class.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.Version.Major and System.Version.Minor are set to zero. System.Version.Build
+and System.Version.Revision are unspecified.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
 </BLOCKQUOTE>
 
 <HR>
@@ -408,38 +442,6 @@ Version is 6.1.2.4<P>
 
 <HR>
 
-<A NAME="Version%28%29%20Constructor"><H3>Version() Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public Version();</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Constructs and initializes a new instance of
-      the <A HREF="Version.html" TARGET="contents">Version</A> class.<P>
-
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-System.Version.Major and System.Version.Minor are set to zero. System.Version.Build
-and System.Version.Revision are unspecified.<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
 <A NAME="Version.Clone%20Method"><H3>Version.Clone Method</H3>
 
 <BLOCKQUOTE>
@@ -468,7 +470,7 @@ whose values are equal to the property values of the current instance.<P>
 
 <BLOCKQUOTE>
 The <A HREF="Object.html" TARGET="contents">Object</A> returned by this method must be explicitly cast to a
-<A HREF="Version.html" TARGET="contents">Version</A> before it may be used as 
+<A HREF="Version.html" TARGET="contents">Version</A> before it can be used as 
    one.<P>
 
 [<I>Note</I>: This method is
@@ -519,7 +521,7 @@ The string representation of the cloned version is 6.1.2.4.<P>
 
 <HR>
 
-<A NAME="Version.CompareTo%20Method"><H3>Version.CompareTo Method</H3>
+<A NAME="Version.CompareTo%28System.Object%29%20Method"><H3>Version.CompareTo(System.Object) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
@@ -547,17 +549,14 @@ The string representation of the cloned version is 6.1.2.4.<P>
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
-   current instance as compared to <I>version</I>. The following table defines
-   the conditions under which the returned value is a negative number, zero, or a
-   positive number.<P>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the current instance as compared to <I>version</I>. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
-<TR><TD> Any negative number</TD><TD> Current instance &lt; <I>version</I>.</TD></TR>
+<TR><TD> A negative number</TD><TD> Current instance &lt; <I>version</I>.</TD></TR>
 <TR><TD> Zero</TD><TD>Current instance ==
    <I>version</I>.</TD></TR>
-<TR><TD> Any positive number</TD><TD> Current instance &gt;
+<TR><TD> A positive number</TD><TD> Current instance &gt;
       <I>version</I>, or <I>version</I> is a null
          reference.<P>
 
@@ -645,7 +644,76 @@ Version 6.1 is older than version 6.1.2.4<P>
 
 <HR>
 
-<A NAME="Version.Equals%20Method"><H3>Version.Equals Method</H3>
+<A NAME="Version.CompareTo%28System.Version%29%20Method"><H3>Version.CompareTo(System.Version) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int CompareTo(Version value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the sort order of the current instance compared
+      to the specified <A HREF="Version.html" TARGET="contents">Version</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="Version.html" TARGET="contents">Version</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the current instance as compared to <I>version</I>. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
+<TR><TD> A negative number</TD><TD> Current instance &lt; <I>value</I>.</TD></TR>
+<TR><TD> Zero</TD><TD>Current instance ==
+   <I>value</I>.</TD></TR>
+<TR><TD> A positive number</TD><TD> Current instance &gt;
+      <I>value</I>, or <I>value</I> is a null
+         reference.<P>
+
+</TD></TR>
+</TABLE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  The components of <A HREF="Version.html" TARGET="contents">Version</A> in decreasing order of importance are: <I>major</I>,
+   <I>minor</I>, <I>build</I>, and <I>revision</I>. An undefined component
+      is assumed to be older than any defined component.
+      <P>
+
+]<P>
+
+[<I>Note</I>: This method is implemented to support the System.IComparable&lt;System.Version&gt; interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Version.Equals%28System.Object%29%20Method"><H3>Version.Equals(System.Object) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
@@ -719,6 +787,59 @@ The output is<P>
 It is False that version 6.1.2.4 is equal to 6.1.<P>
 
 </CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Version.html" TARGET="contents">System.Version Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Version.Equals%28System.Version%29%20Method"><H3>Version.Equals(System.Version) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override bool Equals(Version obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance and the
+      specified <A HREF="Version.html" TARGET="contents">Version</A> represent the same  value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> obj</DT>
+<DD>The <A HREF="Version.html" TARGET="contents">Version</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Boolean.html" TARGET="contents">Boolean</A> where <CODE>true</CODE>
+
+indicates <I>obj</I> has equal System.Version.Major, System.Version.Minor, System.Version.Build, and System.Version.Revision properties as the current
+instance. If <I>obj</I> is a null reference, returns <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support the System.IEquatable&lt;System.Version&gt; interface.]<P>
+
+<P>
+
 </BLOCKQUOTE>
 
 <H4>See Also</H4>

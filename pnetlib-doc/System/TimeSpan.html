@@ -7,7 +7,7 @@
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public struct TimeSpan : IComparable</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public struct TimeSpan : IComparable, IComparable&lt;TimeSpan&gt;, IEquatable&lt;TimeSpan&gt;</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -18,7 +18,7 @@
 &nbsp;&nbsp;<A HREF="ValueType.html" TARGET="contents">ValueType</A><BR>
 &nbsp;&nbsp;&nbsp;&nbsp;TimeSpan<P>
 
-This type implements <A HREF="IComparable.html" TARGET="contents">IComparable</A>.
+This type implements <A HREF="IComparable.html" TARGET="contents">IComparable</A>, System.IComparable&lt;System.TimeSpan&gt;, and System.IEquatable&lt;System.TimeSpan&gt;.
 </BLOCKQUOTE>
 
 <H4>Assembly</H4>
@@ -53,7 +53,7 @@ The <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> structure represents 
 A <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> can be represented as a string in the format
 &quot;[-]d.hh:mm:ss.ff&quot; where &quot;-&quot; is an optional sign for negative <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> values, the &quot;d&quot; component is
 days, &quot;hh&quot; is hours, &quot;mm&quot; is minutes, &quot;ss&quot; is seconds, and &quot;ff&quot; is fractions of
-a second. For example, a <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> initialized with 10<SUP>12</SUP>
+a second. For example, a <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> initialized with 10<SUP>13</SUP>
 ticks would
 be represented as &quot;11.13:46:40&quot;, which is 11 days, 13 hours, 46 minutes, and 40
 seconds.<P>
@@ -80,18 +80,20 @@ TimeSpan Constructors<P>
 
 <A HREF="#TimeSpan%28long%29%20Constructor" TARGET="contents">TimeSpan(long) Constructor</A><BR>
 <A HREF="#TimeSpan%28int%2C%20int%2C%20int%29%20Constructor" TARGET="contents">TimeSpan(int, int, int) Constructor</A><BR>
-<A HREF="#TimeSpan%28int%2C%20int%2C%20int%2C%20int%29%20Constructor" TARGET="contents">TimeSpan(int, int, int, int) Constructor</A><BR>
 <A HREF="#TimeSpan%28int%2C%20int%2C%20int%2C%20int%2C%20int%29%20Constructor" TARGET="contents">TimeSpan(int, int, int, int, int) Constructor</A><BR>
+<A HREF="#TimeSpan%28int%2C%20int%2C%20int%2C%20int%29%20Constructor" TARGET="contents">TimeSpan(int, int, int, int) Constructor</A><BR>
 <P>
 
 TimeSpan Methods<P>
 
 <A HREF="#TimeSpan.Add%20Method" TARGET="contents">TimeSpan.Add Method</A><BR>
 <A HREF="#TimeSpan.Compare%20Method" TARGET="contents">TimeSpan.Compare Method</A><BR>
-<A HREF="#TimeSpan.CompareTo%20Method" TARGET="contents">TimeSpan.CompareTo Method</A><BR>
+<A HREF="#TimeSpan.CompareTo%28System.Object%29%20Method" TARGET="contents">TimeSpan.CompareTo(System.Object) Method</A><BR>
+<A HREF="#TimeSpan.CompareTo%28System.TimeSpan%29%20Method" TARGET="contents">TimeSpan.CompareTo(System.TimeSpan) Method</A><BR>
 <A HREF="#TimeSpan.Duration%20Method" TARGET="contents">TimeSpan.Duration Method</A><BR>
-<A HREF="#TimeSpan.Equals%28System.Object%29%20Method" TARGET="contents">TimeSpan.Equals(System.Object) Method</A><BR>
 <A HREF="#TimeSpan.Equals%28System.TimeSpan%2C%20System.TimeSpan%29%20Method" TARGET="contents">TimeSpan.Equals(System.TimeSpan, System.TimeSpan) Method</A><BR>
+<A HREF="#TimeSpan.Equals%28System.Object%29%20Method" TARGET="contents">TimeSpan.Equals(System.Object) Method</A><BR>
+<A HREF="#TimeSpan.Equals%28System.TimeSpan%29%20Method" TARGET="contents">TimeSpan.Equals(System.TimeSpan) Method</A><BR>
 <A HREF="#TimeSpan.FromDays%20Method" TARGET="contents">TimeSpan.FromDays Method</A><BR>
 <A HREF="#TimeSpan.FromHours%20Method" TARGET="contents">TimeSpan.FromHours Method</A><BR>
 <A HREF="#TimeSpan.FromMilliseconds%20Method" TARGET="contents">TimeSpan.FromMilliseconds Method</A><BR>
@@ -232,63 +234,6 @@ The specified <I>hours</I>, <I>minutes</I>, and
 
 <HR>
 
-<A NAME="TimeSpan%28int%2C%20int%2C%20int%2C%20int%29%20Constructor"><H3>TimeSpan(int, int, int, int) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public TimeSpan(int days, int hours, int minutes, int seconds);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Constructs and initializes a new <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> with the specified numbers of days,
-   hours, minutes, and seconds.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>days</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the number of days with which to initialize the new <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>.</DD>
-<DT>hours</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the number of hours with which to initialize the new <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>.</DD>
-<DT>minutes</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the number of minutes with which to initialize the new <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>.</DD>
-<DT>seconds</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the number of seconds with which to initialize the new <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The parameters specify a <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> value less than System.TimeSpan.MinValue or greater than System.TimeSpan.MaxValue.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-The specified <I>days</I>, <I>hours</I>,
-<I>minutes</I>, and <I>seconds</I> are converted to ticks, and that value is 
-   used to initialize the new <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>.<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="TimeSpan.html" TARGET="contents">System.TimeSpan Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
 <A NAME="TimeSpan%28int%2C%20int%2C%20int%2C%20int%2C%20int%29%20Constructor"><H3>TimeSpan(int, int, int, int, int) Constructor</H3>
 
 <BLOCKQUOTE>
@@ -339,6 +284,63 @@ The specified <I>days</I>, <I>hours</I>,
    ticks, and that value is used to initialize the new <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>.<P>
 
 <CODE></CODE>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TimeSpan.html" TARGET="contents">System.TimeSpan Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="TimeSpan%28int%2C%20int%2C%20int%2C%20int%29%20Constructor"><H3>TimeSpan(int, int, int, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public TimeSpan(int days, int hours, int minutes, int seconds);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> with the specified numbers of days,
+   hours, minutes, and seconds.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>days</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the number of days with which to initialize the new <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>.</DD>
+<DT>hours</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the number of hours with which to initialize the new <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>.</DD>
+<DT>minutes</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the number of minutes with which to initialize the new <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>.</DD>
+<DT>seconds</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the number of seconds with which to initialize the new <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The parameters specify a <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> value less than System.TimeSpan.MinValue or greater than System.TimeSpan.MaxValue.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The specified <I>days</I>, <I>hours</I>,
+<I>minutes</I>, and <I>seconds</I> are converted to ticks, and that value is 
+   used to initialize the new <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>.<P>
 
 </BLOCKQUOTE>
 
@@ -452,10 +454,7 @@ structures.<P>
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of
-<I>t1</I> as compared to <I>t2</I>. The following table defines the 
-   conditions under which the returned value is a negative number, zero, or a
-   positive number.<P>
+The return value is a negative number, zero, or a positive number reflecting the sort order of <I>t1</I> as compared to <I>t2</I>. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Value</TH><TH>Condition</TH></TR>
@@ -478,7 +477,7 @@ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that refle
 
 <HR>
 
-<A NAME="TimeSpan.CompareTo%20Method"><H3>TimeSpan.CompareTo Method</H3>
+<A NAME="TimeSpan.CompareTo%28System.Object%29%20Method"><H3>TimeSpan.CompareTo(System.Object) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
@@ -506,10 +505,7 @@ Returns the sort order of the current instance compared
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
-   current instance as compared to <I>value</I>. The following table defines the
-   conditions under which the returned value is a negative number, zero, or a
-   positive number.<P>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the current instance as compared to <I>value</I>. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Value</TH><TH>Condition</TH></TR>
@@ -543,6 +539,65 @@ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that refle
 [<I>Note</I>: This method is
       implemented to support the <A HREF="IComparable.html" TARGET="contents">IComparable</A>
       interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TimeSpan.html" TARGET="contents">System.TimeSpan Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="TimeSpan.CompareTo%28System.TimeSpan%29%20Method"><H3>TimeSpan.CompareTo(System.TimeSpan) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int CompareTo(TimeSpan value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the sort order of the current instance compared
+      to the specified <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the current instance as compared to <I>value</I>. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Value</TH><TH>Condition</TH></TR>
+<TR><TD> Any
+      negative
+      number</TD><TD>Current instance &lt; <I>value</I>.</TD></TR>
+<TR><TD> Zero</TD><TD>Current instance == <I>value</I>.</TD></TR>
+<TR><TD> Any
+      positive
+      number</TD><TD>Current instance &gt; <I>value</I>.   </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support the System.IComparable&lt;System.TimeSpan&gt; interface.]<P>
 
 <P>
 
@@ -619,6 +674,50 @@ The output is<P>
 
 <HR>
 
+<A NAME="TimeSpan.Equals%28System.TimeSpan%2C%20System.TimeSpan%29%20Method"><H3>TimeSpan.Equals(System.TimeSpan, System.TimeSpan) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static bool Equals(TimeSpan t1, TimeSpan t2);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether two <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> structures represent the same type and value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>t1</DT>
+<DD>The first instance of <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> to compare for equality.</DD>
+<DT>t2</DT>
+<DD>The second instance of <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> to compare for equality.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>t1</I> and <I>t2</I>
+represent the same value; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="TimeSpan.html" TARGET="contents">System.TimeSpan Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
 <A NAME="TimeSpan.Equals%28System.Object%29%20Method"><H3>TimeSpan.Equals(System.Object) Method</H3>
 
 <BLOCKQUOTE>
@@ -673,18 +772,18 @@ Determines whether the current instance and the specified <A HREF="Object.html" 
 
 <HR>
 
-<A NAME="TimeSpan.Equals%28System.TimeSpan%2C%20System.TimeSpan%29%20Method"><H3>TimeSpan.Equals(System.TimeSpan, System.TimeSpan) Method</H3>
+<A NAME="TimeSpan.Equals%28System.TimeSpan%29%20Method"><H3>TimeSpan.Equals(System.TimeSpan) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static bool Equals(TimeSpan t1, TimeSpan t2);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override bool Equals(TimeSpan obj);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Determines whether two <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> structures represent the same type and value.<P>
+Determines whether the current instance and the specified <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> represent the same value.<P>
 
 </BLOCKQUOTE>
 
@@ -692,10 +791,8 @@ Determines whether two <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> st
 
 <BLOCKQUOTE>
 <DL>
-<DT>t1</DT>
-<DD>The first instance of <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> to compare for equality.</DD>
-<DT>t2</DT>
-<DD>The second instance of <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> to compare for equality.</DD>
+<DT>value</DT>
+<DD>The <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> to compare to the current instance.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -703,9 +800,17 @@ Determines whether two <A HREF="TimeSpan.html" TARGET="contents">TimeSpan</A> st
 
 <BLOCKQUOTE>
 <CODE>true</CODE>
- if <I>t1</I> and <I>t2</I>
-represent the same value; otherwise, <CODE>false</CODE>
+ if <I>value</I> represents the same value as the current instance; otherwise, <CODE>false</CODE>
 .<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support the System.IEquatable&lt;System.TimeSpan&gt; interface.]<P>
+
+<P>
 
 </BLOCKQUOTE>
 
@@ -2568,7 +2673,7 @@ A <A HREF="Double.html" TARGET="contents">Double</A> that specifies the total nu
 This property is read-only.<P>
 
 [<I>Note</I>: This property converts the value of the
-      current instance from ticks to days. This number may include whole and
+      current instance from ticks to days. This number can include whole and
       fractional days.]<P>
 
 <P>
@@ -2640,7 +2745,7 @@ A <A HREF="Double.html" TARGET="contents">Double</A> that specifies the total nu
 This property is read-only. <P>
 
 [<I>Note</I>: This property converts the value of the
-      current instance from ticks to hours. This number may include whole and
+      current instance from ticks to hours. This number can include whole and
       fractional hours.]<P>
 
 <P>
@@ -2712,7 +2817,7 @@ A <A HREF="Double.html" TARGET="contents">Double</A> that specifies the total nu
 This property is read-only. <P>
 
 [<I>Note</I>: This property converts the value of the
-      current instance from ticks to milliseconds. This number may include whole and
+      current instance from ticks to milliseconds. This number can include whole and
       fractional milliseconds.]<P>
 
 <P>
@@ -2784,7 +2889,7 @@ A <A HREF="Double.html" TARGET="contents">Double</A> that specifies the total nu
 This property is read-only. <P>
 
 [<I>Note</I>: This property converts the value of the
-      current instance from ticks to minutes. This number may include whole and
+      current instance from ticks to minutes. This number can include whole and
       fractional minutes.]<P>
 
 <P>
@@ -2856,7 +2961,7 @@ A <A HREF="Double.html" TARGET="contents">Double</A> that specifies the total nu
 This property is read-only. <P>
 
 [<I>Note</I>: This property converts the value of the
-      current instance from ticks to seconds. This number may include whole and
+      current instance from ticks to seconds. This number can include whole and
       fractional seconds.]<P>
 
 <P>

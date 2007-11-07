@@ -1,0 +1,721 @@
+<HTML>
+<HEAD>
+<TITLE>System.Nullable&lt;T&gt; Structure</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Nullable&lt;T&gt; Structure</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public struct Nullable&lt;T&gt; where T : struct</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="ValueType.html" TARGET="contents">ValueType</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;Nullable&lt;T&gt;<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Library</H4>
+
+<BLOCKQUOTE>
+BCL
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Represents a nullable value type. An instance of System.Nullable&lt;T&gt; can contain a value of type <CODE>T </CODE>
+or an indication that the instance contains no value. Upon boxing, if it contains no value, it will be converted to the null reference; otherwise, it will be converted to a boxed T. [Note: Because of the constraint on the generic parameter, <CODE>T </CODE>
+cannot be of type System.Nullable&lt;U&gt;  for any <CODE>U</CODE>
+. end note]<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The <A HREF="NullableT.html" TARGET="contents">Nullable&lt;T&gt;</A> value type represents a value of a given type <CODE>T</CODE>
+ or an indication that the instance contains no value. Such a nullable type is useful in a variety of situations, such as in denoting nullable columns in a database table or optional attributes in an XML element. The runtime transforms <A HREF="NullableT.html" TARGET="contents">Nullable&lt;T&gt;</A>instances without values into true nulls when performing a box operation; instances with values are transformed into boxed <CODE>T</CODE>
+&amp;apos;s containing the <A HREF="NullableT.html" TARGET="contents">Nullable&lt;T&gt;</A>&amp;apos;s Value.<P>
+
+An instance of <A HREF="NullableT.html" TARGET="contents">Nullable&lt;T&gt;</A> has two properties, System.Nullable&lt;T&gt;.HasValue and System.Nullable&lt;T&gt;.Value. System.Nullable&lt;T&gt;.HasValue is used to determine whether the current instance currently has a value. It returns <CODE>true</CODE>
+ or <CODE>false</CODE>
+, and never throws an exception. System.Nullable&lt;T&gt;.Value returns the current value of the instance, provided it has one (i.e., System.Nullable&lt;T&gt;.HasValue is <CODE>true</CODE>
+); otherwise, it throws an exception.<P>
+
+In addition to the above properties, there is a pair of methods, both overloads of System.Nullable&lt;T&gt;.GetValueOrDefault. The version taking no arguments returns the instance&apos;s current value, if it has one; otherwise, it returns the default value of type <CODE>T</CODE>
+. The version taking an argument of type <CODE>T</CODE>
+ returns the instance&apos;s current value, if it has one; otherwise, it returns the default value argument passed to it.<P>
+
+Applying System.Nullable&lt;T&gt;.HasValue to an instance that has the default initial value, causes false to be returned.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Nullable&lt;T&gt; Constructors<P>
+
+<A HREF="#Nullable%3CT%3E%20Constructor" TARGET="contents">Nullable&lt;T&gt; Constructor</A><BR>
+<P>
+
+Nullable&lt;T&gt; Methods<P>
+
+<A HREF="#Nullable%3CT%3E.Equals%20Method" TARGET="contents">Nullable&lt;T&gt;.Equals Method</A><BR>
+<A HREF="#Nullable%3CT%3E.FromNullable%20Method" TARGET="contents">Nullable&lt;T&gt;.FromNullable Method</A><BR>
+<A HREF="#Nullable%3CT%3E.GetHashCode%20Method" TARGET="contents">Nullable&lt;T&gt;.GetHashCode Method</A><BR>
+<A HREF="#Nullable%3CT%3E.GetValueOrDefault%28%29%20Method" TARGET="contents">Nullable&lt;T&gt;.GetValueOrDefault() Method</A><BR>
+<A HREF="#Nullable%3CT%3E.GetValueOrDefault%28T%29%20Method" TARGET="contents">Nullable&lt;T&gt;.GetValueOrDefault(T) Method</A><BR>
+<A HREF="#Nullable%3CT%3E.ToNullable%20Method" TARGET="contents">Nullable&lt;T&gt;.ToNullable Method</A><BR>
+<A HREF="#Nullable%3CT%3E.ToString%20Method" TARGET="contents">Nullable&lt;T&gt;.ToString Method</A><BR>
+<A HREF="#Nullable%3CT%3E.op%5FExplicit%20Method" TARGET="contents">Nullable&lt;T&gt;.op_Explicit Method</A><BR>
+<A HREF="#Nullable%3CT%3E.op%5FImplicit%20Method" TARGET="contents">Nullable&lt;T&gt;.op_Implicit Method</A><BR>
+<P>
+
+Nullable&lt;T&gt; Properties<P>
+
+<A HREF="#Nullable%3CT%3E.HasValue%20Property" TARGET="contents">Nullable&lt;T&gt;.HasValue Property</A><BR>
+<A HREF="#Nullable%3CT%3E.Value%20Property" TARGET="contents">Nullable&lt;T&gt;.Value Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Nullable%3CT%3E%20Constructor"><H3>Nullable&lt;T&gt; Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public Nullable(T value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of       <A HREF="NullableT.html" TARGET="contents">Nullable&lt;T&gt;</A> giving it the specified initial value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The initial value of the new instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Once this constructor has executed, applying System.Nullable&lt;T&gt;.HasValue  to the new instance returns <CODE>true</CODE>
+.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NullableT.html" TARGET="contents">System.Nullable&lt;T&gt; Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Nullable%3CT%3E.Equals%20Method"><H3>Nullable&lt;T&gt;.Equals Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override bool Equals(object obj)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance and the specified
+      <A HREF="Object.html" TARGET="contents">Object</A> represent the same type and value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>obj</DT>
+<DD>The <A HREF="Object.html" TARGET="contents">Object</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The following table defines the conditions under which the return value is <CODE>true</CODE>
+ or <CODE>false</CODE>
+:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Returned Value</TH><TH>HasValue Condition</TH></TR>
+<TR><TD><CODE>false</CODE>
+</TD><TD>The current instance and <I>obj</I> have different types.</TD></TR>
+<TR><TD><CODE>true</CODE>
+</TD><TD><CODE>false</CODE>
+</TD></TR>
+<TR><TD><CODE>false</CODE>
+</TD><TD><CODE>true</CODE>
+</TD></TR>
+<TR><TD><CODE>true</CODE>
+</TD><TD><CODE>false</CODE>
+</TD></TR>
+<TR><TD><CODE>false</CODE>
+</TD><TD><CODE>false</CODE>
+</TD></TR>
+<TR><TD><CODE>false</CODE>
+</TD><TD><CODE>true</CODE>
+</TD></TR>
+<TR><TD><CODE>Value.Equals(</CODE>
+<I>obj</I><CODE>.Value)</CODE>
+</TD><TD><CODE>true</CODE>
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method
+      overrides System.Object.Equals(System.Object).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NullableT.html" TARGET="contents">System.Nullable&lt;T&gt; Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Nullable%3CT%3E.FromNullable%20Method"><H3>Nullable&lt;T&gt;.FromNullable Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static T FromNullable(Nullable&lt;T&gt; value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Creates a <CODE>T</CODE>
+ from a <A HREF="NullableT.html" TARGET="contents">Nullable&lt;T&gt;</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="NullableT.html" TARGET="contents">Nullable&lt;T&gt;</A>  value to convert to type <CODE>T</CODE>
+.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The value, if any, of the specified nullable value. Otherwise, a <A HREF="InvalidOperationException.html" TARGET="contents">InvalidOperationException</A> is thrown.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD>System.InvalidOperationException</TD><TD>System.Nullable&lt;T&gt;.HasValue is <CODE>false</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method corresponds to the <CODE>Op_Explicit</CODE>
+ method.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NullableT.html" TARGET="contents">System.Nullable&lt;T&gt; Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Nullable%3CT%3E.GetHashCode%20Method"><H3>Nullable&lt;T&gt;.GetHashCode Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override int GetHashCode()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Generates a hash code for the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+If System.Nullable&lt;T&gt;.HasValue is <CODE>true</CODE>
+, a  <A HREF="Int32.html" TARGET="contents">Int32</A> containing the hash code for the value of the current instance is returned; otherwise, 0 is returned.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The algorithm used to generate the hash code is unspecified. <P>
+
+[<I>Note</I>: This method
+      overrides System.Object.GetHashCode.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NullableT.html" TARGET="contents">System.Nullable&lt;T&gt; Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Nullable%3CT%3E.GetValueOrDefault%28%29%20Method"><H3>Nullable&lt;T&gt;.GetValueOrDefault() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public T GetValueOrDefault()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the value of the current instance, or if it has none, returns the default value for the type <CODE>T</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A value of type <CODE>T</CODE>
+, which is either the value of the current instance, or if it has none, the default value for the type <CODE>T</CODE>
+ (i.e., all-bits-zero).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: System.Nullable&lt;T&gt;.GetValueOrDefault<CODE>(T)</CODE>
+ allows a value other than the default value to be returned if the current instance contains no value.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NullableT.html" TARGET="contents">System.Nullable&lt;T&gt; Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Nullable%3CT%3E.GetValueOrDefault%28T%29%20Method"><H3>Nullable&lt;T&gt;.GetValueOrDefault(T) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public T GetValueOrDefault(T alternateDefaultValue)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the value of the current instance, or if it has none, returns <I>alternateDefaultValue</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>alternateDefaultValue</DT>
+<DD>The value to be returned if the current instance contains no value.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A value of type <CODE>T</CODE>
+, which is either the value of the current instance, or if it has none, the value of <I>alternateDefaultValue</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: System.Nullable&lt;T&gt;.GetValueOrDefault<CODE>()</CODE>
+ allows the default value for type <CODE>T</CODE>
+  to be returned if the current instance contains no value.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NullableT.html" TARGET="contents">System.Nullable&lt;T&gt; Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Nullable%3CT%3E.ToNullable%20Method"><H3>Nullable&lt;T&gt;.ToNullable Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static Nullable&lt;T&gt; ToNullable(T value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Creates a <A HREF="NullableT.html" TARGET="contents">Nullable&lt;T&gt;</A> from a <CODE>T</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <CODE>T</CODE>
+  value to convert to <A HREF="NullableT.html" TARGET="contents">Nullable&lt;T&gt;</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="NullableT.html" TARGET="contents">Nullable&lt;T&gt;</A> with the specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method corresponds to the <CODE>Op_Implicit</CODE>
+ method.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NullableT.html" TARGET="contents">System.Nullable&lt;T&gt; Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Nullable%3CT%3E.ToString%20Method"><H3>Nullable&lt;T&gt;.ToString Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override string ToString()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+If System.Nullable&lt;T&gt;.HasValue is true, System.Nullable&lt;T&gt;.Value.ToString<CODE>()</CODE>
+ is returned; otherwise, System.String.Empty is returned.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method
+   overrides System.Object.ToString.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NullableT.html" TARGET="contents">System.Nullable&lt;T&gt; Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Nullable%3CT%3E.op%5FExplicit%20Method"><H3>Nullable&lt;T&gt;.op_Explicit Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static explicit operator T(Nullable&lt;T&gt; value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an explicit conversion of a    <A HREF="NullableT.html" TARGET="contents">Nullable&lt;T&gt;</A>  value to type <CODE>T</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="NullableT.html" TARGET="contents">Nullable&lt;T&gt;</A>  value to convert to type <CODE>T</CODE>
+.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The value, if any, of the specified nullable value. Otherwise, a <A HREF="InvalidOperationException.html" TARGET="contents">InvalidOperationException</A> is thrown.
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD>System.InvalidOperationException</TD><TD>System.Nullable&lt;T&gt;.HasValue is <CODE>false</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The conversion implemented by this method corresponds exactly to obtaining the value of the System.Nullable&lt;T&gt;.Value property.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NullableT.html" TARGET="contents">System.Nullable&lt;T&gt; Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Nullable%3CT%3E.op%5FImplicit%20Method"><H3>Nullable&lt;T&gt;.op_Implicit Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static implicit operator Nullable&lt;T&gt;(T value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Perform an implicit conversion of a    <CODE>T</CODE>
+  value to   <A HREF="NullableT.html" TARGET="contents">Nullable&lt;T&gt;</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <CODE>T</CODE>
+  value to convert to <A HREF="NullableT.html" TARGET="contents">Nullable&lt;T&gt;</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="NullableT.html" TARGET="contents">Nullable&lt;T&gt;</A> with the specified value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The conversion implemented by this method corresponds exactly to invoking the System.Nullable&lt;T&gt;<CODE>(T)</CODE>
+ constructor.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NullableT.html" TARGET="contents">System.Nullable&lt;T&gt; Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Nullable%3CT%3E.HasValue%20Property"><H3>Nullable&lt;T&gt;.HasValue Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public bool HasValue { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Indicates whether the current instance contains a value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the current instance contains a value; otherwise <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: If System.Nullable&lt;T&gt;.HasValue is <CODE>true</CODE>
+, the instance contains a value, and System.Nullable&lt;T&gt;.Value returns that value.<P>
+
+If System.Nullable&lt;T&gt;.HasValue is <CODE>false</CODE>
+, the instance contains no value, and an attempt to read System.Nullable&lt;T&gt;.Value results in a System.InvalidOperationException exception. A call to System.Nullable&lt;T&gt;.Value.GetValueOrDefault returns the default value. <P>
+
+This property is read-only.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NullableT.html" TARGET="contents">System.Nullable&lt;T&gt; Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Nullable%3CT%3E.Value%20Property"><H3>Nullable&lt;T&gt;.Value Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public T Value { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the value, if any, of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The value of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD>System.InvalidOperationException</TD><TD>System.Nullable&lt;T&gt;.HasValue is <CODE>false</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: If System.Nullable&lt;T&gt;.HasValue is <CODE>true</CODE>
+, the instance contains a value, and System.Nullable&lt;T&gt;.Value returns that value.<P>
+
+If System.Nullable&lt;T&gt;.HasValue is <CODE>false</CODE>
+, the instance contains no value, and an attempt to read System.Nullable&lt;T&gt;.Value results in an exception. <P>
+
+This property is read-only.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NullableT.html" TARGET="contents">System.Nullable&lt;T&gt; Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+</BODY>
+</HTML>

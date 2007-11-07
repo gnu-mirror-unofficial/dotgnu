@@ -199,7 +199,7 @@ When the <I>disposing</I> parameter is <CODE>true</CODE>
  method of each
    referenced object.<P>
 
-[<I>Note</I>: System.IO.TextReader.Dispose(System.Boolean) may be called multiple 
+[<I>Note</I>: System.IO.TextReader.Dispose(System.Boolean) can be called multiple 
 times by other objects. When overriding System.IO.TextReader.Dispose(System.Boolean)(<A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>), be careful not
 to reference objects that have been previously disposed in an earlier call to
 System.IO.TextReader.Dispose(System.Boolean) .]<P>
@@ -432,7 +432,7 @@ The next character from the character source represented
 <BLOCKQUOTE>
 <DL>
 <DT>buffer</DT>
-<DD>A <A HREF="../../System/Char.html" TARGET="contents">Char</A> array. When this method returns, contains the specified character array with the values between <I>index</I> and <I>(index + count)</I> replaced by the characters read from the current source.</DD>
+<DD>A <A HREF="../../System/Char.html" TARGET="contents">Char</A> array. When this method returns, contains the specified character array with the values between <I>index</I> and <I>(index + count - 1)</I> replaced by the characters read from the current source.</DD>
 <DT>index</DT>
 <DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index in <I>buffer </I> at which to begin writing.</DD>
 <DT>count</DT>
@@ -456,7 +456,7 @@ The next character from the character source represented
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer </I> is <CODE>null</CODE>
 .</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>(<I>index</I> + <I>count</I> ) &gt; <I>buffer</I><CODE>.</CODE>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>(<I>index</I> + <I>count</I> - 1) &gt; <I>buffer</I><CODE>.</CODE>
 Length.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index &lt; </I>0<I> </I><P>
 

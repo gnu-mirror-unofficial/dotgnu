@@ -1,0 +1,148 @@
+<HTML>
+<HEAD>
+<TITLE>System.Threading.Parallel.ParallelEnvironment Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Threading.Parallel.ParallelEnvironment Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public sealed class ParallelEnvironment</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;ParallelEnvironment<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Library</H4>
+
+<BLOCKQUOTE>
+Parallel
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Provides the current settings for, and information about, the parallel-loop execution environment.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ParallelEnvironment Properties<P>
+
+<A HREF="#ParallelEnvironment.MaxThreads%20Property" TARGET="contents">ParallelEnvironment.MaxThreads Property</A><BR>
+<A HREF="#ParallelEnvironment.RecommendedMaxThreads%20Property" TARGET="contents">ParallelEnvironment.RecommendedMaxThreads Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelEnvironment.MaxThreads%20Property"><H3>ParallelEnvironment.MaxThreads Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static int MaxThreads { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Default upper bound on the number of threads employed by a parallel loop.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+
+							A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> that limits the number of worker threads employed by parallel loop constructs that do not explicitly specify an upper bound on the number of threads.   
+							The bound includes the thread that calls System.Threading.Parallel.ParallelLoop&lt;T&gt;.BeginRun, and hence MaxThreads must be positive.
+							<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+
+							Setting System.Threading.Parallel.ParallelEnvironment.MaxThreads to 1 causes deterministic sequential execution of all parallel loop constructs that do not 
+							explicitly specify an upper bound on the number of threads.  This  is useful for debugging of code.  
+							Ordinarily, System.Threading.Parallel.ParallelEnvironment.MaxThreads should not be set in production code because it affects parallel loops everywhere in a program.  
+							<P>
+
+
+							The initial value is System.Threading.Parallel.ParallelEnvironment.RecommendedMaxThreads.
+							<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelEnvironment.html" TARGET="contents">System.Threading.Parallel.ParallelEnvironment Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelEnvironment.RecommendedMaxThreads%20Property"><H3>ParallelEnvironment.RecommendedMaxThreads Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static int RecommendedMaxThreads { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Recommended value for System.Threading.Parallel.ParallelEnvironment.MaxThreads<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+
+							A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> that is the initial value for System.Threading.Parallel.ParallelEnvironment.MaxThreads.
+							<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+
+							Values between 1x and 2x the number of physical threads on the platform are recommended. 
+							<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelEnvironment.html" TARGET="contents">System.Threading.Parallel.ParallelEnvironment Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+</BODY>
+</HTML>

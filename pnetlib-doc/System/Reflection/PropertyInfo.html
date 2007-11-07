@@ -45,12 +45,10 @@ Reflection
 <BLOCKQUOTE>
  A property
       is a named aspect of an object&apos;s state whose value is typically accessible
-      through <CODE>get</CODE>
- and <CODE>set</CODE>
- accessors. [<I>Note</I>: Properties can be read-only, in which case the
-   <CODE> set</CODE>
-
-   accessor is not available.]<P>
+      through <CODE>Get</CODE>
+ and <CODE>Set</CODE>
+ accessors. [<I>Note</I>: Properties can be read-only, in which case the  <CODE>Set</CODE>
+ accessor is not available.]<P>
 
 <P>
 
@@ -273,8 +271,7 @@ This method is equivalent to System.Reflection.PropertyInfo.GetAccessors(<CODE>f
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Returns the public or, if
-      specified, non-public <CODE>Get</CODE>
+ Returns the public possibly or, if specified, the non-public <CODE>Get</CODE>
  accessor for the property reflected by the current instance.<P>
 
 </BLOCKQUOTE>
@@ -284,10 +281,10 @@ This method is equivalent to System.Reflection.PropertyInfo.GetAccessors(<CODE>f
 <BLOCKQUOTE>
 <DL>
 <DT>nonPublic</DT>
-<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether non-public <CODE>Get</CODE>
- accessors will be included in the return value. Specify <CODE>true</CODE>
- to include non-public accessors; otherwise, specify <CODE>false</CODE>
- .<P>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether a non-public <CODE>Get</CODE>
+ accessor will be returned. Specify <CODE>true</CODE>
+ to allow a non-public accessor; otherwise, specify <CODE>false</CODE>
+.<P>
 
 </DD>
 </DL>
@@ -446,7 +443,7 @@ A <A HREF="MethodInfo.html" TARGET="contents">MethodInfo</A> instance that refle
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Returns the public or, if specified, non-public <CODE>Set</CODE>
+Returns the public possibly or, if specified, the non-public <CODE>Set</CODE>
  accessor
    for the property reflected by the current instance.<P>
 
@@ -457,10 +454,10 @@ Returns the public or, if specified, non-public <CODE>Set</CODE>
 <BLOCKQUOTE>
 <DL>
 <DT>nonPublic</DT>
-<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether non-public <CODE>Set</CODE>
- accessors are included in the return value. Specify <CODE>true</CODE>
- if non-public accessors are to be included; otherwise, specify <CODE>false</CODE>
- .<P>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that indicates whether a non-public <CODE>Set</CODE>
+ accessor will be returned. Specify <CODE>true</CODE>
+ to allow a non-public accessor; otherwise, specify <CODE>false</CODE>
+.<P>
 
 </DD>
 </DL>
@@ -617,6 +614,8 @@ A <A HREF="../../System/Object.html" TARGET="contents">Object</A> that
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>index </I> does not contain the exact type of arguments needed.<P>
+
+-or-<P>
 
 The <CODE>Get</CODE>
  accessor of the property reflected by the current instance was not found.<P>

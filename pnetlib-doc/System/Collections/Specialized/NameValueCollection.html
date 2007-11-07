@@ -7,7 +7,7 @@
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public class NameValueCollection : Object</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public class NameValueCollection: ICollection, IEnumerable</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -46,7 +46,7 @@ values.<P>
 This class can be used for headers, query strings and
       form data. Each key in the collection is associated with one or more
       values. Multiple values for a particular key are contained in a single
-   <A HREF="../../../System/String.html" TARGET="contents">String</A> are stored as a <A HREF="../../../System/Collections/ArrayList.html" TARGET="contents">ArrayList</A> . <P>
+   <A HREF="../../../System/String.html" TARGET="contents">String</A> . <P>
 
 The capacity is the number of key-and-value pairs that the <A HREF="NameValueCollection.html" TARGET="contents">NameValueCollection</A> can contain. The default initial
    capacity is zero. The capacity is automatically increased as required.<P>
@@ -76,12 +76,12 @@ The comparer determines whether two keys are equal.<P>
 
 NameValueCollection Constructors<P>
 
-<A HREF="#NameValueCollection%28%29%20Constructor" TARGET="contents">NameValueCollection() Constructor</A><BR>
-<A HREF="#NameValueCollection%28System.Collections.Specialized.NameValueCollection%29%20Constructor" TARGET="contents">NameValueCollection(System.Collections.Specialized.NameValueCollection) Constructor</A><BR>
-<A HREF="#NameValueCollection%28System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor" TARGET="contents">NameValueCollection(System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</A><BR>
-<A HREF="#NameValueCollection%28int%29%20Constructor" TARGET="contents">NameValueCollection(int) Constructor</A><BR>
-<A HREF="#NameValueCollection%28int%2C%20System.Collections.Specialized.NameValueCollection%29%20Constructor" TARGET="contents">NameValueCollection(int, System.Collections.Specialized.NameValueCollection) Constructor</A><BR>
 <A HREF="#NameValueCollection%28int%2C%20System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor" TARGET="contents">NameValueCollection(int, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</A><BR>
+<A HREF="#NameValueCollection%28int%2C%20System.Collections.Specialized.NameValueCollection%29%20Constructor" TARGET="contents">NameValueCollection(int, System.Collections.Specialized.NameValueCollection) Constructor</A><BR>
+<A HREF="#NameValueCollection%28int%29%20Constructor" TARGET="contents">NameValueCollection(int) Constructor</A><BR>
+<A HREF="#NameValueCollection%28System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor" TARGET="contents">NameValueCollection(System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</A><BR>
+<A HREF="#NameValueCollection%28System.Collections.Specialized.NameValueCollection%29%20Constructor" TARGET="contents">NameValueCollection(System.Collections.Specialized.NameValueCollection) Constructor</A><BR>
+<A HREF="#NameValueCollection%28%29%20Constructor" TARGET="contents">NameValueCollection() Constructor</A><BR>
 <P>
 
 NameValueCollection Methods<P>
@@ -90,11 +90,12 @@ NameValueCollection Methods<P>
 <A HREF="#NameValueCollection.Add%28System.Collections.Specialized.NameValueCollection%29%20Method" TARGET="contents">NameValueCollection.Add(System.Collections.Specialized.NameValueCollection) Method</A><BR>
 <A HREF="#NameValueCollection.Clear%20Method" TARGET="contents">NameValueCollection.Clear Method</A><BR>
 <A HREF="#NameValueCollection.CopyTo%20Method" TARGET="contents">NameValueCollection.CopyTo Method</A><BR>
-<A HREF="#NameValueCollection.Get%28int%29%20Method" TARGET="contents">NameValueCollection.Get(int) Method</A><BR>
 <A HREF="#NameValueCollection.Get%28System.String%29%20Method" TARGET="contents">NameValueCollection.Get(System.String) Method</A><BR>
+<A HREF="#NameValueCollection.Get%28int%29%20Method" TARGET="contents">NameValueCollection.Get(int) Method</A><BR>
+<A HREF="#NameValueCollection.GetEnumerator%20Method" TARGET="contents">NameValueCollection.GetEnumerator Method</A><BR>
 <A HREF="#NameValueCollection.GetKey%20Method" TARGET="contents">NameValueCollection.GetKey Method</A><BR>
-<A HREF="#NameValueCollection.GetValues%28int%29%20Method" TARGET="contents">NameValueCollection.GetValues(int) Method</A><BR>
 <A HREF="#NameValueCollection.GetValues%28System.String%29%20Method" TARGET="contents">NameValueCollection.GetValues(System.String) Method</A><BR>
+<A HREF="#NameValueCollection.GetValues%28int%29%20Method" TARGET="contents">NameValueCollection.GetValues(int) Method</A><BR>
 <A HREF="#NameValueCollection.HasKeys%20Method" TARGET="contents">NameValueCollection.HasKeys Method</A><BR>
 <A HREF="#NameValueCollection.InvalidateCachedArrays%20Method" TARGET="contents">NameValueCollection.InvalidateCachedArrays Method</A><BR>
 <A HREF="#NameValueCollection.Remove%20Method" TARGET="contents">NameValueCollection.Remove Method</A><BR>
@@ -104,17 +105,125 @@ NameValueCollection Methods<P>
 NameValueCollection Properties<P>
 
 <A HREF="#NameValueCollection.AllKeys%20Property" TARGET="contents">NameValueCollection.AllKeys Property</A><BR>
+<A HREF="#NameValueCollection.Count%20Property" TARGET="contents">NameValueCollection.Count Property</A><BR>
+<A HREF="#NameValueCollection.IsReadOnly%20Property" TARGET="contents">NameValueCollection.IsReadOnly Property</A><BR>
+<A HREF="#NameValueCollection.IsSynchronized%20Property" TARGET="contents">NameValueCollection.IsSynchronized Property</A><BR>
 <A HREF="#NameValueCollection.Item%28System.String%29%20Property" TARGET="contents">NameValueCollection.Item(System.String) Property</A><BR>
 <A HREF="#NameValueCollection.Item%28int%29%20Property" TARGET="contents">NameValueCollection.Item(int) Property</A><BR>
+<A HREF="#NameValueCollection.SyncRoot%20Property" TARGET="contents">NameValueCollection.SyncRoot Property</A><BR>
 </BLOCKQUOTE>
 
 <HR>
 
-<A NAME="NameValueCollection%28%29%20Constructor"><H3>NameValueCollection() Constructor</H3>
+<A NAME="NameValueCollection%28int%2C%20System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor"><H3>NameValueCollection(int, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public NameValueCollection();</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public NameValueCollection(int capacity, IHashCodeProvider hashProvider, IComparer comparer);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes new instance of the <A HREF="NameValueCollection.html" TARGET="contents">NameValueCollection</A>
+class with the specified initial capacity, hash code provider,
+and comparer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>capacity</DT>
+<DD>A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the initial number of entries that the <A HREF="NameValueCollection.html" TARGET="contents">NameValueCollection</A> can contain. </DD>
+<DT>hashProvider</DT>
+<DD>The <A HREF="../../../System/Collections/IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> that will supply the hash codes for all keys in the new instance.</DD>
+<DT>comparer</DT>
+<DD> The <A HREF="../../../System/Collections/IComparer.html" TARGET="contents">IComparer</A> to use to determine whether two keys in the new instance are equal.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>capacity</I> &lt; 0. </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NameValueCollection.html" TARGET="contents">System.Collections.Specialized.NameValueCollection Class</A>, <A HREF="Specialized.html" TARGET="members">System.Collections.Specialized Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="NameValueCollection%28int%2C%20System.Collections.Specialized.NameValueCollection%29%20Constructor"><H3>NameValueCollection(int, System.Collections.Specialized.NameValueCollection) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public NameValueCollection(int capacity, NameValueCollection col);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes new instance of the <A HREF="NameValueCollection.html" TARGET="contents">NameValueCollection</A> class
+   that contains the same values as the specified <A HREF="NameValueCollection.html" TARGET="contents">NameValueCollection</A> and either the specified capacity or the
+   capacity of the specified collection, whichever is
+   greater.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>capacity</DT>
+<DD>A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the initial number of entries that the new instance can contain. </DD>
+<DT>col</DT>
+<DD>The <A HREF="NameValueCollection.html" TARGET="contents">NameValueCollection</A> used to initialize the new instance. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>col</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>capacity</I> is &lt; 0.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The new instance is initialized with the default <A HREF="../../../System/Collections/IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> and <A HREF="../../../System/Collections/IComparer.html" TARGET="contents">IComparer</A> .<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NameValueCollection.html" TARGET="contents">System.Collections.Specialized.NameValueCollection Class</A>, <A HREF="Specialized.html" TARGET="members">System.Collections.Specialized Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="NameValueCollection%28int%29%20Constructor"><H3>NameValueCollection(int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public NameValueCollection(int capacity);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -122,14 +231,83 @@ NameValueCollection Properties<P>
 
 <BLOCKQUOTE>
 Constructs and initializes a new instance of the <A HREF="NameValueCollection.html" TARGET="contents">NameValueCollection</A>
-class.<P>
+class with the specified initial capacity.<P>
 
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>capacity</DT>
+<DD>A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the initial number of entries that the new instance can contain. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>capacity</I> &lt; 0. </TD></TR>
+</TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-The new instance is initialized with the default initial capacity, <A HREF="../../../System/Collections/IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A>, and <A HREF="../../../System/Collections/IComparer.html" TARGET="contents">IComparer</A>.<P>
+The new instance is initialized with the default <A HREF="../../../System/Collections/IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> and <A HREF="../../../System/Collections/IComparer.html" TARGET="contents">IComparer</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NameValueCollection.html" TARGET="contents">System.Collections.Specialized.NameValueCollection Class</A>, <A HREF="Specialized.html" TARGET="members">System.Collections.Specialized Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="NameValueCollection%28System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor"><H3>NameValueCollection(System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public NameValueCollection(IHashCodeProvider hashProvider, IComparer comparer);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="NameValueCollection.html" TARGET="contents">NameValueCollection</A> class
+   with the specified <A HREF="../../../System/Collections/IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> and the specified <A HREF="../../../System/Collections/IComparer.html" TARGET="contents">IComparer</A>
+   
+   .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>hashProvider</DT>
+<DD>The <A HREF="../../../System/Collections/IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> that supplies the hash codes for all keys in the new instance; or, <CODE>null</CODE>
+ to use the default hash code provider.<P>
+
+</DD>
+<DT>comparer</DT>
+<DD>The <A HREF="../../../System/Collections/IComparer.html" TARGET="contents">IComparer</A> to use to determine whether two keys are equal. Specify <CODE>null</CODE>
+ to use the default comparer.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The new instance is initialized with the default capacity of zero.<P>
 
 </BLOCKQUOTE>
 
@@ -198,61 +376,11 @@ The elements of the new <A HREF="NameValueCollection.html" TARGET="contents">Nam
 
 <HR>
 
-<A NAME="NameValueCollection%28System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor"><H3>NameValueCollection(System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</H3>
+<A NAME="NameValueCollection%28%29%20Constructor"><H3>NameValueCollection() Constructor</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public NameValueCollection(IHashCodeProvider hashProvider, IComparer comparer);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Constructs and initializes a new instance of the <A HREF="NameValueCollection.html" TARGET="contents">NameValueCollection</A> class
-   with the specified <A HREF="../../../System/Collections/IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> and the specified <A HREF="../../../System/Collections/IComparer.html" TARGET="contents">IComparer</A>
-   
-   .<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>hashProvider</DT>
-<DD>The <A HREF="../../../System/Collections/IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> that supplies the hash codes for all keys in the new instance; or, <CODE>null</CODE>
- to use the default hash code provider.<P>
-
-</DD>
-<DT>comparer</DT>
-<DD>The <A HREF="../../../System/Collections/IComparer.html" TARGET="contents">IComparer</A> to use to determine whether two keys are equal. Specify <CODE>null</CODE>
- to use the default comparer.<P>
-
-</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-The new instance is initialized with the default capacity of zero.<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="NameValueCollection.html" TARGET="contents">System.Collections.Specialized.NameValueCollection Class</A>, <A HREF="Specialized.html" TARGET="members">System.Collections.Specialized Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="NameValueCollection%28int%29%20Constructor"><H3>NameValueCollection(int) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public NameValueCollection(int capacity);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public NameValueCollection();</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -260,137 +388,15 @@ The new instance is initialized with the default capacity of zero.<P>
 
 <BLOCKQUOTE>
 Constructs and initializes a new instance of the <A HREF="NameValueCollection.html" TARGET="contents">NameValueCollection</A>
-class with the specified initial capacity.<P>
+class.<P>
 
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>capacity</DT>
-<DD>A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the initial number of entries that the new instance can contain. </DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>capacity</I> &lt; 0. </TD></TR>
-</TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-The new instance is initialized with the default <A HREF="../../../System/Collections/IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> and <A HREF="../../../System/Collections/IComparer.html" TARGET="contents">IComparer</A>
-.<P>
+The new instance is initialized with the default initial capacity, <A HREF="../../../System/Collections/IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A>, and <A HREF="../../../System/Collections/IComparer.html" TARGET="contents">IComparer</A>.<P>
 
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="NameValueCollection.html" TARGET="contents">System.Collections.Specialized.NameValueCollection Class</A>, <A HREF="Specialized.html" TARGET="members">System.Collections.Specialized Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="NameValueCollection%28int%2C%20System.Collections.Specialized.NameValueCollection%29%20Constructor"><H3>NameValueCollection(int, System.Collections.Specialized.NameValueCollection) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public NameValueCollection(int capacity, NameValueCollection col);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Constructs and initializes new instance of the <A HREF="NameValueCollection.html" TARGET="contents">NameValueCollection</A> class
-   that contains the same values as the specified <A HREF="NameValueCollection.html" TARGET="contents">NameValueCollection</A> and either the specified capacity or the
-   capacity of the specified collection, whichever is
-   greater.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>capacity</DT>
-<DD>A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the initial number of entries that the new instance can contain. </DD>
-<DT>col</DT>
-<DD>The <A HREF="NameValueCollection.html" TARGET="contents">NameValueCollection</A> used to initialize the new instance. </DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>col</I> is <CODE>null</CODE>
-.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-The new instance is initialized with the default <A HREF="../../../System/Collections/IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> and <A HREF="../../../System/Collections/IComparer.html" TARGET="contents">IComparer</A> .<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="NameValueCollection.html" TARGET="contents">System.Collections.Specialized.NameValueCollection Class</A>, <A HREF="Specialized.html" TARGET="members">System.Collections.Specialized Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="NameValueCollection%28int%2C%20System.Collections.IHashCodeProvider%2C%20System.Collections.IComparer%29%20Constructor"><H3>NameValueCollection(int, System.Collections.IHashCodeProvider, System.Collections.IComparer) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public NameValueCollection(int capacity, IHashCodeProvider hashProvider, IComparer comparer);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Constructs and initializes new instance of the <A HREF="NameValueCollection.html" TARGET="contents">NameValueCollection</A>
-class with the specified initial capacity, hash code provider,
-and comparer.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>capacity</DT>
-<DD>A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the initial number of entries that the <A HREF="NameValueCollection.html" TARGET="contents">NameValueCollection</A> can contain. </DD>
-<DT>hashProvider</DT>
-<DD>The <A HREF="../../../System/Collections/IHashCodeProvider.html" TARGET="contents">IHashCodeProvider</A> that will supply the hash codes for all keys in the new instance.</DD>
-<DT>comparer</DT>
-<DD> The <A HREF="../../../System/Collections/IComparer.html" TARGET="contents">IComparer</A> to use to determine whether two keys in the new instance are equal.<P>
-
-</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>capacity</I> &lt; 0. </TD></TR>
-</TABLE>
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -454,8 +460,7 @@ Adds an entry with the specified key and value to the current instance.<P>
          value is added to the existing comma-separated list of values associated with
          the same key.<P>
 
-If the same value already exists under the same key in the collection, the
-         new value overwrites the old value.<P>
+Attempting to assign the same value to an existing key adds a new value to that key, thus providing two (or more) copies of the same value associated with the key.<P>
 
 ]<P>
 
@@ -617,7 +622,11 @@ Copies the elements from the current instance to the specified <A HREF="../../..
 <TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> &lt; 0.</TD></TR>
 <TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>dest</I> has more than one dimension.<P>
 
+-or-<P>
+
 <I>index</I> &gt;= <I>dest</I>.Length.<P>
+
+-or-<P>
 
 The number of elements in the current instance is greater than the available space from <I>index</I> to the end of the destination <I>dest</I>.<P>
 
@@ -633,6 +642,69 @@ This method uses System.Array.Copy(System.Array,System.Array,System.Int32) to co
 
 [<I>Note</I>: This method is
    implemented to support the <A HREF="../../../System/Collections/ICollection.html" TARGET="contents">ICollection</A> interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NameValueCollection.html" TARGET="contents">System.Collections.Specialized.NameValueCollection Class</A>, <A HREF="Specialized.html" TARGET="members">System.Collections.Specialized Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="NameValueCollection.Get%28System.String%29%20Method"><H3>NameValueCollection.Get(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual string Get(string name);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the values associated with the specified key from
+      the current instance combined into one comma-separated list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>name</DT>
+<DD>A <A HREF="../../../System/String.html" TARGET="contents">String</A> that specified the key of the entry that contains the values to get.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../../System/String.html" TARGET="contents">String</A> that contains a
+   comma-separated list of the values associated with the specified key from the
+   current instance, if found;
+   otherwise, <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
+
+<P>
+
+[<I>Default</I>: If <I>name</I> is
+<CODE>null</CODE>
+, the values associated with the null key, if any, are returned; otherwise, <CODE>null</CODE>
+ is returned.]<P>
 
 <P>
 
@@ -712,56 +784,34 @@ A <A HREF="../../../System/String.html" TARGET="contents">String</A> that contai
 
 <HR>
 
-<A NAME="NameValueCollection.Get%28System.String%29%20Method"><H3>NameValueCollection.Get(System.String) Method</H3>
+<A NAME="NameValueCollection.GetEnumerator%20Method"><H3>NameValueCollection.GetEnumerator Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual string Get(string name);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual IEnumerator GetEnumerator()</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Gets the values associated with the specified key from
-      the current instance combined into one comma-separated list.<P>
+ Returns a <A HREF="../../../System/Collections/IEnumerator.html" TARGET="contents">IEnumerator</A> for the current instance.<P>
 
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>name</DT>
-<DD>A <A HREF="../../../System/String.html" TARGET="contents">String</A> that specified the key of the entry that contains the values to get.<P>
-
-</DD>
-</DL>
 </BLOCKQUOTE>
 
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="../../../System/String.html" TARGET="contents">String</A> that contains a
-   comma-separated list of the values associated with the specified key from the
-   current instance, if found;
-   otherwise, <CODE>null</CODE>
-.<P>
+A <A HREF="../../../System/Collections/IEnumerator.html" TARGET="contents">IEnumerator</A> for the current instance.<P>
 
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-[<I>Behaviors</I>: As described
-      above.]<P>
+If the current instance is modified while an enumeration is in progress, a call to System.Collections.IEnumerator.MoveNext or System.Collections.IEnumerator.Reset throws <A HREF="../../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>.<P>
 
-<P>
-
-[<I>Default</I>: If <I>name</I> is
-<CODE>null</CODE>
-, no exception is thrown and <CODE>null</CODE>
- is returned.]<P>
+[<I>Note</I>: For detailed information regarding the use of an enumerator, see <A HREF="../../../System/Collections/IEnumerator.html" TARGET="contents">IEnumerator</A>. This property is implemented to support the <A HREF="../../../System/Collections/IEnumerable.html" TARGET="contents">IEnumerable</A> interface.]<P>
 
 <P>
 
@@ -807,70 +857,6 @@ Returns the key at the specified index of the current
 <BLOCKQUOTE>
 A <A HREF="../../../System/String.html" TARGET="contents">String</A> that contains the
    key at the specified index of the current instance, if found;
-   otherwise, <CODE>null</CODE>
-.<P>
-
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is outside the valid range of indices for the current instance.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-[<I>Behaviors</I>: As described
-      above.]<P>
-
-<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="NameValueCollection.html" TARGET="contents">System.Collections.Specialized.NameValueCollection Class</A>, <A HREF="Specialized.html" TARGET="members">System.Collections.Specialized Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="NameValueCollection.GetValues%28int%29%20Method"><H3>NameValueCollection.GetValues(int) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual string[] GetValues(int index);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Returns an array that contains the values at the
-      specified index of the current instance.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>index</DT>
-<DD> A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> that specifies the zero-based index of the entry that contains the values to get from the current instance.<P>
-
-</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
- A <A HREF="../../../System/String.html" TARGET="contents">String</A> array containing the values at the specified index of the
-   current instance, if found;
    otherwise, <CODE>null</CODE>
 .<P>
 
@@ -953,6 +939,70 @@ otherwise, <CODE>null</CODE>
 <CODE>null</CODE>
 , no exception is thrown and <CODE>null</CODE>
  is returned.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NameValueCollection.html" TARGET="contents">System.Collections.Specialized.NameValueCollection Class</A>, <A HREF="Specialized.html" TARGET="members">System.Collections.Specialized Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="NameValueCollection.GetValues%28int%29%20Method"><H3>NameValueCollection.GetValues(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual string[] GetValues(int index);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an array that contains the values at the
+      specified index of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD> A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> that specifies the zero-based index of the entry that contains the values to get from the current instance.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../../System/String.html" TARGET="contents">String</A> array containing the values at the specified index of the
+   current instance, if found;
+   otherwise, <CODE>null</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is outside the valid range of indices for the current instance.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: As described
+      above.]<P>
 
 <P>
 
@@ -1068,7 +1118,7 @@ Removes the entry with the specified key from the current instance.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only or has a fixed size.<P>
+<TR><TD><A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only.<P>
 
 </TD></TR>
 </TABLE>
@@ -1151,7 +1201,7 @@ Sets the value of the specified entry in the current
 <BLOCKQUOTE>
 [<I>Behaviors</I>: If the 
       specified key already exists in the current instance, this method overwrites the
-      existing values with the specified value. If the specified key does not exist in the current instance, this method creates
+      existing values with the specified value. (If the existing value contains a string of multiple comma-delimited values, the complete string is replaced with a single instance of value.) If the specified key does not exist in the current instance, this method creates
       a new entry using the specified key and the specified value.]<P>
 
 <P>
@@ -1218,6 +1268,113 @@ Gets all the keys in the current instance. <P>
 
 <HR>
 
+<A NAME="NameValueCollection.Count%20Property"><H3>NameValueCollection.Count Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual int Count { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Gets the number of elements contained in the current
+      instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> that indicates the number of elements contained in the current
+   instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+[<I>Note</I>: This property is implemented to support the <A HREF="../../../System/Collections/ICollection.html" TARGET="contents">ICollection</A> interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NameValueCollection.html" TARGET="contents">System.Collections.Specialized.NameValueCollection Class</A>, <A HREF="Specialized.html" TARGET="members">System.Collections.Specialized Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="NameValueCollection.IsReadOnly%20Property"><H3>NameValueCollection.IsReadOnly Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>protected bool IsReadOnly { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets a value indicating whether the current instance is read-only.
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the current instance is read-only; otherwise, <CODE>false</CODE>
+.
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-write.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NameValueCollection.html" TARGET="contents">System.Collections.Specialized.NameValueCollection Class</A>, <A HREF="Specialized.html" TARGET="members">System.Collections.Specialized Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="NameValueCollection.IsSynchronized%20Property"><H3>NameValueCollection.IsSynchronized Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>bool ICollection.IsSynchronized { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support <A HREF="../../../System/Collections/ICollection.html" TARGET="contents">ICollection</A>.<P>
+
+[<I>Note</I>: For more information, see System.Collections.ICollection.IsSynchronized.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NameValueCollection.html" TARGET="contents">System.Collections.Specialized.NameValueCollection Class</A>, <A HREF="Specialized.html" TARGET="members">System.Collections.Specialized Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
 <A NAME="NameValueCollection.Item%28System.String%29%20Property"><H3>NameValueCollection.Item(System.String) Property</H3>
 
 <BLOCKQUOTE>
@@ -1250,10 +1407,10 @@ Gets or sets the value in the current instance that is associated with the
 <BLOCKQUOTE>
 A <A HREF="../../../System/String.html" TARGET="contents">String</A> that contains the
    comma-separated list of values associated with the specified key. If
-<I>key</I> is not contained in the current instance, attempting to get it 
+<I>name</I> is not contained in the current instance, attempting to get it 
    returns <CODE>null</CODE>
 , and attempting to set it creates a new entry
-   using <I>key</I>
+   using <I>name</I>
    .<P>
 
 </BLOCKQUOTE>
@@ -1263,10 +1420,7 @@ A <A HREF="../../../System/String.html" TARGET="contents">String</A> that contai
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is outside the valid range of indexes for the collection.</TD></TR>
-<TR><TD><A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The property is being set and the current instance is read-only. The property is being set, <I>key</I> is not contained in the current instance, and the current instance has a fixed size.<P>
-
-</TD></TR>
+<TR><TD><A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The property is being set and the current instance is read-only. </TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1275,7 +1429,7 @@ A <A HREF="../../../System/String.html" TARGET="contents">String</A> that contai
 <BLOCKQUOTE>
 If the specified key already exists in the collection,
       setting this property overwrites the existing values with the specified
-      value. If the specified key does not exist in the collection, setting this
+      value. (If the existing value contains a string of multiple comma-delimited values, the complete string is replaced with a single instance of the specified value.) If the specified key does not exist in the collection, setting this
       property creates a new entry using the specified key and the specified
       value.<P>
 
@@ -1338,6 +1492,7 @@ A <A HREF="../../../System/String.html" TARGET="contents">String</A> that contai
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is outside the valid range of indices for the current instance.</TD></TR>
+<TR><TD><A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The property is being set and the current instance is read-only.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1353,6 +1508,33 @@ This property cannot be set. To set the value at a specified index,
          use <CODE>Item[GetKey(index)]</CODE>.<P>
 
 ]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="NameValueCollection.html" TARGET="contents">System.Collections.Specialized.NameValueCollection Class</A>, <A HREF="Specialized.html" TARGET="members">System.Collections.Specialized Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="NameValueCollection.SyncRoot%20Property"><H3>NameValueCollection.SyncRoot Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>object ICollection.SyncRoot { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implemented to support <A HREF="../../../System/Collections/ICollection.html" TARGET="contents">ICollection</A>.<P>
+
+[<I>Note</I>: For more information, see System.Collections.ICollection.SyncRoot.]<P>
+
+<P>
 
 </BLOCKQUOTE>
 

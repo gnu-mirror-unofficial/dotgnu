@@ -1,0 +1,291 @@
+<HTML>
+<HEAD>
+<TITLE>System.Collections.Generic.IList&lt;T&gt; Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Collections.Generic.IList&lt;T&gt; Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public interface IList&lt;T&gt;: ICollection&lt;T&gt;, IEnumerable&lt;T&gt;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+This type implements <A HREF="ICollectionT.html" TARGET="contents">ICollection&lt;T&gt;</A> and <A HREF="IEnumerableT.html" TARGET="contents">IEnumerable&lt;T&gt;</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Library</H4>
+
+<BLOCKQUOTE>
+BCL
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Represents a collection of objects that can be individually accessed by index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This interface is a descendant of the <A HREF="ICollectionT.html" TARGET="contents">ICollection&lt;T&gt;</A> interface and is the base interface of all generic lists.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IList&lt;T&gt; Methods<P>
+
+<A HREF="#IList%3CT%3E.IndexOf%20Method" TARGET="contents">IList&lt;T&gt;.IndexOf Method</A><BR>
+<A HREF="#IList%3CT%3E.Insert%20Method" TARGET="contents">IList&lt;T&gt;.Insert Method</A><BR>
+<A HREF="#IList%3CT%3E.RemoveAt%20Method" TARGET="contents">IList&lt;T&gt;.RemoveAt Method</A><BR>
+<P>
+
+IList&lt;T&gt; Properties<P>
+
+<A HREF="#IList%3CT%3E.Item%20Property" TARGET="contents">IList&lt;T&gt;.Item Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IList%3CT%3E.IndexOf%20Method"><H3>IList&lt;T&gt;.IndexOf Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>int IndexOf(T value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines the index of a specific item in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <CODE>T</CODE>
+ to locate in the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The index of <I>value</I> if found in the current instance; otherwise, -1.
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Implementations can vary in how they determine equality of objects; for example, <A HREF="ListT.html" TARGET="contents">List&lt;T&gt;</A>  uses the default comparer, whereas, System.Collections.Generic.Dictionary&lt;T,U&gt; allows the user to specify the <A HREF="IComparerT.html" TARGET="contents">IComparer&lt;T&gt;</A> implementation to use for comparing keys.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IListT.html" TARGET="contents">System.Collections.Generic.IList&lt;T&gt; Interface</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IList%3CT%3E.Insert%20Method"><H3>IList&lt;T&gt;.Insert Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>void Insert(int index, T value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts an item into the current instance at the specified position.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A System.Int32 that specifies the zero-based index at which value is inserted.</DD>
+<DT>value</DT>
+<DD>The <CODE>T</CODE>
+ to insert into the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is not a valid index in the current instance (i.e. is negative or greater than the number of elements in the current instance).<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+In collections of contiguous elements, such as lists, the elements that follow the insertion point have indices one more than previously, to accommodate the new element. If the collection is indexed, the indexes of the elements that are moved are also updated.<P>
+
+[<I>Behaviors</I>: If <I>index</I> equals the number of items in the System.Collections.Generic.IList&lt;T&gt;, then value is required to be appended to the end of the current instance.<P>
+
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IListT.html" TARGET="contents">System.Collections.Generic.IList&lt;T&gt; Interface</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IList%3CT%3E.RemoveAt%20Method"><H3>IList&lt;T&gt;.RemoveAt Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>void RemoveAt(int index)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes the item at the specified index of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>A System.Int32 that specifies the zero-based index of the item to remove.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is not a valid index in the current instance.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The current instance is read-only.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+In collections of contiguous elements, such as lists, the elements that follow the removed element have indices one less than previously. If the collection is indexed, the indexes of the elements that are moved are also updated.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IListT.html" TARGET="contents">System.Collections.Generic.IList&lt;T&gt; Interface</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IList%3CT%3E.Item%20Property"><H3>IList&lt;T&gt;.Item Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>T this[int index] { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the element at the specified index in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>The zero-based index of the element to get or set.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The element at the specified index in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is not a valid index in the current instance.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>The property is being set and the current instance is read-only.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property provides the ability to access a specific element in the collection by using some language-specific syntax.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IListT.html" TARGET="contents">System.Collections.Generic.IList&lt;T&gt; Interface</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+</BODY>
+</HTML>

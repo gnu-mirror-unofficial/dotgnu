@@ -1,0 +1,136 @@
+<HTML>
+<HEAD>
+<TITLE>System.Collections.Generic.IComparer&lt;T&gt; Interface</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Collections.Generic.IComparer&lt;T&gt; Interface</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public interface IComparer&lt;T&gt;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Library</H4>
+
+<BLOCKQUOTE>
+BCL
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Provides a mechanism to customize comparison in sort ordering of a generic collection.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+IComparer&lt;T&gt; Methods<P>
+
+<A HREF="#IComparer%3CT%3E.Compare%20Method" TARGET="contents">IComparer&lt;T&gt;.Compare Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="IComparer%3CT%3E.Compare%20Method"><H3>IComparer&lt;T&gt;.Compare Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>int Compare(T x, T y)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the sort order of two <CODE>T</CODE>
+ instances.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>x</DT>
+<DD>First <CODE>T</CODE>
+ to compare.</DD>
+<DT>y</DT>
+<DD>Second <CODE>T</CODE>
+ to compare.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of
+<I>x</I> as compared to <I>y</I>. The following table defines the conditions
+   under which the returned value is a negative number, zero, or a positive
+   number.<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Value</TH><TH>Condition</TH></TR>
+<TR><TD> A negative number</TD><TD><I>x</I> &lt; <I>y</I>.</TD></TR>
+<TR><TD> Zero</TD><TD><I>x</I> == <I>y</I>.</TD></TR>
+<TR><TD> A positive number</TD><TD><I>x</I> &gt; <I>y</I>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Behaviors</I>: For any objects A, B and C, the following are required to be true:<P>
+
+Compare(A,A) is required to return zero. <P>
+
+If Compare(A,B) returns zero then Compare(B,A) is required to return zero.<P>
+
+If Compare(A,B) is zero, then Compare(B,C) and Compare(A,C) must have the same sign (negative, zero or positive).<P>
+
+If Compare(B,C) is zero, then Compare(A,B) and Compare(A,C) must have the same sign (negative, zero or positive).<P>
+
+If Compare(A,B) returns zero and Compare(B,C) returns zero then Compare(A,C) is required to return zero.<P>
+
+If Compare(A,B) returns a value other than zero then Compare(B,A) is required to return a value of the opposite sign.<P>
+
+If Compare(A,B) returns a value <I>x</I> not equal 
+      to zero, and Compare(B,C) returns a value <I>y</I> of the same sign as
+   <I>x</I>, then Compare(A,C) is required to a value of the same sign as 
+   <I>x</I> and <I>y</I> 
+   .<P>
+
+The exact behavior of this method is unspecified. The intent of this method is
+   to provide a mechanism that orders instances of a class in a manner that is
+   consistent with the mathematical definitions of the relational operators (&lt;,
+   &gt;, and ==), without regard for class-specific definitions of the
+   operators.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="IComparerT.html" TARGET="contents">System.Collections.Generic.IComparer&lt;T&gt; Interface</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+</BODY>
+</HTML>

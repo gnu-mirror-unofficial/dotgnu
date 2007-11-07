@@ -1,0 +1,1449 @@
+<HTML>
+<HEAD>
+<TITLE>System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public class Dictionary&lt;TKey,TValue&gt;: IDictionary&lt;TKey,TValue&gt;, ICollection&lt;KeyValuePair&lt;TKey,TValue&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;TKey,TValue&gt;&gt;, IDictionary, ICollection, IEnumerable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;Dictionary&lt;TKey,TValue&gt;<P>
+
+This type implements <A HREF="../../../System/Collections/ICollection.html" TARGET="contents">ICollection</A>, <A HREF="../../../System/Collections/IDictionary.html" TARGET="contents">IDictionary</A>, <A HREF="../../../System/Collections/IEnumerable.html" TARGET="contents">IEnumerable</A>, System.Collections.Generic.ICollection&lt;KeyValuePair&lt;TKey,TValue&gt;&gt;, <A HREF="IDictionaryTKeyTValue.html" TARGET="contents">IDictionary&lt;TKey,TValue&gt;</A>, and System.Collections.Generic.IEnumerable&lt;KeyValuePair&lt;TKey,TValue&gt;&gt;.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Library</H4>
+
+<BLOCKQUOTE>
+BCL
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Represents a collection of key/value pairs that are organized based on the key.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Each element is a key/value pair that can be retrieved as a System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt; object.<P>
+
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">Dictionary&lt;TKey,TValue&gt;</A> requires an equality comparer implementation to perform comparisons.  If no equality comparer is provided, the following default equality comparer approach is used: If type <CODE>TKey</CODE>
+  implements System.IEquatable&lt;TKey&gt;, that implementation is used; otherwise, <CODE>TKey</CODE>
+&apos;s implementations of System.Object.Equals(Object) and System.Object.GetHashCode() are used. In any case, you can specify a System.Collections.Generic.IEqualityComparer&lt;TKey&gt; implementation in a constructor overload that accepts an equality comparer parameter.<P>
+
+After its insertion in a dictionary, changes to the value of a key that affect the equality comparer render the dictionary&apos;s behavior unspecified. Every key in a dictionary must be unique according to the equality comparer. A key cannot be <CODE>null</CODE>
+, but a value can be, if the value type <CODE>TValue</CODE>
+ is a reference type.<P>
+
+The capacity of a dictionary is the number of elements that dictionary can hold.  As elements are added to a dictionary, the capacity is automatically increased.<P>
+
+This type contains a member that is a nested type, called <CODE>Enumerator</CODE>
+. Although <CODE>Enumerator</CODE>
+ is a member of this type, <CODE>Enumerator</CODE>
+ is not described here; instead, it is described in its own entry, <CODE>Dictionary&lt;TKey,TValue&gt;.Enumerator</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+Dictionary&lt;TKey,TValue&gt; Constructors<P>
+
+<A HREF="#Dictionary%3CTKey%2CTValue%3E%28%29%20Constructor" TARGET="contents">Dictionary&lt;TKey,TValue&gt;() Constructor</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E%28System.Collections.Generic.IEqualityComparer%3CTKey%3E%29%20Constructor" TARGET="contents">Dictionary&lt;TKey,TValue&gt;(System.Collections.Generic.IEqualityComparer&lt;TKey&gt;) Constructor</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E%28System.Collections.Generic.IDictionary%3CTKey%2CTValue%3E%29%20Constructor" TARGET="contents">Dictionary&lt;TKey,TValue&gt;(System.Collections.Generic.IDictionary&lt;TKey,TValue&gt;) Constructor</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E%28int%29%20Constructor" TARGET="contents">Dictionary&lt;TKey,TValue&gt;(int) Constructor</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E%28System.Collections.Generic.IDictionary%3CTKey%2CTValue%3E%2C%20System.Collections.Generic.IEqualityComparer%3CTKey%3E%29%20Constructor" TARGET="contents">Dictionary&lt;TKey,TValue&gt;(System.Collections.Generic.IDictionary&lt;TKey,TValue&gt;, System.Collections.Generic.IEqualityComparer&lt;TKey&gt;) Constructor</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E%28int%2C%20System.Collections.Generic.IEqualityComparer%3CTKey%3E%29%20Constructor" TARGET="contents">Dictionary&lt;TKey,TValue&gt;(int, System.Collections.Generic.IEqualityComparer&lt;TKey&gt;) Constructor</A><BR>
+<P>
+
+Dictionary&lt;TKey,TValue&gt; Methods<P>
+
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.Add%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.Add Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.Clear%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.Clear Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.ContainsKey%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.ContainsKey Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.ContainsValue%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.ContainsValue Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.GetEnumerator%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.GetEnumerator Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.Remove%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.Remove Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.Generic.ICollection%3CSystem.Collections.Generic.KeyValuePair%3CTKey%2CTValue%3E%3E.Add%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.Generic.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;.Add Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.Generic.ICollection%3CSystem.Collections.Generic.KeyValuePair%3CTKey%2CTValue%3E%3E.Contains%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.Generic.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;.Contains Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.Generic.ICollection%3CSystem.Collections.Generic.KeyValuePair%3CTKey%2CTValue%3E%3E.CopyTo%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.Generic.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;.CopyTo Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.Generic.ICollection%3CSystem.Collections.Generic.KeyValuePair%3CTKey%2CTValue%3E%3E.Remove%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.Generic.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;.Remove Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.Generic.IEnumerable%3CSystem.Collections.Generic.KeyValuePair%3CTKey%2CTValue%3E%3E.GetEnumerator%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;.GetEnumerator Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.ICollection.CopyTo%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.ICollection.CopyTo Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.Add%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.Add Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.Contains%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.Contains Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.GetEnumerator%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.GetEnumerator Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.Remove%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.Remove Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.IEnumerable.GetEnumerator%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.IEnumerable.GetEnumerator Method</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.TryGetValue%20Method" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.TryGetValue Method</A><BR>
+<P>
+
+Dictionary&lt;TKey,TValue&gt; Properties<P>
+
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.Count%20Property" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.Count Property</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.Item%20Property" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.Item Property</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.Keys%20Property" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.Keys Property</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.Generic.ICollection%3CSystem.Collections.Generic.KeyValuePair%3CTKey%2CTValue%3E%3E.IsReadOnly%20Property" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.Generic.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;.IsReadOnly Property</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.Generic.IDictionary%3CTKey%2CTValue%3E.Keys%20Property" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.Generic.IDictionary&lt;TKey,TValue&gt;.Keys Property</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.Generic.IDictionary%3CTKey%2CTValue%3E.Values%20Property" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.Generic.IDictionary&lt;TKey,TValue&gt;.Values Property</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.ICollection.IsSynchronized%20Property" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.ICollection.IsSynchronized Property</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.ICollection.SyncRoot%20Property" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.ICollection.SyncRoot Property</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.IsFixedSize%20Property" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.IsFixedSize Property</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.IsReadOnly%20Property" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.IsReadOnly Property</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.Item%20Property" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.Item Property</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.Keys%20Property" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.Keys Property</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.Values%20Property" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.Values Property</A><BR>
+<A HREF="#Dictionary%3CTKey%2CTValue%3E.Values%20Property" TARGET="contents">Dictionary&lt;TKey,TValue&gt;.Values Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E%28%29%20Constructor"><H3>Dictionary&lt;TKey,TValue&gt;() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public Dictionary()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Initializes a new dictionary that is empty, has the default initial capacity, and uses the default equality comparer.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E%28System.Collections.Generic.IEqualityComparer%3CTKey%3E%29%20Constructor"><H3>Dictionary&lt;TKey,TValue&gt;(System.Collections.Generic.IEqualityComparer&lt;TKey&gt;) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public Dictionary(IEqualityComparer&lt;TKey&gt; comparer)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Initializes a new dictionary that is empty, has the default initial capacity, and uses the specified equality comparer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>comparer</DT>
+<DD>The equality comparer implementation to use when comparing keys.<P>
+
+-or-<P>
+
+<CODE>null</CODE>
+ to use the default equality comparer for the type of the key.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E%28System.Collections.Generic.IDictionary%3CTKey%2CTValue%3E%29%20Constructor"><H3>Dictionary&lt;TKey,TValue&gt;(System.Collections.Generic.IDictionary&lt;TKey,TValue&gt;) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public Dictionary(IDictionary&lt;TKey,TValue&gt; dictionary)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Initializes a new dictionary that contains elements copied from the specified dictionary, has sufficient capacity to accommodate the number of elements copied, and uses the default equality comparer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>dictionary</DT>
+<DD>The dictionary whose elements are to be copied to the new dictionary.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>dictionary</I> contains one or more duplicate keys.</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>dictionary</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Every key in a dictionary must be unique according to the default equality comparer; otherwise, a <A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A> is thrown; likewise, every key in the source dictionary must also be unique according to the default equality comparer.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E%28int%29%20Constructor"><H3>Dictionary&lt;TKey,TValue&gt;(int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public Dictionary(int capacity)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Initializes a new dictionary that is empty, has the specified initial capacity, and uses the default equality comparer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>capacity</DT>
+<DD>The initial number of elements that the dictionary can contain.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>capacity</I> is less than zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E%28System.Collections.Generic.IDictionary%3CTKey%2CTValue%3E%2C%20System.Collections.Generic.IEqualityComparer%3CTKey%3E%29%20Constructor"><H3>Dictionary&lt;TKey,TValue&gt;(System.Collections.Generic.IDictionary&lt;TKey,TValue&gt;, System.Collections.Generic.IEqualityComparer&lt;TKey&gt;) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public Dictionary(IDictionary&lt;TKey,TValue&gt; dictionary, IEqualityComparer&lt;TKey&gt; comparer)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Initializes a new dictionary that contains elements copied from the specified dictionary, has sufficient capacity to accommodate the number of elements copied, and uses the specified equality comparer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>dictionary</DT>
+<DD>The dictionary whose elements are to be copied to the new dictionary.<P>
+
+</DD>
+<DT>comparer</DT>
+<DD>The equality comparer implementation to use when comparing keys.<P>
+
+-or-<P>
+
+<CODE>null</CODE>
+ to use the default equality comparer for the type of the key.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>dictionary</I> contains one or more duplicate keys.</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>dictionary</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Every key in a dictionary must be unique according to the specified; otherwise, a <A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A> is thrown; likewise, every key in the source dictionary must also be unique according to the specified equality comparer.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E%28int%2C%20System.Collections.Generic.IEqualityComparer%3CTKey%3E%29%20Constructor"><H3>Dictionary&lt;TKey,TValue&gt;(int, System.Collections.Generic.IEqualityComparer&lt;TKey&gt;) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public Dictionary(int capacity, IEqualityComparer&lt;TKey&gt; comparer)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Initializes a new dictionary that is empty, has the specified initial capacity, and uses the specified equality comparer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>capacity</DT>
+<DD>The initial number of elements that the dictionary can contain.<P>
+
+</DD>
+<DT>comparer</DT>
+<DD>The equality comparer implementation to use when comparing keys.<P>
+
+-or-<P>
+
+<CODE>null</CODE>
+ to use the default equality comparer for the type of the key.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>capacity</I> is less than zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.Add%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.Add Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void Add(TKey key, TValue value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds an element with the specified key and value to the dictionary.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>key</DT>
+<DD>The key of the element to add to the dictionary.</DD>
+<DT>value</DT>
+<DD>The value of the element to add to the dictionary.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>An element with the same key already exists in the dictionary.</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>key</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+You can also use the System.Collections.Generic.Dictionary&lt;TKey,TValue&gt;.Item<CODE>(TKey)</CODE>
+ property to add new elements by setting the value of a key that does not exist in the dictionary. However, if the specified key already exists in the dictionary, setting the System.Collections.Generic.Dictionary&lt;TKey,TValue&gt;.Item<CODE>(TKey)</CODE>
+ property overwrites the old value. In contrast, the System.Collections.Generic.Dictionary&lt;TKey,TValue&gt;.Add<CODE>(TKey,TValue)</CODE>
+ method does not modify existing elements.<P>
+
+If System.Collections.Generic.Dictionary&lt;TKey,TValue&gt;.Count already equals the capacity, the capacity of the dictionary is increased.<P>
+
+A key cannot be null, but a value can be, if the value type TValue is a reference type.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.Clear%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.Clear Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void Clear()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes all elements from the dictionary.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: This method is implemented to support the <A HREF="../../../System/Collections/IDictionary.html" TARGET="contents">IDictionary</A> interface.<P>
+
+]<P>
+
+<P>
+
+System.Collections.Generic.ICollection&lt;TKey&gt;.Count gets set to zero, and references to other objects from elements of the collection are also released. The capacity remains unchanged.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.ContainsKey%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.ContainsKey Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public virtual bool ContainsKey(TKey key)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the dictionary contains an element with a specific key.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>key</DT>
+<DD>The key to locate in the dictionary.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+, if an element whose key is <I>key</I> is found in the dictionary; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>key</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This implementation is close to O(1) in most cases.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.ContainsValue%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.ContainsValue Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public bool ContainsValue(TValue value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the dictionary contains an element with a specific value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The value to locate in the dictionary.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+, if an element whose value is <I>value</I> is found in the dictionary; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method determines equality using the default equality comparer for the value type TValue. If TValue implements System.IEquatable&lt;TValue&gt;, that type is used. Otherwise, System.Object.Equals is used.<P>
+
+This method performs a linear search; therefore, the average execution time is proportional to System.Collections.Generic.Dictionary&lt;TKey,TValue&gt;.Count. That is, this method is an O(n) operation, where n is System.Collections.Generic.Dictionary&lt;TKey,TValue&gt;.Count.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.GetEnumerator%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.GetEnumerator Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public Dictionary&lt;TKey,TValue&gt;.Enumerator GetEnumerator()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns an enumerator that can be used to iterate over the dictionary.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An enumerator for the dictionary.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Usage</I>: For a detailed description regarding the use of an enumerator, see System.Collections.Generic.IEnumerator&lt;TKey&gt;.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.Remove%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.Remove Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public bool Remove(TKey key)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes the element with the specified key from the dictionary.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>key</DT>
+<DD>The key of the element to be removed from the dictionary.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the element containing <I>key</I> is successfully removed; otherwise, <CODE>false</CODE>
+. This method also returns <CODE>false</CODE>
+ if <I>key</I> was not found in the dictionary.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>key</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the dictionary does not contain an element with the specified key, the dictionary remains unchanged. No exception is thrown.<P>
+
+This method shall be implemented with efficiency that is at least an O(1) operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.Generic.ICollection%3CSystem.Collections.Generic.KeyValuePair%3CTKey%2CTValue%3E%3E.Add%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.Generic.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;.Add Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>void ICollection&lt;KeyValuePair&lt;TKey,TValue&gt;&gt;.Add(KeyValuePair&lt;TKey,TValue&gt; keyValuePair)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the System.Collections.Generics.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;  interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.Generic.ICollection%3CSystem.Collections.Generic.KeyValuePair%3CTKey%2CTValue%3E%3E.Contains%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.Generic.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;.Contains Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>bool ICollection&lt;KeyValuePair&lt;TKey,TValue&gt;&gt;.Contains(KeyValuePair&lt;TKey,TValue&gt; keyValuePair)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the System.Collections.Generics.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;  interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.Generic.ICollection%3CSystem.Collections.Generic.KeyValuePair%3CTKey%2CTValue%3E%3E.CopyTo%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.Generic.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;.CopyTo Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>void ICollection&lt;KeyValuePair&lt;TKey,TValue&gt;&gt;.CopyTo(KeyValuePair&lt;TKey,TValue&gt;[] array, int index)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the System.Collections.Generics.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;  interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.Generic.ICollection%3CSystem.Collections.Generic.KeyValuePair%3CTKey%2CTValue%3E%3E.Remove%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.Generic.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;.Remove Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>bool ICollection&lt;KeyValuePair&lt;TKey,TValue&gt;&gt;.Remove(KeyValuePair&lt;TKey,TValue&gt; keyValuePair)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the System.Collections.Generics.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;  interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.Generic.IEnumerable%3CSystem.Collections.Generic.KeyValuePair%3CTKey%2CTValue%3E%3E.GetEnumerator%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;.GetEnumerator Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>IEnumerator&lt;T&gt; IEnumerable&lt;KeyValuePair&lt;TKey,TValue&gt;&gt;.GetEnumerator()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the System.Collections.Generics.IEnumerable&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;  interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.ICollection.CopyTo%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.ICollection.CopyTo Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>void ICollection.CopyTo(Array array, int index)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the <A HREF="../../../System/Collections/ICollection.html" TARGET="contents">ICollection</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.Add%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.Add Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>void IDictionary.Add(object key, object value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the <A HREF="../../../System/Collections/IDictionary.html" TARGET="contents">IDictionary</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.Contains%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.Contains Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>bool IDictionary.Contains(object key)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the <A HREF="../../../System/Collections/IDictionary.html" TARGET="contents">IDictionary</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.GetEnumerator%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.GetEnumerator Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>IDictionaryEnumerator IDictionary.GetEnumerator()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the <A HREF="../../../System/Collections/IDictionary.html" TARGET="contents">IDictionary</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.Remove%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.Remove Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>void IDictionary.Remove(object key)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the <A HREF="../../../System/Collections/IDictionary.html" TARGET="contents">IDictionary</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.IEnumerable.GetEnumerator%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.IEnumerable.GetEnumerator Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>IEnumerator IEnumerable.GetEnumerator()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the <A HREF="../../../System/Collections/IEnumerable.html" TARGET="contents">IEnumerable</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.TryGetValue%20Method"><H3>Dictionary&lt;TKey,TValue&gt;.TryGetValue Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public bool TryGetValue(TKey key, out TValue value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the value associated with the specified key.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>key</DT>
+<DD>The key of the element to locate in the dictionary.</DD>
+<DT>value</DT>
+<DD>When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of this parameter.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the dictionary contains an element with the specified key; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>key</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method combines the functionality of the System.Collections.Generic.Dictionary&lt;TKey,TValue&gt;.ContainsKey method and the System.Collections.Generic.Dictionary&lt;TKey,TValue&gt;.Item property.<P>
+
+The default value for value types is zero while that for reference types is <CODE>null</CODE>
+.<P>
+
+ This method is an O(1) operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.Count%20Property"><H3>Dictionary&lt;TKey,TValue&gt;.Count Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int Count { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the number of key/value pairs contained in the dictionary.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The number of key/value pairs contained in the dictionary.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+Retrieving the value of this property is an O(1) operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.Item%20Property"><H3>Dictionary&lt;TKey,TValue&gt;.Item Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public TValue this[TKey key] { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the value associated with the specified key.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>key</DT>
+<DD>The key whose value is to be gotten or set.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The value associated with the specified key. On a get attempt, if the specified key is not found, a <A HREF="KeyNotFoundException.html" TARGET="contents">KeyNotFoundException</A> is thrown. On a set attempt, if the specified key is not found, a new element using the specified key is created.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>key</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="KeyNotFoundException.html" TARGET="contents">KeyNotFoundException</A></TD><TD>During a get attempt, <I>key</I> is not found in the dictionary.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The default value for value types is zero while that for reference types is null.<P>
+
+You can also use the System.Collections.Generic.Dictionary&lt;TKey,TValue&gt;.Item<CODE>(TKey)</CODE>
+ property to add new elements by setting the value of a key that does not exist in the dictionary. However, if the specified key already exists in the dictionary, setting the System.Collections.Generic.Dictionary&lt;TKey,TValue&gt;.Item<CODE>(TKey)</CODE>
+ property overwrites the old value. In contrast, the System.Collections.Generic.Dictionary&lt;TKey,TValue&gt;.Add<CODE>(TKey,TValue)</CODE>
+ method does not modify existing elements.<P>
+
+A key cannot be null, but a value can be, if the value type TValue is a reference type.<P>
+
+Retrieving the value of this property is an O(1) operation; setting the property is also an O(1) operation.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.Keys%20Property"><H3>Dictionary&lt;TKey,TValue&gt;.Keys Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public KeyCollection&lt;TKey,TValue&gt; Keys { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a collection that contains the keys in the dictionary.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A collection of the keys in the dictionary.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The order of the keys in the key collection is unspecified, but it is the same order as the associated values in the value collection returned by the System.Collections.Generic.Dictionary&lt;TKey,TValue&gt;.Values property.<P>
+
+If the dictionary is modified, or the value of any key in the dictionary is modified, the behavior of the key collection is unspecified.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.Generic.ICollection%3CSystem.Collections.Generic.KeyValuePair%3CTKey%2CTValue%3E%3E.IsReadOnly%20Property"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.Generic.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;.IsReadOnly Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>bool ICollection&lt;KeyValuePair&lt;TKey,TValue&gt;&gt;.IsReadOnly { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This read-only property is implemented to support the System.Collections.Generics.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;  interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.Generic.IDictionary%3CTKey%2CTValue%3E.Keys%20Property"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.Generic.IDictionary&lt;TKey,TValue&gt;.Keys Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>ICollection&lt;TKey&gt; IDictionary&lt;TKey,TValue&gt;.Keys { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This read-only property is implemented to support the <A HREF="IDictionaryTKeyTValue.html" TARGET="contents">IDictionary&lt;TKey,TValue&gt;</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.Generic.IDictionary%3CTKey%2CTValue%3E.Values%20Property"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.Generic.IDictionary&lt;TKey,TValue&gt;.Values Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>ICollection&lt;TValue&gt; IDictionary&lt;TKey,TValue&gt;.Values { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This read-only property is implemented to support the <A HREF="IDictionaryTKeyTValue.html" TARGET="contents">IDictionary&lt;TKey,TValue&gt;</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.ICollection.IsSynchronized%20Property"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.ICollection.IsSynchronized Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>bool ICollection.IsSynchronized { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This read-only property is implemented to support the <A HREF="../../../System/Collections/ICollection.html" TARGET="contents">ICollection</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.ICollection.SyncRoot%20Property"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.ICollection.SyncRoot Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>object ICollection.SyncRoot { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This read-only property is implemented to support the <A HREF="../../../System/Collections/ICollection.html" TARGET="contents">ICollection</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.IsFixedSize%20Property"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.IsFixedSize Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>bool IDictionary.IsFixedSize { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This read-only property is implemented to support the <A HREF="../../../System/Collections/IDictionary.html" TARGET="contents">IDictionary</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.IsReadOnly%20Property"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.IsReadOnly Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>bool IDictionary.IsReadOnly { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This read-only property is implemented to support the <A HREF="../../../System/Collections/IDictionary.html" TARGET="contents">IDictionary</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.Item%20Property"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.Item Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>object IDictionary.this[object key] { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This read-only property is implemented to support the <A HREF="../../../System/Collections/IDictionary.html" TARGET="contents">IDictionary</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.Keys%20Property"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.Keys Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>ICollection IDictionary.Keys { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This read-only property is implemented to support the <A HREF="../../../System/Collections/IDictionary.html" TARGET="contents">IDictionary</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.System.Collections.IDictionary.Values%20Property"><H3>Dictionary&lt;TKey,TValue&gt;.System.Collections.IDictionary.Values Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>ICollection IDictionary.Values { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This read-only property is implemented to support the <A HREF="../../../System/Collections/IDictionary.html" TARGET="contents">IDictionary</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Dictionary%3CTKey%2CTValue%3E.Values%20Property"><H3>Dictionary&lt;TKey,TValue&gt;.Values Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public ValueCollection&lt;TKey,TValue&gt; Values { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets a collection that contains the values in the dictionary.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+A collection of the values in the dictionary.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+The order of the values in the value collection is unspecified, but it is the same order as the associated values in the key collection returned by the System.Collections.Generic.Dictionary&lt;TKey,TValue&gt;.Keys property.<P>
+
+The returned value collection is not a static copy; instead, it refers back to the values in the original dictionary. Therefore, changes to the dictionary continue to be reflected in the value collection.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="DictionaryTKeyTValue.html" TARGET="contents">System.Collections.Generic.Dictionary&lt;TKey,TValue&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+</BODY>
+</HTML>

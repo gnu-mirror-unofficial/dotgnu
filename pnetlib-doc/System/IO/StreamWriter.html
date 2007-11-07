@@ -80,13 +80,13 @@ localized versions of the operating system. <P>
 
 StreamWriter Constructors<P>
 
+<A HREF="#StreamWriter%28System.String%2C%20bool%2C%20System.Text.Encoding%2C%20int%29%20Constructor" TARGET="contents">StreamWriter(System.String, bool, System.Text.Encoding, int) Constructor</A><BR>
+<A HREF="#StreamWriter%28System.String%2C%20bool%2C%20System.Text.Encoding%29%20Constructor" TARGET="contents">StreamWriter(System.String, bool, System.Text.Encoding) Constructor</A><BR>
+<A HREF="#StreamWriter%28System.String%2C%20bool%29%20Constructor" TARGET="contents">StreamWriter(System.String, bool) Constructor</A><BR>
 <A HREF="#StreamWriter%28System.IO.Stream%29%20Constructor" TARGET="contents">StreamWriter(System.IO.Stream) Constructor</A><BR>
 <A HREF="#StreamWriter%28System.IO.Stream%2C%20System.Text.Encoding%29%20Constructor" TARGET="contents">StreamWriter(System.IO.Stream, System.Text.Encoding) Constructor</A><BR>
 <A HREF="#StreamWriter%28System.IO.Stream%2C%20System.Text.Encoding%2C%20int%29%20Constructor" TARGET="contents">StreamWriter(System.IO.Stream, System.Text.Encoding, int) Constructor</A><BR>
 <A HREF="#StreamWriter%28System.String%29%20Constructor" TARGET="contents">StreamWriter(System.String) Constructor</A><BR>
-<A HREF="#StreamWriter%28System.String%2C%20bool%29%20Constructor" TARGET="contents">StreamWriter(System.String, bool) Constructor</A><BR>
-<A HREF="#StreamWriter%28System.String%2C%20bool%2C%20System.Text.Encoding%29%20Constructor" TARGET="contents">StreamWriter(System.String, bool, System.Text.Encoding) Constructor</A><BR>
-<A HREF="#StreamWriter%28System.String%2C%20bool%2C%20System.Text.Encoding%2C%20int%29%20Constructor" TARGET="contents">StreamWriter(System.String, bool, System.Text.Encoding, int) Constructor</A><BR>
 <P>
 
 StreamWriter Methods<P>
@@ -95,10 +95,10 @@ StreamWriter Methods<P>
 <A HREF="#StreamWriter.Dispose%20Method" TARGET="contents">StreamWriter.Dispose Method</A><BR>
 <A HREF="#StreamWriter.Finalize%20Method" TARGET="contents">StreamWriter.Finalize Method</A><BR>
 <A HREF="#StreamWriter.Flush%20Method" TARGET="contents">StreamWriter.Flush Method</A><BR>
-<A HREF="#StreamWriter.Write%28System.String%29%20Method" TARGET="contents">StreamWriter.Write(System.String) Method</A><BR>
-<A HREF="#StreamWriter.Write%28char%5B%5D%2C%20int%2C%20int%29%20Method" TARGET="contents">StreamWriter.Write(char[], int, int) Method</A><BR>
-<A HREF="#StreamWriter.Write%28char%5B%5D%29%20Method" TARGET="contents">StreamWriter.Write(char[]) Method</A><BR>
 <A HREF="#StreamWriter.Write%28char%29%20Method" TARGET="contents">StreamWriter.Write(char) Method</A><BR>
+<A HREF="#StreamWriter.Write%28char%5B%5D%29%20Method" TARGET="contents">StreamWriter.Write(char[]) Method</A><BR>
+<A HREF="#StreamWriter.Write%28char%5B%5D%2C%20int%2C%20int%29%20Method" TARGET="contents">StreamWriter.Write(char[], int, int) Method</A><BR>
+<A HREF="#StreamWriter.Write%28System.String%29%20Method" TARGET="contents">StreamWriter.Write(System.String) Method</A><BR>
 <P>
 
 StreamWriter Properties<P>
@@ -106,6 +106,243 @@ StreamWriter Properties<P>
 <A HREF="#StreamWriter.AutoFlush%20Property" TARGET="contents">StreamWriter.AutoFlush Property</A><BR>
 <A HREF="#StreamWriter.BaseStream%20Property" TARGET="contents">StreamWriter.BaseStream Property</A><BR>
 <A HREF="#StreamWriter.Encoding%20Property" TARGET="contents">StreamWriter.Encoding Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="StreamWriter%28System.String%2C%20bool%2C%20System.Text.Encoding%2C%20int%29%20Constructor"><H3>StreamWriter(System.String, bool, System.Text.Encoding, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public StreamWriter(string path, bool append, Encoding encoding, int bufferSize);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A>
+class for the specified file on
+the specified path, using the specified encoding and buffer size.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the complete file path to write to.</DD>
+<DT>append</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that determines whether data is to be appended to the file. If the file exists and <I>append </I>is <CODE>false</CODE>
+, the file is overwritten. If the file exists and <I>append </I>is <CODE>true</CODE>
+, the data is appended to the file. Otherwise, a new file is created.</DD>
+<DT>encoding</DT>
+<DD>A <A HREF="../../System/Text/Encoding.html" TARGET="contents">Encoding</A> that specifies the character encoding to use.</DD>
+<DT>bufferSize</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the buffer size.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>A general I/O exception occurred, such as trying to access a CD-ROM drive whose tray is open.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I> is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> or <I>encoding</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD>System.IO.NotSupportedException</TD><TD><I>path</I> is in an implementation-specific invalid format.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I>  or the absolute path information for <I>path</I> exceeds the implementation-specific maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>bufferSize </I> is negative.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>Access is denied. The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the specified file exists, it can be either overwritten or appended to. If
+      the file does not exist, this constructor creates a new file.<P>
+
+This constructor initializes the System.IO.StreamWriter.Encoding property using
+<I>encoding</I> . For additional information, see System.IO.TextWriter.Encoding.<P>
+
+[<I>Note</I>: <I>path</I> is not required to be a file stored on disk; it can be any part 
+   of a system that supports access via streams. For example, depending on the
+   system, this class might be able to access a physical device.<P>
+
+For information on the valid format and characters for path strings, see 
+<A HREF="Path.html" TARGET="contents">Path</A> . <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamWriter.html" TARGET="contents">System.IO.StreamWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="StreamWriter%28System.String%2C%20bool%2C%20System.Text.Encoding%29%20Constructor"><H3>StreamWriter(System.String, bool, System.Text.Encoding) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public StreamWriter(string path, bool append, Encoding encoding);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A>
+class for the specified file on
+the specified path, using the specified encoding and default buffer size.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the complete file path to write to.</DD>
+<DT>append</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that determines whether data is to be appended to the file. If the file exists and <I>append </I>is <CODE>false</CODE>
+, the file is overwritten. If the file exists and <I>append </I>is <CODE>true</CODE>
+, the data is appended to the file. Otherwise, a new file is created.</DD>
+<DT>encoding</DT>
+<DD>A <A HREF="../../System/Text/Encoding.html" TARGET="contents">Encoding</A> that specifies the character encoding to use.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>A general I/O exception occurred, such as trying to access a CD-ROM drive whose tray is open.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>Access is denied. The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I> is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I> or <I>encoding</I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD>System.IO.NotSupportedException</TD><TD><I>path </I> is in an implementation-specific invalid format.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I>  or the absolute path information for <I>path</I> exceeds the implementation-specific maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the specified file exists, it can be either overwritten or appended to. If
+      the file does not exist, this constructor creates a new file.<P>
+
+This constructor initializes the System.IO.StreamWriter.Encoding property using
+<I>encoding</I> . For additional information, see System.IO.TextWriter.Encoding.<P>
+
+[<I>Note</I>: <I>path</I> is not required to be a file stored on disk;
+   it can be any part of a system that supports access via streams. For example,
+   depending on the system, this class might be able to access a physical device.<P>
+
+For information on the valid format and characters for path strings, see 
+<A HREF="Path.html" TARGET="contents">Path</A> .<P>
+
+The default buffer size can typically be around 4 KB.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamWriter.html" TARGET="contents">System.IO.StreamWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="StreamWriter%28System.String%2C%20bool%29%20Constructor"><H3>StreamWriter(System.String, bool) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public StreamWriter(string path, bool append);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A>
+class for the specified file on
+the specified path, using the default encoding and buffer size.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the complete file path to write to.</DD>
+<DT>append</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that determines whether data is to be appended to the file. If the file exists and <I>append </I>is <CODE>false</CODE>
+, the file is overwritten. If the file exists and <I>append </I>is <CODE>true</CODE>
+, the data is appended to the file. Otherwise, a new file is created.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>A general I/O exception occurs, such as trying to access a CD-ROM drive whose tray is open</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>Access to <I>path</I> is denied. The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I> is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
+<TR><TD>System.IO.NotSupportedException</TD><TD><I>path </I> is in an implementation-specific invalid format.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I>  or the absolute path information for <I>path</I> exceeds the implementation-specific maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This constructor initializes the System.IO.StreamWriter.Encoding
+property to <A HREF="../../System/Text/UTF8Encoding.html" TARGET="contents">UTF8Encoding</A> whose System.Text.Encoding.GetPreamble method returns an empty
+byte array. For additional information, see System.IO.TextWriter.Encoding .<P>
+
+If the specified file exists, it can be either overwritten or appended to. If
+   the file does not exist, this constructor creates a new file.<P>
+
+[<I>Note</I>: <I>path</I> is not required to be a file stored on disk;
+   it can be any part of a system that supports access via streams. For example,
+   depending on the system, this class might be able to access a physical device.<P>
+
+For information on the valid format and characters for path strings, see 
+<A HREF="Path.html" TARGET="contents">Path</A> .<P>
+
+The default buffer size can typically be around 4 KB.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamWriter.html" TARGET="contents">System.IO.StreamWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
 </BLOCKQUOTE>
 
 <HR>
@@ -155,7 +392,7 @@ This constructor initializes the System.IO.StreamWriter.Encoding property to a <
    . The System.IO.StreamWriter.BaseStream property is initialized using
 <I>stream</I> .<P>
 
-[<I>Note</I>: The default buffer size may typically be
+[<I>Note</I>: The default buffer size can typically be
    around 4 KB.]<P>
 
 <P>
@@ -215,7 +452,7 @@ encoding and the default buffer size.<P>
 This constructor initializes the System.IO.StreamWriter.Encoding property using <I>encoding</I> , and the System.IO.StreamWriter.BaseStream property
    using <I>stream</I> . For additional information, see System.IO.TextWriter.Encoding.<P>
 
-[<I>Note</I>: The default buffer size may typically be
+[<I>Note</I>: The default buffer size can typically be
    around 4 KB.]<P>
 
 <P>
@@ -324,6 +561,7 @@ Constructs and initializes a new instance of the <A HREF="StreamWriter.html" TAR
 <TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is an empty string (&quot;&quot;).</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>is <CODE>null</CODE>
 .</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I>  or the absolute path information for <I>path</I> exceeds the implementation-specific maximum length.</TD></TR>
 <TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -337,245 +575,14 @@ This constructor initializes the System.IO.StreamWriter.Encoding property to
 
 [<I>Note</I>: <I>path</I> is not required to be a file stored on disk;
    it can be any part of a system that supports access via streams. For example,
-   depending on the system, this class may be able to access a
+   depending on the system, this class might be able to access a
    physical device.<P>
 
 For information on the valid format and characters for 
    path strings, see <A HREF="Path.html" TARGET="contents">Path</A>
    .<P>
 
-The default buffer size may typically be around 4 KB.<P>
-
-]<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="StreamWriter.html" TARGET="contents">System.IO.StreamWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="StreamWriter%28System.String%2C%20bool%29%20Constructor"><H3>StreamWriter(System.String, bool) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public StreamWriter(string path, bool append);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Constructs and initializes a new instance of the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A>
-class for the specified file on
-the specified path, using the default encoding and buffer size.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>path</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the complete file path to write to.</DD>
-<DT>append</DT>
-<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that determines whether data is to be appended to the file. If the file exists and <I>append </I>is <CODE>false</CODE>
-, the file is overwritten. If the file exists and <I>append </I>is <CODE>true</CODE>
-, the data is appended to the file. Otherwise, a new file is created.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is in an invalid format or contains invalid characters.</TD></TR>
-<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
-<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>Access to <I>path</I> is denied.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is an empty string (&quot;&quot;).</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>is <CODE>null</CODE>
-.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-This constructor initializes the System.IO.StreamWriter.Encoding
-property to <A HREF="../../System/Text/UTF8Encoding.html" TARGET="contents">UTF8Encoding</A> whose System.Text.Encoding.GetPreamble method returns an empty
-byte array. For additional information, see System.IO.TextWriter.Encoding .<P>
-
-If the specified file exists, it can be either overwritten or appended to. If
-   the file does not exist, this constructor creates a new file.<P>
-
-[<I>Note</I>: <I>path</I> is not required to be a file stored on disk;
-   it can be any part of a system that supports access via streams. For example,
-   depending on the system, this class may be able to access a physical device.<P>
-
-For information on the valid format and characters for path strings, see 
-<A HREF="Path.html" TARGET="contents">Path</A> .<P>
-
-The default buffer size may typically be around 4 KB.<P>
-
-]<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="StreamWriter.html" TARGET="contents">System.IO.StreamWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="StreamWriter%28System.String%2C%20bool%2C%20System.Text.Encoding%29%20Constructor"><H3>StreamWriter(System.String, bool, System.Text.Encoding) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public StreamWriter(string path, bool append, Encoding encoding);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Constructs and initializes a new instance of the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A>
-class for the specified file on
-the specified path, using the specified encoding and default buffer size.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>path</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the complete file path to write to.</DD>
-<DT>append</DT>
-<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that determines whether data is to be appended to the file. If the file exists and <I>append </I>is <CODE>false</CODE>
-, the file is overwritten. If the file exists and <I>append </I>is <CODE>true</CODE>
-, the data is appended to the file. Otherwise, a new file is created.</DD>
-<DT>encoding</DT>
-<DD>A <A HREF="../../System/Text/Encoding.html" TARGET="contents">Encoding</A> that specifies the character encoding to use.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is in an invalid format or contains invalid characters.</TD></TR>
-<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
-<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>Access to <I>path</I> is denied.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is an empty string (&quot;&quot;).</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>is <CODE>null</CODE>
-.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-If the specified file exists, it can be either overwritten or appended to. If
-      the file does not exist, this constructor creates a new file.<P>
-
-This constructor initializes the System.IO.StreamWriter.Encoding property using
-<I>encoding</I> . For additional information, see System.IO.TextWriter.Encoding.<P>
-
-[<I>Note</I>: <I>path</I> is not required to be a file stored on disk;
-   it can be any part of a system that supports access via streams. For example,
-   depending on the system, this class may be able to access a physical device.<P>
-
-For information on the valid format and characters for path strings, see 
-<A HREF="Path.html" TARGET="contents">Path</A> .<P>
-
-The default buffer size may typically be around 4 KB.<P>
-
-]<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="StreamWriter.html" TARGET="contents">System.IO.StreamWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="StreamWriter%28System.String%2C%20bool%2C%20System.Text.Encoding%2C%20int%29%20Constructor"><H3>StreamWriter(System.String, bool, System.Text.Encoding, int) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public StreamWriter(string path, bool append, Encoding encoding, int bufferSize);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Constructs and initializes a new instance of the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A>
-class for the specified file on
-the specified path, using the specified encoding and buffer size.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>path</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the complete file path to write to.</DD>
-<DT>append</DT>
-<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> value that determines whether data is to be appended to the file. If the file exists and <I>append </I>is <CODE>false</CODE>
-, the file is overwritten. If the file exists and <I>append </I>is <CODE>true</CODE>
-, the data is appended to the file. Otherwise, a new file is created.</DD>
-<DT>encoding</DT>
-<DD>A <A HREF="../../System/Text/Encoding.html" TARGET="contents">Encoding</A> that specifies the character encoding to use.</DD>
-<DT>bufferSize</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the buffer size.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is in an invalid format or contains invalid characters.</TD></TR>
-<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The directory information specified in <I>path</I> was not found.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I> is an empty string (&quot;&quot;).</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> or <I>encoding</I> is <CODE>null</CODE>
-.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>bufferSize </I> is negative.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>Access to <I>path</I> is denied.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-If the specified file exists, it can be either overwritten or appended to. If
-      the file does not exist, this constructor creates a new file.<P>
-
-This constructor initializes the System.IO.StreamWriter.Encoding property using
-<I>encoding</I> . For additional information, see System.IO.TextWriter.Encoding.<P>
-
-[<I>Note</I>: <I>path</I> is not required to be a file stored on disk; it can be any part 
-   of a system that supports access via streams. For example, depending on the
-   system, this class may be able to access a physical device.<P>
-
-For information on the valid format and characters for path strings, see 
-<A HREF="Path.html" TARGET="contents">Path</A> . <P>
+The default buffer size can typically be around 4 KB.<P>
 
 ]<P>
 
@@ -666,7 +673,7 @@ When the <I>disposing</I> parameter is <CODE>true</CODE>
  method of each
    referenced object.<P>
 
-[<I>Note</I>: System.IO.StreamWriter.Dispose(System.Boolean) may be called multiple
+[<I>Note</I>: System.IO.StreamWriter.Dispose(System.Boolean) can be called multiple
    times by other objects. When overriding System.IO.StreamWriter.Dispose(System.Boolean)(<A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A>), be careful not
    to reference objects that have been previously disposed in an earlier call to
 System.IO.StreamWriter.Dispose(System.Boolean).<P>
@@ -767,18 +774,18 @@ Clears all buffers for the current writer and causes any buffered
 
 <HR>
 
-<A NAME="StreamWriter.Write%28System.String%29%20Method"><H3>StreamWriter.Write(System.String) Method</H3>
+<A NAME="StreamWriter.Write%28char%29%20Method"><H3>StreamWriter.Write(char) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public override void Write(string value);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override void Write(char value);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Writes a string to the stream.<P>
+ Writes a character to the stream.<P>
 
 </BLOCKQUOTE>
 
@@ -787,8 +794,7 @@ Clears all buffers for the current writer and causes any buffered
 <BLOCKQUOTE>
 <DL>
 <DT>value</DT>
-<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to write to the stream. If <I>value </I>is <CODE>null</CODE>
-, nothing is written.</DD>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> to write to the underlying stream.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -797,10 +803,9 @@ Clears all buffers for the current writer and causes any buffered
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
- or the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> buffer is full, and current writer is closed.</TD></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
  or the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> buffer is full, and the contents of the buffer cannot be written to the underlying fixed size stream because the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> is at the end the stream.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current writer is closed.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -808,79 +813,8 @@ Clears all buffers for the current writer and causes any buffered
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-The specified <A HREF="../../System/String.html" TARGET="contents">String</A> is written to the underlying stream unless the end
-   of the stream is reached prematurely. <P>
-
-If System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
-, System.IO.StreamWriter.Flush is
-invoked automatically.<P>
-
-[<I>Note</I>: This method overrides System.IO.TextWriter.Write(System.Char).]<P>
-
-<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="StreamWriter.html" TARGET="contents">System.IO.StreamWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="StreamWriter.Write%28char%5B%5D%2C%20int%2C%20int%29%20Method"><H3>StreamWriter.Write(char[], int, int) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public override void Write(char[] buffer, int index, int count);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Writes a sub-array of characters to the underlying stream.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>buffer</DT>
-<DD>A <A HREF="../../System/Char.html" TARGET="contents">Char</A> array containing the data to write.</DD>
-<DT>index</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index into <I>buffer </I> at which to begin writing.</DD>
-<DT>count</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number of characters to read from <I>buffer</I>.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer </I> is <CODE>null</CODE>
-.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>buffer.Length - <I>index </I> &lt; <I>count</I>.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> or <I>count</I> is negative.</TD></TR>
-<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
- or the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> buffer is full, and current writer is closed.</TD></TR>
-<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
- or the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> buffer is full, and the contents of the buffer cannot be written to the underlying fixed size stream because the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> is at the end the stream.</TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
- The specified
-      characters are written to the underlying stream unless the end of the stream is
-      reached prematurely. <CODE></CODE>
-<P>
+ The specified character is written to the underlying stream unless the end
+      of the stream is reached prematurely. <P>
 
 If System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
 , System.IO.StreamWriter.Flush is
@@ -930,10 +864,9 @@ If System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
- or the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> buffer is full, and current writer is closed.</TD></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
  or the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> buffer is full, and the contents of the buffer cannot be written to the underlying fixed size stream because the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> is at the end the stream.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current writer is closed.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -962,18 +895,18 @@ If System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
 
 <HR>
 
-<A NAME="StreamWriter.Write%28char%29%20Method"><H3>StreamWriter.Write(char) Method</H3>
+<A NAME="StreamWriter.Write%28char%5B%5D%2C%20int%2C%20int%29%20Method"><H3>StreamWriter.Write(char[], int, int) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public override void Write(char value);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override void Write(char[] buffer, int index, int count);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Writes a character to the stream.<P>
+ Writes a sub-array of characters to the underlying stream.<P>
 
 </BLOCKQUOTE>
 
@@ -981,8 +914,12 @@ If System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
 
 <BLOCKQUOTE>
 <DL>
-<DT>value</DT>
-<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> to write to the underlying stream.</DD>
+<DT>buffer</DT>
+<DD>A <A HREF="../../System/Char.html" TARGET="contents">Char</A> array containing the data to write.</DD>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the index into <I>buffer </I> at which to begin writing.</DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number of characters to read from <I>buffer</I>.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -991,10 +928,76 @@ If System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
- or the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> buffer is full, and current writer is closed.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>buffer.Length - <I>index </I> &lt; <I>count</I>.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>buffer </I> is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> or <I>count</I> is negative.</TD></TR>
 <TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
  or the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> buffer is full, and the contents of the buffer cannot be written to the underlying fixed size stream because the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> is at the end the stream.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current writer is closed.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The specified
+      characters are written to the underlying stream unless the end of the stream is
+      reached prematurely. <CODE></CODE>
+<P>
+
+If System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
+, System.IO.StreamWriter.Flush is
+   invoked automatically.<P>
+
+[<I>Note</I>: This method overrides System.IO.TextWriter.Write(System.Char).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="StreamWriter.html" TARGET="contents">System.IO.StreamWriter Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="StreamWriter.Write%28System.String%29%20Method"><H3>StreamWriter.Write(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override void Write(string value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Writes a string to the stream.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The <A HREF="../../System/String.html" TARGET="contents">String</A> to write to the stream. If <I>value </I>is <CODE>null</CODE>
+, nothing is written.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/NotSupportedException.html" TARGET="contents">NotSupportedException</A></TD><TD>System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
+ or the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> buffer is full, and the contents of the buffer cannot be written to the underlying fixed size stream because the <A HREF="StreamWriter.html" TARGET="contents">StreamWriter</A> is at the end the stream.</TD></TR>
+<TR><TD><A HREF="../../System/ObjectDisposedException.html" TARGET="contents">ObjectDisposedException</A></TD><TD>The current writer is closed.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD> An I/O error occurred.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -1002,12 +1005,12 @@ If System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
 <H4>Description</H4>
 
 <BLOCKQUOTE>
- The specified character is written to the underlying stream unless the end
-      of the stream is reached prematurely. <P>
+The specified <A HREF="../../System/String.html" TARGET="contents">String</A> is written to the underlying stream unless the end
+   of the stream is reached prematurely. <P>
 
 If System.IO.StreamWriter.AutoFlush is <CODE>true</CODE>
 , System.IO.StreamWriter.Flush is
-   invoked automatically.<P>
+invoked automatically.<P>
 
 [<I>Note</I>: This method overrides System.IO.TextWriter.Write(System.Char).]<P>
 

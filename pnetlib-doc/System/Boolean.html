@@ -7,7 +7,7 @@
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public struct Boolean : IComparable</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public struct Boolean : IComparable, IComparable&lt;Boolean&gt;, IEquatable&lt;Boolean&gt;</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -18,7 +18,7 @@
 &nbsp;&nbsp;<A HREF="ValueType.html" TARGET="contents">ValueType</A><BR>
 &nbsp;&nbsp;&nbsp;&nbsp;Boolean<P>
 
-This type implements <A HREF="IComparable.html" TARGET="contents">IComparable</A>.
+This type implements <A HREF="IComparable.html" TARGET="contents">IComparable</A>, System.IComparable&lt;System.Boolean&gt;, and System.IEquatable&lt;System.Boolean&gt;.
 </BLOCKQUOTE>
 
 <H4>Assembly</H4>
@@ -46,7 +46,9 @@ BCL
 The <A HREF="Boolean.html" TARGET="contents">Boolean</A> value type represents the logical values
 <CODE>true</CODE>
  and <CODE>false</CODE>
-.<P>
+. The size of this type is 8 bits, the representation of <CODE>false</CODE>
+ is all-bits-zero, and the representation of <CODE>true</CODE>
+  is unspecified except that it shall have at least one bit set.<P>
 
 </BLOCKQUOTE>
 
@@ -63,8 +65,10 @@ The <A HREF="Boolean.html" TARGET="contents">Boolean</A> value type represents t
 
 Boolean Methods<P>
 
-<A HREF="#Boolean.CompareTo%20Method" TARGET="contents">Boolean.CompareTo Method</A><BR>
-<A HREF="#Boolean.Equals%20Method" TARGET="contents">Boolean.Equals Method</A><BR>
+<A HREF="#Boolean.CompareTo%28bool%29%20Method" TARGET="contents">Boolean.CompareTo(bool) Method</A><BR>
+<A HREF="#Boolean.CompareTo%28System.Object%29%20Method" TARGET="contents">Boolean.CompareTo(System.Object) Method</A><BR>
+<A HREF="#Boolean.Equals%28bool%29%20Method" TARGET="contents">Boolean.Equals(bool) Method</A><BR>
+<A HREF="#Boolean.Equals%28System.Object%29%20Method" TARGET="contents">Boolean.Equals(System.Object) Method</A><BR>
 <A HREF="#Boolean.GetHashCode%20Method" TARGET="contents">Boolean.GetHashCode Method</A><BR>
 <A HREF="#Boolean.Parse%20Method" TARGET="contents">Boolean.Parse Method</A><BR>
 <A HREF="#Boolean.ToString%28System.IFormatProvider%29%20Method" TARGET="contents">Boolean.ToString(System.IFormatProvider) Method</A><BR>
@@ -79,7 +83,72 @@ Boolean Fields<P>
 
 <HR>
 
-<A NAME="Boolean.CompareTo%20Method"><H3>Boolean.CompareTo Method</H3>
+<A NAME="Boolean.CompareTo%28bool%29%20Method"><H3>Boolean.CompareTo(bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int CompareTo(bool value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the sort order of the current instance compared
+      to the specified <A HREF="Boolean.html" TARGET="contents">Boolean</A>
+      .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="Boolean.html" TARGET="contents">Boolean</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the current instance as compared to <I>value</I>. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Condition</TH></TR>
+<TR><TD> A negative number</TD><TD>Current instance is <CODE>false</CODE>
+ and
+<I>value</I> is <CODE>true</CODE>
+.</TD></TR>
+<TR><TD> Zero</TD><TD>Current instance == <I>value</I>
+.</TD></TR>
+<TR><TD> Any
+      positive number</TD><TD>Current instance is <CODE>true</CODE>
+ and
+<I>value</I> is <CODE>false</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  This method is
+      implemented to support the System.IComparable&lt;Boolean&gt; interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Boolean.html" TARGET="contents">System.Boolean Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Boolean.CompareTo%28System.Object%29%20Method"><H3>Boolean.CompareTo(System.Object) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
@@ -108,15 +177,11 @@ Returns the sort order of the current instance compared
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
-   current instance as compared to <I>obj</I>
-   . The following table defines the
-   conditions under which the returned value is a negative number, zero, or a
-   positive number.<P>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the current instance as compared to <I>obj</I>. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Condition</TH></TR>
-<TR><TD> Any negative number</TD><TD>Current instance is <CODE>false</CODE>
+<TR><TD> A negative number</TD><TD>Current instance is <CODE>false</CODE>
  and
 <I>obj</I> is <CODE>true</CODE>
 .</TD></TR>
@@ -158,7 +223,54 @@ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that refle
 
 <HR>
 
-<A NAME="Boolean.Equals%20Method"><H3>Boolean.Equals Method</H3>
+<A NAME="Boolean.Equals%28bool%29%20Method"><H3>Boolean.Equals(bool) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override bool Equals(bool obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance and the specified
+   <A HREF="Boolean.html" TARGET="contents">Boolean</A> represent the same value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> obj</DT>
+<DD>The <A HREF="Boolean.html" TARGET="contents">Boolean</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>obj</I> has the same value as
+   the current instance; otherwise,  <CODE>false</CODE>
+.<P>
+
+[<I>Note</I>: This method is implemented to support the System.IEquatable&lt;Boolean&gt; interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Boolean.html" TARGET="contents">System.Boolean Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Boolean.Equals%28System.Object%29%20Method"><H3>Boolean.Equals(System.Object) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">

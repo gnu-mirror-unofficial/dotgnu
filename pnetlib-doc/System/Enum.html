@@ -51,8 +51,9 @@ Provides support for all enumeration types. Serves as
    type.
    
    This underlying type is required
-   to be a system supplied integer type that is large enough to represent all values
-   defined in the enumeration. A <A HREF="Enum.html" TARGET="contents">Enum</A> declaration is allowed to
+   to be a system-supplied integer type that is large enough to represent all values
+   defined in the enumeration; the field that holds the underlying type must be called <CODE>value__</CODE>
+. A <A HREF="Enum.html" TARGET="contents">Enum</A> declaration is allowed to
    explicitly declare any integral type other
    than <A HREF="Char.html" TARGET="contents">Char</A>
    as an underlying type. This includes <A HREF="Byte.html" TARGET="contents">Byte</A>, <A HREF="SByte.html" TARGET="contents">SByte</A>, <A HREF="Int16.html" TARGET="contents">Int16</A>, <A HREF="Int32.html" TARGET="contents">Int32</A>, <A HREF="Int64.html" TARGET="contents">Int64</A>, <A HREF="UInt16.html" TARGET="contents">UInt16</A>, <A HREF="UInt32.html" TARGET="contents">UInt32</A>, and <A HREF="UInt64.html" TARGET="contents">UInt64</A>. A <A HREF="Enum.html" TARGET="contents">Enum</A> declaration that does not explicitly declare an
@@ -104,16 +105,16 @@ Enum Methods<P>
 <A HREF="#Enum.ToObject%28System.Type%2C%20System.Object%29%20Method" TARGET="contents">Enum.ToObject(System.Type, System.Object) Method</A><BR>
 <A HREF="#Enum.ToObject%28System.Type%2C%20sbyte%29%20Method" TARGET="contents">Enum.ToObject(System.Type, sbyte) Method</A><BR>
 <A HREF="#Enum.ToObject%28System.Type%2C%20short%29%20Method" TARGET="contents">Enum.ToObject(System.Type, short) Method</A><BR>
-<A HREF="#Enum.ToObject%28System.Type%2C%20int%29%20Method" TARGET="contents">Enum.ToObject(System.Type, int) Method</A><BR>
-<A HREF="#Enum.ToObject%28System.Type%2C%20byte%29%20Method" TARGET="contents">Enum.ToObject(System.Type, byte) Method</A><BR>
-<A HREF="#Enum.ToObject%28System.Type%2C%20ushort%29%20Method" TARGET="contents">Enum.ToObject(System.Type, ushort) Method</A><BR>
-<A HREF="#Enum.ToObject%28System.Type%2C%20uint%29%20Method" TARGET="contents">Enum.ToObject(System.Type, uint) Method</A><BR>
-<A HREF="#Enum.ToObject%28System.Type%2C%20long%29%20Method" TARGET="contents">Enum.ToObject(System.Type, long) Method</A><BR>
 <A HREF="#Enum.ToObject%28System.Type%2C%20ulong%29%20Method" TARGET="contents">Enum.ToObject(System.Type, ulong) Method</A><BR>
-<A HREF="#Enum.ToString%28System.IFormatProvider%29%20Method" TARGET="contents">Enum.ToString(System.IFormatProvider) Method</A><BR>
-<A HREF="#Enum.ToString%28System.String%2C%20System.IFormatProvider%29%20Method" TARGET="contents">Enum.ToString(System.String, System.IFormatProvider) Method</A><BR>
-<A HREF="#Enum.ToString%28%29%20Method" TARGET="contents">Enum.ToString() Method</A><BR>
+<A HREF="#Enum.ToObject%28System.Type%2C%20long%29%20Method" TARGET="contents">Enum.ToObject(System.Type, long) Method</A><BR>
+<A HREF="#Enum.ToObject%28System.Type%2C%20uint%29%20Method" TARGET="contents">Enum.ToObject(System.Type, uint) Method</A><BR>
+<A HREF="#Enum.ToObject%28System.Type%2C%20ushort%29%20Method" TARGET="contents">Enum.ToObject(System.Type, ushort) Method</A><BR>
+<A HREF="#Enum.ToObject%28System.Type%2C%20byte%29%20Method" TARGET="contents">Enum.ToObject(System.Type, byte) Method</A><BR>
+<A HREF="#Enum.ToObject%28System.Type%2C%20int%29%20Method" TARGET="contents">Enum.ToObject(System.Type, int) Method</A><BR>
 <A HREF="#Enum.ToString%28System.String%29%20Method" TARGET="contents">Enum.ToString(System.String) Method</A><BR>
+<A HREF="#Enum.ToString%28%29%20Method" TARGET="contents">Enum.ToString() Method</A><BR>
+<A HREF="#Enum.ToString%28System.String%2C%20System.IFormatProvider%29%20Method" TARGET="contents">Enum.ToString(System.String, System.IFormatProvider) Method</A><BR>
+<A HREF="#Enum.ToString%28System.IFormatProvider%29%20Method" TARGET="contents">Enum.ToString(System.IFormatProvider) Method</A><BR>
 </BLOCKQUOTE>
 
 <HR>
@@ -146,15 +147,12 @@ Enum Methods<P>
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A>
-containing a value that reflects the sort order of the current instance as
-compared to <I>target</I>. The following table defines the conditions under
-which the returned value is a negative number, zero, or a positive number.<P>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the current instance as compared to <I>target</I>. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
 <TR><TD> 
-         Any negative
+         A negative
          integer</TD><TD>The value of the current instance is less than
          the value of <I>target</I>.</TD></TR>
 <TR><TD> Zero</TD><TD>The value of the current instance is equal to the
@@ -464,7 +462,7 @@ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a hash code for th
 <BLOCKQUOTE>
  A <A HREF="String.html" TARGET="contents">String</A> containing the name of the enumerated constant
    in <I>enumType</I> whose value is <I>value</I>, or a null reference
-   if no such constant is found.<P>
+   if no such constant is found. If multiple constants have the same value, as to which name is returned for that value, is unspecified.<P>
 
 </BLOCKQUOTE>
 
@@ -550,7 +548,7 @@ Returns a zero-based, one-dimensional <A HREF="String.html" TARGET="contents">St
 <BLOCKQUOTE>
 A <A HREF="String.html" TARGET="contents">String</A> vector of the names of the constants in
 <I>enumType</I>. The elements of the vector
-   are sorted by the values of the enumerated constants. <P>
+   are sorted by the values of the enumerated constants.  If multiple constants have the same value, the order in which their names appear in the vector, relative to each other, is unspecified.<P>
 
 </BLOCKQUOTE>
 
@@ -719,7 +717,7 @@ The output is<P>
  A vector of the enumeration type specified by
    <I>enumType</I> containing the values of the
       constants in <I>enumType</I>. The elements of the array
-      are sorted by the values of the enumeration constants.
+      are sorted by the values of the enumeration constants. If multiple constants have the same value, the value of each is included in the array.
       <P>
 
 </BLOCKQUOTE>
@@ -1236,11 +1234,11 @@ This member is not CLS-compliant. For a CLS-compliant alternative, use
 
 <HR>
 
-<A NAME="Enum.ToObject%28System.Type%2C%20int%29%20Method"><H3>Enum.ToObject(System.Type, int) Method</H3>
+<A NAME="Enum.ToObject%28System.Type%2C%20ulong%29%20Method"><H3>Enum.ToObject(System.Type, ulong) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static object ToObject(Type enumType, int value);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static object ToObject(Type enumType, ulong value);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1248,7 +1246,7 @@ This member is not CLS-compliant. For a CLS-compliant alternative, use
 
 <BLOCKQUOTE>
  Returns an instance of the specified enumeration type set
-      to the specified <A HREF="Int32.html" TARGET="contents">Int32</A> value.
+      to the specified <A HREF="UInt64.html" TARGET="contents">UInt64</A> value.
       <P>
 
 </BLOCKQUOTE>
@@ -1260,14 +1258,15 @@ This member is not CLS-compliant. For a CLS-compliant alternative, use
 <DT>enumType</DT>
 <DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
 <DT> value</DT>
-<DD>The <A HREF="Int32.html" TARGET="contents">Int32</A> value to set. </DD>
+<DD>The <A HREF="UInt64.html" TARGET="contents">UInt64</A> value to set. </DD>
 </DL>
 </BLOCKQUOTE>
 
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-An enumeration object of type <I>enumType</I> whose value is <I>value</I>.<P>
+An enumeration object of type <I>enumType</I> whose
+   value is <I>value</I>.<P>
 
 </BLOCKQUOTE>
 
@@ -1283,6 +1282,20 @@ An enumeration object of type <I>enumType</I> whose value is <I>value</I>.<P>
 </TABLE>
 </BLOCKQUOTE>
 
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant 
+      alternative, use System.Enum.ToObject(System.Type,System.Object)(<A HREF="Type.html" TARGET="contents">Type</A>, <A HREF="Int64.html" TARGET="contents">Int64</A> ).<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
 <H4>See Also</H4>
 
 <BLOCKQUOTE>
@@ -1291,11 +1304,11 @@ An enumeration object of type <I>enumType</I> whose value is <I>value</I>.<P>
 
 <HR>
 
-<A NAME="Enum.ToObject%28System.Type%2C%20byte%29%20Method"><H3>Enum.ToObject(System.Type, byte) Method</H3>
+<A NAME="Enum.ToObject%28System.Type%2C%20long%29%20Method"><H3>Enum.ToObject(System.Type, long) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static object ToObject(Type enumType, byte value);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static object ToObject(Type enumType, long value);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1303,7 +1316,7 @@ An enumeration object of type <I>enumType</I> whose value is <I>value</I>.<P>
 
 <BLOCKQUOTE>
  Returns an instance of the specified enumeration type set
-      to the specified <A HREF="Byte.html" TARGET="contents">Byte</A> value.
+      to the specified <A HREF="Int64.html" TARGET="contents">Int64</A> value.
       <P>
 
 </BLOCKQUOTE>
@@ -1315,7 +1328,7 @@ An enumeration object of type <I>enumType</I> whose value is <I>value</I>.<P>
 <DT>enumType</DT>
 <DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
 <DT> value</DT>
-<DD>The <A HREF="Byte.html" TARGET="contents">Byte</A> value to set. </DD>
+<DD>The <A HREF="Int64.html" TARGET="contents">Int64</A> value to set. </DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -1337,75 +1350,6 @@ An enumeration object of type <I>enumType</I> whose
 
 </TD></TR>
 </TABLE>
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="Enum.ToObject%28System.Type%2C%20ushort%29%20Method"><H3>Enum.ToObject(System.Type, ushort) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static object ToObject(Type enumType, ushort value);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Returns an instance of the specified enumeration type set
-      to the specified <A HREF="UInt16.html" TARGET="contents">UInt16</A> value.
-      <P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>enumType</DT>
-<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
-<DT> value</DT>
-<DD>The <A HREF="UInt16.html" TARGET="contents">UInt16</A> value to set. </DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-An enumeration object of type <I>enumType</I> whose value is <I>value</I>.<P>
-
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> is a null reference. </TD></TR>
-<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not a <A HREF="Type.html" TARGET="contents">Type</A> that describes a <A HREF="Enum.html" TARGET="contents">Enum</A> .<P>
-
-</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-This member is not CLS-compliant. For a CLS-compliant alternative, use 
-   System.Enum.ToObject(System.Type,System.Object)(<A HREF="Type.html" TARGET="contents">Type</A>, <A HREF="Int32.html" TARGET="contents">Int32</A>).<P>
-
-</BLOCKQUOTE>
-
-<H4>Attributes</H4>
-
-<BLOCKQUOTE>
-<CODE>CLSCompliantAttribute(false)</CODE>
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -1486,11 +1430,11 @@ This member is not CLS-compliant. For a CLS-compliant alternative, use
 
 <HR>
 
-<A NAME="Enum.ToObject%28System.Type%2C%20long%29%20Method"><H3>Enum.ToObject(System.Type, long) Method</H3>
+<A NAME="Enum.ToObject%28System.Type%2C%20ushort%29%20Method"><H3>Enum.ToObject(System.Type, ushort) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static object ToObject(Type enumType, long value);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static object ToObject(Type enumType, ushort value);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1498,7 +1442,7 @@ This member is not CLS-compliant. For a CLS-compliant alternative, use
 
 <BLOCKQUOTE>
  Returns an instance of the specified enumeration type set
-      to the specified <A HREF="Int64.html" TARGET="contents">Int64</A> value.
+      to the specified <A HREF="UInt16.html" TARGET="contents">UInt16</A> value.
       <P>
 
 </BLOCKQUOTE>
@@ -1510,7 +1454,76 @@ This member is not CLS-compliant. For a CLS-compliant alternative, use
 <DT>enumType</DT>
 <DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
 <DT> value</DT>
-<DD>The <A HREF="Int64.html" TARGET="contents">Int64</A> value to set. </DD>
+<DD>The <A HREF="UInt16.html" TARGET="contents">UInt16</A> value to set. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An enumeration object of type <I>enumType</I> whose value is <I>value</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>enumType</I> is a null reference. </TD></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>enumType</I> is not a <A HREF="Type.html" TARGET="contents">Type</A> that describes a <A HREF="Enum.html" TARGET="contents">Enum</A> .<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This member is not CLS-compliant. For a CLS-compliant alternative, use 
+   System.Enum.ToObject(System.Type,System.Object)(<A HREF="Type.html" TARGET="contents">Type</A>, <A HREF="Int32.html" TARGET="contents">Int32</A>).<P>
+
+</BLOCKQUOTE>
+
+<H4>Attributes</H4>
+
+<BLOCKQUOTE>
+<CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Enum.ToObject%28System.Type%2C%20byte%29%20Method"><H3>Enum.ToObject(System.Type, byte) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static object ToObject(Type enumType, byte value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns an instance of the specified enumeration type set
+      to the specified <A HREF="Byte.html" TARGET="contents">Byte</A> value.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>enumType</DT>
+<DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
+<DT> value</DT>
+<DD>The <A HREF="Byte.html" TARGET="contents">Byte</A> value to set. </DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -1542,11 +1555,11 @@ An enumeration object of type <I>enumType</I> whose
 
 <HR>
 
-<A NAME="Enum.ToObject%28System.Type%2C%20ulong%29%20Method"><H3>Enum.ToObject(System.Type, ulong) Method</H3>
+<A NAME="Enum.ToObject%28System.Type%2C%20int%29%20Method"><H3>Enum.ToObject(System.Type, int) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static object ToObject(Type enumType, ulong value);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static object ToObject(Type enumType, int value);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1554,7 +1567,7 @@ An enumeration object of type <I>enumType</I> whose
 
 <BLOCKQUOTE>
  Returns an instance of the specified enumeration type set
-      to the specified <A HREF="UInt64.html" TARGET="contents">UInt64</A> value.
+      to the specified <A HREF="Int32.html" TARGET="contents">Int32</A> value.
       <P>
 
 </BLOCKQUOTE>
@@ -1566,15 +1579,14 @@ An enumeration object of type <I>enumType</I> whose
 <DT>enumType</DT>
 <DD>The <A HREF="Type.html" TARGET="contents">Type</A> of an enumeration. </DD>
 <DT> value</DT>
-<DD>The <A HREF="UInt64.html" TARGET="contents">UInt64</A> value to set. </DD>
+<DD>The <A HREF="Int32.html" TARGET="contents">Int32</A> value to set. </DD>
 </DL>
 </BLOCKQUOTE>
 
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-An enumeration object of type <I>enumType</I> whose
-   value is <I>value</I>.<P>
+An enumeration object of type <I>enumType</I> whose value is <I>value</I>.<P>
 
 </BLOCKQUOTE>
 
@@ -1590,20 +1602,6 @@ An enumeration object of type <I>enumType</I> whose
 </TABLE>
 </BLOCKQUOTE>
 
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-This member is not CLS-compliant. For a CLS-compliant 
-      alternative, use System.Enum.ToObject(System.Type,System.Object)(<A HREF="Type.html" TARGET="contents">Type</A>, <A HREF="Int64.html" TARGET="contents">Int64</A> ).<P>
-
-</BLOCKQUOTE>
-
-<H4>Attributes</H4>
-
-<BLOCKQUOTE>
-<CODE>CLSCompliantAttribute(false)</CODE>
-</BLOCKQUOTE>
-
 <H4>See Also</H4>
 
 <BLOCKQUOTE>
@@ -1612,20 +1610,19 @@ This member is not CLS-compliant. For a CLS-compliant
 
 <HR>
 
-<A NAME="Enum.ToString%28System.IFormatProvider%29%20Method"><H3>Enum.ToString(System.IFormatProvider) Method</H3>
+<A NAME="Enum.ToString%28System.String%29%20Method"><H3>Enum.ToString(System.String) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public string ToString(IFormatProvider provider);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public string ToString(string format);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Converts the name of the value of the current instance to
-      its equivalent <A HREF="String.html" TARGET="contents">String</A>
-      representation. <P>
+ Converts the value of the current instance to its
+      equivalent <A HREF="String.html" TARGET="contents">String</A> representation using the specified format. <P>
 
 </BLOCKQUOTE>
 
@@ -1633,71 +1630,16 @@ This member is not CLS-compliant. For a CLS-compliant
 
 <BLOCKQUOTE>
 <DL>
-<DT> provider</DT>
-<DD>An object that implements the <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> interface or a null reference. The <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> is not used in the implementation of this method. [<I>Note</I>:  There is no <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that corresponds to a <A HREF="Enum.html" TARGET="contents">Enum</A> object; therefore, <I>provider</I> is not utilized by this method, and any <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> may be passed as a parameter.]<P>
-
-</DD>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format to use when converting the current instance to a <A HREF="String.html" TARGET="contents">String</A>. Specify one of the following values in upper or lowercase: &quot;G&quot;, &quot;D&quot;, &quot;X&quot;, or &quot;F&quot; .</DD>
 </DL>
 </BLOCKQUOTE>
 
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-  The <A HREF="String.html" TARGET="contents">String</A> representation of
-   the name of the value of the current instance.
-<P>
-
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-This method is equivalent to the version of System.Enum.ToString(System.String)
-that takes no arguments.<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="Enum.ToString%28System.String%2C%20System.IFormatProvider%29%20Method"><H3>Enum.ToString(System.String, System.IFormatProvider) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public string ToString(string format, IFormatProvider provider);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Converts the numeric value of the current instance to
-      its equivalent <A HREF="String.html" TARGET="contents">String</A> representation using the specified format. <P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT> format</DT>
-<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format to use when converting the current instance to a <A HREF="String.html" TARGET="contents">String</A> . Specify one of the following values in upper or lower case: &quot;G&quot;, &quot;D&quot;, &quot;X&quot;, or &quot;F&quot; .</DD>
-<DT> provider</DT>
-<DD>An object that implements the <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> interface or a null reference. The <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> is not used in the implementation of this method. [<I>Note</I>:  There is no <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that corresponds to a <A HREF="Enum.html" TARGET="contents">Enum</A> object; therefore, <I>provider</I> is not utilized by this method, and any <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> may be passed as a parameter.]<P>
-
-</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-The <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current instance as specified by <I>format</I>.<P>
+The <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current
+   instance as specified by <I>format</I>.<P>
 
 </BLOCKQUOTE>
 
@@ -1706,7 +1648,7 @@ The <A HREF="String.html" TARGET="contents">String</A> representation of the val
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> does not contain a valid format specifier.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> contains an invalid value. </TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1714,17 +1656,14 @@ The <A HREF="String.html" TARGET="contents">String</A> representation of the val
 
 <BLOCKQUOTE>
  If
-   <I>format</I> is a null
+   <I>format</I> is a null 
       reference or an empty string, the return value is formatted using the general
       format specifier (&quot;G&quot;).<P>
 
-[<I>Note</I>: For details on the
-         format specifiers used with an enumeration object, see System.Enum.Format(System.Type,System.Object,System.String)
-         .<P>
+[<I>Note</I>: For details on the format specifiers 
+      used with an enumeration object, see System.Enum.Format(System.Type,System.Object,System.String) .]<P>
 
-This method is implemented to support the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A> interface. <P>
-
-]<P>
+<P>
 
 </BLOCKQUOTE>
 
@@ -1783,19 +1722,19 @@ with the &quot;g&quot; or &quot;G&quot; format option. <P>
 
 <HR>
 
-<A NAME="Enum.ToString%28System.String%29%20Method"><H3>Enum.ToString(System.String) Method</H3>
+<A NAME="Enum.ToString%28System.String%2C%20System.IFormatProvider%29%20Method"><H3>Enum.ToString(System.String, System.IFormatProvider) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public string ToString(string format);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public string ToString(string format, IFormatProvider provider);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Converts the value of the current instance to its
-      equivalent <A HREF="String.html" TARGET="contents">String</A> representation using the specified format. <P>
+ Converts the numeric value of the current instance to
+      its equivalent <A HREF="String.html" TARGET="contents">String</A> representation using the specified format. <P>
 
 </BLOCKQUOTE>
 
@@ -1803,16 +1742,19 @@ with the &quot;g&quot; or &quot;G&quot; format option. <P>
 
 <BLOCKQUOTE>
 <DL>
-<DT>format</DT>
-<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format to use when converting the current instance to a <A HREF="String.html" TARGET="contents">String</A>. Specify one of the following values in upper or lower case: &quot;G&quot;, &quot;D&quot;, &quot;X&quot;, or &quot;F&quot; .</DD>
+<DT> format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> that specifies the format to use when converting the current instance to a <A HREF="String.html" TARGET="contents">String</A> . Specify one of the following values in upper or lowercase: &quot;G&quot;, &quot;D&quot;, &quot;X&quot;, or &quot;F&quot; .</DD>
+<DT> provider</DT>
+<DD>An object that implements the <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> interface or a null reference. The <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> is not used in the implementation of this method. [<I>Note</I>:  There is no <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that corresponds to a <A HREF="Enum.html" TARGET="contents">Enum</A> object; therefore, <I>provider</I> is not utilized by this method, and any <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> can be passed as a parameter.]<P>
+
+</DD>
 </DL>
 </BLOCKQUOTE>
 
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-The <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current
-   instance as specified by <I>format</I>.<P>
+The <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current instance as specified by <I>format</I>.<P>
 
 </BLOCKQUOTE>
 
@@ -1821,7 +1763,7 @@ The <A HREF="String.html" TARGET="contents">String</A> representation of the val
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> contains an invalid value. </TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> does not contain a valid format specifier.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1829,14 +1771,70 @@ The <A HREF="String.html" TARGET="contents">String</A> representation of the val
 
 <BLOCKQUOTE>
  If
-   <I>format</I> is a null 
+   <I>format</I> is a null
       reference or an empty string, the return value is formatted using the general
       format specifier (&quot;G&quot;).<P>
 
-[<I>Note</I>: For details on the format specifiers 
-      used with an enumeration object, see System.Enum.Format(System.Type,System.Object,System.String) .]<P>
+[<I>Note</I>: For details on the
+         format specifiers used with an enumeration object, see System.Enum.Format(System.Type,System.Object,System.String)
+         .<P>
 
+This method is implemented to support the <A HREF="IFormattable.html" TARGET="contents">IFormattable</A> interface. <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Enum.html" TARGET="contents">System.Enum Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Enum.ToString%28System.IFormatProvider%29%20Method"><H3>Enum.ToString(System.IFormatProvider) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public string ToString(IFormatProvider provider);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Converts the name of the value of the current instance to
+      its equivalent <A HREF="String.html" TARGET="contents">String</A>
+      representation. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> provider</DT>
+<DD>An object that implements the <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> interface or a null reference. The <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> is not used in the implementation of this method. [<I>Note</I>:  There is no <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> that corresponds to a <A HREF="Enum.html" TARGET="contents">Enum</A> object; therefore, <I>provider</I> is not utilized by this method, and any <A HREF="IFormatProvider.html" TARGET="contents">IFormatProvider</A> can be passed as a parameter.]<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+  The <A HREF="String.html" TARGET="contents">String</A> representation of
+   the name of the value of the current instance.
 <P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to the version of System.Enum.ToString(System.String)
+that takes no arguments.<P>
 
 </BLOCKQUOTE>
 

@@ -1,0 +1,323 @@
+<HTML>
+<HEAD>
+<TITLE>System.Threading.Parallel.ParallelWhile&lt;T&gt; Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Threading.Parallel.ParallelWhile&lt;T&gt; Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public sealed class ParallelWhile&lt;T&gt;: ParallelLoop&lt;T&gt;</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;<A HREF="ParallelLoopT.html" TARGET="contents">ParallelLoop&lt;T&gt;</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;ParallelWhile&lt;T&gt;<P>
+
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+System.Threading.Parallel
+</BLOCKQUOTE>
+
+<H4>Library</H4>
+
+<BLOCKQUOTE>
+Parallel
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+A parallel while loop over iteration values of type T.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+
+                    Class <A HREF="ParallelWhileT.html" TARGET="contents">ParallelWhile&lt;T&gt;</A> provides a simple way to establish a pool of work to be distributed among multiple threads, 
+                    and to wait for the work to complete before proceeding. 
+                    <P>
+
+
+                    A freshly constructed <A HREF="ParallelWhileT.html" TARGET="contents">ParallelWhile&lt;T&gt;</A> has an empty pool of work items.  
+                    Method System.Threading.Parallel.ParallelWhile&lt;T&gt;.Add adds a work item to the pool.  
+                    Method System.Threading.Parallel.ParallelWhile&lt;T&gt;.BeginRun activates processing of the pool.   
+                    Inherited method System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRun waits until all work in the pool completes.  
+                    Inherited method System.Threading.Parallel.ParallelLoop&lt;T&gt;.Run is a shorthand that combines System.Threading.Parallel.ParallelWhile&lt;T&gt;.BeginRun and System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRun.  New work can be added to the pool while it is active, hence the class corresponds roughly to a parallel while loop that continually chops away at a (possibly growing) collection until the collection becomes empty.   Once the loop is running, implementations are free to make method Add process the work item instead of putting it in the pool, for sake of limiting the size of the work pool.   (The pool is typically a small multiple of the number of threads.)
+                    Once the pool is activated, one or more worker threads pull work items from the pool and apply the callback to each.  
+                    The implementation is free to process work items in any order.  
+					Inherited method System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRun blocks until the pool is empty and all pending invocations of  the callback have returned.  
+					An iteration should not cause method System.Threading.Parallel.ParallelWhile&lt;T&gt;.Add to be called after the iteration finishes (e.g. by use of yet another thread), 
+					otherwise a race condition ensues in which System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRun might return prematurely even though there is more work to be done.   
+				    <P>
+
+
+				    A conforming implementation is allowed to execute serially, by using the thread that calls System.Threading.Parallel.ParallelWhile&lt;T&gt;.BeginRunto process all pending work items that are added before BeginRun returns, 
+				    and using the thread that calls System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRun to process all pending work items that are added after System.Threading.Parallel.ParallelWhile&lt;T&gt;.BeginRun returned and before System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRunreturns.   
+                    <P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+ParallelWhile&lt;T&gt; Constructors<P>
+
+<A HREF="#ParallelWhile%3CT%3E%28%29%20Constructor" TARGET="contents">ParallelWhile&lt;T&gt;() Constructor</A><BR>
+<A HREF="#ParallelWhile%3CT%3E%28int%29%20Constructor" TARGET="contents">ParallelWhile&lt;T&gt;(int) Constructor</A><BR>
+<P>
+
+ParallelWhile&lt;T&gt; Methods<P>
+
+<A HREF="#ParallelWhile%3CT%3E.Add%20Method" TARGET="contents">ParallelWhile&lt;T&gt;.Add Method</A><BR>
+<A HREF="#ParallelWhile%3CT%3E.BeginRun%20Method" TARGET="contents">ParallelWhile&lt;T&gt;.BeginRun Method</A><BR>
+<A HREF="#ParallelWhile%3CT%3E.Cancel%20Method" TARGET="contents">ParallelWhile&lt;T&gt;.Cancel Method</A><BR>
+<A HREF="#ParallelWhile%3CT%3E.EndRun%20Method" TARGET="contents">ParallelWhile&lt;T&gt;.EndRun Method</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelWhile%3CT%3E%28%29%20Constructor"><H3>ParallelWhile&lt;T&gt;() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public ParallelWhile();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a <A HREF="ParallelWhileT.html" TARGET="contents">ParallelWhile&lt;T&gt;</A> with an initially empty collection of work items.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The loop does not start executing until at least method System.Threading.Parallel.ParallelWhile&lt;T&gt;.BeginRun is called and possibly not until method System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRun is called.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelWhileT.html" TARGET="contents">System.Threading.Parallel.ParallelWhile&lt;T&gt; Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelWhile%3CT%3E%28int%29%20Constructor"><H3>ParallelWhile&lt;T&gt;(int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public ParallelWhile(int numThreads);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs a <A HREF="ParallelWhileT.html" TARGET="contents">ParallelWhile&lt;T&gt;</A> with an initially empty collection of work items.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>numThreads</DT>
+<DD>maximum number of threads to use</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The loop does not start executing until at least method System.Threading.Parallel.ParallelWhile&lt;T&gt;.BeginRun  is called and possibly not until method System.Threading.Parallel.ParallelLoop&lt;T&gt;.EndRun is called.<P>
+
+If numThreads is 0, then up to System.Threading.Parallel.ParallelEnvironment.MaxThreads threads are used instead.  The value includes the thread that created the System.Threading.Parallel.ParallelFor&lt;T&gt;, hence using numThreads=1 causes sequential execution.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelWhileT.html" TARGET="contents">System.Threading.Parallel.ParallelWhile&lt;T&gt; Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelWhile%3CT%3E.Add%20Method"><H3>ParallelWhile&lt;T&gt;.Add Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void Add(T item);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Add a work item.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>item</DT>
+<DD>value for an iteration.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method can be called before or after method System.Threading.Parallel.ParallelWhile&lt;T&gt;.BeginRun is called.<P>
+
+ This method is always thread safe.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelWhileT.html" TARGET="contents">System.Threading.Parallel.ParallelWhile&lt;T&gt; Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelWhile%3CT%3E.BeginRun%20Method"><H3>ParallelWhile&lt;T&gt;.BeginRun Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override void BeginRun(Action&lt;T&gt; action);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Begin processing work items.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>action</DT>
+<DD>The <A HREF="../../../System/Delegate.html" TARGET="contents">Delegate</A> that processes each work item.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>action </I>is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is not thread safe. It should be called only once for a given instance of a <A HREF="ParallelWhileT.html" TARGET="contents">ParallelWhile&lt;T&gt;</A>.<P>
+
+[<I>Note</I>: Implementations, particularly on single-threaded hardware, are free to employ the calling thread to execute all loop iterations.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelWhileT.html" TARGET="contents">System.Threading.Parallel.ParallelWhile&lt;T&gt; Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelWhile%3CT%3E.Cancel%20Method"><H3>ParallelWhile&lt;T&gt;.Cancel Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override void Cancel();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Cancel any iterations that have not yet started<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is safe to call concurrently on the same instance.<P>
+
+It does not cancel any future iterations that can be added.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelWhileT.html" TARGET="contents">System.Threading.Parallel.ParallelWhile&lt;T&gt; Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="ParallelWhile%3CT%3E.EndRun%20Method"><H3>ParallelWhile&lt;T&gt;.EndRun Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void EndRun();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Waits until all iterations are finished (or cancelled). If any of the iterations threw an exception, then one of these exceptions is rethrown.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method is not thread safe. It should be called exactly once by the thread that called System.Threading.Parallel.ParallelLoop&lt;T&gt;.BeginRun<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ParallelWhileT.html" TARGET="contents">System.Threading.Parallel.ParallelWhile&lt;T&gt; Class</A>, <A HREF="Parallel.html" TARGET="members">System.Threading.Parallel Namespace</A>
+</BLOCKQUOTE>
+
+</BODY>
+</HTML>

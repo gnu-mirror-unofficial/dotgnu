@@ -48,7 +48,7 @@ Supplies culture-specific formatting information for
 
 [<I>Note</I>: A <A HREF="NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A>
 instance typically contains the set of symbols for a specific language and
-culture. Instances of <A HREF="NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> may be created to provide customized formatting
+culture. Instances of <A HREF="NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> can be created to provide customized formatting
 information. ]<P>
 
 <P>
@@ -170,8 +170,8 @@ A <A HREF="../../System/Object.html" TARGET="contents">Object</A> that is a copy
 
 <BLOCKQUOTE>
 The System.Globalization.NumberFormatInfo.Clone method returns a new instance of <A HREF="NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A> with property values that are equal to the
-   property values of the current instance. If the current instance is read-only,
-   the clone is also read-only.<P>
+   property values of the current instance except for the System.Globalization.DateTimeFormatInfo.IsReadOnly property, which is always <CODE>false</CODE>
+.<P>
 
 [<I>Note</I>: This method is
    implemented to support the <A HREF="../../System/ICloneable.html" TARGET="contents">ICloneable</A> interface.]<P>
@@ -215,9 +215,7 @@ Returns an object of the specified type that provides formatting services.<P>
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A formatting object of the specified <A HREF="../../System/Type.html" TARGET="contents">Type</A>. If no formatting
-   object of the specified type is available, or <I>formatType</I> is a null reference, returns the formatting object
-   for the current culture.<P>
+The current instance, if <I>formatType</I> is of type <A HREF="NumberFormatInfo.html" TARGET="contents">NumberFormatInfo</A>; otherwise, a null reference.<P>
 
 </BLOCKQUOTE>
 
@@ -463,9 +461,19 @@ A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> array containing
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The array specified for a set operation is a null reference.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>One of the elements in the array specified for a set operation is not between 0 and 9.</TD></TR>
-<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The array specified for a set operation is a null reference.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>One of the elements in the array specified for a set operation is not between 0 and 9.<P>
+
+-or-<P>
+
+The array contains an element, other than the last element, that is set to 0.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted.<P>
+
+</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1714,9 +1722,19 @@ Gets or sets the number of digits in each group to the
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The array specified for a set operation is a null reference.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>One of the elements in the array specified for a set operation is not between 0 and 9.</TD></TR>
-<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD>The array specified for a set operation is a null reference.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>One of the elements in the array specified for a set operation is not between 0 and 9.<P>
+
+-or-<P>
+
+The array contains an element, other than the last element, that is set to 0.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The current instance is read-only and a set operation was attempted.<P>
+
+</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 

@@ -7,7 +7,7 @@
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public struct Char : IComparable</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public struct Char : IComparable, IComparable&lt;Char&gt;, IEquatable&lt;Char&gt;</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -18,7 +18,7 @@
 &nbsp;&nbsp;<A HREF="ValueType.html" TARGET="contents">ValueType</A><BR>
 &nbsp;&nbsp;&nbsp;&nbsp;Char<P>
 
-This type implements <A HREF="IComparable.html" TARGET="contents">IComparable</A>.
+This type implements <A HREF="IComparable.html" TARGET="contents">IComparable</A>, System.IComparable&lt;System.Char&gt;, and System.IEquatable&lt;System.Char&gt;.
 </BLOCKQUOTE>
 
 <H4>Assembly</H4>
@@ -77,17 +77,19 @@ UnicodeData.txt file format is described at http://www.unicode.org/Public/3.1-Up
 
 Char Methods<P>
 
-<A HREF="#Char.CompareTo%20Method" TARGET="contents">Char.CompareTo Method</A><BR>
-<A HREF="#Char.Equals%20Method" TARGET="contents">Char.Equals Method</A><BR>
+<A HREF="#Char.CompareTo%28char%29%20Method" TARGET="contents">Char.CompareTo(char) Method</A><BR>
+<A HREF="#Char.CompareTo%28System.Object%29%20Method" TARGET="contents">Char.CompareTo(System.Object) Method</A><BR>
+<A HREF="#Char.Equals%28char%29%20Method" TARGET="contents">Char.Equals(char) Method</A><BR>
+<A HREF="#Char.Equals%28System.Object%29%20Method" TARGET="contents">Char.Equals(System.Object) Method</A><BR>
 <A HREF="#Char.GetHashCode%20Method" TARGET="contents">Char.GetHashCode Method</A><BR>
-<A HREF="#Char.GetNumericValue%28char%29%20Method" TARGET="contents">Char.GetNumericValue(char) Method</A><BR>
 <A HREF="#Char.GetNumericValue%28System.String%2C%20int%29%20Method" TARGET="contents">Char.GetNumericValue(System.String, int) Method</A><BR>
-<A HREF="#Char.GetUnicodeCategory%28char%29%20Method" TARGET="contents">Char.GetUnicodeCategory(char) Method</A><BR>
+<A HREF="#Char.GetNumericValue%28char%29%20Method" TARGET="contents">Char.GetNumericValue(char) Method</A><BR>
 <A HREF="#Char.GetUnicodeCategory%28System.String%2C%20int%29%20Method" TARGET="contents">Char.GetUnicodeCategory(System.String, int) Method</A><BR>
-<A HREF="#Char.IsControl%28char%29%20Method" TARGET="contents">Char.IsControl(char) Method</A><BR>
+<A HREF="#Char.GetUnicodeCategory%28char%29%20Method" TARGET="contents">Char.GetUnicodeCategory(char) Method</A><BR>
 <A HREF="#Char.IsControl%28System.String%2C%20int%29%20Method" TARGET="contents">Char.IsControl(System.String, int) Method</A><BR>
-<A HREF="#Char.IsDigit%28char%29%20Method" TARGET="contents">Char.IsDigit(char) Method</A><BR>
+<A HREF="#Char.IsControl%28char%29%20Method" TARGET="contents">Char.IsControl(char) Method</A><BR>
 <A HREF="#Char.IsDigit%28System.String%2C%20int%29%20Method" TARGET="contents">Char.IsDigit(System.String, int) Method</A><BR>
+<A HREF="#Char.IsDigit%28char%29%20Method" TARGET="contents">Char.IsDigit(char) Method</A><BR>
 <A HREF="#Char.IsLetter%28char%29%20Method" TARGET="contents">Char.IsLetter(char) Method</A><BR>
 <A HREF="#Char.IsLetter%28System.String%2C%20int%29%20Method" TARGET="contents">Char.IsLetter(System.String, int) Method</A><BR>
 <A HREF="#Char.IsLetterOrDigit%28char%29%20Method" TARGET="contents">Char.IsLetterOrDigit(char) Method</A><BR>
@@ -98,20 +100,20 @@ Char Methods<P>
 <A HREF="#Char.IsNumber%28System.String%2C%20int%29%20Method" TARGET="contents">Char.IsNumber(System.String, int) Method</A><BR>
 <A HREF="#Char.IsPunctuation%28char%29%20Method" TARGET="contents">Char.IsPunctuation(char) Method</A><BR>
 <A HREF="#Char.IsPunctuation%28System.String%2C%20int%29%20Method" TARGET="contents">Char.IsPunctuation(System.String, int) Method</A><BR>
-<A HREF="#Char.IsSeparator%28char%29%20Method" TARGET="contents">Char.IsSeparator(char) Method</A><BR>
 <A HREF="#Char.IsSeparator%28System.String%2C%20int%29%20Method" TARGET="contents">Char.IsSeparator(System.String, int) Method</A><BR>
-<A HREF="#Char.IsSurrogate%28char%29%20Method" TARGET="contents">Char.IsSurrogate(char) Method</A><BR>
+<A HREF="#Char.IsSeparator%28char%29%20Method" TARGET="contents">Char.IsSeparator(char) Method</A><BR>
 <A HREF="#Char.IsSurrogate%28System.String%2C%20int%29%20Method" TARGET="contents">Char.IsSurrogate(System.String, int) Method</A><BR>
+<A HREF="#Char.IsSurrogate%28char%29%20Method" TARGET="contents">Char.IsSurrogate(char) Method</A><BR>
 <A HREF="#Char.IsSymbol%28char%29%20Method" TARGET="contents">Char.IsSymbol(char) Method</A><BR>
 <A HREF="#Char.IsSymbol%28System.String%2C%20int%29%20Method" TARGET="contents">Char.IsSymbol(System.String, int) Method</A><BR>
-<A HREF="#Char.IsUpper%28char%29%20Method" TARGET="contents">Char.IsUpper(char) Method</A><BR>
 <A HREF="#Char.IsUpper%28System.String%2C%20int%29%20Method" TARGET="contents">Char.IsUpper(System.String, int) Method</A><BR>
-<A HREF="#Char.IsWhiteSpace%28char%29%20Method" TARGET="contents">Char.IsWhiteSpace(char) Method</A><BR>
+<A HREF="#Char.IsUpper%28char%29%20Method" TARGET="contents">Char.IsUpper(char) Method</A><BR>
 <A HREF="#Char.IsWhiteSpace%28System.String%2C%20int%29%20Method" TARGET="contents">Char.IsWhiteSpace(System.String, int) Method</A><BR>
+<A HREF="#Char.IsWhiteSpace%28char%29%20Method" TARGET="contents">Char.IsWhiteSpace(char) Method</A><BR>
 <A HREF="#Char.Parse%20Method" TARGET="contents">Char.Parse Method</A><BR>
 <A HREF="#Char.ToLower%20Method" TARGET="contents">Char.ToLower Method</A><BR>
-<A HREF="#Char.ToString%28System.IFormatProvider%29%20Method" TARGET="contents">Char.ToString(System.IFormatProvider) Method</A><BR>
 <A HREF="#Char.ToString%28%29%20Method" TARGET="contents">Char.ToString() Method</A><BR>
+<A HREF="#Char.ToString%28System.IFormatProvider%29%20Method" TARGET="contents">Char.ToString(System.IFormatProvider) Method</A><BR>
 <A HREF="#Char.ToUpper%20Method" TARGET="contents">Char.ToUpper Method</A><BR>
 <P>
 
@@ -123,7 +125,67 @@ Char Fields<P>
 
 <HR>
 
-<A NAME="Char.CompareTo%20Method"><H3>Char.CompareTo Method</H3>
+<A NAME="Char.CompareTo%28char%29%20Method"><H3>Char.CompareTo(char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int CompareTo(char value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the sort order of the current instance compared
+      to the specified <A HREF="Char.html" TARGET="contents">Char</A>
+      .<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> value</DT>
+<DD>The <A HREF="Char.html" TARGET="contents">Char</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the current instance as compared to <I>value</I>. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
+<TR><TD> A negative number</TD><TD>Current instance &lt; <I>value</I>.</TD></TR>
+<TR><TD> Zero</TD><TD>Current instance == <I>value</I>.</TD></TR>
+<TR><TD> A positive number</TD><TD>Current instance &gt; <I>value</I>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The comparison performed by this method is based on the
+      code points of the current instance and <I>value</I>, not necessarily their
+      lexicographical characteristics.<P>
+
+[<I>Note</I>: This method is implemented to support the System.IComparable&lt;Char&gt; interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Char.html" TARGET="contents">System.Char Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Char.CompareTo%28System.Object%29%20Method"><H3>Char.CompareTo(System.Object) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
@@ -152,16 +214,13 @@ Returns the sort order of the current instance compared
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A>
-containing a value that reflects the sort order of the current instance as
-compared to <I>value</I>. The following table defines the conditions under
-which the returned value is a negative number, zero, or a positive number.<P>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the current instance as compared to <I>value</I>. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
-<TR><TD> Any negative number</TD><TD>Current instance &lt; <I>value</I>.</TD></TR>
+<TR><TD> A negative number</TD><TD>Current instance &lt; <I>value</I>.</TD></TR>
 <TR><TD> Zero</TD><TD>Current instance == <I>value</I>.</TD></TR>
-<TR><TD> Any positive number</TD><TD>Current instance &gt; <I>value</I>, or
+<TR><TD> A positive number</TD><TD>Current instance &gt; <I>value</I>, or
 <I>value</I> is a null reference.<P>
 
 </TD></TR>
@@ -199,7 +258,63 @@ The comparison performed by this method is based on the
 
 <HR>
 
-<A NAME="Char.Equals%20Method"><H3>Char.Equals Method</H3>
+<A NAME="Char.Equals%28char%29%20Method"><H3>Char.Equals(char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override bool Equals(char obj);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance and the 
+ specified <A HREF="Char.html" TARGET="contents">Char</A> represent the same value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> obj</DT>
+<DD>The <A HREF="Char.html" TARGET="contents">Char</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>obj</I> represents the 
+ same value as the current instance; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The comparison performed by this method is based on the 
+ code points of the current instance and <I>obj</I>, not necessarily their
+ lexicographical characteristics.<P>
+
+[<I>Note</I>: This method is implemented to support the System.IEquatable&lt;Char&gt; interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Char.html" TARGET="contents">System.Char Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Char.Equals%28System.Object%29%20Method"><H3>Char.Equals(System.Object) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
@@ -301,6 +416,75 @@ A <A HREF="Int32.html" TARGET="contents">Int32</A> value containing a hash code 
 
 <HR>
 
+<A NAME="Char.GetNumericValue%28System.String%2C%20int%29%20Method"><H3>Char.GetNumericValue(System.String, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static double GetNumericValue(string s, int index);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the numeric value associated with the Unicode
+      character at the specified position in the specified <A HREF="String.html" TARGET="contents">String</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT> s</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A>.</DD>
+<DT> index</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the position of a character in <I>s</I>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="Double.html" TARGET="contents">Double</A> representing the numeric value associated with the
+<A HREF="Char.html" TARGET="contents">Char</A> at position 
+<I>index</I> in <I>s</I> if and only if that <A HREF="Char.html" TARGET="contents">Char</A>
+has an associated numeric value; otherwise, -1.0.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s </I>is a null reference.</TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value of <I>index</I> is less than zero, or greater than or equal to the length of <I>s</I>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+A character has an associated numeric value if and only
+      if it is a member of one of the following categories in <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A>: System.Globalization.UnicodeCategory.DecimalDigitNumber, System.Globalization.UnicodeCategory.LetterNumber, or System.Globalization.UnicodeCategory.OtherNumber .<P>
+
+</BLOCKQUOTE>
+
+<H4>Library</H4>
+
+<BLOCKQUOTE>
+ExtendedNumerics
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Char.html" TARGET="contents">System.Char Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
 <A NAME="Char.GetNumericValue%28char%29%20Method"><H3>Char.GetNumericValue(char) Method</H3>
 
 <BLOCKQUOTE>
@@ -389,124 +573,6 @@ ExtendedNumerics
 
 <HR>
 
-<A NAME="Char.GetNumericValue%28System.String%2C%20int%29%20Method"><H3>Char.GetNumericValue(System.String, int) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static double GetNumericValue(string s, int index);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Returns the numeric value associated with the Unicode
-      character at the specified position in the specified <A HREF="String.html" TARGET="contents">String</A>.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT> s</DT>
-<DD>A <A HREF="String.html" TARGET="contents">String</A>.</DD>
-<DT> index</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> that specifies the position of a character in <I>s</I>.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-A <A HREF="Double.html" TARGET="contents">Double</A> representing the numeric value associated with the
-<A HREF="Char.html" TARGET="contents">Char</A> at position 
-<I>index</I> in <I>s</I> if and only if that <A HREF="Char.html" TARGET="contents">Char</A>
-has an associated numeric value; otherwise, -1.0.<P>
-
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s </I>is a null reference.</TD></TR>
-<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value of <I>index</I> is less than zero, or greater than or equal to the length of <I>s</I>.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-A character has an associated numeric value if and only
-      if it is a member of one of the following categories in <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A>: System.Globalization.UnicodeCategory.DecimalDigitNumber, System.Globalization.UnicodeCategory.LetterNumber, or System.Globalization.UnicodeCategory.OtherNumber .<P>
-
-</BLOCKQUOTE>
-
-<H4>Library</H4>
-
-<BLOCKQUOTE>
-ExtendedNumerics
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="Char.html" TARGET="contents">System.Char Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="Char.GetUnicodeCategory%28char%29%20Method"><H3>Char.GetUnicodeCategory(char) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static UnicodeCategory GetUnicodeCategory(char c);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Determines the <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A> of the specified Unicode character.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>c</DT>
-<DD>A Unicode character.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-The <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A> of <I>c</I>.<P>
-
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-[<I>Note</I>:  For more
-      information regarding Unicode categories, see <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A>.]<P>
-
-<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="Char.html" TARGET="contents">System.Char Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
 <A NAME="Char.GetUnicodeCategory%28System.String%2C%20int%29%20Method"><H3>Char.GetUnicodeCategory(System.String, int) Method</H3>
 
 <BLOCKQUOTE>
@@ -569,19 +635,18 @@ The <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">Uni
 
 <HR>
 
-<A NAME="Char.IsControl%28char%29%20Method"><H3>Char.IsControl(char) Method</H3>
+<A NAME="Char.GetUnicodeCategory%28char%29%20Method"><H3>Char.GetUnicodeCategory(char) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static bool IsControl(char c);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static UnicodeCategory GetUnicodeCategory(char c);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Determines whether the specified Unicode character
-      is a control character.<P>
+ Determines the <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A> of the specified Unicode character.<P>
 
 </BLOCKQUOTE>
 
@@ -597,10 +662,17 @@ The <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">Uni
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-true if <I>c</I> is a member of the following category
-   in <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A>: System.Globalization.UnicodeCategory.Control; otherwise,
-<CODE>false</CODE>
-. <P>
+The <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A> of <I>c</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  For more
+      information regarding Unicode categories, see <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A>.]<P>
+
+<P>
 
 </BLOCKQUOTE>
 
@@ -668,19 +740,19 @@ Determines whether the character at the specified
 
 <HR>
 
-<A NAME="Char.IsDigit%28char%29%20Method"><H3>Char.IsDigit(char) Method</H3>
+<A NAME="Char.IsControl%28char%29%20Method"><H3>Char.IsControl(char) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static bool IsDigit(char c);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static bool IsControl(char c);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Determines whether a Unicode character is a
-      decimal digit.<P>
+ Determines whether the specified Unicode character
+      is a control character.<P>
 
 </BLOCKQUOTE>
 
@@ -689,28 +761,17 @@ Determines whether the character at the specified
 <BLOCKQUOTE>
 <DL>
 <DT>c</DT>
-<DD>A Unicode character. </DD>
+<DD>A Unicode character.</DD>
 </DL>
 </BLOCKQUOTE>
 
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-<CODE>true</CODE>
- if <I>c</I> is a member of the
-   following category in <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A>: System.Globalization.UnicodeCategory.DecimalDigitNumber; otherwise, <CODE>false</CODE>
-.<P>
-
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-[<I>Note</I>: System.Char.IsDigit(System.Char) determines
-      if a Char is a radix-10 digit. This contrasts with System.Char.IsNumber(System.Char), which
-      determines if a <A HREF="Char.html" TARGET="contents">Char</A> is of any numeric Unicode category.]<P>
-
-<P>
+true if <I>c</I> is a member of the following category
+   in <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A>: System.Globalization.UnicodeCategory.Control; otherwise,
+<CODE>false</CODE>
+. <P>
 
 </BLOCKQUOTE>
 
@@ -776,6 +837,60 @@ Determines whether the character at the specified
 [<I>Note</I>: System.Char.IsDigit(System.Char) determines
       if a <A HREF="Char.html" TARGET="contents">Char</A> is a
       radix-10 digit. This contrasts with System.Char.IsNumber(System.Char), which determines if a <A HREF="Char.html" TARGET="contents">Char</A> is of any numeric Unicode category.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Char.html" TARGET="contents">System.Char Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Char.IsDigit%28char%29%20Method"><H3>Char.IsDigit(char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static bool IsDigit(char c);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether a Unicode character is a
+      decimal digit.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>c</DT>
+<DD>A Unicode character. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>c</I> is a member of the
+   following category in <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A>: System.Globalization.UnicodeCategory.DecimalDigitNumber; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: System.Char.IsDigit(System.Char) determines
+      if a Char is a radix-10 digit. This contrasts with System.Char.IsNumber(System.Char), which
+      determines if a <A HREF="Char.html" TARGET="contents">Char</A> is of any numeric Unicode category.]<P>
 
 <P>
 
@@ -1318,50 +1433,6 @@ Determines whether the character at the specified
 
 <HR>
 
-<A NAME="Char.IsSeparator%28char%29%20Method"><H3>Char.IsSeparator(char) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static bool IsSeparator(char c);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Determines whether the specified Unicode character is a
-      separator character.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>c</DT>
-<DD>A Unicode character. </DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-<CODE>true</CODE>
- if <I>c</I> is a member of one
-   of the following categories in <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A>: System.Globalization.UnicodeCategory.SpaceSeparator, System.Globalization.UnicodeCategory.LineSeparator, or System.Globalization.UnicodeCategory.ParagraphSeparator;
-   otherwise, <CODE>false</CODE>
-.<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="Char.html" TARGET="contents">System.Char Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
 <A NAME="Char.IsSeparator%28System.String%2C%20int%29%20Method"><H3>Char.IsSeparator(System.String, int) Method</H3>
 
 <BLOCKQUOTE>
@@ -1419,11 +1490,11 @@ Determines whether the character at the specified
 
 <HR>
 
-<A NAME="Char.IsSurrogate%28char%29%20Method"><H3>Char.IsSurrogate(char) Method</H3>
+<A NAME="Char.IsSeparator%28char%29%20Method"><H3>Char.IsSeparator(char) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static bool IsSurrogate(char c);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static bool IsSeparator(char c);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1431,7 +1502,7 @@ Determines whether the character at the specified
 
 <BLOCKQUOTE>
  Determines whether the specified Unicode character is a
-      surrogate character.<P>
+      separator character.<P>
 
 </BLOCKQUOTE>
 
@@ -1448,10 +1519,10 @@ Determines whether the character at the specified
 
 <BLOCKQUOTE>
 <CODE>true</CODE>
- if <I>c</I> is a member of the
-   following category in <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A>: System.Globalization.UnicodeCategory.Surrogate; otherwise,
-<CODE>false</CODE>
-. <P>
+ if <I>c</I> is a member of one
+   of the following categories in <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A>: System.Globalization.UnicodeCategory.SpaceSeparator, System.Globalization.UnicodeCategory.LineSeparator, or System.Globalization.UnicodeCategory.ParagraphSeparator;
+   otherwise, <CODE>false</CODE>
+.<P>
 
 </BLOCKQUOTE>
 
@@ -1509,6 +1580,50 @@ Determines whether the character at the specified
 <TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>s </I>is a null reference.</TD></TR>
 <TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value of <I>index</I> is less than zero, or greater than or equal to the length of <I>s</I>.</TD></TR>
 </TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Char.html" TARGET="contents">System.Char Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Char.IsSurrogate%28char%29%20Method"><H3>Char.IsSurrogate(char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static bool IsSurrogate(char c);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether the specified Unicode character is a
+      surrogate character.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>c</DT>
+<DD>A Unicode character. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>c</I> is a member of the
+   following category in <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A>: System.Globalization.UnicodeCategory.Surrogate; otherwise,
+<CODE>false</CODE>
+. <P>
+
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -1620,50 +1735,6 @@ Determines whether the character at the specified
 
 <HR>
 
-<A NAME="Char.IsUpper%28char%29%20Method"><H3>Char.IsUpper(char) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static bool IsUpper(char c);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Determines whether the specified Unicode character is an uppercase letter.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>c</DT>
-<DD>A Unicode character. </DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-<CODE>true</CODE>
- if <I>c</I> is a member of the
-   following category in <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A>: System.Globalization.UnicodeCategory.UppercaseLetter;
-   otherwise, <CODE>false</CODE>
-.
-   <P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="Char.html" TARGET="contents">System.Char Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
 <A NAME="Char.IsUpper%28System.String%2C%20int%29%20Method"><H3>Char.IsUpper(System.String, int) Method</H3>
 
 <BLOCKQUOTE>
@@ -1720,18 +1791,18 @@ Determines whether the character at the specified
 
 <HR>
 
-<A NAME="Char.IsWhiteSpace%28char%29%20Method"><H3>Char.IsWhiteSpace(char) Method</H3>
+<A NAME="Char.IsUpper%28char%29%20Method"><H3>Char.IsUpper(char) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static bool IsWhiteSpace(char c);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static bool IsUpper(char c);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Determines whether the specified Unicode character is a whitespace character.<P>
+ Determines whether the specified Unicode character is an uppercase letter.<P>
 
 </BLOCKQUOTE>
 
@@ -1748,11 +1819,9 @@ Determines whether the character at the specified
 
 <BLOCKQUOTE>
 <CODE>true</CODE>
- if <I>c</I> either has a code
-   point of 0x0009, 0x000a, 0x000b, 0x000c, 0x000d, 0x0085, 0x2028, or 0x2029; or
-   is a member of the following category in <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A>:
-System.Globalization.UnicodeCategory.SpaceSeparator; otherwise,
-<CODE>false</CODE>
+ if <I>c</I> is a member of the
+   following category in <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A>: System.Globalization.UnicodeCategory.UppercaseLetter;
+   otherwise, <CODE>false</CODE>
 .
    <P>
 
@@ -1817,6 +1886,52 @@ System.Globalization.UnicodeCategory.SpaceSeparator;
 </TD></TR>
 <TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The value of <I>index</I> is less than zero, or greater than or equal to the length of <I>s</I>.</TD></TR>
 </TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Char.html" TARGET="contents">System.Char Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Char.IsWhiteSpace%28char%29%20Method"><H3>Char.IsWhiteSpace(char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static bool IsWhiteSpace(char c);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines whether the specified Unicode character is a whitespace character.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>c</DT>
+<DD>A Unicode character. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>c</I> either has a code
+   point of 0x0009, 0x000a, 0x000b, 0x000c, 0x000d, 0x0085, 0x2028, or 0x2029; or
+   is a member of the following category in <A HREF="../System/Globalization/UnicodeCategory.html" TARGET="contents">UnicodeCategory</A>:
+System.Globalization.UnicodeCategory.SpaceSeparator; otherwise,
+<CODE>false</CODE>
+.
+   <P>
+
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -1946,6 +2061,48 @@ Char &apos;*&apos; ToLower is *<P>
 
 <HR>
 
+<A NAME="Char.ToString%28%29%20Method"><H3>Char.ToString() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current
+   instance. <P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A>
+representation of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  This method
+      overrides System.Object.ToString.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Char.html" TARGET="contents">System.Char Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
 <A NAME="Char.ToString%28System.IFormatProvider%29%20Method"><H3>Char.ToString(System.IFormatProvider) Method</H3>
 
 <BLOCKQUOTE>
@@ -1985,48 +2142,6 @@ The <A HREF="String.html" TARGET="contents">String</A> representation of the val
 
 <BLOCKQUOTE>
 <I>provider</I> is ignored; it does not participate in this operation.<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="Char.html" TARGET="contents">System.Char Structure</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="Char.ToString%28%29%20Method"><H3>Char.ToString() Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public override string ToString();</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value of the current
-   instance. <P>
-
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-A <A HREF="String.html" TARGET="contents">String</A>
-representation of the current instance.<P>
-
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-[<I>Note</I>:  This method
-      overrides System.Object.ToString.]<P>
-
-<P>
 
 </BLOCKQUOTE>
 

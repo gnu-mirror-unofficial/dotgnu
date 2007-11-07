@@ -81,16 +81,16 @@ This class offers an error-checking feature that can be
 
 UTF8Encoding Constructors<P>
 
-<A HREF="#UTF8Encoding%28%29%20Constructor" TARGET="contents">UTF8Encoding() Constructor</A><BR>
-<A HREF="#UTF8Encoding%28bool%29%20Constructor" TARGET="contents">UTF8Encoding(bool) Constructor</A><BR>
 <A HREF="#UTF8Encoding%28bool%2C%20bool%29%20Constructor" TARGET="contents">UTF8Encoding(bool, bool) Constructor</A><BR>
+<A HREF="#UTF8Encoding%28bool%29%20Constructor" TARGET="contents">UTF8Encoding(bool) Constructor</A><BR>
+<A HREF="#UTF8Encoding%28%29%20Constructor" TARGET="contents">UTF8Encoding() Constructor</A><BR>
 <P>
 
 UTF8Encoding Methods<P>
 
 <A HREF="#UTF8Encoding.Equals%20Method" TARGET="contents">UTF8Encoding.Equals Method</A><BR>
-<A HREF="#UTF8Encoding.GetByteCount%28char%5B%5D%2C%20int%2C%20int%29%20Method" TARGET="contents">UTF8Encoding.GetByteCount(char[], int, int) Method</A><BR>
 <A HREF="#UTF8Encoding.GetByteCount%28System.String%29%20Method" TARGET="contents">UTF8Encoding.GetByteCount(System.String) Method</A><BR>
+<A HREF="#UTF8Encoding.GetByteCount%28char%5B%5D%2C%20int%2C%20int%29%20Method" TARGET="contents">UTF8Encoding.GetByteCount(char[], int, int) Method</A><BR>
 <A HREF="#UTF8Encoding.GetBytes%28System.String%2C%20int%2C%20int%2C%20byte%5B%5D%2C%20int%29%20Method" TARGET="contents">UTF8Encoding.GetBytes(System.String, int, int, byte[], int) Method</A><BR>
 <A HREF="#UTF8Encoding.GetBytes%28System.String%29%20Method" TARGET="contents">UTF8Encoding.GetBytes(System.String) Method</A><BR>
 <A HREF="#UTF8Encoding.GetBytes%28char%5B%5D%2C%20int%2C%20int%2C%20byte%5B%5D%2C%20int%29%20Method" TARGET="contents">UTF8Encoding.GetBytes(char[], int, int, byte[], int) Method</A><BR>
@@ -106,36 +106,31 @@ UTF8Encoding Methods<P>
 
 <HR>
 
-<A NAME="UTF8Encoding%28%29%20Constructor"><H3>UTF8Encoding() Constructor</H3>
+<A NAME="UTF8Encoding%28bool%2C%20bool%29%20Constructor"><H3>UTF8Encoding(bool, bool) Constructor</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public UTF8Encoding();</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public UTF8Encoding(bool encoderShouldEmitUTF8Identifier, bool throwOnInvalidBytes);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Constructs a new instance of the 
-   <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A>
-   class.<P>
+Constructs a new instance of the 
+   <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A> class using the specified <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> flags.<P>
 
 </BLOCKQUOTE>
 
-<H4>Description</H4>
+<H4>Parameters</H4>
 
 <BLOCKQUOTE>
-This constructor is equivalent to <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A>
-(<CODE>false</CODE>
-, <CODE>false</CODE>
- ).<P>
-
-[<I>Note</I>: By default, this constructor turns
-   error-checking off for the new instance.]<P>
-
-<P>
-
+<DL>
+<DT>encoderShouldEmitUTF8Identifier</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> that indicates whether the Unicode byte order mark in UTF-8 is recognized or emitted when reading from or writing to a <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> .</DD>
+<DT> throwOnInvalidBytes</DT>
+<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> that indicates whether error-checking is turned on for the current instance.</DD>
+</DL>
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -196,31 +191,36 @@ This constructor is equivalent to <A HREF="UTF8Encoding.html" TARGET="contents">
 
 <HR>
 
-<A NAME="UTF8Encoding%28bool%2C%20bool%29%20Constructor"><H3>UTF8Encoding(bool, bool) Constructor</H3>
+<A NAME="UTF8Encoding%28%29%20Constructor"><H3>UTF8Encoding() Constructor</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public UTF8Encoding(bool encoderShouldEmitUTF8Identifier, bool throwOnInvalidBytes);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public UTF8Encoding();</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Constructs a new instance of the 
-   <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A> class using the specified <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> flags.<P>
+ Constructs a new instance of the 
+   <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A>
+   class.<P>
 
 </BLOCKQUOTE>
 
-<H4>Parameters</H4>
+<H4>Description</H4>
 
 <BLOCKQUOTE>
-<DL>
-<DT>encoderShouldEmitUTF8Identifier</DT>
-<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> that indicates whether the Unicode byte order mark in UTF-8 is recognized or emitted when reading from or writing to a <A HREF="../../System/IO/Stream.html" TARGET="contents">Stream</A> .</DD>
-<DT> throwOnInvalidBytes</DT>
-<DD>A <A HREF="../../System/Boolean.html" TARGET="contents">Boolean</A> that indicates whether error-checking is turned on for the current instance.</DD>
-</DL>
+This constructor is equivalent to <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A>
+(<CODE>false</CODE>
+, <CODE>false</CODE>
+ ).<P>
+
+[<I>Note</I>: By default, this constructor turns
+   error-checking off for the new instance.]<P>
+
+<P>
+
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -273,92 +273,6 @@ Determines whether the current instance and the
 [<I>Note</I>: This method overrides System.Object.Equals(System.Object).]<P>
 
 <P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="UTF8Encoding.html" TARGET="contents">System.Text.UTF8Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="UTF8Encoding.GetByteCount%28char%5B%5D%2C%20int%2C%20int%29%20Method"><H3>UTF8Encoding.GetByteCount(char[], int, int) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public override int GetByteCount(char[] chars, int index, int count);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Determines the number of bytes required to encode the specified
-      range of characters in the specified Unicode character array as a <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A>.
-      <P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>chars</DT>
-<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> array to encode as a <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A> . </DD>
-<DT>index</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the first index of <I>chars</I> to encode. </DD>
-<DT>count</DT>
-<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number of characters to encode. </DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes necessary to encode the range in <I>chars</I> from
-<I>index</I> to <I>index</I> + <I>count</I> as a <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A>. <P>
-
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>chars </I> is <CODE>null</CODE>
- . </TD></TR>
-<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The return value is greater than System.Int32.MaxValue.<P>
-
--or-<P>
-
-<I>index</I> or <I>count</I> is less than zero. <P>
-
--or-<P>
-
-<I>index</I> and <I>count</I> do not specify a valid range in <I>chars</I> (i.e. (<I>index</I> + <I>count</I>) &gt; <I>chars</I>.Length).<P>
-
-</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>Error-checking is turned on for the current instance and <I>chars</I> contains an invalid surrogate sequence.<P>
-
-</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-If error-checking is turned off and an invalid surrogate sequence is detected, the invalid
-      characters are ignored and do not affect the return value, and no exception
-      is thrown.<P>
-
-[<I>Note</I>: This method overrides
-      System.Text.Encoder.GetByteCount(System.Char[],System.Int32,System.Int32,System.Boolean)
-      .
-      <P>
-
-]<P>
 
 </BLOCKQUOTE>
 
@@ -442,6 +356,92 @@ If error-checking is turned off and an invalid surrogate sequence is detected, t
 
 <HR>
 
+<A NAME="UTF8Encoding.GetByteCount%28char%5B%5D%2C%20int%2C%20int%29%20Method"><H3>UTF8Encoding.GetByteCount(char[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override int GetByteCount(char[] chars, int index, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Determines the number of bytes required to encode the specified
+      range of characters in the specified Unicode character array as a <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A>.
+      <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>chars</DT>
+<DD>The <A HREF="../../System/Char.html" TARGET="contents">Char</A> array to encode as a <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A> . </DD>
+<DT>index</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the first index of <I>chars</I> to encode. </DD>
+<DT>count</DT>
+<DD>A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that specifies the number of characters to encode. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> containing the number of bytes necessary to encode the range in <I>chars</I> from
+<I>index</I> to <I>index</I> + <I>count</I> - 1 as a <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A>. <P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>chars </I> is <CODE>null</CODE>
+ . </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The return value is greater than System.Int32.MaxValue.<P>
+
+-or-<P>
+
+<I>index</I> or <I>count</I> is less than zero. <P>
+
+-or-<P>
+
+<I>index</I> and <I>count</I> do not specify a valid range in <I>chars</I> (i.e. (<I>index</I> + <I>count</I>) &gt; <I>chars</I>.Length).<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>Error-checking is turned on for the current instance and <I>chars</I> contains an invalid surrogate sequence.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If error-checking is turned off and an invalid surrogate sequence is detected, the invalid
+      characters are ignored and do not affect the return value, and no exception
+      is thrown.<P>
+
+[<I>Note</I>: This method overrides
+      System.Text.Encoder.GetByteCount(System.Char[],System.Int32,System.Int32,System.Boolean)
+      .
+      <P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="UTF8Encoding.html" TARGET="contents">System.Text.UTF8Encoding Class</A>, <A HREF="Text.html" TARGET="members">System.Text Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
 <A NAME="UTF8Encoding.GetBytes%28System.String%2C%20int%2C%20int%2C%20byte%5B%5D%2C%20int%29%20Method"><H3>UTF8Encoding.GetBytes(System.String, int, int, byte[], int) Method</H3>
 
 <BLOCKQUOTE>
@@ -505,7 +505,7 @@ Error-checking is turned on for the current instance and <I>chars</I> contains a
 
 -or-<P>
 
-<I>byteIndex</I> &gt; <I>bytes</I>.Length.<P>
+<I>byteIndex</I> &gt;= <I>bytes</I>.Length.<P>
 
 </TD></TR>
 </TABLE>
@@ -726,7 +726,7 @@ Returns the number of characters produced by decoding the specified range of
 
 <BLOCKQUOTE>
 A <A HREF="../../System/Int32.html" TARGET="contents">Int32</A> that indicates the number of characters produced by decoding the range in <I>bytes </I>from
-<I>index </I>to <I>index </I>+ <I>count</I> as a <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A> . <P>
+<I>index </I>to <I>index </I>+ <I>count</I> - 1 as a <A HREF="UTF8Encoding.html" TARGET="contents">UTF8Encoding</A> . <P>
 
 </BLOCKQUOTE>
 

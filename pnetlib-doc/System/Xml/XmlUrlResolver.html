@@ -153,7 +153,7 @@ Maps a URI to an object
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>absoluteUri</I> is <CODE>null</CODE>
+<TR><TD><A HREF="../../System/NullReferenceException.html" TARGET="contents">NullReferenceException</A></TD><TD><I>absoluteUri</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD><I>ofObjectToReturn</I> is not <CODE>null</CODE>
  or <CODE>typeof</CODE>
@@ -219,7 +219,7 @@ Resolves the absolute URI from the base and relative URIs.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="XmlException.html" TARGET="contents">XmlException</A></TD><TD><I>baseUri</I> and <I>relativeUri</I> are <CODE>null</CODE>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>relativeUri</I> is <CODE>null</CODE>
 .</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -230,7 +230,7 @@ Resolves the absolute URI from the base and relative URIs.<P>
 If <I>relativeURI</I> is <CODE>null</CODE>
 , it is set to System.String.Empty.<P>
 
-[<I>Note</I>: The absolute URI may be used as the base URI for any subsequent requests for
+[<I>Note</I>: The absolute URI can be used as the base URI for any subsequent requests for
       entities that are relative to this URI.<P>
 
 This method overrides System.Xml.XmlResolver.ResolveUri(System.Uri,System.String).<P>
@@ -277,10 +277,7 @@ This property is write-only.<P>
 
  If the virtual directory is configured to allow
       anonymous access, credentials are not needed and this property does not need to
-      be set. If credentials are needed but not supplied, the <A HREF="XmlUrlResolver.html" TARGET="contents">XmlUrlResolver</A> class
-      uses default credentials (System.Net.CredentialCache.DefaultCredentials).
-      
-   <P>
+      be set. <P>
 
 [<I>Note</I>: This property overrides System.Xml.XmlResolver.Credentials.<P>
 

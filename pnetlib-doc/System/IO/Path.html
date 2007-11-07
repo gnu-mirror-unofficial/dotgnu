@@ -44,7 +44,7 @@ Performs operations on <A HREF="../../System/String.html" TARGET="contents">Stri
 <BLOCKQUOTE>
  A path is a string that provides the location of a file
       or directory. A path does not necessarily point to a location on disk; for
-      example, a path may map to a location in memory or on a device. Paths are
+      example, a path might map to a location in memory or on a device. Paths are
       composed of the components described below. Component names are shown in
    <I>italics </I>
    
@@ -77,22 +77,22 @@ in the specified
 path. <P>
 
 <I>Directory Separator Character</I>:
-An implementation-defined constant string containing a single printable
+An implementation-specific constant string containing a single printable
 non-alphanumeric character used to separate levels in a file system. In the
 example path <CODE>C:/foo/bar/bat.txt</CODE>, the directory separator character is &quot;<CODE>/</CODE>&quot;. The System.IO.Path.DirectorySeparatorChar and System.IO.Path.AltDirectorySeparatorChar store
-implementation-defined directory separator characters
+implementation-specific directory separator characters
 .<P>
 
 <I>Extension</I>: A string that consists of the
 characters at the end of a file name, from and including the last <I>extension separator character</I>. The minimum and
-maximum lengths of extension components are platform-specific. In the example
+maximum lengths of extension components are implementation-specific. In the example
 path <CODE>C:/foo/bar/bat.txt</CODE>
 , the <I>extension</I> is &quot;<CODE>.txt</CODE>&quot;. The System.IO.Path.GetExtension(System.String) method returns the
 extension component of a
 path.<P>
 
 <I>Extension Separator Character</I>:
-An implementation-defined constant string
+An implementation-specific constant string
 composed of a single character that appears after the last character in the
 <I>file base</I> component indicating the beginning of the <I>extension</I> 
 component. If the extension separator character<I> </I>is the first character
@@ -295,7 +295,7 @@ Platforms that do not support this feature
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-specific invalid characters.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -303,7 +303,7 @@ Platforms that do not support this feature
 
 <BLOCKQUOTE>
 The exact behavior of this
-      method is platform-specific. This method checks <I>path</I> for invalid
+      method is implementation-specific. This method checks <I>path</I> for invalid
       characters as defined by the current platform and file system.
       <P>
 
@@ -362,7 +362,7 @@ Concatenates two
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path1</I> or <I>path2</I> is <CODE>null</CODE>
 .</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path1</I> or <I>path2</I> contains one or more implementation-defined invalid characters.<P>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path1</I> or <I>path2</I> contains one or more implementation-specific invalid characters.<P>
 
 </TD></TR>
 </TABLE>
@@ -469,7 +469,7 @@ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing dir
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-defined invalid characters.<P>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-specific invalid characters.<P>
 
 </TD></TR>
 </TABLE>
@@ -570,7 +570,7 @@ or System.String.Empty. If <I>path</I> is
 returns System.String.Empty.<P>
 
 The extension returned by this method includes the
-      platform-specific extension separator character used to separate the extension
+      implementation-specific extension separator character used to separate the extension
       from the rest of the path.<P>
 
 Platforms that do not
@@ -583,7 +583,7 @@ Platforms that do not
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-defined invalid characters.<P>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-specific invalid characters.<P>
 
 </TD></TR>
 </TABLE>
@@ -593,8 +593,8 @@ Platforms that do not
 
 <BLOCKQUOTE>
 The exact behavior of this method
-      is platform-specific. The character used to separate the extension from the rest of the path is
-      platform-specific.<P>
+      is implementation-specific. The character used to separate the extension from the rest of the path is
+      implementation-specific.<P>
 
 </BLOCKQUOTE>
 
@@ -694,7 +694,7 @@ Platforms that do not support this feature
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-specific invalid characters.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -781,7 +781,7 @@ Returns the file base component of the specified path string without the extensi
 <BLOCKQUOTE>
 A <A HREF="../../System/String.html" TARGET="contents">String</A> consisting of the
    string returned by System.IO.Path.GetFileName(System.String) , minus
-   the platform-specific extension separator character and extension. Platforms that do not support this feature
+   the implementation-specific extension separator character and extension. Platforms that do not support this feature
    return <I>path</I>
    unmodified.<P>
 
@@ -792,7 +792,7 @@ A <A HREF="../../System/String.html" TARGET="contents">String</A> consisting of 
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-specific invalid characters.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -850,7 +850,9 @@ Returns information required to uniquely identify a
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.<P>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.<P>
+
+-or-<P>
 
 The system could not retrieve the absolute path.<P>
 
@@ -952,8 +954,7 @@ A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the
 <CODE>null</CODE>
  if <I>path</I> is 
 <CODE>null</CODE>
- or does not contain root directory information. 
-   Returns System.String.Empty
+ . Returns System.String.Empty
    if the specified path does not contain root information. <P>
 
 Platforms that do not support this feature
@@ -966,7 +967,7 @@ Platforms that do not support this feature
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-defined invalid characters or is equal to System.String.Empty . </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-specific invalid characters or is equal to System.String.Empty . </TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -976,7 +977,7 @@ Platforms that do not support this feature
 This method does not verify that the path exists.
       <P>
 
-The exact behavior of this method is platform-specific.<P>
+The exact behavior of this method is implementation-specific.<P>
 
 </BLOCKQUOTE>
 
@@ -1089,7 +1090,7 @@ Platforms that do not support this feature
    directory.<P>
 
 The information returned by this method is
-   platform-specific. Platforms that do not support this feature return
+   implementation-specific. Platforms that do not support this feature return
 System.String.Empty.<P>
 
 </BLOCKQUOTE>
@@ -1108,7 +1109,7 @@ System.String.Empty.<P>
 <BLOCKQUOTE>
 On platforms that provide a mechanism for users
       to discover this information, (for example by checking an environment variable),
-      implementations of the CLI return the same information as the platform-specific
+      implementations of the CLI return the same information as the implementation-specific
       mechanism.<P>
 
 </BLOCKQUOTE>
@@ -1163,7 +1164,7 @@ Platforms that do not support this feature
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-defined invalid characters. </TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-specific invalid characters. </TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1225,7 +1226,7 @@ Platforms that do not support this feature
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> contains one or more implementation-specific invalid characters.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1274,8 +1275,8 @@ This field is read-only.<P>
 [<I>Note</I>: System.IO.Path.AltDirectorySeparatorChar and System.IO.Path.DirectorySeparatorChar are
       both valid for separating directory levels in a path string.<P>
 
-The value of this field is a backslash (&apos;\&apos;) on Windows systems and a slash
-      (&apos;/&apos;) on Unix systems.<P>
+The value of this field is a slash (&apos;/&apos;) on Windows systems and a backslash
+      (&apos;\&apos;) on Unix systems.<P>
 
 ]<P>
 
@@ -1339,7 +1340,7 @@ The value of this field is a backslash (&apos;\&apos;) on Windows systems and a 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Provides a platform-specific separator character used to
+ Provides a implementation-specific separator character used to
       separate path strings in environment variables.
       <P>
 

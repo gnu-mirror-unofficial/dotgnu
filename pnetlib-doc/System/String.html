@@ -7,7 +7,7 @@
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public sealed class String : ICloneable, IComparable, IEnumerable</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public sealed class String : ICloneable, IComparable, IEnumerable, IComparable&lt;String&gt;, IEquatable&lt;String&gt;, IEnumerable&lt;Char&gt;</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -17,7 +17,7 @@
 <A HREF="Object.html" TARGET="contents">Object</A><BR>
 &nbsp;&nbsp;String<P>
 
-This type implements <A HREF="IComparable.html" TARGET="contents">IComparable</A>, <A HREF="ICloneable.html" TARGET="contents">ICloneable</A>, and <A HREF="../System/Collections/IEnumerable.html" TARGET="contents">IEnumerable</A>.
+This type implements <A HREF="IComparable.html" TARGET="contents">IComparable</A>, <A HREF="ICloneable.html" TARGET="contents">ICloneable</A>, System.IComparable&lt;System.String&gt;, System.IEquatable&lt;System.String&gt;, <A HREF="../System/Collections/IEnumerable.html" TARGET="contents">IEnumerable</A>, and System.Collections.Generic.IEnumerable&lt;System.Char&gt;.
 </BLOCKQUOTE>
 
 <H4>Assembly</H4>
@@ -68,18 +68,15 @@ information is intended primarily for use by compilers, not application programm
 
 <P>
 
-[<I>Note</I>: Comparisons and searches are case-sensitive by default
-      and unless otherwise specified, use the culture defined for the current thread
+[<I>Note</I>: Comparisons and searches are case-sensitive by default,
+      and unless otherwise specified, use the culture defined (if any) for the current thread
       to determine the order of the alphabet used by the strings. This information is
       then used to compare the two strings on a character-by-character basis. Upper
-      case letters evaluate greater than their lower case equivalents.<P>
+      case letters evaluate greater than their lowercase equivalents.<P>
 
-The following characters are considered white space when present in a
-      System.String instance: 0x9, 0xA, 0xB, 0xC, 0xD, 0x20, 0xA0, 0x2000, 0x2001,
+The following characters are considered white space when present in a <A HREF="String.html" TARGET="contents">String</A> instance: 0x9, 0xA, 0xB, 0xC, 0xD, 0x20, 0xA0, 0x2000, 0x2001,
       0x2002, 0x2003, 0x2004, 0x2005, 0x2006, 0x2007, 0x2008, 0x2009, 0x200A, 0x200B,
-      0x3000, and 0xFEFF.<P>
-
-The null character is defined as hexadecimal 0x00.<P>
+      0x3000, and 0xFEFF. The null character is defined as hexadecimal 0x00.<P>
 
 The <A HREF="String.html" TARGET="contents">String</A>(<A HREF="String.html" TARGET="contents">String</A>) constructor is
    omitted for performance reasons. If you need a copy of a <A HREF="String.html" TARGET="contents">String</A>, consider using
@@ -88,10 +85,10 @@ System.String.Copy(System.String) or
    class.<P>
 
 To insert a formatted string representation of an object
-   into a string use the System.String.Format(System.String,System.Object) methods.
-   These methods take one or more arguments to be formatted and a format string.
+   into a string, use the System.String.Format(System.String,System.Object) methods.
+   These methods take one or more arguments to be formatted, and a format string.
    The format string contains literals and zero or more format
-   specifications in the form { <I>N</I> [, <I>M</I> ][: <I>formatSpecifier</I>
+   specifications of the form { <I>N</I> [, <I>M</I> ][: <I>formatSpecifier</I>
    ]}, where:
    <P>
 
@@ -142,6 +139,8 @@ methods return the formatted string, while the
 System.Console methods write the formatted string to a stream.<P>
 
 ]<P>
+
+When a non-empty string is searched for the first or last occurrence of an empty string, the empty string is found at the search start position.<P>
 
 </BLOCKQUOTE>
 
@@ -227,6 +226,29 @@ The output is<P>
 [IFormattable called] 11
 [IFormattable called]               b
  </PRE>
+Example 3<P>
+
+The following example demonstrates searching for an empty string in a non-empty string.<P>
+
+<PRE>using System;
+class EmptyStringSearch {
+	public static void Main() 	{
+		Console.WriteLine(&quot;ABCDEF&quot;.IndexOf(&quot;&quot;));
+		Console.WriteLine(&quot;ABCDEF&quot;.IndexOf(&quot;&quot;, 2));
+		Console.WriteLine(&quot;ABCDEF&quot;.IndexOf(&quot;&quot;, 3, 2));
+		Console.WriteLine(&quot;ABCDEF&quot;.LastIndexOf(&quot;&quot;));
+		Console.WriteLine(&quot;ABCDEF&quot;.LastIndexOf(&quot;&quot;, 1));
+		Console.WriteLine(&quot;ABCDEF&quot;.LastIndexOf(&quot;&quot;, 4, 2));
+	}
+}</PRE>
+The output is<P>
+
+<PRE>0
+2
+3
+5
+1
+4</PRE>
 </BLOCKQUOTE>
 
 <H4>Attributes</H4>
@@ -248,24 +270,25 @@ The output is<P>
 
 String Constructors<P>
 
+<A HREF="#String%28char%2C%20int%29%20Constructor" TARGET="contents">String(char, int) Constructor</A><BR>
 <A HREF="#String%28char%2A%29%20Constructor" TARGET="contents">String(char*) Constructor</A><BR>
+<A HREF="#String%28char%5B%5D%29%20Constructor" TARGET="contents">String(char[]) Constructor</A><BR>
 <A HREF="#String%28char%2A%2C%20int%2C%20int%29%20Constructor" TARGET="contents">String(char*, int, int) Constructor</A><BR>
 <A HREF="#String%28sbyte%2A%2C%20int%2C%20int%2C%20System.Text.Encoding%29%20Constructor" TARGET="contents">String(sbyte*, int, int, System.Text.Encoding) Constructor</A><BR>
 <A HREF="#String%28char%5B%5D%2C%20int%2C%20int%29%20Constructor" TARGET="contents">String(char[], int, int) Constructor</A><BR>
-<A HREF="#String%28char%5B%5D%29%20Constructor" TARGET="contents">String(char[]) Constructor</A><BR>
-<A HREF="#String%28char%2C%20int%29%20Constructor" TARGET="contents">String(char, int) Constructor</A><BR>
 <P>
 
 String Methods<P>
 
 <A HREF="#String.Clone%20Method" TARGET="contents">String.Clone Method</A><BR>
-<A HREF="#String.Compare%28System.String%2C%20System.String%29%20Method" TARGET="contents">String.Compare(System.String, System.String) Method</A><BR>
-<A HREF="#String.Compare%28System.String%2C%20System.String%2C%20bool%29%20Method" TARGET="contents">String.Compare(System.String, System.String, bool) Method</A><BR>
-<A HREF="#String.Compare%28System.String%2C%20int%2C%20System.String%2C%20int%2C%20int%29%20Method" TARGET="contents">String.Compare(System.String, int, System.String, int, int) Method</A><BR>
 <A HREF="#String.Compare%28System.String%2C%20int%2C%20System.String%2C%20int%2C%20int%2C%20bool%29%20Method" TARGET="contents">String.Compare(System.String, int, System.String, int, int, bool) Method</A><BR>
+<A HREF="#String.Compare%28System.String%2C%20int%2C%20System.String%2C%20int%2C%20int%29%20Method" TARGET="contents">String.Compare(System.String, int, System.String, int, int) Method</A><BR>
+<A HREF="#String.Compare%28System.String%2C%20System.String%2C%20bool%29%20Method" TARGET="contents">String.Compare(System.String, System.String, bool) Method</A><BR>
+<A HREF="#String.Compare%28System.String%2C%20System.String%29%20Method" TARGET="contents">String.Compare(System.String, System.String) Method</A><BR>
 <A HREF="#String.CompareOrdinal%28System.String%2C%20System.String%29%20Method" TARGET="contents">String.CompareOrdinal(System.String, System.String) Method</A><BR>
 <A HREF="#String.CompareOrdinal%28System.String%2C%20int%2C%20System.String%2C%20int%2C%20int%29%20Method" TARGET="contents">String.CompareOrdinal(System.String, int, System.String, int, int) Method</A><BR>
-<A HREF="#String.CompareTo%20Method" TARGET="contents">String.CompareTo Method</A><BR>
+<A HREF="#String.CompareTo%28System.Object%29%20Method" TARGET="contents">String.CompareTo(System.Object) Method</A><BR>
+<A HREF="#String.CompareTo%28System.String%29%20Method" TARGET="contents">String.CompareTo(System.String) Method</A><BR>
 <A HREF="#String.Concat%28System.Object%2C%20System.Object%29%20Method" TARGET="contents">String.Concat(System.Object, System.Object) Method</A><BR>
 <A HREF="#String.Concat%28System.Object%2C%20System.Object%2C%20System.Object%29%20Method" TARGET="contents">String.Concat(System.Object, System.Object, System.Object) Method</A><BR>
 <A HREF="#String.Concat%28System.Object%5B%5D%29%20Method" TARGET="contents">String.Concat(System.Object[]) Method</A><BR>
@@ -276,11 +299,12 @@ String Methods<P>
 <A HREF="#String.CopyTo%20Method" TARGET="contents">String.CopyTo Method</A><BR>
 <A HREF="#String.EndsWith%20Method" TARGET="contents">String.EndsWith Method</A><BR>
 <A HREF="#String.Equals%28System.Object%29%20Method" TARGET="contents">String.Equals(System.Object) Method</A><BR>
+<A HREF="#String.Equals%28System.String%29%20Method" TARGET="contents">String.Equals(System.String) Method</A><BR>
 <A HREF="#String.Equals%28System.String%2C%20System.String%29%20Method" TARGET="contents">String.Equals(System.String, System.String) Method</A><BR>
+<A HREF="#String.Format%28System.String%2C%20System.Object%5B%5D%29%20Method" TARGET="contents">String.Format(System.String, System.Object[]) Method</A><BR>
 <A HREF="#String.Format%28System.String%2C%20System.Object%29%20Method" TARGET="contents">String.Format(System.String, System.Object) Method</A><BR>
 <A HREF="#String.Format%28System.String%2C%20System.Object%2C%20System.Object%29%20Method" TARGET="contents">String.Format(System.String, System.Object, System.Object) Method</A><BR>
 <A HREF="#String.Format%28System.String%2C%20System.Object%2C%20System.Object%2C%20System.Object%29%20Method" TARGET="contents">String.Format(System.String, System.Object, System.Object, System.Object) Method</A><BR>
-<A HREF="#String.Format%28System.String%2C%20System.Object%5B%5D%29%20Method" TARGET="contents">String.Format(System.String, System.Object[]) Method</A><BR>
 <A HREF="#String.Format%28System.IFormatProvider%2C%20System.String%2C%20System.Object%5B%5D%29%20Method" TARGET="contents">String.Format(System.IFormatProvider, System.String, System.Object[]) Method</A><BR>
 <A HREF="#String.GetEnumerator%20Method" TARGET="contents">String.GetEnumerator Method</A><BR>
 <A HREF="#String.GetHashCode%20Method" TARGET="contents">String.GetHashCode Method</A><BR>
@@ -298,33 +322,34 @@ String Methods<P>
 <A HREF="#String.IsInterned%20Method" TARGET="contents">String.IsInterned Method</A><BR>
 <A HREF="#String.Join%28System.String%2C%20System.String%5B%5D%29%20Method" TARGET="contents">String.Join(System.String, System.String[]) Method</A><BR>
 <A HREF="#String.Join%28System.String%2C%20System.String%5B%5D%2C%20int%2C%20int%29%20Method" TARGET="contents">String.Join(System.String, System.String[], int, int) Method</A><BR>
-<A HREF="#String.LastIndexOf%28char%29%20Method" TARGET="contents">String.LastIndexOf(char) Method</A><BR>
-<A HREF="#String.LastIndexOf%28char%2C%20int%29%20Method" TARGET="contents">String.LastIndexOf(char, int) Method</A><BR>
-<A HREF="#String.LastIndexOf%28char%2C%20int%2C%20int%29%20Method" TARGET="contents">String.LastIndexOf(char, int, int) Method</A><BR>
-<A HREF="#String.LastIndexOf%28System.String%29%20Method" TARGET="contents">String.LastIndexOf(System.String) Method</A><BR>
 <A HREF="#String.LastIndexOf%28System.String%2C%20int%29%20Method" TARGET="contents">String.LastIndexOf(System.String, int) Method</A><BR>
 <A HREF="#String.LastIndexOf%28System.String%2C%20int%2C%20int%29%20Method" TARGET="contents">String.LastIndexOf(System.String, int, int) Method</A><BR>
+<A HREF="#String.LastIndexOf%28System.String%29%20Method" TARGET="contents">String.LastIndexOf(System.String) Method</A><BR>
+<A HREF="#String.LastIndexOf%28char%2C%20int%2C%20int%29%20Method" TARGET="contents">String.LastIndexOf(char, int, int) Method</A><BR>
+<A HREF="#String.LastIndexOf%28char%2C%20int%29%20Method" TARGET="contents">String.LastIndexOf(char, int) Method</A><BR>
+<A HREF="#String.LastIndexOf%28char%29%20Method" TARGET="contents">String.LastIndexOf(char) Method</A><BR>
 <A HREF="#String.LastIndexOfAny%28char%5B%5D%29%20Method" TARGET="contents">String.LastIndexOfAny(char[]) Method</A><BR>
 <A HREF="#String.LastIndexOfAny%28char%5B%5D%2C%20int%29%20Method" TARGET="contents">String.LastIndexOfAny(char[], int) Method</A><BR>
 <A HREF="#String.LastIndexOfAny%28char%5B%5D%2C%20int%2C%20int%29%20Method" TARGET="contents">String.LastIndexOfAny(char[], int, int) Method</A><BR>
 <A HREF="#String.PadLeft%28int%29%20Method" TARGET="contents">String.PadLeft(int) Method</A><BR>
 <A HREF="#String.PadLeft%28int%2C%20char%29%20Method" TARGET="contents">String.PadLeft(int, char) Method</A><BR>
-<A HREF="#String.PadRight%28int%29%20Method" TARGET="contents">String.PadRight(int) Method</A><BR>
 <A HREF="#String.PadRight%28int%2C%20char%29%20Method" TARGET="contents">String.PadRight(int, char) Method</A><BR>
+<A HREF="#String.PadRight%28int%29%20Method" TARGET="contents">String.PadRight(int) Method</A><BR>
 <A HREF="#String.Remove%20Method" TARGET="contents">String.Remove Method</A><BR>
-<A HREF="#String.Replace%28char%2C%20char%29%20Method" TARGET="contents">String.Replace(char, char) Method</A><BR>
 <A HREF="#String.Replace%28System.String%2C%20System.String%29%20Method" TARGET="contents">String.Replace(System.String, System.String) Method</A><BR>
+<A HREF="#String.Replace%28char%2C%20char%29%20Method" TARGET="contents">String.Replace(char, char) Method</A><BR>
 <A HREF="#String.Split%28char%5B%5D%29%20Method" TARGET="contents">String.Split(char[]) Method</A><BR>
 <A HREF="#String.Split%28char%5B%5D%2C%20int%29%20Method" TARGET="contents">String.Split(char[], int) Method</A><BR>
 <A HREF="#String.StartsWith%20Method" TARGET="contents">String.StartsWith Method</A><BR>
-<A HREF="#String.Substring%28int%29%20Method" TARGET="contents">String.Substring(int) Method</A><BR>
 <A HREF="#String.Substring%28int%2C%20int%29%20Method" TARGET="contents">String.Substring(int, int) Method</A><BR>
+<A HREF="#String.Substring%28int%29%20Method" TARGET="contents">String.Substring(int) Method</A><BR>
+<A HREF="#String.System.Collections.Generic.IEnumerable%3CSystem.Char%3E.GetEnumerator%20Method" TARGET="contents">String.System.Collections.Generic.IEnumerable&lt;System.Char&gt;.GetEnumerator Method</A><BR>
 <A HREF="#String.System.Collections.IEnumerable.GetEnumerator%20Method" TARGET="contents">String.System.Collections.IEnumerable.GetEnumerator Method</A><BR>
 <A HREF="#String.ToCharArray%28%29%20Method" TARGET="contents">String.ToCharArray() Method</A><BR>
 <A HREF="#String.ToCharArray%28int%2C%20int%29%20Method" TARGET="contents">String.ToCharArray(int, int) Method</A><BR>
 <A HREF="#String.ToLower%20Method" TARGET="contents">String.ToLower Method</A><BR>
-<A HREF="#String.ToString%28System.IFormatProvider%29%20Method" TARGET="contents">String.ToString(System.IFormatProvider) Method</A><BR>
 <A HREF="#String.ToString%28%29%20Method" TARGET="contents">String.ToString() Method</A><BR>
+<A HREF="#String.ToString%28System.IFormatProvider%29%20Method" TARGET="contents">String.ToString(System.IFormatProvider) Method</A><BR>
 <A HREF="#String.ToUpper%20Method" TARGET="contents">String.ToUpper Method</A><BR>
 <A HREF="#String.Trim%28char%5B%5D%29%20Method" TARGET="contents">String.Trim(char[]) Method</A><BR>
 <A HREF="#String.Trim%28%29%20Method" TARGET="contents">String.Trim() Method</A><BR>
@@ -343,6 +368,80 @@ String Properties<P>
 
 <A HREF="#String.Chars%20Property" TARGET="contents">String.Chars Property</A><BR>
 <A HREF="#String.Length%20Property" TARGET="contents">String.Length Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="String%28char%2C%20int%29%20Constructor"><H3>String(char, int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public String(char c, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of <A HREF="String.html" TARGET="contents">String</A>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>c</DT>
+<DD>A <A HREF="Char.html" TARGET="contents">Char</A> . </DD>
+<DT> count</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of occurrences of <I>c</I>. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>count</I> is less than zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the specified number is 0, System.String.Empty is
+   created.<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates using this constructor.<P>
+
+<PRE>using System;
+
+public class StringExample {
+ public static void Main() {
+ 
+ string s = new String(&apos;a&apos;, 10);
+
+ Console.WriteLine(s);            
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>aaaaaaaaaa</CODE><P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
 </BLOCKQUOTE>
 
 <HR>
@@ -375,7 +474,7 @@ Constructs and initializes a new instance of <A HREF="String.html" TARGET="conte
 
 <BLOCKQUOTE>
 This member is not CLS-compliant. For a CLS-compliant alternative,
-      use the <A HREF="String.html" TARGET="contents">String</A>(<A HREF="Char.html" TARGET="contents">Char</A> ) constructor.<P>
+      use the <A HREF="String.html" TARGET="contents">String</A>(<A HREF="Char.html" TARGET="contents">Char</A>[] ) constructor.<P>
 
 This constructor copies the sequence of Unicode characters at the specified
       pointer until a null character (hexadecimal 0x00) is reached.<P>
@@ -396,6 +495,47 @@ If the specified array is not null-terminated, the
 
 <BLOCKQUOTE>
 <CODE>CLSCompliantAttribute(false)</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="String%28char%5B%5D%29%20Constructor"><H3>String(char[]) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public String(char[] value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Constructs and initializes a new instance of <A HREF="String.html" TARGET="contents">String</A>
+by copying the specified array of Unicode characters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>An array of Unicode characters.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the specified array is a null reference or contains
+      no elements, System.String.Empty is created.<P>
+
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -630,121 +770,6 @@ This constructor copies the sequence Unicode characters
 
 <HR>
 
-<A NAME="String%28char%5B%5D%29%20Constructor"><H3>String(char[]) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public String(char[] value);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Constructs and initializes a new instance of <A HREF="String.html" TARGET="contents">String</A>
-by copying the specified array of Unicode characters.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>value</DT>
-<DD>An array of Unicode characters.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-If the specified array is a null reference or contains
-      no elements, System.String.Empty is created.<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="String%28char%2C%20int%29%20Constructor"><H3>String(char, int) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public String(char c, int count);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Constructs and initializes a new instance of <A HREF="String.html" TARGET="contents">String</A>
-.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>c</DT>
-<DD>A <A HREF="Char.html" TARGET="contents">Char</A> . </DD>
-<DT> count</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of occurrences of <I>c</I>. </DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>count</I> is less than zero.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-If the specified number is 0, System.String.Empty is
-   created.<P>
-
-</BLOCKQUOTE>
-
-<H4>Example</H4>
-
-<BLOCKQUOTE>
-The following example demonstrates using this constructor.<P>
-
-<PRE>using System;
-
-public class StringExample {
- public static void Main() {
- 
- string s = new String(&apos;a&apos;, 10);
-
- Console.WriteLine(s);            
- }
-}
-   </PRE>
-The output is<P>
-
-<CODE>aaaaaaaaaa</CODE><P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
 <A NAME="String.Clone%20Method"><H3>String.Clone Method</H3>
 
 <BLOCKQUOTE>
@@ -788,18 +813,154 @@ This method is implemented to support the <A HREF="ICloneable.html" TARGET="cont
 
 <HR>
 
-<A NAME="String.Compare%28System.String%2C%20System.String%29%20Method"><H3>String.Compare(System.String, System.String) Method</H3>
+<A NAME="String.Compare%28System.String%2C%20int%2C%20System.String%2C%20int%2C%20int%2C%20bool%29%20Method"><H3>String.Compare(System.String, int, System.String, int, int, bool) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static int Compare(string strA, string strB);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static int Compare(string strA, int indexA, string strB, int indexB, int length, bool ignoreCase);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Compares two <A HREF="String.html" TARGET="contents">String</A> objects in a case sensitive manner.<P>
+ Compares substrings of two strings, ignoring or honoring their case.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>strA</DT>
+<DD>The first <A HREF="String.html" TARGET="contents">String</A> containing a substring to compare. Can be a null reference.</DD>
+<DT>indexA</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the starting index of the substring within <I>strA</I>.</DD>
+<DT>strB</DT>
+<DD>The second <A HREF="String.html" TARGET="contents">String</A> containing a substring to compare. Can be a null reference.</DD>
+<DT>indexB</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the starting index of the substring within <I>strB</I>.</DD>
+<DT>length</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the maximum number of characters in the substrings to compare. If <I>length</I> is zero, then zero is returned.</DD>
+<DT> ignoreCase</DT>
+<DD>A <A HREF="Boolean.html" TARGET="contents">Boolean</A> indicating if the comparison is case-insensitive. If <I>ignoreCase</I> is <CODE>true</CODE>
+, the comparison is case-insensitive. If <I>ignoreCase</I> is <CODE>false</CODE>
+, the comparison is case-sensitive, and uppercase letters evaluate greater than their lowercase equivalents. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the specified substrings. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Value Type</TH><TH>Condition</TH></TR>
+<TR><TD> A negative number</TD><TD>The substring in <I>strA</I> is &lt; the substring
+      in <I>strB</I>.</TD></TR>
+<TR><TD> Zero</TD><TD>The substring in <I>strA</I> == 
+   the substring in
+<I>strB</I>, or <I>length</I> is zero.</TD></TR>
+<TR><TD> A positive number</TD><TD>The substring in <I>strA</I> is &gt; the substring
+   in <I>strB</I>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>indexA</I> is greater than <I>strA</I> .Length<P>
+
+ -or-<P>
+
+<I>indexB</I> is greater than <I>strB</I> .Length<P>
+
+ -or-<P>
+
+<I>indexA</I>, <I>indexB</I>, or <I>length</I> is negative.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The result of comparing any <A HREF="String.html" TARGET="contents">String</A> (including the
+      empty string) to a null reference is greater than zero. The result of comparing
+      two null references is zero. Uppercase letters evaluate greater than their
+      lower
+      case
+      equivalents.<P>
+
+The maximum number of characters compared is the lesser of the length of <I>strA</I> less <I>indexA</I>, the length of <I>strB</I> less <I>indexB</I>, and <I>length</I>.<P>
+
+When a culture is available, the method uses the culture of the current thread to
+      determine the ordering of individual characters. The two strings are compared on
+      a character-by-character
+      basis.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates comparing substrings with and without case 
+      sensitivity.<P>
+
+<PRE>using System;
+public class StringCompareExample {
+ public static void Main() {
+ string strA = &quot;STRING A&quot;;
+ string strB = &quot;string b&quot;;
+ int first = String.Compare( strA, strB, true );
+ int second = String.Compare( strA, 0, strB, 0, 4, true );
+ int third = String.Compare( strA, 0, strB, 0, 4, false );
+ Console.WriteLine( &quot;When the string &apos;STRING A&apos; is compared to the string &apos;string b&apos; in a case-insensitive manner, the return value is {0}.&quot;, first );
+ Console.WriteLine( &quot;When the substring &apos;STRI&apos; of &apos;STRING A&apos; is compared to the substring &apos;stri&apos; of &apos;string b&apos; in a case-insensitive manner, the return value is {0}.&quot;, second );
+ Console.WriteLine( &quot;When the substring &apos;STRI&apos; of &apos;STRING A&apos; is compared to the substring &apos;stri&apos; of &apos;string b&apos; in a case-sensitive manner, the return value is {0}.&quot;, third );
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>When the string &apos;STRING A&apos; is compared to the string &apos;string b&apos; in a
+         case-insensitive manner, the return value is -1.<P>
+
+When the substring &apos;STRI&apos; of &apos;STRING A&apos; is compared to the substring &apos;stri&apos;
+         of &apos;string b&apos; in a case-insensitive manner, the return value is 0.<P>
+
+When the substring &apos;STRI&apos; of &apos;STRING A&apos; is compared to the substring &apos;stri&apos;
+         of &apos;string b&apos; in a case-sensitive manner, the return value is 1.<P>
+
+</CODE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="String.Compare%28System.String%2C%20int%2C%20System.String%2C%20int%2C%20int%29%20Method"><H3>String.Compare(System.String, int, System.String, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static int Compare(string strA, int indexA, string strB, int indexB, int length);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Compares substrings of two
+      strings.<P>
 
 </BLOCKQUOTE>
 
@@ -809,44 +970,95 @@ Compares two <A HREF="String.html" TARGET="contents">String</A> objects in a cas
 <DL>
 <DT>strA</DT>
 <DD>The first <A HREF="String.html" TARGET="contents">String</A> to compare. Can be a null reference.</DD>
+<DT>indexA</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the starting index of the substring within <I>strA</I>.</DD>
 <DT>strB</DT>
 <DD>The second <A HREF="String.html" TARGET="contents">String</A> to compare. Can be a null reference.</DD>
+<DT>indexB</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the starting index of the substring within <I>strB</I>.</DD>
+<DT>length</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the maximum number of characters in the substrings to compare. If <I>length</I> is zero, then zero is returned.</DD>
 </DL>
 </BLOCKQUOTE>
 
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
-   two specified strings. The following table defines conditions under which the returned value is a negative number, zero, or a positive number.<P>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the specified substrings. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH> Value</TH><TH>Meaning</TH></TR>
-<TR><TD> Any negative number</TD><TD><I>strA</I> is lexicographically &lt; <I>strB</I>,
-      or <I>strA</I> is a null reference.</TD></TR>
-<TR><TD> Zero</TD><TD><I>strA</I> is lexicographically == <I>strB</I>,
-   or both <I>strA</I> and <I>strB</I> are null references.</TD></TR>
-<TR><TD> Any positive number</TD><TD><I>strA</I> is lexicographically &gt; <I>strB</I>,
-   or <I>strB</I> is a null reference.</TD></TR>
+<TR><TD> A negative number</TD><TD>The substring in <I>strA</I> is &lt; the substring
+      in <I>strB</I>.</TD></TR>
+<TR><TD> Zero</TD><TD>The substring in <I>strA</I> == 
+   the substring in
+<I>strB</I>, or <I>length</I> is zero.</TD></TR>
+<TR><TD> A positive number</TD><TD>The substring in <I>strA</I> is &gt; the substring
+   in <I>strB</I>.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The sum of <I>indexA</I> and <I>length</I> is greater than <I>strA</I> .Length .<P>
+
+ -or-<P>
+
+The sum of <I>indexB</I> and <I>length</I> is greater than <I>strB</I> .Length .<P>
+
+ -or-<P>
+
+<I>indexA</I>, <I>indexB</I>, or <I>length</I> is negative.<P>
+
+</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
- This method performs a case-sensitive operation.<P>
-
 [<I>Note</I>: The result of comparing any <A HREF="String.html" TARGET="contents">String</A> (including the empty string) to a null
-      reference is greater than zero. The
-      result of comparing two null references is zero. Upper case letters evaluate
-      greater than their lower case equivalents.<P>
+      reference is greater than zero. The result of comparing two null references is
+      zero. Uppercase letters evaluate greater than their lowercase
+      equivalents.<P>
 
-The method uses the culture of the
-      current thread to determine the ordering of individual characters. The two strings
-      are compared on a character-by-character basis.<P>
+The method uses the culture (if any) of the current thread to
+      determine the ordering of individual characters. The two strings are compared on a character-by-character
+      basis.<P>
 
 ]<P>
 
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates comparing substrings.<P>
+
+<PRE>using System;
+public class StringCompareExample {
+ public static void Main() {
+ string strA = &quot;A string&quot;;
+ string strB = &quot;B ring&quot;;
+ int first = String.Compare( strA, 4, strB, 2, 3 );
+ int second = String.Compare( strA, 3, strB, 3, 3 );
+ Console.WriteLine( &quot;When the substring &apos;rin&apos; of &apos;A string&apos; is compared to the substring &apos;rin&apos; of &apos;B ring&apos;, the return value is {0}.&quot;, first );
+ Console.WriteLine( &quot;When the substring &apos;tri&apos; of &apos;A string&apos; is compared to the substring &apos;ing&apos; of &apos;B ring&apos;, the return value is {0}.&quot;, second );
+ }
+}
+   </PRE>
+The output is<P>
+
+<CODE>When the substring &apos;rin&apos; of &apos;A string&apos; is compared to the substring &apos;rin&apos; of
+         &apos;B ring&apos;, the return value is 0.<P>
+
+When the substring &apos;tri&apos; of &apos;A string&apos; is compared to the substring &apos;ing&apos; of
+         &apos;B ring&apos;, the return value is 1.<P>
+
+</CODE>
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -869,7 +1081,7 @@ The method uses the culture of the
 
 <BLOCKQUOTE>
  Returns sort order of two <A HREF="String.html" TARGET="contents">String</A>
-objects.<P>
+objects, ignoring or honoring their case.<P>
 
 </BLOCKQUOTE>
 
@@ -884,26 +1096,20 @@ objects.<P>
 <DT>ignoreCase</DT>
 <DD>A <A HREF="Boolean.html" TARGET="contents">Boolean</A> indicating whether the comparison is case-insensitive. If <I>ignoreCase</I> is <CODE>true</CODE>
 , the comparison is case-insensitive. If <I>ignoreCase</I> is <CODE>false</CODE>
-, the comparison is case-sensitive, and upper case letters evaluate greater than their lower case equivalents.</DD>
+, the comparison is case-sensitive, and uppercase letters evaluate greater than their lowercase equivalents.</DD>
 </DL>
 </BLOCKQUOTE>
 
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
-   two specified strings. The following table defines the conditions under which
-   the returned value is a negative number, zero, or a positive
-   number.<P>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the specified substrings. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH> Value</TH><TH>Meaning</TH></TR>
-<TR><TD> Any negative number</TD><TD><I>strA</I> is &lt; <I>strB</I>, or
-   <I>strA</I> is a null reference.</TD></TR>
-<TR><TD> Zero</TD><TD><I>strA</I> == <I>strB</I>, or both <I>strA</I>
-and <I>strB</I> are null references.</TD></TR>
-<TR><TD> Any positive number</TD><TD><I>strA</I> is &gt; <I>strB</I>, or <I>strB</I>
-is a null reference.</TD></TR>
+<TR><TD> A negative number</TD><TD><I>strA</I> is &lt; <I>strB</I>.</TD></TR>
+<TR><TD> Zero</TD><TD><I>strA</I> == <I>strB</I>.</TD></TR>
+<TR><TD> A positive number</TD><TD><I>strA</I> is &gt; <I>strB</I>.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -912,11 +1118,11 @@ is a null reference.</TD></TR>
 <BLOCKQUOTE>
 [<I>Note</I>: The result of comparing any <A HREF="String.html" TARGET="contents">String</A> (including the empty string) to a null
       reference is greater than zero. The
-      result of comparing two null references is zero. Upper case letters evaluate
-      greater than their lower case
+      result of comparing two null references is zero. Uppercase letters evaluate
+      greater than their lowercase
       equivalents.<P>
 
-The method uses the culture of the
+The method uses the culture (if any) of the
       current thread to determine the ordering of individual characters. The two strings
       are compared on a character-by-character
       basis.<P>
@@ -971,19 +1177,18 @@ When &apos;A STRING&apos; is compared to &apos;a string&apos; in a case-sensitiv
 
 <HR>
 
-<A NAME="String.Compare%28System.String%2C%20int%2C%20System.String%2C%20int%2C%20int%29%20Method"><H3>String.Compare(System.String, int, System.String, int, int) Method</H3>
+<A NAME="String.Compare%28System.String%2C%20System.String%29%20Method"><H3>String.Compare(System.String, System.String) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static int Compare(string strA, int indexA, string strB, int indexB, int length);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static int Compare(string strA, string strB);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Compares substrings of two
-      strings.<P>
+Compares two <A HREF="String.html" TARGET="contents">String</A> objects in a case-sensitive manner.<P>
 
 </BLOCKQUOTE>
 
@@ -992,240 +1197,41 @@ Compares substrings of two
 <BLOCKQUOTE>
 <DL>
 <DT>strA</DT>
-<DD>The first <A HREF="String.html" TARGET="contents">String</A> to compare.</DD>
-<DT>indexA</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the starting index of the substring within <I>strA</I>.</DD>
+<DD>The first <A HREF="String.html" TARGET="contents">String</A> to compare. Can be a null reference.</DD>
 <DT>strB</DT>
-<DD>The second <A HREF="String.html" TARGET="contents">String</A> to compare.</DD>
-<DT>indexB</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the starting index of the substring within <I>strB</I>.</DD>
-<DT>length</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters in the substrings to compare. If <I>length</I> is zero, then zero is returned.</DD>
+<DD>The second <A HREF="String.html" TARGET="contents">String</A> to compare. Can be a null reference.</DD>
 </DL>
 </BLOCKQUOTE>
 
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of
-   substrings of the two specified strings. The following table defines the
-   conditions under which the returned value is a negative number, zero, or a positive
-   number.<P>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the specified strings. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH> Value</TH><TH>Meaning</TH></TR>
-<TR><TD> Any negative number</TD><TD>The
-         substring in <I>strA</I> is &lt; the substring in <I>strB</I>, or
-      <I>strA</I> is a null reference.</TD></TR>
-<TR><TD> Zero</TD><TD> The
-         substring in <I>strA</I> ==
-         the substring in <I>strB</I>, or both
-      <I>strA</I> and <I>strB</I> are null references.</TD></TR>
-<TR><TD> Any positive number</TD><TD>The
-         substring in <I>strA</I> is &gt; the substring in <I>strB</I>, or
-      <I>strB</I> is a null reference.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The sum of <I>indexA</I> and <I>length</I> is greater than <I>strA</I> .Length .<P>
-
- -or-<P>
-
-The sum of <I>indexB</I> and <I>length</I> is greater than <I>strB</I> .Length .<P>
-
- -or-<P>
-
-<I>indexA</I>, <I>indexB</I>, or <I>length</I> is negative.<P>
-
-</TD></TR>
+<TR><TD> A negative number</TD><TD><I>strA</I> is lexicographically &lt; <I>strB</I>.</TD></TR>
+<TR><TD> Zero</TD><TD><I>strA</I> is lexicographically == <I>strB</I>.</TD></TR>
+<TR><TD> A positive number</TD><TD><I>strA</I> is lexicographically &gt; <I>strB</I>.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
+ This method performs a case-sensitive operation.<P>
+
 [<I>Note</I>: The result of comparing any <A HREF="String.html" TARGET="contents">String</A> (including the empty string) to a null
-      reference is greater than zero. The result of comparing two null references is
-      zero. Upper case letters evaluate greater than their lower case
-      equivalents.<P>
+      reference is greater than zero. The
+      result of comparing two null references is zero. Uppercase letters evaluate
+      greater than their lowercase equivalents.<P>
 
-The method uses the culture of the current thread to
-      determine the ordering of individual characters. The two strings are compared on a character-by-character
-      basis.<P>
-
-]<P>
-
-</BLOCKQUOTE>
-
-<H4>Example</H4>
-
-<BLOCKQUOTE>
-The following example demonstrates comparing substrings.<P>
-
-<PRE>using System;
-public class StringCompareExample {
- public static void Main() {
- string strA = &quot;A string&quot;;
- string strB = &quot;B ring&quot;;
- int first = String.Compare( strA, 4, strB, 2, 3 );
- int second = String.Compare( strA, 3, strB, 3, 3 );
- Console.WriteLine( &quot;When the substring &apos;rin&apos; of &apos;A string&apos; is compared to the substring &apos;rin&apos; of &apos;B ring&apos;, the return value is {0}.&quot;, first );
- Console.WriteLine( &quot;When the substring &apos;tri&apos; of &apos;A string&apos; is compared to the substring &apos;ing&apos; of &apos;B ring&apos;, the return value is {0}.&quot;, second );
- }
-}
-   </PRE>
-The output is<P>
-
-<CODE>When the substring &apos;rin&apos; of &apos;A string&apos; is compared to the substring &apos;rin&apos; of
-         &apos;B ring&apos;, the return value is 0.<P>
-
-When the substring &apos;tri&apos; of &apos;A string&apos; is compared to the substring &apos;ing&apos; of
-         &apos;B ring&apos;, the return value is 1.<P>
-
-</CODE>
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="String.Compare%28System.String%2C%20int%2C%20System.String%2C%20int%2C%20int%2C%20bool%29%20Method"><H3>String.Compare(System.String, int, System.String, int, int, bool) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static int Compare(string strA, int indexA, string strB, int indexB, int length, bool ignoreCase);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Compares substrings of two strings.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>strA</DT>
-<DD>The first <A HREF="String.html" TARGET="contents">String</A> containing a substring to compare.</DD>
-<DT>indexA</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the starting index of the substring within <I>strA</I>.</DD>
-<DT>strB</DT>
-<DD>The second <A HREF="String.html" TARGET="contents">String</A> containing a substring to compare.</DD>
-<DT>indexB</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the starting index of the substring within <I>strB</I>.</DD>
-<DT>length</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters in the substrings to compare. If <I>length</I> is zero, then zero is returned.</DD>
-<DT> ignoreCase</DT>
-<DD>A <A HREF="Boolean.html" TARGET="contents">Boolean</A> indicating if the comparison is case-insensitive. If <I>ignoreCase</I> is <CODE>true</CODE>
-, the comparison is case-insensitive. If <I>ignoreCase</I> is <CODE>false</CODE>
-, the comparison is case-sensitive, and upper case letters evaluate greater than their lower case equivalents. </DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of
-   substrings of the two specified strings. The following table defines the
-   conditions under which the returned value is a negative number, zero, or a positive
-   number.<P>
-
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Value Type</TH><TH>Condition</TH></TR>
-<TR><TD> Any negative number</TD><TD>The substring in <I>strA</I> is &lt; the substring
-      in <I>strB</I>, or <I>strA</I> is a null reference.</TD></TR>
-<TR><TD> Zero</TD><TD>The substring in <I>strA</I> == 
-   the substring in
-<I>strB</I>, or both <I>strA</I> and strB are null 
-   references.</TD></TR>
-<TR><TD> Any positive number</TD><TD>The substring in <I>strA</I> is &gt; the substring
-   in <I>strB</I>, or <I>strB</I> is a null
-   reference.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>The sum of <I>indexA</I> and <I>length</I> is greater than <I>strA</I> .Length<P>
-
- -or-<P>
-
-The sum of <I>indexB</I> and length is greater than <I>strB</I> .Length<P>
-
- -or-<P>
-
-<I>indexA</I>, <I>indexB</I>, or <I>length</I> is negative.<P>
-
-</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-[<I>Note</I>: The result of comparing any <A HREF="String.html" TARGET="contents">String</A> (including the
-      empty string) to a null reference is greater than zero. The result of comparing
-      two null references is zero. Upper case letters evaluate greater than their
-      lower
-      case
-      equivalents.<P>
-
-The method uses the culture of the current thread to
-      determine the ordering of individual characters. The two strings are compared on
-      a character-by-character
-      basis.<P>
+The method uses the culture (if any) of the
+      current thread to determine the ordering of individual characters. The two strings
+      are compared on a character-by-character basis.<P>
 
 ]<P>
 
-</BLOCKQUOTE>
-
-<H4>Example</H4>
-
-<BLOCKQUOTE>
-The following example demonstrates comparing substrings with and without case 
-      sensitivity.<P>
-
-<PRE>using System;
-public class StringCompareExample {
- public static void Main() {
- string strA = &quot;STRING A&quot;;
- string strB = &quot;string b&quot;;
- int first = String.Compare( strA, strB, true );
- int second = String.Compare( strA, 0, strB, 0, 4, true );
- int third = String.Compare( strA, 0, strB, 0, 4, false );
- Console.WriteLine( &quot;When the string &apos;STRING A&apos; is compared to the string &apos;string b&apos; in a case-insensitive manner, the return value is {0}.&quot;, first );
- Console.WriteLine( &quot;When the substring &apos;STRI&apos; of &apos;STRING A&apos; is compared to the substring &apos;stri&apos; of &apos;string b&apos; in a case-insensitive manner, the return value is {0}.&quot;, second );
- Console.WriteLine( &quot;When the substring &apos;STRI&apos; of &apos;STRING A&apos; is compared to the substring &apos;stri&apos; of &apos;string b&apos; in a case-sensitive manner, the return value is {0}.&quot;, third );
- }
-}
-   </PRE>
-The output is<P>
-
-<CODE>When the string &apos;STRING A&apos; is compared to the string &apos;string b&apos; in a
-         case-insensitive manner, the return value is -1.<P>
-
-When the substring &apos;STRI&apos; of &apos;STRING A&apos; is compared to the substring &apos;stri&apos;
-         of &apos;string b&apos; in a case-insensitive manner, the return value is 0.<P>
-
-When the substring &apos;STRI&apos; of &apos;STRING A&apos; is compared to the substring &apos;stri&apos;
-         of &apos;string b&apos; in a case-sensitive manner, the return value is 1.<P>
-
-</CODE>
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -1267,17 +1273,15 @@ Compares two specified <A HREF="String.html" TARGET="contents">String</A> object
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
-   two specified strings. The following table defines the conditions under which
-   the returned value is a negative number, zero, or a positive number.<P>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the specified strings. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Permission</TH><TH>Description</TH></TR>
-<TR><TD> Any negative number</TD><TD><I>strA</I> is &lt; <I>strB</I>, or <I>strA</I>
+<TR BGCOLOR="#C0C0C0"><TH>Value</TH><TH>Description</TH></TR>
+<TR><TD> A negative number</TD><TD><I>strA</I> is &lt; <I>strB</I>, or <I>strA</I>
    is a null reference.</TD></TR>
 <TR><TD> Zero</TD><TD><I>strA</I> == <I>strB</I>, or both <I>strA</I>
 and <I>strB</I> are null references.</TD></TR>
-<TR><TD> Any positive number</TD><TD><I>strA</I> is &gt; <I>strB</I>, or <I>strB</I>
+<TR><TD> A positive number</TD><TD><I>strA</I> is &gt; <I>strB</I>, or <I>strB</I>
 is a null reference.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -1287,10 +1291,10 @@ is a null reference.</TD></TR>
 <BLOCKQUOTE>
 [<I>Note</I>: The result of comparing any <A HREF="String.html" TARGET="contents">String</A> (including the
       empty string) to a null reference is greater than zero. The result of comparing
-      two null references is zero. Upper case letters evaluate greater than
-      their lower case equivalents.<P>
+      two null references is zero. Uppercase letters evaluate greater than
+      their lowercase equivalents.<P>
 
-The method uses the culture of the current thread to
+The method uses the culture (if any) of the current thread to
       determine the ordering of individual characters. The two strings are compared
       on a character-by-character basis.<P>
 
@@ -1344,19 +1348,17 @@ the code points of the contained Unicode characters.<P>
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that reflects the sort order of the
-   two specified strings. The following table defines the conditions under which
-   the returned value is a negative number, zero, or a positive number.<P>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the specified strings. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Value Type</TH><TH>Condition</TH></TR>
-<TR><TD> Any negative number</TD><TD>The substring in <I>strA</I> is &lt; the
+<TR><TD> A negative number</TD><TD>The substring in <I>strA</I> is &lt; the
       substring in <I>strB</I>, or <I>strA</I> is a null reference.</TD></TR>
 <TR><TD> Zero</TD><TD>The substring in <I>strA</I> ==
    the substring in
 <I>strB</I>, or both <I>strA</I> and <I>strB</I> are null 
    references.</TD></TR>
-<TR><TD> Any positive number</TD><TD>The substring in <I>strA</I> is &gt; the substring
+<TR><TD> A positive number</TD><TD>The substring in <I>strA</I> is &gt; the substring
    in <I>strB</I>, or <I>strB</I> is a null
    reference.</TD></TR>
 </TABLE>
@@ -1367,11 +1369,11 @@ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that refle
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD> The sum of <I>indexA</I> and <I>length</I> is greater than <I>strA</I> .Length<P>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>indexA</I> is greater than <I>strA</I> .Length<P>
 
  -or-<P>
 
- The sum of <I>indexB</I> and <I>length</I> is greater than <I>strB</I> .Length<P>
+<I>indexB</I> is greater than <I>strB</I> .Length<P>
 
  -or-<P>
 
@@ -1384,11 +1386,15 @@ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value that refle
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-[<I>Note</I>: The result of comparing any <A HREF="String.html" TARGET="contents">String</A> (including the empty string) to a null reference is
-      greater than zero. The result of comparing two null references is zero. Upper
-      case letters evaluate greater than their lower case equivalents.<P>
+When either of the String arguments is the null reference an <A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A> shall be thrown if the corresponding index is non-zero.<P>
 
-The method uses the culture of the current thread to determine the ordering
+[<I>Note</I>: The maximum number of characters compared is the lesser of the length of <I>strA</I> less <I>indexA</I>, the length of <I>strB</I> less <I>indexB</I>, and <I>length</I>.<P>
+
+The result of comparing any <A HREF="String.html" TARGET="contents">String</A> (including the empty string) to a null reference is
+      greater than zero. The result of comparing two null references is zero. Upper
+      case letters evaluate greater than their lowercase equivalents.<P>
+
+The method uses the culture (if any) of the current thread to determine the ordering
       of individual characters. The two strings are compared on a
       character-by-character basis.<P>
 
@@ -1404,7 +1410,7 @@ The method uses the culture of the current thread to determine the ordering
 
 <HR>
 
-<A NAME="String.CompareTo%20Method"><H3>String.CompareTo Method</H3>
+<A NAME="String.CompareTo%28System.Object%29%20Method"><H3>String.CompareTo(System.Object) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
@@ -1432,20 +1438,15 @@ Returns the sort order of the current instance compared
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a value
-   that reflects the sort order of the current instance as compared to
-<I>value</I> 
-. The following table defines the
-conditions under which the returned value is a negative number, zero, or a positive
-number.<P>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the current instance as compared to <I>value</I>. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Value</TH><TH>Condition</TH></TR>
-<TR><TD> Any negative number</TD><TD>The current instance is lexicographically &lt;
+<TR><TD> A negative number</TD><TD>The current instance is lexicographically &lt;
       <I>value</I>.</TD></TR>
 <TR><TD> Zero</TD><TD>The current instance is lexicographically ==
       <I>value</I>.</TD></TR>
-<TR><TD> Any positive number<P>
+<TR><TD> A positive number<P>
 
 </TD><TD>The current instance is lexicographically &gt;
             <I>value</I>, or <I>value</I> is a null
@@ -1471,16 +1472,81 @@ number.<P>
 object.<P>
 
 [<I>Note</I>: The result of comparing any <A HREF="String.html" TARGET="contents">String</A> (including the
-   empty string) to a null reference is greater than zero. The result of comparing
-   two null references is zero. Upper case letters evaluate greater than their
-   lower case equivalents.<P>
+   empty string) to a null reference is greater than zero.  Uppercase letters evaluate greater than their
+   lowercase equivalents.<P>
 
-The method uses the culture of the current thread to
+The method uses the culture (if any) of the current thread to
    determine the ordering of individual characters. The two strings are compared on
    a character-by-character
    basis.<P>
 
  This method is implemented to support the <A HREF="IComparable.html" TARGET="contents">IComparable</A> interface.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="String.CompareTo%28System.String%29%20Method"><H3>String.CompareTo(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int CompareTo(string strB);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the sort order of the current instance compared to the specified string.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>strB</DT>
+<DD>The <A HREF="String.html" TARGET="contents">String</A> to compare to the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The return value is a negative number, zero, or a positive number reflecting the sort order of the current instance as compared to <I>strB</I>. For non-zero return values, the exact value returned by this method is unspecified. The following table defines the return value:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Value</TH><TH>Condition</TH></TR>
+<TR><TD> A negative number</TD><TD>The current instance is lexicographically &lt;
+      <I>strB</I>.</TD></TR>
+<TR><TD> Zero</TD><TD>The current instance is lexicographically ==
+      <I>strB</I>.</TD></TR>
+<TR><TD> A positive number<P>
+
+</TD><TD>The current instance is lexicographically &gt;
+            <I>strB</I>, or <I>strB</I> is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: Uppercase letters evaluate greater than their lowercase equivalents.<P>
+
+The method uses the culture (if any) of the current thread to
+   determine the ordering of individual characters. The two strings are compared on
+   a character-by-character
+   basis.<P>
+
+ This method is implemented to support the System.IComparable&lt;System.String&gt; interface.<P>
 
 ]<P>
 
@@ -2316,6 +2382,60 @@ The given string is equal to &apos;A String&apos;? False<P>
 
 <HR>
 
+<A NAME="String.Equals%28System.String%29%20Method"><H3>String.Equals(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override bool Equals(string value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the current instance and the specified
+      string have the
+      same value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A>.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the value of <I>value</I> is the same as the value of the current instance; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method checks for value equality. This comparison is case-sensitive.<P>
+
+[<I>Note</I>: This method is implemented to support the System.IEquatable&lt;System.String&gt; interface.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
 <A NAME="String.Equals%28System.String%2C%20System.String%29%20Method"><H3>String.Equals(System.String, System.String) Method</H3>
 
 <BLOCKQUOTE>
@@ -2397,6 +2517,105 @@ The string &apos;a string&apos; is equal to the string &apos;a string&apos;? Tru
 
 <HR>
 
+<A NAME="String.Format%28System.String%2C%20System.Object%5B%5D%29%20Method"><H3>String.Format(System.String, System.Object[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static string Format(string format, params object[] args);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Replaces the format specification in a specified <A HREF="String.html" TARGET="contents">String</A> with the textual
+   equivalent of the value of a corresponding <A HREF="Object.html" TARGET="contents">Object</A> instance in a specified array.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>format</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> containing zero or more format specifications.</DD>
+<DT>args</DT>
+<DD>A <A HREF="Object.html" TARGET="contents">Object</A> array containing the objects to be formatted.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> containing a copy of <I>format</I> in which the format
+   specifications have been replaced by the <A HREF="String.html" TARGET="contents">String</A> equivalent of the corresponding
+   instances of <A HREF="Object.html" TARGET="contents">Object</A> in <I>args</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> or <I>args </I>is a null reference.</TD></TR>
+<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> is invalid.<P>
+
+ -or-<P>
+
+The number indicating an argument to be formatted is less than zero, or greater than or equal to the length of the <I>args</I> array.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If an object referenced in the format string is a null
+      reference, an empty string is used in its place. <P>
+
+[<I>Note</I>:  This version of
+      System.String.Format(System.String,System.Object) is
+      equivalent to System.String.Format(System.String,System.Object)( null, <I>format</I>, <I>args</I> ). For more
+      information on the format specification see the <A HREF="String.html" TARGET="contents">String</A>
+      class
+      overview.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>Example</H4>
+
+<BLOCKQUOTE>
+The following example demonstrates the System.String.Format(System.String,System.Object) method.<P>
+
+<PRE>
+using System;
+public class StringFormat {
+   public static void Main() {
+      Console.WriteLine( String.Format(&quot;The winning numbers were {0:000} {1:000} {2:000} {3:000} {4:000} today.&quot;, 5, 10, 11, 37, 42) );
+      Console.WriteLine( &quot;The winning numbers were {0, -6}{1, -6}{2, -6}{3, -6}{4, -6} today.&quot;, 5, 10, 11, 37, 42 );
+ }
+}
+</PRE>
+The output is<P>
+
+<PRE>
+The winning numbers were 005 010 011 037 042 today.
+The winning numbers were 5     10    11    37    42     today.
+</PRE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
 <A NAME="String.Format%28System.String%2C%20System.Object%29%20Method"><H3>String.Format(System.String, System.Object) Method</H3>
 
 <BLOCKQUOTE>
@@ -2420,7 +2639,7 @@ Replaces the format specification in a provided <A HREF="String.html" TARGET="co
 <DT>format</DT>
 <DD>A <A HREF="String.html" TARGET="contents">String</A> containing zero or more format specifications.</DD>
 <DT>arg0</DT>
-<DD>A <A HREF="Object.html" TARGET="contents">Object</A> to be formatted.</DD>
+<DD>A <A HREF="Object.html" TARGET="contents">Object</A> to be formatted. Can be a null reference.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -2438,7 +2657,7 @@ A copy of <I>format</I> in which the
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format </I>or <I>arg0</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format </I> is a null reference.</TD></TR>
 <TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD>The format specification in <I>format</I> is invalid.<P>
 
  -or-<P>
@@ -2452,6 +2671,8 @@ The number indicating an argument to be formatted is less than zero, or greater 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
+If an object referenced in the format string is a null reference, an empty string is used in its place.<P>
+
 [<I>Note</I>:  This version of
       System.String.Format(System.String,System.Object) is
       equivalent to <CODE>String.Format</CODE>
@@ -2706,105 +2927,6 @@ The temperature today oscillated between   78 and  100 degrees. The average temp
 
 <HR>
 
-<A NAME="String.Format%28System.String%2C%20System.Object%5B%5D%29%20Method"><H3>String.Format(System.String, System.Object[]) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static string Format(string format, params object[] args);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Replaces the format specification in a specified <A HREF="String.html" TARGET="contents">String</A> with the textual
-   equivalent of the value of a corresponding <A HREF="Object.html" TARGET="contents">Object</A> instance in a specified array.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>format</DT>
-<DD>A <A HREF="String.html" TARGET="contents">String</A> containing zero or more format specifications.</DD>
-<DT>args</DT>
-<DD>A <A HREF="Object.html" TARGET="contents">Object</A> array containing the objects to be formatted.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-A <A HREF="String.html" TARGET="contents">String</A> containing a copy of <I>format</I> in which the format
-   specifications have been replaced by the <A HREF="String.html" TARGET="contents">String</A> equivalent of the corresponding
-   instances of <A HREF="Object.html" TARGET="contents">Object</A> in <I>args</I>.<P>
-
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>format</I> or <I>args </I>is a null reference.</TD></TR>
-<TR><TD><A HREF="FormatException.html" TARGET="contents">FormatException</A></TD><TD><I>format</I> is invalid.<P>
-
- -or-<P>
-
-The number indicating an argument to be formatted is less than zero, or greater than or equal to the length of the <I>args</I> array.<P>
-
-</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-If an object referenced in the format string is a null
-      reference, an empty string is used in its place. <P>
-
-[<I>Note</I>:  This version of
-      System.String.Format(System.String,System.Object) is
-      equivalent to System.String.Format(System.String,System.Object)( null, <I>format</I>, <I>args</I> ). For more
-      information on the format specification see the <A HREF="String.html" TARGET="contents">String</A>
-      class
-      overview.]<P>
-
-<P>
-
-</BLOCKQUOTE>
-
-<H4>Example</H4>
-
-<BLOCKQUOTE>
-The following example demonstrates the System.String.Format(System.String,System.Object) method.<P>
-
-<PRE>
-using System;
-public class StringFormat {
-   public static void Main() {
-      Console.WriteLine( String.Format(&quot;The winning numbers were {0:000} {1:000} {2:000} {3:000} {4:000} today.&quot;, 5, 10, 11, 37, 42) );
-      Console.WriteLine( &quot;The winning numbers were {0, -6}{1, -6}{2, -6}{3, -6}{4, -6} today.&quot;, 5, 10, 11, 37, 42 );
- }
-}
-</PRE>
-The output is<P>
-
-<PRE>
-The winning numbers were 005 010 011 037 042 today.
-The winning numbers were 5     10    11    37    42     today.
-</PRE>
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
 <A NAME="String.Format%28System.IFormatProvider%2C%20System.String%2C%20System.Object%5B%5D%29%20Method"><H3>String.Format(System.IFormatProvider, System.String, System.Object[]) Method</H3>
 
 <BLOCKQUOTE>
@@ -2998,8 +3120,7 @@ Returns the index of the first occurrence of a specified
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a 
-   positive value equal to the index of the first occurrence of <I>value</I>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the zero-based index of the first occurrence of <I>value</I>
    character in the current instance; otherwise, -1 if <I>value</I> was not found.<P>
 
 </BLOCKQUOTE>
@@ -3049,9 +3170,8 @@ Returns the index of the first occurrence of a specified Unicode character
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
- A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a
-   positive value equal to the index of the first occurrence of
-<I>value</I> in the current instance; otherwise, -1 if <I>value</I> was not found.<P>
+ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the zero-based index of the first occurrence of
+<I>value</I> in the current instance starting from the specified index; otherwise, -1 if <I>value</I> was not found.<P>
 
 </BLOCKQUOTE>
 
@@ -3129,16 +3249,15 @@ Searching for the index of &apos;h&apos; starting from index 10 yields -1.<P>
 <DT>startIndex</DT>
 <DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
 <DT>count</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the range of the current instance at which to end searching.</DD>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of consecutive elements of the current instance to be searched starting at <I>startIndex</I>.</DD>
 </DL>
 </BLOCKQUOTE>
 
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
- A <A HREF="Int32.html" TARGET="contents">Int32</A> containing a 
-   positive value equal to the index of
-   the first occurrence of <I>value</I> in the current instance; otherwise, -1 if
+ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the zero-based index of
+   the first occurrence of <I>value</I> in the current instance in the specified range of indexes; otherwise, -1 if
 <I>value</I>
 was not found.<P>
 
@@ -3199,7 +3318,7 @@ Returns the index of the first occurrence of a specified
 <BLOCKQUOTE>
 <DL>
 <DT>value</DT>
-<DD>The <A HREF="String.html" TARGET="contents">String</A> to seek.</DD>
+<DD>The <A HREF="String.html" TARGET="contents">String</A> for which to search.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -3211,14 +3330,11 @@ A <A HREF="Int32.html" TARGET="contents">Int32</A> that indicates the result of 
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
-<TR><TD> A
-         positive number equal to the index of the start of the first substring in
+<TR><TD> A zero-based number equal to the index of the start of the first substring in
          the current instance that is equal to <I>value</I>
          
          .</TD><TD><I>value</I>
-   was found.</TD></TR>
-<TR><TD> 
-      0</TD><TD><I>value</I> is equal to System.String.Empty .</TD></TR>
+   was found starting at the index returned.</TD></TR>
 <TR><TD> -1</TD><TD><I>value</I> was not found.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -3236,7 +3352,7 @@ A <A HREF="Int32.html" TARGET="contents">Int32</A> that indicates the result of 
 
 <BLOCKQUOTE>
  The search begins at the first character of the current instance. The search is
-      case-sensitive, culture-sensitive, and the culture of the current thread
+      case-sensitive, culture-sensitive, and the culture (if any) of the current thread
       is
       used.<P>
 
@@ -3299,7 +3415,7 @@ Returns the index of the first occurrence of a specified
 <BLOCKQUOTE>
 <DL>
 <DT>value</DT>
-<DD>The <A HREF="String.html" TARGET="contents">String</A> to seek.</DD>
+<DD>The <A HREF="String.html" TARGET="contents">String</A> for which to search.</DD>
 <DT>startIndex</DT>
 <DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
 </DL>
@@ -3313,12 +3429,9 @@ A <A HREF="Int32.html" TARGET="contents">Int32</A> that indicates the result of 
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
-<TR><TD> A
-         positive number equal to the index of the start of the first substring in
+<TR><TD> A zero-based number equal to the index of the start of the first substring in
          the current instance that is equal to <I>value</I>
-         .</TD><TD><I>value</I> was found.</TD></TR>
-<TR><TD><I>startIndex</I></TD><TD><I>value</I> is <CODE>Empty</CODE>
- .</TD></TR>
+         .</TD><TD><I>value</I> was found starting at the index returned.</TD></TR>
 <TR><TD> -1</TD><TD><I>value</I> was not found.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -3373,11 +3486,11 @@ Returns the index of the first occurrence of a specified
 <BLOCKQUOTE>
 <DL>
 <DT>value</DT>
-<DD>The <A HREF="String.html" TARGET="contents">String</A> to seek.</DD>
+<DD>The <A HREF="String.html" TARGET="contents">String</A> for which to search</DD>
 <DT>startIndex</DT>
 <DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
 <DT>count</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the range of the current instance at which to end searching.</DD>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of consecutive elements of the current instance to be searched starting at <I>startIndex</I>.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -3389,12 +3502,9 @@ A <A HREF="Int32.html" TARGET="contents">Int32</A> that indicates the result of 
 
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
-<TR><TD> A
-         positive number equal to the index of the start of the first substring in
+<TR><TD> A zero-based number equal to the index of the start of the first substring in
          the current instance that is equal to <I>value</I>
-         .</TD><TD><I>value</I> was found.</TD></TR>
-<TR><TD><I>startIndex</I></TD><TD><I>value</I> is <CODE>Empty</CODE>
- .</TD></TR>
+         .</TD><TD><I>value</I> was found starting at the index returned.</TD></TR>
 <TR><TD> -1</TD><TD><I>value</I> was not found.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
@@ -4006,7 +4116,7 @@ single concatenated string.<P>
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
- A <A HREF="String.html" TARGET="contents">String</A> consisting of the strings in <I>value</I> joined by
+ A <A HREF="String.html" TARGET="contents">String</A> consisting of the specified strings in <I>value</I> joined by
 <I>separator</I>. Returns System.String.Empty if <I>count</I> is zero, <I>value</I> has no
    elements, or <I>separator</I> and all the elements of <I>value</I> are
 <CODE>Empty</CODE>
@@ -4051,19 +4161,20 @@ The output is<P>
 
 <HR>
 
-<A NAME="String.LastIndexOf%28char%29%20Method"><H3>String.LastIndexOf(char) Method</H3>
+<A NAME="String.LastIndexOf%28System.String%2C%20int%29%20Method"><H3>String.LastIndexOf(System.String, int) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public int LastIndexOf(char value);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int LastIndexOf(string value, int startIndex);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Returns the index of the last occurrence of a specified character
-      within the current instance.<P>
+Returns the index of the last occurrence of a specified
+   <A HREF="String.html" TARGET="contents">String</A>
+   within the current instance, starting at a given position.<P>
 
 </BLOCKQUOTE>
 
@@ -4072,22 +4183,258 @@ The output is<P>
 <BLOCKQUOTE>
 <DL>
 <DT>value</DT>
-<DD>The Unicode character to locate. </DD>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> .</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
 </DL>
 </BLOCKQUOTE>
 
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
- A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the last occurrence of <I>value</I>
-in the current instance, if found; otherwise, -1.<P>
+A <A HREF="Int32.html" TARGET="contents">Int32</A> that indicates the result of the search for <I>value</I>
+in the current instance as follows:<P>
 
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
+<TR><TD> A zero-based number equal to the index of the start of the last substring in
+         the current instance that is equal to <I>value</I>
+         .</TD><TD><I>value</I> was found.</TD></TR>
+<TR><TD> -1</TD><TD><I>value</I> was not found.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference. <I></I></TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> is less than zero or greater than or equal to the length of the current instance. </TD></TR>
+</TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
+ This method searches for the last occurrence of the
+      specified <A HREF="String.html" TARGET="contents">String</A> between the start of the string and the indicated index.<P>
+
  This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="String.LastIndexOf%28System.String%2C%20int%2C%20int%29%20Method"><H3>String.LastIndexOf(System.String, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int LastIndexOf(string value, int startIndex, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the index of the last occurrence of a specified
+   <A HREF="String.html" TARGET="contents">String</A>
+   in the provided range of
+   the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The substring to search for.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
+<DT>count</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the range of the current instance at which to end searching.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+
+   A <A HREF="Int32.html" TARGET="contents">Int32</A> that indicates the result of the search for <I>value</I>
+   in the current instance as follows:
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
+<TR><TD> A zero-based number equal to the index of the start of the last substring in
+         the current instance that is equal to <I>value</I>
+         .</TD><TD><I>value</I> was found.</TD></TR>
+<TR><TD> -1</TD><TD><I>value</I> was not found.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value </I>is a null reference.</TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>count</I> is less than zero.<P>
+
+ -or-<P>
+
+<I>startIndex</I> - <I>count</I> is smaller than -1.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The search begins at <I>startIndex</I> and continues
+   until <I>startIndex</I> - <I>count</I>
+   + 1.<P>
+
+ This method is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="String.LastIndexOf%28System.String%29%20Method"><H3>String.LastIndexOf(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int LastIndexOf(string value);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns the index of the last occurrence of a specified
+   <A HREF="String.html" TARGET="contents">String</A> within
+      the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A <A HREF="String.html" TARGET="contents">String</A> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+
+   A <A HREF="Int32.html" TARGET="contents">Int32</A> that indicates the result of the search for <I>value</I>
+   in the current instance as follows:
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
+<TR><TD> A zero-based number equal to the index of the start of the last substring in
+         the current instance that is equal to <I>value</I>
+         .</TD><TD><I>value</I> was found.</TD></TR>
+<TR><TD> -1</TD><TD><I>value</I> was not found.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ The search is case-sensitive.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="String.LastIndexOf%28char%2C%20int%2C%20int%29%20Method"><H3>String.LastIndexOf(char, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int LastIndexOf(char value, int startIndex, int count);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the index of the last occurrence of a specified character in the provided range of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>A Unicode character to locate.</DD>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
+<DT>count</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the range of the current instance at which to end searching.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the last occurrence of <I>value</I> in the
+   current instance if found between <I>startIndex</I> and (<I>startIndex</I> -
+<I>count</I> + 1); otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference.</TD></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>count</I> is less than zero.<P>
+
+ -or-<P>
+
+<I>startIndex</I> - <I>count</I> is less than -1.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is case-sensitive.<P>
 
 </BLOCKQUOTE>
 
@@ -4184,18 +4531,19 @@ The output is<P>
 
 <HR>
 
-<A NAME="String.LastIndexOf%28char%2C%20int%2C%20int%29%20Method"><H3>String.LastIndexOf(char, int, int) Method</H3>
+<A NAME="String.LastIndexOf%28char%29%20Method"><H3>String.LastIndexOf(char) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public int LastIndexOf(char value, int startIndex, int count);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int LastIndexOf(char value);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Returns the index of the last occurrence of a specified character in the provided range of the current instance.<P>
+ Returns the index of the last occurrence of a specified character
+      within the current instance.<P>
 
 </BLOCKQUOTE>
 
@@ -4204,268 +4552,21 @@ The output is<P>
 <BLOCKQUOTE>
 <DL>
 <DT>value</DT>
-<DD>A Unicode character to locate.</DD>
-<DT>startIndex</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
-<DT>count</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the range of the current instance at which to end searching.</DD>
+<DD>The Unicode character to locate. </DD>
 </DL>
 </BLOCKQUOTE>
 
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
- A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the last occurrence of <I>value</I> in the
-   current instance if found between <I>startIndex</I> and (<I>startIndex</I> -
-<I>count</I> + 1); otherwise, -1.<P>
+ A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the last occurrence of <I>value</I>
+in the current instance, if found; otherwise, -1.<P>
 
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference.</TD></TR>
-<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>count</I> is less than zero.<P>
-
- -or-<P>
-
-<I>startIndex</I> - <I>count</I> is less than -1.<P>
-
-</TD></TR>
-</TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-This method is case-sensitive.<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="String.LastIndexOf%28System.String%29%20Method"><H3>String.LastIndexOf(System.String) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public int LastIndexOf(string value);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Returns the index of the last occurrence of a specified
-   <A HREF="String.html" TARGET="contents">String</A> within
-      the current instance.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>value</DT>
-<DD>A <A HREF="String.html" TARGET="contents">String</A> .</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-
-   A <A HREF="Int32.html" TARGET="contents">Int32</A> that indicates the result of the search for <I>value</I>
-   in the current instance as follows:
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
-<TR><TD> A
-         positive number equal to the index of the start of the last substring in
-         the current instance that is equal to <I>value</I>
-         .</TD><TD><I>value</I> was found.</TD></TR>
-<TR><TD> 0</TD><TD><I>value</I> is
-<CODE>Empty</CODE>
-.</TD></TR>
-<TR><TD> -1</TD><TD><I>value</I> was not found.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
- The search is case-sensitive.<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="String.LastIndexOf%28System.String%2C%20int%29%20Method"><H3>String.LastIndexOf(System.String, int) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public int LastIndexOf(string value, int startIndex);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Returns the index of the last occurrence of a specified
-   <A HREF="String.html" TARGET="contents">String</A>
-   within the current instance.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>value</DT>
-<DD>A <A HREF="String.html" TARGET="contents">String</A> .</DD>
-<DT>startIndex</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-A <A HREF="Int32.html" TARGET="contents">Int32</A> that indicates the result of the search for <I>value</I>
-in the current instance as follows:<P>
-
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
-<TR><TD> A
-         positive number equal to the index of the start of the last substring in
-         the current instance that is equal to <I>value</I>
-         .</TD><TD><I>value</I> was found.</TD></TR>
-<TR><TD><I>startIndex</I></TD><TD><I>value</I> is Empty.</TD></TR>
-<TR><TD> -1</TD><TD><I>value</I> was not found.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value</I> is a null reference. <I></I></TD></TR>
-<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> is less than zero or greater than or equal to the length of the current instance. </TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
- This method searches for the last occurrence of the
-      specified <A HREF="String.html" TARGET="contents">String</A> between the start of the string and the indicated index.<P>
-
- This method is case-sensitive.<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="String.LastIndexOf%28System.String%2C%20int%2C%20int%29%20Method"><H3>String.LastIndexOf(System.String, int, int) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public int LastIndexOf(string value, int startIndex, int count);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Returns the index of the last occurrence of a specified
-   <A HREF="String.html" TARGET="contents">String</A>
-   in the provided range of
-   the current instance.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>value</DT>
-<DD>The substring to search for.</DD>
-<DT>startIndex</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the current instance from which to start searching.</DD>
-<DT>count</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the range of the current instance at which to end searching.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-
-   A <A HREF="Int32.html" TARGET="contents">Int32</A> that indicates the result of the search for <I>value</I>
-   in the current instance as follows:
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Return Value</TH><TH>Description</TH></TR>
-<TR><TD> A
-         positive number equal to the index of the start of the last substring in
-         the current instance that is equal to <I>value</I>
-         .</TD><TD><I>value</I> was found.</TD></TR>
-<TR><TD><I>startIndex</I></TD><TD><I>value</I> is <CODE>Empty</CODE>
- .</TD></TR>
-<TR><TD> -1</TD><TD><I>value</I> was not found.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>value </I>is a null reference.</TD></TR>
-<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> or <I>count</I> is less than zero.<P>
-
- -or-<P>
-
-<I>startIndex</I> - <I>count</I> is smaller than -1.<P>
-
-</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-The search begins at <I>startIndex</I> and continues
-   until <I>startIndex</I> - <I>count</I>
-   + 1.<P>
-
  This method is case-sensitive.<P>
 
 </BLOCKQUOTE>
@@ -4790,59 +4891,6 @@ A new <A HREF="String.html" TARGET="contents">String</A> that is equivalent to t
 
 <HR>
 
-<A NAME="String.PadRight%28int%29%20Method"><H3>String.PadRight(int) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public string PadRight(int totalWidth);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Left-aligns the characters in the current instance, padding with spaces on the right, for a
-      specified total number of characters.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>totalWidth</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters in the resulting string.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-A new <A HREF="String.html" TARGET="contents">String</A> that is equivalent to this instance left aligned and
-   padded on the right with as many spaces as needed to create a length of
-<I>totalWidth</I>. If <I>totalWidth</I> is less than the length of the current
-   instance, returns a new <A HREF="String.html" TARGET="contents">String</A> that is identical
-   to the current instance.<P>
-
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>totalWidth </I>is less than zero.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
 <A NAME="String.PadRight%28int%2C%20char%29%20Method"><H3>String.PadRight(int, char) Method</H3>
 
 <BLOCKQUOTE>
@@ -4887,6 +4935,59 @@ A new <A HREF="String.html" TARGET="contents">String</A> that is equivalent to t
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>totalWidth</I> is less than zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="String.PadRight%28int%29%20Method"><H3>String.PadRight(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public string PadRight(int totalWidth);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Left-aligns the characters in the current instance, padding with spaces on the right, for a
+      specified total number of characters.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>totalWidth</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the number of characters in the resulting string.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A new <A HREF="String.html" TARGET="contents">String</A> that is equivalent to this instance left aligned and
+   padded on the right with as many spaces as needed to create a length of
+<I>totalWidth</I>. If <I>totalWidth</I> is less than the length of the current
+   instance, returns a new <A HREF="String.html" TARGET="contents">String</A> that is identical
+   to the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>totalWidth </I>is less than zero.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -4956,49 +5057,6 @@ Deletes a specified number of characters from the current
 
 <HR>
 
-<A NAME="String.Replace%28char%2C%20char%29%20Method"><H3>String.Replace(char, char) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public string Replace(char oldChar, char newChar);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Replaces all instances of a specified Unicode character
-      with another specified Unicode character. <P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>oldChar</DT>
-<DD>The Unicode character to be replaced. </DD>
-<DT>newChar</DT>
-<DD>The Unicode character to replace all occurrences of <I>oldChar</I>. </DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
- A <A HREF="String.html" TARGET="contents">String</A> equivalent to the current instance with all occurrences of
-<I>oldChar</I> replaced with <I>NewChar</I>.<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
 <A NAME="String.Replace%28System.String%2C%20System.String%29%20Method"><H3>String.Replace(System.String, System.String) Method</H3>
 
 <BLOCKQUOTE>
@@ -5032,6 +5090,49 @@ Replaces all instances of a specified substring within
  A <A HREF="String.html" TARGET="contents">String</A> equivalent to the current instance with all occurrences of
 <I>oldValue</I> replaced with <I>newValue</I>. If the replacement value is a 
    null reference, the specified substring is removed.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="String.Replace%28char%2C%20char%29%20Method"><H3>String.Replace(char, char) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public string Replace(char oldChar, char newChar);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Replaces all instances of a specified Unicode character
+      with another specified Unicode character. <P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>oldChar</DT>
+<DD>The Unicode character to be replaced. </DD>
+<DT>newChar</DT>
+<DD>The Unicode character to replace all occurrences of <I>oldChar</I>. </DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="String.html" TARGET="contents">String</A> equivalent to the current instance with all occurrences of
+<I>oldChar</I> replaced with <I>newChar</I>.<P>
 
 </BLOCKQUOTE>
 
@@ -5270,57 +5371,6 @@ If there are more substrings in the current instance than the
 
 <HR>
 
-<A NAME="String.Substring%28int%29%20Method"><H3>String.Substring(int) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public string Substring(int startIndex);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Retrieves a substring from the current instance, starting from a specified index.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>startIndex</DT>
-<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the start of the substring in the current instance.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-A <A HREF="String.html" TARGET="contents">String</A> equivalent to the substring that begins at
-<I>startIndex</I> of the current 
-   instance. Returns System.String.Empty
-   if <I>startIndex</I> is equal to the length of the current instance.<P>
-
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> is less than zero or greater than or equal to the length of the current instance.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
 <A NAME="String.Substring%28int%2C%20int%29%20Method"><H3>String.Substring(int, int) Method</H3>
 
 <BLOCKQUOTE>
@@ -5370,6 +5420,80 @@ A <A HREF="String.html" TARGET="contents">String</A> containing the substring of
 
 </TD></TR>
 </TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="String.Substring%28int%29%20Method"><H3>String.Substring(int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public string Substring(int startIndex);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Retrieves a substring from the current instance, starting from a specified index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>startIndex</DT>
+<DD>A <A HREF="Int32.html" TARGET="contents">Int32</A> containing the index of the start of the substring in the current instance.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="String.html" TARGET="contents">String</A> equivalent to the substring that begins at
+<I>startIndex</I> of the current 
+   instance. Returns System.String.Empty
+   if <I>startIndex</I> is equal to the length of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>startIndex</I> is less than zero or greater than the length of the current instance.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="String.System.Collections.Generic.IEnumerable%3CSystem.Char%3E.GetEnumerator%20Method"><H3>String.System.Collections.Generic.IEnumerable&lt;System.Char&gt;.GetEnumerator Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>IEnumerator&lt;Char&gt; IEnumerable&lt;Char&gt;.GetEnumerator()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the System.Collections.Generics.IEnumerable&lt;System.Char&gt;  interface.<P>
+
 </BLOCKQUOTE>
 
 <H4>See Also</H4>
@@ -5507,23 +5631,62 @@ A <A HREF="Char.html" TARGET="contents">Char</A> array whose elements are the
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
-Returns a copy of this <A HREF="String.html" TARGET="contents">String</A> in lower case.<P>
+Returns a copy of this <A HREF="String.html" TARGET="contents">String</A> in lowercase.<P>
 
 </BLOCKQUOTE>
 
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="String.html" TARGET="contents">String</A> in lower case..<P>
+A <A HREF="String.html" TARGET="contents">String</A> in lowercase..<P>
 
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
- This method takes into account the culture of the
-      current
-      thread.<P>
+ This method takes into account the culture (if any) of the current thread.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="String.ToString%28%29%20Method"><H3>String.ToString() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public override string ToString();</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value
+   of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The current <A HREF="String.html" TARGET="contents">String</A>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>:  This method
+      overrides System.Object.ToString.]<P>
+
+<P>
 
 </BLOCKQUOTE>
 
@@ -5585,47 +5748,6 @@ This <CODE>String</CODE>
 
 <HR>
 
-<A NAME="String.ToString%28%29%20Method"><H3>String.ToString() Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public override string ToString();</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
-Returns a <A HREF="String.html" TARGET="contents">String</A> representation of the value
-   of the current instance.<P>
-
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-The current <A HREF="String.html" TARGET="contents">String</A>.<P>
-
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-[<I>Note</I>:  This method
-      overrides System.Object.ToString.]<P>
-
-<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="String.html" TARGET="contents">System.String Class</A>, <A HREF="System.html" TARGET="members">System Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
 <A NAME="String.ToUpper%20Method"><H3>String.ToUpper Method</H3>
 
 <BLOCKQUOTE>
@@ -5639,7 +5761,7 @@ The current <A HREF="String.html" TARGET="contents">String</A>.<P>
 <BLOCKQUOTE>
 Returns a copy of the current instance with all elements
       converted to
-      upper case, using default properties.<P>
+      uppercase, using default properties.<P>
 
 </BLOCKQUOTE>
 
@@ -5647,7 +5769,7 @@ Returns a copy of the current instance with all elements
 
 <BLOCKQUOTE>
 A new <A HREF="String.html" TARGET="contents">String</A> 
-in upper case.<P>
+in uppercase.<P>
 
 </BLOCKQUOTE>
 

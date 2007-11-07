@@ -49,11 +49,12 @@ Represents the error that occurs when the system cannot
    
    .<P>
 
-[<I>Note</I>: The following IL instructions throw <A HREF="TypeLoadException.html" TARGET="contents">TypeLoadException</A>:<P>
+[<I>Note</I>: The following CIL instructions throw <A HREF="TypeLoadException.html" TARGET="contents">TypeLoadException</A> and set the TypeName property via some unspecified mechanism:<P>
 
 <UL>
 <LI>box</LI>
 <LI>castclass</LI>
+<LI>cpobj</LI>
 <LI>isinst</LI>
 <LI>ldobj</LI>
 <LI>mkrefany</LI>
@@ -305,9 +306,7 @@ Gets the fully qualified name of the <A HREF="Type.html" TARGET="contents">Type<
 <H4>Property Value</H4>
 
 <BLOCKQUOTE>
-A <A HREF="String.html" TARGET="contents">String</A> containing the fully qualified type name, or
-System.String.Empty if no type 
-   name was supplied to the constructor of the current instance.<P>
+A <A HREF="String.html" TARGET="contents">String</A> containing the fully qualified type name.<P>
 
 </BLOCKQUOTE>
 

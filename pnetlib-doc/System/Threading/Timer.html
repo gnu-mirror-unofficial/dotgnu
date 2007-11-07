@@ -55,7 +55,7 @@ When creating a timer, the application specifies an
    amount of time to wait before the first invocation of the delegate methods (due time), and an amount
    of time to wait between subsequent invocations (period). A timer invokes its methods once
    when its due time elapses, and invokes its methods once per
-   period thereafter. These values may be changed, or the timer disabled using the System.Threading.Timer.Change(System.Int32,System.Int32)
+   period thereafter. These values can be changed, or the timer disabled using the System.Threading.Timer.Change(System.Int32,System.Int32)
    
    method.<P>
 
@@ -86,7 +86,7 @@ class App {
     TimerCallback timerDelegate = new TimerCallback(CheckStatus);
 
     // Create a timer that waits one second, then invokes every second.
-    Timer timer = new Timer(timerDelegate, s,1000, 1000);
+    Timer timer = new Timer(timerDelegate, s, 1000, 1000);
     
     // Keep a handle to the timer, so it can be disposed.
     s.tmr = timer;
@@ -228,7 +228,7 @@ If <I>dueTime</I> is zero,
 <I>callback</I> performs 
 its first invocation immediately. If <I>dueTime</I> is
 System.Threading.Timeout.Infinite, <I>callback</I> 
-does not invoke its methods; the timer is disabled, but may be re-enabled using
+does not invoke its methods; the timer is disabled, but can be re-enabled using
 the System.Threading.Timer.Change(System.Int32,System.Int32)
 method.<P>
 
@@ -236,7 +236,7 @@ If <I>period </I>is zero
 or System.Threading.Timeout.Infinite and
 <I>dueTime</I> is not System.Threading.Timeout.Infinite, <I>callback</I> 
 invokes its methods exactly once; the periodic behavior of the timer is
-disabled, but may be re-enabled using the System.Threading.Timer.Change(System.Int32,System.Int32)
+disabled, but can be re-enabled using the System.Threading.Timer.Change(System.Int32,System.Int32)
 method.<P>
 
 </BLOCKQUOTE>
@@ -302,14 +302,14 @@ The <I>callback</I> delegate invokes its methods
 
 If <I>dueTime,</I> in milliseconds, is zero,
 <I>callback</I> performs its first invocation immediately. If <I>dueTime</I> is System.Threading.Timeout.Infinite 
-, no method invocation occurs. The timer is disabled, but may be re-enabled using
+, no method invocation occurs. The timer is disabled, but can be re-enabled using
 the System.Threading.Timer.Change(System.Int32,System.Int32)
 method.<P>
 
 
 If <I>period </I>is zero or System.Threading.Timeout.Infinite milliseconds and <I>dueTime</I> is not System.Threading.Timeout.Infinite, <I>callback</I>
 invokes its methods exactly once. The periodic behavior of the timer is
-disabled, but may be re-enabled using the System.Threading.Timer.Change(System.Int32,System.Int32)
+disabled, but can be re-enabled using the System.Threading.Timer.Change(System.Int32,System.Int32)
 method.
 <P>
 
@@ -379,7 +379,7 @@ If <I>dueTime</I> is zero, the
 delegate specified at <A HREF="Timer.html" TARGET="contents">Timer</A>
 construction time performs its next invocation
 immediately. If <I>dueTime</I> is System.Threading.Timeout.Infinite
-, no method invocation occurs. The timer is disabled, but may be re-enabled by
+, no method invocation occurs. The timer is disabled, but can be re-enabled by
 calling this method and specifying a non-negative value for
 <I>dueTime</I> 
 .<P>
@@ -388,7 +388,7 @@ calling this method and specifying a non-negative value for
 If <I>period </I>is zero or System.Threading.Timeout.Infinite and <I>dueTime</I> is not System.Threading.Timeout.Infinite, the
 delegate specified at <A HREF="Timer.html" TARGET="contents">Timer</A>
 construction time invokes its methods exactly once. The periodic
-behavior of the timer is disabled, but may be re-enabled by calling this method
+behavior of the timer is disabled, but can be re-enabled by calling this method
 and specifying a positive value for <I>period</I>
 .
 <P>
@@ -441,6 +441,15 @@ Changes the start time and
 
 </BLOCKQUOTE>
 
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>dueTime</I> or <I>period</I> is negative and is not equal to System.Threading.Timeout.Infinite .</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
 <H4>Description</H4>
 
 <BLOCKQUOTE>
@@ -449,7 +458,7 @@ The delegate specified at <A HREF="Timer.html" TARGET="contents">Timer</A> const
 
 If <I>dueTime,</I> in milliseconds,
 is zero, the delegate specified at <A HREF="Timer.html" TARGET="contents">Timer</A> construction time performs its
-next invocation immediately. If <I>dueTime</I> is System.Threading.Timeout.Infinite milliseconds, no method invocation occurs. The timer is disabled, but may be re-enabled by
+next invocation immediately. If <I>dueTime</I> is System.Threading.Timeout.Infinite milliseconds, no method invocation occurs. The timer is disabled, but can be re-enabled by
 calling this method and specifying a non-negative value for <I>dueTime</I>
 .<P>
 
@@ -458,7 +467,7 @@ If <I>period </I>is zero or System.Threading.Timeout.Infinite milliseconds and <
 System.Threading.Timeout.Infinite milliseconds, the delegate specified at <A HREF="Timer.html" TARGET="contents">Timer</A> 
 construction time
 invokes its methods exactly once. The periodic behavior of the timer is
-disabled, but may be re-enabled by calling this method and specifying a positive
+disabled, but can be re-enabled by calling this method and specifying a positive
 value for <I>period</I>
 .
 <P>

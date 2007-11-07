@@ -113,12 +113,12 @@ WebClient Methods<P>
 <A HREF="#WebClient.OpenRead%20Method" TARGET="contents">WebClient.OpenRead Method</A><BR>
 <A HREF="#WebClient.OpenWrite%28System.String%29%20Method" TARGET="contents">WebClient.OpenWrite(System.String) Method</A><BR>
 <A HREF="#WebClient.OpenWrite%28System.String%2C%20System.String%29%20Method" TARGET="contents">WebClient.OpenWrite(System.String, System.String) Method</A><BR>
-<A HREF="#WebClient.UploadData%28System.String%2C%20byte%5B%5D%29%20Method" TARGET="contents">WebClient.UploadData(System.String, byte[]) Method</A><BR>
 <A HREF="#WebClient.UploadData%28System.String%2C%20System.String%2C%20byte%5B%5D%29%20Method" TARGET="contents">WebClient.UploadData(System.String, System.String, byte[]) Method</A><BR>
-<A HREF="#WebClient.UploadFile%28System.String%2C%20System.String%29%20Method" TARGET="contents">WebClient.UploadFile(System.String, System.String) Method</A><BR>
+<A HREF="#WebClient.UploadData%28System.String%2C%20byte%5B%5D%29%20Method" TARGET="contents">WebClient.UploadData(System.String, byte[]) Method</A><BR>
 <A HREF="#WebClient.UploadFile%28System.String%2C%20System.String%2C%20System.String%29%20Method" TARGET="contents">WebClient.UploadFile(System.String, System.String, System.String) Method</A><BR>
-<A HREF="#WebClient.UploadValues%28System.String%2C%20System.Collections.Specialized.NameValueCollection%29%20Method" TARGET="contents">WebClient.UploadValues(System.String, System.Collections.Specialized.NameValueCollection) Method</A><BR>
+<A HREF="#WebClient.UploadFile%28System.String%2C%20System.String%29%20Method" TARGET="contents">WebClient.UploadFile(System.String, System.String) Method</A><BR>
 <A HREF="#WebClient.UploadValues%28System.String%2C%20System.String%2C%20System.Collections.Specialized.NameValueCollection%29%20Method" TARGET="contents">WebClient.UploadValues(System.String, System.String, System.Collections.Specialized.NameValueCollection) Method</A><BR>
+<A HREF="#WebClient.UploadValues%28System.String%2C%20System.Collections.Specialized.NameValueCollection%29%20Method" TARGET="contents">WebClient.UploadValues(System.String, System.Collections.Specialized.NameValueCollection) Method</A><BR>
 <P>
 
 WebClient Properties<P>
@@ -548,102 +548,6 @@ is thrown with the System.Net.WebException.Status property set to indicate the e
 
 <HR>
 
-<A NAME="WebClient.UploadData%28System.String%2C%20byte%5B%5D%29%20Method"><H3>WebClient.UploadData(System.String, byte[]) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public byte[] UploadData(string address, byte[] data);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Uploads the specified data to the resource
-      identified by the specified
-      URI.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>address</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the URI of the resource to receive the data.</DD>
-<DT> data</DT>
-<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array containing data to send to the resource.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
- A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array containing
-   the body of the response, if any, from the server hosting the
-   resource.<P>
-
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="WebException.html" TARGET="contents">WebException</A></TD><TD>The absolute URI is not valid.<P>
-
- -or-<P>
-
-<I>data</I> is <CODE>null</CODE>
-.<P>
-
--or-<P>
-
-An error occurred while opening the stream or uploading the data.<P>
-
--or-<P>
-
-There was no response from the server hosting the resource.<P>
-
-</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-This method is equivalent to System.Net.WebClient.UploadData(System.String,System.Byte[])
-(<I>address</I>, &quot;POST&quot;, <I>data</I>).<P>
-
-If the System.Net.WebClient.BaseAddress property of the current instance is not 
-System.String.Empty, <I>address</I> is combined
-with System.Net.WebClient.BaseAddress to form the absolute URI of the requested
-data. If the System.Net.WebClient.BaseAddress property of the current instance is
-System.String.Empty, 
-<I>address</I> is required to be the absolute URI of the requested data. If
-the System.Net.WebClient.QueryString
-property of the current instance is not System.String.Empty, it is
-appended to <I>address</I>.<P>
-
-[<I>Note</I>: This method sends a data buffer to a
-      resource. The underlying request is
-      made using the POST method. <P>
-
- This method does not encode the contents of <I>data</I> before uploading
-   it to the resource.<P>
-
-]<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="WebClient.html" TARGET="contents">System.Net.WebClient Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
 <A NAME="WebClient.UploadData%28System.String%2C%20System.String%2C%20byte%5B%5D%29%20Method"><H3>WebClient.UploadData(System.String, System.String, byte[]) Method</H3>
 
 <BLOCKQUOTE>
@@ -745,18 +649,18 @@ is thrown with the System.Net.WebException.Status property set to indicate the e
 
 <HR>
 
-<A NAME="WebClient.UploadFile%28System.String%2C%20System.String%29%20Method"><H3>WebClient.UploadFile(System.String, System.String) Method</H3>
+<A NAME="WebClient.UploadData%28System.String%2C%20byte%5B%5D%29%20Method"><H3>WebClient.UploadData(System.String, byte[]) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public byte[] UploadFile(string address, string fileName);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public byte[] UploadData(string address, byte[] data);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Uploads the specified local file to the resource
+ Uploads the specified data to the resource
       identified by the specified
       URI.<P>
 
@@ -767,16 +671,17 @@ is thrown with the System.Net.WebException.Status property set to indicate the e
 <BLOCKQUOTE>
 <DL>
 <DT>address</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the URI of the resource to receive the file.</DD>
-<DT>fileName</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the file to send to the resource.</DD>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the URI of the resource to receive the data.</DD>
+<DT> data</DT>
+<DD>A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array containing data to send to the resource.</DD>
 </DL>
 </BLOCKQUOTE>
 
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
- A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array containing the body of the response, if any, from the server hosting the
+ A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array containing
+   the body of the response, if any, from the server hosting the
    resource.<P>
 
 </BLOCKQUOTE>
@@ -790,33 +695,28 @@ is thrown with the System.Net.WebException.Status property set to indicate the e
 
  -or-<P>
 
-<I>filename</I> is <CODE>null</CODE>
- or System.String.Empty or contains invalid characters, or the specified path to the file does not exist.<P>
+<I>data</I> is <CODE>null</CODE>
+.<P>
 
 -or-<P>
 
-An error occurred while opening the stream or uploading the file.<P>
+An error occurred while opening the stream or uploading the data.<P>
 
 -or-<P>
 
 There was no response from the server hosting the resource.<P>
 
--or-<P>
-
-The Content-Type header begins with &quot;multipart&quot;.<P>
-
 </TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>Local file access has not been granted.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-This method is equivalent to System.Net.WebClient.UploadFile(System.String,System.String) (<I>address</I>, &quot;POST&quot;,
-<I>filename</I>).<P>
+This method is equivalent to System.Net.WebClient.UploadData(System.String,System.Byte[])
+(<I>address</I>, &quot;POST&quot;, <I>data</I>).<P>
 
-If the System.Net.WebClient.BaseAddress property of the current instance is not
+If the System.Net.WebClient.BaseAddress property of the current instance is not 
 System.String.Empty, <I>address</I> is combined
 with System.Net.WebClient.BaseAddress to form the absolute URI of the requested
 data. If the System.Net.WebClient.BaseAddress property of the current instance is
@@ -826,11 +726,14 @@ the System.Net.WebClient.QueryString
 property of the current instance is not System.String.Empty, it is
 appended to <I>address</I>.<P>
 
-[<I>Note</I>: This method sends a local file to a
-   resource. The underlying request is
-   made using the POST method.]<P>
+[<I>Note</I>: This method sends a data buffer to a
+      resource. The underlying request is
+      made using the POST method. <P>
 
-<P>
+ This method does not encode the contents of <I>data</I> before uploading
+   it to the resource.<P>
+
+]<P>
 
 </BLOCKQUOTE>
 
@@ -944,19 +847,20 @@ is thrown with the System.Net.WebException.Status property set to indicate the e
 
 <HR>
 
-<A NAME="WebClient.UploadValues%28System.String%2C%20System.Collections.Specialized.NameValueCollection%29%20Method"><H3>WebClient.UploadValues(System.String, System.Collections.Specialized.NameValueCollection) Method</H3>
+<A NAME="WebClient.UploadFile%28System.String%2C%20System.String%29%20Method"><H3>WebClient.UploadFile(System.String, System.String) Method</H3>
 
 <BLOCKQUOTE>
 <TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public byte[] UploadValues(string address, NameValueCollection data);</PRE></TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public byte[] UploadFile(string address, string fileName);</PRE></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Summary</H4>
 
 <BLOCKQUOTE>
- Uploads the specified name/value collection
-      to the specified resource.<P>
+ Uploads the specified local file to the resource
+      identified by the specified
+      URI.<P>
 
 </BLOCKQUOTE>
 
@@ -965,9 +869,9 @@ is thrown with the System.Net.WebException.Status property set to indicate the e
 <BLOCKQUOTE>
 <DL>
 <DT>address</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the URI of the resource to receive the collection <I>data</I> .</DD>
-<DT>data</DT>
-<DD>The <A HREF="../../System/Collections/Specialized/NameValueCollection.html" TARGET="contents">NameValueCollection</A> to send to the resource identified by <I>address</I> .</DD>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the URI of the resource to receive the file.</DD>
+<DT>fileName</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the file to send to the resource.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -988,12 +892,12 @@ is thrown with the System.Net.WebException.Status property set to indicate the e
 
  -or-<P>
 
-<I>data</I> is <CODE>null</CODE>
-.<P>
+<I>filename</I> is <CODE>null</CODE>
+ or System.String.Empty or contains invalid characters, or the specified path to the file does not exist.<P>
 
 -or-<P>
 
-An error occurred while opening the stream or uploading the data.<P>
+An error occurred while opening the stream or uploading the file.<P>
 
 -or-<P>
 
@@ -1001,24 +905,20 @@ There was no response from the server hosting the resource.<P>
 
 -or-<P>
 
-The Content-Type header is not <CODE>null</CODE>
-, and is not &quot;application/x-www-form-urlencoded&quot;.<P>
+The Content-Type header begins with &quot;multipart&quot;.<P>
 
 </TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>Local file access has not been granted.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-This method is equivalent to System.Net.WebClient.UploadValues(System.String,System.Collections.Specialized.NameValueCollection) (<I>address</I>, &quot;POST&quot;,
-<I>data</I>).<P>
+This method is equivalent to System.Net.WebClient.UploadFile(System.String,System.String) (<I>address</I>, &quot;POST&quot;,
+<I>filename</I>).<P>
 
-If the Content-Type header is <CODE>null</CODE>
-, this method sets it to
-&quot;application/x-www-form-urlencoded&quot;.<P>
-
-If the System.Net.WebClient.BaseAddress property of the current instance is not 
+If the System.Net.WebClient.BaseAddress property of the current instance is not
 System.String.Empty, <I>address</I> is combined
 with System.Net.WebClient.BaseAddress to form the absolute URI of the requested
 data. If the System.Net.WebClient.BaseAddress property of the current instance is
@@ -1028,8 +928,9 @@ the System.Net.WebClient.QueryString
 property of the current instance is not System.String.Empty, it is
 appended to <I>address</I>.<P>
 
-[<I>Note</I>: The underlying
-   request is made using the POST method. ]<P>
+[<I>Note</I>: This method sends a local file to a
+   resource. The underlying request is
+   made using the POST method.]<P>
 
 <P>
 
@@ -1129,6 +1030,105 @@ appended to <I>address</I>.<P>
 method that is not recognized by the server, the underlying protocol classes
 determine what occurs. Typically, a <A HREF="WebException.html" TARGET="contents">WebException</A> is thrown with the System.Net.WebException.Status
 property set to indicate the error.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="WebClient.html" TARGET="contents">System.Net.WebClient Class</A>, <A HREF="Net.html" TARGET="members">System.Net Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="WebClient.UploadValues%28System.String%2C%20System.Collections.Specialized.NameValueCollection%29%20Method"><H3>WebClient.UploadValues(System.String, System.Collections.Specialized.NameValueCollection) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public byte[] UploadValues(string address, NameValueCollection data);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Uploads the specified name/value collection
+      to the specified resource.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>address</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> that specifies the URI of the resource to receive the collection <I>data</I> .</DD>
+<DT>data</DT>
+<DD>The <A HREF="../../System/Collections/Specialized/NameValueCollection.html" TARGET="contents">NameValueCollection</A> to send to the resource identified by <I>address</I> .</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../System/Byte.html" TARGET="contents">Byte</A> array containing the body of the response, if any, from the server hosting the
+   resource.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="WebException.html" TARGET="contents">WebException</A></TD><TD>The absolute URI is not valid.<P>
+
+ -or-<P>
+
+<I>data</I> is <CODE>null</CODE>
+.<P>
+
+-or-<P>
+
+An error occurred while opening the stream or uploading the data.<P>
+
+-or-<P>
+
+There was no response from the server hosting the resource.<P>
+
+-or-<P>
+
+The Content-Type header is not <CODE>null</CODE>
+, and is not &quot;application/x-www-form-urlencoded&quot;.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method is equivalent to System.Net.WebClient.UploadValues(System.String,System.Collections.Specialized.NameValueCollection) (<I>address</I>, &quot;POST&quot;,
+<I>data</I>).<P>
+
+If the Content-Type header is <CODE>null</CODE>
+, this method sets it to
+&quot;application/x-www-form-urlencoded&quot;.<P>
+
+If the System.Net.WebClient.BaseAddress property of the current instance is not 
+System.String.Empty, <I>address</I> is combined
+with System.Net.WebClient.BaseAddress to form the absolute URI of the requested
+data. If the System.Net.WebClient.BaseAddress property of the current instance is
+System.String.Empty, 
+<I>address</I> is required to be the absolute URI of the requested data. If
+the System.Net.WebClient.QueryString
+property of the current instance is not System.String.Empty, it is
+appended to <I>address</I>.<P>
+
+[<I>Note</I>: The underlying
+   request is made using the POST method. ]<P>
 
 <P>
 

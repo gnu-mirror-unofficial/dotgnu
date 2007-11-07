@@ -224,8 +224,8 @@ version<CODE>&quot;</CODE>
 
 PermissionSet Constructors<P>
 
-<A HREF="#PermissionSet%28System.Security.Permissions.PermissionState%29%20Constructor" TARGET="contents">PermissionSet(System.Security.Permissions.PermissionState) Constructor</A><BR>
 <A HREF="#PermissionSet%28System.Security.PermissionSet%29%20Constructor" TARGET="contents">PermissionSet(System.Security.PermissionSet) Constructor</A><BR>
+<A HREF="#PermissionSet%28System.Security.Permissions.PermissionState%29%20Constructor" TARGET="contents">PermissionSet(System.Security.Permissions.PermissionState) Constructor</A><BR>
 <P>
 
 PermissionSet Methods<P>
@@ -250,62 +250,6 @@ PermissionSet Properties<P>
 <A HREF="#PermissionSet.Count%20Property" TARGET="contents">PermissionSet.Count Property</A><BR>
 <A HREF="#PermissionSet.IsSynchronized%20Property" TARGET="contents">PermissionSet.IsSynchronized Property</A><BR>
 <A HREF="#PermissionSet.SyncRoot%20Property" TARGET="contents">PermissionSet.SyncRoot Property</A><BR>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="PermissionSet%28System.Security.Permissions.PermissionState%29%20Constructor"><H3>PermissionSet(System.Security.Permissions.PermissionState) Constructor</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public PermissionSet(PermissionState state);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Constructs a new instance of the <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> class with the
-   specified
-   value.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>state</DT>
-<DD>A <A HREF="../../System/Security/Permissions/PermissionState.html" TARGET="contents">PermissionState</A> value. This value is either System.Security.Permissions.PermissionState.None or System.Security.Permissions.PermissionState.Unrestricted , to specify fully restricted or fully unrestricted access. <P>
-
-</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>state</I> is not a valid <A HREF="../../System/Security/Permissions/PermissionState.html" TARGET="contents">PermissionState</A> value.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-[<I>Note</I>: The
-      new instance contains no permissions. To add a permission to the
-      new instance, use System.Security.PermissionSet.AddPermission(System.Security.IPermission).]<P>
-
-<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
 </BLOCKQUOTE>
 
 <HR>
@@ -372,6 +316,62 @@ If <I>permSet</I> is not <CODE>null</CODE>
 
 <HR>
 
+<A NAME="PermissionSet%28System.Security.Permissions.PermissionState%29%20Constructor"><H3>PermissionSet(System.Security.Permissions.PermissionState) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public PermissionSet(PermissionState state);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Constructs a new instance of the <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> class with the
+   specified
+   value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>state</DT>
+<DD>A <A HREF="../../System/Security/Permissions/PermissionState.html" TARGET="contents">PermissionState</A> value. This value is either System.Security.Permissions.PermissionState.None or System.Security.Permissions.PermissionState.Unrestricted , to specify fully restricted or fully unrestricted access. <P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>state</I> is not a valid <A HREF="../../System/Security/Permissions/PermissionState.html" TARGET="contents">PermissionState</A> value.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: The
+      new instance contains no permissions. To add a permission to the
+      new instance, use System.Security.PermissionSet.AddPermission(System.Security.IPermission).]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="PermissionSet.html" TARGET="contents">System.Security.PermissionSet Class</A>, <A HREF="Security.html" TARGET="members">System.Security Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
 <A NAME="PermissionSet.AddPermission%20Method"><H3>PermissionSet.AddPermission Method</H3>
 
 <BLOCKQUOTE>
@@ -400,10 +400,7 @@ If <I>permSet</I> is not <CODE>null</CODE>
 <H4>Return Value</H4>
 
 <BLOCKQUOTE>
-The <A HREF="IPermission.html" TARGET="contents">IPermission</A> is added if <I>perm</I> is not
-<CODE>null</CODE>
- and a permission of the same type as <I>perm</I> does 
-   not already exist in the current instance. If <I>perm</I> is <CODE>null</CODE>
+If <I>perm</I> is <CODE>null</CODE>
 ,
    returns <CODE>null</CODE>
  . If a permission of the same type as
@@ -424,7 +421,10 @@ The <A HREF="IPermission.html" TARGET="contents">IPermission</A> is added if <I>
 <H4>Description</H4>
 
 <BLOCKQUOTE>
-[<I>Behaviors</I>: As described above.]<P>
+[<I>Behaviors</I>: The <A HREF="IPermission.html" TARGET="contents">IPermission</A> is added if <I>perm</I> is not
+<CODE>null</CODE>
+ and a permission of the same type as <I>perm</I> does 
+   not already exist in the current instance.]<P>
 
 <P>
 
@@ -777,6 +777,8 @@ Reconstructs the state of a <A HREF="PermissionSet.html" TARGET="contents">Permi
 .</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>et</I> does not contain an XML encoding for a <A HREF="PermissionSet.html" TARGET="contents">PermissionSet</A> instance.<P>
 
+-or-<P>
+
 An error occurred while reconstructing <I>et</I> .<P>
 
 </TD></TR>
@@ -905,11 +907,7 @@ A <A HREF="../../System/Collections/IEnumerator.html" TARGET="contents">IEnumera
 <CODE>true</CODE>
  if the current instance is a subset of <I>target</I>;
    otherwise, <CODE>false</CODE>
-. If the current instance is unrestricted, and
-<I>target</I> is not, returns <CODE>false</CODE>
-. If <I>target</I> is 
-   unrestricted, returns <CODE>true</CODE>
- .<P>
+.<P>
 
 </BLOCKQUOTE>
 

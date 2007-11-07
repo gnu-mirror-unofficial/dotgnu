@@ -1,0 +1,3596 @@
+<HTML>
+<HEAD>
+<TITLE>System.Collections.Generic.List&lt;T&gt; Class</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H3>System.Collections.Generic.List&lt;T&gt; Class</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public class List&lt;T&gt;: IList&lt;T&gt;, ICollection&lt;T&gt;, IEnumerable&lt;T&gt;, IList, ICollection, IEnumerable</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Base Types</H4>
+
+<BLOCKQUOTE>
+<A HREF="../../../System/Object.html" TARGET="contents">Object</A><BR>
+&nbsp;&nbsp;List&lt;T&gt;<P>
+
+This type implements <A HREF="../../../System/Collections/ICollection.html" TARGET="contents">ICollection</A>, <A HREF="../../../System/Collections/IEnumerable.html" TARGET="contents">IEnumerable</A>, System.Collections.IList&lt;T&gt;, <A HREF="ICollectionT.html" TARGET="contents">ICollection&lt;T&gt;</A>, <A HREF="IEnumerableT.html" TARGET="contents">IEnumerable&lt;T&gt;</A>, and <A HREF="IListT.html" TARGET="contents">IList&lt;T&gt;</A>.
+</BLOCKQUOTE>
+
+<H4>Assembly</H4>
+
+<BLOCKQUOTE>
+mscorlib
+</BLOCKQUOTE>
+
+<H4>Library</H4>
+
+<BLOCKQUOTE>
+BCL
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Implements the <A HREF="IListT.html" TARGET="contents">IList&lt;T&gt;</A> interface. The size of a List is dynamically increased as required. A List is not guaranteed to be sorted. It is the programmer&apos;s responsibility to sort the List prior to performing operations (such as <CODE>BinarySearch</CODE>
+) that require a List to be sorted. Indexing operations are required to perform in constant access time; that is, O(1).<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+Some methods, such as <CODE>Contains</CODE>
+, <CODE>IndexOf</CODE>
+, <CODE>LastIndexOf</CODE>
+, and <CODE>Remove</CODE>
+, use an equality comparer for the list elements.  The default equality comparer for type T is determined as follows:  If type T implements <A HREF="../../../System/IEquatableT.html" TARGET="contents">IEquatable&lt;T&gt;</A> then the default equality comparer is System.IEquatable;T&gt;.Equals<CODE>(T)</CODE>
+; otherwise the default equality comparer is System.Object.Equals<CODE>(Object)</CODE>
+.<P>
+
+Some methods, such as <CODE>BinarySearch</CODE>
+ and <CODE>Sort</CODE>
+, use a comparer for the list elements.  Some overloads of these methods take an explicit comparer as argument, while others use a default comparer.  The default comparer for type T is determined as follows:  If type T implements System.IComparable&lt;T&gt; then the default comparer is System.IComparable&lt;T&gt;.CompareTo<CODE>(T)</CODE>
+; otherwise, if type T implements <A HREF="../../../System/IComparable.html" TARGET="contents">IComparable</A> then the default comparer is System.IComparable.CompareTo<CODE>(Object)</CODE>
+.  If type T implements neither <A HREF="../../../System/IComparableT.html" TARGET="contents">IComparable&lt;T&gt;</A> nor <A HREF="../../../System/IComparable.html" TARGET="contents">IComparable</A>  then there is no default comparer; in this case a comparer or comparison delegate must be given explicitly.<P>
+
+The capacity of a <A HREF="ListT.html" TARGET="contents">List&lt;T&gt;</A> is the number of elements the <A HREF="ListT.html" TARGET="contents">List&lt;T&gt;</A> can hold. As elements are added to a <A HREF="ListT.html" TARGET="contents">List&lt;T&gt;</A>, the capacity is automatically increased as required.. The capacity can be decreased by calling System.Collections.Generic.List&lt;T&gt;.TrimToSize or by setting the System.Collections.Generic.List&lt;T&gt;.Capacity property explicitly.<P>
+
+Indexes in this collection are zero-based.<P>
+
+<A HREF="ListT.html" TARGET="contents">List&lt;T&gt;</A> accepts <CODE>null</CODE>
+ as a valid value for reference types and allows duplicate elements.<P>
+
+This type contains a member that is a nested type, called <CODE>Enumerator</CODE>
+. Although <CODE>Enumerator</CODE>
+ is a member of this type, <CODE>Enumerator</CODE>
+ is not described here; instead, it is described in its own entry, <CODE>List&lt;T&gt;.Enumerator</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<H4>Members</H4>
+
+<BLOCKQUOTE>
+<P>
+
+List&lt;T&gt; Constructors<P>
+
+<A HREF="#List%3CT%3E%28%29%20Constructor" TARGET="contents">List&lt;T&gt;() Constructor</A><BR>
+<A HREF="#List%3CT%3E%28System.Collections.Generic.IEnumerable%3CT%3E%29%20Constructor" TARGET="contents">List&lt;T&gt;(System.Collections.Generic.IEnumerable&lt;T&gt;) Constructor</A><BR>
+<A HREF="#List%3CT%3E%28int%29%20Constructor" TARGET="contents">List&lt;T&gt;(int) Constructor</A><BR>
+<P>
+
+List&lt;T&gt; Methods<P>
+
+<A HREF="#List%3CT%3E.Add%20Method" TARGET="contents">List&lt;T&gt;.Add Method</A><BR>
+<A HREF="#List%3CT%3E.AddRange%20Method" TARGET="contents">List&lt;T&gt;.AddRange Method</A><BR>
+<A HREF="#List%3CT%3E.AsReadOnly%20Method" TARGET="contents">List&lt;T&gt;.AsReadOnly Method</A><BR>
+<A HREF="#List%3CT%3E.BinarySearch%28T%29%20Method" TARGET="contents">List&lt;T&gt;.BinarySearch(T) Method</A><BR>
+<A HREF="#List%3CT%3E.BinarySearch%28T%2C%20System.Collections.Generic.IComparer%3CT%3E%29%20Method" TARGET="contents">List&lt;T&gt;.BinarySearch(T, System.Collections.Generic.IComparer&lt;T&gt;) Method</A><BR>
+<A HREF="#List%3CT%3E.BinarySearch%28int%2C%20int%2C%20T%2C%20System.Collections.Generic.IComparer%3CT%3E%29%20Method" TARGET="contents">List&lt;T&gt;.BinarySearch(int, int, T, System.Collections.Generic.IComparer&lt;T&gt;) Method</A><BR>
+<A HREF="#List%3CT%3E.Clear%20Method" TARGET="contents">List&lt;T&gt;.Clear Method</A><BR>
+<A HREF="#List%3CT%3E.Contains%20Method" TARGET="contents">List&lt;T&gt;.Contains Method</A><BR>
+<A HREF="#List%3CT%3E.ConvertAll%20Method" TARGET="contents">List&lt;T&gt;.ConvertAll Method</A><BR>
+<A HREF="#List%3CT%3E.CopyTo%28T%5B%5D%29%20Method" TARGET="contents">List&lt;T&gt;.CopyTo(T[]) Method</A><BR>
+<A HREF="#List%3CT%3E.CopyTo%28T%5B%5D%2C%20int%29%20Method" TARGET="contents">List&lt;T&gt;.CopyTo(T[], int) Method</A><BR>
+<A HREF="#List%3CT%3E.CopyTo%28int%2C%20T%5B%5D%2C%20int%2C%20int%29%20Method" TARGET="contents">List&lt;T&gt;.CopyTo(int, T[], int, int) Method</A><BR>
+<A HREF="#List%3CT%3E.Exists%20Method" TARGET="contents">List&lt;T&gt;.Exists Method</A><BR>
+<A HREF="#List%3CT%3E.Find%20Method" TARGET="contents">List&lt;T&gt;.Find Method</A><BR>
+<A HREF="#List%3CT%3E.FindAll%20Method" TARGET="contents">List&lt;T&gt;.FindAll Method</A><BR>
+<A HREF="#List%3CT%3E.FindIndex%28System.Predicate%3CT%3E%29%20Method" TARGET="contents">List&lt;T&gt;.FindIndex(System.Predicate&lt;T&gt;) Method</A><BR>
+<A HREF="#List%3CT%3E.FindIndex%28int%2C%20System.Predicate%3CT%3E%29%20Method" TARGET="contents">List&lt;T&gt;.FindIndex(int, System.Predicate&lt;T&gt;) Method</A><BR>
+<A HREF="#List%3CT%3E.FindIndex%28int%2C%20int%2C%20System.Predicate%3CT%3E%29%20Method" TARGET="contents">List&lt;T&gt;.FindIndex(int, int, System.Predicate&lt;T&gt;) Method</A><BR>
+<A HREF="#List%3CT%3E.FindLast%20Method" TARGET="contents">List&lt;T&gt;.FindLast Method</A><BR>
+<A HREF="#List%3CT%3E.FindLastIndex%28System.Predicate%3CT%3E%29%20Method" TARGET="contents">List&lt;T&gt;.FindLastIndex(System.Predicate&lt;T&gt;) Method</A><BR>
+<A HREF="#List%3CT%3E.FindLastIndex%28int%2C%20System.Predicate%3CT%3E%29%20Method" TARGET="contents">List&lt;T&gt;.FindLastIndex(int, System.Predicate&lt;T&gt;) Method</A><BR>
+<A HREF="#List%3CT%3E.FindLastIndex%28int%2C%20int%2C%20System.Predicate%3CT%3E%29%20Method" TARGET="contents">List&lt;T&gt;.FindLastIndex(int, int, System.Predicate&lt;T&gt;) Method</A><BR>
+<A HREF="#List%3CT%3E.ForEach%20Method" TARGET="contents">List&lt;T&gt;.ForEach Method</A><BR>
+<A HREF="#List%3CT%3E.GetEnumerator%20Method" TARGET="contents">List&lt;T&gt;.GetEnumerator Method</A><BR>
+<A HREF="#List%3CT%3E.GetRange%20Method" TARGET="contents">List&lt;T&gt;.GetRange Method</A><BR>
+<A HREF="#List%3CT%3E.IndexOf%28T%29%20Method" TARGET="contents">List&lt;T&gt;.IndexOf(T) Method</A><BR>
+<A HREF="#List%3CT%3E.IndexOf%28T%2C%20int%29%20Method" TARGET="contents">List&lt;T&gt;.IndexOf(T, int) Method</A><BR>
+<A HREF="#List%3CT%3E.IndexOf%28T%2C%20int%2C%20int%29%20Method" TARGET="contents">List&lt;T&gt;.IndexOf(T, int, int) Method</A><BR>
+<A HREF="#List%3CT%3E.Insert%20Method" TARGET="contents">List&lt;T&gt;.Insert Method</A><BR>
+<A HREF="#List%3CT%3E.InsertRange%20Method" TARGET="contents">List&lt;T&gt;.InsertRange Method</A><BR>
+<A HREF="#List%3CT%3E.LastIndexOf%28T%29%20Method" TARGET="contents">List&lt;T&gt;.LastIndexOf(T) Method</A><BR>
+<A HREF="#List%3CT%3E.LastIndexOf%28T%2C%20int%29%20Method" TARGET="contents">List&lt;T&gt;.LastIndexOf(T, int) Method</A><BR>
+<A HREF="#List%3CT%3E.LastIndexOf%28T%2C%20int%2C%20int%29%20Method" TARGET="contents">List&lt;T&gt;.LastIndexOf(T, int, int) Method</A><BR>
+<A HREF="#List%3CT%3E.Remove%20Method" TARGET="contents">List&lt;T&gt;.Remove Method</A><BR>
+<A HREF="#List%3CT%3E.RemoveAll%20Method" TARGET="contents">List&lt;T&gt;.RemoveAll Method</A><BR>
+<A HREF="#List%3CT%3E.RemoveAt%20Method" TARGET="contents">List&lt;T&gt;.RemoveAt Method</A><BR>
+<A HREF="#List%3CT%3E.RemoveRange%20Method" TARGET="contents">List&lt;T&gt;.RemoveRange Method</A><BR>
+<A HREF="#List%3CT%3E.Reverse%28%29%20Method" TARGET="contents">List&lt;T&gt;.Reverse() Method</A><BR>
+<A HREF="#List%3CT%3E.Reverse%28int%2C%20int%29%20Method" TARGET="contents">List&lt;T&gt;.Reverse(int, int) Method</A><BR>
+<A HREF="#List%3CT%3E.Sort%28%29%20Method" TARGET="contents">List&lt;T&gt;.Sort() Method</A><BR>
+<A HREF="#List%3CT%3E.Sort%28System.Collections.Generic.IComparer%3CT%3E%29%20Method" TARGET="contents">List&lt;T&gt;.Sort(System.Collections.Generic.IComparer&lt;T&gt;) Method</A><BR>
+<A HREF="#List%3CT%3E.Sort%28int%2C%20int%2C%20System.Collections.Generic.IComparer%3CT%3E%29%20Method" TARGET="contents">List&lt;T&gt;.Sort(int, int, System.Collections.Generic.IComparer&lt;T&gt;) Method</A><BR>
+<A HREF="#List%3CT%3E.Sort%28System.Comparison%3CT%3E%29%20Method" TARGET="contents">List&lt;T&gt;.Sort(System.Comparison&lt;T&gt;) Method</A><BR>
+<A HREF="#List%3CT%3E.System.Collections.Generic.IEnumerable%3CT%3E.GetEnumerator%20Method" TARGET="contents">List&lt;T&gt;.System.Collections.Generic.IEnumerable&lt;T&gt;.GetEnumerator Method</A><BR>
+<A HREF="#List%3CT%3E.System.Collections.ICollection.CopyTo%20Method" TARGET="contents">List&lt;T&gt;.System.Collections.ICollection.CopyTo Method</A><BR>
+<A HREF="#List%3CT%3E.System.Collections.IEnumerable.GetEnumerator%20Method" TARGET="contents">List&lt;T&gt;.System.Collections.IEnumerable.GetEnumerator Method</A><BR>
+<A HREF="#List%3CT%3E.System.Collections.IList.Add%20Method" TARGET="contents">List&lt;T&gt;.System.Collections.IList.Add Method</A><BR>
+<A HREF="#List%3CT%3E.System.Collections.IList.Contains%20Method" TARGET="contents">List&lt;T&gt;.System.Collections.IList.Contains Method</A><BR>
+<A HREF="#List%3CT%3E.System.Collections.IList.IndexOf%20Method" TARGET="contents">List&lt;T&gt;.System.Collections.IList.IndexOf Method</A><BR>
+<A HREF="#List%3CT%3E.System.Collections.IList.Insert%20Method" TARGET="contents">List&lt;T&gt;.System.Collections.IList.Insert Method</A><BR>
+<A HREF="#List%3CT%3E.System.Collections.IList.Remove%20Method" TARGET="contents">List&lt;T&gt;.System.Collections.IList.Remove Method</A><BR>
+<A HREF="#List%3CT%3E.System.Collections.IList.RemoveAt%20Method" TARGET="contents">List&lt;T&gt;.System.Collections.IList.RemoveAt Method</A><BR>
+<A HREF="#List%3CT%3E.ToArray%20Method" TARGET="contents">List&lt;T&gt;.ToArray Method</A><BR>
+<A HREF="#List%3CT%3E.TrimExcess%20Method" TARGET="contents">List&lt;T&gt;.TrimExcess Method</A><BR>
+<A HREF="#List%3CT%3E.TrimToSize%20Method" TARGET="contents">List&lt;T&gt;.TrimToSize Method</A><BR>
+<A HREF="#List%3CT%3E.TrueForAll%20Method" TARGET="contents">List&lt;T&gt;.TrueForAll Method</A><BR>
+<P>
+
+List&lt;T&gt; Properties<P>
+
+<A HREF="#List%3CT%3E.Capacity%20Property" TARGET="contents">List&lt;T&gt;.Capacity Property</A><BR>
+<A HREF="#List%3CT%3E.Count%20Property" TARGET="contents">List&lt;T&gt;.Count Property</A><BR>
+<A HREF="#List%3CT%3E.Item%20Property" TARGET="contents">List&lt;T&gt;.Item Property</A><BR>
+<A HREF="#List%3CT%3E.System.Collections.Generic.ICollection%3CT%3E.IsReadOnly%20Property" TARGET="contents">List&lt;T&gt;.System.Collections.Generic.ICollection&lt;T&gt;.IsReadOnly Property</A><BR>
+<A HREF="#List%3CT%3E.System.Collections.ICollection.IsSynchronized%20Property" TARGET="contents">List&lt;T&gt;.System.Collections.ICollection.IsSynchronized Property</A><BR>
+<A HREF="#List%3CT%3E.System.Collections.ICollection.SyncRoot%20Property" TARGET="contents">List&lt;T&gt;.System.Collections.ICollection.SyncRoot Property</A><BR>
+<A HREF="#List%3CT%3E.System.Collections.IList.IsFixedSize%20Property" TARGET="contents">List&lt;T&gt;.System.Collections.IList.IsFixedSize Property</A><BR>
+<A HREF="#List%3CT%3E.System.Collections.IList.IsReadOnly%20Property" TARGET="contents">List&lt;T&gt;.System.Collections.IList.IsReadOnly Property</A><BR>
+<A HREF="#List%3CT%3E.System.Collections.IList.Item%20Property" TARGET="contents">List&lt;T&gt;.System.Collections.IList.Item Property</A><BR>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E%28%29%20Constructor"><H3>List&lt;T&gt;() Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public List()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Initializes a new list that is empty and has the default initial capacity.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: If the size of the collection can be estimated, you can specify the initial capacity in a constructor overload that accepts a capacity parameter to eliminate the need to perform a number of resizing operations while adding elements to the list.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E%28System.Collections.Generic.IEnumerable%3CT%3E%29%20Constructor"><H3>List&lt;T&gt;(System.Collections.Generic.IEnumerable&lt;T&gt;) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public List(IEnumerable&lt;T&gt; collection)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Initializes a new list with elements copied from the specified collection, ensuring that the list has sufficient capacity to accommodate the number of elements copied.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>collection</DT>
+<DD>The collection from which to copy the elements.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>collection</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Note</I>: If the size of the collection can be estimated, you can specify the initial capacity in a constructor overload that accepts a capacity parameter to eliminate the need to perform a number of resizing operations while adding elements to the list.]<P>
+
+<P>
+
+The elements are copied onto the list in the same order in which they are read by the System.Collections.Generic.IEnumerator&lt;T&gt; from collection.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E%28int%29%20Constructor"><H3>List&lt;T&gt;(int) Constructor</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public List(int capacity)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Initializes a new list that is empty and has the specified initial capacity.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>capacity</DT>
+<DD>The maximum number of elements that the List can contain without reallocating memory.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>capacity</I> is less than zero.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.Add%20Method"><H3>List&lt;T&gt;.Add Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void Add(T item)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds an item to the end of the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>item</DT>
+<DD>The item to add to the end of the list. (<I>item</I> can be <CODE>null</CODE>
+ if T is a reference type.)</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">List&lt;T&gt;</A> accepts null as a valid value for reference types and allows duplicate elements.<P>
+
+If System.Collections.Generic.List&lt;T&gt;.Count already equals System.Collections.Generic.List&lt;T&gt;.Capacity, the capacity of the list is increased.<P>
+
+If System.Collections.Generic.List&lt;T&gt;.Count is less than System.Collections.Generic.List&lt;T&gt;.Capacity, this method is an O(1) operation. If the capacity needs to be increased to accommodate the new element, this method becomes an O(n) operation, where n is System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.AddRange%20Method"><H3>List&lt;T&gt;.AddRange Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void AddRange(IEnumerable&lt;T&gt; collection)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Adds the elements of the specified collection to the end of the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>collection</DT>
+<DD>The collection whose elements are added to the end of the list.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>collection</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">List&lt;T&gt;</A> accepts <CODE>null</CODE>
+ as a valid value for reference types and allows duplicate elements.<P>
+
+The order of the elements in the collection is preserved in the <A HREF="ListT.html" TARGET="contents">List&lt;T&gt;</A>.<P>
+
+If the new System.Collections.Generic.List&lt;T&gt;.Count (the current  System.Collections.Generic.List&lt;T&gt;.Count plus the size of the collection) will be greater than System.Collections.Generic.List&lt;T&gt;.Capacity, the capacity of the list is increased.<P>
+
+If the list can accommodate the new elements without increasing System.Collections.Generic.List&lt;T&gt;.Capacity, this method is an O(n) operation, where n is the number of elements to be added. If the capacity needs to be increased to accommodate the new elements, this method becomes an O(n + m) operation, where n is the number of elements to be added and m is System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.AsReadOnly%20Method"><H3>List&lt;T&gt;.AsReadOnly Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public IList&lt;T&gt; AsReadOnly()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns a read-only wrapper to the current List.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A read-only wrapper for the current List.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+To prevent any modifications to a list, expose it only through this wrapper.<P>
+
+A collection that is read-only is simply a collection with a wrapper that prevents modifying the collection; therefore, if changes are made to the underlying collection, the read-only collection reflects those changes.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.BinarySearch%28T%29%20Method"><H3>List&lt;T&gt;.BinarySearch(T) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int BinarySearch(T item)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches the entire sorted list for an element using the default comparer, and returns the zero-based index of the element.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>item</DT>
+<DD>The element for which to search. (<I>item</I> can be <CODE>null</CODE>
+ if T is a reference type.)</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of <I>item</I> in the sorted list, if <I>item</I> is found; otherwise, a negative number, which is the bitwise complement of the index of the next element that is larger than <I>item</I> or, if there is no larger element, the bitwise complement of System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The default comparer cannot find a <A HREF="../../../System/IComparableT.html" TARGET="contents">IComparable&lt;T&gt;</A> or <A HREF="../../../System/IComparable.html" TARGET="contents">IComparable</A> implementation for type T.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method uses the default comparer for type T to determine the order of list elements.  If there is no default comparer, then the method throws <A HREF="../../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>.  The default comparer for a given element type T is defined in the Description section of this (class <CODE>List&lt;T&gt;</CODE>
+) specification.<P>
+
+The list must already be sorted according to the comparer implementation; otherwise, the result is incorrect.<P>
+
+Comparing <CODE>null</CODE>
+ with any reference type is allowed and does not generate an exception when using <A HREF="../../../System/IComparableT.html" TARGET="contents">IComparable&lt;T&gt;</A>. When sorting, <CODE>null</CODE>
+ is considered to be less than any other object.<P>
+
+If the list  contains more than one element with the same value, the method returns only one of the occurrences, and it might return any one of the occurrences, not necessarily the first one.<P>
+
+If the list does not contain the specified value, the method returns a negative integer. You can apply the bitwise complement operation (~) to this negative integer to get the index of the first element that is larger than the search value. When inserting the value into the list, this index should be used as the insertion point to maintain the sort order.<P>
+
+This method is an O(log n) operation, where n is the number of elements in the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.BinarySearch%28T%2C%20System.Collections.Generic.IComparer%3CT%3E%29%20Method"><H3>List&lt;T&gt;.BinarySearch(T, System.Collections.Generic.IComparer&lt;T&gt;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int BinarySearch(T item, IComparer&lt;T&gt; comparer)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches the entire sorted list for an element using the specified comparer and returns the zero-based index of the element.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>item</DT>
+<DD>The element for which to search. (<I>item</I> can be <CODE>null</CODE>
+ if T is a reference type.)</DD>
+<DT>comparer</DT>
+<DD>The <A HREF="IComparerT.html" TARGET="contents">IComparer&lt;T&gt;</A>  implementation to use when comparing elements.<P>
+
+-or-<P>
+
+<CODE>null</CODE>
+ to use the default comparer.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of <I>item</I> in the sorted list, if <I>item</I> is found; otherwise, a negative number, which is the bitwise complement of the index of the next element that is larger than <I>item</I> or, if there is no larger element, the bitwise complement of System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD><I>comparer</I> is <CODE>null</CODE>
+, and the default comparer cannot find a <A HREF="../../../System/IComparableT.html" TARGET="contents">IComparable&lt;T&gt;</A> or<A HREF="../../../System/IComparable.html" TARGET="contents">IComparable</A> implementation for type T.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the given comparer is non-<CODE>null</CODE>
+, it is used to determine the order of list elements.  If the given comparer is <CODE>null</CODE>
+, the default comparer for type T is used; if there is no default comparer, then the method throws <A HREF="../../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>.  The default comparer for a given element type T is defined in the Description section of this (class <CODE>List&lt;T&gt;</CODE>
+) specification.<P>
+
+The comparer customizes how the elements are compared. For example, if T is <A HREF="../../../System/String.html" TARGET="contents">String</A>, you can use a System.Collections.CaseInsensitiveComparer instance as the comparer to perform case-insensitive string searches.<P>
+
+The list must already be sorted according to the comparer implementation; otherwise, the result is incorrect.<P>
+
+Comparing <CODE>null</CODE>
+ with any reference type is allowed and does not generate an exception when using <A HREF="../../../System/IComparableT.html" TARGET="contents">IComparable&lt;T&gt;</A>. When sorting, <CODE>null</CODE>
+ is considered to be less than any other object.<P>
+
+If the <A HREF="ListT.html" TARGET="contents">List&lt;T&gt;</A> contains more than one element with the same value, the method returns only one of the occurrences, and it might return any one of the occurrences, not necessarily the first one.<P>
+
+If the list does not contain the specified value, the method returns a negative integer. You can apply the bitwise complement operation (~) to this negative integer to get the index of the first element that is larger than the search value. When inserting the value into the list, this index should be used as the insertion point to maintain the sort order.<P>
+
+This method is an O(log n) operation, where n is the number of elements in the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.BinarySearch%28int%2C%20int%2C%20T%2C%20System.Collections.Generic.IComparer%3CT%3E%29%20Method"><H3>List&lt;T&gt;.BinarySearch(int, int, T, System.Collections.Generic.IComparer&lt;T&gt;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int BinarySearch(int index, int count, T item, IComparer&lt;T&gt; comparer)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches a range of elements in the sorted list for an element using the specified comparer and returns the zero-based index of the element.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>The zero-based starting index of the range to search.</DD>
+<DT>count</DT>
+<DD>The length of the range to search.</DD>
+<DT>item</DT>
+<DD>The element for which to search. (<I>item</I> can be <CODE>null</CODE>
+ if T is a reference type.)</DD>
+<DT>comparer</DT>
+<DD>The <A HREF="IComparerT.html" TARGET="contents">IComparer&lt;T&gt;</A>  implementation to use when comparing elements.<P>
+
+-or-<P>
+
+<CODE>null</CODE>
+ to use the default comparer.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of <I>item</I> in the sorted list, if <I>item</I> is found; otherwise, a negative number, which is the bitwise complement of the index of the next element that is larger than <I>item</I> or, if there is no larger element, the bitwise complement of <I>index</I> + <I>count</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>index</I> + <I>count</I> is greater than System.Collections.Generic.List&lt;T&gt;.Count.</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than zero.<P>
+
+-or-<P>
+
+<I>count</I> is less than zero.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD><I>comparer</I> is <CODE>null</CODE>
+, and the default comparer cannot find a <A HREF="../../../System/IComparableT.html" TARGET="contents">IComparable&lt;T&gt;</A> or<A HREF="../../../System/IComparable.html" TARGET="contents">IComparable</A> implementation for type T.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the given comparer is non-<CODE>null</CODE>
+, it is used to determine the order of list elements.  If the given comparer is <CODE>null</CODE>
+, the default comparer for type T is used; if there is no default comparer, then the method throws <A HREF="../../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>.  The default comparer for a given element type T is defined in the Description section of this (class <CODE>List&lt;T&gt;</CODE>
+) specification.<P>
+
+The comparer customizes how the elements are compared. For example, if T is <A HREF="../../../System/String.html" TARGET="contents">String</A>, you can use a System.Collections.CaseInsensitiveComparer instance as the comparer to perform case-insensitive string searches.<P>
+
+The list must already be sorted according to the comparer implementation; otherwise, the result is incorrect.<P>
+
+Comparing <CODE>null</CODE>
+ with any reference type is allowed and does not generate an exception when using <A HREF="../../../System/IComparableT.html" TARGET="contents">IComparable&lt;T&gt;</A>. When sorting, <CODE>null</CODE>
+ is considered to be less than any other object.<P>
+
+If the <A HREF="ListT.html" TARGET="contents">List&lt;T&gt;</A> contains more than one element with the same value, the method returns only one of the occurrences, and it might return any one of the occurrences, not necessarily the first one.<P>
+
+If the list does not contain the specified value, the method returns a negative integer. You can apply the bitwise complement operation (~) to this negative integer to get the index of the first element that is larger than the search value. When inserting the value into the list, this index should be used as the insertion point to maintain the sort order.<P>
+
+This method is an O(log n) operation, where n is the number of elements in the range.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.Clear%20Method"><H3>List&lt;T&gt;.Clear Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void Clear()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes all elements from the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+System.Collections.Generic.ICollection&lt;T&gt;.Count gets set to zero, and references to other objects from elements of the collection are also released. The capacity remains unchanged.<P>
+
+[<I>Note</I>: To reset the capacity, call System.Collections.Generic.List&lt;T&gt;.TrimToSize or set the System.Collections.Generic.List&lt;T&gt;.Capacity property directly.<P>
+
+]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.Contains%20Method"><H3>List&lt;T&gt;.Contains Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public bool Contains(T item)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the list contains a specific value.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>item</DT>
+<DD>The object to locate in the current collection. (<I>item</I> can be <CODE>null</CODE>
+ if T is a reference type.)</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+, if <I>item</I> is found in the list; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method uses the default equality comparer for type T to determine equality of list elements.    The default equality comparer for element type T is defined in the Description section of this (class <CODE>List&lt;T&gt;</CODE>
+) specification.<P>
+
+This method is an O(n) operation, where n is System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.ConvertAll%20Method"><H3>List&lt;T&gt;.ConvertAll Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public List&lt;U&gt; ConvertAll&lt;U&gt;(Converter&lt;T,U&gt; converter)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Converts the current List (of type T) to a List of type U.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>converter</DT>
+<DD>A converter delegate that converts each element from one type to another type.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A List of the target type containing the converted elements from the current List.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>converter</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The converter is a delegate that converts an object to the target type.  The elements of the current List are individually passed to the converter delegate, and the converted elements are saved in the new List.<P>
+
+The current List remains unchanged.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.CopyTo%28T%5B%5D%29%20Method"><H3>List&lt;T&gt;.CopyTo(T[]) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void CopyTo(T[] array)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Copies the entire list to an array.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>array</DT>
+<DD>A one-dimensional, zero-based array that is the destination of the elements copied from the list.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>array</I> is multidimensional.<P>
+
+-or-<P>
+
+<I>array</I> does not have zero-based indexing.<P>
+
+-or-<P>
+
+The number of elements in the list is greater than the number of elements that the destination <I>array</I> can contain.<P>
+
+-or-<P>
+
+Type T is not assignable to the element type of the destination array.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>array</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The elements are copied onto the array (using System.Array.Copy) in the same order in which the enumerator iterates through the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.CopyTo%28T%5B%5D%2C%20int%29%20Method"><H3>List&lt;T&gt;.CopyTo(T[], int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void CopyTo(T[] array, int arrayIndex)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Copies the elements of the list to an array, starting at a particular index.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>array</DT>
+<DD>A one-dimensional, zero-based array that is the destination of the elements copied from the list.</DD>
+<DT>arrayIndex</DT>
+<DD>The zero-based index in <I>array</I> at which copying begins.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>array</I> is multidimensional.<P>
+
+-or-<P>
+
+<I>array</I> does not have zero-based indexing.<P>
+
+-or-<P>
+
+The sum of <I>arrayIndex</I> and number of elements in the list is greater than the length of the destination array.<P>
+
+-or-<P>
+
+Type T is not assignable to the element type of the destination array.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>array</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>arrayIndex</I> is less than zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The elements are copied onto the array (using System.Array.Copy) in the same order in which the enumerator iterates through the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.CopyTo%28int%2C%20T%5B%5D%2C%20int%2C%20int%29%20Method"><H3>List&lt;T&gt;.CopyTo(int, T[], int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void CopyTo(int index, T[] array, int arrayIndex, int count)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Copies a range of elements of the list to an array, starting at a particular index in the target array.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>The zero-based index in the source list at which copying begins.</DD>
+<DT>array</DT>
+<DD>A one-dimensional, zero-based array that is the destination of the elements copied from the list.</DD>
+<DT>arrayIndex</DT>
+<DD>The zero-based index in <I>array</I> at which copying begins.</DD>
+<DT>count</DT>
+<DD>The number of elements to copy.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>array</I> is multidimensional.<P>
+
+-or-<P>
+
+<I>index</I> is equal to or greater than the System.Collections.Generic.List&lt;T&gt;.Count of the source list.<P>
+
+-or-<P>
+
+<I>arrayIndex</I> is equal to or greater than the length of <I>array</I>.<P>
+
+-or-<P>
+
+The number of elements from <I>index</I>to the end of the source list is greater than the available space from <I>arrayIndex</I> to the end of the destination <I>array</I>.<P>
+
+-or-<P>
+
+Type T is not assignable to the element type of the destination array.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>array</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than zero.<P>
+
+-or-<P>
+
+<I>array</I> does not have zero-based indexing.<P>
+
+-or-<P>
+
+<I>arrayIndex</I> is less than zero.<P>
+
+-or-<P>
+
+<I>count</I> is less than zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The elements are copied onto the array (using System.Array.Copy) in the same order in which the enumerator iterates through the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.Exists%20Method"><H3>List&lt;T&gt;.Exists Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public bool Exists(Predicate&lt;T&gt; match)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether the List contains elements that match the conditions defined by the specified predicate.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>match</DT>
+<DD>The predicate delegate that specifies the elements to search for.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if the List contains one or more elements that match the conditions defined by the specified predicate; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>match</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The predicate is a delegate that returns <CODE>true</CODE>
+ if the object passed to it matches the conditions defined in the delegate.  The elements of the current List are individually passed to the predicate delegate, and processing is stopped when a match is found.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.Find%20Method"><H3>List&lt;T&gt;.Find Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public T Find(Predicate&lt;T&gt; match)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches for an element that matches the conditions defined by the specified predicate, and returns the first occurrence within the entire List.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>match</DT>
+<DD>The predicate delegate that specifies the element to search for.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The first element that matches the conditions defined by the specified predicate, if found; otherwise, the default value for type T.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>match</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The predicate is a delegate that returns <CODE>true</CODE>
+ if the object passed to it matches the conditions defined in the delegate.  The elements of the current List are individually passed to the predicate delegate, moving forward in the List, starting with the first element and ending with the last element. Processing is stopped when a match is found.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.FindAll%20Method"><H3>List&lt;T&gt;.FindAll Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public List&lt;T&gt; FindAll(Predicate&lt;T&gt; match)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Retrieves all the elements that match the conditions defined by the specified predicate.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>match</DT>
+<DD>The predicate delegate that specifies the elements to search for.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A List containing all the elements that match the conditions defined by the specified predicate, if found; otherwise, an empty List.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>match</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The predicate is a delegate that returns <CODE>true</CODE>
+ if the object passed to it matches the conditions defined in the delegate.  The elements of the current List are individually passed to the Predicate delegate, and the elements that match the conditions are saved in the returned List.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.FindIndex%28System.Predicate%3CT%3E%29%20Method"><H3>List&lt;T&gt;.FindIndex(System.Predicate&lt;T&gt;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int FindIndex(Predicate&lt;T&gt; match)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the first occurrence within the List.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>match</DT>
+<DD>The predicate delegate that specifies the element to search for.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of the first occurrence of an element that matches the conditions defined by <I>match</I>, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>match</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The List is searched forward starting at the first element and ending at the last element.<P>
+
+The predicate is a delegate that returns <CODE>true</CODE>
+ if the object passed to it matches the conditions defined in the delegate.  The elements of the current List are individually passed to the predicate delegate.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.FindIndex%28int%2C%20System.Predicate%3CT%3E%29%20Method"><H3>List&lt;T&gt;.FindIndex(int, System.Predicate&lt;T&gt;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int FindIndex(int index, Predicate&lt;T&gt; match)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the first occurrence within the range of elements in the List that extends from the specified index to the last element.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>The zero-based starting index of the search.</DD>
+<DT>match</DT>
+<DD>The predicate delegate that specifies the element to search for.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of the first occurrence of an element that matches the conditions defined by <I>match</I>, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>match</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than 0 or greater than  or equal to System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The List is searched forward starting at <I>index</I> and ending at the last element.<P>
+
+The predicate is a delegate that returns <CODE>true</CODE>
+ if the object passed to it matches the conditions defined in the delegate.  The elements of the current List are individually passed to the predicate delegate.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.FindIndex%28int%2C%20int%2C%20System.Predicate%3CT%3E%29%20Method"><H3>List&lt;T&gt;.FindIndex(int, int, System.Predicate&lt;T&gt;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int FindIndex(int index, int count, Predicate&lt;T&gt; match)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the first occurrence within the range of elements in the List that starts at the specified index and contains the specified number of elements.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>The zero-based starting index of the search.</DD>
+<DT>count</DT>
+<DD>The number of elements to search.</DD>
+<DT>match</DT>
+<DD>The predicate delegate that specifies the element to search for.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of the first occurrence of an element that matches the conditions defined by <I>match</I>, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>match</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than 0.<P>
+
+-or-<P>
+
+<I>count</I> is less than 0.<P>
+
+-or-<P>
+
+<I>index</I> + <I>count</I> is greater than System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The List is searched forward starting at <I>index</I> and ending after <I>count</I> elements.<P>
+
+The predicate is a delegate that returns <CODE>true</CODE>
+ if the object passed to it matches the conditions defined in the delegate.  The elements of the current List are individually passed to the predicate delegate.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.FindLast%20Method"><H3>List&lt;T&gt;.FindLast Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public T FindLast(Predicate&lt;T&gt; match)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches for an element that matches the conditions defined by the specified predicate, and returns the last occurrence within the entire List.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>match</DT>
+<DD>The predicate delegate that specifies the element to search for.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The last element that matches the conditions defined by the specified predicate, if found; otherwise, the default value for type T.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>match</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The predicate is a delegate that returns <CODE>true</CODE>
+ if the object passed to it matches the conditions defined in the delegate.  The elements of the current List are individually passed to the predicate delegate, moving backward in the List, starting with the last element and ending with the first element.  Processing is stopped when a match is found.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.FindLastIndex%28System.Predicate%3CT%3E%29%20Method"><H3>List&lt;T&gt;.FindLastIndex(System.Predicate&lt;T&gt;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int FindLastIndex(Predicate&lt;T&gt; match)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the last occurrence within the List.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>match</DT>
+<DD>The predicate delegate that specifies the element to search for.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of the last occurrence of an element that matches the conditions defined by <I>match</I>, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>match</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The List is searched backward starting at the last element and ending at the first element.<P>
+
+The predicate is a delegate that returns <CODE>true</CODE>
+ if the object passed to it matches the conditions defined in the delegate.  The elements of the current List are individually passed to the predicate delegate.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.FindLastIndex%28int%2C%20System.Predicate%3CT%3E%29%20Method"><H3>List&lt;T&gt;.FindLastIndex(int, System.Predicate&lt;T&gt;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int FindLastIndex(int index, Predicate&lt;T&gt; match)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the last occurrence within the range of elements in the List that extends from the specified index to the first element.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>The zero-based starting index of the backward search.</DD>
+<DT>match</DT>
+<DD>The predicate delegate that specifies the element to search for.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of the last occurrence of an element that matches the conditions defined by <I>match</I>, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>match</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than 0 or greater than or equal to System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The List is searched backward starting at <I>index</I> and ending at the first element.<P>
+
+The predicate is a delegate that returns <CODE>true</CODE>
+ if the object passed to it matches the conditions defined in the delegate.  The elements of the current List are individually passed to the predicate delegate.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.FindLastIndex%28int%2C%20int%2C%20System.Predicate%3CT%3E%29%20Method"><H3>List&lt;T&gt;.FindLastIndex(int, int, System.Predicate&lt;T&gt;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int FindLastIndex(int index, int count, Predicate&lt;T&gt; match)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the last occurrence within the range of elements in the List that starts at the specified index and contains the specified number of elements going backwards.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>The zero-based starting index of the search.</DD>
+<DT>count</DT>
+<DD>The number of elements to search.</DD>
+<DT>match</DT>
+<DD>The predicate delegate that specifies the element to search for.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of the last occurrence of an element that matches the conditions defined by <I>match</I>, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>match</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than zero, or greater than or equal to System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+-or-<P>
+
+<I>count</I> is less than 0.<P>
+
+-or-<P>
+
+<I>count</I> is greater than <I>index</I> + 1.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The List is searched backward starting at <I>index</I> and ending after <I>count</I> elements.<P>
+
+The predicate is a delegate that returns <CODE>true</CODE>
+ if the object passed to it matches the conditions defined in the delegate.  The elements of the current List are individually passed to the predicate delegate.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.ForEach%20Method"><H3>List&lt;T&gt;.ForEach Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void ForEach(Action&lt;T&gt; action)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Performs the specified action on each element of the List.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>action</DT>
+<DD>The action delegate to perform on each element of the List.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>action</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The action is a delegate  that performs an action on the object passed to it.  The elements of the current List are individually passed to the action delegate, sequentially, in index order, and on the same thread as that used to call <CODE>ForEach</CODE>
+. Execution stops if the action throws an exception.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.GetEnumerator%20Method"><H3>List&lt;T&gt;.GetEnumerator Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public List&lt;T&gt;.Enumerator GetEnumerator()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Returns an enumerator, in index order, that can be used to iterate over the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+An enumerator for the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+[<I>Usage</I>: For a detailed description regarding the use of an enumerator, see <A HREF="IEnumeratorT.html" TARGET="contents">IEnumerator&lt;T&gt;</A>.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.GetRange%20Method"><H3>List&lt;T&gt;.GetRange Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public List&lt;T&gt; GetRange(int index, int count)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Creates a shallow copy of a range of elements in the current List.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>The zero-based index at which the range starts.</DD>
+<DT>count</DT>
+<DD>The number of elements in the range.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A shallow copy of the given range of elements in the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>index</I> + <I>count</I> is greater than System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than 0.<P>
+
+-or-<P>
+
+<I>count</I> is less than 0.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+A shallow copy of a collection, or a subset of that collection, copies only the elements of the collection, whether they are reference types or value types, but it does not copy the objects that the references refer to. The references in the new collection point to the same objects as do the references in the original collection. (In contrast, a deep copy of a collection copies the elements and everything directly or indirectly referenced by those elements.)<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.IndexOf%28T%29%20Method"><H3>List&lt;T&gt;.IndexOf(T) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int IndexOf(T value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches for the specified object and returns the zero-based index of the first occurrence within the entire list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The T to locate in the current list. (The value can be <CODE>null</CODE>
+ if T is a reference type.)</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of the first occurrence of  <I>item</I> within the List, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The list is searched forward starting at the first element and ending at the last element.<P>
+
+This method uses the default equality comparer for type T to determine equality of list elements.  The default equality comparer for element type T is defined in the Description section of this (class List&lt;T&gt;) specification.<P>
+
+This method performs a linear search; therefore, the average number of comparisons is proportional to System.Collections.Generic.List&lt;T&gt;.Count. That is, this method is an O(n) operation, where n is System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.IndexOf%28T%2C%20int%29%20Method"><H3>List&lt;T&gt;.IndexOf(T, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int IndexOf(T value, int index)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches for the specified object and returns the zero-based index of the first occurrence within the range of elements in the list that extends from the specified index to the last element.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The T to locate in the current list. (The value can be <CODE>null</CODE>
+ if T is a reference type.)</DD>
+<DT>index</DT>
+<DD>The zero-based starting index of the search.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of the first occurrence of <I>item</I> within the range of elements in the list, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than zero or greater than System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The list is searched forward starting at <I>index</I> and ending at the last element.<P>
+
+This method uses the default equality comparer for type T to determine equality of list elements.  The default equality comparer for element type T is defined in the Description section of this (class List&lt;T&gt;) specification.<P>
+
+This method is an O(n) operation, where n is the number of elements from <I>index</I> to the end of the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.IndexOf%28T%2C%20int%2C%20int%29%20Method"><H3>List&lt;T&gt;.IndexOf(T, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int IndexOf(T value, int index, int count)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches for the specified object and returns the zero-based index of the first occurrence within the range of elements in the list that starts at the specified index and contains the specified number of elements.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The T to locate in the current list. (The value can be <CODE>null</CODE>
+ if T is a reference type.)</DD>
+<DT>index</DT>
+<DD>The zero-based starting index of the search.</DD>
+<DT>count</DT>
+<DD>The number of elements to search.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of the first occurrence of <I>item</I> within the specified range of elements in the list, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than 0.<P>
+
+-or-<P>
+
+<I>count</I> is less than 0.<P>
+
+-or-<P>
+
+<I>index</I> + <I>count</I> is greater than System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The list is searched forward starting at <I>index</I> and ending at <I>index</I> + <I>count</I> - 1, and searching at most <I>count</I> terms.<P>
+
+This method uses the default equality comparer for type T to determine equality of list elements.  The default equality comparer for element type T is defined in the Description section of this (class  List&lt;T&gt;) specification.<P>
+
+This method is an O(n) operation, where n is <I>count</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.Insert%20Method"><H3>List&lt;T&gt;.Insert Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void Insert(int index, T item)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts an item to the List at the specified position.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>The zero-based index at which <I>item</I> is to be inserted.</DD>
+<DT>item</DT>
+<DD>The item to insert. (<I>item</I> can be <CODE>null</CODE>
+ if T is a reference type.)</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of the first occurrence of <I>item</I> within the specified range of elements in the list, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than 0.<P>
+
+-or-<P>
+
+<I>index</I> is greater than System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">List&lt;T&gt;</A> accepts <CODE>null</CODE>
+ as a valid value for reference types and allows duplicate elements.<P>
+
+If System.Collections.Generic.List&lt;T&gt;.Count already equals System.Collections.Generic.List&lt;T&gt;.Capacity, the capacity of the List is increased.<P>
+
+If <I>index</I> is equal to System.Collections.Generic.List&lt;T&gt;.Count, <I>item</I> is added to the end of list.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.InsertRange%20Method"><H3>List&lt;T&gt;.InsertRange Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void InsertRange(int index, IEnumerable&lt;T&gt; collection)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Inserts the elements of a collection in the List at the specified position.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>The zero-based index at which the new elements should be inserted.</DD>
+<DT>collection</DT>
+<DD>The collection whose elements should be inserted into the list. (<I>collection</I> itself cannot be <CODE>null</CODE>
+, but the collection can contain elements that are <CODE>null</CODE>
+, if type T is a reference type.)</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of the first occurrence of <I>item</I> within the specified range of elements in the list, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>collection</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than zero,<P>
+
+-or-<P>
+
+<I>index</I> is greater than System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">List&lt;T&gt;</A> accepts <CODE>null</CODE>
+ as a valid value for reference types and allows duplicate elements.<P>
+
+If the new value of System.Collections.Generic.List&lt;T&gt;.Count will be greater than System.Collections.Generic.List&lt;T&gt;.Capacity, the capacity of the List is increased.<P>
+
+If <I>index</I> is equal to System.Collections.Generic.List&lt;T&gt;.Count, the collection  is added to the end of list.<P>
+
+The order of the elements in the collection is preserved in the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.LastIndexOf%28T%29%20Method"><H3>List&lt;T&gt;.LastIndexOf(T) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int LastIndexOf(T value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches for the specified object and returns the zero-based index of the last occurrence within the entire list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The T to locate in the current list. (The value can be <CODE>null</CODE>
+ if T is a reference type.)</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of the last occurrence of <I>item</I> within the entire list, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The list is searched backward starting at the last element and ending at the first element.<P>
+
+This method uses the default equality comparer for type T to determine equality of list elements.  The default equality comparer for element type T is defined in the Description section of this (class List&lt;T&gt;) specification.<P>
+
+This method is an O(n) operation, where n is System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.LastIndexOf%28T%2C%20int%29%20Method"><H3>List&lt;T&gt;.LastIndexOf(T, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int LastIndexOf(T value, int index)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches for the specified object and returns the zero-based index of the last occurrence within the range of elements in the list that extends from the specified index to the last element.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The T to locate in the current list. (The value can be <CODE>null</CODE>
+ if T is a reference type.)</DD>
+<DT>index</DT>
+<DD>The zero-based starting index of the search.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of the last occurrence of <I>item</I> within the range of elements in the list, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than zero or greater than or equal to System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The list is searched backward starting at <I>index</I> and ending at the first element.<P>
+
+This method uses the default equality comparer for type T to determine equality of list elements.  The default equality comparer for element type T is defined in the Description section of this (class List&lt;T&gt;) specification.<P>
+
+This method is an O(n) operation, where n is the number of elements from the beginning of the list to <I>index</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.LastIndexOf%28T%2C%20int%2C%20int%29%20Method"><H3>List&lt;T&gt;.LastIndexOf(T, int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int LastIndexOf(T value, int index, int count)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Searches for the specified object and returns the zero-based index of the last occurrence within the range of elements in the list that starts at the specified index and contains the specified number of elements.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>value</DT>
+<DD>The T to locate in the current list. (The value can be <CODE>null</CODE>
+ if T is a reference type.)</DD>
+<DT>index</DT>
+<DD>The zero-based starting index of the search.</DD>
+<DT>count</DT>
+<DD>The number of elements to search.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The zero-based index of the last occurrence of <I>item</I> within the range of elements in the list that contains <I>count</I> number of elements and ends at <I>index</I>, if found; otherwise, -1.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than zero, or greater than or equal to System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+-or-<P>
+
+<I>count</I> is less than 0.<P>
+
+-or-<P>
+
+<I>count</I> is greater than <I>index</I> + 1.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The list is searched backward starting at <I>index</I> and ending after <I>count</I> elements.<P>
+
+This method uses the default equality comparer for type T to determine equality of list elements.  The default equality comparer for element type T is defined in the Description section of this (class List&lt;T&gt;) specification.<P>
+
+This method is an O(n) operation, where n is <I>count</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.Remove%20Method"><H3>List&lt;T&gt;.Remove Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public bool Remove(T item)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes the first occurrence of the specified object from the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>item</DT>
+<DD>The object to be removed from the list.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+ if <I>item</I> is successfully removed; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method uses the default equality comparer for type T to determine equality of list elements.  The default equality comparer for element type T is defined in the Description section of this (class List&lt;T&gt;) specification.<P>
+
+This method is an O(n) operation, where n is System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.RemoveAll%20Method"><H3>List&lt;T&gt;.RemoveAll Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int RemoveAll(Predicate&lt;T&gt; match)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes the all the elements that match the conditions defined by the specified predicate.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>match</DT>
+<DD>The predicate delegate that specifies the elements to remove.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The number of elements removed from the List.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>match</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The predicate is a delegate that returns <CODE>true</CODE>
+ if the object passed to it matches the conditions defined in the delegate.  The elements of the current List are individually passed to the predicate delegate, and the elements that match the conditions are removed from the List.<P>
+
+This method is an O(n) operation, where n is System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.RemoveAt%20Method"><H3>List&lt;T&gt;.RemoveAt Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void RemoveAt(int index)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes the item at the specified index of the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>The zero-based index of the item to remove.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than 0.<P>
+
+-or-<P>
+
+<I>index</I> is equal to or greater than System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The item is removed and all the elements following it in the List have their indexes reduced by 1.<P>
+
+This method is an O(n) operation, where n is System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.RemoveRange%20Method"><H3>List&lt;T&gt;.RemoveRange Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void RemoveRange(int index, int count)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Removes a range of elements from the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>The zero-based starting index of the range of elements to remove.</DD>
+<DT>count</DT>
+<DD>The number of elements to remove.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>index</I> + <I>count</I> is greater than System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than zero.<P>
+
+-or-<P>
+
+<I>count</I> is less than zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The items are removed and all the elements following them in the List have their indexes reduced by <I>count</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.Reverse%28%29%20Method"><H3>List&lt;T&gt;.Reverse() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void Reverse()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reverses the order of the elements in the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method uses System.Array.Reverse<CODE>(System.Array)</CODE>
+  to reverse the order of the elements.<P>
+
+This method is an O(n) operation, where n is System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.Reverse%28int%2C%20int%29%20Method"><H3>List&lt;T&gt;.Reverse(int, int) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void Reverse(int index, int count)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Reverses the order of the elements in the specified element range of the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>The zero-based starting index of the range of elements to reverse.</DD>
+<DT>count</DT>
+<DD>The number of elements to reverse.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>index</I> + <I>count</I> is greater than System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than zero.<P>
+
+-or-<P>
+
+<I>count</I> is less than zero.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method reverses the order of the elements in the specified element range<P>
+
+This method is an O(n) operation, where n is <I>count</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.Sort%28%29%20Method"><H3>List&lt;T&gt;.Sort() Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void Sort()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sorts the elements in the list using the default comparer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD>The default comparer cannot find a <A HREF="../../../System/IComparableT.html" TARGET="contents">IComparable&lt;T&gt;</A> or <A HREF="../../../System/IComparable.html" TARGET="contents">IComparable</A> implementation for type T.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method uses the default comparer for type T to determine the order of list elements.   If there is no default comparer, then the method throws <A HREF="../../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>.  The default comparer for a given element type T is defined in the Description section of this (class <CODE>List&lt;T&gt;</CODE>
+) specification.<P>
+
+At worst, this operation is O(n<SUP>2</SUP>), where n is the number of elements to sort. On average it&apos;s O(n log n).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.Sort%28System.Collections.Generic.IComparer%3CT%3E%29%20Method"><H3>List&lt;T&gt;.Sort(System.Collections.Generic.IComparer&lt;T&gt;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void Sort(IComparer&lt;T&gt; comparer)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sorts the elements in the list using the specified comparer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>comparer</DT>
+<DD>The <A HREF="IComparerT.html" TARGET="contents">IComparer&lt;T&gt;</A>  implementation to use when comparing elements.<P>
+
+-or-<P>
+
+<CODE>null</CODE>
+ to use the default comparer.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD><I>comparer</I> is <CODE>null</CODE>
+, and the default comparer cannot find a <A HREF="../../../System/IComparableT.html" TARGET="contents">IComparable&lt;T&gt;</A> or <A HREF="../../../System/IComparable.html" TARGET="contents">IComparable</A> implementation for type T.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the given comparer is non-<CODE>null</CODE>
+, it is used to determine the order of list elements.  If the given comparer is <CODE>null</CODE>
+, the default comparer for type T is used; if there is no default comparer, then the method throws <A HREF="../../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>.  The default comparer for a given element type T is defined in the Description section of this (class <CODE>List&lt;T&gt;</CODE>
+) specification.<P>
+
+At worst, this operation is O(n<SUP>2</SUP>), where n is the number of elements to sort. On average it&apos;s O(n log n).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.Sort%28int%2C%20int%2C%20System.Collections.Generic.IComparer%3CT%3E%29%20Method"><H3>List&lt;T&gt;.Sort(int, int, System.Collections.Generic.IComparer&lt;T&gt;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void Sort(int index, int count, IComparer&lt;T&gt; comparer)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sorts the elements in the list using the specified comparer.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>The zero-based starting index of the range of elements to sort.</DD>
+<DT>count</DT>
+<DD>The number of elements to sort.</DD>
+<DT>comparer</DT>
+<DD>The <A HREF="IComparerT.html" TARGET="contents">IComparer&lt;T&gt;</A>  implementation to use when comparing elements.<P>
+
+-or-<P>
+
+<CODE>null</CODE>
+ to use the default comparer.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>index</I> + <I>count</I> is greater than System.Collections.Generic.List&lt;T&gt;.Count.</TD></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> is less than zero.<P>
+
+-or-<P>
+
+<I>count</I> is less than zero.<P>
+
+</TD></TR>
+<TR><TD><A HREF="../../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A></TD><TD><I>comparer</I> is <CODE>null</CODE>
+, and the default comparer cannot find a <A HREF="../../../System/IComparableT.html" TARGET="contents">IComparable&lt;T&gt;</A> or <A HREF="../../../System/IComparable.html" TARGET="contents">IComparable</A> implementation for type T.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+If the given comparer is non-<CODE>null</CODE>
+, it is used to determine the order of list elements.  If the given comparer is <CODE>null</CODE>
+, the default comparer for type T is used; if there is no default comparer, then the method throws <A HREF="../../../System/InvalidOperationException.html" TARGET="contents">InvalidOperationException</A>.  The default comparer for a given element type T is defined in the Description section of this (class <CODE>List&lt;T&gt;</CODE>
+) specification.<P>
+
+At worst, this operation is O(n<SUP>2</SUP>), where n is the number of elements to sort. On average it&apos;s O(n log n).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.Sort%28System.Comparison%3CT%3E%29%20Method"><H3>List&lt;T&gt;.Sort(System.Comparison&lt;T&gt;) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void Sort(Comparison&lt;T&gt; comparison)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sorts the elements in the list using the specified comparison.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>comparison</DT>
+<DD>The comparison to use when comparing elements.<P>
+
+</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>comparison</I> is <CODE>null</CODE>
+.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+At worst, this operation is O(n<SUP>2</SUP>), where n is the number of elements to sort. On average it&apos;s O(n log n).<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.System.Collections.Generic.IEnumerable%3CT%3E.GetEnumerator%20Method"><H3>List&lt;T&gt;.System.Collections.Generic.IEnumerable&lt;T&gt;.GetEnumerator Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>IEnumerator&lt;T&gt; IEnumerable&lt;T&gt;.GetEnumerator()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the <A HREF="IEnumerableT.html" TARGET="contents">IEnumerable&lt;T&gt;</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.System.Collections.ICollection.CopyTo%20Method"><H3>List&lt;T&gt;.System.Collections.ICollection.CopyTo Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>void ICollection.CopyTo(Array array, int index)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the <A HREF="../../../System/Collections/ICollection.html" TARGET="contents">ICollection</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.System.Collections.IEnumerable.GetEnumerator%20Method"><H3>List&lt;T&gt;.System.Collections.IEnumerable.GetEnumerator Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>IEnumerator IEnumerable.GetEnumerator()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the <A HREF="../../../System/Collections/IEnumerable.html" TARGET="contents">IEnumerable</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.System.Collections.IList.Add%20Method"><H3>List&lt;T&gt;.System.Collections.IList.Add Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>int IList.Add(object value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the <A HREF="../../../System/Collections/IList.html" TARGET="contents">IList</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.System.Collections.IList.Contains%20Method"><H3>List&lt;T&gt;.System.Collections.IList.Contains Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>bool IList.Contains(object value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the <A HREF="../../../System/Collections/IList.html" TARGET="contents">IList</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.System.Collections.IList.IndexOf%20Method"><H3>List&lt;T&gt;.System.Collections.IList.IndexOf Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>int IList.IndexOf(object value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the <A HREF="../../../System/Collections/IList.html" TARGET="contents">IList</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.System.Collections.IList.Insert%20Method"><H3>List&lt;T&gt;.System.Collections.IList.Insert Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>void IList.Insert(int index, object value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the <A HREF="../../../System/Collections/IList.html" TARGET="contents">IList</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.System.Collections.IList.Remove%20Method"><H3>List&lt;T&gt;.System.Collections.IList.Remove Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>void IList.Remove(object value)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the <A HREF="../../../System/Collections/IList.html" TARGET="contents">IList</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.System.Collections.IList.RemoveAt%20Method"><H3>List&lt;T&gt;.System.Collections.IList.RemoveAt Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>void IList.RemoveAt(int index)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This method is implemented to support the <A HREF="../../../System/Collections/IList.html" TARGET="contents">IList</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.ToArray%20Method"><H3>List&lt;T&gt;.ToArray Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public T[] ToArray()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Copies the elements in the list to a new array.<P>
+
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+The new array containing a copy of the list&apos;s elements.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This an O(n) operation, where n is System.Collections.Generic.List&lt;T&gt;.Count.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.TrimExcess%20Method"><H3>List&lt;T&gt;.TrimExcess Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void TrimExcess()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Suggests that the capacity be reduced to the actual number of elements in the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method can be used to suggest a collection&apos;s memory overhead be minimized, e.g., if no new elements are expected to be added to the collection.<P>
+
+[<I>Note</I>: To reset a list to its initial state, call the System.Collections.Generic.List.Clear  method before calling System.Collections.Generic.List.TrimExcess.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.TrimToSize%20Method"><H3>List&lt;T&gt;.TrimToSize Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public void TrimToSize()</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Sets the capacity to the actual number of elements in the list.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This method can be used to minimize a list&apos;s memory overhead if no new elements are expected to be added to the list.<P>
+
+To reset a List to its initial state, call the System.Collections.Generic.List&lt;T&gt;.Clear  method before calling System.Collections.Generic.List&lt;T&gt;.TrimToSize. Trimming an empty list sets the capacity of the list to the default capacity.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.TrueForAll%20Method"><H3>List&lt;T&gt;.TrueForAll Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public bool TrueForAll(Predicate&lt;T&gt; match)</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Determines whether every element in the List matches the conditions defined by the specified predicate.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>match</DT>
+<DD>The predicate delegate that specifies the check against the elements.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+<CODE>true</CODE>
+, if every element in the List matches the conditions defined by the specified predicate; otherwise, <CODE>false</CODE>
+.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>match</I> is <CODE>null</CODE>
+.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The predicate is a delegate that returns <CODE>true</CODE>
+ if the object passed to it matches the conditions defined in the delegate.  The elements of the current List are individually passed to the predicate delegate. The elements are processed sequentially and on the same thread.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.Capacity%20Property"><H3>List&lt;T&gt;.Capacity Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int Capacity { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the number of elements the current instance can contain.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+ A <A HREF="../../../System/Int32.html" TARGET="contents">Int32</A> containing the number of elements the current instance can contain.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD>Attempt to set the capacity to a value less than  System.Collections.Generic.List&lt;T&gt;.Count.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read/write.<P>
+
+System.Collections.Generic.List&lt;T&gt;.Capacity is the number of elements that the list is capable of storing without needing to be extended. System.Collections.Generic.List&lt;T&gt;.Count is the number of elements that are actually in the list.<P>
+
+System.Collections.Generic.List&lt;T&gt;.Capacity is always greater than or equal to System.Collections.Generic.List&lt;T&gt;.Count. When System.Collections.Generic.List&lt;T&gt;.Count exceeds System.Collections.Generic.List&lt;T&gt;.Capacity while adding elements, the capacity is increased.<P>
+
+The capacity can be decreased by calling System.Collections.Generic.List&lt;T&gt;.TrimToSize or by setting the System.Collections.Generic.List&lt;T&gt;.Capacity property explicitly.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.Count%20Property"><H3>List&lt;T&gt;.Count Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public int Count { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets the number of elements contained in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The number of elements in the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+This property is read-only.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.Item%20Property"><H3>List&lt;T&gt;.Item Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public T this[int index] { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+Gets or sets the element at the specified index of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>index</DT>
+<DD>The zero-based index of the element in the current instance to get or set.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Property Value</H4>
+
+<BLOCKQUOTE>
+The element at the specified index of the current instance.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>index</I> &lt; 0.<P>
+
+-or-<P>
+
+<I>index</I> &gt;= System.Collections.Generics.List&lt;T&gt;.Count of the current instance.<P>
+
+</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.System.Collections.Generic.ICollection%3CT%3E.IsReadOnly%20Property"><H3>List&lt;T&gt;.System.Collections.Generic.ICollection&lt;T&gt;.IsReadOnly Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>bool ICollection&lt;T&gt;.IsReadOnly { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This read-only property is implemented to support the <A HREF="ICollectionT.html" TARGET="contents">ICollection&lt;T&gt;</A> interface.<P>
+
+[<I>Note</I>: For more information, see System.Collections.Generic.ICollection&lt;T&gt;.IsReadOnly.<P>
+
+]<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.System.Collections.ICollection.IsSynchronized%20Property"><H3>List&lt;T&gt;.System.Collections.ICollection.IsSynchronized Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>bool ICollection.IsSynchronized { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This read-only property is implemented to support the System.Collections.ICollection  interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.System.Collections.ICollection.SyncRoot%20Property"><H3>List&lt;T&gt;.System.Collections.ICollection.SyncRoot Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>object ICollection.SyncRoot { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This read-only property is implemented to support the System.Collections.ICollection  interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.System.Collections.IList.IsFixedSize%20Property"><H3>List&lt;T&gt;.System.Collections.IList.IsFixedSize Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>bool IList.IsFixedSize { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This read-only property is implemented to support the <A HREF="../../../System/Collections/IList.html" TARGET="contents">IList</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.System.Collections.IList.IsReadOnly%20Property"><H3>List&lt;T&gt;.System.Collections.IList.IsReadOnly Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>bool IList.IsReadOnly { get; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This read-only property is implemented to support the <A HREF="../../../System/Collections/IList.html" TARGET="contents">IList</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="List%3CT%3E.System.Collections.IList.Item%20Property"><H3>List&lt;T&gt;.System.Collections.IList.Item Property</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>object IList.this[int index] { get; set; }</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+This read-only property is implemented to support the <A HREF="../../../System/Collections/IList.html" TARGET="contents">IList</A> interface.<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="ListT.html" TARGET="contents">System.Collections.Generic.List&lt;T&gt; Class</A>, <A HREF="Generic.html" TARGET="members">System.Collections.Generic Namespace</A>
+</BLOCKQUOTE>
+
+</BODY>
+</HTML>

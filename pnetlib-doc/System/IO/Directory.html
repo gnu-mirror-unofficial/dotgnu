@@ -68,8 +68,8 @@ Implementations are required to preserve
 
 Directory Methods<P>
 
-<A HREF="#Directory.Delete%28System.String%29%20Method" TARGET="contents">Directory.Delete(System.String) Method</A><BR>
 <A HREF="#Directory.Delete%28System.String%2C%20bool%29%20Method" TARGET="contents">Directory.Delete(System.String, bool) Method</A><BR>
+<A HREF="#Directory.Delete%28System.String%29%20Method" TARGET="contents">Directory.Delete(System.String) Method</A><BR>
 <A HREF="#Directory.Exists%20Method" TARGET="contents">Directory.Exists Method</A><BR>
 <A HREF="#Directory.GetCreationTime%20Method" TARGET="contents">Directory.GetCreationTime Method</A><BR>
 <A HREF="#Directory.GetCurrentDirectory%20Method" TARGET="contents">Directory.GetCurrentDirectory Method</A><BR>
@@ -78,8 +78,8 @@ Directory Methods<P>
 <A HREF="#Directory.GetDirectoryRoot%20Method" TARGET="contents">Directory.GetDirectoryRoot Method</A><BR>
 <A HREF="#Directory.GetFileSystemEntries%28System.String%29%20Method" TARGET="contents">Directory.GetFileSystemEntries(System.String) Method</A><BR>
 <A HREF="#Directory.GetFileSystemEntries%28System.String%2C%20System.String%29%20Method" TARGET="contents">Directory.GetFileSystemEntries(System.String, System.String) Method</A><BR>
-<A HREF="#Directory.GetFiles%28System.String%29%20Method" TARGET="contents">Directory.GetFiles(System.String) Method</A><BR>
 <A HREF="#Directory.GetFiles%28System.String%2C%20System.String%29%20Method" TARGET="contents">Directory.GetFiles(System.String, System.String) Method</A><BR>
+<A HREF="#Directory.GetFiles%28System.String%29%20Method" TARGET="contents">Directory.GetFiles(System.String) Method</A><BR>
 <A HREF="#Directory.GetLastAccessTime%20Method" TARGET="contents">Directory.GetLastAccessTime Method</A><BR>
 <A HREF="#Directory.GetLastWriteTime%20Method" TARGET="contents">Directory.GetLastWriteTime Method</A><BR>
 <A HREF="#Directory.Move%20Method" TARGET="contents">Directory.Move Method</A><BR>
@@ -87,70 +87,6 @@ Directory Methods<P>
 <A HREF="#Directory.SetCurrentDirectory%20Method" TARGET="contents">Directory.SetCurrentDirectory Method</A><BR>
 <A HREF="#Directory.SetLastAccessTime%20Method" TARGET="contents">Directory.SetLastAccessTime Method</A><BR>
 <A HREF="#Directory.SetLastWriteTime%20Method" TARGET="contents">Directory.SetLastWriteTime Method</A><BR>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="Directory.Delete%28System.String%29%20Method"><H3>Directory.Delete(System.String) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static void Delete(string path);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Deletes the empty directory
-      specified in <I>path</I>.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>path</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the directory to delete. This directory must be writable and empty.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>is <CODE>null</CODE>
-.</TD></TR>
-<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The specified <I>path</I> was not found.</TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The directory specified by <I>path</I> is read-only or is not empty.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
- This method behaves identically to System.IO.Directory.Delete(System.String)(<I>path</I>, <CODE>false</CODE>
- ).<P>
-
-The <I>path</I>
-argument is permitted to specify relative or absolute path
-information. Relative path information is interpreted as relative to the current
-working directory. [<I>Note</I>: To obtain the current
-working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
-
-<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
 </BLOCKQUOTE>
 
 <HR>
@@ -188,14 +124,14 @@ working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The specified <I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The directory specified by <I>path</I> is read-only, or <I>recursive</I> is <CODE>false</CODE>
  and <I>path</I> is not an empty directory.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -205,6 +141,70 @@ working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
 The <I>path</I> argument is permitted to specify
    relative or absolute path information. Relative path information is interpreted
    as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Directory.Delete%28System.String%29%20Method"><H3>Directory.Delete(System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static void Delete(string path);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Deletes the empty directory
+      specified in <I>path</I>.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the directory to delete. This directory must be writable and empty.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>is <CODE>null</CODE>
+.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD>The specified <I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The directory specified by <I>path</I> is read-only or is not empty.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+ This method behaves identically to System.IO.Directory.Delete(System.String)(<I>path</I>, <CODE>false</CODE>
+ ).<P>
+
+The <I>path</I>
+argument is permitted to specify relative or absolute path
+information. Relative path information is interpreted as relative to the current
+working directory. [<I>Note</I>: To obtain the current
+working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
 
 <P>
 
@@ -256,17 +256,6 @@ if the caller
    a file, returns <CODE>false</CODE>
 .<P>
 
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
-<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
-<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
-</TABLE>
 </BLOCKQUOTE>
 
 <H4>Description</H4>
@@ -334,12 +323,12 @@ Platforms that do not
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The directory specified by <I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -395,7 +384,7 @@ Platforms that do not
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -451,11 +440,11 @@ A <A HREF="../../System/String.html" TARGET="contents">String</A> array containi
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>is <CODE>null</CODE>
 . </TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is a file name.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -507,7 +496,7 @@ provided in <I>path</I>.<P>
 <DT>path</DT>
 <DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the starting location for the search.</DD>
 <DT>searchPattern</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the text pattern to match against the names of subdirectories of <I>path</I>. <I>searchPattern</I> cannot contain System.IO.Path.DirectorySeparatorChar or System.IO.Path.AltDirectorySeparatorChar.</DD>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the text pattern to match against the names of subdirectories of <I>path</I>. <I>searchPattern</I> cannot end with  &quot;..&quot;, or contain &quot;..&quot; followed by System.IO.Path.DirectorySeparatorChar or System.IO.Path.AltDirectorySeparatorChar.</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -528,8 +517,7 @@ A <CODE>String</CODE>
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>or<I> searchPattern </I>is <CODE>null</CODE>
 . </TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have permission to access the requested information.</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains implementation-defined invalid characters.<P>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains implementation-specific invalid characters.<P>
 
 <I>searchPattern</I> does not contain a valid pattern.<P>
 
@@ -537,6 +525,7 @@ A <CODE>String</CODE>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is a file name.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have permission to access the requested information.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -618,13 +607,13 @@ Platforms that do not
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters. <P>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters. <P>
 
 </TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -727,11 +716,11 @@ Returns the names of all files and subdirectories in the specified directory.<P>
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
  .</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is a file name.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -783,7 +772,7 @@ The names returned by this method are prefixed with the
 <DT>path</DT>
 <DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the directory to search.</DD>
 <DT>searchPattern</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the text pattern for which to search. <I>searchPattern</I> cannot contain System.IO.Path.DirectorySeparatorChar or System.IO.Path.AltDirectorySeparatorChar .</DD>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the text pattern for which to search. <I>searchPattern</I> cannot end with &quot;..&quot;, or contain &quot;..&quot; followed by System.IO.Path.DirectorySeparatorChar or System.IO.Path.AltDirectorySeparatorChar .</DD>
 </DL>
 </BLOCKQUOTE>
 
@@ -804,11 +793,17 @@ A <CODE>String</CODE>
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>searchPattern </I>or <I>path</I> is <CODE>null</CODE>
 .</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.<P>
+
+-or-<P>
+
+<I>searchPattern</I> does not contain a valid pattern.<P>
+
+</TD></TR>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is a file name.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -838,6 +833,105 @@ The names returned by this method are prefixed with the
    directory information provided in <I>path</I>. The <I>path</I> argument is permitted to specify
    relative or absolute path information. Relative path information is interpreted
    as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
+
+<P>
+
+</BLOCKQUOTE>
+
+<H4>See Also</H4>
+
+<BLOCKQUOTE>
+<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
+</BLOCKQUOTE>
+
+<HR>
+
+<A NAME="Directory.GetFiles%28System.String%2C%20System.String%29%20Method"><H3>Directory.GetFiles(System.String, System.String) Method</H3>
+
+<BLOCKQUOTE>
+<TABLE COLS="1" ROWS="1" WIDTH="100%">
+<TR><TD BGCOLOR="#C0C0C0"><PRE>public static string[] GetFiles(string path, string searchPattern);</PRE></TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Summary</H4>
+
+<BLOCKQUOTE>
+ Returns the names of files in
+      the specified directory that match the
+      specified search pattern.<P>
+
+</BLOCKQUOTE>
+
+<H4>Parameters</H4>
+
+<BLOCKQUOTE>
+<DL>
+<DT>path</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the directory to search.</DD>
+<DT>searchPattern</DT>
+<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the text pattern to match against the names of files in <I>path</I>. <I>searchPattern</I> cannot end with  &quot;..&quot;, or contain &quot;..&quot; followed by System.IO.Path.DirectorySeparatorChar or System.IO.Path.AltDirectorySeparatorChar.</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H4>Return Value</H4>
+
+<BLOCKQUOTE>
+A <A HREF="../../System/String.html" TARGET="contents">String</A>
+array containing the names of files in the specified directory that match the
+specified search pattern.<P>
+
+</BLOCKQUOTE>
+
+<H4>Exceptions</H4>
+
+<BLOCKQUOTE>
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
+<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>searchPattern </I>or <I>path</I> is <CODE>null</CODE>
+ .</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.<P>
+
+-or-<P>
+
+<I>searchPattern</I> does not contain a valid pattern.<P>
+
+</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is an existing file name.</TD></TR>
+<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<H4>Description</H4>
+
+<BLOCKQUOTE>
+The following wild card specifiers are permitted in <I>searchPattern</I>:<P>
+
+<TABLE BORDER="1" COLS="2" WIDTH="100%">
+<TR BGCOLOR="#C0C0C0"><TH>Wild
+         card</TH><TH>Description</TH></TR>
+<TR><TD> *</TD><TD>Zero
+         or more characters.</TD></TR>
+<TR><TD> ?</TD><TD>Exactly one character.</TD></TR>
+</TABLE>
+ The period (&quot;.&quot;) character, if immediately followed by a wild card specifier,
+   indicates that the period or the empty string matches the
+   pattern. For example, &quot;foo.*&quot; and &quot;foo.?&quot; match &quot;foo&quot;. Note that
+   &quot;foo.*&quot; and &quot;foo*&quot; behave identically. If the period is not immediately followed
+   by a wildcard, it has no special meaning (it represents a period). <P>
+
+Characters other than the wild card specifiers and the period always represent themselves, for example, the
+<I>searchPattern</I> string &quot;*t&quot; searches for all 
+   names in <I>path</I> ending with the letter &quot;t&quot;. The <I>searchPattern</I> string &quot;s*&quot; searches for all
+   names in <I>path</I> beginning with the
+   letter &quot;s&quot;.<P>
+
+The <I>path</I> argument is permitted to specify relative or absolute path
+information. Relative path information is interpreted as relative to the current
+working directory. [<I>Note</I>: To obtain the current
+working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
 
 <P>
 
@@ -895,13 +989,13 @@ Platforms that do not support this feature
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path </I>is null.<P>
 
 </TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>path is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters. <P>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD>path is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters. <P>
 
 </TD></TR>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is a file name.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -913,101 +1007,6 @@ Platforms that do not support this feature
 The <I>path</I> argument is permitted to specify
 relative or absolute path information. Relative path information is interpreted
 as relative to the current working directory. [<I>Note</I>: To obtain the current working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
-
-<P>
-
-</BLOCKQUOTE>
-
-<H4>See Also</H4>
-
-<BLOCKQUOTE>
-<A HREF="Directory.html" TARGET="contents">System.IO.Directory Class</A>, <A HREF="IO.html" TARGET="members">System.IO Namespace</A>
-</BLOCKQUOTE>
-
-<HR>
-
-<A NAME="Directory.GetFiles%28System.String%2C%20System.String%29%20Method"><H3>Directory.GetFiles(System.String, System.String) Method</H3>
-
-<BLOCKQUOTE>
-<TABLE COLS="1" ROWS="1" WIDTH="100%">
-<TR><TD BGCOLOR="#C0C0C0"><PRE>public static string[] GetFiles(string path, string searchPattern);</PRE></TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Summary</H4>
-
-<BLOCKQUOTE>
- Returns the names of files in
-      the specified directory that match the
-      specified search pattern.<P>
-
-</BLOCKQUOTE>
-
-<H4>Parameters</H4>
-
-<BLOCKQUOTE>
-<DL>
-<DT>path</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the name of the directory to search.</DD>
-<DT>searchPattern</DT>
-<DD>A <A HREF="../../System/String.html" TARGET="contents">String</A> containing the text pattern to match against the names of files in <I>path</I>. <I>searchPattern</I> cannot contain System.IO.Path.DirectorySeparatorChar or System.IO.Path.AltDirectorySeparatorChar.</DD>
-</DL>
-</BLOCKQUOTE>
-
-<H4>Return Value</H4>
-
-<BLOCKQUOTE>
-A <A HREF="../../System/String.html" TARGET="contents">String</A>
-array containing the names of files in the specified directory that match the
-specified search pattern.<P>
-
-</BLOCKQUOTE>
-
-<H4>Exceptions</H4>
-
-<BLOCKQUOTE>
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>searchPattern </I>or <I>path</I> is <CODE>null</CODE>
- .</TD></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path</I> is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.<P>
-
-</TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> is a file name.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
-<TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
-</TABLE>
-</BLOCKQUOTE>
-
-<H4>Description</H4>
-
-<BLOCKQUOTE>
-The following wild card specifiers are permitted in <I>searchPattern</I>:<P>
-
-<TABLE BORDER="1" COLS="2" WIDTH="100%">
-<TR BGCOLOR="#C0C0C0"><TH>Wild
-         card</TH><TH>Description</TH></TR>
-<TR><TD> *</TD><TD>Zero
-         or more characters.</TD></TR>
-<TR><TD> ?</TD><TD>Exactly one character.</TD></TR>
-</TABLE>
- The period (&quot;.&quot;) character, if immediately followed by a wild card specifier,
-   indicates that the period or the empty string matches the
-   pattern. For example, &quot;foo.*&quot; and &quot;foo.?&quot; match &quot;foo&quot;. Note that
-   &quot;foo.*&quot; and &quot;foo*&quot; behave identically. If the period is not immediately followed
-   by a wildcard, it has no special meaning (it represents a period). <P>
-
-Characters other than the wild card specifiers and the period always represent themselves, for example, the
-<I>searchPattern</I> string &quot;*t&quot; searches for all 
-   names in <I>path</I> ending with the letter &quot;t&quot;. The <I>searchPattern</I> string &quot;s*&quot; searches for all
-   names in <I>path</I> beginning with the
-   letter &quot;s&quot;.<P>
-
-The <I>path</I> argument is permitted to specify relative or absolute path
-information. Relative path information is interpreted as relative to the current
-working directory. [<I>Note</I>: To obtain the current
-working directory, see System.IO.Directory.GetCurrentDirectory.]<P>
 
 <P>
 
@@ -1061,12 +1060,12 @@ Platforms that do not
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The specified path was not found.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1131,12 +1130,12 @@ Platforms that do not
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>The specified path was not found.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1193,11 +1192,21 @@ Moves a file or a directory and its contents to a new location.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>sourceDirName </I>or <I>destDirName </I>is a zero-length string, contains only white space, or contains implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>sourceDirName </I>or <I>destDirName </I>is a zero-length string, contains only white space, or contains implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>sourceDirName </I>or <I>destDirName </I>is <CODE>null</CODE>
 .</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An attempt was made to move a directory to a different volume, or <I>destDirName</I> already exists.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An attempt was made to move a directory to a different volume,<P>
+
+-or-<P>
+
+<I>destDirName</I> already exists.<P>
+
+-or-<P>
+
+<I>sourceDirName</I> and <I>destDirName</I> refer to the same file or directory.<P>
+
+</TD></TR>
 <TR><TD><A HREF="DirectoryNotFoundException.html" TARGET="contents">DirectoryNotFoundException</A></TD><TD><I>sourceDirName </I> was not found.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length or absolute path information for <I>sourceDirName</I> or <I>destDirName</I> exceeds the system-defined maximum length.</TD></TR>
 </TABLE>
@@ -1267,13 +1276,14 @@ Sets the creation date and time for the specified file or directory.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>creationTime </I> specifies a value outside the range of date/times permitted for this operation.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while performing the operation.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1330,12 +1340,13 @@ Sets the application&apos;s current working directory to the specified directory
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
 <TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
 <TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while performing the operation.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
+<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission to access unmanaged code.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1395,12 +1406,14 @@ Sets the date and time the specified file or directory was last accessed.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>lastAccessTime</I> specifies a value outside the range of date/times permitted for this operation.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while performing the operation.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
@@ -1459,12 +1472,14 @@ Sets the date and time a directory was last written to.<P>
 <BLOCKQUOTE>
 <TABLE BORDER="1" COLS="2" WIDTH="100%">
 <TR BGCOLOR="#C0C0C0"><TH>Exception Type</TH><TH>Condition</TH></TR>
-<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-defined invalid characters.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentException.html" TARGET="contents">ArgumentException</A></TD><TD><I>path </I>is a zero-length string, contains only white space, or contains one or more implementation-specific invalid characters.</TD></TR>
 <TR><TD><A HREF="../../System/ArgumentNullException.html" TARGET="contents">ArgumentNullException</A></TD><TD><I>path</I> is <CODE>null</CODE>
 .</TD></TR>
-<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="../../System/ArgumentOutOfRangeException.html" TARGET="contents">ArgumentOutOfRangeException</A></TD><TD><I>lastWriteTime</I> specifies a value outside the range of date/times permitted for this operation.</TD></TR>
+<TR><TD><A HREF="FileNotFoundException.html" TARGET="contents">FileNotFoundException</A></TD><TD><I>path</I> was not found.</TD></TR>
+<TR><TD><A HREF="IOException.html" TARGET="contents">IOException</A></TD><TD>An I/O error occurred while performing the operation.</TD></TR>
 <TR><TD><A HREF="PathTooLongException.html" TARGET="contents">PathTooLongException</A></TD><TD>The length of <I>path</I> or the absolute path information for <I>path</I> exceeds the system-defined maximum length.</TD></TR>
-<TR><TD><A HREF="../../System/Security/SecurityException.html" TARGET="contents">SecurityException</A></TD><TD>The caller does not have the required permission.</TD></TR>
+<TR><TD><A HREF="../../System/UnauthorizedAccessException.html" TARGET="contents">UnauthorizedAccessException</A></TD><TD>The caller does not have the required permission.</TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 
