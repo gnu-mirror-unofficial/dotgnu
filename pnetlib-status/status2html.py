@@ -23,9 +23,9 @@ cvs_sys_entries=cvsmoddate("/opt/cvs/dotgnu/pnetlib/")
 class classnode:
 	def __init__(self,node):
 		self.node=node
-		self.fqname=node.getAttribute("name")
-		self.ns=string.join(string.split(self.fqname,".")[0:-1],".")
-		self.name=string.split(self.fqname,".")[-1]
+		self.name=node.getAttribute("name")
+		self.ns=node.getAttribute("namespace")
+		self.fqname=self.ns+"."+self.name
 		self.methods=node.getElementsByTagName("method")
 		self.fields=node.getElementsByTagName("field")
 		self.ctors=node.getElementsByTagName("ctor")
