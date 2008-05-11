@@ -1,0 +1,699 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 11 2008 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Just-In-Time Compiler Library: 5. Building and compiling functions with the JIT</title>
+
+<meta name="description" content="Just-In-Time Compiler Library: 5. Building and compiling functions with the JIT">
+<meta name="keywords" content="Just-In-Time Compiler Library: 5. Building and compiling functions with the JIT">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+/* document-wide settings */
+   
+
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+body
+   {
+      color: #000000;
+      background: #ffffff;
+      margin-top: 0;
+      margin-left: 5;
+      margin-right: 5;
+   }
+   a:link
+   {
+      color: #000080;
+   }
+   a:visited
+   {
+      color: #808080;
+   }
+   a:active
+   {
+      color: #008000;
+   }
+/* document-wide settings */
+
+/* miscellaneous settings */
+   .mainheading
+   {
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding-left: 5px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   .mainsubheading
+   {
+      font-size: 12px;
+   }
+   .maincontent
+   {
+      margin-left: 25;
+      margin-right: 25;
+   }
+   .news
+   {
+      padding-left: 10;
+      padding-right: 5;
+   }
+   .heading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   .body
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   .linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   .linksbody
+   {
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   a.linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   a.linksbody
+   {
+      text-decoration: none;
+   }
+   a.html2
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      color: #000080;
+      text-decoration: underline;
+   }
+   p.credits
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      text-align: center;
+   }
+/* miscellaneous settings */
+
+/* HTML2 compatability settings */
+   h1
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   h2
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   h3
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 7px;
+      padding-right: 0;
+      text-decoration: none;
+      color: #008080;
+   }
+   h4
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-style: italic;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 10px;
+      text-decoration: none;
+      color: #008080;
+   }
+   p
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   ul
+   {
+      list-style: square outside url("g/dot.jpg");
+   }
+   ol
+   {
+	   list-style: decimal outside none;
+   }
+   li
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dd
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dt
+   {
+      font-weight: bold;
+      font-size: 12px;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+   }
+   pre
+   {
+      padding-left: 10px;
+      padding-right: 5px;
+   }
+   blockquote
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      padding-left: 10;
+      padding-right: 5px;
+   }
+/* HTML2 compatability settings */
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Functions"></a>
+<a name="SEC15"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_4.html#SEC14" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_6.html#SEC16" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit_4.html#SEC12" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_6.html#SEC16" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 5. Building and compiling functions with the JIT </h1>
+
+
+
+<dl>
+<dt><u>Function:</u> jit_function_t <b>jit_function_create</b><i> (jit_context_t <var>context</var>, jit_type_t <var>signature</var>)</i>
+<a name="IDX19"></a>
+</dt>
+<dd><p>Create a new function block and associate it with a JIT context.
+Returns NULL if out of memory.
+</p>
+<p>A function persists for the lifetime of its containing context.
+It initially starts life in the &quot;building&quot; state, where the user
+constructs instructions that represents the function body.
+Once the build process is complete, the user calls
+<code>jit_function_compile</code> to convert it into its executable form.
+</p>
+<p>It is recommended that you call <code>jit_context_build_start</code> before
+calling <code>jit_function_create</code>, and then call
+<code>jit_context_build_end</code> after you have called
+<code>jit_function_compile</code>.  This will protect the JIT's internal
+data structures within a multi-threaded environment.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_function_t <b>jit_function_create_nested</b><i> (jit_context_t <var>context</var>, jit_type_t <var>signature</var>, jit_function_t <var>parent</var>)</i>
+<a name="IDX20"></a>
+</dt>
+<dd><p>Create a new function block and associate it with a JIT context.
+In addition, this function is nested inside the specified
+<var>parent</var> function and is able to access its parent's
+(and grandparent's) local variables.
+</p>
+<p>The front end is responsible for ensuring that the nested function can
+never be called by anyone except its parent and sibling functions.
+The front end is also responsible for ensuring that the nested function
+is compiled before its parent.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_function_abandon</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX21"></a>
+</dt>
+<dd><p>Abandon this function during the build process.  This should be called
+when you detect a fatal error that prevents the function from being
+properly built.  The <var>func</var> object is completely destroyed and
+detached from its owning context.  The function is left alone if
+it was already compiled.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_context_t <b>jit_function_get_context</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX22"></a>
+</dt>
+<dd><p>Get the context associated with a function.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_function_get_signature</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX23"></a>
+</dt>
+<dd><p>Get the signature associated with a function.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_function_set_meta</b><i> (jit_function_t <var>func</var>, int <var>type</var>, void *<var>data</var>, jit_meta_free_func <var>free_data</var>, int <var>build_only</var>)</i>
+<a name="IDX24"></a>
+</dt>
+<dd><p>Tag a function with some metadata.  Returns zero if out of memory.
+</p>
+<p>Metadata may be used to store dependency graphs, branch prediction
+information, or any other information that is useful to optimizers
+or code generators.  It can also be used by higher level user code
+to store information about the function that is specific to the
+virtual machine or language.
+</p>
+<p>If the <var>type</var> already has some metadata associated with it, then
+the previous value will be freed.
+</p>
+<p>If <var>build_only</var> is non-zero, then the metadata will be freed
+when the function is compiled with <code>jit_function_compile</code>.
+Otherwise the metadata will persist until the JIT context is destroyed,
+or <code>jit_function_free_meta</code> is called for the specified <var>type</var>.
+</p>
+<p>Metadata type values of 10000 or greater are reserved for internal use.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_function_get_meta</b><i> (jit_function_t <var>func</var>, int <var>type</var>)</i>
+<a name="IDX25"></a>
+</dt>
+<dd><p>Get the metadata associated with a particular tag.  Returns NULL
+if <var>type</var> does not have any metadata associated with it.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_function_free_meta</b><i> (jit_function_t <var>func</var>, int <var>type</var>)</i>
+<a name="IDX26"></a>
+</dt>
+<dd><p>Free metadata of a specific type on a function.  Does nothing if
+the <var>type</var> does not have any metadata associated with it.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_function_t <b>jit_function_next</b><i> (jit_context_t <var>context</var>, jit_function_t <var>prev</var>)</i>
+<a name="IDX27"></a>
+</dt>
+<dd><p>Iterate over the defined functions in creation order.  The <var>prev</var>
+argument should be NULL on the first call.  Returns NULL at the end.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_function_t <b>jit_function_previous</b><i> (jit_context_t <var>context</var>, jit_function_t <var>prev</var>)</i>
+<a name="IDX28"></a>
+</dt>
+<dd><p>Iterate over the defined functions in reverse creation order.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_block_t <b>jit_function_get_entry</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX29"></a>
+</dt>
+<dd><p>Get the entry block for a function.  This is always the first block
+created by <code>jit_function_create</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_block_t <b>jit_function_get_current</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX30"></a>
+</dt>
+<dd><p>Get the current block for a function.  New blocks are created by
+certain <code>jit_insn_xxx</code> calls.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_function_t <b>jit_function_get_nested_parent</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX31"></a>
+</dt>
+<dd><p>Get the nested parent for a function, or NULL if <var>func</var>
+does not have a nested parent.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_function_compile</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX32"></a>
+</dt>
+<dd><p>Compile a function to its executable form.  If the function was
+already compiled, then do nothing.  Returns zero on error.
+</p>
+<p>If an error occurs, you can use <code>jit_function_abandon</code> to
+completely destroy the function.  Once the function has been compiled
+successfully, it can no longer be abandoned.
+</p>
+<p>Sometimes you may wish to recompile a function, to apply greater
+levels of optimization the second time around.  You must call
+<code>jit_function_set_recompilable</code> before you compile the function
+the first time.  On the second time around, build the function's
+instructions again, and call <code>jit_function_compile</code>
+a second time.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_function_compile_entry</b><i> (jit_function_t <var>func</var>, void **<var>entry_point</var>)</i>
+<a name="IDX33"></a>
+</dt>
+<dd><p>Compile a function to its executable form but do not make it
+available for invocation yet. It may be made available later
+with <code>jit_function_setup_entry</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_function_setup_entry</b><i> (jit_function_t <var>func</var>, void *<var>entry_point</var>)</i>
+<a name="IDX34"></a>
+</dt>
+<dd><p>Make a function compiled with <code>jit_function_compile_entry</code>
+available for invocation and free the resources used for
+compilation. If <var>entry_point</var> is null then it only
+frees the resources.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_function_is_compiled</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX35"></a>
+</dt>
+<dd><p>Determine if a function has already been compiled.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_function_set_recompilable</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX36"></a>
+</dt>
+<dd><p>Mark this function as a candidate for recompilation.  That is,
+it is possible that we may call <code>jit_function_compile</code>
+more than once, to re-optimize an existing function.
+</p>
+<p>It is very important that this be called before the first time that
+you call <code>jit_function_compile</code>.  Functions that are recompilable
+are invoked in a slightly different way to non-recompilable functions.
+If you don't set this flag, then existing invocations of the function
+may continue to be sent to the original compiled version, not the new
+version.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_function_clear_recompilable</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX37"></a>
+</dt>
+<dd><p>Clear the recompilable flag on this function.  Normally you would use
+this once you have decided that the function has been optimized enough,
+and that you no longer intend to call <code>jit_function_compile</code> again.
+</p>
+<p>Future uses of the function with <code>jit_insn_call</code> will output a
+direct call to the function, which is more efficient than calling
+its recompilable version.  Pre-existing calls to the function may still
+use redirection stubs, and will remain so until the pre-existing
+functions are themselves recompiled.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_function_is_recompilable</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX38"></a>
+</dt>
+<dd><p>Determine if this function is recompilable.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_function_to_closure</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX39"></a>
+</dt>
+<dd><p>Convert a compiled function into a closure that can called directly
+from C.  Returns NULL if out of memory, or if closures are not
+supported on this platform.
+</p>
+<p>If the function has not been compiled yet, then this will return
+a pointer to a redirector that will arrange for the function to be
+compiled on-demand when it is called.
+</p>
+<p>Creating a closure for a nested function is not recommended as
+C does not have any way to call such closures directly.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_function_t <b>jit_function_from_closure</b><i> (jit_context_t <var>context</var>, void *<var>closure</var>)</i>
+<a name="IDX40"></a>
+</dt>
+<dd><p>Convert a closure back into a function.  Returns NULL if the
+closure does not correspond to a function in the specified context.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_function_t <b>jit_function_from_pc</b><i> (jit_context_t <var>context</var>, void *<var>pc</var>, void **<var>handler</var>)</i>
+<a name="IDX41"></a>
+</dt>
+<dd><p>Get the function that contains the specified program counter location.
+Also return the address of the <code>catch</code> handler for the same location.
+Returns NULL if the program counter does not correspond to a function
+under the control of <var>context</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_function_to_vtable_pointer</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX42"></a>
+</dt>
+<dd><p>Return a pointer that is suitable for referring to this function
+from a vtable.  Such pointers should only be used with the
+<code>jit_insn_call_vtable</code> instruction.
+</p>
+<p>Using <code>jit_insn_call_vtable</code> is generally more efficient than
+<code>jit_insn_call_indirect</code> for calling virtual methods.
+</p>
+<p>The vtable pointer might be the same as the closure, but this isn't
+guaranteed.  Closures can be used with <code>jit_insn_call_indirect</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_function_t <b>jit_function_from_vtable_pointer</b><i> (jit_context_t <var>context</var>, void *<var>vtable_pointer</var>)</i>
+<a name="IDX43"></a>
+</dt>
+<dd><p>Convert a vtable_pointer back into a function.  Returns NULL if the
+vtable_pointer does not correspond to a function in the specified context.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_function_set_on_demand_compiler</b><i> (jit_function_t <var>func</var>, jit_on_demand_func <var>on_demand</var>)</i>
+<a name="IDX44"></a>
+</dt>
+<dd><p>Specify the C function to be called when <var>func</var> needs to be
+compiled on-demand.  This should be set just after the function
+is created, before any build or compile processes begin.
+</p>
+<p>You won't need an on-demand compiler if you always build and compile
+your functions before you call them.  But if you can call a function
+before it is built, then you must supply an on-demand compiler.
+</p>
+<p>When on-demand compilation is requested, <code>libjit</code> takes the following
+actions:
+</p>
+<ol>
+<li>
+The context is locked by calling <code>jit_context_build_start</code>.
+
+</li><li>
+If the function has already been compiled, <code>libjit</code> unlocks
+the context and returns immediately.  This can happen because of race
+conditions between threads: some other thread may have beaten us
+to the on-demand compiler.
+
+</li><li>
+The user's on-demand compiler is called.  It is responsible for building
+the instructions in the function's body.  It should return one of the
+result codes <code>JIT_RESULT_OK</code>, <code>JIT_RESULT_COMPILE_ERROR</code>,
+or <code>JIT_RESULT_OUT_OF_MEMORY</code>.
+
+</li><li>
+If the user's on-demand function hasn't already done so, <code>libjit</code>
+will call <code>jit_function_compile</code> to compile the function.
+
+</li><li>
+The context is unlocked by calling <code>jit_context_build_end</code> and
+<code>libjit</code> jumps to the newly-compiled entry point.  If an error
+occurs, a built-in exception of type <code>JIT_RESULT_COMPILE_ERROR</code>
+or <code>JIT_RESULT_OUT_OF_MEMORY</code> will be thrown.
+</li></ol>
+
+<p>Normally you will need some kind of context information to tell you
+which higher-level construct is being compiled.  You can use the
+metadata facility to add this context information to the function
+just after you create it with <code>jit_function_create</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_on_demand_func <b>jit_function_get_on_demand_compiler</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX45"></a>
+</dt>
+<dd><p>Returns function's on-demand compiler.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_function_apply</b><i> (jit_function_t <var>func</var>, void **<var>args</var>, void *<var>return_area</var>)</i>
+<a name="IDX46"></a>
+</dt>
+<dd><p>Call the function <var>func</var> with the supplied arguments.  Each element
+in <var>args</var> is a pointer to one of the arguments, and <var>return_area</var>
+points to a buffer to receive the return value.  Returns zero if an
+exception occurred.
+</p>
+<p>This is the primary means for executing a function from ordinary
+C code without creating a closure first with <code>jit_function_to_closure</code>.
+Closures may not be supported on all platforms, but function application
+is guaranteed to be supported everywhere.
+</p>
+<p>Function applications acts as an exception blocker.  If any exceptions
+occur during the execution of <var>func</var>, they won't travel up the
+stack any further than this point.  This prevents ordinary C code
+from being accidentally presented with a situation that it cannot handle.
+This blocking protection is not present when a function is invoked
+via its closure.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_function_apply_vararg</b><i> (jit_function_t <var>func</var>, jit_type_t <var>signature</var>, void **<var>args</var>, void *<var>return_area</var>)</i>
+<a name="IDX47"></a>
+</dt>
+<dd><p>Call the function <var>func</var> with the supplied arguments.  There may
+be more arguments than are specified in the function's original signature,
+in which case the additional values are passed as variable arguments.
+This function is otherwise identical to <code>jit_function_apply</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_function_set_optimization_level</b><i> (jit_function_t <var>func</var>, unsigned int <var>level</var>)</i>
+<a name="IDX48"></a>
+</dt>
+<dd><p>Set the optimization level for <var>func</var>.  Increasing values indicate
+that the <code>libjit</code> dynamic compiler should expend more effort to
+generate better code for this function.  Usually you would increase
+this value just before forcing <var>func</var> to recompile.
+</p>
+<p>When the optimization level reaches the value returned by
+<code>jit_function_get_max_optimization_level()</code>, there is usually
+little point in continuing to recompile the function because
+<code>libjit</code> may not be able to do any better.
+</p>
+<p>The front end is usually responsible for choosing candidates for
+function inlining.  If it has identified more such candidates, then
+it may still want to recompile <var>func</var> again even once it has
+reached the maximum optimization level.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> unsigned int <b>jit_function_get_optimization_level</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX49"></a>
+</dt>
+<dd><p>Get the current optimization level for <var>func</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> unsigned int <b>jit_function_get_max_optimization_level</b><i> (void)</i>
+<a name="IDX50"></a>
+</dt>
+<dd><p>Get the maximum optimization level that is supported by <code>libjit</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_label_t <b>jit_function_reserve_label</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX51"></a>
+</dt>
+<dd><p>Allocate a new label for later use within the function <var>func</var>. Most
+instructions that require a label could perform label allocation themselves.
+A separate label allocation could be useful to fill a jump table with
+identical entries.
+</p></dd></dl>
+
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_4.html#SEC12" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_6.html#SEC16" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>May, 11 2008</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

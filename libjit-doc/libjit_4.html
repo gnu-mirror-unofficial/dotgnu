@@ -1,0 +1,575 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 11 2008 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Just-In-Time Compiler Library: 4. Initializing the JIT</title>
+
+<meta name="description" content="Just-In-Time Compiler Library: 4. Initializing the JIT">
+<meta name="keywords" content="Just-In-Time Compiler Library: 4. Initializing the JIT">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+/* document-wide settings */
+   
+
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+body
+   {
+      color: #000000;
+      background: #ffffff;
+      margin-top: 0;
+      margin-left: 5;
+      margin-right: 5;
+   }
+   a:link
+   {
+      color: #000080;
+   }
+   a:visited
+   {
+      color: #808080;
+   }
+   a:active
+   {
+      color: #008000;
+   }
+/* document-wide settings */
+
+/* miscellaneous settings */
+   .mainheading
+   {
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding-left: 5px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   .mainsubheading
+   {
+      font-size: 12px;
+   }
+   .maincontent
+   {
+      margin-left: 25;
+      margin-right: 25;
+   }
+   .news
+   {
+      padding-left: 10;
+      padding-right: 5;
+   }
+   .heading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   .body
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   .linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   .linksbody
+   {
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   a.linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   a.linksbody
+   {
+      text-decoration: none;
+   }
+   a.html2
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      color: #000080;
+      text-decoration: underline;
+   }
+   p.credits
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      text-align: center;
+   }
+/* miscellaneous settings */
+
+/* HTML2 compatability settings */
+   h1
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   h2
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   h3
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 7px;
+      padding-right: 0;
+      text-decoration: none;
+      color: #008080;
+   }
+   h4
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-style: italic;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 10px;
+      text-decoration: none;
+      color: #008080;
+   }
+   p
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   ul
+   {
+      list-style: square outside url("g/dot.jpg");
+   }
+   ol
+   {
+	   list-style: decimal outside none;
+   }
+   li
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dd
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dt
+   {
+      font-weight: bold;
+      font-size: 12px;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+   }
+   pre
+   {
+      padding-left: 10px;
+      padding-right: 5px;
+   }
+   blockquote
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      padding-left: 10;
+      padding-right: 5px;
+   }
+/* HTML2 compatability settings */
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Initialization"></a>
+<a name="SEC12"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_3.html#SEC11" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC13" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit_3.html#SEC5" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_5.html#SEC15" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 4. Initializing the JIT </h1>
+
+
+
+<dl>
+<dt><u>Function:</u> void <b>jit_init</b><i> (void)</i>
+<a name="IDX1"></a>
+</dt>
+<dd><p>This is normally the first function that you call when using
+<code>libjit</code>.  It initializes the library and prepares for
+JIT operations.
+</p>
+<p>The <code>jit_context_create</code> function also calls this, so you can
+avoid using <code>jit_init</code> if <code>jit_context_create</code> is the first
+JIT function that you use.
+</p>
+<p>It is safe to initialize the JIT multiple times.  Subsequent
+initializations are quietly ignored.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_uses_interpreter</b><i> (void)</i>
+<a name="IDX2"></a>
+</dt>
+<dd><p>Determine if the JIT uses a fall-back interpreter to execute code
+rather than generating and executing native code.  This can be
+called prior to <code>jit_init</code>.
+</p></dd></dl>
+
+
+
+
+<p>Everything that is done with <code>libjit</code> is done relative to a context.
+It is possible to have more than one context at a time - each acts as an
+independent environment for compiling and managing code.
+</p>
+<p>When you want to compile a function, you create it with
+<code>jit_function_create</code>, and then populate its body with
+calls to the value and instruction functions.  See See section <a href="libjit_7.html#SEC17">Working with temporary values in the JIT</a>, and
+<a href="libjit_8.html#SEC18">Working with instructions in the JIT</a> for more information on how to do this.
+</p>
+<hr size="6">
+<a name="SEC13"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC12" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC14" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC12" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC12" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_5.html#SEC15" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 4.1 Using libjit in a multi-threaded environment </h2>
+
+<p>The library does not handle the creation, management, and destruction
+of threads itself.  It is up to the front-end environment to take
+care of that.  But the library is thread-aware, as long as you take
+some very simple steps.
+</p>
+<p>In a multi-threaded environment, you must ensure that only one
+thread can build functions at any one time.  Otherwise the
+JIT's context may become corrupted.  To protect the system,
+you should call <code>jit_context_build_start</code> before
+creating the function.  And then call <code>jit_context_build_end</code>
+once the function has been fully compiled.
+</p>
+<p>You can compile multiple functions during the one build process
+if you wish, which is the normal case when compiling a class.
+</p>
+<p>It is usually a good idea to suspend the finalization of
+garbage-collected objects while function building is in progress.
+Otherwise you may get a deadlock when the finalizer thread tries
+to call the builder to compile a finalization routine.  Suspension
+of finalization is the responsibility of the caller.
+</p>
+<hr size="6">
+<a name="SEC14"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC13" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_5.html#SEC15" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC12" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC12" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_5.html#SEC15" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 4.2 Context functions </h2>
+
+<p>The following functions are available to create, manage, and
+ultimately destroy JIT contexts:
+</p>
+
+<dl>
+<dt><u>Function:</u> jit_context_t <b>jit_context_create</b><i> (void)</i>
+<a name="IDX3"></a>
+</dt>
+<dd><p>Create a new context block for the JIT.  Returns NULL
+if out of memory.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_context_destroy</b><i> (jit_context_t <var>context</var>)</i>
+<a name="IDX4"></a>
+</dt>
+<dd><p>Destroy a JIT context block and everything that is associated with it.
+It is very important that no threads within the program are currently
+running compiled code when this function is called.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_context_supports_threads</b><i> (jit_context_t <var>context</var>)</i>
+<a name="IDX5"></a>
+</dt>
+<dd><p>Determine if the JIT supports threads.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_context_build_start</b><i> (jit_context_t <var>context</var>)</i>
+<a name="IDX6"></a>
+</dt>
+<dd><p>This routine should be called before you start building a function
+to be JIT'ed.  It acquires a lock on the context to prevent other
+threads from accessing the build process, since only one thread
+can be performing build operations at any one time.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_context_build_end</b><i> (jit_context_t <var>context</var>)</i>
+<a name="IDX7"></a>
+</dt>
+<dd><p>This routine should be called once you have finished building
+and compiling a function and are ready to resume normal execution.
+This routine will release the build lock, allowing other threads
+that are waiting on the builder to proceed.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_context_set_on_demand_driver</b><i> (jit_context_t <var>context</var>, jit_on_demand_driver_func <var>driver</var>)</i>
+<a name="IDX8"></a>
+</dt>
+<dd><p>Specify the C function to be called to drive on-demand compilation.
+</p>
+<p>When on-demand compilation is requested the default driver provided by
+<code>libjit</code> takes the following actions:
+</p>
+<ol>
+<li>
+The context is locked by calling <code>jit_context_build_start</code>.
+
+</li><li>
+If the function has already been compiled, <code>libjit</code> unlocks
+the context and returns immediately.  This can happen because of race
+conditions between threads: some other thread may have beaten us
+to the on-demand compiler.
+
+</li><li>
+The user's on-demand compiler is called.  It is responsible for building
+the instructions in the function's body.  It should return one of the
+result codes <code>JIT_RESULT_OK</code>, <code>JIT_RESULT_COMPILE_ERROR</code>,
+or <code>JIT_RESULT_OUT_OF_MEMORY</code>.
+
+</li><li>
+If the user's on-demand function hasn't already done so, <code>libjit</code>
+will call <code>jit_function_compile</code> to compile the function.
+
+</li><li>
+The context is unlocked by calling <code>jit_context_build_end</code> and
+<code>libjit</code> jumps to the newly-compiled entry point.  If an error
+occurs, a built-in exception of type <code>JIT_RESULT_COMPILE_ERROR</code>
+or <code>JIT_RESULT_OUT_OF_MEMORY</code> will be thrown.
+
+</li><li>
+The entry point of the compiled function is returned from the
+driver.
+</li></ol>
+
+<p>You may need to provide your own driver if some additional actions
+are required.
+</p>
+</dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_context_set_meta</b><i> (jit_context_t <var>context</var>, int <var>type</var>, void *<var>data</var>, jit_meta_free_func <var>free_data</var>)</i>
+<a name="IDX9"></a>
+</dt>
+<dd><p>Tag a context with some metadata.  Returns zero if out of memory.
+</p>
+<p>Metadata may be used to store dependency graphs, branch prediction
+information, or any other information that is useful to optimizers
+or code generators.  It can also be used by higher level user code
+to store information about the context that is specific to the
+virtual machine or language.
+</p>
+<p>If the <var>type</var> already has some metadata associated with it, then
+the previous value will be freed.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_context_set_meta_numeric</b><i> (jit_context_t <var>context</var>, int <var>type</var>, jit_nuint <var>data</var>)</i>
+<a name="IDX10"></a>
+</dt>
+<dd><p>Tag a context with numeric metadata.  Returns zero if out of memory.
+This function is more convenient for accessing the context's
+special option values:
+</p>
+<dl compact="compact">
+<dd><a name="IDX11"></a>
+</dd>
+<dt> <code>JIT_OPTION_CACHE_LIMIT</code></dt>
+<dd><p>A numeric option that indicates the maximum size in bytes of the function
+cache.  If set to zero (the default), the function cache is unlimited
+in size.
+</p>
+<a name="IDX12"></a>
+</dd>
+<dt> <code>JIT_OPTION_CACHE_PAGE_SIZE</code></dt>
+<dd><p>A numeric option that indicates the size in bytes of a single page in the
+function cache.  Memory is allocated for the cache in chunks of
+this size.  If set to zero, the cache page size is set to an
+internally-determined default (usually 128k).  The cache page size
+also determines the maximum size of a single compiled function.
+</p>
+<a name="IDX13"></a>
+</dd>
+<dt> <code>JIT_OPTION_PRE_COMPILE</code></dt>
+<dd><p>A numeric option that indicates that this context is being used
+for pre-compilation if it is set to a non-zero value.  Code within
+pre-compiled contexts cannot be executed directly.  Instead, they
+can be written out to disk in ELF format to be reloaded at
+some future time.
+</p>
+<a name="IDX14"></a>
+</dd>
+<dt> <code>JIT_OPTION_DONT_FOLD</code></dt>
+<dd><p>A numeric option that disables constant folding when it is set to a
+non-zero value.  This is useful for debugging, as it forces <code>libjit</code> to
+always execute constant expressions at run time, instead of at compile time.
+</p>
+<a name="IDX15"></a>
+</dd>
+<dt> <code>JIT_OPTION_POSITION_INDEPENDENT</code></dt>
+<dd><p>A numeric option that forces generation of position-independent code (PIC)
+if it is set to a non-zero value. This may be mainly useful for pre-compiled
+contexts.
+</p></dd>
+</dl>
+
+<p>Metadata type values of 10000 or greater are reserved for internal use.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_context_get_meta</b><i> (jit_context_t <var>context</var>, int <var>type</var>)</i>
+<a name="IDX16"></a>
+</dt>
+<dd><p>Get the metadata associated with a particular tag.  Returns NULL
+if <var>type</var> does not have any metadata associated with it.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_nuint <b>jit_context_get_meta_numeric</b><i> (jit_context_t <var>context</var>, int <var>type</var>)</i>
+<a name="IDX17"></a>
+</dt>
+<dd><p>Get the metadata associated with a particular tag.  Returns zero
+if <var>type</var> does not have any metadata associated with it.
+This version is more convenient for the pre-defined numeric option values.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_context_free_meta</b><i> (jit_context_t <var>context</var>, int <var>type</var>)</i>
+<a name="IDX18"></a>
+</dt>
+<dd><p>Free metadata of a specific type on a context.  Does nothing if
+the <var>type</var> does not have any metadata associated with it.
+</p></dd></dl>
+
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC12" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_5.html#SEC15" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>May, 11 2008</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

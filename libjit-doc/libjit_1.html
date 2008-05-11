@@ -1,0 +1,406 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 11 2008 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Just-In-Time Compiler Library: 1. Introduction and rationale for libjit</title>
+
+<meta name="description" content="Just-In-Time Compiler Library: 1. Introduction and rationale for libjit">
+<meta name="keywords" content="Just-In-Time Compiler Library: 1. Introduction and rationale for libjit">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+/* document-wide settings */
+   
+
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+body
+   {
+      color: #000000;
+      background: #ffffff;
+      margin-top: 0;
+      margin-left: 5;
+      margin-right: 5;
+   }
+   a:link
+   {
+      color: #000080;
+   }
+   a:visited
+   {
+      color: #808080;
+   }
+   a:active
+   {
+      color: #008000;
+   }
+/* document-wide settings */
+
+/* miscellaneous settings */
+   .mainheading
+   {
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding-left: 5px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   .mainsubheading
+   {
+      font-size: 12px;
+   }
+   .maincontent
+   {
+      margin-left: 25;
+      margin-right: 25;
+   }
+   .news
+   {
+      padding-left: 10;
+      padding-right: 5;
+   }
+   .heading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   .body
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   .linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   .linksbody
+   {
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   a.linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   a.linksbody
+   {
+      text-decoration: none;
+   }
+   a.html2
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      color: #000080;
+      text-decoration: underline;
+   }
+   p.credits
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      text-align: center;
+   }
+/* miscellaneous settings */
+
+/* HTML2 compatability settings */
+   h1
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   h2
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   h3
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 7px;
+      padding-right: 0;
+      text-decoration: none;
+      color: #008080;
+   }
+   h4
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-style: italic;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 10px;
+      text-decoration: none;
+      color: #008080;
+   }
+   p
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   ul
+   {
+      list-style: square outside url("g/dot.jpg");
+   }
+   ol
+   {
+	   list-style: decimal outside none;
+   }
+   li
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dd
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dt
+   {
+      font-weight: bold;
+      font-size: 12px;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+   }
+   pre
+   {
+      padding-left: 10px;
+      padding-right: 5px;
+   }
+   blockquote
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      padding-left: 10;
+      padding-right: 5px;
+   }
+/* HTML2 compatability settings */
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Introduction"></a>
+<a name="SEC1"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit.html#Top" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[ &lt;&lt; ]</td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_2.html#SEC4" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 1. Introduction and rationale for libjit </h1>
+
+<p>Just-In-Time compilers are becoming increasingly popular for executing
+dynamic languages like Perl and Python and for semi-dynamic languages
+like Java and C#.  Studies have shown that JIT techniques can get close to,
+and sometimes exceed, the performance of statically-compiled native code.
+</p>
+<p>However, there is a problem with current JIT approaches.  In almost every
+case, the JIT is specific to the object model, runtime support library,
+garbage collector, or bytecode peculiarities of a particular system.
+This inevitably leads to duplication of effort, where all of the good
+JIT work that has gone into one virtual machine cannot be reused in another.
+</p>
+<p>JIT's are not only useful for implementing languages.  They can also be used
+in other programming fields.  Graphical applications can achieve greater
+performance if they can compile a special-purpose rendering routine
+on the fly, customized to the rendering task at hand, rather than using
+static routines.  Needless to say, such applications have no need for
+object models, garbage collectors, or huge runtime class libraries.
+</p>
+<p>Most of the work on a JIT is concerned with arithmetic, numeric type
+conversion, memory loads/stores, looping, performing data flow analysis,
+assigning registers, and generating the executable machine code.
+Only a very small proportion of the work is concerned with language specifics.
+</p>
+<p>The goal of the <code>libjit</code> project is to provide an extensive set of
+routines that takes care of the bulk of the JIT process, without tying the
+programmer down with language specifics.  Where we provide support for
+common object models, we do so strictly in add-on libraries,
+not as part of the core code.
+</p>
+<p>Unlike other systems such as the JVM, .NET, and Parrot, <code>libjit</code>
+is not a virtual machine in its own right.  It is the foundation upon which a
+number of different virtual machines, dynamic scripting languages,
+or customized rendering routines can be built.
+</p>
+<p>The LLVM project (<a href="http://www.llvm.org/">http://www.llvm.org/</a>) has some similar
+characteristics to <code>libjit</code> in that its intermediate format is
+generic across front-end languages.  It is written in C++ and provides
+a large set of compiler development and optimization components;
+much larger than <code>libjit</code> itself provides.  According to its author,
+Chris Lattner, a subset of its capabilities can be used to build JIT's.
+</p>
+<p>Libjit should free developers to think about the design of their front
+ends, and not get bogged down in the details of code execution.
+Meanwhile, experts in the design and implementation of JIT's can concentrate
+on solving code execution problems, instead of front end support issues.
+</p>
+<p>This document describes how to use the library in application programs.
+We start with a list of features and some simple tutorials.  Finally,
+we provide a complete reference guide for all of the API functions in
+<code>libjit</code>, broken down by function category.
+</p>
+<hr size="6">
+<a name="SEC2"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC1" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC3" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC1" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC1" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_2.html#SEC4" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 1.1 Obtaining libjit </h2>
+
+<p>The latest version of <code>libjit</code> can be obtained from Southern
+Storm Software, Pty Ltd's Web site:
+</p>
+<blockquote><p><a href="http://www.southern-storm.com.au/libjit.html">http://www.southern-storm.com.au/libjit.html</a>
+</p></blockquote>
+
+<hr size="6">
+<a name="SEC3"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_2.html#SEC4" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC1" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC1" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_2.html#SEC4" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 1.2 Further reading </h2>
+
+<p>While it isn't strictly necessary to know about compiler internals
+to use <code>libjit</code>, you can make more effective use of the library
+if you do.  We recommend the &quot;Dragon Book&quot; as an excellent resource
+on compiler internals, particularly the sections on code generation
+and optimization:
+</p>
+<blockquote><p>Alfred V. Aho, Ravi Sethi, and Jeffrey D. Ullman, &quot;Compilers:
+Principles, Techniques, and Tools&quot;, Addison-Wesley, 1986.
+</p></blockquote>
+
+<p>IBM, Intel, and others have done a lot of research into JIT implementation
+techniques over the years.  If you are interested in working on the
+internals of <code>libjit</code>, then you may want to make yourself familiar
+with the relevant literature (this is by no means a complete list):
+</p>
+<blockquote><p>IBM's Jikes RVM (Research Virtual Machine), <br>
+<a href="http://www-124.ibm.com/developerworks/oss/jikesrvm/">http://www-124.ibm.com/developerworks/oss/jikesrvm/</a>.
+</p>
+<p>Intel's ORP (Open Runtime Platform), <br>
+<a href="http://orp.sourceforge.net/">http://orp.sourceforge.net/</a>.
+</p></blockquote>
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC1" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_2.html#SEC4" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>May, 11 2008</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

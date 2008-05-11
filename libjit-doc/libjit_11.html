@@ -1,0 +1,486 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 11 2008 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Just-In-Time Compiler Library: 11. Handling exceptions</title>
+
+<meta name="description" content="Just-In-Time Compiler Library: 11. Handling exceptions">
+<meta name="keywords" content="Just-In-Time Compiler Library: 11. Handling exceptions">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+/* document-wide settings */
+   
+
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+body
+   {
+      color: #000000;
+      background: #ffffff;
+      margin-top: 0;
+      margin-left: 5;
+      margin-right: 5;
+   }
+   a:link
+   {
+      color: #000080;
+   }
+   a:visited
+   {
+      color: #808080;
+   }
+   a:active
+   {
+      color: #008000;
+   }
+/* document-wide settings */
+
+/* miscellaneous settings */
+   .mainheading
+   {
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding-left: 5px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   .mainsubheading
+   {
+      font-size: 12px;
+   }
+   .maincontent
+   {
+      margin-left: 25;
+      margin-right: 25;
+   }
+   .news
+   {
+      padding-left: 10;
+      padding-right: 5;
+   }
+   .heading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   .body
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   .linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   .linksbody
+   {
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   a.linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   a.linksbody
+   {
+      text-decoration: none;
+   }
+   a.html2
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      color: #000080;
+      text-decoration: underline;
+   }
+   p.credits
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      text-align: center;
+   }
+/* miscellaneous settings */
+
+/* HTML2 compatability settings */
+   h1
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   h2
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   h3
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 7px;
+      padding-right: 0;
+      text-decoration: none;
+      color: #008080;
+   }
+   h4
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-style: italic;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 10px;
+      text-decoration: none;
+      color: #008080;
+   }
+   p
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   ul
+   {
+      list-style: square outside url("g/dot.jpg");
+   }
+   ol
+   {
+	   list-style: decimal outside none;
+   }
+   li
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dd
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dt
+   {
+      font-weight: bold;
+      font-size: 12px;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+   }
+   pre
+   {
+      padding-left: 10px;
+      padding-right: 5px;
+   }
+   blockquote
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      padding-left: 10;
+      padding-right: 5px;
+   }
+/* HTML2 compatability settings */
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Exceptions"></a>
+<a name="SEC21"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_10.html#SEC20" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_12.html#SEC22" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit_10.html#SEC20" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_12.html#SEC22" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 11. Handling exceptions </h1>
+
+
+
+
+
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_exception_get_last</b><i> (void)</i>
+<a name="IDX631"></a>
+</dt>
+<dd><p>Get the last exception object that occurred on this thread, or NULL
+if there is no exception object on this thread.  As far as <code>libjit</code>
+is concerned, an exception is just a pointer.  The precise meaning of the
+data at the pointer is determined by the front end.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_exception_get_last_and_clear</b><i> (void)</i>
+<a name="IDX632"></a>
+</dt>
+<dd><p>Get the last exception object that occurred on this thread and also
+clear the exception state to NULL.  This combines the effect of
+both <code>jit_exception_get_last</code> and <code>jit_exception_clear_last</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_exception_set_last</b><i> (void *<var>object</var>)</i>
+<a name="IDX633"></a>
+</dt>
+<dd><p>Set the last exception object that occurred on this thread, so that
+it can be retrieved by a later call to <code>jit_exception_get_last</code>.
+This is normally used by <code>jit_function_apply</code> to save the
+exception object before returning to regular code.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_exception_clear_last</b><i> (void)</i>
+<a name="IDX634"></a>
+</dt>
+<dd><p>Clear the last exception object that occurred on this thread.
+This is equivalent to calling <code>jit_exception_set_last</code>
+with a parameter of NULL.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_exception_throw</b><i> (void *<var>object</var>)</i>
+<a name="IDX635"></a>
+</dt>
+<dd><p>Throw an exception object within the current thread.  As far as
+<code>libjit</code> is concerned, the exception object is just a pointer.
+The precise meaning of the data at the pointer is determined
+by the front end.
+</p>
+<p>Note: as an exception object works its way back up the stack,
+it may be temporarily stored in memory that is not normally visible
+to a garbage collector.  The front-end is responsible for taking steps
+to &quot;pin&quot; the object so that it is uncollectable until explicitly
+copied back into a location that is visible to the collector once more.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_exception_builtin</b><i> (int <var>exception_type</var>)</i>
+<a name="IDX636"></a>
+</dt>
+<dd><p>This function is called to report a builtin exception.
+The JIT will automatically embed calls to this function wherever a
+builtin exception needs to be reported.
+</p>
+<p>When a builtin exception occurs, the current thread's exception
+handler is called to construct an appropriate object, which is
+then thrown.
+</p>
+<p>If there is no exception handler set, or the handler returns NULL,
+then <code>libjit</code> will print an error message to stderr and cause
+the program to exit with a status of 1.  You normally don't want
+this behavior and you should override it if possible.
+</p>
+<p>The following builtin exception types are currently supported:
+</p>
+<dl compact="compact">
+<dd><a name="IDX637"></a>
+</dd>
+<dt> <code>JIT_RESULT_OK</code></dt>
+<dd><p>The operation was performed successfully (value is 1).
+</p>
+<a name="IDX638"></a>
+</dd>
+<dt> <code>JIT_RESULT_OVERFLOW</code></dt>
+<dd><p>The operation resulted in an overflow exception (value is 0).
+</p>
+<a name="IDX639"></a>
+</dd>
+<dt> <code>JIT_RESULT_ARITHMETIC</code></dt>
+<dd><p>The operation resulted in an arithmetic exception.  i.e. an attempt was
+made to divide the minimum integer value by -1 (value is -1).
+</p>
+<a name="IDX640"></a>
+</dd>
+<dt> <code>JIT_RESULT_DIVISION_BY_ZERO</code></dt>
+<dd><p>The operation resulted in a division by zero exception (value is -2).
+</p>
+<a name="IDX641"></a>
+</dd>
+<dt> <code>JIT_RESULT_COMPILE_ERROR</code></dt>
+<dd><p>An error occurred when attempting to dynamically compile a function
+(value is -3).
+</p>
+<a name="IDX642"></a>
+</dd>
+<dt> <code>JIT_RESULT_OUT_OF_MEMORY</code></dt>
+<dd><p>The system ran out of memory while performing an operation (value is -4).
+</p>
+<a name="IDX643"></a>
+</dd>
+<dt> <code>JIT_RESULT_NULL_REFERENCE</code></dt>
+<dd><p>An attempt was made to dereference a NULL pointer (value is -5).
+</p>
+<a name="IDX644"></a>
+</dd>
+<dt> <code>JIT_RESULT_NULL_FUNCTION</code></dt>
+<dd><p>An attempt was made to call a function with a NULL function pointer
+(value is -6).
+</p>
+<a name="IDX645"></a>
+</dd>
+<dt> <code>JIT_RESULT_CALLED_NESTED</code></dt>
+<dd><p>An attempt was made to call a nested function from a non-nested context
+(value is -7).
+</p></dd>
+</dl>
+</dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_exception_func <b>jit_exception_set_handler</b><i> (jit_exception_func <var>handler</var>)</i>
+<a name="IDX646"></a>
+</dt>
+<dd><p>Set the builtin exception handler for the current thread.
+Returns the previous exception handler.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_exception_func <b>jit_exception_get_handler</b><i> (void)</i>
+<a name="IDX647"></a>
+</dt>
+<dd><p>Get the builtin exception handler for the current thread.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_stack_trace_t <b>jit_exception_get_stack_trace</b><i> (void)</i>
+<a name="IDX648"></a>
+</dt>
+<dd><p>Create an object that represents the current call stack.
+This is normally used to indicate the location of an exception.
+Returns NULL if a stack trace is not available, or there is
+insufficient memory to create it.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> unsigned int <b>jit_stack_trace_get_size</b><i> (jit_stack_trace_t <var>trace</var>)</i>
+<a name="IDX649"></a>
+</dt>
+<dd><p>Get the size of a stack trace.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_function_t <b>jit_stack_trace_get_function</b><i> (jit_context_t <var>context</var>, jit_stack_trace_t <var>trace</var>, unsigned int <var>posn</var>)</i>
+<a name="IDX650"></a>
+</dt>
+<dd><p>Get the function that is at position <var>posn</var> within a stack trace.
+Position 0 is the function that created the stack trace.  If this
+returns NULL, then it indicates that there is a native callout at
+<var>posn</var> within the stack trace.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_stack_trace_get_pc</b><i> (jit_stack_trace_t <var>trace</var>, unsigned int <var>posn</var>)</i>
+<a name="IDX651"></a>
+</dt>
+<dd><p>Get the program counter that corresponds to position <var>posn</var>
+within a stack trace.  This is the point within the function
+where execution had reached at the time of the trace.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> unsigned int <b>jit_stack_trace_get_offset</b><i> (jit_stack_trace_t <var>trace</var>, unsigned int <var>posn</var>)</i>
+<a name="IDX652"></a>
+</dt>
+<dd><p>Get the bytecode offset that is recorded for position <var>posn</var>
+within a stack trace.  This will be <code>JIT_NO_OFFSET</code> if there
+is no bytecode offset associated with <var>posn</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_stack_trace_free</b><i> (jit_stack_trace_t <var>trace</var>)</i>
+<a name="IDX653"></a>
+</dt>
+<dd><p>Free the memory associated with a stack trace.
+</p></dd></dl>
+
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_10.html#SEC20" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_12.html#SEC22" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>May, 11 2008</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

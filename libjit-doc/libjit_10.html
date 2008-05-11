@@ -1,0 +1,1497 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 11 2008 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Just-In-Time Compiler Library: 10. Intrinsic functions available to libjit users</title>
+
+<meta name="description" content="Just-In-Time Compiler Library: 10. Intrinsic functions available to libjit users">
+<meta name="keywords" content="Just-In-Time Compiler Library: 10. Intrinsic functions available to libjit users">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+/* document-wide settings */
+   
+
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+body
+   {
+      color: #000000;
+      background: #ffffff;
+      margin-top: 0;
+      margin-left: 5;
+      margin-right: 5;
+   }
+   a:link
+   {
+      color: #000080;
+   }
+   a:visited
+   {
+      color: #808080;
+   }
+   a:active
+   {
+      color: #008000;
+   }
+/* document-wide settings */
+
+/* miscellaneous settings */
+   .mainheading
+   {
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding-left: 5px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   .mainsubheading
+   {
+      font-size: 12px;
+   }
+   .maincontent
+   {
+      margin-left: 25;
+      margin-right: 25;
+   }
+   .news
+   {
+      padding-left: 10;
+      padding-right: 5;
+   }
+   .heading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   .body
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   .linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   .linksbody
+   {
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   a.linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   a.linksbody
+   {
+      text-decoration: none;
+   }
+   a.html2
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      color: #000080;
+      text-decoration: underline;
+   }
+   p.credits
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      text-align: center;
+   }
+/* miscellaneous settings */
+
+/* HTML2 compatability settings */
+   h1
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   h2
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   h3
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 7px;
+      padding-right: 0;
+      text-decoration: none;
+      color: #008080;
+   }
+   h4
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-style: italic;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 10px;
+      text-decoration: none;
+      color: #008080;
+   }
+   p
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   ul
+   {
+      list-style: square outside url("g/dot.jpg");
+   }
+   ol
+   {
+	   list-style: decimal outside none;
+   }
+   li
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dd
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dt
+   {
+      font-weight: bold;
+      font-size: 12px;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+   }
+   pre
+   {
+      padding-left: 10px;
+      padding-right: 5px;
+   }
+   blockquote
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      padding-left: 10;
+      padding-right: 5px;
+   }
+/* HTML2 compatability settings */
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Intrinsics"></a>
+<a name="SEC20"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_9.html#SEC19" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_11.html#SEC21" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit_9.html#SEC19" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_11.html#SEC21" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 10. Intrinsic functions available to libjit users </h1>
+
+
+
+
+
+<p>Intrinsics are functions that are provided to ease code generation
+on platforms that may not be able to perform all operations natively.
+</p>
+<p>For example, on a CPU without a floating-point unit, the back end code
+generator will output a call to an intrinsic function when a floating-point
+operation is performed.  CPU's with a floating-point unit would use
+a native instruction instead.
+</p>
+<p>Some platforms may already have appropriate intrinsics (e.g. the ARM
+floating-point emulation routines).  The back end code generator may choose
+to use either the system-supplied intrinsics or the ones supplied by
+this library.  We supply all of them in our library just in case a
+particular platform lacks an appropriate intrinsic.
+</p>
+<p>Some intrinsics have no equivalent in existing system libraries;
+particularly those that deal with overflow checking.
+</p>
+<p>Functions that perform overflow checking or which divide integer operands
+return a built-in exception code to indicate the type of exception
+to be thrown (the caller is responsible for throwing the actual
+exception).  See section <a href="libjit_11.html#SEC21">Handling exceptions</a>, for a list of built-in exception codes.
+</p>
+<p>The following functions are defined in <code>&lt;jit/jit-intrinsic.h&gt;</code>:
+</p>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_int_add</b><i> (jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX348"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_sub</b><i> (jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX349"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_mul</b><i> (jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX350"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_neg</b><i> (jit_int <var>value1</var>)</i>
+<a name="IDX351"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_and</b><i> (jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX352"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_or</b><i> (jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX353"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_xor</b><i> (jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX354"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_not</b><i> (jit_int <var>value1</var>)</i>
+<a name="IDX355"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_not</b><i> (jit_int <var>value1</var>)</i>
+<a name="IDX356"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_shl</b><i> (jit_int <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX357"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_shr</b><i> (jit_int <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX358"></a>
+</dt>
+<dd><p>Perform an arithmetic operation on signed 32-bit integers.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_int_add_ovf</b><i> (jit_int *<var>result</var>, jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX359"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_sub_ovf</b><i> (jit_int *<var>result</var>, jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX360"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_mul_ovf</b><i> (jit_int *<var>result</var>, jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX361"></a>
+</dt>
+<dd><p>Perform an arithmetic operation on two signed 32-bit integers,
+with overflow checking.  Returns <code>JIT_RESULT_OK</code>
+or <code>JIT_RESULT_OVERFLOW</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_int_div_ovf</b><i> (jit_int *<var>result</var>, jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX362"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_rem_ovf</b><i> (jit_int *<var>result</var>, jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX363"></a>
+</dt>
+<dd><p>Perform a division or remainder operation on two signed 32-bit integers.
+Returns <code>JIT_RESULT_OK</code>, <code>JIT_RESULT_DIVISION_BY_ZERO</code>,
+or <code>JIT_RESULT_ARITHMETIC</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_int_eq</b><i> (jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX364"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_ne</b><i> (jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX365"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_lt</b><i> (jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX366"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_le</b><i> (jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX367"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_gt</b><i> (jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX368"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_ge</b><i> (jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX369"></a>
+</dt>
+<dd><p>Compare two signed 32-bit integers, returning 0 or 1 based
+on their relationship.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_int_cmp</b><i> (jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX370"></a>
+</dt>
+<dd><p>Compare two signed 32-bit integers and return -1, 0, or 1 based
+on their relationship.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_int_abs</b><i> (jit_int <var>value1</var>)</i>
+<a name="IDX371"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_min</b><i> (jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX372"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_max</b><i> (jit_int <var>value1</var>, jit_int <var>value2</var>)</i>
+<a name="IDX373"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_sign</b><i> (jit_int <var>value1</var>)</i>
+<a name="IDX374"></a>
+</dt>
+<dd><p>Calculate the absolute value, minimum, maximum, or sign for
+signed 32-bit integer values.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_uint <b>jit_uint_add</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX375"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_uint_sub</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX376"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_uint_mul</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX377"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_uint_neg</b><i> (jit_uint <var>value1</var>)</i>
+<a name="IDX378"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_uint_and</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX379"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_uint_or</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX380"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_uint_xor</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX381"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_uint_not</b><i> (jit_uint <var>value1</var>)</i>
+<a name="IDX382"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_uint_not</b><i> (jit_uint <var>value1</var>)</i>
+<a name="IDX383"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_uint_shl</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX384"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_uint_shr</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX385"></a>
+</dt>
+<dd><p>Perform an arithmetic operation on unsigned 32-bit integers.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_uint_add_ovf</b><i> (jit_uint *<var>result</var>, jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX386"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_uint_sub_ovf</b><i> (jit_uint *<var>result</var>, jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX387"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_uint_mul_ovf</b><i> (jit_uint *<var>result</var>, jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX388"></a>
+</dt>
+<dd><p>Perform an arithmetic operation on two unsigned 32-bit integers,
+with overflow checking.  Returns <code>JIT_RESULT_OK</code>
+or <code>JIT_RESULT_OVERFLOW</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_uint_div_ovf</b><i> (jit_uint *<var>result</var>, jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX389"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_uint_rem_ovf</b><i> (jit_uint *<var>result</var>, jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX390"></a>
+</dt>
+<dd><p>Perform a division or remainder operation on two unsigned 32-bit integers.
+Returns <code>JIT_RESULT_OK</code> or <code>JIT_RESULT_DIVISION_BY_ZERO</code>
+(<code>JIT_RESULT_ARITHMETIC</code> is not possible with unsigned integers).
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_uint_eq</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX391"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_uint_ne</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX392"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_uint_lt</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX393"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_uint_le</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX394"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_uint_gt</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX395"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_uint_ge</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX396"></a>
+</dt>
+<dd><p>Compare two unsigned 32-bit integers, returning 0 or 1 based
+on their relationship.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_uint_cmp</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX397"></a>
+</dt>
+<dd><p>Compare two unsigned 32-bit integers and return -1, 0, or 1 based
+on their relationship.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_uint <b>jit_uint_min</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX398"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_uint_max</b><i> (jit_uint <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX399"></a>
+</dt>
+<dd><p>Calculate the minimum or maximum for unsigned 32-bit integer values.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_long <b>jit_long_add</b><i> (jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX400"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_long_sub</b><i> (jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX401"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_long_mul</b><i> (jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX402"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_long_neg</b><i> (jit_long <var>value1</var>)</i>
+<a name="IDX403"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_long_and</b><i> (jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX404"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_long_or</b><i> (jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX405"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_long_xor</b><i> (jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX406"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_long_not</b><i> (jit_long <var>value1</var>)</i>
+<a name="IDX407"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_long_not</b><i> (jit_long <var>value1</var>)</i>
+<a name="IDX408"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_long_shl</b><i> (jit_long <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX409"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_long_shr</b><i> (jit_long <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX410"></a>
+</dt>
+<dd><p>Perform an arithmetic operation on signed 64-bit integers.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_long_add_ovf</b><i> (jit_long *<var>result</var>, jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX411"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_long_sub_ovf</b><i> (jit_long *<var>result</var>, jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX412"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_long_mul_ovf</b><i> (jit_long *<var>result</var>, jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX413"></a>
+</dt>
+<dd><p>Perform an arithmetic operation on two signed 64-bit integers,
+with overflow checking.  Returns <code>JIT_RESULT_OK</code>
+or <code>JIT_RESULT_OVERFLOW</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_long_div_ovf</b><i> (jit_long *<var>result</var>, jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX414"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_long_rem_ovf</b><i> (jit_long *<var>result</var>, jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX415"></a>
+</dt>
+<dd><p>Perform a division or remainder operation on two signed 64-bit integers.
+Returns <code>JIT_RESULT_OK</code>, <code>JIT_RESULT_DIVISION_BY_ZERO</code>,
+or <code>JIT_RESULT_ARITHMETIC</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_long_eq</b><i> (jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX416"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_long_ne</b><i> (jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX417"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_long_lt</b><i> (jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX418"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_long_le</b><i> (jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX419"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_long_gt</b><i> (jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX420"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_long_ge</b><i> (jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX421"></a>
+</dt>
+<dd><p>Compare two signed 64-bit integers, returning 0 or 1 based
+on their relationship.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_long_cmp</b><i> (jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX422"></a>
+</dt>
+<dd><p>Compare two signed 64-bit integers and return -1, 0, or 1 based
+on their relationship.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_long <b>jit_long_abs</b><i> (jit_long <var>value1</var>)</i>
+<a name="IDX423"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_long_min</b><i> (jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX424"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_long_max</b><i> (jit_long <var>value1</var>, jit_long <var>value2</var>)</i>
+<a name="IDX425"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_long_sign</b><i> (jit_long <var>value1</var>)</i>
+<a name="IDX426"></a>
+</dt>
+<dd><p>Calculate the absolute value, minimum, maximum, or sign for
+signed 64-bit integer values.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_ulong <b>jit_ulong_add</b><i> (jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX427"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_ulong_sub</b><i> (jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX428"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_ulong_mul</b><i> (jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX429"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_ulong_neg</b><i> (jit_ulong <var>value1</var>)</i>
+<a name="IDX430"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_ulong_and</b><i> (jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX431"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_ulong_or</b><i> (jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX432"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_ulong_xor</b><i> (jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX433"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_ulong_not</b><i> (jit_ulong <var>value1</var>)</i>
+<a name="IDX434"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_ulong_not</b><i> (jit_ulong <var>value1</var>)</i>
+<a name="IDX435"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_ulong_shl</b><i> (jit_ulong <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX436"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_ulong_shr</b><i> (jit_ulong <var>value1</var>, jit_uint <var>value2</var>)</i>
+<a name="IDX437"></a>
+</dt>
+<dd><p>Perform an arithmetic operation on unsigned 64-bit integers.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_ulong_add_ovf</b><i> (jit_ulong *<var>result</var>, jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX438"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_ulong_sub_ovf</b><i> (jit_ulong *<var>result</var>, jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX439"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_ulong_mul_ovf</b><i> (jit_ulong *<var>result</var>, jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX440"></a>
+</dt>
+<dd><p>Perform an arithmetic operation on two unsigned 64-bit integers,
+with overflow checking.  Returns <code>JIT_RESULT_OK</code>
+or <code>JIT_RESULT_OVERFLOW</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_ulong_div_ovf</b><i> (jit_ulong *<var>result</var>, jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX441"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_ulong_rem_ovf</b><i> (jit_ulong *<var>result</var>, jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX442"></a>
+</dt>
+<dd><p>Perform a division or remainder operation on two unsigned 64-bit integers.
+Returns <code>JIT_RESULT_OK</code> or <code>JIT_RESULT_DIVISION_BY_ZERO</code>
+(<code>JIT_RESULT_ARITHMETIC</code> is not possible with unsigned integers).
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_ulong_eq</b><i> (jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX443"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_ulong_ne</b><i> (jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX444"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_ulong_lt</b><i> (jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX445"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_ulong_le</b><i> (jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX446"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_ulong_gt</b><i> (jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX447"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_ulong_ge</b><i> (jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX448"></a>
+</dt>
+<dd><p>Compare two unsigned 64-bit integers, returning 0 or 1 based
+on their relationship.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_ulong_cmp</b><i> (jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX449"></a>
+</dt>
+<dd><p>Compare two unsigned 64-bit integers and return -1, 0, or 1 based
+on their relationship.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_ulong <b>jit_ulong_min</b><i> (jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX450"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_ulong_max</b><i> (jit_ulong <var>value1</var>, jit_ulong <var>value2</var>)</i>
+<a name="IDX451"></a>
+</dt>
+<dd><p>Calculate the minimum or maximum for unsigned 64-bit integer values.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_add</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX452"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_sub</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX453"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_mul</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX454"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_div</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX455"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_rem</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX456"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_ieee_rem</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX457"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_neg</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX458"></a>
+</dt>
+<dd><p>Perform an arithmetic operation on 32-bit floating-point values.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_float32_eq</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX459"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_float32_ne</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX460"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_float32_lt</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX461"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_float32_le</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX462"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_float32_gt</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX463"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_float32_ge</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX464"></a>
+</dt>
+<dd><p>Compare two 32-bit floating-point values, returning 0 or 1 based
+on their relationship.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_float32_cmpl</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX465"></a>
+</dt>
+<dd><p>Compare two 32-bit floating-point values and return -1, 0, or 1 based
+on their relationship.  If either value is &quot;not a number&quot;,
+then -1 is returned.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_float32_cmpg</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX466"></a>
+</dt>
+<dd><p>Compare two 32-bit floating-point values and return -1, 0, or 1 based
+on their relationship.  If either value is &quot;not a number&quot;,
+then 1 is returned.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_abs</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX467"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_min</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX468"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_max</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX469"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_float32_sign</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX470"></a>
+</dt>
+<dd><p>Calculate the absolute value, minimum, maximum, or sign for
+32-bit floating point values.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_acos</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX471"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_asin</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX472"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_atan</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX473"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_atan2</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX474"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_ceil</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX475"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_cos</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX476"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_cosh</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX477"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_exp</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX478"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_floor</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX479"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_log</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX480"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_log10</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX481"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_pow</b><i> (jit_float32 <var>value1</var>, jit_float32 <var>value2</var>)</i>
+<a name="IDX482"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_sin</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX483"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_sinh</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX484"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_sqrt</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX485"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_tan</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX486"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_tanh</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX487"></a>
+</dt>
+<dd><p>Apply a mathematical function to one or two 32-bit floating-point values.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_rint</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX488"></a>
+</dt>
+<dd><p>Round <var>value1</var> to the nearest integer.  Half-way cases
+are rounded to an even number.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_float32 <b>jit_float32_round</b><i> (jit_float32 <var>value1</var>)</i>
+<a name="IDX489"></a>
+</dt>
+<dd><p>Round <var>value1</var> to the nearest integer.  Half-way cases
+are rounded away from zero.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_float32_is_finite</b><i> (jit_float32 <var>value</var>)</i>
+<a name="IDX490"></a>
+</dt>
+<dd><p>Determine if a 32-bit floating point value is finite, returning
+non-zero if it is, or zero if it is not.  If the value is
+&quot;not a number&quot;, this function returns zero.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_float32_is_nan</b><i> (jit_float32 <var>value</var>)</i>
+<a name="IDX491"></a>
+</dt>
+<dd><p>Determine if a 32-bit floating point value is &quot;not a number&quot;, returning
+non-zero if it is, or zero if it is not.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_float32_is_inf</b><i> (jit_float32 <var>value</var>)</i>
+<a name="IDX492"></a>
+</dt>
+<dd><p>Determine if a 32-bit floating point value is infinite or not.
+Returns -1 for negative infinity, 1 for positive infinity,
+and 0 for everything else.
+</p>
+<p>Note: this function is preferable to the system <code>isinf</code> intrinsic
+because some systems have a broken <code>isinf</code> function that returns
+1 for both positive and negative infinity.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_add</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX493"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_sub</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX494"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_mul</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX495"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_div</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX496"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_rem</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX497"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_ieee_rem</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX498"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_neg</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX499"></a>
+</dt>
+<dd><p>Perform an arithmetic operation on 64-bit floating-point values.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_float64_eq</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX500"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_float64_ne</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX501"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_float64_lt</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX502"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_float64_le</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX503"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_float64_gt</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX504"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_float64_ge</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX505"></a>
+</dt>
+<dd><p>Compare two 64-bit floating-point values, returning 0 or 1 based
+on their relationship.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_float64_cmpl</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX506"></a>
+</dt>
+<dd><p>Compare two 64-bit floating-point values and return -1, 0, or 1 based
+on their relationship.  If either value is &quot;not a number&quot;,
+then -1 is returned.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_float64_cmpg</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX507"></a>
+</dt>
+<dd><p>Compare two 64-bit floating-point values and return -1, 0, or 1 based
+on their relationship.  If either value is &quot;not a number&quot;,
+then 1 is returned.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_abs</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX508"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_min</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX509"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_max</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX510"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_float64_sign</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX511"></a>
+</dt>
+<dd><p>Calculate the absolute value, minimum, maximum, or sign for
+64-bit floating point values.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_acos</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX512"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_asin</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX513"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_atan</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX514"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_atan2</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX515"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_ceil</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX516"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_cos</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX517"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_cosh</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX518"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_exp</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX519"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_floor</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX520"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_log</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX521"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_log10</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX522"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_pow</b><i> (jit_float64 <var>value1</var>, jit_float64 <var>value2</var>)</i>
+<a name="IDX523"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_sin</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX524"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_sinh</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX525"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_sqrt</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX526"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_tan</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX527"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_tanh</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX528"></a>
+</dt>
+<dd><p>Apply a mathematical function to one or two 64-bit floating-point values.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_rint</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX529"></a>
+</dt>
+<dd><p>Round <var>value1</var> to the nearest integer.  Half-way cases
+are rounded to an even number.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_float64 <b>jit_float64_round</b><i> (jit_float64 <var>value1</var>)</i>
+<a name="IDX530"></a>
+</dt>
+<dd><p>Round <var>value1</var> to the nearest integer.  Half-way cases
+are rounded away from zero.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_float64_is_finite</b><i> (jit_float64 <var>value</var>)</i>
+<a name="IDX531"></a>
+</dt>
+<dd><p>Determine if a 64-bit floating point value is finite, returning
+non-zero if it is, or zero if it is not.  If the value is
+&quot;not a number&quot;, this function returns zero.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_float64_is_nan</b><i> (jit_float64 <var>value</var>)</i>
+<a name="IDX532"></a>
+</dt>
+<dd><p>Determine if a 64-bit floating point value is &quot;not a number&quot;, returning
+non-zero if it is, or zero if it is not.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_float64_is_inf</b><i> (jit_float64 <var>value</var>)</i>
+<a name="IDX533"></a>
+</dt>
+<dd><p>Determine if a 64-bit floating point value is infinite or not.
+Returns -1 for negative infinity, 1 for positive infinity,
+and 0 for everything else.
+</p>
+<p>Note: this function is preferable to the system <code>isinf</code> intrinsic
+because some systems have a broken <code>isinf</code> function that returns
+1 for both positive and negative infinity.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_add</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX534"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_sub</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX535"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_mul</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX536"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_div</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX537"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_rem</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX538"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_ieee_rem</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX539"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_neg</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX540"></a>
+</dt>
+<dd><p>Perform an arithmetic operation on native floating-point values.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_nfloat_eq</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX541"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_nfloat_ne</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX542"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_nfloat_lt</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX543"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_nfloat_le</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX544"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_nfloat_gt</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX545"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_nfloat_ge</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX546"></a>
+</dt>
+<dd><p>Compare two native floating-point values, returning 0 or 1 based
+on their relationship.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_nfloat_cmpl</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX547"></a>
+</dt>
+<dd><p>Compare two native floating-point values and return -1, 0, or 1 based
+on their relationship.  If either value is &quot;not a number&quot;,
+then -1 is returned.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_nfloat_cmpg</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX548"></a>
+</dt>
+<dd><p>Compare two native floating-point values and return -1, 0, or 1 based
+on their relationship.  If either value is &quot;not a number&quot;,
+then 1 is returned.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_abs</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX549"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_min</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX550"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_max</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX551"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_nfloat_sign</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX552"></a>
+</dt>
+<dd><p>Calculate the absolute value, minimum, maximum, or sign for
+native floating point values.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_acos</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX553"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_asin</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX554"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_atan</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX555"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_atan2</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX556"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_ceil</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX557"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_cos</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX558"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_cosh</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX559"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_exp</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX560"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_floor</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX561"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_log</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX562"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_log10</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX563"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_pow</b><i> (jit_nfloat <var>value1</var>, jit_nfloat <var>value2</var>)</i>
+<a name="IDX564"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_sin</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX565"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_sinh</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX566"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_sqrt</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX567"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_tan</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX568"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_tanh</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX569"></a>
+</dt>
+<dd><p>Apply a mathematical function to one or two native floating-point values.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_rint</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX570"></a>
+</dt>
+<dd><p>Round <var>value1</var> to the nearest integer.  Half-way cases
+are rounded to an even number.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_nfloat <b>jit_nfloat_round</b><i> (jit_nfloat <var>value1</var>)</i>
+<a name="IDX571"></a>
+</dt>
+<dd><p>Round <var>value1</var> to the nearest integer.  Half-way cases
+are rounded away from zero.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_nfloat_is_finite</b><i> (jit_nfloat <var>value</var>)</i>
+<a name="IDX572"></a>
+</dt>
+<dd><p>Determine if a native floating point value is finite, returning
+non-zero if it is, or zero if it is not.  If the value is
+&quot;not a number&quot;, this function returns zero.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_nfloat_is_nan</b><i> (jit_nfloat <var>value</var>)</i>
+<a name="IDX573"></a>
+</dt>
+<dd><p>Determine if a native floating point value is &quot;not a number&quot;, returning
+non-zero if it is, or zero if it is not.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_nfloat_is_inf</b><i> (jit_nfloat <var>value</var>)</i>
+<a name="IDX574"></a>
+</dt>
+<dd><p>Determine if a native floating point value is infinite or not.
+Returns -1 for negative infinity, 1 for positive infinity,
+and 0 for everything else.
+</p>
+<p>Note: this function is preferable to the system <code>isinf</code> intrinsic
+because some systems have a broken <code>isinf</code> function that returns
+1 for both positive and negative infinity.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_int_to_sbyte</b><i> (jit_int <var>value</var>)</i>
+<a name="IDX575"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_to_ubyte</b><i> (jit_int <var>value</var>)</i>
+<a name="IDX576"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_to_short</b><i> (jit_int <var>value</var>)</i>
+<a name="IDX577"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_to_ushort</b><i> (jit_int <var>value</var>)</i>
+<a name="IDX578"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_to_int</b><i> (jit_int <var>value</var>)</i>
+<a name="IDX579"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_int_to_uint</b><i> (jit_int <var>value</var>)</i>
+<a name="IDX580"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_int_to_long</b><i> (jit_int <var>value</var>)</i>
+<a name="IDX581"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_int_to_ulong</b><i> (jit_int <var>value</var>)</i>
+<a name="IDX582"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_uint_to_int</b><i> (jit_uint <var>value</var>)</i>
+<a name="IDX583"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_uint_to_uint</b><i> (jit_uint <var>value</var>)</i>
+<a name="IDX584"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_uint_to_long</b><i> (jit_uint <var>value</var>)</i>
+<a name="IDX585"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_uint_to_ulong</b><i> (jit_uint <var>value</var>)</i>
+<a name="IDX586"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_long_to_int</b><i> (jit_long <var>value</var>)</i>
+<a name="IDX587"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_long_to_uint</b><i> (jit_long <var>value</var>)</i>
+<a name="IDX588"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_long_to_long</b><i> (jit_long <var>value</var>)</i>
+<a name="IDX589"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_long_to_ulong</b><i> (jit_long <var>value</var>)</i>
+<a name="IDX590"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_ulong_to_int</b><i> (jit_ulong <var>value</var>)</i>
+<a name="IDX591"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_ulong_to_uint</b><i> (jit_ulong <var>value</var>)</i>
+<a name="IDX592"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_ulong_to_long</b><i> (jit_ulong <var>value</var>)</i>
+<a name="IDX593"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_ulong_to_ulong</b><i> (jit_ulong <var>value</var>)</i>
+<a name="IDX594"></a>
+</dt>
+<dd><p>Convert between integer types.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_int_to_sbyte_ovf</b><i> (jit_int *<var>result</var>, jit_int <var>value</var>)</i>
+<a name="IDX595"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_to_ubyte_ovf</b><i> (jit_int *<var>result</var>, jit_int <var>value</var>)</i>
+<a name="IDX596"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_to_short_ovf</b><i> (jit_int *<var>result</var>, jit_int <var>value</var>)</i>
+<a name="IDX597"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_to_ushort_ovf</b><i> (jit_int *<var>result</var>, jit_int <var>value</var>)</i>
+<a name="IDX598"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_to_int_ovf</b><i> (jit_int *<var>result</var>, jit_int <var>value</var>)</i>
+<a name="IDX599"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_to_uint_ovf</b><i> (jit_uint *<var>result</var>, jit_int <var>value</var>)</i>
+<a name="IDX600"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_to_long_ovf</b><i> (jit_long *<var>result</var>, jit_int <var>value</var>)</i>
+<a name="IDX601"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_int_to_ulong_ovf</b><i> (jit_ulong *<var>result</var>, jit_int <var>value</var>)</i>
+<a name="IDX602"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_uint_to_int_ovf</b><i> (jit_int *<var>result</var>, jit_uint <var>value</var>)</i>
+<a name="IDX603"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_uint_to_uint_ovf</b><i> (jit_uint *<var>result</var>, jit_uint <var>value</var>)</i>
+<a name="IDX604"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_uint_to_long_ovf</b><i> (jit_long *<var>result</var>, jit_uint <var>value</var>)</i>
+<a name="IDX605"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_uint_to_ulong_ovf</b><i> (jit_ulong *<var>result</var>, jit_uint <var>value</var>)</i>
+<a name="IDX606"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_long_to_int_ovf</b><i> (jit_int *<var>result</var>, jit_long <var>value</var>)</i>
+<a name="IDX607"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_long_to_uint_ovf</b><i> (jit_uint *<var>result</var>, jit_long <var>value</var>)</i>
+<a name="IDX608"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_long_to_long_ovf</b><i> (jit_long *<var>result</var>, jit_long <var>value</var>)</i>
+<a name="IDX609"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_long_to_ulong_ovf</b><i> (jit_ulong *<var>result</var>, jit_long <var>value</var>)</i>
+<a name="IDX610"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_ulong_to_int_ovf</b><i> (jit_int *<var>result</var>, jit_ulong <var>value</var>)</i>
+<a name="IDX611"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_ulong_to_uint_ovf</b><i> (jit_uint *<var>result</var>, jit_ulong <var>value</var>)</i>
+<a name="IDX612"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_ulong_to_long_ovf</b><i> (jit_long *<var>result</var>, jit_ulong <var>value</var>)</i>
+<a name="IDX613"></a>
+</dt>
+<dt><u>Function:</u> jit_int <b>jit_ulong_to_ulong_ovf</b><i> (jit_ulong *<var>result</var>, jit_ulong <var>value</var>)</i>
+<a name="IDX614"></a>
+</dt>
+<dd><p>Convert between integer types with overflow detection.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_nfloat_to_int</b><i> (jit_nfloat <var>value</var>)</i>
+<a name="IDX615"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_nfloat_to_uint</b><i> (jit_nfloat <var>value</var>)</i>
+<a name="IDX616"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_nfloat_to_long</b><i> (jit_nfloat <var>value</var>)</i>
+<a name="IDX617"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_nfloat_to_ulong</b><i> (jit_nfloat <var>value</var>)</i>
+<a name="IDX618"></a>
+</dt>
+<dd><p>Convert a native floating-point value into an integer.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_int <b>jit_nfloat_to_int_ovf</b><i> (jit_int *<var>result</var>, jit_nfloat <var>value</var>)</i>
+<a name="IDX619"></a>
+</dt>
+<dt><u>Function:</u> jit_uint <b>jit_nfloat_to_uint_ovf</b><i> (jit_uint *<var>result</var>, jit_nfloat <var>value</var>)</i>
+<a name="IDX620"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_nfloat_to_long_ovf</b><i> (jit_long *<var>result</var>, jit_nfloat <var>value</var>)</i>
+<a name="IDX621"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_nfloat_to_ulong_ovf</b><i> (jit_ulong *<var>result</var>, jit_nfloat <var>value</var>)</i>
+<a name="IDX622"></a>
+</dt>
+<dd><p>Convert a native floating-point value into an integer,
+with overflow detection.  Returns <code>JIT_RESULT_OK</code> if the conversion
+was successful or <code>JIT_RESULT_OVERFLOW</code> if an overflow occurred.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_nfloat <b>jit_int_to_nfloat</b><i> (jit_int <var>value</var>)</i>
+<a name="IDX623"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_uint_to_nfloat</b><i> (jit_uint <var>value</var>)</i>
+<a name="IDX624"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_long_to_nfloat</b><i> (jit_long <var>value</var>)</i>
+<a name="IDX625"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_ulong_to_nfloat</b><i> (jit_ulong <var>value</var>)</i>
+<a name="IDX626"></a>
+</dt>
+<dd><p>Convert an integer into native floating-point value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_nfloat <b>jit_float32_to_nfloat</b><i> (jit_float32 <var>value</var>)</i>
+<a name="IDX627"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_float64_to_nfloat</b><i> (jit_float64 <var>value</var>)</i>
+<a name="IDX628"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_nfloat_to_float32</b><i> (jit_nfloat <var>value</var>)</i>
+<a name="IDX629"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_nfloat_to_float64</b><i> (jit_nfloat <var>value</var>)</i>
+<a name="IDX630"></a>
+</dt>
+<dd><p>Convert between floating-point types.
+</p></dd></dl>
+
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_9.html#SEC19" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_11.html#SEC21" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>May, 11 2008</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

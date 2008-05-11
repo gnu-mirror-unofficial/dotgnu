@@ -1,0 +1,1423 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 11 2008 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Just-In-Time Compiler Library: 8. Working with instructions in the JIT</title>
+
+<meta name="description" content="Just-In-Time Compiler Library: 8. Working with instructions in the JIT">
+<meta name="keywords" content="Just-In-Time Compiler Library: 8. Working with instructions in the JIT">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+/* document-wide settings */
+   
+
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+body
+   {
+      color: #000000;
+      background: #ffffff;
+      margin-top: 0;
+      margin-left: 5;
+      margin-right: 5;
+   }
+   a:link
+   {
+      color: #000080;
+   }
+   a:visited
+   {
+      color: #808080;
+   }
+   a:active
+   {
+      color: #008000;
+   }
+/* document-wide settings */
+
+/* miscellaneous settings */
+   .mainheading
+   {
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding-left: 5px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   .mainsubheading
+   {
+      font-size: 12px;
+   }
+   .maincontent
+   {
+      margin-left: 25;
+      margin-right: 25;
+   }
+   .news
+   {
+      padding-left: 10;
+      padding-right: 5;
+   }
+   .heading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   .body
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   .linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   .linksbody
+   {
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   a.linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   a.linksbody
+   {
+      text-decoration: none;
+   }
+   a.html2
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      color: #000080;
+      text-decoration: underline;
+   }
+   p.credits
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      text-align: center;
+   }
+/* miscellaneous settings */
+
+/* HTML2 compatability settings */
+   h1
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   h2
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   h3
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 7px;
+      padding-right: 0;
+      text-decoration: none;
+      color: #008080;
+   }
+   h4
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-style: italic;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 10px;
+      text-decoration: none;
+      color: #008080;
+   }
+   p
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   ul
+   {
+      list-style: square outside url("g/dot.jpg");
+   }
+   ol
+   {
+	   list-style: decimal outside none;
+   }
+   li
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dd
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dt
+   {
+      font-weight: bold;
+      font-size: 12px;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+   }
+   pre
+   {
+      padding-left: 10px;
+      padding-right: 5px;
+   }
+   blockquote
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      padding-left: 10;
+      padding-right: 5px;
+   }
+/* HTML2 compatability settings */
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Instructions"></a>
+<a name="SEC18"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_7.html#SEC17" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_9.html#SEC19" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit_7.html#SEC17" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_9.html#SEC19" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 8. Working with instructions in the JIT </h1>
+
+
+
+
+
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_get_opcode</b><i> (jit_insn_t <var>insn</var>)</i>
+<a name="IDX201"></a>
+</dt>
+<dd><p>Get the opcode that is associated with an instruction.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_get_dest</b><i> (jit_insn_t <var>insn</var>)</i>
+<a name="IDX202"></a>
+</dt>
+<dd><p>Get the destination value that is associated with an instruction.
+Returns NULL if the instruction does not have a destination.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_get_value1</b><i> (jit_insn_t <var>insn</var>)</i>
+<a name="IDX203"></a>
+</dt>
+<dd><p>Get the first argument value that is associated with an instruction.
+Returns NULL if the instruction does not have a first argument value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_get_value2</b><i> (jit_insn_t <var>insn</var>)</i>
+<a name="IDX204"></a>
+</dt>
+<dd><p>Get the second argument value that is associated with an instruction.
+Returns NULL if the instruction does not have a second argument value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_label_t <b>jit_insn_get_label</b><i> (jit_insn_t <var>insn</var>)</i>
+<a name="IDX205"></a>
+</dt>
+<dd><p>Get the label for a branch target from an instruction.
+Returns NULL if the instruction does not have a branch target.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_function_t <b>jit_insn_get_function</b><i> (jit_insn_t <var>insn</var>)</i>
+<a name="IDX206"></a>
+</dt>
+<dd><p>Get the function for a call instruction.  Returns NULL if the
+instruction does not refer to a called function.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_insn_get_native</b><i> (jit_insn_t <var>insn</var>)</i>
+<a name="IDX207"></a>
+</dt>
+<dd><p>Get the function pointer for a native call instruction.
+Returns NULL if the instruction does not refer to a native
+function call.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> const char * <b>jit_insn_get_name</b><i> (jit_insn_t <var>insn</var>)</i>
+<a name="IDX208"></a>
+</dt>
+<dd><p>Get the diagnostic name for a function call.  Returns NULL
+if the instruction does not have a diagnostic name.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_insn_get_signature</b><i> (jit_insn_t <var>insn</var>)</i>
+<a name="IDX209"></a>
+</dt>
+<dd><p>Get the signature for a function call instruction.  Returns NULL
+if the instruction is not a function call.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_dest_is_value</b><i> (jit_insn_t <var>insn</var>)</i>
+<a name="IDX210"></a>
+</dt>
+<dd><p>Returns a non-zero value if the destination for <var>insn</var> is
+actually a source value.  This can happen with instructions
+such as <code>jit_insn_store_relative</code> where the instruction
+needs three source operands, and the real destination is a
+side-effect on one of the sources.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_insn_label</b><i> (jit_function_t <var>func</var>, jit_label_t *<var>label</var>)</i>
+<a name="IDX211"></a>
+</dt>
+<dd><p>Start a new block within the function <var>func</var> and give it the
+specified <var>label</var>.  Returns zero if out of memory.
+</p>
+<p>If the contents of <var>label</var> are <code>jit_label_undefined</code>, then this
+function will allocate a new label for this block.  Otherwise it will
+reuse the specified label from a previous branch instruction.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_new_block</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX212"></a>
+</dt>
+<dd><p>Start a new basic block, without giving it an explicit label.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_load</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX213"></a>
+</dt>
+<dd><p>Load the contents of <var>value</var> into a new temporary, essentially
+duplicating the value.  Constants are not duplicated.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_dup</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX214"></a>
+</dt>
+<dd><p>This is the same as <code>jit_insn_load</code>, but the name may better
+reflect how it is used in some front ends.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_load_small</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX215"></a>
+</dt>
+<dd><p>If <var>value</var> is of type <code>sbyte</code>, <code>byte</code>, <code>short</code>,
+<code>ushort</code>, a structure, or a union, then make a copy of it and
+return the temporary copy.  Otherwise return <var>value</var> as-is.
+</p>
+<p>This is useful where you want to use <var>value</var> directly without
+duplicating it first.  However, certain types usually cannot
+be operated on directly without first copying them elsewhere.
+This function will do that whenever necessary.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_insn_store</b><i> (jit_function_t <var>func</var>, jit_value_t <var>dest</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX216"></a>
+</dt>
+<dd><p>Store the contents of <var>value</var> at the location referred to by
+<var>dest</var>.  The <var>dest</var> should be a <code>jit_value_t</code> representing a
+local variable or temporary.  Use <code>jit_insn_store_relative</code> to store
+to a location referred to by a pointer.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_load_relative</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, jit_nint <var>offset</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX217"></a>
+</dt>
+<dd><p>Load a value of the specified <var>type</var> from the effective address
+<code>(<var>value</var> + <var>offset</var>)</code>, where <var>value</var> is a pointer.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_store_relative</b><i> (jit_function_t <var>func</var>, jit_value_t <var>dest</var>, jit_nint <var>offset</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX218"></a>
+</dt>
+<dd><p>Store <var>value</var> at the effective address <code>(<var>dest</var> + <var>offset</var>)</code>,
+where <var>dest</var> is a pointer.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_add_relative</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, jit_nint <var>offset</var>)</i>
+<a name="IDX219"></a>
+</dt>
+<dd><p>Add the constant <var>offset</var> to the specified pointer <var>value</var>.
+This is functionally identical to calling <code>jit_insn_add</code>, but
+the JIT can optimize the code better if it knows that the addition
+is being used to perform a relative adjustment on a pointer.
+In particular, multiple relative adjustments on the same pointer
+can be collapsed into a single adjustment.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_load_elem</b><i> (jit_function_t <var>func</var>, jit_value_t <var>base_addr</var>, jit_value_t <var>index</var>, jit_type_t <var>elem_type</var>)</i>
+<a name="IDX220"></a>
+</dt>
+<dd><p>Load an element of type <var>elem_type</var> from position <var>index</var> within
+the array starting at <var>base_addr</var>.  The effective address of the
+array element is <code><var>base_addr</var> + <var>index</var> * sizeof(<var>elem_type</var>)</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_load_elem_address</b><i> (jit_function_t <var>func</var>, jit_value_t <var>base_addr</var>, jit_value_t <var>index</var>, jit_type_t <var>elem_type</var>)</i>
+<a name="IDX221"></a>
+</dt>
+<dd><p>Load the effective address of an element of type <var>elem_type</var> at
+position <var>index</var> within the array starting at <var>base_addr</var>.
+Essentially, this computes the expression
+<code><var>base_addr</var> + <var>index</var> * sizeof(<var>elem_type</var>)</code>, but
+may be more efficient than performing the steps with <code>jit_insn_mul</code>
+and <code>jit_insn_add</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_store_elem</b><i> (jit_function_t <var>func</var>, jit_value_t <var>base_addr</var>, jit_value_t <var>index</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX222"></a>
+</dt>
+<dd><p>Store <var>value</var> at position <var>index</var> of the array starting at
+<var>base_addr</var>.  The effective address of the storage location is
+<code><var>base_addr</var> + <var>index</var> * sizeof(jit_value_get_type(<var>value</var>))</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_check_null</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX223"></a>
+</dt>
+<dd><p>Check <var>value</var> to see if it is NULL.  If it is, then throw the
+built-in <code>JIT_RESULT_NULL_REFERENCE</code> exception.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_add</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX224"></a>
+</dt>
+<dd><p>Add two values together and return the result in a new temporary value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_add_ovf</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX225"></a>
+</dt>
+<dd><p>Add two values together and return the result in a new temporary value.
+Throw an exception if overflow occurs.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_sub</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX226"></a>
+</dt>
+<dd><p>Subtract two values and return the result in a new temporary value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_sub_ovf</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX227"></a>
+</dt>
+<dd><p>Subtract two values and return the result in a new temporary value.
+Throw an exception if overflow occurs.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_mul</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX228"></a>
+</dt>
+<dd><p>Multiply two values and return the result in a new temporary value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_mul_ovf</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX229"></a>
+</dt>
+<dd><p>Multiply two values and return the result in a new temporary value.
+Throw an exception if overflow occurs.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_div</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX230"></a>
+</dt>
+<dd><p>Divide two values and return the quotient in a new temporary value.
+Throws an exception on division by zero or arithmetic error
+(an arithmetic error is one where the minimum possible signed
+integer value is divided by -1).
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_rem</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX231"></a>
+</dt>
+<dd><p>Divide two values and return the remainder in a new temporary value.
+Throws an exception on division by zero or arithmetic error
+(an arithmetic error is one where the minimum possible signed
+integer value is divided by -1).
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_rem_ieee</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX232"></a>
+</dt>
+<dd><p>Divide two values and return the remainder in a new temporary value.
+Throws an exception on division by zero or arithmetic error
+(an arithmetic error is one where the minimum possible signed
+integer value is divided by -1).  This function is identical to
+<code>jit_insn_rem</code>, except that it uses IEEE rules for computing
+the remainder of floating-point values.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_neg</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX233"></a>
+</dt>
+<dd><p>Negate a value and return the result in a new temporary value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_and</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX234"></a>
+</dt>
+<dd><p>Bitwise AND two values and return the result in a new temporary value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_or</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX235"></a>
+</dt>
+<dd><p>Bitwise OR two values and return the result in a new temporary value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_xor</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX236"></a>
+</dt>
+<dd><p>Bitwise XOR two values and return the result in a new temporary value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_not</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX237"></a>
+</dt>
+<dd><p>Bitwise NOT a value and return the result in a new temporary value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_shl</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX238"></a>
+</dt>
+<dd><p>Perform a bitwise left shift on two values and return the
+result in a new temporary value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_shr</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX239"></a>
+</dt>
+<dd><p>Perform a bitwise right shift on two values and return the
+result in a new temporary value.  This performs a signed shift
+on signed operators, and an unsigned shift on unsigned operands.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_ushr</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX240"></a>
+</dt>
+<dd><p>Perform a bitwise right shift on two values and return the
+result in a new temporary value.  This performs an unsigned
+shift on both signed and unsigned operands.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_sshr</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX241"></a>
+</dt>
+<dd><p>Perform a bitwise right shift on two values and return the
+result in a new temporary value.  This performs an signed
+shift on both signed and unsigned operands.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_eq</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX242"></a>
+</dt>
+<dd><p>Compare two values for equality and return the result
+in a new temporary value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_ne</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX243"></a>
+</dt>
+<dd><p>Compare two values for inequality and return the result
+in a new temporary value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_lt</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX244"></a>
+</dt>
+<dd><p>Compare two values for less than and return the result
+in a new temporary value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_le</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX245"></a>
+</dt>
+<dd><p>Compare two values for less than or equal and return the result
+in a new temporary value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_gt</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX246"></a>
+</dt>
+<dd><p>Compare two values for greater than and return the result
+in a new temporary value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_ge</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX247"></a>
+</dt>
+<dd><p>Compare two values for greater than or equal and return the result
+in a new temporary value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_cmpl</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX248"></a>
+</dt>
+<dd><p>Compare two values, and return a -1, 0, or 1 result.  If either
+value is &quot;not a number&quot;, then -1 is returned.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_cmpg</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX249"></a>
+</dt>
+<dd><p>Compare two values, and return a -1, 0, or 1 result.  If either
+value is &quot;not a number&quot;, then 1 is returned.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_to_bool</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX250"></a>
+</dt>
+<dd><p>Convert a value into a boolean 0 or 1 result of type <code>jit_type_int</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_to_not_bool</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX251"></a>
+</dt>
+<dd><p>Convert a value into a boolean 1 or 0 result of type <code>jit_type_int</code>
+(i.e. the inverse of <code>jit_insn_to_bool</code>).
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_acos</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX252"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_asin</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX253"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_atan</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX254"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_atan2</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX255"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_ceil</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX256"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_cos</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX257"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_cosh</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX258"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_exp</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX259"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_floor</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX260"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_log</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX261"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_log10</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX262"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_pow</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX263"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_rint</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX264"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_round</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX265"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_sin</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX266"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_sinh</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX267"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_sqrt</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX268"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_tan</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX269"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_tanh</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX270"></a>
+</dt>
+<dd><p>Apply a mathematical function to floating-point arguments.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_is_nan</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX271"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_is_finite</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX272"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_is_inf</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX273"></a>
+</dt>
+<dd><p>Test a floating point value for not a number, finite, or infinity.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_abs</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX274"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_min</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX275"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_max</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>, jit_value_t <var>value2</var>)</i>
+<a name="IDX276"></a>
+</dt>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_sign</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX277"></a>
+</dt>
+<dd><p>Calculate the absolute value, minimum, maximum, or sign of the
+specified values.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_branch</b><i> (jit_function_t <var>func</var>, jit_label_t *<var>label</var>)</i>
+<a name="IDX278"></a>
+</dt>
+<dd><p>Terminate the current block by branching unconditionally
+to a specific label.  Returns zero if out of memory.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_branch_if</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, jit_label_t *<var>label</var>)</i>
+<a name="IDX279"></a>
+</dt>
+<dd><p>Terminate the current block by branching to a specific label if
+the specified value is non-zero.  Returns zero if out of memory.
+</p>
+<p>If <var>value</var> refers to a conditional expression that was created
+by <code>jit_insn_eq</code>, <code>jit_insn_ne</code>, etc, then the conditional
+expression will be replaced by an appropriate conditional branch
+instruction.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_branch_if_not</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, jit_label_t *<var>label</var>)</i>
+<a name="IDX280"></a>
+</dt>
+<dd><p>Terminate the current block by branching to a specific label if
+the specified value is zero.  Returns zero if out of memory.
+</p>
+<p>If <var>value</var> refers to a conditional expression that was created
+by <code>jit_insn_eq</code>, <code>jit_insn_ne</code>, etc, then the conditional
+expression will be replaced by an appropriate conditional branch
+instruction.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_jump_table</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, jit_label_t *<var>labels</var>, unsigned int <var>num_labels</var>)</i>
+<a name="IDX281"></a>
+</dt>
+<dd><p>Branch to a label from the <var>labels</var> table. The <var>value</var> is the
+index of the label. It is allowed to have identical labels in the table.
+If an entry in the table has <code>jit_label_undefined</code> value then it is
+replaced with a newly allocated label.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_address_of</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value1</var>)</i>
+<a name="IDX282"></a>
+</dt>
+<dd><p>Get the address of a value into a new temporary.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_address_of_label</b><i> (jit_function_t <var>func</var>, jit_label_t *<var>label</var>)</i>
+<a name="IDX283"></a>
+</dt>
+<dd><p>Get the address of <var>label</var> into a new temporary.  This is typically
+used for exception handling, to track where in a function an exception
+was actually thrown.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_convert</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, jit_type_t <var>type</var>, int <var>overflow_check</var>)</i>
+<a name="IDX284"></a>
+</dt>
+<dd><p>Convert the contents of a value into a new type, with optional
+overflow checking.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_call</b><i> (jit_function_t <var>func</var>, const char *<var>name</var>, jit_function_t <var>jit_func</var>, jit_type_t <var>signature</var>, jit_value_t *<var>args</var>, unsigned int <var>num_args</var>, int <var>flags</var>)</i>
+<a name="IDX285"></a>
+</dt>
+<dd><p>Call the function <var>jit_func</var>, which may or may not be translated yet.
+The <var>name</var> is for diagnostic purposes only, and can be NULL.
+</p>
+<p>If <var>signature</var> is NULL, then the actual signature of <var>jit_func</var>
+is used in its place.  This is the usual case.  However, if the function
+takes a variable number of arguments, then you may need to construct
+an explicit signature for the non-fixed argument values.
+</p>
+<p>The <var>flags</var> parameter specifies additional information about the
+type of call to perform:
+</p>
+<dl compact="compact">
+<dd><a name="IDX286"></a>
+</dd>
+<dt> <code>JIT_CALL_NOTHROW</code></dt>
+<dd><p>The function never throws exceptions.
+</p>
+<a name="IDX287"></a>
+</dd>
+<dt> <code>JIT_CALL_NORETURN</code></dt>
+<dd><p>The function will never return directly to its caller.  It may however
+return to the caller indirectly by throwing an exception that the
+caller catches.
+</p>
+<a name="IDX288"></a>
+</dd>
+<dt> <code>JIT_CALL_TAIL</code></dt>
+<dd><p>Apply tail call optimizations, as the result of this function
+call will be immediately returned from the containing function.
+Tail calls are only appropriate when the signature of the called
+function matches the callee, and none of the parameters point
+to local variables.
+</p></dd>
+</dl>
+
+<p>If <var>jit_func</var> has already been compiled, then <code>jit_insn_call</code>
+may be able to intuit some of the above flags for itself.  Otherwise
+it is up to the caller to determine when the flags may be appropriate.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_call_indirect</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, jit_type_t <var>signature</var>, jit_value_t *<var>args</var>, unsigned int <var>num_args</var>, int <var>flags</var>)</i>
+<a name="IDX289"></a>
+</dt>
+<dd><p>Call a function via an indirect pointer.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_call_indirect_vtable</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, jit_type_t <var>signature</var>, jit_value_t *<var>args</var>, unsigned int <var>num_args</var>, int <var>flags</var>)</i>
+<a name="IDX290"></a>
+</dt>
+<dd><p>Call a function via an indirect pointer.  This version differs from
+<code>jit_insn_call_indirect</code> in that we assume that <var>value</var>
+contains a pointer that resulted from calling
+<code>jit_function_to_vtable_pointer</code>.  Indirect vtable pointer
+calls may be more efficient on some platforms than regular indirect calls.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_call_native</b><i> (jit_function_t <var>func</var>, const char *<var>name</var>, void *<var>native_func</var>, jit_type_t <var>signature</var>, jit_value_t *<var>args</var>, unsigned int <var>num_args</var>, int <var>exception_return</var>, int <var>flags</var>)</i>
+<a name="IDX291"></a>
+</dt>
+<dd><p>Output an instruction that calls an external native function.
+The <var>name</var> is for diagnostic purposes only, and can be NULL.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_call_intrinsic</b><i> (jit_function_t <var>func</var>, const char *<var>name</var>, void *<var>intrinsic_func</var>, const jit_intrinsic_descr_t *<var>descriptor</var>, jit_value_t <var>arg1</var>, jit_value_t <var>arg2</var>)</i>
+<a name="IDX292"></a>
+</dt>
+<dd><p>Output an instruction that calls an intrinsic function.  The descriptor
+contains the following fields:
+</p>
+<dl compact="compact">
+<dt> <code>return_type</code></dt>
+<dd><p>The type of value that is returned from the intrinsic.
+</p>
+</dd>
+<dt> <code>ptr_result_type</code></dt>
+<dd><p>This should be NULL for an ordinary intrinsic, or the result type
+if the intrinsic reports exceptions.
+</p>
+</dd>
+<dt> <code>arg1_type</code></dt>
+<dd><p>The type of the first argument.
+</p>
+</dd>
+<dt> <code>arg2_type</code></dt>
+<dd><p>The type of the second argument, or NULL for a unary intrinsic.
+</p></dd>
+</dl>
+
+<p>If all of the arguments are constant, then <code>jit_insn_call_intrinsic</code>
+will call the intrinsic directly to calculate the constant result.
+If the constant computation will result in an exception, then
+code is output to cause the exception at runtime.
+</p>
+<p>The <var>name</var> is for diagnostic purposes only, and can be NULL.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_incoming_reg</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, int <var>reg</var>)</i>
+<a name="IDX293"></a>
+</dt>
+<dd><p>Output an instruction that notes that the contents of <var>value</var>
+can be found in the register <var>reg</var> at this point in the code.
+</p>
+<p>You normally wouldn't call this yourself - it is used internally
+by the CPU back ends to set up the function's entry frame and the
+values of registers on return from a subroutine call.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_incoming_frame_posn</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, jit_nint <var>frame_offset</var>)</i>
+<a name="IDX294"></a>
+</dt>
+<dd><p>Output an instruction that notes that the contents of <var>value</var>
+can be found in the stack frame at <var>frame_offset</var> at this point
+in the code.
+</p>
+<p>You normally wouldn't call this yourself - it is used internally
+by the CPU back ends to set up the function's entry frame.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_outgoing_reg</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, int <var>reg</var>)</i>
+<a name="IDX295"></a>
+</dt>
+<dd><p>Output an instruction that copies the contents of <var>value</var>
+into the register <var>reg</var> at this point in the code.  This is
+typically used just before making an outgoing subroutine call.
+</p>
+<p>You normally wouldn't call this yourself - it is used internally
+by the CPU back ends to set up the registers for a subroutine call.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_outgoing_frame_posn</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, jit_nint <var>frame_offset</var>)</i>
+<a name="IDX296"></a>
+</dt>
+<dd><p>Output an instruction that notes that the contents of <var>value</var>
+should be stored in the stack frame at <var>frame_offset</var> at this point
+in the code.
+</p>
+<p>You normally wouldn't call this yourself - it is used internally
+by the CPU back ends to set up an outgoing frame for tail calls.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_return_reg</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, int <var>reg</var>)</i>
+<a name="IDX297"></a>
+</dt>
+<dd><p>Output an instruction that notes that the contents of <var>value</var>
+can be found in the register <var>reg</var> at this point in the code.
+This is similar to <code>jit_insn_incoming_reg</code>, except that it
+refers to return values, not parameter values.
+</p>
+<p>You normally wouldn't call this yourself - it is used internally
+by the CPU back ends to handle returns from subroutine calls.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_setup_for_nested</b><i> (jit_function_t <var>func</var>, int <var>nested_level</var>, int <var>reg</var>)</i>
+<a name="IDX298"></a>
+</dt>
+<dd><p>Output an instruction to set up for a nested function call.
+The <var>nested_level</var> value will be -1 to call a child, zero to call a
+sibling of <var>func</var>, 1 to call a sibling of the parent, 2 to call
+a sibling of the grandparent, etc.  If <var>reg</var> is not -1, then
+it indicates the register to receive the parent frame information.
+If <var>reg</var> is -1, then the frame information will be pushed on the stack.
+</p>
+<p>You normally wouldn't call this yourself - it is used internally by the
+CPU back ends to set up the parameters for a nested subroutine call.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_flush_struct</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX299"></a>
+</dt>
+<dd><p>Flush a small structure return value out of registers and back
+into the local variable frame.  You normally wouldn't call this
+yourself - it is used internally by the CPU back ends to handle
+structure returns from functions.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_import</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX300"></a>
+</dt>
+<dd><p>Import <var>value</var> from an outer nested scope into <var>func</var>.  Returns
+the effective address of the value for local access via a pointer.
+Returns NULL if out of memory or the value is not accessible via a
+parent, grandparent, or other ancestor of <var>func</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_push</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX301"></a>
+</dt>
+<dd><p>Push a value onto the function call stack, in preparation for a call.
+You normally wouldn't call this yourself - it is used internally
+by the CPU back ends to set up the stack for a subroutine call.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_push_ptr</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX302"></a>
+</dt>
+<dd><p>Push <code>*<var>value</var></code> onto the function call stack, in preparation for a call.
+This is normally used for returning <code>struct</code> and <code>union</code>
+values where you have the effective address of the structure, rather
+than the structure's contents, in <var>value</var>.
+</p>
+<p>You normally wouldn't call this yourself - it is used internally
+by the CPU back ends to set up the stack for a subroutine call.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_set_param</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, jit_nint <var>offset</var>)</i>
+<a name="IDX303"></a>
+</dt>
+<dd><p>Set the parameter slot at <var>offset</var> in the outgoing parameter area
+to <var>value</var>.  This may be used instead of <code>jit_insn_push</code>
+if it is more efficient to store directly to the stack than to push.
+The outgoing parameter area is allocated within the frame when
+the function is first entered.
+</p>
+<p>You normally wouldn't call this yourself - it is used internally
+by the CPU back ends to set up the stack for a subroutine call.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_set_param_ptr</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, jit_type_t <var>type</var>, jit_nint <var>offset</var>)</i>
+<a name="IDX304"></a>
+</dt>
+<dd><p>Same as <code>jit_insn_set_param_ptr</code>, except that the parameter is
+at <code>*<var>value</var></code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_push_return_area_ptr</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX305"></a>
+</dt>
+<dd><p>Push the interpreter's return area pointer onto the stack.
+You normally wouldn't call this yourself - it is used internally
+by the CPU back ends to set up the stack for a subroutine call.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_pop_stack</b><i> (jit_function_t <var>func</var>, jit_nint <var>num_items</var>)</i>
+<a name="IDX306"></a>
+</dt>
+<dd><p>Pop <var>num_items</var> items from the function call stack.  You normally
+wouldn't call this yourself - it is used by CPU back ends to clean up
+the stack after calling a subroutine.  The size of an item is specific
+to the back end (it could be bytes, words, or some other measurement).
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_defer_pop_stack</b><i> (jit_function_t <var>func</var>, jit_nint <var>num_items</var>)</i>
+<a name="IDX307"></a>
+</dt>
+<dd><p>This is similar to <code>jit_insn_pop_stack</code>, except that it tries to
+defer the pop as long as possible.  Multiple subroutine calls may
+result in parameters collecting up on the stack, and only being popped
+at the next branch or label instruction.  You normally wouldn't
+call this yourself - it is used by CPU back ends.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_flush_defer_pop</b><i> (jit_function_t <var>func</var>, jit_nint <var>num_items</var>)</i>
+<a name="IDX308"></a>
+</dt>
+<dd><p>Flush any deferred items that were scheduled for popping by
+<code>jit_insn_defer_pop_stack</code> if there are <var>num_items</var>
+or more items scheduled.  You normally wouldn't call this
+yourself - it is used by CPU back ends to clean up the stack just
+prior to a subroutine call when too many items have collected up.
+Calling <code>jit_insn_flush_defer_pop(func, 0)</code> will flush
+all deferred items.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_return</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX309"></a>
+</dt>
+<dd><p>Output an instruction to return <var>value</var> as the function's result.
+If <var>value</var> is NULL, then the function is assumed to return
+<code>void</code>.  If the function returns a structure, this will copy
+the value into the memory at the structure return address.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_return_ptr</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX310"></a>
+</dt>
+<dd><p>Output an instruction to return <code>*<var>value</var></code> as the function's result.
+This is normally used for returning <code>struct</code> and <code>union</code>
+values where you have the effective address of the structure, rather
+than the structure's contents, in <var>value</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_default_return</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX311"></a>
+</dt>
+<dd><p>Add an instruction to return a default value if control reaches this point.
+This is typically used at the end of a function to ensure that all paths
+return to the caller.  Returns zero if out of memory, 1 if a default
+return was added, and 2 if a default return was not needed.
+</p>
+<p>Note: if this returns 1, but the function signature does not return
+<code>void</code>, then it indicates that a higher-level language error
+has occurred and the function should be abandoned.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_throw</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX312"></a>
+</dt>
+<dd><p>Throw a pointer <var>value</var> as an exception object.  This can also
+be used to &quot;rethrow&quot; an object from a catch handler that is not
+interested in handling the exception.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_get_call_stack</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX313"></a>
+</dt>
+<dd><p>Get an object that represents the current position in the code,
+and all of the functions that are currently on the call stack.
+This is equivalent to calling <code>jit_exception_get_stack_trace</code>,
+and is normally used just prior to <code>jit_insn_throw</code> to record
+the location of the exception that is being thrown.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_thrown_exception</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX314"></a>
+</dt>
+<dd><p>Get the value that holds the most recent thrown exception.  This is
+typically used in <code>catch</code> clauses.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_uses_catcher</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX315"></a>
+</dt>
+<dd><p>Notify the function building process that <var>func</var> contains
+some form of <code>catch</code> clause for catching exceptions.  This must
+be called before any instruction that is covered by a <code>try</code>,
+ideally at the start of the function output process.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_start_catcher</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX316"></a>
+</dt>
+<dd><p>Start the catcher block for <var>func</var>.  There should be exactly one
+catcher block for any function that involves a <code>try</code>.  All
+exceptions that are thrown within the function will cause control
+to jump to this point.  Returns a value that holds the exception
+that was thrown.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_branch_if_pc_not_in_range</b><i> (jit_function_t <var>func</var>, jit_label_t <var>start_label</var>, jit_label_t <var>end_label</var>, jit_label_t *<var>label</var>)</i>
+<a name="IDX317"></a>
+</dt>
+<dd><p>Branch to <var>label</var> if the program counter where an exception occurred
+does not fall between <var>start_label</var> and <var>end_label</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_rethrow_unhandled</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX318"></a>
+</dt>
+<dd><p>Rethrow the current exception because it cannot be handled by
+any of the <code>catch</code> blocks in the current function.
+</p>
+<p>Note: this is intended for use within catcher blocks.  It should not
+be used to rethrow exceptions in response to programmer requests
+(e.g. <code>throw;</code> in C#).  The <code>jit_insn_throw</code> function
+should be used for that purpose.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_start_finally</b><i> (jit_function_t <var>func</var>, jit_label_t *<var>finally_label</var>)</i>
+<a name="IDX319"></a>
+</dt>
+<dd><p>Start a <code>finally</code> clause.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_return_from_finally</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX320"></a>
+</dt>
+<dd><p>Return from the <code>finally</code> clause to where it was called from.
+This is usually the last instruction in a <code>finally</code> clause.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_call_finally</b><i> (jit_function_t <var>func</var>, jit_label_t *<var>finally_label</var>)</i>
+<a name="IDX321"></a>
+</dt>
+<dd><p>Call a <code>finally</code> clause.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_start_filter</b><i> (jit_function_t <var>func</var>, jit_label_t *<var>label</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX322"></a>
+</dt>
+<dd><p>Define the start of a filter.  Filters are embedded subroutines within
+functions that are used to filter exceptions in <code>catch</code> blocks.
+</p>
+<p>A filter subroutine takes a single argument (usually a pointer) and
+returns a single result (usually a boolean).  The filter has complete
+access to the local variables of the function, and can use any of
+them in the filtering process.
+</p>
+<p>This function returns a temporary value of the specified <var>type</var>,
+indicating the parameter that is supplied to the filter.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_return_from_filter</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX323"></a>
+</dt>
+<dd><p>Return from a filter subroutine with the specified <code>value</code> as
+its result.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_call_filter</b><i> (jit_function_t <var>func</var>, jit_label_t *<var>label</var>, jit_value_t <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX324"></a>
+</dt>
+<dd><p>Call the filter subroutine at <var>label</var>, passing it <var>value</var> as
+its argument.  This function returns a value of the specified
+<var>type</var>, indicating the filter's result.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_memcpy</b><i> (jit_function_t <var>func</var>, jit_value_t <var>dest</var>, jit_value_t <var>src</var>, jit_value_t <var>size</var>)</i>
+<a name="IDX325"></a>
+</dt>
+<dd><p>Copy the <var>size</var> bytes of memory at <var>src</var> to <var>dest</var>.
+It is assumed that the source and destination do not overlap.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_memmove</b><i> (jit_function_t <var>func</var>, jit_value_t <var>dest</var>, jit_value_t <var>src</var>, jit_value_t <var>size</var>)</i>
+<a name="IDX326"></a>
+</dt>
+<dd><p>Copy the <var>size</var> bytes of memory at <var>src</var> to <var>dest</var>.
+This is save to use if the source and destination overlap.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_memset</b><i> (jit_function_t <var>func</var>, jit_value_t <var>dest</var>, jit_value_t <var>value</var>, jit_value_t <var>size</var>)</i>
+<a name="IDX327"></a>
+</dt>
+<dd><p>Set the <var>size</var> bytes at <var>dest</var> to <var>value</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_insn_alloca</b><i> (jit_function_t <var>func</var>, jit_value_t <var>size</var>)</i>
+<a name="IDX328"></a>
+</dt>
+<dd><p>Allocate <var>size</var> bytes of memory from the stack.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_move_blocks_to_end</b><i> (jit_function_t <var>func</var>, jit_label_t <var>from_label</var>, jit_label_t <var>to_label</var>)</i>
+<a name="IDX329"></a>
+</dt>
+<dd><p>Move all of the blocks between <var>from_label</var> (inclusive) and
+<var>to_label</var> (exclusive) to the end of the current function.
+This is typically used to move the expression in a <code>while</code>
+loop to the end of the body, where it can be executed more
+efficiently.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_move_blocks_to_start</b><i> (jit_function_t <var>func</var>, jit_label_t <var>from_label</var>, jit_label_t <var>to_label</var>)</i>
+<a name="IDX330"></a>
+</dt>
+<dd><p>Move all of the blocks between <var>from_label</var> (inclusive) and
+<var>to_label</var> (exclusive) to the start of the current function.
+This is typically used to move initialization code to the head
+of the function.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_mark_offset</b><i> (jit_function_t <var>func</var>, jit_int <var>offset</var>)</i>
+<a name="IDX331"></a>
+</dt>
+<dd><p>Mark the current position in <var>func</var> as corresponding to the
+specified bytecode <var>offset</var>.  This value will be returned
+by <code>jit_stack_trace_get_offset</code>, and is useful for associating
+code positions with source line numbers.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_insn_iter_init</b><i> (jit_insn_iter_t *<var>iter</var>, jit_block_t <var>block</var>)</i>
+<a name="IDX332"></a>
+</dt>
+<dd><p>Initialize an iterator to point to the first instruction in <var>block</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_insn_iter_init_last</b><i> (jit_insn_iter_t *<var>iter</var>, jit_block_t <var>block</var>)</i>
+<a name="IDX333"></a>
+</dt>
+<dd><p>Initialize an iterator to point to the last instruction in <var>block</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_insn_t <b>jit_insn_iter_next</b><i> (jit_insn_iter_t *<var>iter</var>)</i>
+<a name="IDX334"></a>
+</dt>
+<dd><p>Get the next instruction in an iterator's block.  Returns NULL
+when there are no further instructions in the block.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_insn_t <b>jit_insn_iter_previous</b><i> (jit_insn_iter_t *<var>iter</var>)</i>
+<a name="IDX335"></a>
+</dt>
+<dd><p>Get the previous instruction in an iterator's block.  Returns NULL
+when there are no further instructions in the block.
+</p></dd></dl>
+
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_7.html#SEC17" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_9.html#SEC19" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>May, 11 2008</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

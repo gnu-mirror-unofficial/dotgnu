@@ -1,0 +1,1098 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 11 2008 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Just-In-Time Compiler Library: 20. Porting libjit to new architectures</title>
+
+<meta name="description" content="Just-In-Time Compiler Library: 20. Porting libjit to new architectures">
+<meta name="keywords" content="Just-In-Time Compiler Library: 20. Porting libjit to new architectures">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+/* document-wide settings */
+   
+
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+body
+   {
+      color: #000000;
+      background: #ffffff;
+      margin-top: 0;
+      margin-left: 5;
+      margin-right: 5;
+   }
+   a:link
+   {
+      color: #000080;
+   }
+   a:visited
+   {
+      color: #808080;
+   }
+   a:active
+   {
+      color: #008000;
+   }
+/* document-wide settings */
+
+/* miscellaneous settings */
+   .mainheading
+   {
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding-left: 5px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   .mainsubheading
+   {
+      font-size: 12px;
+   }
+   .maincontent
+   {
+      margin-left: 25;
+      margin-right: 25;
+   }
+   .news
+   {
+      padding-left: 10;
+      padding-right: 5;
+   }
+   .heading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   .body
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   .linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   .linksbody
+   {
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   a.linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   a.linksbody
+   {
+      text-decoration: none;
+   }
+   a.html2
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      color: #000080;
+      text-decoration: underline;
+   }
+   p.credits
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      text-align: center;
+   }
+/* miscellaneous settings */
+
+/* HTML2 compatability settings */
+   h1
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   h2
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   h3
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 7px;
+      padding-right: 0;
+      text-decoration: none;
+      color: #008080;
+   }
+   h4
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-style: italic;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 10px;
+      text-decoration: none;
+      color: #008080;
+   }
+   p
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   ul
+   {
+      list-style: square outside url("g/dot.jpg");
+   }
+   ol
+   {
+	   list-style: decimal outside none;
+   }
+   li
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dd
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dt
+   {
+      font-weight: bold;
+      font-size: 12px;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+   }
+   pre
+   {
+      padding-left: 10px;
+      padding-right: 5px;
+   }
+   blockquote
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      padding-left: 10;
+      padding-right: 5px;
+   }
+/* HTML2 compatability settings */
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Porting"></a>
+<a name="SEC38"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_19.html#SEC37" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC39" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit_19.html#SEC37" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 20. Porting libjit to new architectures </h1>
+
+<p>This chapter describes what needs to be done to port <code>libjit</code>
+to a new CPU architecture.  It is assumed that the reader is familiar
+with compiler implementation techniques and the particulars of their
+target CPU's instruction set.
+</p>
+<p>We will use <code>ARCH</code> to represent the name of the architecture
+in the sections that follow.  It is usually the name of the CPU in
+lower case (e.g. <code>x86</code>, <code>arm</code>, <code>ppc</code>, etc).  By
+convention, all back end functions should be prefixed with <code>_jit</code>,
+because they are not part of the public API.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#SEC39">20.1 Porting the function apply facility</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#SEC40">20.2 Creating the instruction generation macros</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#SEC41">20.3 Writing the architecture definition rules</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#SEC45">20.4 Allocating registers in the back end</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Porting-Apply"></a>
+<a name="SEC39"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC38" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC40" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC38" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC38" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 20.1 Porting the function apply facility </h2>
+
+<p>The first step in porting <code>libjit</code> to a new architecture is to port
+the <code>jit_apply</code> facility.  This provides support for calling
+arbitrary C functions from your application or from JIT'ed code.
+If you are familiar with <code>libffi</code> or <code>ffcall</code>, then
+<code>jit_apply</code> provides a similar facility.
+</p>
+<p>Even if you don't intend to write a native code generator, you will
+probably still need to port <code>jit_apply</code> to each new architecture.
+</p>
+<p>The <code>libjit</code> library makes use of gcc's <code>__builtin_apply</code>
+facility to do most of the hard work of function application.
+This gcc facility takes three arguments: a pointer to the function
+to invoke, a structure containing register arguments, and a size
+value that indicates the number of bytes to push onto the stack
+for the call.
+</p>
+<p>Unfortunately, the register argument structure is very system dependent.
+There is no standard format for it, but it usually looks something
+like this:
+</p>
+<dl compact="compact">
+<dt> <code>stack_args</code></dt>
+<dd><p>Pointer to an array of argument values to push onto the stack.
+</p>
+</dd>
+<dt> <code>struct_ptr</code></dt>
+<dd><p>Pointer to the buffer to receive a <code>struct</code> return value.
+The <code>struct_ptr</code> field is only present if the architecture
+passes <code>struct</code> pointers in a special register.
+</p>
+</dd>
+<dt> <code>word_reg[0..N]</code></dt>
+<dd><p>Values for the word registers.  Platforms that pass values in
+registers will populate these fields.  Not present if the architecture
+does not use word registers for function calls.
+</p>
+</dd>
+<dt> <code>float_reg[0..N]</code></dt>
+<dd><p>Values for the floating-point registers.  Not present if the architecture
+does not use floating-point registers for function calls.
+</p></dd>
+</dl>
+
+<p>It is possible to automatically detect the particulars of this structure
+by making test function calls and inspecting where the arguments end up
+in the structure.  The <code>gen-apply</code> program in <code>libjit/tools</code>
+takes care of this.  It outputs the <code>jit-apply-rules.h</code> file,
+which tells <code>jit_apply</code> how to operate.
+</p>
+<p>The <code>gen-apply</code> program will normally &quot;just work&quot;, but it is possible
+that some architectures will be stranger than usual.  You will need to modify
+<code>gen-apply</code> to detect this additional strangeness, and perhaps
+also modify <code>libjit/jit/jit-apply.c</code>.
+</p>
+<p>If you aren't using gcc to compile <code>libjit</code>, then things may
+not be quite this easy.  You may have to write some inline assembly
+code to emulate <code>__builtin_apply</code>.  See the file
+<code>jit-apply-x86.h</code> for an example of how to do this.
+Be sure to add an <code>#include</code> line to <code>jit-apply-func.h</code>
+once you do this.
+</p>
+<p>The other half of <code>jit_apply</code> is closure and redirector support.
+Closures are used to wrap up interpreted functions so that they can be
+called as regular C functions.  Redirectors are used to help compile a
+JIT'ed function on-demand, and then redirect control to it.
+</p>
+<p>Unfortunately, you will have to write some assembly code to support
+closures and redirectors.  The builtin gcc facilities are not complete
+enough to handle the task.  See <code>jit-apply-x86.c</code> and
+<code>jit-apply-arm.c</code> for some examples from existing architectures.
+You may be able to get some ideas from the <code>libffi</code> and
+<code>ffcall</code> libraries as to what you need to do on your architecture.
+</p>
+
+<hr size="6">
+<a name="Instruction-Generation"></a>
+<a name="SEC40"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC39" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC41" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC38" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC38" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 20.2 Creating the instruction generation macros </h2>
+
+<p>You will need a large number of macros and support functions to
+generate the raw instructions for your chosen CPU.  These macros are
+fairly generic and are not necessarily specific to <code>libjit</code>.
+There may already be a suitable set of macros for your CPU in
+some other Free Software project.
+</p>
+<p>Typically, the macros are placed into a file called <code>jit-gen-ARCH.h</code>
+in the <code>libjit/jit</code> directory.  If some of the macros are complicated,
+you can place helper functions into the file <code>jit-gen-ARCH.c</code>.
+Remember to add both <code>jit-gen-ARCH.h</code> and <code>jit-gen-ARCH.c</code>
+to <code>Makefile.am</code> in <code>libjit/jit</code>.
+</p>
+<p>Existing examples that you can look at for ideas are <code>jit-gen-x86.h</code>
+and <code>jit-gen-arm.h</code>.  The macros in these existing files assume that
+instructions can be output to a buffer in a linear fashion, and that each
+instruction is relatively independent of the next.
+</p>
+<p>This independence principle may not be true of all CPU's.  For example,
+the <code>ia64</code> packs up to three instructions into a single &quot;bundle&quot;
+for parallel execution.  We recommend that the macros should appear to
+use linear output, but call helper functions to pack bundles after the fact.
+This will make it easier to write the architecture definition rules.
+A similar approach could be used for performing instruction scheduling
+on platforms that require it.
+</p>
+
+<hr size="6">
+<a name="Architecture-Rules"></a>
+<a name="SEC41"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC40" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC42" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC38" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC38" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 20.3 Writing the architecture definition rules </h2>
+
+
+
+
+<p>The architecture definition rules for a CPU are placed into the files
+<code>jit-rules-ARCH.h</code> and <code>jit-rules-ARCH.c</code>.  You should add
+both of these files to <code>Makefile.am</code> in <code>libjit/jit</code>.
+</p>
+<p>You will also need to edit <code>jit-rules.h</code> in two places.  First,
+place detection logic at the top of the file to detect your platform
+and define <code>JIT_BACKEND_ARCH</code> to 1.  Further down the file,
+you should add the following two lines to the include file logic:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">#elif defined(JIT_BACKEND_ARCH)
+#include &quot;jit-rules-ARCH.h&quot;
+</pre></td></tr></table>
+
+<hr size="6">
+<a name="SEC42"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC41" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC43" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC38" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC41" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection"> 20.3.1 Defining the registers </h3>
+
+<p>Every rule header file needs to define the macro <code>JIT_REG_INFO</code> to
+an array of values that represents the properties of the CPU's
+registers.  The <code>_jit_reg_info</code> array is populated with
+these values.  <code>JIT_NUM_REGS</code> defines the number of
+elements in the array.  Each element in the array has the
+following members:
+</p>
+<dl compact="compact">
+<dt> <code>name</code></dt>
+<dd><p>The name of the register.  This is used for debugging purposes.
+</p>
+</dd>
+<dt> <code>cpu_reg</code></dt>
+<dd><p>The raw CPU register number.  Registers in <code>libjit</code> are
+referred to by their pseudo register numbers, corresponding to
+their index within <code>JIT_REG_INFO</code>.  However, these pseudo
+register numbers may not necessarily correspond to the register
+numbers used by the actual CPU.  This field provides a mapping.
+</p>
+</dd>
+<dt> <code>other_reg</code></dt>
+<dd><p>The second pseudo register in a 64-bit register pair, or -1 if
+the current register cannot be used as the first pseudo register
+in a 64-bit register pair.  This field only has meaning on 32-bit
+platforms, and should always be set to -1 on 64-bit platforms.
+</p>
+</dd>
+<dt> <code>flags</code></dt>
+<dd><p>Flag bits that describe the pseudo register's properties.
+</p></dd>
+</dl>
+
+<p>The following flags may be present:
+</p>
+<dl compact="compact">
+<dt> <code>JIT_REG_WORD</code></dt>
+<dd><p>This register can hold an integer word value.
+</p>
+</dd>
+<dt> <code>JIT_REG_LONG</code></dt>
+<dd><p>This register can hold a 64-bit long value without needing a
+second register.  Normally only used on 64-bit platforms.
+</p>
+</dd>
+<dt> <code>JIT_REG_FLOAT32</code></dt>
+<dd><p>This register can hold a 32-bit floating-point value.
+</p>
+</dd>
+<dt> <code>JIT_REG_FLOAT64</code></dt>
+<dd><p>This register can hold a 64-bit floating-point value.
+</p>
+</dd>
+<dt> <code>JIT_REG_NFLOAT</code></dt>
+<dd><p>This register can hold a native floating-point value.
+</p>
+</dd>
+<dt> <code>JIT_REG_FRAME</code></dt>
+<dd><p>This register holds the frame pointer.  You will almost always supply
+<code>JIT_REG_FIXED</code> for this register.
+</p>
+</dd>
+<dt> <code>JIT_REG_STACK_PTR</code></dt>
+<dd><p>This register holds the stack pointer.  You will almost always supply
+<code>JIT_REG_FIXED</code> for this register.
+</p>
+</dd>
+<dt> <code>JIT_REG_FIXED</code></dt>
+<dd><p>This register has a fixed meaning and cannot be used for general allocation.
+</p>
+</dd>
+<dt> <code>JIT_REG_CALL_USED</code></dt>
+<dd><p>This register will be destroyed by a function call.
+</p>
+</dd>
+<dt> <code>JIT_REG_IN_STACK</code></dt>
+<dd><p>This register is in a stack-like arrangement.
+</p>
+</dd>
+<dt> <code>JIT_REG_GLOBAL</code></dt>
+<dd><p>This register is a candidate for global register allocation.
+</p></dd>
+</dl>
+
+<p>A CPU may have some registers arranged into a stack.  In this case
+operations can typically only occur at the top of the stack, and
+may automatically pop values as a side-effect of the operation.
+An example of such architecture is x87 floating point unit.  Such
+CPU requires three additional macros.
+</p>
+<dl compact="compact">
+<dt> <code>JIT_REG_STACK</code></dt>
+<dd><p>If defined, this indicates the presence of the register stack.
+</p>
+</dd>
+<dt> <code>JIT_REG_STACK_START</code></dt>
+<dd><p>The index of the first register in the <code>JIT_REG_INFO</code> array that is used
+in a stack-like arrangement.
+</p>
+</dd>
+<dt> <code>JIT_REG_STACK_END</code></dt>
+<dd><p>The index of the last register in the <code>JIT_REG_INFO</code> array that is used
+in a stack-like arrangement.
+</p>
+</dd>
+</dl>
+
+<p>The entries in the <code>JIT_REG_INFO</code> array from <code>JIT_REG_STACK_START</code>
+up to <code>JIT_REG_STACK_END</code> must also have the <code>JIT_REG_IN_STACK</code>
+flag set.
+</p>
+<hr size="6">
+<a name="SEC43"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC42" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC44" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC38" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC41" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection"> 20.3.2 Other architecture macros </h3>
+
+<p>The rule file may also have definitions of the following macros:
+</p>
+<dl compact="compact">
+<dt> <code>JIT_NUM_GLOBAL_REGS</code></dt>
+<dd><p>The number of registers that are used for global register allocation.
+Set to zero if global register allocation should not be used.
+</p>
+</dd>
+<dt> <code>JIT_ALWAYS_REG_REG</code></dt>
+<dd><p>Define this to 1 if arithmetic operations must always be performed
+on registers.  Define this to 0 if register/memory and memory/register
+operations are possible.
+</p>
+</dd>
+<dt> <code>JIT_PROLOG_SIZE</code></dt>
+<dd><p>If defined, this indicates the maximum size of the function prolog.
+</p>
+</dd>
+<dt> <code>JIT_FUNCTION_ALIGNMENT</code></dt>
+<dd><p>This value indicates the alignment required for the start of a function.
+e.g. define this to 32 if functions should be aligned on a 32-byte
+boundary.
+</p>
+</dd>
+<dt> <code>JIT_ALIGN_OVERRIDES</code></dt>
+<dd><p>Define this to 1 if the platform allows reads and writes on
+any byte boundary.  Define to 0 if only properly-aligned
+memory accesses are allowed.  Normally only defined to 1 under x86.
+</p>
+</dd>
+<dt> <code>jit_extra_gen_state</code></dt>
+<dt> <code>jit_extra_gen_init</code></dt>
+<dt> <code>jit_extra_gen_cleanup</code></dt>
+<dd><p>The <code>jit_extra_gen_state</code> macro can be supplied to add extra fields
+to the <code>struct jit_gencode</code> type in <code>jit-rules.h</code>, for
+extra CPU-specific code generation state information.
+</p>
+<p>The <code>jit_extra_gen_init</code> macro initializes this extra information,
+and the <code>jit_extra_gen_cleanup</code> macro cleans it up when code
+generation is complete.
+</p></dd>
+</dl>
+
+<hr size="6">
+<a name="SEC44"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC43" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC45" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC38" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC41" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection"> 20.3.3 Architecture-dependent functions </h3>
+
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_init_backend</b><i> (void)</i>
+<a name="IDX980"></a>
+</dt>
+<dd><p>Initialize the backend.  This is normally used to configure registers
+that may not appear on all CPU's in a given family.  For example, only
+some ARM cores have floating-point registers.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_gen_get_elf_info</b><i> (jit_elf_info_t *<var>info</var>)</i>
+<a name="IDX981"></a>
+</dt>
+<dd><p>Get the ELF machine and ABI type information for this platform.
+The <code>machine</code> field should be set to one of the <code>EM_*</code>
+values in <code>jit-elf-defs.h</code>.  The <code>abi</code> field should
+be set to one of the <code>ELFOSABI_*</code> values in <code>jit-elf-defs.h</code>
+(<code>ELFOSABI_SYSV</code> will normally suffice if you are unsure).
+The <code>abi_version</code> field should be set to the ABI version,
+which is usually zero.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>_jit_create_entry_insns</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX982"></a>
+</dt>
+<dd><p>Create instructions in the entry block to initialize the
+registers and frame offsets that contain the parameters.
+Returns zero if out of memory.
+</p>
+<p>This function is called when a builder is initialized.  It should
+scan the signature and decide which register or frame position
+contains each of the parameters and then call either
+<code>jit_insn_incoming_reg</code> or <code>jit_insn_incoming_frame_posn</code>
+to notify <code>libjit</code> of the location.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>_jit_create_call_setup_insns</b><i> (jit_function_t <var>func</var>, jit_type_t <var>signature</var>, jit_value_t *<var>args</var>, unsigned int <var>num_args</var>, int <var>is_nested</var>, int <var>nested_level</var>, jit_value_t *<var>struct_return</var>, int <var>flags</var>)</i>
+<a name="IDX983"></a>
+</dt>
+<dd><p>Create instructions within <var>func</var> necessary to set up for a
+function call to a function with the specified <var>signature</var>.
+Use <code>jit_insn_push</code> to push values onto the system stack,
+or <code>jit_insn_outgoing_reg</code> to copy values into call registers.
+</p>
+<p>If <var>is_nested</var> is non-zero, then it indicates that we are calling a
+nested function within the current function's nested relationship tree.
+The <var>nested_level</var> value will be -1 to call a child, zero to call a
+sibling of <var>func</var>, 1 to call a sibling of the parent, 2 to call
+a sibling of the grandparent, etc.  The <code>jit_insn_setup_for_nested</code>
+instruction should be used to create the nested function setup code.
+</p>
+<p>If the function returns a structure by pointer, then <var>struct_return</var>
+must be set to a new local variable that will contain the returned
+structure.  Otherwise it should be set to NULL.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>_jit_setup_indirect_pointer</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX984"></a>
+</dt>
+<dd><p>Place the indirect function pointer <var>value</var> into a suitable register
+or stack location for a subsequent indirect call.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>_jit_create_call_return_insns</b><i> (jit_function_t <var>func</var>, jit_type_t <var>signature</var>, jit_value_t *<var>args</var>, unsigned int <var>num_args</var>, jit_value_t <var>return_value</var>, int <var>is_nested</var>)</i>
+<a name="IDX985"></a>
+</dt>
+<dd><p>Create instructions within <var>func</var> to clean up after a function call
+and to place the function's result into <var>return_value</var>.
+This should use <code>jit_insn_pop_stack</code> to pop values off the system
+stack and <code>jit_insn_return_reg</code> to tell <code>libjit</code> which
+register contains the return value.  In the case of a <code>void</code>
+function, <var>return_value</var> will be NULL.
+</p>
+<p>Note: the argument values are passed again because it may not be possible
+to determine how many bytes to pop from the stack from the <var>signature</var>
+alone; especially if the called function is vararg.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>_jit_opcode_is_supported</b><i> (int <var>opcode</var>)</i>
+<a name="IDX986"></a>
+</dt>
+<dd><p>Not all CPU's support all arithmetic, conversion, bitwise, or
+comparison operators natively.  For example, most ARM platforms
+need to call out to helper functions to perform floating-point.
+</p>
+<p>If this function returns zero, then <code>jit-insn.c</code> will output a
+call to an intrinsic function that is equivalent to the desired opcode.
+This is how you tell <code>libjit</code> that you cannot handle the
+opcode natively.
+</p>
+<p>This function can also help you develop your back end incrementally.
+Initially, you can report that only integer operations are supported,
+and then once you have them working you can move on to the floating point
+operations.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>_jit_gen_prolog</b><i> (jit_gencode_t <var>gen</var>, jit_function_t <var>func</var>, void *<var>buf</var>)</i>
+<a name="IDX987"></a>
+</dt>
+<dd><p>Generate the prolog for a function into a previously-prepared
+buffer area of <code>JIT_PROLOG_SIZE</code> bytes in size.  Returns
+the start of the prolog, which may be different than <var>buf</var>.
+</p>
+<p>This function is called at the end of the code generation process,
+not the beginning.  At this point, it is known which callee save
+registers must be preserved, allowing the back end to output the
+most compact prolog possible.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_gen_epilog</b><i> (jit_gencode_t <var>gen</var>, jit_function_t <var>func</var>)</i>
+<a name="IDX988"></a>
+</dt>
+<dd><p>Generate a function epilog, restoring the registers that
+were saved on entry to the function, and then returning.
+</p>
+<p>Only one epilog is generated per function.  Functions with multiple
+<code>jit_insn_return</code> instructions will all jump to the common epilog.
+This is needed because the code generator may not know which callee
+save registers need to be restored by the epilog until the full function
+has been processed.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>_jit_gen_redirector</b><i> (jit_gencode_t <var>gen</var>, jit_function_t <var>func</var>)</i>
+<a name="IDX989"></a>
+</dt>
+<dd><p>Generate code for a redirector, which makes an indirect jump
+to the contents of <code><var>func</var>-&gt;entry_point</code>.  Redirectors
+are used on recompilable functions in place of the regular
+entry point.  This allows <code>libjit</code> to redirect existing
+calls to the new version after recompilation.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_gen_spill_reg</b><i> (jit_gencode_t <var>gen</var>, int <var>reg</var>, int <var>other_reg</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX990"></a>
+</dt>
+<dd><p>Generate instructions to spill a pseudo register to the local
+variable frame.  If <var>other_reg</var> is not -1, then it indicates
+the second register in a 64-bit register pair.
+</p>
+<p>This function will typically call <code>_jit_gen_fix_value</code> to
+fix the value's frame position, and will then generate the
+appropriate spill instructions.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_gen_free_reg</b><i> (jit_gencode_t <var>gen</var>, int <var>reg</var>, int <var>other_reg</var>, int <var>value_used</var>)</i>
+<a name="IDX991"></a>
+</dt>
+<dd><p>Generate instructions to free a register without spilling its value.
+This is called when a register's contents become invalid, or its
+value is no longer required.  If <var>value_used</var> is set to a non-zero
+value, then it indicates that the register's value was just used.
+Otherwise, there is a value in the register but it was never used.
+</p>
+<p>On most platforms, this function won't need to do anything to free
+the register.  But some do need to take explicit action.  For example,
+x86 needs an explicit instruction to remove a floating-point value
+from the FPU's stack if its value has not been used yet.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_gen_load_value</b><i> (jit_gencode_t <var>gen</var>, int <var>reg</var>, int <var>other_reg</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX992"></a>
+</dt>
+<dd><p>Generate instructions to load a value into a register.  The value will
+either be a constant or a slot in the frame.  You should fix frame slots
+with <code>_jit_gen_fix_value</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_gen_spill_global</b><i> (jit_gencode_t <var>gen</var>, int <var>reg</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX993"></a>
+</dt>
+<dd><p>Spill the contents of <var>value</var> from its corresponding global register.
+This is used in rare cases when a machine instruction requires its operand
+to be in the specific register that happens to be global. In such cases the
+register is spilled just before the instruction and loaded back immediately
+after it.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_gen_load_global</b><i> (jit_gencode_t <var>gen</var>, int <var>reg</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX994"></a>
+</dt>
+<dd><p>Load the contents of <var>value</var> into its corresponding global register.
+This is used at the head of a function to pull parameters out of stack
+slots into their global register copies.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_gen_exch_top</b><i> (jit_gencode_t <var>gen</var>, int <var>reg</var>)</i>
+<a name="IDX995"></a>
+</dt>
+<dd><p>Generate instructions to exchange the contents of the top stack register
+with a stack register specified by the <var>reg</var> argument.
+</p>
+<p>It needs to be implemented only by backends that support stack registers.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_gen_move_top</b><i> (jit_gencode_t <var>gen</var>, int <var>reg</var>)</i>
+<a name="IDX996"></a>
+</dt>
+<dd><p>Generate instructions to copy the contents of the top stack register
+into a stack register specified by the <code>reg</code> argument and pop
+the top register after this. If <code>reg</code> is equal to the top register
+then the top register is just popped without copying it.
+</p>
+<p>It needs to be implemented only by backends that support stack registers.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_gen_spill_top</b><i> (jit_gencode_t <var>gen</var>, int <var>reg</var>, jit_value_t <var>value</var>, int <var>pop</var>)</i>
+<a name="IDX997"></a>
+</dt>
+<dd><p>Generate instructions to spill the top stack register to the local
+variable frame. The <var>pop</var> argument indicates if the top register
+is popped from the stack.
+</p>
+<p>It needs to be implemented only by backends that support stack registers.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_gen_fix_value</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX998"></a>
+</dt>
+<dd><p>Fix the position of a value within the local variable frame.
+If it doesn't already have a position, then assign one for it.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_gen_insn</b><i> (jit_gencode_t <var>gen</var>, jit_function_t <var>func</var>, jit_block_t <var>block</var>, jit_insn_t <var>insn</var>)</i>
+<a name="IDX999"></a>
+</dt>
+<dd><p>Generate native code for the specified <var>insn</var>.  This function should
+call the appropriate register allocation routines, output the instruction,
+and then arrange for the result to be placed in an appropriate register
+or memory destination.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_gen_start_block</b><i> (jit_gencode_t <var>gen</var>, jit_block_t <var>block</var>)</i>
+<a name="IDX1000"></a>
+</dt>
+<dd><p>Called to notify the back end that the start of a basic block
+has been reached.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_gen_end_block</b><i> (jit_gencode_t <var>gen</var>)</i>
+<a name="IDX1001"></a>
+</dt>
+<dd><p>Called to notify the back end that the end of a basic block
+has been reached.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>_jit_gen_is_global_candidate</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX1002"></a>
+</dt>
+<dd><p>Determine if <var>type</var> is a candidate for allocation within
+global registers.
+</p></dd></dl>
+
+
+
+<hr size="6">
+<a name="Register-Allocation"></a>
+<a name="SEC45"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC44" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC38" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC38" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 20.4 Allocating registers in the back end </h2>
+
+
+
+
+<p>The <code>libjit</code> library provides a number of functions for
+performing register allocation within basic blocks so that you
+mostly don't have to worry about it:
+</p>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_regs_lookup</b><i> (char *name)</i>
+<a name="IDX1003"></a>
+</dt>
+<dd><p>Get the pseudo register by its name.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>_jit_regs_needs_long_pair</b><i> (jit_type_t type)</i>
+<a name="IDX1004"></a>
+</dt>
+<dd><p>Determine if a type requires a long register pair.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>_jit_regs_get_cpu</b><i> (jit_gencode_t gen, int reg, int *other_reg)</i>
+<a name="IDX1005"></a>
+</dt>
+<dd><p>Get the CPU register that corresponds to a pseudo register.
+&quot;other_reg&quot; will be set to the other register in a pair,
+or -1 if the register is not part of a pair.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_regs_alloc_global</b><i> (jit_gencode_t gen, jit_function_t func)</i>
+<a name="IDX1006"></a>
+</dt>
+<dd><p>Perform global register allocation on the values in <code>func</code>.
+This is called during function compilation just after variable
+liveness has been computed.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_regs_init_for_block</b><i> (jit_gencode_t gen)</i>
+<a name="IDX1007"></a>
+</dt>
+<dd><p>Initialize the register allocation state for a new block.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_regs_spill_all</b><i> (jit_gencode_t gen)</i>
+<a name="IDX1008"></a>
+</dt>
+<dd><p>Spill all of the temporary registers to memory locations.
+Normally used at the end of a block, but may also be used in
+situations where a value must be in a certain register and
+it is too hard to swap things around to put it there.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_regs_set_incoming</b><i> (jit_gencode_t gen, int reg, jit_value_t value)</i>
+<a name="IDX1009"></a>
+</dt>
+<dd><p>Set pseudo register <code>reg</code> to record that it currently holds the
+contents of <code>value</code>.  The register must not contain any other
+live value at this point.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_regs_set_outgoing</b><i> (jit_gencode_t gen, int reg, jit_value_t value)</i>
+<a name="IDX1010"></a>
+</dt>
+<dd><p>Load the contents of <code>value</code> into pseudo register <code>reg</code>,
+spilling out the current contents.  This is used to set up outgoing
+parameters for a function call.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>_jit_regs_force_out</b><i> (jit_gencode_t gen, jit_value_t value, int is_dest)</i>
+<a name="IDX1011"></a>
+</dt>
+<dd><p>If <code>value</code> is currently in a register, then force its value out
+into the stack frame.  The <code>is_dest</code> flag indicates that the value
+will be a destination, so we don't care about the original value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>_jit_regs_load_value</b><i> (jit_gencode_t gen, jit_value_t value, int destroy, int used_again)</i>
+<a name="IDX1012"></a>
+</dt>
+<dd><p>Load a value into any register that is suitable and return that register.
+If the value needs a long pair, then this will return the first register
+in the pair.  Returns -1 if the value will not fit into any register.
+</p>
+<p>If <code>destroy</code> is non-zero, then we are about to destroy the register,
+so the system must make sure that such destruction will not side-effect
+<code>value</code> or any of the other values currently in that register.
+</p>
+<p>If <code>used_again</code> is non-zero, then it indicates that the value is
+used again further down the block.
+</p></dd></dl>
+
+
+
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC38" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>May, 11 2008</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

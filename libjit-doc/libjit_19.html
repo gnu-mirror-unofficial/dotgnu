@@ -1,0 +1,946 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 11 2008 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Just-In-Time Compiler Library: 19. Functions in C++</title>
+
+<meta name="description" content="Just-In-Time Compiler Library: 19. Functions in C++">
+<meta name="keywords" content="Just-In-Time Compiler Library: 19. Functions in C++">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+/* document-wide settings */
+   
+
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+body
+   {
+      color: #000000;
+      background: #ffffff;
+      margin-top: 0;
+      margin-left: 5;
+      margin-right: 5;
+   }
+   a:link
+   {
+      color: #000080;
+   }
+   a:visited
+   {
+      color: #808080;
+   }
+   a:active
+   {
+      color: #008000;
+   }
+/* document-wide settings */
+
+/* miscellaneous settings */
+   .mainheading
+   {
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding-left: 5px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   .mainsubheading
+   {
+      font-size: 12px;
+   }
+   .maincontent
+   {
+      margin-left: 25;
+      margin-right: 25;
+   }
+   .news
+   {
+      padding-left: 10;
+      padding-right: 5;
+   }
+   .heading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   .body
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   .linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   .linksbody
+   {
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   a.linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   a.linksbody
+   {
+      text-decoration: none;
+   }
+   a.html2
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      color: #000080;
+      text-decoration: underline;
+   }
+   p.credits
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      text-align: center;
+   }
+/* miscellaneous settings */
+
+/* HTML2 compatability settings */
+   h1
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   h2
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   h3
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 7px;
+      padding-right: 0;
+      text-decoration: none;
+      color: #008080;
+   }
+   h4
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-style: italic;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 10px;
+      text-decoration: none;
+      color: #008080;
+   }
+   p
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   ul
+   {
+      list-style: square outside url("g/dot.jpg");
+   }
+   ol
+   {
+	   list-style: decimal outside none;
+   }
+   li
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dd
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dt
+   {
+      font-weight: bold;
+      font-size: 12px;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+   }
+   pre
+   {
+      padding-left: 10px;
+      padding-right: 5px;
+   }
+   blockquote
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      padding-left: 10;
+      padding-right: 5px;
+   }
+/* HTML2 compatability settings */
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="C_002b_002b-Functions"></a>
+<a name="SEC37"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_18.html#SEC36" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_20.html#SEC38" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit_18.html#SEC36" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_20.html#SEC38" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 19. Functions in C++ </h1>
+
+
+
+
+<p>The <code>jit_function</code> class provides a C++ counterpart to the
+C <code>jit_function_t</code> type.  See section <a href="libjit_5.html#SEC15">Building and compiling functions with the JIT</a>, for more information
+on creating and managing functions.
+</p>
+<p>The <code>jit_function</code> class also provides a large number of methods
+for creating the instructions within a function body.  See section <a href="libjit_8.html#SEC18">Working with instructions in the JIT</a>,
+for more information on creating and managing instructions.
+</p>
+
+<dl>
+<dt><u>Constructor on jit_function:</u> <b>jit_function</b><i> (jit_context&amp; <var>context</var>, jit_type_t <var>signature</var>)</i>
+<a name="IDX821"></a>
+</dt>
+<dd><p>Constructs a new function handler with the specified <var>signature</var> in
+the given <var>context</var>.  It then calls <code>create(<var>signature</var>)</code> to
+create the actual function.
+</p></dd></dl>
+
+<dl>
+<dt><u>Constructor on jit_function:</u> <b>jit_function</b><i> (jit_context&amp; <var>context</var>)</i>
+<a name="IDX822"></a>
+</dt>
+<dd><p>Constructs a new function handler in the specified <var>context</var>.
+The actual function is not created until you call <code>create()</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Constructor on jit_function:</u> <b>jit_function</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX823"></a>
+</dt>
+<dd><p>Constructs a new function handler and wraps it around the specified
+raw C <code>jit_function_t</code> object.  This can be useful for layering
+the C++ on-demand building facility on top of an existing C function.
+</p></dd></dl>
+
+<dl>
+<dt><u>Destructor on jit_function:</u> <b>~jit_function</b><i> ()</i>
+<a name="IDX824"></a>
+</dt>
+<dd><p>Destroy this function handler.  The raw function will persist
+until the context is destroyed.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> jit_function_t <b>raw</b><i> () const</i>
+<a name="IDX825"></a>
+</dt>
+<dd><p>Get the raw C <code>jit_function_t</code> value that underlies this object.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> int <b>is_valid</b><i> () const</i>
+<a name="IDX826"></a>
+</dt>
+<dd><p>Determine if the raw C <code>jit_function_t</code> value that
+underlies this object is valid.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> static jit_function * <b>from_raw</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX827"></a>
+</dt>
+<dd><p>Find the C++ <code>jit_function</code> object that is associated with a
+raw C <code>jit_function_t</code> pointer.  Returns NULL if there is
+no such object.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> jit_type_t <b>signature</b><i> () const</i>
+<a name="IDX828"></a>
+</dt>
+<dd><p>Get the signature type for this function.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> void <b>create</b><i> (jit_type_t <var>signature</var>)</i>
+<a name="IDX829"></a>
+</dt>
+<dd><p>Create this function if it doesn't already exist.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> void <b>create</b><i> ()</i>
+<a name="IDX830"></a>
+</dt>
+<dd><p>Create this function if it doesn't already exist.  This version will
+call the virtual <code>create_signature()</code> method to obtain the
+signature from the subclass.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> int <b>compile</b><i> ()</i>
+<a name="IDX831"></a>
+</dt>
+<dd><p>Compile this function explicity.  You normally don't need to use this
+method because the function will be compiled on-demand.  If you do
+choose to build the function manually, then the correct sequence of
+operations is as follows:
+</p>
+<ol>
+<li>
+Invoke the <code>build_start</code> method to lock down the function builder.
+
+</li><li>
+Build the function by calling the value-related and instruction-related
+methods within <code>jit_function</code>.
+
+</li><li>
+Compile the function with the <code>compile</code> method.
+
+</li><li>
+Unlock the function builder by invoking <code>build_end</code>.
+</li></ol>
+</dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> int <b>is_compiled</b><i> () const</i>
+<a name="IDX832"></a>
+</dt>
+<dd><p>Determine if this function has already been compiled.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> void <b>set_optimization_level</b><i> (unsigned int <var>level</var>)</i>
+<a name="IDX833"></a>
+</dt>
+<dt><u>Method on jit_function:</u> unsigned int <b>optimization_level</b><i> () const</i>
+<a name="IDX834"></a>
+</dt>
+<dd><p>Set or get the optimization level for this function.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> static unsigned int <b>max_optimization_level</b><i> ()</i>
+<a name="IDX835"></a>
+</dt>
+<dd><p>Get the maximum optimization level for <code>libjit</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> void * <b>closure</b><i> () const</i>
+<a name="IDX836"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void * <b>vtable_pointer</b><i> () const</i>
+<a name="IDX837"></a>
+</dt>
+<dd><p>Get the closure or vtable pointer form of this function.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> int <b>apply</b><i> (void** <var>args</var>, void* <var>result</var>)</i>
+<a name="IDX838"></a>
+</dt>
+<dt><u>Method on jit_function:</u> int <b>apply</b><i> (jit_type_t <var>signature</var>, void** <var>args</var>, void* <var>return_area</var>)</i>
+<a name="IDX839"></a>
+</dt>
+<dd><p>Call this function, applying the specified arguments.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> static jit_type_t <b>signature_helper</b><i> (jit_type_t <var>return_type</var>, ...)</i>
+<a name="IDX840"></a>
+</dt>
+<dd><p>You can call this method from <code>create_signature()</code> to help build the
+correct signature for your function.  The first parameter is the return
+type, following by zero or more types for the parameters.  The parameter
+list is terminated with the special value <code>jit_function::end_params</code>.
+</p>
+<p>A maximum of 32 parameter types can be supplied, and the signature
+ABI is always set to <code>jit_abi_cdecl</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> void <b>build</b><i> ()</i>
+<a name="IDX841"></a>
+</dt>
+<dd><p>This method is called when the function has to be build on-demand,
+or in response to an explicit <code>recompile</code> request.  You build the
+function by calling the value-related and instruction-related
+methods within <code>jit_function</code> that are described below.
+</p>
+<p>The default implementation of <code>build</code> will fail, so you must
+override it if you didn't build the function manually and call
+<code>compile</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> jit_type_t <b>create_signature</b><i> ()</i>
+<a name="IDX842"></a>
+</dt>
+<dd><p>This method is called by <code>create()</code> to create the function's
+signature.  The default implementation creates a signature that
+returns <code>void</code> and has no parameters.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> void <b>fail</b><i> ()</i>
+<a name="IDX843"></a>
+</dt>
+<dd><p>This method can be called by <code>build</code> to fail the on-demand
+compilation process.  It throws an exception to unwind the build.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> void <b>out_of_memory</b><i> ()</i>
+<a name="IDX844"></a>
+</dt>
+<dd><p>This method can be called by <code>build</code> to indicate that the on-demand
+compilation process ran out of memory.  It throws an exception to
+unwind the build.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> void <b>build_start</b><i> ()</i>
+<a name="IDX845"></a>
+</dt>
+<dd><p>Start an explicit build process.  Not needed if you will be using
+on-demand compilation.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> void <b>build_end</b><i> ()</i>
+<a name="IDX846"></a>
+</dt>
+<dd><p>End an explicit build process.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> jit_value <b>new_value</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX847"></a>
+</dt>
+<dd><p>Create a new temporary value.  This is the C++ counterpart to
+<code>jit_value_create</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> jit_value <b>new_constant</b><i> (jit_sbyte <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX848"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>new_constant</b><i> (jit_ubyte <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX849"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>new_constant</b><i> (jit_short <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX850"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>new_constant</b><i> (jit_ushort <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX851"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>new_constant</b><i> (jit_int <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX852"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>new_constant</b><i> (jit_uint <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX853"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>new_constant</b><i> (jit_long <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX854"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>new_constant</b><i> (jit_ulong <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX855"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>new_constant</b><i> (jit_float32 <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX856"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>new_constant</b><i> (jit_float64 <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX857"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>new_constant</b><i> (jit_nfloat <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX858"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>new_constant</b><i> (void* <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX859"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>new_constant</b><i> (const jit_constant_t&amp; <var>value</var>)</i>
+<a name="IDX860"></a>
+</dt>
+<dd><p>Create constant values of various kinds.  See section <a href="libjit_7.html#SEC17">Working with temporary values in the JIT</a>, for more
+information on creating and managing constants.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> jit_value <b>get_param</b><i> (unsigned int <var>param</var>)</i>
+<a name="IDX861"></a>
+</dt>
+<dd><p>Get the value that corresponds to parameter <var>param</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> jit_value <b>get_struct_pointer</b><i> ()</i>
+<a name="IDX862"></a>
+</dt>
+<dd><p>Get the value that corresponds to the structure pointer parameter,
+if this function has one.  Returns an empty value if it does not.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> jit_label <b>new_label</b><i> ()</i>
+<a name="IDX863"></a>
+</dt>
+<dd><p>Create a new label.  This is the C++ counterpart to
+<code>jit_function_reserve_label</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_function:</u> void <b>insn_label</b><i> (jit_label&amp; <var>label</var>)</i>
+<a name="IDX864"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_new_block</b><i> ()</i>
+<a name="IDX865"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_load</b><i> (const jit_value&amp; <var>value</var>)</i>
+<a name="IDX866"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_dup</b><i> (const jit_value&amp; <var>value</var>)</i>
+<a name="IDX867"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_load_small</b><i> (const jit_value&amp; <var>value</var>)</i>
+<a name="IDX868"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>store</b><i> (const jit_value&amp; <var>dest</var>, const jit_value&amp; <var>value</var>)</i>
+<a name="IDX869"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_load_relative</b><i> (const jit_value&amp; <var>value</var>, jit_nint <var>offset</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX870"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_store_relative</b><i> (const jit_value&amp; <var>dest</var>, jit_nint <var>offset</var>, const jit_value&amp; <var>value</var>)</i>
+<a name="IDX871"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_add_relative</b><i> (const jit_value&amp; <var>value</var>, jit_nint <var>offset</var>)</i>
+<a name="IDX872"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_load_elem</b><i> (const jit_value&amp; <var>base_addr</var>, const jit_value&amp; <var>index</var>, jit_type_t <var>elem_type</var>)</i>
+<a name="IDX873"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_load_elem_address</b><i> (const jit_value&amp; <var>base_addr</var>, const jit_value&amp; <var>index</var>, jit_type_t <var>elem_type</var>)</i>
+<a name="IDX874"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_store_elem</b><i> (const jit_value&amp; <var>base_addr</var>, const jit_value&amp; <var>index</var>, const jit_value&amp; <var>value</var>)</i>
+<a name="IDX875"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_check_null</b><i> (const jit_value&amp; <var>value</var>)</i>
+<a name="IDX876"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_add</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX877"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_add_ovf</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX878"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_sub</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX879"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_sub_ovf</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX880"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_mul</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX881"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_mul_ovf</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX882"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_div</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX883"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_rem</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX884"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_rem_ieee</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX885"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_neg</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX886"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_and</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX887"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_or</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX888"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_xor</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX889"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_not</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX890"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_shl</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX891"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_shr</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX892"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_ushr</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX893"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_sshr</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX894"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_eq</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX895"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_ne</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX896"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_lt</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX897"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_le</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX898"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_gt</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX899"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_ge</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX900"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_cmpl</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX901"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_cmpg</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX902"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_to_bool</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX903"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_to_not_bool</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX904"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_acos</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX905"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_asin</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX906"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_atan</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX907"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_atan2</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX908"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_ceil</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX909"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_cos</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX910"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_cosh</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX911"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_exp</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX912"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_floor</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX913"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_log</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX914"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_log10</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX915"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_pow</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX916"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_rint</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX917"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_round</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX918"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_sin</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX919"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_sinh</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX920"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_sqrt</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX921"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_tan</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX922"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_tanh</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX923"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_is_nan</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX924"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_is_finite</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX925"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_is_inf</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX926"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_abs</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX927"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_min</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX928"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_max</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX929"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_sign</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX930"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_branch</b><i> (jit_label&amp; <var>label</var>)</i>
+<a name="IDX931"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_branch_if</b><i> (const jit_value&amp; <var>value</var>, jit_label&amp; <var>label</var>)</i>
+<a name="IDX932"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_branch_if_not</b><i> (const jit_value&amp; value, jit_label&amp; <var>label</var>)</i>
+<a name="IDX933"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_address_of</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX934"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_address_of_label</b><i> (jit_label&amp; <var>label</var>)</i>
+<a name="IDX935"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_convert</b><i> (const jit_value&amp; <var>value</var>, jit_type_t <var>type</var>, int <var>overflow_check</var>)</i>
+<a name="IDX936"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_call</b><i> (const char* <var>name</var>, jit_function_t <var>jit_func</var>, jit_type_t <var>signature</var>, jit_value_t* <var>args</var>, unsigned int <var>num_args</var>, int <var>flags</var>)</i>
+<a name="IDX937"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_call_indirect</b><i> (const jit_value&amp; <var>value</var>, jit_type_t <var>signature</var>, jit_value_t* <var>args</var>, unsigned int <var>num_args</var>, int <var>flags</var>)</i>
+<a name="IDX938"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_call_indirect_vtable</b><i> (const jit_value&amp; <var>value</var>, jit_type_t <var>signature</var>, jit_value_t * <var>args</var>, unsigned int <var>num_args</var>, int <var>flags</var>)</i>
+<a name="IDX939"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_call_native</b><i> (const char* <var>name</var>, void* <var>native_func</var>, jit_type_t <var>signature</var>, jit_value_t* <var>args</var>, unsigned int <var>num_args</var>, int <var>flags</var>)</i>
+<a name="IDX940"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_call_intrinsic</b><i> (const char* <var>name</var>, void* <var>intrinsic_func</var>, const jit_intrinsic_descr_t&amp; <var>descriptor</var>, const jit_value&amp; <var>arg1</var>, const jit_value&amp; <var>arg2</var>)</i>
+<a name="IDX941"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_incoming_reg</b><i> (const jit_value&amp; <var>value</var>, int <var>reg</var>)</i>
+<a name="IDX942"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_incoming_frame_posn</b><i> (const jit_value&amp; <var>value</var>, jit_nint <var>posn</var>)</i>
+<a name="IDX943"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_outgoing_reg</b><i> (const jit_value&amp; <var>value</var>, int <var>reg</var>)</i>
+<a name="IDX944"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_outgoing_frame_posn</b><i> (const jit_value&amp; <var>value</var>, jit_nint <var>posn</var>)</i>
+<a name="IDX945"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_return_reg</b><i> (const jit_value&amp; <var>value</var>, int <var>reg</var>)</i>
+<a name="IDX946"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_setup_for_nested</b><i> (int <var>nested_level</var>, int <var>reg</var>)</i>
+<a name="IDX947"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_flush_struct</b><i> (const jit_value&amp; <var>value</var>)</i>
+<a name="IDX948"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_import</b><i> (jit_value <var>value</var>)</i>
+<a name="IDX949"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_push</b><i> (const jit_value&amp; <var>value</var>)</i>
+<a name="IDX950"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_push_ptr</b><i> (const jit_value&amp; <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX951"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_set_param</b><i> (const jit_value&amp; <var>value</var>, jit_nint <var>offset</var>)</i>
+<a name="IDX952"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_set_param_ptr</b><i> (const jit_value&amp; <var>value</var>, jit_type_t <var>type</var>, jit_nint <var>offset</var>)</i>
+<a name="IDX953"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_push_return_area_ptr</b><i> ()</i>
+<a name="IDX954"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_return</b><i> (const jit_value&amp; <var>value</var>)</i>
+<a name="IDX955"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_return</b><i> ()</i>
+<a name="IDX956"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_return_ptr</b><i> (const jit_value&amp; <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX957"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_default_return</b><i> ()</i>
+<a name="IDX958"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_throw</b><i> (const jit_value&amp; <var>value</var>)</i>
+<a name="IDX959"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_get_call_stack</b><i> ()</i>
+<a name="IDX960"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_thrown_exception</b><i> ()</i>
+<a name="IDX961"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_uses_catcher</b><i> ()</i>
+<a name="IDX962"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_start_catcher</b><i> ()</i>
+<a name="IDX963"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_branch_if_pc_not_in_range</b><i> (const jit_label&amp; <var>start_label</var>, const jit_label&amp; <var>end_label</var>, jit_label&amp; <var>label</var>)</i>
+<a name="IDX964"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_rethrow_unhandled</b><i> ()</i>
+<a name="IDX965"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_start_finally</b><i> (jit_label&amp; <var>label</var>)</i>
+<a name="IDX966"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_return_from_finally</b><i> ()</i>
+<a name="IDX967"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_call_finally</b><i> (jit_label&amp; <var>label</var>)</i>
+<a name="IDX968"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_start_filter</b><i> (jit_label&amp; <var>label</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX969"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_return_from_filter</b><i> (const jit_value&amp; <var>value</var>)</i>
+<a name="IDX970"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>insn_call_filter</b><i> (jit_label&amp; <var>label</var>, const jit_value&amp; <var>value</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX971"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_memcpy</b><i> (const jit_value&amp; <var>dest</var>, const jit_value&amp; <var>src</var>, const jit_value&amp; <var>size</var>)</i>
+<a name="IDX972"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_memmove</b><i> (const jit_value&amp; <var>dest</var>, const jit_value&amp; <var>src</var>, const jit_value&amp; <var>size</var>)</i>
+<a name="IDX973"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>jit_insn_memset</b><i> (const jit_value&amp; <var>dest</var>, const jit_value&amp; <var>value</var>, const jit_value&amp; <var>size</var>)</i>
+<a name="IDX974"></a>
+</dt>
+<dt><u>Method on jit_function:</u> jit_value <b>jit_insn_alloca</b><i> (const jit_value&amp; <var>size</var>)</i>
+<a name="IDX975"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_move_blocks_to_end</b><i> (const jit_label&amp; <var>from_label</var>, const jit_label&amp; <var>to_label</var>)</i>
+<a name="IDX976"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_move_blocks_to_start</b><i> (const jit_label&amp; <var>from_label</var>, const jit_label&amp; <var>to_label</var>)</i>
+<a name="IDX977"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_mark_offset</b><i> (jit_int <var>offset</var>)</i>
+<a name="IDX978"></a>
+</dt>
+<dt><u>Method on jit_function:</u> void <b>insn_mark_breakpoint</b><i> (jit_nint <var>data1</var>, jit_nint <var>data2</var>)</i>
+<a name="IDX979"></a>
+</dt>
+<dd><p>Create instructions of various kinds.  See section <a href="libjit_8.html#SEC18">Working with instructions in the JIT</a>, for more
+information on the individual instructions and their arguments.
+</p></dd></dl>
+
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_18.html#SEC36" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_20.html#SEC38" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>May, 11 2008</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 11 2008 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Just-In-Time Compiler Library: 13. Manipulating ELF binaries</title>
+
+<meta name="description" content="Just-In-Time Compiler Library: 13. Manipulating ELF binaries">
+<meta name="keywords" content="Just-In-Time Compiler Library: 13. Manipulating ELF binaries">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+/* document-wide settings */
+   
+
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+body
+   {
+      color: #000000;
+      background: #ffffff;
+      margin-top: 0;
+      margin-left: 5;
+      margin-right: 5;
+   }
+   a:link
+   {
+      color: #000080;
+   }
+   a:visited
+   {
+      color: #808080;
+   }
+   a:active
+   {
+      color: #008000;
+   }
+/* document-wide settings */
+
+/* miscellaneous settings */
+   .mainheading
+   {
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding-left: 5px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   .mainsubheading
+   {
+      font-size: 12px;
+   }
+   .maincontent
+   {
+      margin-left: 25;
+      margin-right: 25;
+   }
+   .news
+   {
+      padding-left: 10;
+      padding-right: 5;
+   }
+   .heading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   .body
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   .linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   .linksbody
+   {
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   a.linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   a.linksbody
+   {
+      text-decoration: none;
+   }
+   a.html2
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      color: #000080;
+      text-decoration: underline;
+   }
+   p.credits
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      text-align: center;
+   }
+/* miscellaneous settings */
+
+/* HTML2 compatability settings */
+   h1
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   h2
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   h3
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 7px;
+      padding-right: 0;
+      text-decoration: none;
+      color: #008080;
+   }
+   h4
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-style: italic;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 10px;
+      text-decoration: none;
+      color: #008080;
+   }
+   p
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   ul
+   {
+      list-style: square outside url("g/dot.jpg");
+   }
+   ol
+   {
+	   list-style: decimal outside none;
+   }
+   li
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dd
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dt
+   {
+      font-weight: bold;
+      font-size: 12px;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+   }
+   pre
+   {
+      padding-left: 10px;
+      padding-right: 5px;
+   }
+   blockquote
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      padding-left: 10;
+      padding-right: 5px;
+   }
+/* HTML2 compatability settings */
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="ELF-Binaries"></a>
+<a name="SEC23"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_12.html#SEC22" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC24" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit_12.html#SEC22" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_14.html#SEC25" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 13. Manipulating ELF binaries </h1>
+
+
+
+
+<p>The <code>libjit</code> library contains routines that permit pre-compiling
+JIT'ed functions into an on-disk representation.  This representation
+can be loaded at some future time, to avoid the overhead of compiling
+the functions at runtime.
+</p>
+<p>We use the ELF format for this purpose, which is a common binary format
+used by modern operating systems and compilers.
+</p>
+<p>It isn't necessary for your operating system to be based on ELF natively.
+We use our own routines to read and write ELF binaries.  We chose ELF
+because it has all of the features that we require, and reusing an
+existing format was better than inventing a completely new one.
+</p>
+<hr size="6">
+<a name="SEC24"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC23" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_14.html#SEC25" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC23" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC23" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_14.html#SEC25" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 13.1 Reading ELF binaries </h2>
+
+
+<dl>
+<dt><u>Function:</u> int <b>jit_readelf_open</b><i> (jit_readelf_t *<var>readelf</var>, const char *<var>filename</var>, int <var>force</var>)</i>
+<a name="IDX680"></a>
+</dt>
+<dd><p>Open the specified <var>filename</var> and load the ELF binary that is
+contained within it.  Returns one of the following result codes:
+</p>
+<dl compact="compact">
+<dd><a name="IDX681"></a>
+</dd>
+<dt> <code>JIT_READELF_OK</code></dt>
+<dd><p>The ELF binary was opened successfully.
+</p>
+<a name="IDX682"></a>
+</dd>
+<dt> <code>JIT_READELF_CANNOT_OPEN</code></dt>
+<dd><p>Could not open the file at the filesystem level (reason in <code>errno</code>).
+</p>
+<a name="IDX683"></a>
+</dd>
+<dt> <code>JIT_READELF_NOT_ELF</code></dt>
+<dd><p>The file was opened, but it is not an ELF binary.
+</p>
+<a name="IDX684"></a>
+</dd>
+<dt> <code>JIT_READELF_WRONG_ARCH</code></dt>
+<dd><p>The file is an ELF binary, but it does not pertain to the architecture
+of this machine.
+</p>
+<a name="IDX685"></a>
+</dd>
+<dt> <code>JIT_READELF_BAD_FORMAT</code></dt>
+<dd><p>The file is an ELF binary, but the format is corrupted in some fashion.
+</p>
+<a name="IDX686"></a>
+</dd>
+<dt> <code>JIT_READELF_MEMORY</code></dt>
+<dd><p>There is insufficient memory to open the ELF binary.
+</p></dd>
+</dl>
+
+<p>The following flags may be supplied to alter the manner in which
+the ELF binary is loaded:
+</p>
+<dl compact="compact">
+<dd><a name="IDX687"></a>
+</dd>
+<dt> <code>JIT_READELF_FLAG_FORCE</code></dt>
+<dd><p>Force <code>jit_readelf_open</code> to open the ELF binary, even if
+the architecture does not match this machine.  Useful for debugging.
+</p>
+<a name="IDX688"></a>
+</dd>
+<dt> <code>JIT_READELF_FLAG_DEBUG</code></dt>
+<dd><p>Print additional debug information to stdout.
+</p></dd>
+</dl>
+</dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_readelf_close</b><i> (jit_readelf_t <var>readelf</var>)</i>
+<a name="IDX689"></a>
+</dt>
+<dd><p>Close an ELF reader, reclaiming all of the memory that was used.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> const char * <b>jit_readelf_get_name</b><i> (jit_readelf_t <var>readelf</var>)</i>
+<a name="IDX690"></a>
+</dt>
+<dd><p>Get the library name that is embedded inside an ELF binary.
+ELF binaries can refer to each other using this name.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>*jit_readelf_get_symbol</b><i> (jit_readelf_t <var>readelf</var>, const char *<var>name</var>)</i>
+<a name="IDX691"></a>
+</dt>
+<dd><p>Look up the symbol called <var>name</var> in the ELF binary represented
+by <var>readelf</var>.  Returns NULL if the symbol is not present.
+</p>
+<p>External references from this ELF binary to others are not resolved
+until the ELF binary is loaded into a JIT context using
+<code>jit_readelf_add_to_context</code> and <code>jit_readelf_resolve_all</code>.
+You should not call functions within this ELF binary until after you
+have fully resolved it.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_readelf_get_section</b><i> (jit_readelf_t <var>readelf</var>, const char *<var>name</var>, jit_nuint *<var>size</var>)</i>
+<a name="IDX692"></a>
+</dt>
+<dd><p>Get the address and size of a particular section from an ELF binary.
+Returns NULL if the section is not present in the ELF binary.
+</p>
+<p>The virtual machine may have stored auxillary information
+in the section when the binary was first generated.  This function
+allows the virtual machine to retrieve its auxillary information.
+</p>
+<p>Examples of such information may be version numbers, timestamps,
+checksums, and other identifying information for the bytecode that
+was previously compiled by the virtual machine.  The virtual machine
+can use this to determine if the ELF binary is up to date and
+relevant to its needs.
+</p>
+<p>It is recommended that virtual machines prefix their special sections
+with a unique string (e.g. <code>.foovm</code>) to prevent clashes with
+system-defined section names.  The prefix <code>.libjit</code> is reserved
+for use by <code>libjit</code> itself.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_readelf_get_section_by_type</b><i> (jit_readelf_t <var>readelf</var>, jit_int <var>type</var>, jit_nuint *<var>size</var>)</i>
+<a name="IDX693"></a>
+</dt>
+<dd><p>Get a particular section using its raw ELF section type (i.e. one of
+the <code>SHT_*</code> constants in <code>jit-elf-defs.h</code>).  This is mostly
+for internal use, but some virtual machines may find it useful for
+debugging purposes.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_readelf_map_vaddr</b><i> (jit_readelf_t <var>readelf</var>, jit_nuint <var>vaddr</var>)</i>
+<a name="IDX694"></a>
+</dt>
+<dd><p>Map a virtual address to an actual address in a loaded ELF binary.
+Returns NULL if <var>vaddr</var> could not be mapped.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> unsigned int <b>jit_readelf_num_needed</b><i> (jit_readelf_t <var>readelf</var>)</i>
+<a name="IDX695"></a>
+</dt>
+<dd><p>Get the number of dependent libraries that are needed by this
+ELF binary.  The virtual machine will normally need to arrange
+to load these libraries with <code>jit_readelf_open</code> as well,
+so that all of the necessary symbols can be resolved.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> const char * <b>jit_readelf_get_needed</b><i> (jit_readelf_t <var>readelf</var>, unsigned int <var>index</var>)</i>
+<a name="IDX696"></a>
+</dt>
+<dd><p>Get the name of the dependent library at position <var>index</var> within
+the needed libraries list of this ELF binary.  Returns NULL if
+the <var>index</var> is invalid.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_readelf_add_to_context</b><i> (jit_readelf_t <var>readelf</var>, jit_context_t <var>context</var>)</i>
+<a name="IDX697"></a>
+</dt>
+<dd><p>Add this ELF binary to a JIT context, so that its contents can be used
+when executing JIT-managed code.  The binary will be closed automatically
+if the context is destroyed and <code>jit_readelf_close</code> has not been
+called explicitly yet.
+</p>
+<p>The functions in the ELF binary cannot be used until you also call
+<code>jit_readelf_resolve_all</code> to resolve cross-library symbol references.
+The reason why adding and resolution are separate steps is to allow for
+resolving circular dependencies between ELF binaries.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_readelf_resolve_all</b><i> (jit_context_t <var>context</var>, int <var>print_failures</var>)</i>
+<a name="IDX698"></a>
+</dt>
+<dd><p>Resolve all of the cross-library symbol references in ELF binaries
+that have been added to <var>context</var> but which were not resolved
+in the previous call to this function.  If <var>print_failures</var>
+is non-zero, then diagnostic messages will be written to stdout
+for any symbol resolutions that fail.
+</p>
+<p>Returns zero on failure, or non-zero if all symbols were successfully
+resolved.  If there are no ELF binaries awaiting resolution, then
+this function will return a non-zero result.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_readelf_register_symbol</b><i> (jit_context_t <var>context</var>, const char *<var>name</var>, void *<var>value</var>, int <var>after</var>)</i>
+<a name="IDX699"></a>
+</dt>
+<dd><p>Register <var>value</var> with <var>name</var> on the specified <var>context</var>.
+Whenever symbols are resolved with <code>jit_readelf_resolve_all</code>,
+and the symbol <var>name</var> is encountered, <var>value</var> will be
+substituted.  Returns zero if out of memory or there is something
+wrong with the parameters.
+</p>
+<p>If <var>after</var> is non-zero, then <var>name</var> will be resolved after all
+other ELF libraries; otherwise it will be resolved before the ELF
+libraries.
+</p>
+<p>This function is used to register intrinsic symbols that are specific to
+the front end virtual machine.  References to intrinsics within
+<code>libjit</code> itself are resolved automatically.
+</p></dd></dl>
+
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC23" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_14.html#SEC25" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>May, 11 2008</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

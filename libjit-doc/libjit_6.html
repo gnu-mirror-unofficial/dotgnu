@@ -1,0 +1,1104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 11 2008 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Just-In-Time Compiler Library: 6. Manipulating system types</title>
+
+<meta name="description" content="Just-In-Time Compiler Library: 6. Manipulating system types">
+<meta name="keywords" content="Just-In-Time Compiler Library: 6. Manipulating system types">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+/* document-wide settings */
+   
+
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+body
+   {
+      color: #000000;
+      background: #ffffff;
+      margin-top: 0;
+      margin-left: 5;
+      margin-right: 5;
+   }
+   a:link
+   {
+      color: #000080;
+   }
+   a:visited
+   {
+      color: #808080;
+   }
+   a:active
+   {
+      color: #008000;
+   }
+/* document-wide settings */
+
+/* miscellaneous settings */
+   .mainheading
+   {
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding-left: 5px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   .mainsubheading
+   {
+      font-size: 12px;
+   }
+   .maincontent
+   {
+      margin-left: 25;
+      margin-right: 25;
+   }
+   .news
+   {
+      padding-left: 10;
+      padding-right: 5;
+   }
+   .heading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   .body
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   .linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   .linksbody
+   {
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   a.linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   a.linksbody
+   {
+      text-decoration: none;
+   }
+   a.html2
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      color: #000080;
+      text-decoration: underline;
+   }
+   p.credits
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      text-align: center;
+   }
+/* miscellaneous settings */
+
+/* HTML2 compatability settings */
+   h1
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   h2
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   h3
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 7px;
+      padding-right: 0;
+      text-decoration: none;
+      color: #008080;
+   }
+   h4
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-style: italic;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 10px;
+      text-decoration: none;
+      color: #008080;
+   }
+   p
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   ul
+   {
+      list-style: square outside url("g/dot.jpg");
+   }
+   ol
+   {
+	   list-style: decimal outside none;
+   }
+   li
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dd
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dt
+   {
+      font-weight: bold;
+      font-size: 12px;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+   }
+   pre
+   {
+      padding-left: 10px;
+      padding-right: 5px;
+   }
+   blockquote
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      padding-left: 10;
+      padding-right: 5px;
+   }
+/* HTML2 compatability settings */
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Types"></a>
+<a name="SEC16"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_5.html#SEC15" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_7.html#SEC17" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit_5.html#SEC15" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_7.html#SEC17" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 6. Manipulating system types </h1>
+
+
+
+
+
+<p>The functions that are defined in <code>&lt;jit/jit-type.h&gt;</code> allow
+the library user to create and manipulate objects that represent
+native system types.  For example, <code>jit_type_int</code> represents
+the signed 32-bit integer type.
+</p>
+<p>Each <code>jit_type_t</code> object represents a basic system type,
+be it a primitive, a struct, a union, a pointer, or a function signature.
+The library uses this information to lay out values in memory.
+</p>
+<p>The following pre-defined types are available:
+</p>
+<dl compact="compact">
+<dd><a name="IDX52"></a>
+</dd>
+<dt> <code>jit_type_void</code></dt>
+<dd><p>Represents the <code>void</code> type.
+</p>
+<a name="IDX53"></a>
+</dd>
+<dt> <code>jit_type_sbyte</code></dt>
+<dd><p>Represents a signed 8-bit integer type.
+</p>
+<a name="IDX54"></a>
+</dd>
+<dt> <code>jit_type_ubyte</code></dt>
+<dd><p>Represents an unsigned 8-bit integer type.
+</p>
+<a name="IDX55"></a>
+</dd>
+<dt> <code>jit_type_short</code></dt>
+<dd><p>Represents a signed 16-bit integer type.
+</p>
+<a name="IDX56"></a>
+</dd>
+<dt> <code>jit_type_ushort</code></dt>
+<dd><p>Represents an unsigned 16-bit integer type.
+</p>
+<a name="IDX57"></a>
+</dd>
+<dt> <code>jit_type_int</code></dt>
+<dd><p>Represents a signed 32-bit integer type.
+</p>
+<a name="IDX58"></a>
+</dd>
+<dt> <code>jit_type_uint</code></dt>
+<dd><p>Represents an unsigned 32-bit integer type.
+</p>
+<a name="IDX59"></a>
+</dd>
+<dt> <code>jit_type_nint</code></dt>
+<dd><p>Represents a signed integer type that has the same size and
+alignment as a native pointer.
+</p>
+<a name="IDX60"></a>
+</dd>
+<dt> <code>jit_type_nuint</code></dt>
+<dd><p>Represents an unsigned integer type that has the same size and
+alignment as a native pointer.
+</p>
+<a name="IDX61"></a>
+</dd>
+<dt> <code>jit_type_long</code></dt>
+<dd><p>Represents a signed 64-bit integer type.
+</p>
+<a name="IDX62"></a>
+</dd>
+<dt> <code>jit_type_ulong</code></dt>
+<dd><p>Represents an unsigned 64-bit integer type.
+</p>
+<a name="IDX63"></a>
+</dd>
+<dt> <code>jit_type_float32</code></dt>
+<dd><p>Represents a 32-bit floating point type.
+</p>
+<a name="IDX64"></a>
+</dd>
+<dt> <code>jit_type_float64</code></dt>
+<dd><p>Represents a 64-bit floating point type.
+</p>
+<a name="IDX65"></a>
+</dd>
+<dt> <code>jit_type_nfloat</code></dt>
+<dd><p>Represents a floating point type that represents the greatest
+precision supported on the native platform.
+</p>
+<a name="IDX66"></a>
+</dd>
+<dt> <code>jit_type_void_ptr</code></dt>
+<dd><p>Represents the system's <code>void *</code> type.  This can be used wherever
+a native pointer type is required.
+</p></dd>
+</dl>
+
+<p>Type descriptors are reference counted.  You can make a copy of a type
+descriptor using the <code>jit_type_copy</code> function, and free the copy with
+<code>jit_type_free</code>.
+</p>
+<p>Some languages have special versions of the primitive numeric types
+(e.g. boolean types, 16-bit Unicode character types, enumerations, etc).
+If it is important to distinguish these special versions from the
+numeric types, then you should use the <code>jit_type_create_tagged</code>
+function below.
+</p>
+<p>The following types correspond to the system types on the local
+platform.  i.e. <code>jit_type_sys_int</code> will be the same size as
+<code>long</code> on the local platform, whereas <code>jit_type_long</code> is
+always 64 bits in size.  These types should not be used to compile
+code that is intended to work identically on all platforms:
+</p>
+<dl compact="compact">
+<dd><a name="IDX67"></a>
+</dd>
+<dt> <code>jit_type_sys_bool</code></dt>
+<dd><p>Corresponds to the system <code>bool</code> type.
+</p>
+<a name="IDX68"></a>
+</dd>
+<dt> <code>jit_type_sys_char</code></dt>
+<dd><p>Corresponds to the system <code>char</code> type.  This may be either signed
+or unsigned, depending upon the underlying system.
+</p>
+<a name="IDX69"></a>
+</dd>
+<dt> <code>jit_type_sys_schar</code></dt>
+<dd><p>Corresponds to the system <code>signed char</code> type.
+</p>
+<a name="IDX70"></a>
+</dd>
+<dt> <code>jit_type_sys_uchar</code></dt>
+<dd><p>Corresponds to the system <code>unsigned char</code> type.
+</p>
+<a name="IDX71"></a>
+</dd>
+<dt> <code>jit_type_sys_short</code></dt>
+<dd><p>Corresponds to the system <code>short</code> type.
+</p>
+<a name="IDX72"></a>
+</dd>
+<dt> <code>jit_type_sys_ushort</code></dt>
+<dd><p>Corresponds to the system <code>unsigned short</code> type.
+</p>
+<a name="IDX73"></a>
+</dd>
+<dt> <code>jit_type_sys_int</code></dt>
+<dd><p>Corresponds to the system <code>int</code> type.
+</p>
+<a name="IDX74"></a>
+</dd>
+<dt> <code>jit_type_sys_uint</code></dt>
+<dd><p>Corresponds to the system <code>unsigned int</code> type.
+</p>
+<a name="IDX75"></a>
+</dd>
+<dt> <code>jit_type_sys_long</code></dt>
+<dd><p>Corresponds to the system <code>long</code> type.
+</p>
+<a name="IDX76"></a>
+</dd>
+<dt> <code>jit_type_sys_ulong</code></dt>
+<dd><p>Corresponds to the system <code>unsigned long</code> type.
+</p>
+<a name="IDX77"></a>
+</dd>
+<dt> <code>jit_type_sys_longlong</code></dt>
+<dd><p>Corresponds to the system <code>long long</code> type (<code>__int64</code> under Win32).
+</p>
+<a name="IDX78"></a>
+</dd>
+<dt> <code>jit_type_sys_ulonglong</code></dt>
+<dd><p>Corresponds to the system <code>unsigned long long</code> type
+(<code>unsigned __int64</code> under Win32).
+</p>
+<a name="IDX79"></a>
+</dd>
+<dt> <code>jit_type_sys_float</code></dt>
+<dd><p>Corresponds to the system <code>float</code> type.
+</p>
+<a name="IDX80"></a>
+</dd>
+<dt> <code>jit_type_sys_double</code></dt>
+<dd><p>Corresponds to the system <code>double</code> type.
+</p>
+<a name="IDX81"></a>
+</dd>
+<dt> <code>jit_type_sys_long_double</code></dt>
+<dd><p>Corresponds to the system <code>long double</code> type.
+</p></dd>
+</dl>
+
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_type_copy</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX82"></a>
+</dt>
+<dd><p>Make a copy of the type descriptor <var>type</var> by increasing
+its reference count.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_type_free</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX83"></a>
+</dt>
+<dd><p>Free a type descriptor by decreasing its reference count.
+This function is safe to use on pre-defined types, which are
+never actually freed.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_type_create_struct</b><i> (jit_type_t *<var>fields</var>, unsigned int <var>num_fields</var>, int <var>incref</var>)</i>
+<a name="IDX84"></a>
+</dt>
+<dd><p>Create a type descriptor for a structure.  Returns NULL if out of memory.
+If there are no fields, then the size of the structure will be zero.
+It is necessary to add a padding field if the language does not allow
+zero-sized structures.  The reference counts on the field types are
+incremented if <var>incref</var> is non-zero.
+</p>
+<p>The <code>libjit</code> library does not provide any special support for
+implementing structure inheritance, where one structure extends the
+definition of another.  The effect of inheritance can be achieved
+by always allocating the first field of a structure to be an instance
+of the inherited structure.  Multiple inheritance can be supported
+by allocating several special fields at the front of an inheriting
+structure.
+</p>
+<p>Similarly, no special support is provided for vtables.  The program
+is responsible for allocating an appropriate slot in a structure to
+contain the vtable pointer, and dereferencing it wherever necessary.
+The vtable will itself be a structure, containing signature types
+for each of the method slots.
+</p>
+<p>The choice not to provide special support for inheritance and vtables
+in <code>libjit</code> was deliberate.  The layout of objects and vtables
+is highly specific to the language and virtual machine being emulated,
+and no single scheme can hope to capture all possibilities.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_type_create_union</b><i> (jit_type_t *<var>fields</var>, unsigned int <var>num_fields</var>, int <var>incref</var>)</i>
+<a name="IDX85"></a>
+</dt>
+<dd><p>Create a type descriptor for a union.  Returns NULL if out of memory.
+If there are no fields, then the size of the union will be zero.
+It is necessary to add a padding field if the language does not allow
+zero-sized unions.  The reference counts on the field types are
+incremented if <var>incref</var> is non-zero.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_type_create_signature</b><i> (jit_abi_t <var>abi</var>, jit_type_t <var>return_type</var>, jit_type_t *<var>params</var>, unsigned int <var>num_params</var>, int <var>incref</var>)</i>
+<a name="IDX86"></a>
+</dt>
+<dd><p>Create a type descriptor for a function signature.  Returns NULL if out
+of memory.  The reference counts on the component types are incremented
+if <var>incref</var> is non-zero.
+</p>
+<p>When used as a structure or union field, function signatures are laid
+out like pointers.  That is, they represent a pointer to a function
+that has the specified parameters and return type.
+</p>
+<a name="IDX87"></a>
+<p>The <var>abi</var> parameter specifies the Application Binary Interface (ABI)
+that the function uses.  It may be one of the following values:
+</p>
+<dl compact="compact">
+<dd><a name="IDX88"></a>
+</dd>
+<dt> <code>jit_abi_cdecl</code></dt>
+<dd><p>Use the native C ABI definitions of the underlying platform.
+</p>
+<a name="IDX89"></a>
+</dd>
+<dt> <code>jit_abi_vararg</code></dt>
+<dd><p>Use the native C ABI definitions of the underlying platform,
+and allow for an optional list of variable argument parameters.
+</p>
+<a name="IDX90"></a>
+</dd>
+<dt> <code>jit_abi_stdcall</code></dt>
+<dd><p>Use the Win32 STDCALL ABI definitions, whereby the callee pops
+its arguments rather than the caller.  If the platform does
+not support this type of ABI, then <code>jit_abi_stdcall</code> will be
+identical to <code>jit_abi_cdecl</code>.
+</p>
+<a name="IDX91"></a>
+</dd>
+<dt> <code>jit_abi_fastcall</code></dt>
+<dd><p>Use the Win32 FASTCALL ABI definitions, whereby the callee pops
+its arguments rather than the caller, and the first two word
+arguments are passed in ECX and EDX.  If the platform does
+not support this type of ABI, then <code>jit_abi_fastcall</code> will be
+identical to <code>jit_abi_cdecl</code>.
+</p></dd>
+</dl>
+</dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_type_create_pointer</b><i> (jit_type_t <var>type</var>, int <var>incref</var>)</i>
+<a name="IDX92"></a>
+</dt>
+<dd><p>Create a type descriptor for a pointer to another type.  Returns NULL
+if out of memory.  The reference count on <var>type</var> is incremented if
+<var>incref</var> is non-zero.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_type_create_tagged</b><i> (jit_type_t <var>type</var>, int <var>kind</var>, void *<var>data</var>, jit_meta_free_func <var>free_func</var>, int <var>incref</var>)</i>
+<a name="IDX93"></a>
+</dt>
+<dd><p>Tag a type with some additional user data.  Tagging is typically used by
+higher-level programs to embed extra information about a type that
+<code>libjit</code> itself does not support.
+</p>
+<p>As an example, a language might have a 16-bit Unicode character type
+and a 16-bit unsigned integer type that are distinct types, even though
+they share the same fundamental representation (<code>jit_ushort</code>).
+Tagging allows the program to distinguish these two types, when
+it is necessary to do so, without affecting <code>libjit</code>'s ability
+to compile the code efficiently.
+</p>
+<p>The <var>kind</var> is a small positive integer value that the program
+can use to distinguish multiple tag types.  The <var>data</var> pointer is
+the actual data that you wish to store.  And <var>free_func</var> is a
+function that is used to free <var>data</var> when the type is freed
+with <code>jit_type_free</code>.
+</p>
+<p>If you need to store more than one piece of information, you can
+tag a type multiple times.  The order in which multiple tags are
+applied is irrelevant to <code>libjit</code>, although it may be relevant
+to the higher-level program.
+</p>
+<p>Tag kinds of 10000 or greater are reserved for <code>libjit</code> itself.
+The following special tag kinds are currently provided in the
+base implementation:
+</p>
+<dl compact="compact">
+<dd><a name="IDX94"></a>
+</dd>
+<dt> <code>JIT_TYPETAG_NAME</code></dt>
+<dd><p>The <var>data</var> pointer is a <code>char *</code> string indicating a friendly
+name to display for the type.
+</p>
+<a name="IDX95"></a>
+<a name="IDX96"></a>
+<a name="IDX97"></a>
+</dd>
+<dt> <code>JIT_TYPETAG_STRUCT_NAME</code></dt>
+<dt> <code>JIT_TYPETAG_UNION_NAME</code></dt>
+<dt> <code>JIT_TYPETAG_ENUM_NAME</code></dt>
+<dd><p>The <var>data</var> pointer is a <code>char *</code> string indicating a friendly
+name to display for a <code>struct</code>, <code>union</code>, or <code>enum</code> type.
+This is for languages like C that have separate naming scopes for
+typedef's and structures.
+</p>
+<a name="IDX98"></a>
+</dd>
+<dt> <code>JIT_TYPETAG_CONST</code></dt>
+<dd><p>The underlying value is assumed to have <code>const</code> semantics.
+The <code>libjit</code> library doesn't enforce such semantics: it is
+up to the front-end to only use constant values in appopriate contexts.
+</p>
+<a name="IDX99"></a>
+</dd>
+<dt> <code>JIT_TYPETAG_VOLATILE</code></dt>
+<dd><p>The underlying value is assumed to be volatile.  The <code>libjit</code>
+library will automatically call <code>jit_value_set_volatile</code> when a
+value is constructed using this type.
+</p>
+<a name="IDX100"></a>
+</dd>
+<dt> <code>JIT_TYPETAG_REFERENCE</code></dt>
+<dd><p>The underlying value is a pointer, but it is assumed to refer to a
+pass-by-reference parameter.
+</p>
+<a name="IDX101"></a>
+</dd>
+<dt> <code>JIT_TYPETAG_OUTPUT</code></dt>
+<dd><p>This is similar to <code>JIT_TYPETAG_REFERENCE</code>, except that the
+underlying parameter is assumed to be output-only.
+</p>
+<a name="IDX102"></a>
+</dd>
+<dt> <code>JIT_TYPETAG_RESTRICT</code></dt>
+<dd><p>The underlying type is marked as <code>restrict</code>.  Normally ignored.
+</p>
+<a name="IDX103"></a>
+<a name="IDX104"></a>
+<a name="IDX105"></a>
+<a name="IDX106"></a>
+<a name="IDX107"></a>
+<a name="IDX108"></a>
+<a name="IDX109"></a>
+<a name="IDX110"></a>
+<a name="IDX111"></a>
+<a name="IDX112"></a>
+<a name="IDX113"></a>
+<a name="IDX114"></a>
+<a name="IDX115"></a>
+<a name="IDX116"></a>
+<a name="IDX117"></a>
+</dd>
+<dt> <code>JIT_TYPETAG_SYS_BOOL</code></dt>
+<dt> <code>JIT_TYPETAG_SYS_CHAR</code></dt>
+<dt> <code>JIT_TYPETAG_SYS_SCHAR</code></dt>
+<dt> <code>JIT_TYPETAG_SYS_UCHAR</code></dt>
+<dt> <code>JIT_TYPETAG_SYS_SHORT</code></dt>
+<dt> <code>JIT_TYPETAG_SYS_USHORT</code></dt>
+<dt> <code>JIT_TYPETAG_SYS_INT</code></dt>
+<dt> <code>JIT_TYPETAG_SYS_UINT</code></dt>
+<dt> <code>JIT_TYPETAG_SYS_LONG</code></dt>
+<dt> <code>JIT_TYPETAG_SYS_ULONG</code></dt>
+<dt> <code>JIT_TYPETAG_SYS_LONGLONG</code></dt>
+<dt> <code>JIT_TYPETAG_SYS_ULONGLONG</code></dt>
+<dt> <code>JIT_TYPETAG_SYS_FLOAT</code></dt>
+<dt> <code>JIT_TYPETAG_SYS_DOUBLE</code></dt>
+<dt> <code>JIT_TYPETAG_SYS_LONGDOUBLE</code></dt>
+<dd><p>Used to mark types that we know for a fact correspond to the system
+C types of the corresponding names.  This is primarily used to distinguish
+system types like <code>int</code> and <code>long</code> types on 32-bit platforms
+when it is necessary to do so.  The <code>jit_type_sys_xxx</code> values are
+all tagged in this manner.
+</p></dd>
+</dl>
+</dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_type_set_names</b><i> (jit_type_t <var>type</var>, char **<var>names</var>, unsigned int <var>num_names</var>)</i>
+<a name="IDX118"></a>
+</dt>
+<dd><p>Set the field or parameter names for <var>type</var>.  Returns zero
+if there is insufficient memory to set the names.
+</p>
+<p>Normally fields are accessed via their index.  Field names are a
+convenience for front ends that prefer to use names to indices.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_type_set_size_and_alignment</b><i> (jit_type_t <var>type</var>, jit_nint <var>size</var>, jit_nint <var>alignment</var>)</i>
+<a name="IDX119"></a>
+</dt>
+<dd><p>Set the size and alignment information for a structure or union
+type.  Use this for performing explicit type layout.  Normally
+the size is computed automatically.  Ignored if not a
+structure or union type.  Setting either value to -1 will cause
+that value to be computed automatically.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_type_set_offset</b><i> (jit_type_t <var>type</var>, unsigned int <var>field_index</var>, jit_nuint <var>offset</var>)</i>
+<a name="IDX120"></a>
+</dt>
+<dd><p>Set the offset of a specific structure field.  Use this for
+performing explicit type layout.  Normally the offset is
+computed automatically.  Ignored if not a structure type,
+or the field index is out of range.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_type_get_kind</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX121"></a>
+</dt>
+<dd><p>Get a value that indicates the kind of <var>type</var>.  This allows
+callers to quickly classify a type to determine how it should be
+handled further.
+</p>
+<dl compact="compact">
+<dd><a name="IDX122"></a>
+</dd>
+<dt> <code>JIT_TYPE_INVALID</code></dt>
+<dd><p>The value of the <var>type</var> parameter is NULL.
+</p>
+<a name="IDX123"></a>
+</dd>
+<dt> <code>JIT_TYPE_VOID</code></dt>
+<dd><p>The type is <code>jit_type_void</code>.
+</p>
+<a name="IDX124"></a>
+</dd>
+<dt> <code>JIT_TYPE_SBYTE</code></dt>
+<dd><p>The type is <code>jit_type_sbyte</code>.
+</p>
+<a name="IDX125"></a>
+</dd>
+<dt> <code>JIT_TYPE_UBYTE</code></dt>
+<dd><p>The type is <code>jit_type_ubyte</code>.
+</p>
+<a name="IDX126"></a>
+</dd>
+<dt> <code>JIT_TYPE_SHORT</code></dt>
+<dd><p>The type is <code>jit_type_short</code>.
+</p>
+<a name="IDX127"></a>
+</dd>
+<dt> <code>JIT_TYPE_USHORT</code></dt>
+<dd><p>The type is <code>jit_type_ushort</code>.
+</p>
+<a name="IDX128"></a>
+</dd>
+<dt> <code>JIT_TYPE_INT</code></dt>
+<dd><p>The type is <code>jit_type_int</code>.
+</p>
+<a name="IDX129"></a>
+</dd>
+<dt> <code>JIT_TYPE_UINT</code></dt>
+<dd><p>The type is <code>jit_type_uint</code>.
+</p>
+<a name="IDX130"></a>
+</dd>
+<dt> <code>JIT_TYPE_NINT</code></dt>
+<dd><p>The type is <code>jit_type_nint</code>.
+</p>
+<a name="IDX131"></a>
+</dd>
+<dt> <code>JIT_TYPE_NUINT</code></dt>
+<dd><p>The type is <code>jit_type_nuint</code>.
+</p>
+<a name="IDX132"></a>
+</dd>
+<dt> <code>JIT_TYPE_LONG</code></dt>
+<dd><p>The type is <code>jit_type_long</code>.
+</p>
+<a name="IDX133"></a>
+</dd>
+<dt> <code>JIT_TYPE_ULONG</code></dt>
+<dd><p>The type is <code>jit_type_ulong</code>.
+</p>
+<a name="IDX134"></a>
+</dd>
+<dt> <code>JIT_TYPE_FLOAT32</code></dt>
+<dd><p>The type is <code>jit_type_float32</code>.
+</p>
+<a name="IDX135"></a>
+</dd>
+<dt> <code>JIT_TYPE_FLOAT64</code></dt>
+<dd><p>The type is <code>jit_type_float64</code>.
+</p>
+<a name="IDX136"></a>
+</dd>
+<dt> <code>JIT_TYPE_NFLOAT</code></dt>
+<dd><p>The type is <code>jit_type_nfloat</code>.
+</p>
+<a name="IDX137"></a>
+</dd>
+<dt> <code>JIT_TYPE_STRUCT</code></dt>
+<dd><p>The type is the result of calling <code>jit_type_create_struct</code>.
+</p>
+<a name="IDX138"></a>
+</dd>
+<dt> <code>JIT_TYPE_UNION</code></dt>
+<dd><p>The type is the result of calling <code>jit_type_create_union</code>.
+</p>
+<a name="IDX139"></a>
+</dd>
+<dt> <code>JIT_TYPE_SIGNATURE</code></dt>
+<dd><p>The type is the result of calling <code>jit_type_create_signature</code>.
+</p>
+<a name="IDX140"></a>
+</dd>
+<dt> <code>JIT_TYPE_PTR</code></dt>
+<dd><p>The type is the result of calling <code>jit_type_create_pointer</code>.
+</p></dd>
+</dl>
+
+<a name="IDX141"></a>
+<p>If this function returns <code>JIT_TYPE_FIRST_TAGGED</code> or higher,
+then the type is tagged and its tag kind is the return value minus
+<code>JIT_TYPE_FIRST_TAGGED</code>.  That is, the following two expressions
+will be identical if <var>type</var> is tagged:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_type_get_tagged_kind(type)
+jit_type_get_kind(type) - JIT_TYPE_FIRST_TAGGED
+</pre></td></tr></table>
+</dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_nuint <b>jit_type_get_size</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX142"></a>
+</dt>
+<dd><p>Get the size of a type in bytes.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_nuint <b>jit_type_get_alignment</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX143"></a>
+</dt>
+<dd><p>Get the alignment of a type.  An alignment value of 2 indicates
+that the type should be aligned on a two-byte boundary, for example.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> unsigned int <b>jit_type_num_fields</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX144"></a>
+</dt>
+<dd><p>Get the number of fields in a structure or union type.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_type_get_field</b><i> (jit_type_t <var>type</var>, unsigned int <var>field_index</var>)</i>
+<a name="IDX145"></a>
+</dt>
+<dd><p>Get the type of a specific field within a structure or union.
+Returns NULL if not a structure or union, or the index is out of range.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_nuint <b>jit_type_get_offset</b><i> (jit_type_t <var>type</var>, unsigned int <var>field_index</var>)</i>
+<a name="IDX146"></a>
+</dt>
+<dd><p>Get the offset of a specific field within a structure.
+Returns zero if not a structure, or the index is out of range,
+so this is safe to use on non-structure types.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> const char * <b>jit_type_get_name</b><i> (jit_type_t <var>type</var>, unsigned int <var>index</var>)</i>
+<a name="IDX147"></a>
+</dt>
+<dd><p>Get the name of a structure, union, or signature field/parameter.
+Returns NULL if not a structure, union, or signature, the index
+is out of range, or there is no name associated with the component.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> unsigned int <b>jit_type_find_name</b><i> (jit_type_t <var>type</var>, const char *<var>name</var>)</i>
+<a name="IDX148"></a>
+</dt>
+<dd><p>Find the field/parameter index for a particular name.  Returns
+<code>JIT_INVALID_NAME</code> if the name was not present.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> unsigned int <b>jit_type_num_params</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX149"></a>
+</dt>
+<dd><p>Get the number of parameters in a signature type.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_type_get_return</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX150"></a>
+</dt>
+<dd><p>Get the return type from a signature type.  Returns NULL if
+not a signature type.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_type_get_param</b><i> (jit_type_t <var>type</var>, unsigned int <var>param_index</var>)</i>
+<a name="IDX151"></a>
+</dt>
+<dd><p>Get a specific parameter from a signature type.  Returns NULL
+if not a signature type or the index is out of range.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_abi_t <b>jit_type_get_abi</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX152"></a>
+</dt>
+<dd><p>Get the ABI code from a signature type.  Returns <code>jit_abi_cdecl</code>
+if not a signature type.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_type_get_ref</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX153"></a>
+</dt>
+<dd><p>Get the type that is referred to by a pointer type.  Returns NULL
+if not a pointer type.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_type_get_tagged_type</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX154"></a>
+</dt>
+<dd><p>Get the type that underlies a tagged type.  Returns NULL
+if not a tagged type.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_type_set_tagged_type</b><i> (jit_type_t <var>type</var>, jit_type_t <var>underlying</var>)</i>
+<a name="IDX155"></a>
+</dt>
+<dd><p>Set the type that underlies a tagged type.  Ignored if <var>type</var>
+is not a tagged type.  If <var>type</var> already has an underlying
+type, then the original is freed.
+</p>
+<p>This function is typically used to flesh out the body of a
+forward-declared type.  The tag is used as a placeholder
+until the definition can be located.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_type_get_tagged_type</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX156"></a>
+</dt>
+<dd><p>Get the kind of tag that is applied to a tagged type.  Returns -1
+if not a tagged type.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_type_get_tagged_data</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX157"></a>
+</dt>
+<dd><p>Get the user data is associated with a tagged type.  Returns NULL
+if not a tagged type.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_type_set_tagged_data</b><i> (jit_type_t <var>type</var>, void *<var>data</var>, jit_meta_free_func <var>free_func</var>)</i>
+<a name="IDX158"></a>
+</dt>
+<dd><p>Set the user data is associated with a tagged type.  The original data,
+if any, is freed.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_type_is_primitive</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX159"></a>
+</dt>
+<dd><p>Determine if a type is primitive.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_type_is_struct</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX160"></a>
+</dt>
+<dd><p>Determine if a type is a structure.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_type_is_union</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX161"></a>
+</dt>
+<dd><p>Determine if a type is a union.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_type_is_signature</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX162"></a>
+</dt>
+<dd><p>Determine if a type is a function signature.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_type_is_pointer</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX163"></a>
+</dt>
+<dd><p>Determine if a type is a pointer.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_type_is_tagged</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX164"></a>
+</dt>
+<dd><p>Determine if a type is a tagged type.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_nuint <b>jit_type_best_alignment</b><i> (void)</i>
+<a name="IDX165"></a>
+</dt>
+<dd><p>Get the best alignment value for this platform.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_type_normalize</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX166"></a>
+</dt>
+<dd><p>Normalize a type to its basic numeric form.  e.g. &quot;jit_type_nint&quot; is
+turned into &quot;jit_type_int&quot; or &quot;jit_type_long&quot;, depending upon
+the underlying platform.  Pointers are normalized like &quot;jit_type_nint&quot;.
+If the type does not have a normalized form, it is left unchanged.
+</p>
+<p>Normalization is typically used prior to applying a binary numeric
+instruction, to make it easier to determine the common type.
+It will also remove tags from the specified type.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_type_remove_tags</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX167"></a>
+</dt>
+<dd><p>Remove tags from a type, and return the underlying type.
+This is different from normalization, which will also collapses
+native types to their basic numeric counterparts.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_type_promote_int</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX168"></a>
+</dt>
+<dd><p>If <var>type</var> is <code>jit_type_sbyte</code> or <code>jit_type_short</code>,
+then return <code>jit_type_int</code>.  If <var>type</var> is
+<code>jit_type_ubyte</code> or <code>jit_type_ushort</code>, then return
+<code>jit_type_uint</code>.  Otherwise return <var>type</var> as-is.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_type_return_via_pointer</b><i> (jit_type_t <var>type</var>)</i>
+<a name="IDX169"></a>
+</dt>
+<dd><p>Determine if a type should be returned via a pointer if it appears
+as the return type in a signature.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_type_has_tag</b><i> (jit_type_t <var>type</var>, int <var>kind</var>)</i>
+<a name="IDX170"></a>
+</dt>
+<dd><p>Determine if <var>type</var> has a specific kind of tag.  This will
+resolve multiple levels of tagging.
+</p></dd></dl>
+
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_5.html#SEC15" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_7.html#SEC17" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>May, 11 2008</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

@@ -1,0 +1,1099 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 11 2008 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Just-In-Time Compiler Library: 3. Tutorials in using libjit</title>
+
+<meta name="description" content="Just-In-Time Compiler Library: 3. Tutorials in using libjit">
+<meta name="keywords" content="Just-In-Time Compiler Library: 3. Tutorials in using libjit">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+/* document-wide settings */
+   
+
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+body
+   {
+      color: #000000;
+      background: #ffffff;
+      margin-top: 0;
+      margin-left: 5;
+      margin-right: 5;
+   }
+   a:link
+   {
+      color: #000080;
+   }
+   a:visited
+   {
+      color: #808080;
+   }
+   a:active
+   {
+      color: #008000;
+   }
+/* document-wide settings */
+
+/* miscellaneous settings */
+   .mainheading
+   {
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding-left: 5px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   .mainsubheading
+   {
+      font-size: 12px;
+   }
+   .maincontent
+   {
+      margin-left: 25;
+      margin-right: 25;
+   }
+   .news
+   {
+      padding-left: 10;
+      padding-right: 5;
+   }
+   .heading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   .body
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   .linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   .linksbody
+   {
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   a.linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   a.linksbody
+   {
+      text-decoration: none;
+   }
+   a.html2
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      color: #000080;
+      text-decoration: underline;
+   }
+   p.credits
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      text-align: center;
+   }
+/* miscellaneous settings */
+
+/* HTML2 compatability settings */
+   h1
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   h2
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   h3
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 7px;
+      padding-right: 0;
+      text-decoration: none;
+      color: #008080;
+   }
+   h4
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-style: italic;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 10px;
+      text-decoration: none;
+      color: #008080;
+   }
+   p
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   ul
+   {
+      list-style: square outside url("g/dot.jpg");
+   }
+   ol
+   {
+	   list-style: decimal outside none;
+   }
+   li
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dd
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dt
+   {
+      font-weight: bold;
+      font-size: 12px;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+   }
+   pre
+   {
+      padding-left: 10px;
+      padding-right: 5px;
+   }
+   blockquote
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      padding-left: 10;
+      padding-right: 5px;
+   }
+/* HTML2 compatability settings */
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Tutorials"></a>
+<a name="SEC5"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_2.html#SEC4" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC6" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit_2.html#SEC4" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_4.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 3. Tutorials in using libjit </h1>
+
+<p>In this chapter, we describe how to use <code>libjit</code> with a number of
+short tutorial exercises.  Full source for these tutorials can be found
+in the <code>tutorial</code> directory of the <code>libjit</code> source tree.
+</p>
+<p>For simplicity, we will ignore errors such as out of memory conditions,
+but a real program would be expected to handle such errors.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#SEC6">3.1 Tutorial 1 - mul_add</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#SEC7">3.2 Tutorial 2 - gcd</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#SEC8">3.3 Tutorial 3 - compiling on-demand</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#SEC9">3.4 Tutorial 4 - mul_add, C++ version</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#SEC10">3.5 Tutorial 5 - gcd, with tail calls</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#SEC11">3.6 Dynamic Pascal - A full JIT example</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Tutorial-1"></a>
+<a name="SEC6"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC5" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC7" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC5" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC5" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_4.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 3.1 Tutorial 1 - mul_add </h2>
+
+<p>In the first tutorial, we will build and compile the following function
+(the source code can be found in <code>tutorial/t1.c</code>):
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">int mul_add(int x, int y, int z)
+{
+    return x * y + z;
+}
+</pre></td></tr></table>
+
+<p>To use the JIT, we first include the <code>&lt;jit/jit.h&gt;</code> file:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">#include &lt;jit/jit.h&gt;
+</pre></td></tr></table>
+
+<p>All of the header files are placed into the <code>jit</code> sub-directory,
+to separate them out from regular system headers.  When <code>libjit</code>
+is installed, you will typically find these headers in
+<code>/usr/local/include/jit</code> or <code>/usr/include/jit</code>, depending upon
+how your system is configured.  You should also link with the
+<code>-ljit</code> option.
+</p>
+<p>Every program that uses <code>libjit</code> needs to call <code>jit_context_create</code>:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_context_t context;
+...
+context = jit_context_create();
+</pre></td></tr></table>
+
+<p>Almost everything that is done with <code>libjit</code> is done relative
+to a context.  In particular, a context holds all of the functions
+that you have built and compiled.
+</p>
+<p>You can have multiple contexts at any one time, but normally you will
+only need one.  Multiple contexts may be useful if you wish to
+run multiple virtual machines side by side in the same process,
+without them interfering with each other.
+</p>
+<p>Whenever we are constructing a function, we need to lock down the
+context to prevent multiple threads from using the builder at a time:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_context_build_start(context);
+</pre></td></tr></table>
+
+<p>The next step is to construct the function object that will represent
+our <code>mul_add</code> function:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_function_t function;
+...
+function = jit_function_create(context, signature);
+</pre></td></tr></table>
+
+<p>The <code>signature</code> is a <code>jit_type_t</code> object that describes the
+function's parameters and return value.  This tells <code>libjit</code> how
+to generate the proper calling conventions for the function:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_type_t params[3];
+jit_type_t signature;
+...
+params[0] = jit_type_int;
+params[1] = jit_type_int;
+params[2] = jit_type_int;
+signature = jit_type_create_signature
+    (jit_abi_cdecl, jit_type_int, params, 3, 1);
+</pre></td></tr></table>
+
+<p>This declares a function that takes three parameters of type
+<code>int</code> and returns a result of type <code>int</code>.  We've requested
+that the function use the <code>cdecl</code> application binary interface (ABI),
+which indicates normal C calling conventions.  See section <a href="libjit_6.html#SEC16">Manipulating system types</a>, for
+more information on signature types.
+</p>
+<p>Now that we have a function object, we need to construct the instructions
+in its body.  First, we obtain references to each of the function's
+parameter values:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_value_t x, y, z;
+...
+x = jit_value_get_param(function, 0);
+y = jit_value_get_param(function, 1);
+z = jit_value_get_param(function, 2);
+</pre></td></tr></table>
+
+<p>Values are one of the two cornerstones of the <code>libjit</code> process.
+Values represent parameters, local variables, and intermediate
+temporary results.  Once we have the parameters, we compute
+the result of <code>x * y + z</code> as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_value_t temp1, temp2;
+...
+temp1 = jit_insn_mul(function, x, y);
+temp2 = jit_insn_add(function, temp1, z);
+</pre></td></tr></table>
+
+<p>This demonstrates the other cornerstone of the <code>libjit</code> process:
+instructions.  Each of these instructions takes two values as arguments
+and returns a new temporary value with the result.
+</p>
+<p>Students of compiler design will notice that the above statements look
+very suspiciously like the &quot;three address statements&quot; that are described
+in compiler textbooks.  And that is indeed what they are internally within
+<code>libjit</code>.
+</p>
+<p>If you don't know what three address statements are, then don't worry.
+The library hides most of the details from you.  All you need to do is
+break your code up into simple operation steps (addition, multiplication,
+negation, copy, etc).  Then perform the steps one at a time, using
+the temporary values in subsequent steps.  See section <a href="libjit_8.html#SEC18">Working with instructions in the JIT</a>, for
+a complete list of all instructions that are supported by <code>libjit</code>.
+</p>
+<p>Now that we have computed the desired result, we return it to the caller
+using <code>jit_insn_return</code>:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_insn_return(function, temp2);
+</pre></td></tr></table>
+
+<p>We have completed the process of building the function body.  Now we
+compile it into its executable form:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_function_compile(function);
+jit_context_build_end(context);
+</pre></td></tr></table>
+
+<p>As a side-effect, this will discard all of the memory associated with
+the values and instructions that we constructed while building the
+function.  They are no longer required, because we now have the
+executable form that we require.
+</p>
+<p>We also unlock the context, because it is now safe for other threads
+to access the function building process.
+</p>
+<p>Up until this point, we haven't executed the <code>mul_add</code> function.
+All we have done is build and compile it, ready for execution.  To execute it,
+we call <code>jit_function_apply</code>:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_int arg1, arg2, arg3;
+void *args[3];
+jit_int result;
+...
+arg1 = 3;
+arg2 = 5;
+arg3 = 2;
+args[0] = &amp;arg1;
+args[1] = &amp;arg2;
+args[2] = &amp;arg3;
+jit_function_apply(function, args, &amp;result);
+printf(&quot;mul_add(3, 5, 2) = %d\n&quot;, (int)result);
+</pre></td></tr></table>
+
+<p>We pass an array of pointers to <code>jit_function_apply</code>, each one
+pointing to the corresponding argument value.  This gives us a very
+general purpose mechanism for calling any function that may be
+built and compiled using <code>libjit</code>.  If all went well, the
+program should print the following:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">mul_add(3, 5, 2) = 17
+</pre></td></tr></table>
+
+<p>You will notice that we used <code>jit_int</code> as the type of the arguments,
+not <code>int</code>.  The <code>jit_int</code> type is guaranteed to be 32 bits
+in size on all platforms, whereas <code>int</code> varies in size from platform
+to platform.  Since we wanted our function to work the same everywhere,
+we used a type with a predictable size.
+</p>
+<p>If you really wanted the system <code>int</code> type, you would use
+<code>jit_type_sys_int</code> instead of <code>jit_type_int</code> when you
+created the function's signature.  The <code>jit_type_sys_int</code> type
+is guaranteed to match the local system's <code>int</code> precision.
+</p>
+<p>Finally, we clean up the context and all of the memory that was used:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_context_destroy(context);
+</pre></td></tr></table>
+
+
+<hr size="6">
+<a name="Tutorial-2"></a>
+<a name="SEC7"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC6" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC8" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC5" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC5" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_4.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 3.2 Tutorial 2 - gcd </h2>
+
+<p>In this second tutorial, we implement the subtracting Euclidean
+Greatest Common Divisor (GCD) algorithm over positive integers.
+This tutorial demonstrates how to handle conditional branching
+and function calls.  In C, the code for the <code>gcd</code> function
+is as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">unsigned int gcd(unsigned int x, unsigned int y)
+{
+    if(x == y)
+    {
+        return x;
+    }
+    else if(x &lt; y)
+    {
+        return gcd(x, y - x);
+    }
+    else
+    {
+        return gcd(x - y, y);
+    }
+}
+</pre></td></tr></table>
+
+<p>The source code for this tutorial can be found in <code>tutorial/t2.c</code>.
+Many of the details are similar to the previous tutorial.  We omit
+those details here and concentrate on how to build the function body.
+See section <a href="#SEC6">Tutorial 1 - mul_add</a>, for more information.
+</p>
+<p>We start by checking the condition <code>x == y</code>:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_value_t x, y, temp1;
+...
+x = jit_value_get_param(function, 0);
+y = jit_value_get_param(function, 1);
+temp1 = jit_insn_eq(function, x, y);
+</pre></td></tr></table>
+
+<p>This is very similar to our previous tutorial, except that we are using
+the <code>eq</code> operator this time.  If the condition is not true, we
+want to skip the <code>return</code> statement.  We achieve this with the
+<code>jit_insn_branch_if_not</code> instruction:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_label_t label1 = jit_label_undefined;
+...
+jit_insn_branch_if_not(function, temp1, &amp;label1);
+</pre></td></tr></table>
+
+<p>The label must be initialized to <code>jit_label_undefined</code>.  It will be
+updated by <code>jit_insn_branch_if_not</code> to refer to a future position in
+the code that we haven't seen yet.
+</p>
+<p>If the condition is true, then execution falls through to the next
+instruction where we return <code>x</code> to the caller:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_insn_return(function, x);
+</pre></td></tr></table>
+
+<p>If the condition was not true, then we branched to <code>label1</code> above.
+We fix the location of the label using <code>jit_insn_label</code>:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_insn_label(function, &amp;label1);
+</pre></td></tr></table>
+
+<p>We use similar code to check the condition <code>x &lt; y</code>, and branch
+to <code>label2</code> if it is not true:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_value_t temp2;
+jit_label_t label2 = jit_label_undefined;
+...
+temp2 = jit_insn_lt(function, x, y);
+jit_insn_branch_if_not(function, temp2, &amp;label2);
+</pre></td></tr></table>
+
+<p>At this point, we need to call the <code>gcd</code> function with the
+arguments <code>x</code> and <code>y - x</code>.  The code for this is
+fairly straight-forward.  The <code>jit_insn_call</code> instruction calls
+the function listed in its third argument.  In this case, we are calling
+ourselves recursively:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_value_t temp_args[2];
+jit_value_t temp3;
+...
+temp_args[0] = x;
+temp_args[1] = jit_insn_sub(function, y, x);
+temp3 = jit_insn_call
+    (function, &quot;gcd&quot;, function, 0, temp_args, 2, 0);
+jit_insn_return(function, temp3);
+</pre></td></tr></table>
+
+<p>The string <code>&quot;gcd&quot;</code> in the second argument is for diagnostic purposes
+only.  It can be helpful when debugging, but the <code>libjit</code> library
+otherwise makes no use of it.  You can set it to NULL if you wish.
+</p>
+<p>In general, <code>libjit</code> does not maintain mappings from names to
+<code>jit_function_t</code> objects.  It is assumed that the front end will
+take care of that, using whatever naming scheme is appropriate to
+its needs.
+</p>
+<p>The final part of the <code>gcd</code> function is similar to the previous one:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_value_t temp4;
+...
+jit_insn_label(function, &amp;label2);
+temp_args[0] = jit_insn_sub(function, x, y);
+temp_args[1] = y;
+temp4 = jit_insn_call
+    (function, &quot;gcd&quot;, function, 0, temp_args, 2, 0);
+jit_insn_return(function, temp4);
+</pre></td></tr></table>
+
+<p>We can now compile the function and execute it in the usual manner.
+</p>
+
+<hr size="6">
+<a name="Tutorial-3"></a>
+<a name="SEC8"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC7" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC9" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC5" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC5" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_4.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 3.3 Tutorial 3 - compiling on-demand </h2>
+
+<p>In the previous tutorials, we compiled everything that we needed
+at startup time, and then entered the execution phase.  The real power
+of a JIT becomes apparent when you use it to compile functions
+only as they are called.  You can thus avoid compiling functions
+that are never called in a given program run, saving memory and
+startup time.
+</p>
+<p>We demonstrate how to do on-demand compilation by rewriting Tutorial 1.
+The source code for the modified version is in <code>tutorial/t3.c</code>.
+</p>
+<p>When the <code>mul_add</code> function is created, we don't create its function
+body or call <code>jit_function_compile</code>.  We instead provide a
+C function called <code>compile_mul_add</code> that performs on-demand
+compilation:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_function_t function;
+...
+function = jit_function_create(context, signature);
+jit_function_set_on_demand_compiler(function, compile_mul_add);
+</pre></td></tr></table>
+
+<p>We can now call this function with <code>jit_function_apply</code>, and the
+system will automatically call <code>compile_mul_add</code> for us if the
+function hasn't been built yet.  The contents of <code>compile_mul_add</code>
+are fairly obvious:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">int compile_mul_add(jit_function_t function)
+{
+    jit_value_t x, y, z;
+    jit_value_t temp1, temp2;
+
+    x = jit_value_get_param(function, 0);
+    y = jit_value_get_param(function, 1);
+    z = jit_value_get_param(function, 2);
+
+    temp1 = jit_insn_mul(function, x, y);
+    temp2 = jit_insn_add(function, temp1, z);
+
+    jit_insn_return(function, temp2);
+    return 1;
+}
+</pre></td></tr></table>
+
+<p>When the on-demand compiler returns, <code>libjit</code> will call
+<code>jit_function_compile</code> and then jump to the newly compiled code.
+Upon the second and subsequent calls to the function, <code>libjit</code>
+will bypass the on-demand compiler and call the compiled code directly.
+Note that in case of on-demand compilation <code>libjit</code> automatically
+locks and unlocks the corresponding context with
+<code>jit_context_build_start</code> and <code>jit_context_build_end</code> calls.
+</p>
+<p>Sometimes you may wish to force a commonly used function to
+be recompiled, so that you can apply additional optimization.
+To do this, you must set the &quot;recompilable&quot; flag just after the
+function is first created:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_function_t function;
+...
+function = jit_function_create(context, signature);
+jit_function_set_recompilable(function);
+jit_function_set_on_demand_compiler(function, compile_mul_add);
+</pre></td></tr></table>
+
+<p>Once the function is compiled (either on-demand or up-front) its
+intermediate representation built by <code>libjit</code> is discarded.
+To force the function to be recompiled you need to build it again
+and call <code>jit_function_compile</code> after that.  As always when
+the function is built and compiled manually it is necessary
+to take care of context locking:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_context_build_start(context);
+jit_function_get_on_demand_compiler(function)(function);
+jit_function_compile(function);
+jit_context_build_end(context);
+</pre></td></tr></table>
+
+<p>After this, any existing references to the function will be redirected
+to the new version.  However, if some thread is currently executing the
+previous version, then it will keep doing so until the previous version
+exits.  Only after that will subsequent calls go to the new version.
+</p>
+<p>In this tutorial, we use the same on-demand compiler when we
+recompile <code>mul_add</code>.  In a real program, you would probably call
+<code>jit_function_set_on_demand_compiler</code> to set a new on-demand
+compiler that performs greater levels of optimization.
+</p>
+<p>If you no longer intend to recompile the function, you should call
+<code>jit_function_clear_recompilable</code> so that <code>libjit</code> can
+manage the function more efficiently from then on.
+</p>
+<p>The exact conditions under which a function should be recompiled
+are not specified by <code>libjit</code>.  It may be because the function
+has been called several times and has reached some threshold.
+Or it may be because some other function that it calls has become a
+candidate for inlining.  It is up to the front end to decide when
+recompilation is warranted, usually based on language-specific
+heuristics.
+</p>
+
+<hr size="6">
+<a name="Tutorial-4"></a>
+<a name="SEC9"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC8" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC10" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC5" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC5" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_4.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 3.4 Tutorial 4 - mul_add, C++ version </h2>
+
+<p>While <code>libjit</code> can be easily accessed from C++ programs using
+the C API's, you may instead wish to use an API that better reflects
+the C++ programming paradigm.  We demonstrate how to do this by rewriting
+Tutorial 3 using the <code>libjitplus</code> library.
+</p>
+<p>To use the <code>libjitplus</code> library, we first include
+the <code>&lt;jit/jit-plus.h&gt;</code> file:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">#include &lt;jit/jit-plus.h&gt;
+</pre></td></tr></table>
+
+<p>This file incorporates all of the definitions from <code>&lt;jit/jit.h&gt;</code>,
+so you have full access to the underlying C API if you need it.
+</p>
+<p>This time, instead of building the <code>mul_add</code> function with
+<code>jit_function_create</code> and friends, we define a class to represent it:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">class mul_add_function : public jit_function
+{
+public:
+    mul_add_function(jit_context&amp; context) : jit_function(context)
+    {
+        create();
+        set_recompilable();
+    }
+
+    virtual void build();
+
+protected:
+    virtual jit_type_t create_signature();
+};
+</pre></td></tr></table>
+
+<p>Where we used <code>jit_function_t</code> and <code>jit_context_t</code> before,
+we now use the C++ <code>jit_function</code> and <code>jit_context</code> classes.
+</p>
+<p>In our constructor, we attach ourselves to the context and then call
+the <code>create()</code> method.  This is in turn will call our overridden
+virtual method <code>create_signature()</code> to obtain the signature:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_type_t mul_add_function::create_signature()
+{
+    // Return type, followed by three parameters,
+    // terminated with &quot;end_params&quot;.
+    return signature_helper
+        (jit_type_int, jit_type_int, jit_type_int,
+         jit_type_int, end_params);
+}
+</pre></td></tr></table>
+
+<p>The <code>signature_helper()</code> method is provided for your convenience,
+to help with building function signatures.  You can create your own
+signature manually using <code>jit_type_create_signature</code> if you wish.
+</p>
+<p>The final thing we do in the constructor is call <code>set_recompilable()</code>
+to mark the <code>mul_add</code> function as recompilable, just as we did in
+Tutorial 3.
+</p>
+<p>The C++ library will create the function as compilable on-demand for
+us, so we don't have to do that explicitly.  But we do have to override
+the virtual <code>build()</code> method to build the function's body on-demand:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">void mul_add_function::build()
+{
+    jit_value x = get_param(0);
+    jit_value y = get_param(1);
+    jit_value z = get_param(2);
+
+    insn_return(x * y + z);
+}
+</pre></td></tr></table>
+
+<p>This is similar to the first version that we wrote in Tutorial 1.
+Instructions are created with <code>insn_*</code> methods that correspond
+to their <code>jit_insn_*</code> counterparts in the C library.
+</p>
+<p>One of the nice things about the C++ API compared to the C API is that we
+can use overloaded operators to manipulate <code>jit_value</code> objects.
+This can simplify the function build process considerably when we
+have lots of expressions to compile.  We could have used <code>insn_mul</code>
+and <code>insn_add</code> instead in this example and the result would have
+been the same.
+</p>
+<p>Now that we have our <code>mul_add_function</code> class, we can create
+an instance of the function and apply it as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_context context;
+mul_add_function mul_add(context);
+
+jit_int arg1 = 3;
+jit_int arg2 = 5;
+jit_int arg3 = 2;
+jit_int args[3];
+args[0] = &amp;arg1;
+args[1] = &amp;arg2;
+args[2] = &amp;arg3;
+
+mul_add.apply(args, &amp;result);
+</pre></td></tr></table>
+
+<p>See section <a href="libjit_16.html#SEC34">Using libjit from C++</a>, for more information on the <code>libjitplus</code>
+library.
+</p>
+
+<hr size="6">
+<a name="Tutorial-5"></a>
+<a name="SEC10"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC9" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC11" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC5" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC5" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_4.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 3.5 Tutorial 5 - gcd, with tail calls </h2>
+
+<p>Astute readers would have noticed that Tutorial 2 included two instances
+of &quot;tail calls&quot;.  That is, calls to the same function that are immediately
+followed by a <code>return</code> instruction.
+</p>
+<p>Libjit can optimize tail calls if you provide the <code>JIT_CALL_TAIL</code>
+flag to <code>jit_insn_call</code>.  Previously, we used the following code
+to call <code>gcd</code> recursively:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">temp3 = jit_insn_call
+    (function, &quot;gcd&quot;, function, 0, temp_args, 2, 0);
+jit_insn_return(function, temp3);
+</pre></td></tr></table>
+
+<p>In Tutorial 5, this is modified to the following:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_insn_call(function, &quot;gcd&quot;, function, 0, temp_args, 2, JIT_CALL_TAIL);
+</pre></td></tr></table>
+
+<p>There is no need for the <code>jit_insn_return</code>, because the call
+will never return to that point in the code.  Behind the scenes,
+<code>libjit</code> will convert the call into a jump back to the head
+of the function.
+</p>
+<p>Tail calls can only be used in certain circumstances.  The source
+and destination of the call must have the same function signatures.
+None of the parameters should point to local variables in the current
+stack frame.  And tail calls cannot be used from any source function
+that uses <code>try</code> or <code>alloca</code> statements.
+</p>
+<p>Because it can be difficult for <code>libjit</code> to determine when these
+conditions have been met, it relies upon the caller to supply the
+<code>JIT_CALL_TAIL</code> flag when it is appropriate to use a tail call.
+</p>
+
+<hr size="6">
+<a name="Dynamic-Pascal"></a>
+<a name="SEC11"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC10" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_4.html#SEC12" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC5" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC5" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_4.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 3.6 Dynamic Pascal - A full JIT example </h2>
+
+<p>This <code>libjit/dpas</code> directory contains an implementation of
+&quot;Dynamic Pascal&quot;, or &quot;dpas&quot; as we like to call it.  It is provided
+as an example of using <code>libjit</code> in a real working environment.
+We also use it to write test programs that exercise the JIT's capabilities.
+</p>
+<p>Other Pascal implementations compile the source to executable form,
+which is then run separately.  Dynamic Pascal loads the source code
+at runtime, dynamically JIT'ing the program as it goes.  It thus has
+a lot in common with scripting languages like Perl and Python.
+</p>
+<p>If you are writing a bytecode-based virtual machine, you would use
+a similar approach to Dynamic Pascal.  The key difference is that
+you would build the JIT data structures after loading the bytecode
+rather than after parsing the source code.
+</p>
+<p>To run a Dynamic Pascal program, use <code>dpas name.pas</code>.  You may also
+need to pass the <code>-I</code> option to specify the location of the system
+library if you have used an <code>import</code> clause in your program.  e.g.
+<code>dpas -I$HOME/libjit/dpas/library name.pas</code>.
+</p>
+<p>This Pascal grammar is based on the EBNF description at the following URL:
+</p>
+<p><a href="http://www.cs.qub.ac.uk/~S.Fitzpatrick/Teaching/Pascal/EBNF.html">http://www.cs.qub.ac.uk/~S.Fitzpatrick/Teaching/Pascal/EBNF.html</a>
+</p>
+<p>There are a few differences to &quot;Standard Pascal&quot;:
+</p>
+<ol>
+<li>
+Identifiers are case-insensitive, but case-preserving.
+
+</li><li>
+Program headings are normally <code>program Name (Input, Output);</code>.  This can
+be abbreviated to <code>program Name;</code> as the program modifiers are ignored.
+
+</li><li>
+Some GNU Pascal operators like <code>xor</code>, <code>shl</code>, <code>@</code>, etc
+have been added.
+
+</li><li>
+The integer type names (<code>Integer</code>, <code>Cardinal</code>, <code>LongInt</code>, etc)
+follow those used in GNU Pascal also.  The <code>Integer</code> type is always
+32-bits in size, while <code>LongInt</code> is always 64-bits in size.
+
+</li><li>
+The types <code>SysInt</code>, <code>SysCard</code>, <code>SysLong</code>, <code>SysLongCard</code>,
+<code>SysLongestInt</code>, and <code>SysLongestCard</code> are guaranteed to be the
+same size as the underlying C system's <code>int</code>, <code>unsigned int</code>,
+<code>long</code>, <code>unsigned long</code>, <code>long long</code>, and
+<code>unsigned long long</code> types.
+
+</li><li>
+The type <code>Address</code> is logically equivalent to C's <code>void *</code>.
+Any pointer or array can be implicitly cast to <code>Address</code>.  An explicit
+cast is required to cast back to a typed pointer (you cannot cast back
+to an array).
+
+</li><li>
+The <code>String</code> type is declared as <code>^Char</code>.  Single-dimensional
+arrays of <code>Char</code> can be implicitly cast to any <code>String</code>
+destination.  Strings are not bounds-checked, so be careful.  Arrays
+are bounds-checked.
+
+</li><li>
+Pointers can be used as arrays.  e.g. <code>p[n]</code> will access the n'th
+item of an unbounded array located at <code>p</code>.  Use with care.
+
+</li><li>
+We don't support <code>file of</code> types.  Data can be written to stdout
+using <code>Write</code> and <code>WriteLn</code>, but that is the extent of
+the I/O facilities.
+
+</li><li>
+The declaration <code>import Name1, Name2, ...;</code> can be used at the head of a
+program to declare additional files to include.  e.g. <code>import stdio</code> will
+import the contents of <code>stdio.pas</code>.  We don't support units.
+
+</li><li>
+The idiom <code>; ..</code> can be used at the end of a formal parameter list to
+declare that the procedure or function takes a variable number of arguments.
+The builtin function <code>va_arg(Type)</code> is used to extract the arguments.
+
+</li><li>
+The directive <code>import(&quot;Library&quot;)</code> can be used to declare that a function
+or procedure was imported from an external C library.  For example, the
+following imports the C <code>puts</code> and <code>printf</code> functions:
+
+<table><tr><td>&nbsp;</td><td><pre class="example">function puts (str : String) : SysInt; import (&quot;libc&quot;)
+function printf (format : String; ..) : SysInt; import (&quot;libc&quot;)
+</pre></td></tr></table>
+
+<p>Functions that are imported in this manner have case-sensitive names.
+i.e. using <code>Printf</code> above will fail.
+</p>
+</li><li>
+The <code>throw</code> keyword can be used to throw an exception.  The argument
+must be a pointer.  The <code>try</code>, <code>catch</code>, and <code>finally</code>
+keywords are used to manage such exceptions further up the stack.  e.g.
+
+<table><tr><td>&nbsp;</td><td><pre class="example">try
+    ...
+catch Name : Type
+    ...
+finally
+    ...
+end
+</pre></td></tr></table>
+
+<p>The <code>catch</code> block will be invoked with the exception pointer that was
+supplied to <code>throw</code>, after casting it to <code>Type</code> (which must
+be a pointer type).  Specifying <code>throw</code> on its own without an argument
+will rethrow the current exception pointer, and can only be used inside a
+<code>catch</code> block.
+</p>
+<p>Dynamic Pascal does not actually check the type of the thrown pointer.
+If you have multiple kinds of exceptions, then you must store some kind
+of type indicator in the block that is thrown and then inspect <code>^Name</code>
+to see what the indicator says.
+</p>
+</li><li>
+The <code>exit</code> keyword can be used to break out of a loop.
+
+</li><li>
+Function calls can be used as procedure calls.  The return value is ignored.
+
+</li><li>
+Hexadecimal constants can be expressed as <code>XXH</code>.  The first digit
+must be between 0 and 9, but the remaining digits can be any hex digit.
+
+</li><li>
+Ternary conditionals can be expressed as <code>(if e1 then e2 else e3)</code>.
+The brackets are required.  This is equivalent to C's <code>e1 ? e2 : e3</code>.
+
+</li><li>
+Assigning to a function result will immediately return.  i.e. it is
+similar to <code>return value;</code> in C.  It isn't necessary to arrange for
+execution to flow through to the end of the function as in regular Pascal.
+
+</li><li>
+The term <code>sizeof(Type)</code> can be used to get the size of a type.
+
+</li><li>
+Procedure and function headings can appear in a record type to declare a
+field with a <code>pointer to procedure/function</code> type.
+</li></ol>
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC5" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_4.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>May, 11 2008</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

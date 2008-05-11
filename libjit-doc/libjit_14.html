@@ -1,0 +1,1143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 11 2008 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Just-In-Time Compiler Library: 14. Miscellaneous utility routines</title>
+
+<meta name="description" content="Just-In-Time Compiler Library: 14. Miscellaneous utility routines">
+<meta name="keywords" content="Just-In-Time Compiler Library: 14. Miscellaneous utility routines">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+/* document-wide settings */
+   
+
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+body
+   {
+      color: #000000;
+      background: #ffffff;
+      margin-top: 0;
+      margin-left: 5;
+      margin-right: 5;
+   }
+   a:link
+   {
+      color: #000080;
+   }
+   a:visited
+   {
+      color: #808080;
+   }
+   a:active
+   {
+      color: #008000;
+   }
+/* document-wide settings */
+
+/* miscellaneous settings */
+   .mainheading
+   {
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding-left: 5px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   .mainsubheading
+   {
+      font-size: 12px;
+   }
+   .maincontent
+   {
+      margin-left: 25;
+      margin-right: 25;
+   }
+   .news
+   {
+      padding-left: 10;
+      padding-right: 5;
+   }
+   .heading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   .body
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   .linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   .linksbody
+   {
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   a.linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   a.linksbody
+   {
+      text-decoration: none;
+   }
+   a.html2
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      color: #000080;
+      text-decoration: underline;
+   }
+   p.credits
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      text-align: center;
+   }
+/* miscellaneous settings */
+
+/* HTML2 compatability settings */
+   h1
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   h2
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   h3
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 7px;
+      padding-right: 0;
+      text-decoration: none;
+      color: #008080;
+   }
+   h4
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-style: italic;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 10px;
+      text-decoration: none;
+      color: #008080;
+   }
+   p
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   ul
+   {
+      list-style: square outside url("g/dot.jpg");
+   }
+   ol
+   {
+	   list-style: decimal outside none;
+   }
+   li
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dd
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dt
+   {
+      font-weight: bold;
+      font-size: 12px;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+   }
+   pre
+   {
+      padding-left: 10px;
+      padding-right: 5px;
+   }
+   blockquote
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      padding-left: 10;
+      padding-right: 5px;
+   }
+/* HTML2 compatability settings */
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Utility-Routines"></a>
+<a name="SEC25"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_13.html#SEC24" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC26" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit_13.html#SEC23" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_15.html#SEC33" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 14. Miscellaneous utility routines </h1>
+
+<p>The <code>libjit</code> library provides a number of utility routines
+that it itself uses internally, but which may also be useful to front ends.
+</p>
+
+
+<hr size="6">
+<a name="SEC26"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC25" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC27" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC25" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC25" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_15.html#SEC33" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 14.1 Memory allocation </h2>
+
+<p>The <code>libjit</code> library provides an interface to the traditional
+system <code>malloc</code> routines.  All heap allocation in <code>libjit</code>
+goes through these functions.  If you need to perform some other kind
+of memory allocation, you can replace these functions with your
+own versions.
+</p>
+<dl>
+<dt><u>Function:</u> void * <b>jit_malloc</b><i> (unsigned int <var>size</var>)</i>
+<a name="IDX700"></a>
+</dt>
+<dd><p>Allocate <var>size</var> bytes of memory from the heap.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> type * <b>jit_new</b><i> (<var>type</var>)</i>
+<a name="IDX701"></a>
+</dt>
+<dd><p>Allocate <code>sizeof(<var>type</var>)</code> bytes of memory from the heap and
+cast the return pointer to <code><var>type</var> *</code>.  This is a macro that
+wraps up the underlying <code>jit_malloc</code> function and is less
+error-prone when allocating structures.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_calloc</b><i> (unsigned int <var>num</var>, unsigned int <var>size</var>)</i>
+<a name="IDX702"></a>
+</dt>
+<dd><p>Allocate <code><var>num</var> * <var>size</var></code> bytes of memory from the heap and clear
+them to zero.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> type * <b>jit_cnew</b><i> (<var>type</var>)</i>
+<a name="IDX703"></a>
+</dt>
+<dd><p>Allocate <code>sizeof(<var>type</var>)</code> bytes of memory from the heap and
+cast the return pointer to <code><var>type</var> *</code>.  The memory is cleared
+to zero.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_realloc</b><i> (void *<var>ptr</var>, unsigned int <var>size</var>)</i>
+<a name="IDX704"></a>
+</dt>
+<dd><p>Re-allocate the memory at <var>ptr</var> to be <var>size</var> bytes in size.
+The memory block at <var>ptr</var> must have been allocated by a previous
+call to <code>jit_malloc</code>, <code>jit_calloc</code>, or <code>jit_realloc</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_free</b><i> (void *<var>ptr</var>)</i>
+<a name="IDX705"></a>
+</dt>
+<dd><p>Free the memory at <var>ptr</var>.  It is safe to pass a NULL pointer.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_malloc_exec</b><i> (unsigned int <var>size</var>)</i>
+<a name="IDX706"></a>
+</dt>
+<dd><p>Allocate a block of memory that is read/write/executable.  Such blocks
+are used to store JIT'ed code, function closures, and other trampolines.
+The size should be a multiple of <code>jit_exec_page_size()</code>.
+</p>
+<p>This will usually be identical to <code>jit_malloc</code>.  However,
+some systems may need special handling to create executable code
+segments, so this function must be used instead.
+</p>
+<p>You must never mix regular and executable segment allocation.  That is,
+do not use <code>jit_free</code> to free the result of <code>jit_malloc_exec</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_free_exec</b><i> (void *<var>ptr</var>, unsigned int <var>size</var>)</i>
+<a name="IDX707"></a>
+</dt>
+<dd><p>Free a block of memory that was previously allocated by
+<code>jit_malloc_exec</code>.  The <var>size</var> must be identical to the
+original allocated size, as some systems need to know this information
+to be able to free the block.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_flush_exec</b><i> (void *<var>ptr</var>, unsigned int <var>size</var>)</i>
+<a name="IDX708"></a>
+</dt>
+<dd><p>Flush the contents of the block at <var>ptr</var> from the CPU's
+data and instruction caches.  This must be used after the code is
+written to an executable code segment, but before the code is
+executed, to prepare it for execution.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> unsigned int <b>jit_exec_page_size</b><i> (void)</i>
+<a name="IDX709"></a>
+</dt>
+<dd><p>Get the page allocation size for the system.  This is the preferred
+unit when making calls to <code>jit_malloc_exec</code>.  It is not
+required that you supply a multiple of this size when allocating,
+but it can lead to better performance on some systems.
+</p></dd></dl>
+
+
+
+<hr size="6">
+<a name="SEC27"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC26" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC28" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC25" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC25" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_15.html#SEC33" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 14.2 Memory set, copy, compare, etc </h2>
+
+<p>The following functions are provided to set, copy, compare, and search
+memory blocks.
+</p>
+<dl>
+<dt><u>Function:</u> void * <b>jit_memset</b><i> (void *<var>dest</var>, int <var>ch</var>, unsigned int <var>len</var>)</i>
+<a name="IDX710"></a>
+</dt>
+<dd><p>Set the <var>len</var> bytes at <var>dest</var> to the value <var>ch</var>.
+Returns <var>dest</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_memcpy</b><i> (void *<var>dest</var>, const void *<var>src</var>, unsigned int <var>len</var>)</i>
+<a name="IDX711"></a>
+</dt>
+<dd><p>Copy the <var>len</var> bytes at <var>src</var> to <var>dest</var>.  Returns
+<var>dest</var>.  The behavior is undefined if the blocks overlap
+(use <var>jit_memmove</var> instead for that case).
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_memmove</b><i> (void *<var>dest</var>, const void *<var>src</var>, unsigned int <var>len</var>)</i>
+<a name="IDX712"></a>
+</dt>
+<dd><p>Copy the <var>len</var> bytes at <var>src</var> to <var>dest</var> and handle
+overlapping blocks correctly.  Returns <var>dest</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_memcmp</b><i> (const void *<var>s1</var>, const void *<var>s2</var>, unsigned int <var>len</var>)</i>
+<a name="IDX713"></a>
+</dt>
+<dd><p>Compare <var>len</var> bytes at <var>s1</var> and <var>s2</var>, returning a negative,
+zero, or positive result depending upon their relationship.  It is
+system-specific as to whether this function uses signed or unsigned
+byte comparisons.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_memchr</b><i> (void *<var>str</var>, int <var>ch</var>, unsigned int <var>len</var>)</i>
+<a name="IDX714"></a>
+</dt>
+<dd><p>Search the <var>len</var> bytes at <var>str</var> for the first instance of
+the value <var>ch</var>.  Returns the location of <var>ch</var> if it was found,
+or NULL if it was not found.
+</p></dd></dl>
+
+
+
+<hr size="6">
+<a name="SEC28"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC27" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC29" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC25" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC25" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_15.html#SEC33" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 14.3 String operations </h2>
+
+<p>The following functions are provided to manipulate NULL-terminated
+strings.  It is highly recommended that you use these functions in
+preference to system functions, because the corresponding system
+functions are extremely non-portable.
+</p>
+<dl>
+<dt><u>Function:</u> unsigned int <b>jit_strlen</b><i> (const char *<var>str</var>)</i>
+<a name="IDX715"></a>
+</dt>
+<dd><p>Returns the length of <var>str</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> char * <b>jit_strcpy</b><i> (char *<var>dest</var>, const char *<var>src</var>)</i>
+<a name="IDX716"></a>
+</dt>
+<dd><p>Copy the string at <var>src</var> to <var>dest</var>.  Returns <var>dest</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> char * <b>jit_strcat</b><i> (char *<var>dest</var>, const char *<var>src</var>)</i>
+<a name="IDX717"></a>
+</dt>
+<dd><p>Copy the string at <var>src</var> to the end of the string at <var>dest</var>.
+Returns <var>dest</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> char * <b>jit_strncpy</b><i> (char *<var>dest</var>, const char *<var>src</var>, unsigned int <var>len</var>)</i>
+<a name="IDX718"></a>
+</dt>
+<dd><p>Copy at most <var>len</var> characters from the string at <var>src</var> to
+<var>dest</var>.  Returns <var>dest</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> char * <b>jit_strdup</b><i> (const char *<var>str</var>)</i>
+<a name="IDX719"></a>
+</dt>
+<dd><p>Allocate a block of memory using <code>jit_malloc</code> and copy
+<var>str</var> into it.  Returns NULL if <var>str</var> is NULL or there
+is insufficient memory to perform the <code>jit_malloc</code> operation.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> char * <b>jit_strndup</b><i> (const char *<var>str</var>, unsigned int <var>len</var>)</i>
+<a name="IDX720"></a>
+</dt>
+<dd><p>Allocate a block of memory using <code>jit_malloc</code> and copy at most
+<var>len</var> characters of <var>str</var> into it.  The copied string is then
+NULL-terminated.  Returns NULL if <var>str</var> is NULL or there
+is insufficient memory to perform the <code>jit_malloc</code> operation.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_strcmp</b><i> (const char *<var>str1</var>, const char *<var>str2</var>)</i>
+<a name="IDX721"></a>
+</dt>
+<dd><p>Compare the two strings <var>str1</var> and <var>str2</var>, returning
+a negative, zero, or positive value depending upon their relationship.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_strncmp</b><i> (const char *<var>str1</var>, const char *<var>str2</var>, unsigned int <var>len</var>)</i>
+<a name="IDX722"></a>
+</dt>
+<dd><p>Compare the two strings <var>str1</var> and <var>str2</var>, returning
+a negative, zero, or positive value depending upon their relationship.
+At most <var>len</var> characters are compared.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_stricmp</b><i> (const char *<var>str1</var>, const char *<var>str2</var>)</i>
+<a name="IDX723"></a>
+</dt>
+<dd><p>Compare the two strings <var>str1</var> and <var>str2</var>, returning
+a negative, zero, or positive value depending upon their relationship.
+Instances of the English letters A to Z are converted into their
+lower case counterparts before comparison.
+</p>
+<p>Note: this function is guaranteed to use English case comparison rules,
+no matter what the current locale is set to, making it suitable for
+comparing token tags and simple programming language identifiers.
+</p>
+<p>Locale-sensitive string comparison is complicated and usually specific
+to the front end language or its supporting runtime library.  We
+deliberately chose not to handle this in <code>libjit</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_strnicmp</b><i> (const char *<var>str1</var>, const char *<var>str2</var>, unsigned int <var>len</var>)</i>
+<a name="IDX724"></a>
+</dt>
+<dd><p>Compare the two strings <var>str1</var> and <var>str2</var>, returning
+a negative, zero, or positive value depending upon their relationship.
+At most <var>len</var> characters are compared.  Instances of the English
+letters A to Z are converted into their lower case counterparts
+before comparison.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> char * <b>jit_strchr</b><i> (const char *<var>str</var>, int <var>ch</var>)</i>
+<a name="IDX725"></a>
+</dt>
+<dd><p>Search <var>str</var> for the first occurrence of <var>ch</var>.  Returns
+the address where <var>ch</var> was found, or NULL if not found.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> char * <b>jit_strrchr</b><i> (const char *<var>str</var>, int <var>ch</var>)</i>
+<a name="IDX726"></a>
+</dt>
+<dd><p>Search <var>str</var> for the first occurrence of <var>ch</var>, starting
+at the end of the string.  Returns the address where <var>ch</var>
+was found, or NULL if not found.
+</p></dd></dl>
+
+
+
+
+<hr size="6">
+<a name="SEC29"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC28" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC30" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC25" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC25" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_15.html#SEC33" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 14.4 Metadata handling </h2>
+
+<p>Many of the structures in the <code>libjit</code> library can have user-supplied
+metadata associated with them.  Metadata may be used to store dependency
+graphs, branch prediction information, or any other information that is
+useful to optimizers or code generators.
+</p>
+<p>Metadata can also be used by higher level user code to store information
+about the structures that is specific to the user's virtual machine or
+language.
+</p>
+<p>The library structures have special-purpose metadata routines associated
+with them (e.g. <code>jit_function_set_meta</code>, <code>jit_block_get_meta</code>).
+However, sometimes you may wish to create your own metadata lists and
+attach them to your own structures.  The functions below enable you
+to do this:
+</p>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_meta_set</b><i> (jit_meta_t *<var>list</var>, int <var>type</var>, void *<var>data</var>, jit_meta_free_func <var>free_data</var>, jit_function_t <var>pool_owner</var>)</i>
+<a name="IDX727"></a>
+</dt>
+<dd><p>Set a metadata value on a list.  If the <var>type</var> is already present
+in the list, then its previous value will be freed.  The <var>free_func</var>
+is called when the metadata value is freed with <code>jit_meta_free</code>
+or <code>jit_meta_destroy</code>.  Returns zero if out of memory.
+</p>
+<p>If <var>pool_owner</var> is not NULL, then the metadata value will persist
+until the specified function is finished building.  Normally you would
+set this to NULL.
+</p>
+<p>Metadata type values of 10000 or greater are reserved for internal use.
+They should never be used by external user code.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_meta_get</b><i> (jit_meta_t <var>list</var>, int <var>type</var>)</i>
+<a name="IDX728"></a>
+</dt>
+<dd><p>Get the value associated with <var>type</var> in the specified <var>list</var>.
+Returns NULL if <var>type</var> is not present.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_meta_free</b><i> (jit_meta_t *<var>list</var>, int <var>type</var>)</i>
+<a name="IDX729"></a>
+</dt>
+<dd><p>Free the metadata value in the <var>list</var> that has the
+specified <var>type</var>.  Does nothing if the <var>type</var>
+is not present.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_meta_destroy</b><i> (jit_meta_t *<var>list</var>)</i>
+<a name="IDX730"></a>
+</dt>
+<dd><p>Destroy all of the metadata values in the specified <var>list</var>.
+</p></dd></dl>
+
+
+
+
+<hr size="6">
+<a name="SEC30"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC29" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC31" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC25" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC25" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_15.html#SEC33" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 14.5 Function application and closures </h2>
+
+<p>Sometimes all you have for a function is a pointer to it and a dynamic
+description of its arguments.  Calling such a function can be extremely
+difficult in standard C.  The routines in this section, particularly
+<code>jit_apply</code>, provide a convenient interface for doing this.
+</p>
+<p>At other times, you may wish to wrap up one of your own dynamic functions
+in such a way that it appears to be a regular C function.  This is
+performed with <code>jit_closure_create</code>.
+</p>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_apply</b><i> (jit_type_t signature, void *<var>func</var>, void **<var>args</var>, unsigned int <var>num_fixed_args</var>, void *<var>return_value</var>)</i>
+<a name="IDX731"></a>
+</dt>
+<dd><p>Call a function that has a particular function signature.
+If the signature has more than <var>num_fixed_args</var> arguments,
+then it is assumed to be a vararg call, with the additional
+arguments passed in the vararg argument area on the stack.
+The <var>signature</var> must specify the type of all arguments,
+including those in the vararg argument area.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_apply_raw</b><i> (jit_type_t <var>signature</var>, void *<var>func</var>, void *<var>args</var>, void *<var>return_value</var>)</i>
+<a name="IDX732"></a>
+</dt>
+<dd><p>Call a function, passing a set of raw arguments.  This can only
+be used if <code>jit_raw_supported</code> returns non-zero for the signature.
+The <var>args</var> value is assumed to be an array of <code>jit_nint</code> values
+that correspond to each of the arguments.  Raw function calls
+are slightly faster than their non-raw counterparts, but can
+only be used in certain circumstances.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_raw_supported</b><i> (jit_type_t <var>signature</var>)</i>
+<a name="IDX733"></a>
+</dt>
+<dd><p>Determine if <code>jit_apply_raw</code> can be used to call functions
+with a particular signature.  Returns zero if not.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_closure_create</b><i> (jit_context_t <var>context</var>, jit_type_t <var>signature</var>, jit_closure_func <var>func</var>, void *<var>user_data</var>)</i>
+<a name="IDX734"></a>
+</dt>
+<dd><p>Create a closure from a function signature, a closure handling function,
+and a user data value.  Returns NULL if out of memory, or if closures are
+not supported.  The <var>func</var> argument should have the following
+prototype:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">void func (jit_type_t signature, void *result,
+void **args, void *user_data);
+</pre></td></tr></table>
+
+<p>If the closure signature includes variable arguments, then <code>args</code>
+will contain pointers to the fixed arguments, followed by a
+<code>jit_closure_va_list_t</code> value for accessing the remainder of
+the arguments.
+</p>
+<p>The memory for the closure will be reclaimed when the <var>context</var>
+is destroyed.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_closures_supported</b><i> (void)</i>
+<a name="IDX735"></a>
+</dt>
+<dd><p>Determine if this platform has support for closures.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_nint <b>jit_closure_va_get_nint</b><i> (jit_closure_va_list_t <var>va</var>)</i>
+<a name="IDX736"></a>
+</dt>
+<dt><u>Function:</u> jit_nuint <b>jit_closure_va_get_nuint</b><i> (jit_closure_va_list_t <var>va</var>)</i>
+<a name="IDX737"></a>
+</dt>
+<dt><u>Function:</u> jit_long <b>jit_closure_va_get_long</b><i> (jit_closure_va_list_t <var>va</var>)</i>
+<a name="IDX738"></a>
+</dt>
+<dt><u>Function:</u> jit_ulong <b>jit_closure_va_get_ulong</b><i> (jit_closure_va_list_t <var>va</var>)</i>
+<a name="IDX739"></a>
+</dt>
+<dt><u>Function:</u> jit_float32 <b>jit_closure_va_get_float32</b><i> (jit_closure_va_list_t <var>va</var>)</i>
+<a name="IDX740"></a>
+</dt>
+<dt><u>Function:</u> jit_float64 <b>jit_closure_va_get_float64</b><i> (jit_closure_va_list_t <var>va</var>)</i>
+<a name="IDX741"></a>
+</dt>
+<dt><u>Function:</u> jit_nfloat <b>jit_closure_va_get_nfloat</b><i> (jit_closure_va_list_t <var>va</var>)</i>
+<a name="IDX742"></a>
+</dt>
+<dt><u>Function:</u> void * <b>jit_closure_va_get_ptr</b><i> (jit_closure_va_list_t <var>va</var>)</i>
+<a name="IDX743"></a>
+</dt>
+<dd><p>Get the next value of a specific type from a closure's variable arguments.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_closure_va_get_struct</b><i> (jit_closure_va_list_t <var>va</var>, void *<var>buf</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX744"></a>
+</dt>
+<dd><p>Get a structure or union value of a specific <var>type</var> from a closure's
+variable arguments, and copy it into <var>buf</var>.
+</p></dd></dl>
+
+
+
+
+<hr size="6">
+<a name="SEC31"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC30" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC32" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC25" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC25" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_15.html#SEC33" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 14.6 Stack walking </h2>
+
+<p>The functions in <code>&lt;jit/jit-walk.h&gt;</code> allow the caller to walk
+up the native execution stack, inspecting frames and return addresses.
+</p>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_get_frame_address</b><i> (unsigned int <var>n</var>)</i>
+<a name="IDX745"></a>
+</dt>
+<dd><p>Get the frame address for the call frame <var>n</var> levels up
+the stack.  Setting <var>n</var> to zero will retrieve the frame
+address for the current function.  Returns NULL if it isn't
+possible to retrieve the address of the specified frame.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_get_current_frame</b><i> (void)</i>
+<a name="IDX746"></a>
+</dt>
+<dd><p>Get the frame address for the current function.  This may be more
+efficient on some platforms than using <code>jit_get_frame_address(0)</code>.
+Returns NULL if it isn't possible to retrieve the address of
+the current frame.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_get_next_frame_address</b><i> (void *<var>frame</var>)</i>
+<a name="IDX747"></a>
+</dt>
+<dd><p>Get the address of the next frame up the stack from <var>frame</var>.
+Returns NULL if it isn't possible to retrieve the address of
+the next frame up the stack.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_get_return_address</b><i> (void *<var>frame</var>)</i>
+<a name="IDX748"></a>
+</dt>
+<dd><p>Get the return address from a specified frame.  The address
+represents the place where execution returns to when the
+specified frame exits.  Returns NULL if it isn't possible
+to retrieve the return address of the specified frame.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_get_current_return</b><i> (void)</i>
+<a name="IDX749"></a>
+</dt>
+<dd><p>Get the return address for the current function.  This may be more
+efficient on some platforms than using <code>jit_get_return_address(0)</code>.
+Returns NULL if it isn't possible to retrieve the return address of
+the current frame.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_frame_contains_crawl_mark</b><i> (void *<var>frame</var>, jit_crawl_mark_t *<var>mark</var>)</i>
+<a name="IDX750"></a>
+</dt>
+<dd><p>Determine if the stack frame that resides just above <var>frame</var>
+contains a local variable whose address is <var>mark</var>.  The <var>mark</var>
+parameter should be the address of a local variable that is declared with
+<code>jit_declare_crawl_mark(<var>name</var>)</code>.
+</p>
+<p>Crawl marks are used internally by libjit to determine where control
+passes between JIT'ed and ordinary code during an exception throw.
+They can also be used to mark frames that have special security
+conditions associated with them.
+</p></dd></dl>
+
+
+
+
+<hr size="6">
+<a name="SEC32"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC31" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_15.html#SEC33" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC25" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC25" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_15.html#SEC33" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 14.7 Dynamic libraries </h2>
+
+<p>The following routines are supplied to help load and inspect dynamic
+libraries.  They should be used in place of the traditional
+<code>dlopen</code>, <code>dlclose</code>, and <code>dlsym</code> functions, which
+are not portable across operating systems.
+</p>
+<p>You must include <code>&lt;jit/jit-dynamic.h&gt;</code> to use these routines,
+and then link with <code>-ljitdynamic -ljit</code>.
+</p>
+<dl>
+<dt><u>Function:</u> jit_dynlib_handle_t <b>jit_dynlib_open</b><i> (const char *<var>name</var>)</i>
+<a name="IDX751"></a>
+</dt>
+<dd><p>Opens the dynamic library called <var>name</var>, returning a handle for it.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_dynlib_close</b><i> (jit_dynlib_handle_t <var>handle</var>)</i>
+<a name="IDX752"></a>
+</dt>
+<dd><p>Close a dynamic library.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void * <b>jit_dynlib_get_symbol</b><i> (jit_dynlib_handle_t <var>handle</var>, const char *<var>symbol</var>)</i>
+<a name="IDX753"></a>
+</dt>
+<dd><p>Retrieve the symbol <var>symbol</var> from the specified dynamic library.
+Returns NULL if the symbol could not be found.  This will try both
+non-prefixed and underscore-prefixed forms of <var>symbol</var> on platforms
+where it makes sense to do so, so there is no need for the caller
+to perform prefixing.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_dynlib_set_debug</b><i> (int <var>flag</var>)</i>
+<a name="IDX754"></a>
+</dt>
+<dd><p>Enable or disable additional debug messages to stderr.  Debugging is
+disabled by default.  Normally the dynamic library routines will silently
+report errors via NULL return values, leaving reporting up to the caller.
+However, it can be useful to turn on additional diagnostics when tracking
+down problems with dynamic loading.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> const char * <b>jit_dynlib_get_suffix</b><i> (void)</i>
+<a name="IDX755"></a>
+</dt>
+<dd><p>Get the preferred dynamic library suffix for this platform.
+Usually something like <code>so</code>, <code>dll</code>, or <code>dylib</code>.
+</p></dd></dl>
+
+
+
+
+
+<a name="IDX756"></a>
+
+<p>Sometimes you want to retrieve a C++ method from a dynamic library
+using <code>jit_dynlib_get_symbol</code>.  Unfortunately, C++ name mangling
+rules differ from one system to another, making this process very
+error-prone.
+</p>
+<p>The functions that follow try to help.  They aren't necessarily fool-proof,
+but they should work in the most common cases.  The only alternative is
+to wrap your C++ library with C functions, so that the names are predictable.
+</p>
+<p>The basic idea is that you supply a description of the C++ method that
+you wish to access, and these functions return a number of candidate forms
+that you can try with <code>jit_dynlib_get_symbol</code>.  If one form fails,
+you move on and try the next form, until either symbol lookup succeeds
+or until all forms have been exhausted.
+</p>
+<p>The following code demonstrates how to resolve a global function:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_dynlib_handle_t handle;
+jit_type_t signature;
+int form = 0;
+void *address = 0;
+char *mangled;
+
+while((mangled = jit_mangle_global_function
+(&quot;foo&quot;, signature, form)) != 0)
+{
+address = jit_dynlib_get_symbol(handle, mangled);
+if(address != 0)
+{
+break;
+}
+jit_free(mangled);
+++form;
+}
+
+if(address)
+{
+printf(&quot;%s = 0x%lxn&quot;, mangled, (long)address);
+}
+else
+{
+printf(&quot;could not resolve foon&quot;);
+}
+</pre></td></tr></table>
+
+<p>This mechanism typically cannot be used to obtain the entry points for
+<code>inline</code> methods.  You will need to make other arrangements to
+simulate the behaviour of inline methods, or recompile your dynamic C++
+library in a mode that explicitly exports inlines.
+</p>
+<p>C++ method names are very picky about types.  On 32-bit systems,
+<code>int</code> and <code>long</code> are the same size, but they are mangled
+to different characters.  To ensure that the correct function is
+picked, you should use <code>jit_type_sys_int</code>, <code>jit_type_sys_long</code>, etc
+instead of the platform independent types.  If you do use a platform
+independent type like <code>jit_type_int</code>, this library will try to
+guess which system type you mean, but the guess will most likely be wrong.
+</p>
+
+<dl>
+<dt><u>Function:</u> char * <b>jit_mangle_global_function</b><i> (const char *<var>name</var>, jit_type_t <var>signature</var>, int <var>form</var>)</i>
+<a name="IDX757"></a>
+</dt>
+<dd><p>Mangle the name of a global C++ function using the specified <var>form</var>.
+Returns NULL if out of memory, or if the form is not supported.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> char * <b>jit_mangle_member_function</b><i> (const char *<var>class_name</var>, const char *<var>name</var>, jit_type_t <var>signature</var>, int <var>form</var>, int <var>flags</var>)</i>
+<a name="IDX758"></a>
+</dt>
+<dd><p>Mangle the name of a C++ member function using the specified <var>form</var>.
+Returns NULL if out of memory, or if the form is not supported.
+The following flags may be specified to modify the mangling rules:
+</p>
+<dl compact="compact">
+<dd><a name="IDX759"></a>
+</dd>
+<dt> <code>JIT_MANGLE_PUBLIC</code></dt>
+<dd><p>The method has <code>public</code> access within its containing class.
+</p>
+<a name="IDX760"></a>
+</dd>
+<dt> <code>JIT_MANGLE_PROTECTED</code></dt>
+<dd><p>The method has <code>protected</code> access within its containing class.
+</p>
+<a name="IDX761"></a>
+</dd>
+<dt> <code>JIT_MANGLE_PRIVATE</code></dt>
+<dd><p>The method has <code>private</code> access within its containing class.
+</p>
+<a name="IDX762"></a>
+</dd>
+<dt> <code>JIT_MANGLE_STATIC</code></dt>
+<dd><p>The method is <code>static</code>.
+</p>
+<a name="IDX763"></a>
+</dd>
+<dt> <code>JIT_MANGLE_VIRTUAL</code></dt>
+<dd><p>The method is a virtual instance method.  If neither
+<code>JIT_MANGLE_STATIC</code> nor <code>JIT_MANGLE_VIRTUAL</code> are supplied,
+then the method is assumed to be a non-virtual instance method.
+</p>
+<a name="IDX764"></a>
+</dd>
+<dt> <code>JIT_MANGLE_CONST</code></dt>
+<dd><p>The method is an instance method with the <code>const</code> qualifier.
+</p>
+<a name="IDX765"></a>
+</dd>
+<dt> <code>JIT_MANGLE_EXPLICIT_THIS</code></dt>
+<dd><p>The <var>signature</var> includes an extra pointer parameter at the start
+that indicates the type of the <code>this</code> pointer.  This parameter won't
+be included in the final mangled name.
+</p>
+<a name="IDX766"></a>
+</dd>
+<dt> <code>JIT_MANGLE_IS_CTOR</code></dt>
+<dd><p>The method is a constructor.  The <var>name</var> parameter will be ignored.
+</p>
+<a name="IDX767"></a>
+</dd>
+<dt> <code>JIT_MANGLE_IS_DTOR</code></dt>
+<dd><p>The method is a destructor.  The <var>name</var> parameter will be ignored.
+</p>
+<a name="IDX768"></a>
+</dd>
+<dt> <code>JIT_MANGLE_BASE</code></dt>
+<dd><p>Fetch the &quot;base&quot; constructor or destructor entry point, rather than
+the &quot;complete&quot; entry point.
+</p></dd>
+</dl>
+
+<p>The <var>class_name</var> may include namespace and nested parent qualifiers
+by separating them with <code>::</code> or <code>.</code>.  Class names that involve
+template parameters are not supported yet.
+</p></dd></dl>
+
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC25" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_15.html#SEC33" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>May, 11 2008</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

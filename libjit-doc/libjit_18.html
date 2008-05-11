@@ -1,0 +1,484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 11 2008 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Just-In-Time Compiler Library: 18. Values in C++</title>
+
+<meta name="description" content="Just-In-Time Compiler Library: 18. Values in C++">
+<meta name="keywords" content="Just-In-Time Compiler Library: 18. Values in C++">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+/* document-wide settings */
+   
+
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+body
+   {
+      color: #000000;
+      background: #ffffff;
+      margin-top: 0;
+      margin-left: 5;
+      margin-right: 5;
+   }
+   a:link
+   {
+      color: #000080;
+   }
+   a:visited
+   {
+      color: #808080;
+   }
+   a:active
+   {
+      color: #008000;
+   }
+/* document-wide settings */
+
+/* miscellaneous settings */
+   .mainheading
+   {
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding-left: 5px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   .mainsubheading
+   {
+      font-size: 12px;
+   }
+   .maincontent
+   {
+      margin-left: 25;
+      margin-right: 25;
+   }
+   .news
+   {
+      padding-left: 10;
+      padding-right: 5;
+   }
+   .heading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   .body
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   .linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   .linksbody
+   {
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   a.linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   a.linksbody
+   {
+      text-decoration: none;
+   }
+   a.html2
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      color: #000080;
+      text-decoration: underline;
+   }
+   p.credits
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      text-align: center;
+   }
+/* miscellaneous settings */
+
+/* HTML2 compatability settings */
+   h1
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   h2
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   h3
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 7px;
+      padding-right: 0;
+      text-decoration: none;
+      color: #008080;
+   }
+   h4
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-style: italic;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 10px;
+      text-decoration: none;
+      color: #008080;
+   }
+   p
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   ul
+   {
+      list-style: square outside url("g/dot.jpg");
+   }
+   ol
+   {
+	   list-style: decimal outside none;
+   }
+   li
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dd
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dt
+   {
+      font-weight: bold;
+      font-size: 12px;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+   }
+   pre
+   {
+      padding-left: 10px;
+      padding-right: 5px;
+   }
+   blockquote
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      padding-left: 10;
+      padding-right: 5px;
+   }
+/* HTML2 compatability settings */
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="C_002b_002b-Values"></a>
+<a name="SEC36"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_17.html#SEC35" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_19.html#SEC37" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit_17.html#SEC35" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_19.html#SEC37" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 18. Values in C++ </h1>
+
+
+
+
+<p>The <code>jit_value</code> class provides a C++ counterpart to the
+<code>jit_value_t</code> type.  Values normally result by calling methods
+on the <code>jit_function</code> class during the function building process.
+See section <a href="libjit_7.html#SEC17">Working with temporary values in the JIT</a>, for more information on creating and managing values.
+</p>
+<dl>
+<dt><u>Constructor on jit_value:</u> <b>jit_value</b><i> ()</i>
+<a name="IDX779"></a>
+</dt>
+<dd><p>Construct an empty value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Constructor on jit_value:</u> <b>jit_value</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX780"></a>
+</dt>
+<dd><p>Construct a value by wrapping up a raw C <code>jit_value_t</code> object.
+</p></dd></dl>
+
+<dl>
+<dt><u>Constructor on jit_value:</u> <b>jit_value</b><i> (const jit_value&amp; <var>value</var>)</i>
+<a name="IDX781"></a>
+</dt>
+<dd><p>Create a copy of <var>value</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Destructor on jit_value:</u> <b>~jit_value</b><i> ()</i>
+<a name="IDX782"></a>
+</dt>
+<dd><p>Destroy the C++ value wrapper, but leave the underlying raw C
+value alone.
+</p></dd></dl>
+
+<dl>
+<dt><u>Operator on jit_value:</u> <b>jit_value&amp; operator=</b><i> (const jit_value&amp; <var>value</var>)</i>
+<a name="IDX783"></a>
+</dt>
+<dd><p>Copy <code>jit_value</code> objects.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_value:</u> jit_value_t <b>raw</b><i> () const</i>
+<a name="IDX784"></a>
+</dt>
+<dd><p>Get the raw C <code>jit_value_t</code> value that underlies this object.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_value:</u> int <b>is_valid</b><i> () const</i>
+<a name="IDX785"></a>
+</dt>
+<dd><p>Determine if this <code>jit_value</code> object contains a valid raw
+C <code>jit_value_t</code> value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_value:</u> int <b>is_temporary</b><i> () const</i>
+<a name="IDX786"></a>
+</dt>
+<dt><u>Method on jit_value:</u> int <b>is_local</b><i> () const</i>
+<a name="IDX787"></a>
+</dt>
+<dt><u>Method on jit_value:</u> int <b>is_constant</b><i> () const</i>
+<a name="IDX788"></a>
+</dt>
+<dd><p>Determine if this <code>jit_value</code> is temporary, local, or constant.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_value:</u> void <b>set_volatile</b><i> ()</i>
+<a name="IDX789"></a>
+</dt>
+<dt><u>Method on jit_value:</u> int <b>is_volatile</b><i> () const</i>
+<a name="IDX790"></a>
+</dt>
+<dd><p>Set or check the &quot;volatile&quot; state on this value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_value:</u> void <b>set_addressable</b><i> ()</i>
+<a name="IDX791"></a>
+</dt>
+<dt><u>Method on jit_value:</u> int <b>is_addressable</b><i> () const</i>
+<a name="IDX792"></a>
+</dt>
+<dd><p>Set or check the &quot;addressable&quot; state on this value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_value:</u> jit_type_t <b>type</b><i> () const</i>
+<a name="IDX793"></a>
+</dt>
+<dd><p>Get the type of this value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_value:</u> jit_function_t <b>function</b><i> () const</i>
+<a name="IDX794"></a>
+</dt>
+<dt><u>Method on jit_value:</u> jit_block_t <b>block</b><i> () const</i>
+<a name="IDX795"></a>
+</dt>
+<dt><u>Method on jit_value:</u> jit_context_t <b>context</b><i> () const</i>
+<a name="IDX796"></a>
+</dt>
+<dd><p>Get the owning function, block, or context for this value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Method on jit_value:</u> jit_constant_t <b>constant</b><i> () const</i>
+<a name="IDX797"></a>
+</dt>
+<dt><u>Method on jit_value:</u> jit_nint <b>nint_constant</b><i> () const</i>
+<a name="IDX798"></a>
+</dt>
+<dt><u>Method on jit_value:</u> jit_long <b>long_constant</b><i> () const</i>
+<a name="IDX799"></a>
+</dt>
+<dt><u>Method on jit_value:</u> jit_float32 <b>float32_constant</b><i> () const</i>
+<a name="IDX800"></a>
+</dt>
+<dt><u>Method on jit_value:</u> jit_float64 <b>float64_constant</b><i> () const</i>
+<a name="IDX801"></a>
+</dt>
+<dt><u>Method on jit_value:</u> jit_nfloat <b>nfloat_constant</b><i> () const</i>
+<a name="IDX802"></a>
+</dt>
+<dd><p>Extract the constant stored in this value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator+</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX803"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator-</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX804"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator*</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX805"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator/</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX806"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator%</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX807"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator-</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX808"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator&amp;</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX809"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator|</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX810"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator^</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX811"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator~</b><i> (const jit_value&amp; <var>value1</var>)</i>
+<a name="IDX812"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator&lt;&lt;</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX813"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator&gt;&gt;</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX814"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator==</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX815"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator!=</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX816"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator&lt;</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX817"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator&lt;=</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX818"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator&gt;</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX819"></a>
+</dt>
+<dt><u>Operator on jit_value:</u> <b>jit_value operator&gt;=</b><i> (const jit_value&amp; <var>value1</var>, const jit_value&amp; <var>value2</var>)</i>
+<a name="IDX820"></a>
+</dt>
+<dd><p>Generate an arithmetic, bitwise, or comparison instruction based on
+one or two <code>jit_value</code> objects.  These operators are shortcuts
+for calling <code>insn_add</code>, <code>insn_sub</code>, etc on the
+<code>jit_function</code> object.
+</p></dd></dl>
+
+
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_17.html#SEC35" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_19.html#SEC37" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>May, 11 2008</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

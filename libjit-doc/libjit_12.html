@@ -1,0 +1,701 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 11 2008 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Just-In-Time Compiler Library: 12. Hooking a breakpoint debugger into libjit</title>
+
+<meta name="description" content="Just-In-Time Compiler Library: 12. Hooking a breakpoint debugger into libjit">
+<meta name="keywords" content="Just-In-Time Compiler Library: 12. Hooking a breakpoint debugger into libjit">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+/* document-wide settings */
+   
+
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+body
+   {
+      color: #000000;
+      background: #ffffff;
+      margin-top: 0;
+      margin-left: 5;
+      margin-right: 5;
+   }
+   a:link
+   {
+      color: #000080;
+   }
+   a:visited
+   {
+      color: #808080;
+   }
+   a:active
+   {
+      color: #008000;
+   }
+/* document-wide settings */
+
+/* miscellaneous settings */
+   .mainheading
+   {
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding-left: 5px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   .mainsubheading
+   {
+      font-size: 12px;
+   }
+   .maincontent
+   {
+      margin-left: 25;
+      margin-right: 25;
+   }
+   .news
+   {
+      padding-left: 10;
+      padding-right: 5;
+   }
+   .heading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   .body
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   .linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   .linksbody
+   {
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   a.linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   a.linksbody
+   {
+      text-decoration: none;
+   }
+   a.html2
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      color: #000080;
+      text-decoration: underline;
+   }
+   p.credits
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      text-align: center;
+   }
+/* miscellaneous settings */
+
+/* HTML2 compatability settings */
+   h1
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   h2
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   h3
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 7px;
+      padding-right: 0;
+      text-decoration: none;
+      color: #008080;
+   }
+   h4
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-style: italic;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 10px;
+      text-decoration: none;
+      color: #008080;
+   }
+   p
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   ul
+   {
+      list-style: square outside url("g/dot.jpg");
+   }
+   ol
+   {
+	   list-style: decimal outside none;
+   }
+   li
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dd
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dt
+   {
+      font-weight: bold;
+      font-size: 12px;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+   }
+   pre
+   {
+      padding-left: 10px;
+      padding-right: 5px;
+   }
+   blockquote
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      padding-left: 10;
+      padding-right: 5px;
+   }
+/* HTML2 compatability settings */
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Breakpoint-Debugging"></a>
+<a name="SEC22"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_11.html#SEC21" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_13.html#SEC23" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit_11.html#SEC21" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_13.html#SEC23" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 12. Hooking a breakpoint debugger into libjit </h1>
+
+
+
+
+
+<p>The <code>libjit</code> library provides support routines for breakpoint-based
+single-step debugging.  It isn't a full debugger, but provides the
+infrastructure necessary to support one.
+</p>
+<p>The front end virtual machine is responsible for inserting &quot;potential
+breakpoints&quot; into the code when functions are built and compiled.  This
+is performed using <code>jit_insn_mark_breakpoint</code>:
+</p>
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_mark_breakpoint</b><i> (jit_function_t <var>func</var>, jit_nint <var>data1</var>, jit_nint <var>data2</var>)</i>
+<a name="IDX654"></a>
+</dt>
+<dd><p>Mark the current position in <var>func</var> as corresponding to a breakpoint
+location.  When a break occurs, the debugging routines are passed
+<var>func</var>, <var>data1</var>, and <var>data2</var> as arguments.  By convention,
+<var>data1</var> is the type of breakpoint (source line, function entry,
+function exit, etc).
+</p></dd></dl>
+
+<p>There are two ways for a front end to receive notification about breakpoints.
+The bulk of this chapter describes the <code>jit_debugger_t</code> interface,
+which handles most of the ugly details.  In addition, a low-level &quot;debug hook
+mechanism&quot; is provided for front ends that wish more control over the
+process.  The debug hook mechanism is described below, under the
+<code>jit_debugger_set_hook</code> function.
+</p>
+<p>This debugger implementation requires a threading system to work
+successfully.  At least two threads are required, in addition to those of
+the program being debugged:
+</p>
+<ol>
+<li>
+Event thread which calls <code>jit_debugger_wait_event</code> to receive
+notifications of breakpoints and other interesting events.
+
+</li><li>
+User interface thread which calls functions like <code>jit_debugger_run</code>,
+<code>jit_debugger_step</code>, etc, to control the debug process.
+</li></ol>
+
+<p>These two threads should be set to &quot;unbreakable&quot; with a call to
+<code>jit_debugger_set_breakable</code>.  This prevents them from accidentally
+stopping at a breakpoint, which would cause a system deadlock.
+Other housekeeping threads, such as a finalization thread, should
+also be set to &quot;unbreakable&quot; for the same reason.
+</p>
+<p>Events have the following members:
+</p>
+<dl compact="compact">
+<dt> <code>type</code></dt>
+<dd><p>The type of event (see the next table for details).
+</p>
+</dd>
+<dt> <code>thread</code></dt>
+<dd><p>The thread that the event occurred on.
+</p>
+</dd>
+<dt> <code>function</code></dt>
+<dd><p>The function that the breakpoint occurred within.
+</p>
+</dd>
+<dt> <code>data1</code></dt>
+<dt> <code>data2</code></dt>
+<dd><p>The data values at the breakpoint.  These values are inserted into
+the function's code with <code>jit_insn_mark_breakpoint</code>.
+</p>
+</dd>
+<dt> <code>id</code></dt>
+<dd><p>The identifier for the breakpoint.
+</p>
+</dd>
+<dt> <code>trace</code></dt>
+<dd><p>The stack trace corresponding to the location where the breakpoint
+occurred.  This value is automatically freed upon the next call
+to <code>jit_debugger_wait_event</code>.  If you wish to preserve the
+value, then you must call <code>jit_stack_trace_copy</code>.
+</p></dd>
+</dl>
+
+<p>The following event types are currently supported:
+</p>
+<dl compact="compact">
+<dt> <code>JIT_DEBUGGER_TYPE_QUIT</code></dt>
+<dd><p>A thread called <code>jit_debugger_quit</code>, indicating that it wanted the
+event thread to terminate.
+</p>
+</dd>
+<dt> <code>JIT_DEBUGGER_TYPE_HARD_BREAKPOINT</code></dt>
+<dd><p>A thread stopped at a hard breakpoint.  That is, a breakpoint defined
+by a call to <code>jit_debugger_add_breakpoint</code>.
+</p>
+</dd>
+<dt> <code>JIT_DEBUGGER_TYPE_SOFT_BREAKPOINT</code></dt>
+<dd><p>A thread stopped at a breakpoint that wasn't explicitly defined by
+a call to <code>jit_debugger_add_breakpoint</code>.  This typicaly results
+from a call to a &quot;step&quot; function like <code>jit_debugger_step</code>, where
+execution stopped at the next line but there isn't an explicit breakpoint
+on that line.
+</p>
+</dd>
+<dt> <code>JIT_DEBUGGER_TYPE_USER_BREAKPOINT</code></dt>
+<dd><p>A thread stopped because of a call to <code>jit_debugger_break</code>.
+</p>
+</dd>
+<dt> <code>JIT_DEBUGGER_TYPE_ATTACH_THREAD</code></dt>
+<dd><p>A thread called <code>jit_debugger_attach_self</code>.  The <code>data1</code> field
+of the event is set to the value of <code>stop_immediately</code> for the call.
+</p>
+</dd>
+<dt> <code>JIT_DEBUGGER_TYPE_DETACH_THREAD</code></dt>
+<dd><p>A thread called <code>jit_debugger_detach_self</code>.
+</p></dd>
+</dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_insn_mark_breakpoint_variable</b><i> (jit_function_t <var>func</var>, jit_value_t <var>data1</var>, jit_value_t <var>data2</var>)</i>
+<a name="IDX655"></a>
+</dt>
+<dd><p>This function is similar to <code>jit_insn_mark_breakpoint</code> except that values
+in <var>data1</var> and <var>data2</var> can be computed at runtime. You can use this
+function for example to get address of local variable.
+</p></dd></dl>
+
+
+<dl>
+<dt><u>Function:</u> int <b>jit_debugging_possible</b><i> (void)</i>
+<a name="IDX656"></a>
+</dt>
+<dd><p>Determine if debugging is possible.  i.e. that threading is available
+and compatible with the debugger's requirements.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_debugger_t <b>jit_debugger_create</b><i> (jit_context_t <var>context</var>)</i>
+<a name="IDX657"></a>
+</dt>
+<dd><p>Create a new debugger instance and attach it to a JIT <var>context</var>.
+If the context already has a debugger associated with it, then this
+function will return the previous debugger.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_debugger_destroy</b><i> (jit_debugger_t <var>dbg</var>)</i>
+<a name="IDX658"></a>
+</dt>
+<dd><p>Destroy a debugger instance.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_context_t <b>jit_debugger_get_context</b><i> (jit_debugger_t <var>dbg</var>)</i>
+<a name="IDX659"></a>
+</dt>
+<dd><p>Get the JIT context that is associated with a debugger instance.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_debugger_t <b>jit_debugger_from_context</b><i> (jit_context_t <var>context</var>)</i>
+<a name="IDX660"></a>
+</dt>
+<dd><p>Get the debugger that is currently associated with a JIT <var>context</var>,
+or NULL if there is no debugger associated with the context.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_debugger_thread_id_t <b>jit_debugger_get_self</b><i> (jit_debugger_t <var>dbg</var>)</i>
+<a name="IDX661"></a>
+</dt>
+<dd><p>Get the thread identifier associated with the current thread.
+The return values are normally values like 1, 2, 3, etc, allowing
+the user interface to report messages like &quot;thread 3 has stopped
+at a breakpoint&quot;.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_debugger_thread_id_t <b>jit_debugger_get_thread</b><i> (jit_debugger_t <var>dbg</var>, const void *<var>native_thread</var>)</i>
+<a name="IDX662"></a>
+</dt>
+<dd><p>Get the thread identifier for a specific native thread.  The
+<var>native_thread</var> pointer is assumed to point at a block
+of memory containing a native thread handle.  This would be a
+<code>pthread_t</code> on Pthreads platforms or a <code>HANDLE</code>
+on Win32 platforms.  If the native thread has not been seen
+previously, then a new thread identifier is allocated.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_debugger_get_native_thread</b><i> (jit_debugger_t <var>dbg</var>, jit_debugger_thread_id_t <var>thread</var>, void *<var>native_thread</var>)</i>
+<a name="IDX663"></a>
+</dt>
+<dd><p>Get the native thread handle associated with a debugger thread identifier.
+Returns non-zero if OK, or zero if the debugger thread identifier is not
+yet associated with a native thread handle.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_debugger_set_breakable</b><i> (jit_debugger_t <var>dbg</var>, const void *<var>native_thread</var>, int <var>flag</var>)</i>
+<a name="IDX664"></a>
+</dt>
+<dd><p>Set a flag that indicates if a native thread can stop at breakpoints.
+If set to 1 (the default), breakpoints will be active on the thread.
+If set to 0, breakpoints will be ignored on the thread.  Typically
+this is used to mark threads associated with the debugger's user
+interface, or the virtual machine's finalization thread, so that they
+aren't accidentally suspended by the debugger (which might cause a
+deadlock).
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_debugger_attach_self</b><i> (jit_debugger_t <var>dbg</var>, int <var>stop_immediately</var>)</i>
+<a name="IDX665"></a>
+</dt>
+<dd><p>Attach the current thread to a debugger.  If <var>stop_immediately</var>
+is non-zero, then the current thread immediately suspends, waiting for
+the user to start it with <code>jit_debugger_run</code>.  This function is
+typically called in a thread's startup code just before any &quot;real work&quot;
+is performed.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_debugger_detach_self</b><i> (jit_debugger_t <var>dbg</var>)</i>
+<a name="IDX666"></a>
+</dt>
+<dd><p>Detach the current thread from the debugger.  This is typically
+called just before the thread exits.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_debugger_wait_event</b><i> (jit_debugger_t <var>dbg</var>, jit_debugger_event_t *<var>event</var>, jit_nint <var>timeout</var>)</i>
+<a name="IDX667"></a>
+</dt>
+<dd><p>Wait for the next debugger event to arrive.  Debugger events typically
+indicate breakpoints that have occurred.  The <var>timeout</var> is in
+milliseconds, or -1 for an infinite timeout period.  Returns non-zero
+if an event has arrived, or zero on timeout.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_debugger_breakpoint_id_t <b>jit_debugger_add_breakpoint</b><i> (jit_debugger_t <var>dbg</var>, jit_debugger_breakpoint_info_t <var>info</var>)</i>
+<a name="IDX668"></a>
+</dt>
+<dd><p>Add a hard breakpoint to a debugger instance.  The <var>info</var> structure
+defines the conditions under which the breakpoint should fire.
+The fields of <var>info</var> are as follows:
+</p>
+<dl compact="compact">
+<dt> <code>flags</code></dt>
+<dd><p>Flags that indicate which of the following fields should be matched.
+If a flag is not present, then all possible values of the field will match.
+Valid flags are <code>JIT_DEBUGGER_FLAG_THREAD</code>,
+<code>JIT_DEBUGGER_FLAG_FUNCTION</code>, <code>JIT_DEBUGGER_FLAG_DATA1</code>,
+and <code>JIT_DEBUGGER_FLAG_DATA2</code>.
+</p>
+</dd>
+<dt> <code>thread</code></dt>
+<dd><p>The thread to match against, if <code>JIT_DEBUGGER_FLAG_THREAD</code> is set.
+</p>
+</dd>
+<dt> <code>function</code></dt>
+<dd><p>The function to match against, if <code>JIT_DEBUGGER_FLAG_FUNCTION</code> is set.
+</p>
+</dd>
+<dt> <code>data1</code></dt>
+<dd><p>The <code>data1</code> value to match against, if <code>JIT_DEBUGGER_FLAG_DATA1</code>
+is set.
+</p>
+</dd>
+<dt> <code>data2</code></dt>
+<dd><p>The <code>data2</code> value to match against, if <code>JIT_DEBUGGER_FLAG_DATA2</code>
+is set.
+</p></dd>
+</dl>
+
+<p>The following special values for <code>data1</code> are recommended for marking
+breakpoint locations with <code>jit_insn_mark_breakpoint</code>:
+</p>
+<dl compact="compact">
+<dt> <code>JIT_DEBUGGER_DATA1_LINE</code></dt>
+<dd><p>Breakpoint location that corresponds to a source line.  This is used
+to determine where to continue to upon a &quot;step&quot;.
+</p>
+</dd>
+<dt> <code>JIT_DEBUGGER_DATA1_ENTER</code></dt>
+<dd><p>Breakpoint location that corresponds to the start of a function.
+</p>
+</dd>
+<dt> <code>JIT_DEBUGGER_DATA1_LEAVE</code></dt>
+<dd><p>Breakpoint location that corresponds to the end of a function, just
+prior to a <code>return</code> statement.  This is used to determine where
+to continue to upon a &quot;finish&quot;.
+</p>
+</dd>
+<dt> <code>JIT_DEBUGGER_DATA1_THROW</code></dt>
+<dd><p>Breakpoint location that corresponds to an exception throw.
+</p></dd>
+</dl>
+</dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_debugger_remove_breakpoint</b><i> (jit_debugger_t <var>dbg</var>, jit_debugger_breakpoint_id_t <var>id</var>)</i>
+<a name="IDX669"></a>
+</dt>
+<dd><p>Remove a previously defined breakpoint from a debugger instance.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_debugger_remove_all_breakpoints</b><i> (jit_debugger_t <var>dbg</var>)</i>
+<a name="IDX670"></a>
+</dt>
+<dd><p>Remove all breakpoints from a debugger instance.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_debugger_is_alive</b><i> (jit_debugger_t <var>dbg</var>, jit_debugger_thread_id_t <var>thread</var>)</i>
+<a name="IDX671"></a>
+</dt>
+<dd><p>Determine if a particular thread is still alive.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_debugger_is_running</b><i> (jit_debugger_t <var>dbg</var>, jit_debugger_thread_id_t <var>thread</var>)</i>
+<a name="IDX672"></a>
+</dt>
+<dd><p>Determine if a particular thread is currently running (non-zero) or
+stopped (zero).
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_debugger_run</b><i> (jit_debugger_t <var>dbg</var>, jit_debugger_thread_id_t <var>thread</var>)</i>
+<a name="IDX673"></a>
+</dt>
+<dd><p>Start the specified thread running, or continue from the last breakpoint.
+</p>
+<p>This function, and the others that follow, sends a request to the specified
+thread and then returns to the caller immediately.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_debugger_step</b><i> (jit_debugger_t <var>dbg</var>, jit_debugger_thread_id_t <var>thread</var>)</i>
+<a name="IDX674"></a>
+</dt>
+<dd><p>Step over a single line of code.  If the line performs a method call,
+then this will step into the call.  The request will be ignored if
+the thread is currently running.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_debugger_next</b><i> (jit_debugger_t <var>dbg</var>, jit_debugger_thread_id_t <var>thread</var>)</i>
+<a name="IDX675"></a>
+</dt>
+<dd><p>Step over a single line of code but do not step into method calls.
+The request will be ignored if the thread is currently running.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_debugger_finish</b><i> (jit_debugger_t <var>dbg</var>, jit_debugger_thread_id_t <var>thread</var>)</i>
+<a name="IDX676"></a>
+</dt>
+<dd><p>Keep running until the end of the current function.  The request will
+be ignored if the thread is currently running.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_debugger_break</b><i> (jit_debugger_t <var>dbg</var>)</i>
+<a name="IDX677"></a>
+</dt>
+<dd><p>Force an explicit user breakpoint at the current location within the
+current thread.  Control returns to the caller when the debugger
+calls one of the above &quot;run&quot; or &quot;step&quot; functions in another thread.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_debugger_quit</b><i> (jit_debugger_t <var>dbg</var>)</i>
+<a name="IDX678"></a>
+</dt>
+<dd><p>Sends a request to the thread that called <code>jit_debugger_wait_event</code>
+indicating that the debugger should quit.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_debugger_hook_func <b>jit_debugger_set_hook</b><i> (jit_context_t <var>context</var>, jit_debugger_hook_func <var>hook</var>)</i>
+<a name="IDX679"></a>
+</dt>
+<dd><p>Set a debugger hook on a JIT context.  Returns the previous hook.
+</p>
+<p>Debug hooks are a very low-level breakpoint mechanism.  Upon reaching each
+breakpoint in a function, a user-supplied hook function is called.
+It is up to the hook function to decide whether to stop execution
+or to ignore the breakpoint.  The hook function has the following
+prototype:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">void hook(jit_function_t func, jit_nint data1, jit_nint data2);
+</pre></td></tr></table>
+
+<p>The <code>func</code> argument indicates the function that the breakpoint
+occurred within.  The <code>data1</code> and <code>data2</code> arguments are
+those supplied to <code>jit_insn_mark_breakpoint</code>.  The debugger can use
+these values to indicate information about the breakpoint's type
+and location.
+</p>
+<p>Hook functions can be used for other purposes besides breakpoint
+debugging.  For example, a program could be instrumented with hooks
+that tally up the number of times that each function is called,
+or which profile the amount of time spent in each function.
+</p>
+<p>By convention, <code>data1</code> values less than 10000 are intended for
+use by user-defined hook functions.  Values of 10000 and greater are
+reserved for the full-blown debugger system described earlier.
+</p></dd></dl>
+
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_11.html#SEC21" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_13.html#SEC23" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>May, 11 2008</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

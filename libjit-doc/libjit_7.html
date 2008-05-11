@@ -1,0 +1,697 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 11 2008 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Just-In-Time Compiler Library: 7. Working with temporary values in the JIT</title>
+
+<meta name="description" content="Just-In-Time Compiler Library: 7. Working with temporary values in the JIT">
+<meta name="keywords" content="Just-In-Time Compiler Library: 7. Working with temporary values in the JIT">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+/* document-wide settings */
+   
+
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+body
+   {
+      color: #000000;
+      background: #ffffff;
+      margin-top: 0;
+      margin-left: 5;
+      margin-right: 5;
+   }
+   a:link
+   {
+      color: #000080;
+   }
+   a:visited
+   {
+      color: #808080;
+   }
+   a:active
+   {
+      color: #008000;
+   }
+/* document-wide settings */
+
+/* miscellaneous settings */
+   .mainheading
+   {
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      padding-left: 5px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   .mainsubheading
+   {
+      font-size: 12px;
+   }
+   .maincontent
+   {
+      margin-left: 25;
+      margin-right: 25;
+   }
+   .news
+   {
+      padding-left: 10;
+      padding-right: 5;
+   }
+   .heading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   .body
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   .linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   .linksbody
+   {
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   a.linksheading
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #008080;
+   }
+   a.linksbody
+   {
+      text-decoration: none;
+   }
+   a.html2
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      color: #000080;
+      text-decoration: underline;
+   }
+   p.credits
+   {
+      font-size: 10px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      text-align: center;
+   }
+/* miscellaneous settings */
+
+/* HTML2 compatability settings */
+   h1
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      text-decoration: none;
+      color: #008080;
+   }
+   h2
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+      text-decoration: none;
+      color: #008080;
+   }
+   h3
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 7px;
+      padding-right: 0;
+      text-decoration: none;
+      color: #008080;
+   }
+   h4
+   {
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-style: italic;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 10px;
+      text-decoration: none;
+      color: #008080;
+   }
+   p
+   {
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 5px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   ul
+   {
+      list-style: square outside url("g/dot.jpg");
+   }
+   ol
+   {
+	   list-style: decimal outside none;
+   }
+   li
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dd
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+   }
+   dt
+   {
+      font-weight: bold;
+      font-size: 12px;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+   }
+   pre
+   {
+      padding-left: 10px;
+      padding-right: 5px;
+   }
+   blockquote
+   {
+      text-align: justify;
+      font-size: 12px;
+      font-family: Arial, Helvetica, Georgia, sans-serif;
+      padding-left: 10;
+      padding-right: 5px;
+   }
+/* HTML2 compatability settings */
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Values"></a>
+<a name="SEC17"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_6.html#SEC16" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_8.html#SEC18" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit_6.html#SEC16" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_8.html#SEC18" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 7. Working with temporary values in the JIT </h1>
+
+
+
+
+
+<p>Values form the backbone of the storage system in <code>libjit</code>.
+Every value in the system, be it a constant, a local variable,
+or a temporary result, is represented by an object of type
+<code>jit_value_t</code>.  The JIT then allocates registers or memory
+locations to the values as appropriate.
+</p>
+<p>We will demonstrate how to use values with a simple example of
+adding two local variables together and putting the result into a
+third local variable.  First, we allocate storage for the
+three local variables:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">value1 = jit_value_create(func, jit_type_int);
+value2 = jit_value_create(func, jit_type_int);
+value3 = jit_value_create(func, jit_type_int);
+</pre></td></tr></table>
+
+<p>Here, <code>func</code> is the function that we are building.  To add
+<code>value1</code> and <code>value2</code> and put the result into <code>value3</code>,
+we use the following code:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">temp = jit_insn_add(func, value1, value2);
+jit_insn_store(func, value3, temp);
+</pre></td></tr></table>
+
+<p>The <code>jit_insn_add</code> function allocates a temporary value
+(<code>temp</code>) and places the result of the addition into it.
+The <code>jit_insn_store</code> function then stores the temporary
+result into <code>value3</code>.
+</p>
+<p>You might be tempted to think that the above code is inefficient.
+Why do we copy the result into a temporary variable first?
+Why not put the result directly to <code>value3</code>?
+</p>
+<p>Behind the scenes, the JIT will typically optimize <code>temp</code> away,
+resulting in the final code that you expect (i.e. <code>value3 = value1 +
+value2</code>).  It is simply easier to use <code>libjit</code> if all results
+end up in temporary variables first, so that's what we do.
+</p>
+<p>Using temporary values, it is very easy to convert stack machine
+bytecodes into JIT instructions.  Consider the following Java
+Virtual Machine bytecode (representing <code>value4 = value1 * value2 +
+value3</code>):
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">iload 1
+iload 2
+imul
+iload 3
+iadd
+istore 4
+</pre></td></tr></table>
+
+<p>Let us demonstrate how this code would be translated, instruction
+by instruction.  We assume that we have a <code>stack</code> available,
+which keeps track of the temporary values in the system.  We also
+assume that <code>jit_value_t</code> objects representing the local variables
+are already stored in an array called <code>locals</code>.
+</p>
+<p>First, we load local variable 1 onto the stack:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">stack[size++] = jit_insn_load(func, locals[1]);
+</pre></td></tr></table>
+
+<p>We repeat this for local variable 2:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">stack[size++] = jit_insn_load(func, locals[2]);
+</pre></td></tr></table>
+
+<p>Now we pop these two values and push their multiplication:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">stack[size - 2] = jit_insn_mul(func, stack[size - 2], stack[size - 1]);
+--size;
+</pre></td></tr></table>
+
+<p>Next, we need to push the value of local variable 3 and add it
+to the product that we just computed:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">stack[size++] = jit_insn_load(func, locals[3]);
+stack[size - 2] = jit_insn_add(func, stack[size - 2], stack[size - 1]);
+--size;
+</pre></td></tr></table>
+
+<p>Finally, we store the result into local variable 4:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">jit_insn_store(func, locals[4], stack[--size]);
+</pre></td></tr></table>
+
+<p>Collecting up all of the above code, we get the following:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">stack[size++] = jit_insn_load(func, locals[1]);
+stack[size++] = jit_insn_load(func, locals[2]);
+stack[size - 2] = jit_insn_mul(func, stack[size - 2], stack[size - 1]);
+--size;
+stack[size++] = jit_insn_load(func, locals[3]);
+stack[size - 2] = jit_insn_add(func, stack[size - 2], stack[size - 1]);
+--size;
+jit_insn_store(func, locals[4], stack[--size]);
+</pre></td></tr></table>
+
+<p>The JIT will optimize away most of these temporary results, leaving
+the final machine code that you expect.
+</p>
+<p>If the virtual machine was register-based, then a slightly different
+translation strategy would be used.  Consider the following code,
+which computes <code>reg4 = reg1 * reg2 + reg3</code>, with the intermediate
+result stored temporarily in <code>reg5</code>:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">mul reg5, reg1, reg2
+add reg4, reg5, reg3
+</pre></td></tr></table>
+
+<p>You would start by allocating value objects for all of the registers
+in your system (with <code>jit_value_create</code>):
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">reg[1] = jit_value_create(func, jit_type_int);
+reg[2] = jit_value_create(func, jit_type_int);
+reg[3] = jit_value_create(func, jit_type_int);
+reg[4] = jit_value_create(func, jit_type_int);
+reg[5] = jit_value_create(func, jit_type_int);
+</pre></td></tr></table>
+
+<p>Then, the virtual register machine code is translated as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">temp1 = jit_insn_mul(func, reg[1], reg[2]);
+jit_insn_store(reg[5], temp1);
+temp2 = jit_insn_add(func, reg[5], reg[3]);
+jit_insn_store(reg[4], temp2);
+</pre></td></tr></table>
+
+<p>Each virtual register machine instruction turns into two <code>libjit</code>
+function calls.  The JIT will normally optimize away the temporary
+results.  If the value in <code>reg5</code> is not used further down the code,
+then the JIT may also be able to optimize <code>reg5</code> away.
+</p>
+<p>The rest of this section describes the functions that are available
+to create and manipulate values.
+</p>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_value_create</b><i> (jit_function_t <var>func</var>, jit_type_t <var>type</var>)</i>
+<a name="IDX171"></a>
+</dt>
+<dd><p>Create a new value in the context of a function's current block.
+The value initially starts off as a block-specific temporary.
+It will be converted into a function-wide local variable if
+it is ever referenced from a different block.  Returns NULL
+if out of memory.
+</p>
+<p>Note: It isn't possible to refer to global variables directly using
+values.  If you need to access a global variable, then load its
+address into a temporary and use <code>jit_insn_load_relative</code>
+or <code>jit_insn_store_relative</code> to manipulate it.  It simplifies
+the JIT if it can assume that all values are local.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_value_create_nint_constant</b><i> (jit_function_t <var>func</var>, jit_type_t <var>type</var>, jit_nint <var>const_value</var>)</i>
+<a name="IDX172"></a>
+</dt>
+<dd><p>Create a new native integer constant in the specified function.
+Returns NULL if out of memory.
+</p>
+<p>The <var>type</var> parameter indicates the actual type of the constant,
+if it happens to be something other than <code>jit_type_nint</code>.
+For example, the following will create an unsigned byte constant:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">value = jit_value_create_nint_constant(context, jit_type_ubyte, 128);
+</pre></td></tr></table>
+
+<p>This function can be used to create constants of type <code>jit_type_sbyte</code>,
+<code>jit_type_ubyte</code>, <code>jit_type_short</code>, <code>jit_type_ushort</code>,
+<code>jit_type_int</code>, <code>jit_type_uint</code>, <code>jit_type_nint</code>,
+<code>jit_type_nuint</code>, and all pointer types.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_value_create_long_constant</b><i> (jit_function_t <var>func</var>, jit_type_t <var>type</var>, jit_long <var>const_value</var>)</i>
+<a name="IDX173"></a>
+</dt>
+<dd><p>Create a new 64-bit integer constant in the specified
+function.  This can also be used to create constants of
+type <code>jit_type_ulong</code>.  Returns NULL if out of memory.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_value_create_float32_constant</b><i> (jit_function_t <var>func</var>, jit_type_t <var>type</var>, jit_float32 <var>const_value</var>)</i>
+<a name="IDX174"></a>
+</dt>
+<dd><p>Create a new 32-bit floating-point constant in the specified
+function.  Returns NULL if out of memory.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_value_create_float64_constant</b><i> (jit_function_t <var>func</var>, jit_type_t <var>type</var>, jit_float64 <var>const_value</var>)</i>
+<a name="IDX175"></a>
+</dt>
+<dd><p>Create a new 64-bit floating-point constant in the specified
+function.  Returns NULL if out of memory.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_value_create_nfloat_constant</b><i> (jit_function_t <var>func</var>, jit_type_t <var>type</var>, jit_nfloat <var>const_value</var>)</i>
+<a name="IDX176"></a>
+</dt>
+<dd><p>Create a new native floating-point constant in the specified
+function.  Returns NULL if out of memory.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_value_create_constant</b><i> (jit_function_t <var>func</var>, const jit_constant *<var>const_value</var>)</i>
+<a name="IDX177"></a>
+</dt>
+<dd><p>Create a new constant from a generic constant structure in the specified
+function.  Returns NULL if out of memory or if the type in
+<var>const_value</var> is not suitable for a constant.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_value_get_param</b><i> (jit_function_t <var>func</var>, unsigned int <var>param</var>)</i>
+<a name="IDX178"></a>
+</dt>
+<dd><p>Get the value that corresponds to a specified function parameter.
+Returns NULL if out of memory.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_value_t <b>jit_value_get_struct_pointer</b><i> (jit_function_t <var>func</var>)</i>
+<a name="IDX179"></a>
+</dt>
+<dd><p>Get the value that contains the structure return pointer for
+a function.  If the function does not have a structure return pointer
+(i.e. structures are returned in registers), then this returns NULL.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_value_is_temporary</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX180"></a>
+</dt>
+<dd><p>Determine if a value is temporary.  i.e. its scope extends
+over a single block within its function.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_value_is_local</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX181"></a>
+</dt>
+<dd><p>Determine if a value is local.  i.e. its scope extends
+over multiple blocks within its function.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_value_is_constant</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX182"></a>
+</dt>
+<dd><p>Determine if a value is a constant.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_value_is_parameter</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX183"></a>
+</dt>
+<dd><p>Determine if a value is a function parameter.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_value_ref</b><i> (jit_function_t <var>func</var>, jit_value_t <var>value</var>)</i>
+<a name="IDX184"></a>
+</dt>
+<dd><p>Create a reference to the specified <var>value</var> from the current
+block in <var>func</var>.  This will convert a temporary value into
+a local value if <var>value</var> is being referenced from a different
+block than its original.
+</p>
+<p>It is not necessary that <var>func</var> be the same function as the
+one where the value was originally created.  It may be a nested
+function, referring to a local variable in its parent function.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_value_set_volatile</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX185"></a>
+</dt>
+<dd><p>Set a flag on a value to indicate that it is volatile.  The contents
+of the value must always be reloaded from memory, never from a
+cached register copy.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_value_is_volatile</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX186"></a>
+</dt>
+<dd><p>Determine if a value is volatile.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> void <b>jit_value_set_addressable</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX187"></a>
+</dt>
+<dd><p>Set a flag on a value to indicate that it is addressable.
+This should be used when you want to take the address of a
+value (e.g. <code>&amp;variable</code> in C).  The value is guaranteed
+to not be stored in a register across a function call.
+If you refer to a value from a nested function (<code>jit_value_ref</code>),
+then the value will be automatically marked as addressable.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_value_is_addressable</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX188"></a>
+</dt>
+<dd><p>Determine if a value is addressable.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_type_t <b>jit_value_get_type</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX189"></a>
+</dt>
+<dd><p>Get the type that is associated with a value.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_function_t <b>jit_value_get_function</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX190"></a>
+</dt>
+<dd><p>Get the function which owns a particular <var>value</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_block_t <b>jit_value_get_block</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX191"></a>
+</dt>
+<dd><p>Get the block which owns a particular <var>value</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_context_t <b>jit_value_get_context</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX192"></a>
+</dt>
+<dd><p>Get the context which owns a particular <var>value</var>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_constant_t <b>jit_value_get_constant</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX193"></a>
+</dt>
+<dd><p>Get the constant value within a particular <var>value</var>.  The returned
+structure's <code>type</code> field will be <code>jit_type_void</code> if
+<code>value</code> is not a constant.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_nint <b>jit_value_get_nint_constant</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX194"></a>
+</dt>
+<dd><p>Get the constant value within a particular <var>value</var>, assuming
+that its type is compatible with <code>jit_type_nint</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_nint <b>jit_value_get_long_constant</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX195"></a>
+</dt>
+<dd><p>Get the constant value within a particular <var>value</var>, assuming
+that its type is compatible with <code>jit_type_long</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_float32 <b>jit_value_get_float32_constant</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX196"></a>
+</dt>
+<dd><p>Get the constant value within a particular <var>value</var>, assuming
+that its type is compatible with <code>jit_type_float32</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_float64 <b>jit_value_get_float64_constant</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX197"></a>
+</dt>
+<dd><p>Get the constant value within a particular <var>value</var>, assuming
+that its type is compatible with <code>jit_type_float64</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> jit_nfloat <b>jit_value_get_nfloat_constant</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX198"></a>
+</dt>
+<dd><p>Get the constant value within a particular <var>value</var>, assuming
+that its type is compatible with <code>jit_type_nfloat</code>.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_value_is_true</b><i> (jit_value_t <var>value</var>)</i>
+<a name="IDX199"></a>
+</dt>
+<dd><p>Determine if <var>value</var> is constant and non-zero.
+</p></dd></dl>
+
+<dl>
+<dt><u>Function:</u> int <b>jit_constant_convert</b><i> (jit_constant_t *<var>result</var>, const jit_constant_t *<var>value</var>, jit_type_t <var>type</var>, int <var>overflow_check</var>)</i>
+<a name="IDX200"></a>
+</dt>
+<dd><p>Convert a the constant <var>value</var> into a new <var>type</var>, and
+return its value in <var>result</var>.  Returns zero if the conversion
+is not possible, usually due to overflow.
+</p></dd></dl>
+
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="libjit_6.html#SEC16" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="libjit_8.html#SEC18" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="libjit.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_21.html#SEC46" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="libjit_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>May, 11 2008</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>
