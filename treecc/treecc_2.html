@@ -1,0 +1,369 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January, 18 2009 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Tree Compiler-Compiler: 2. A simple example for expressions</title>
+
+<meta name="description" content="Tree Compiler-Compiler: 2. A simple example for expressions">
+<meta name="keywords" content="Tree Compiler-Compiler: 2. A simple example for expressions">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Expression-Example"></a>
+<a name="SEC6"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="treecc_1.html#SEC5" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC7" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="treecc_1.html#SEC1" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_3.html#SEC8" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_9.html#SEC27" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 2. A simple example for expressions </h1>
+
+<p>Consider the following yacc grammar for a simple expression language:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">%token INT FLOAT
+
+%%
+
+expr: INT
+    | FLOAT
+    | '(' expr ')'
+    | expr '+' expr
+    | expr '-' expr
+    | expr '*' expr
+    | expr '/' expr
+    | '-' expr
+    ;
+</pre></td></tr></table>
+
+<p>(We will ignore the problems of precedence and associativity and
+assume that the reader is familiar with how to resolve such issues
+in yacc grammars).
+</p>
+<p>There are 7 types of nodes for this grammar: &lsquo;<samp>intnum</samp>&rsquo;, &lsquo;<samp>floatnum</samp>&rsquo;,
+&lsquo;<samp>plus</samp>&rsquo;, &lsquo;<samp>minus</samp>&rsquo;, &lsquo;<samp>multiply</samp>&rsquo;, &lsquo;<samp>divide</samp>&rsquo;, and &lsquo;<samp>negate</samp>&rsquo;.
+They are defined in treecc as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">%node expression %abstract %typedef
+
+%node binary expression %abstract =
+{
+    expression *expr1;
+    expression *expr2;
+}
+
+%node unary expression %abstract =
+{
+    expression *expr;
+}
+
+%node intnum expression =
+{
+    int num;
+}
+
+%node floatnum expression =
+{
+    float num;
+}
+
+%node plus binary
+%node minus binary
+%node multiply binary
+%node divide binary
+%node negate unary
+</pre></td></tr></table>
+
+<p>We have introduced three extra node types that refer
+to any expression, binary expressions, and unary expressions.  These
+can be seen as superclasses in an OO-style framework.  We have
+declared these node types as &lsquo;<samp>abstract</samp>&rsquo; because the yacc grammar
+will not be permitted to create instances of these classes directly.
+</p>
+<p>The &lsquo;<samp>binary</samp>&rsquo;, &lsquo;<samp>unary</samp>&rsquo;, &lsquo;<samp>intnum</samp>&rsquo;, and &lsquo;<samp>floatnum</samp>&rsquo;
+node types have field definitions associated with them.  These have
+a similar syntax to C <code>struct</code> declarations.
+</p>
+<p>The yacc grammar is augmented as follows to build the parse tree:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">%union {
+    expression *node;
+    int         inum;
+    float       fnum;
+}
+
+%token INT FLOAT
+
+%type &lt;node&gt; expr
+%type &lt;inum&gt; INT
+%type &lt;fnum&gt; FLOAT
+
+%%
+
+expr: INT               { $$ = intnum_create($1); }
+    | FLOAT             { $$ = floatnum_create($1); }
+    | '(' expr ')'      { $$ = $2; }
+    | expr '+' expr     { $$ = plus_create($1, $3); }
+    | expr '-' expr     { $$ = minus_create($1, $3); }
+    | expr '*' expr     { $$ = multiply_create($1, $3); }
+    | expr '/' expr     { $$ = divide_create($1, $3); }
+    | '-' expr          { $$ = negate_create($2); }
+    ;
+</pre></td></tr></table>
+
+<p>The treecc translator generates the &lsquo;<samp>*_create</samp>&rsquo; functions so that
+the rest of the compiler can build the necessary data structures
+on demand.  The parameters to the &lsquo;<samp>*_create</samp>&rsquo; functions
+are identical in type and order to the members of the structure for
+that node type.
+</p>
+<p>Because &lsquo;<samp>expression</samp>&rsquo;, &lsquo;<samp>binary</samp>&rsquo;, and &lsquo;<samp>unary</samp>&rsquo; are abstract,
+there will be no &lsquo;<samp>*_create</samp>&rsquo; functions associated with them.  This will
+help the programmer catch certain kinds of errors.
+</p>
+<p>The type that is returned from a &lsquo;<samp>*_create</samp>&rsquo; function is the first
+superclass of the node that has a &lsquo;<samp>%typedef</samp>&rsquo; keyword associated with it;
+&lsquo;<samp>expression *</samp>&rsquo; in this case.
+</p>
+<hr size="6">
+<a name="SEC7"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC6" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_3.html#SEC8" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC6" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC6" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_3.html#SEC8" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_9.html#SEC27" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 2.1 Storing extra information </h2>
+
+<p>Normally we will want to store extra information with a node beyond
+that which is extracted by the yacc grammar.  In our expression
+example, we probably want to store type information in the nodes
+so that we can determine if the whole expression is integer or
+floating point during semantic analysis.  We can add type information
+to the &lsquo;<samp>expression</samp>&rsquo; node type as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">%node expression %abstract %typedef =
+{
+    %nocreate type_code type;
+}
+</pre></td></tr></table>
+
+<p>The &lsquo;<samp>%nocreate</samp>&rsquo; flag indicates that the field should not be passed
+to the &lsquo;<samp>*_create</samp>&rsquo; functions as a parameter.  i.e. it provides semantic
+information that isn't present in the grammar.  When nodes are created,
+any fields that are declared as &lsquo;<samp>%nocreate</samp>&rsquo; will be undefined in value.
+A default value can be specified as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">%node expression %abstract %typedef =
+{
+    %nocreate type_code type = {int_type};
+}
+</pre></td></tr></table>
+
+<p>Default values must be enclosed in &lsquo;<samp>{</samp>&rsquo; and &lsquo;<samp>}</samp>&rsquo; because they are
+pieces of code in the underlying source language (C, C++, etc), instead
+of tokens in the treecc syntax.  Any legitimate expression in the
+underlying source language may be used.
+</p>
+<p>We also need to arrange for &lsquo;<samp>type_code</samp>&rsquo; to be declared.  One way to
+do this is by adding a &lsquo;<samp>%decls</samp>&rsquo; section to the front of the treecc
+input file:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">%decls %{
+
+typedef enum
+{
+    int_type,
+    float_type
+
+} type_code;
+
+%}
+</pre></td></tr></table>
+
+<p>We could have introduced the definition by placing a &lsquo;<samp>#include</samp>&rsquo;
+directive into the &lsquo;<samp>%decls</samp>&rsquo; section instead, or by defining a
+treecc enumerated type:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">%enum type_code =
+{
+    int_type,
+    float_type
+}
+</pre></td></tr></table>
+
+<p>Now that we have these definitions, type-inferencing can be implemented
+as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">%operation void infer_type(expression *e)
+
+infer_type(binary)
+{
+    infer_type(e-&gt;expr1);
+    infer_type(e-&gt;expr2);
+
+    if(e-&gt;expr1-&gt;type == float_type || e-&gt;expr2-&gt;type == float_type)
+    {
+        e-&gt;type = float_type;
+    }
+    else
+    {
+        e-&gt;type = int_type;
+    }
+}
+
+infer_type(unary)
+{
+    infer_type(e-&gt;expr);
+    e-&gt;type = e-&gt;expr-&gt;type;
+}
+
+infer_type(intnum)
+{
+    e-&gt;type = int_type;
+}
+</pre></td></tr></table>
+
+<p>This example demonstrates using the abstract node types &lsquo;<samp>binary</samp>&rsquo; and
+&lsquo;<samp>unary</samp>&rsquo; to define operations on all subclasses.  The treecc translator
+will generate code for a full C function called &lsquo;<samp>infer_type</samp>&rsquo; that
+incorporates all of the cases.
+</p>
+<p>But hang on a second!  What happened to &lsquo;<samp>floatnum</samp>&rsquo;?  Where did it
+go?  It turns out that treecc will catch this.  It will report
+an error to the effect that &lsquo;<samp>node type `floatnum' is not handled in
+operation `infer_type'</samp>&rsquo;.  Here is its definition:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">infer_type(floatnum)
+{
+    e-&gt;type = float_type;
+}
+</pre></td></tr></table>
+
+<p>As we can see, treecc has just caught a bug in the language
+implementation and reported it to us as soon as we introduced it.
+</p>
+<p>Let's now extend the language with a &lsquo;<samp>power</samp>&rsquo; operator:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">yacc:
+
+expr: expr '^' expr     { $$ = create_power($1, $3); }
+    ;
+
+treecc:
+
+%node power binary
+</pre></td></tr></table>
+
+<p>That's all there is to it!  When treecc re-translates the input
+file, it will modify the definition of &lsquo;<samp>infer_type</samp>&rsquo; to include the
+extra case for &lsquo;<samp>power</samp>&rsquo; nodes.  Because &lsquo;<samp>power</samp>&rsquo; is a subclass of
+&lsquo;<samp>binary</samp>&rsquo;, treecc already knows how to perform type inferencing for the
+new node and it doesn't warn us about a missing declaration.
+</p>
+<p>What if we wanted to restrict the second argument of &lsquo;<samp>power</samp>&rsquo; to be
+an integer value?  We can add the following case to &lsquo;<samp>infer_type</samp>&rsquo;:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">infer_type(power)
+{
+    infer_type(e-&gt;expr1);
+    infer_type(e-&gt;expr2);
+
+    if(e-&gt;expr2-&gt;type != int_type)
+    {
+        error(&quot;second argument to `^' is not an integer&quot;);
+    }
+
+    e-&gt;type = e-&gt;expr1-&gt;type;
+}
+</pre></td></tr></table>
+
+<p>The translator now notices that there is a more specific implementation
+of &lsquo;<samp>infer_type</samp>&rsquo; for &lsquo;<samp>power</samp>&rsquo;, and won't use the &lsquo;<samp>binary</samp>&rsquo;
+case for it.
+</p>
+<p>The most important thing to realise here is that the translator always
+checks that there are sufficient declarations for &lsquo;<samp>infer_type</samp>&rsquo; to cover
+all relevant node types.  If it detects a lack, it will immediately
+raise an error to the user.  This allows tree coverage problems to
+be found a lot sooner than with the traditional approach.
+</p>
+<p>See section <a href="treecc_7.html#SEC25">Full expression example code</a>, for a complete listing of the above
+example files.
+</p>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC6" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_3.html#SEC8" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_9.html#SEC27" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>January, 18 2009</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

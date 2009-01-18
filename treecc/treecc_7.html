@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January, 18 2009 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Tree Compiler-Compiler: A. Full expression example code</title>
+
+<meta name="description" content="Tree Compiler-Compiler: A. Full expression example code">
+<meta name="keywords" content="Tree Compiler-Compiler: A. Full expression example code">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Full-Expression-Example"></a>
+<a name="SEC25"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="treecc_6.html#SEC24" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_8.html#SEC26" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="treecc_6.html#SEC18" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_8.html#SEC26" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_9.html#SEC27" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="appendix"> A. Full expression example code </h1>
+
+<p>The full treecc input file for the expression example is as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">%enum type_code =
+{
+    int_type,
+    float_type
+}
+
+%node expression %abstract %typedef =
+{
+    %nocreate type_code type = {int_type};
+}
+
+%node binary expression %abstract =
+{
+    expression *expr1;
+    expression *expr2;
+}
+
+%node unary expression %abstract =
+{
+    expression *expr;
+}
+
+%node intnum expression =
+{
+    int num;
+}
+
+%node floatnum expression =
+{
+    float num;
+}
+
+%node plus binary
+%node minus binary
+%node multiply binary
+%node divide binary
+%node power binary
+%node negate unary
+
+%operation void infer_type(expression *e)
+
+infer_type(binary)
+{
+    infer_type(e-&gt;expr1);
+    infer_type(e-&gt;expr2);
+
+    if(e-&gt;expr1-&gt;type == float_type || e-&gt;expr2-&gt;type == float_type)
+    {
+        e-&gt;type = float_type;
+    }
+    else
+    {
+        e-&gt;type = int_type;
+    }
+}
+
+infer_type(unary)
+{
+    infer_type(e-&gt;expr);
+    e-&gt;type = e-&gt;expr-&gt;type;
+}
+
+infer_type(intnum)
+{
+    e-&gt;type = int_type;
+}
+
+infer_type(floatnum)
+{
+    e-&gt;type = float_type;
+}
+
+infer_type(power)
+{
+    infer_type(e-&gt;expr1);
+    infer_type(e-&gt;expr2);
+
+    if(e-&gt;expr2-&gt;type != int_type)
+    {
+        error(&quot;second argument to `^' is not an integer&quot;);
+    }
+
+    e-&gt;type = e-&gt;expr1-&gt;type;
+}
+</pre></td></tr></table>
+
+<p>The full yacc grammar is as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">%union {
+    expression *node;
+    int         inum;
+    float       fnum;
+}
+
+%token INT FLOAT
+
+%type &lt;node&gt; expr
+%type &lt;inum&gt; INT
+%type &lt;fnum&gt; FLOAT
+
+%%
+
+expr: INT               { $$ = intnum_create($1); }
+    | FLOAT             { $$ = floatnum_create($1); }
+    | '(' expr ')'      { $$ = $2; }
+    | expr '+' expr     { $$ = plus_create($1, $3); }
+    | expr '-' expr     { $$ = minus_create($1, $3); }
+    | expr '*' expr     { $$ = multiply_create($1, $3); }
+    | expr '/' expr     { $$ = divide_create($1, $3); }
+    | expr '^' expr     { $$ = power_create($1, $3); }
+    | '-' expr          { $$ = negate_create($2); }
+    ;
+</pre></td></tr></table>
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="treecc_6.html#SEC18" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_8.html#SEC26" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_9.html#SEC27" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>January, 18 2009</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

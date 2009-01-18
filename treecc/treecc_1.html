@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January, 18 2009 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Tree Compiler-Compiler: 1. Overview</title>
+
+<meta name="description" content="Tree Compiler-Compiler: 1. Overview">
+<meta name="keywords" content="Tree Compiler-Compiler: 1. Overview">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Overview"></a>
+<a name="SEC1"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="treecc.html#Top" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[ &lt;&lt; ]</td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_2.html#SEC6" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_9.html#SEC27" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 1. Overview </h1>
+
+<hr size="6">
+<a name="SEC2"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC1" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC3" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC1" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC1" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_2.html#SEC6" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_9.html#SEC27" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 1.1 Introduction </h2>
+
+<p>Traditional compiler construction tools such as lex and yacc focus on
+the lexical analysis and parsing phases of compilation.  But they
+provide very little to support semantic analysis and code generation.
+</p>
+<p>Yacc allows grammar rules to be tagged with semantic actions and values,
+but it doesn't provide any routines that assist in the process of tree
+building, semantic analysis, or code generation.  Because those processes
+are language-specific, yacc leaves the details to the programmer.
+</p>
+<p>Support for semantic analysis was also a lot simpler in the languages
+that were prevalent when lex and yacc were devised.  C and Pascal
+require declare before use, which allows the semantic information
+about a statement to be determined within the parser at the point of
+use.<a name="DOCF1" href="treecc_fot.html#FOOT1">(1)</a>  If extensive optimization
+is not required, then code generation can also be performed within
+the grammar, leading to a simple one-pass compiler structure.
+</p>
+<p>Modern languages allow deferred declaration of methods, fields, and
+types.  For example, Java allows a method to refer to a field that
+is declared further down the .java source file.  A field can be
+declared with a type whose class definition has not yet been parsed.
+</p>
+<p>Hence, most of the semantic analysis that used to be performed inline
+within a yacc grammar must now be performed after the entire program
+has been parsed.  Tree building and walking is now more important
+than it was in older declare before use languages.
+</p>
+<hr size="6">
+<a name="SEC3"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC4" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC1" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC1" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_2.html#SEC6" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_9.html#SEC27" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 1.2 Tree walking: the need for something better </h2>
+
+<p>Building parse tree data structures and walking them is not terribly
+difficult, but it is extremely time-consuming and error-prone.  A
+modern programming language may have hundreds of node types, divided
+into categories for statements, expressions, types, declarations, etc.
+When a new programming language is being devised, new node types may
+be added quite frequently.  This has ramifications in trying to manage
+the code's complexity.<a name="DOCF2" href="treecc_fot.html#FOOT2">(2)</a>
+</p>
+<p>For example, consider nodes that correspond to programming language
+types in a C-like language.  There will be node types for integer
+types, floating-point types, pointers, structures, functions, etc.
+There will be semantic analysis routines for testing types for
+equality, comparing types for coercions and casts, evaluating the
+size of a type for memory layout purposes, determining if the type
+falls into a general category such as &quot;integer&quot; or &quot;pointer&quot;, etc.
+</p>
+<p>Let's say we wanted to add a new &quot;128-bit integer&quot; type to this
+language.  Adding a new node type is fairly straight-forward.
+But we also need to track down every place in the code where the
+compiler walks a type or deals with integers and add an appropriate
+case for the new type.  This is very error-prone.  Such code is
+likely to be split over many files, and good coding practices only
+help to a certain extent.
+</p>
+<p>This problem gets worse when new kinds of expressions and statements
+are added to the language.  The change not only affects semantic
+analysis, but also optimization and code generation.  Some compilers
+use multiple passes over the tree to perform optimization, with
+different algorithms used in each pass.  Code generation may use a
+number of different strategies, depending upon how an expression or
+statement is used.  If even one of these places is missed when the
+new node type is added, then there is the potential for a very nasty
+bug that may go unnoticed for months or years.
+</p>
+<p>Object-oriented languages such as C++ can help a bit in constructing
+robust tree structures.  The base class can declare abstract methods
+for any semantic analysis, optimization, or code generation routine
+that needs to be implemented for all members of the node category.
+But another code maintainence problem arises.  What happens when
+we want to add a new optimization pass in the future?  We must go
+into hundreds of classes and implement the methods.
+</p>
+<p>To avoid changing hundreds of classes, texts on Design Patterns
+suggest using a Visitor pattern.  Then the new optimization pass
+can be encapsulated in a visitor.  This would work, except for
+the following drawback of visitor patterns, as described in Gamma,
+et al:
+</p>
+<blockquote><p><em>The Visitor pattern makes it hard to add new subclasses of
+Element.  Each new ConcreteElement gives rise to a new abstract
+operation on Visitor and a corresponding implementation in
+every ConcreteVisitor class.</em>
+</p>
+<p><em>... The Visitor class hierarchy can be difficult to maintain
+when new ConcreteElement classes are added frequently.  In such
+cases, it's probably easier just to define operations on the
+classes that make up the structure.</em>
+</p></blockquote>
+
+<p>That is, if we add a new node type in the future, we have a large
+maintainence problem on our hands.  The solution is to scatter the
+implementation through-out every class, which is the situation we
+were trying to avoid by using the Visitor pattern.
+</p>
+<p>Because compiler construction deals with a large set of rapidly
+changing node types and operations, neither of the usual approaches
+work very well.
+</p>
+<p>The ideal programming language for designing compilers needs to have
+some way to detect when the programmer forgets to implement an operation
+for a new node type, and to ensure that a new operation covers all
+existing node types adequately.  Existing OO languages do not perform
+this kind of global error checking.  What few checking procedures they
+have change the maintainence problem into a different problem of
+similar complexity.
+</p>
+<hr size="6">
+<a name="SEC4"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC3" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC5" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC1" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC1" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_2.html#SEC6" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_9.html#SEC27" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 1.3 Aspect-oriented programming </h2>
+
+<p>A new field in language design has emerged in recent years called
+&quot;Aspect-Oriented Programming&quot; (AOP).  A good review of the field
+can be found in the October 2001 issue of the <em>Communications of
+the ACM</em>, and on the AspectJ Web site, <a href="http://www.aspectj.org/">http://www.aspectj.org/</a>.
+</p>
+<p>The following excerpt from the introduction to the AOP section in the
+CACM issue describes the essential aspects of AOP, and the difference
+between OOP and AOP:
+</p>
+<blockquote><p><em>AOP is based on the idea that computer systems are better programmed
+by separately specifying the various concerns (properties or areas
+of interest) of a system and some description of their relationships,
+and then relying on mechanisms in the underlying AOP environment to
+weave or compose them together into a coherent program. ...
+While the tendancy in OOP's is to find commonality among classes
+and push it up the inheritance tree, AOP attempts to realize
+scattered concerns as first-class elements, and eject them
+horizontally from the object structure.</em>
+</p></blockquote>
+
+<p>Aspect-orientation gives us some hope of solving our compiler
+complexity problems.  We can view each operation on node types
+(semantic analysis, optimization, code generation, etc) as an
+&quot;aspect&quot; of the compiler's construction.  The AOP language weaves
+these aspects with the node types to create the final compiler.
+</p>
+<hr size="6">
+<a name="SEC5"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC4" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_2.html#SEC6" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC1" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC1" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_2.html#SEC6" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_9.html#SEC27" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 1.4 The treecc approach </h2>
+
+<p>We don't really want to implement a new programming language
+just for compiler construction.  Especially since the new language's
+implementation would have all of the problems described above and would
+therefore also be difficult to debug and maintain.
+</p>
+<p>The approach that we take with &quot;treecc&quot; is similar to that used by
+&quot;yacc&quot;.  A simple rule-based language is devised that is used to describe
+the intended behaviour declaratively.  Embedded code is used to provide
+the specific implementation details.  A translator then converts the input
+into source code that can be compiled in the usual fashion.
+</p>
+<p>The translator is responsible for generating the tree building and
+walking code, and for checking that all relevant operations have been
+implemented on the node types.  Functions are provided that make
+it easier to build and walk the tree data structures from within
+a &quot;yacc&quot; grammar and other parts of the compiler.
+</p>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC1" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_2.html#SEC6" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_9.html#SEC27" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>January, 18 2009</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

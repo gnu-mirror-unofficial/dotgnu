@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January, 18 2009 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>Tree Compiler-Compiler: 3. Invoking treecc from the command-line</title>
+
+<meta name="description" content="Tree Compiler-Compiler: 3. Invoking treecc from the command-line">
+<meta name="keywords" content="Tree Compiler-Compiler: 3. Invoking treecc from the command-line">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Invoking-Treecc"></a>
+<a name="SEC8"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="treecc_2.html#SEC7" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_4.html#SEC9" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="treecc_2.html#SEC6" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_4.html#SEC9" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_9.html#SEC27" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter"> 3. Invoking treecc from the command-line </h1>
+
+<p>The general form of treecc's command-line syntax is as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">treecc [OPTIONS] INPUT ...
+</pre></td></tr></table>
+
+<p>Treecc accepts the following command-line options:
+</p>
+<dl compact="compact">
+<dt> <code>-o FILE</code></dt>
+<dt> <code>--output FILE</code></dt>
+<dd><p>Set the name of the output file to &lsquo;<samp>FILE</samp>&rsquo;.  If this option is not
+supplied, then the name of the first input file will be used, with its
+extension changed to &lsquo;<samp>.c</samp>&rsquo;.  If the input is standard input,
+the default output file is &lsquo;<samp>yy_tree.c</samp>&rsquo;.
+</p>
+<p>This option may be overridden using the &lsquo;<samp>%output</samp>&rsquo; keyword in
+the input files.
+</p>
+</dd>
+<dt> <code>-h FILE</code></dt>
+<dt> <code>--header FILE</code></dt>
+<dd><p>Set the name of the header output file to &lsquo;<samp>FILE</samp>&rsquo;.  This is only
+used for the C and C++ output languages.  If this option is not supplied,
+then the name of the output file will be used, with its extension
+changed to &lsquo;<samp>.h</samp>&rsquo;.  If the input is standard input, the default header
+output file is &lsquo;<samp>yy_tree.h</samp>&rsquo;.
+</p>
+<p>This option may be overriden using the &lsquo;<samp>%header</samp>&rsquo; keyword in the
+input files.  If this option is used with a language that does not require
+headers, it will be ignored.
+</p>
+</dd>
+<dt> <code>-d DIR</code></dt>
+<dt> <code>--output-dir DIR</code></dt>
+<dd><p>Set the name of the Java output directory to &lsquo;<samp>DIR</samp>&rsquo;.  This is only
+used for the Java language.  If this option is not supplied, then the
+directory corresponding to the first input file is used.  If the input
+is standard input, the default is the current directory.
+</p>
+<p>This option may be overriden using the &lsquo;<samp>%outdir</samp>&rsquo; keyword in the
+input files.  If this option is used with a language other than Java,
+it will be ignored.
+</p>
+</dd>
+<dt> <code>-e EXT</code></dt>
+<dt> <code>--extension EXT</code></dt>
+<dd><p>Change the default output file extension to &lsquo;<samp>ext</samp>&rsquo;, instead of
+&lsquo;<samp>.c</samp>&rsquo;.  The value &lsquo;<samp>ext</samp>&rsquo; can have a leading dot, but this is
+not required.
+</p>
+</dd>
+<dt> <code>-f</code></dt>
+<dt> <code>--force-create</code></dt>
+<dd><p>Treecc normally attempts to optimise the creation of output files
+so that they are only modified if a non-trivial change has
+occurred in the input.  This can reduce the number of source
+code recompiles when treecc is used in combination with make.
+</p>
+<p>This option forces the output files to be created, even if they
+are the same as existing files with the same name.
+</p>
+<p>The declaration &lsquo;<samp>%option force</samp>&rsquo; can be used in the input files
+to achieve the same effect as this option.
+</p>
+</dd>
+<dt> <code>-O OPT</code></dt>
+<dt> <code>--option OPT</code></dt>
+<dd><p>Set a treecc option value.  This is a command-line version of
+the &lsquo;<samp>%option</samp>&rsquo; keyword in the input files.
+</p>
+</dd>
+<dt> <code>-n</code></dt>
+<dt> <code>--no-output</code></dt>
+<dd><p>Suppress the generation of output files.  Treecc parses the
+input files, checks for errors, and then stops.
+</p>
+</dd>
+<dt> <code>--help</code></dt>
+<dd><p>Print a usage message for the treecc program.
+</p>
+</dd>
+<dt> <code>-v</code></dt>
+<dt> <code>--version</code></dt>
+<dd><p>Print the version of the treecc program.
+</p>
+</dd>
+<dt> <code>--</code></dt>
+<dd><p>Marks the end of the command-line options, and the beginning of
+the input filenames.  You may need to use this if your filename
+begins with &lsquo;<samp>-</samp>&rsquo;.  e.g. &lsquo;<samp>treecc -- -input.tc</samp>&rsquo;.  This is
+not needed if the input is standard input: &lsquo;<samp>treecc -</samp>&rsquo;
+is perfectly valid.
+</p></dd>
+</dl>
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="treecc_2.html#SEC6" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="treecc_4.html#SEC9" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="treecc.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_9.html#SEC27" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="treecc_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Klaus Treichel</em> on <em>January, 18 2009</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>
