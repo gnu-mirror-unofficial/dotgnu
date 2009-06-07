@@ -295,7 +295,7 @@
            <table cellspacing="1" cellpadding="2" border="0">
             <tr>
              <td>
-              
+
 <h1>DotGNU Portable.Net GIT information</h1>
 <p>
 The GIT repository for the DotGNU Portable.Net project is
@@ -305,12 +305,14 @@ The GIT repository for the DotGNU Portable.Net project is
 <p>
 The GIT repository can be cloned with the following instruction set.
 <pre>
-  git clone git://git.savannah.gnu.org/dotgnu-pnet.git
+  git clone git://git.sv.gnu.org/dotgnu-pnet.git
   cd dotgnu-pnet
   git submodule update --init
 </pre>
+<p>
 Before making any changes in the sources you have to make sure that you are on the master branch.
 In the module directory (for example dotgnu-pnet/pnetlib) use the following instruction
+</p>
 <pre>
   git checkout master
 </pre>
@@ -319,6 +321,34 @@ In the module directory (for example dotgnu-pnet/pnetlib) use the following inst
 NOTE: Before you can build the git version, you need to run
 <code>auto_gen.sh</code> in order to create the Makefile.in and
 configure files.
+</p>
+<p>
+For updating your local GIT repository use the following instructions in the dotgnu-pnet directory
+<pre>
+  git pull
+  git submodule update
+</pre>
+</p>
+<h2>Write GIT access</h2>
+<p>
+The same rules apply as for the anonymous git access except that the url for git clone has to be changed to
+</p>
+<p>
+ssh://yoursavannahid@git.savannah.gnu.org/srv/git/dotgnu-pnet.git
+</p>
+<p>
+for more information on how to use GIT on Savannah have a look at the
+<a href="http://savannah.gnu.org/maintenance/UsingGit">GIT informations on Savannah</a>.
+</p>
+<p>
+Because we are using submodules don't forget to update the changes in the dotgnu-pnet directory too so that the submodules will be pulled correctly by the next git clone or git pull in dotgnu-pnet.
+<p>
+This is done like this in the dotgnu-pnet directory
+<pre>
+  git add changedmodule
+  git push
+</pre>
+</p>
 </p>
 <h2>How to obtain GIT write access</h2>
 <p>
@@ -329,7 +359,10 @@ It is possbile that you may be granted GIT write access after some time.
 </p>
 <h2>Browsing the GIT repository with a web browser</h2>
 <p>
+<p>
 For browsing the GIT repositories with a web browser use one of the following links
+</p>
+<p>
 <a href="http://git.savannah.gnu.org/cgit/dotgnu-pnet/cscctest.git">"Compiler tests"</a>,
  <a href="http://git.savannah.gnu.org/cgit/dotgnu-pnet/libCrayons.git">"Graphics library"</a>,
  <a href="http://git.savannah.gnu.org/cgit/dotgnu-pnet/libjit.git">"Just In Time compiler"</a>,
@@ -338,9 +371,11 @@ For browsing the GIT repositories with a web browser use one of the following li
  <a href="http://git.savannah.gnu.org/cgit/dotgnu-pnet/pnetC.git">"C Library"</a>,
  <a href="http://git.savannah.gnu.org/cgit/dotgnu-pnet/pnetlib.git">"Class Library"</a>, or
  <a href="http://git.savannah.gnu.org/cgit/dotgnu-pnet/treecc.git">"Tree Compiler-Compiler"</a>
-
+</p>
+<p>
 If for example you're looking for the sources of TextBox,
 click on <a href="http://git.savannah.gnu.org/cgit/dotgnu-pnet/pnetlib.git">"Class Library"</a>, then on "tree",  "System.Windows.Forms" and as last step on "TextBox.cs".
+</p>
 </p>
 <h2>
  Your comments please...
